@@ -2,7 +2,7 @@
 
 Interface de signature de PDF.
 
-C'est pour le moment au stade de preuve de concept.
+C'est pour le moment au stade de preuve de conception.
 
 ## License
 

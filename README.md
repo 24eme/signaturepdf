@@ -39,4 +39,6 @@ php -S localhost:8000
 - Le micro framework PHP Fat-Free : https://github.com/bcosca/fatfree (GPL v3)
 - PDF.js librairie de lecture de PDF dans un canvas HTML : https://github.com/mozilla/pdf.js (Apache-2.0)
 - Fabric.js librairie pour manipuler un canvas HTML : https://github.com/fabricjs/fabric.js (MIT)
+- PDFtk outils de manipulation de PDF (GPL)
+- librsvg outils de manipulation de SVG : https://gitlab.gnome.org/GNOME/librsvg (LGPL-2+)
 

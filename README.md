@@ -34,7 +34,7 @@ Pour le tester :
 php -S localhost:8000 
 `
 
-## Librairies utilisés
+## Librairies utilisées
 
 - Fat-Free micro framework PHP : https://github.com/bcosca/fatfree (GPL v3)
 - PDF.js librairie de lecture de PDF dans un canvas HTML : https://github.com/mozilla/pdf.js (Apache-2.0)

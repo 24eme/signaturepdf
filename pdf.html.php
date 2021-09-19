@@ -20,7 +20,7 @@
                 <p><small class="text-muted">Double-cliquez sur le PDF pour ajouter la signature</small></p>
                 <form id="form_pdf" action="/<?php echo $key ?>/save" method="post">
                     <div class="position-fixed bottom-0 mb-2">
-                        <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF</button>
+                        <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                     </div>
                 </form>
             </aside>

@@ -16,6 +16,23 @@ loadingTask.promise.then(function(pdf) {
         maxWidth: 1.1
     });
     
+    var svgImage = null;
+    
+    document.getElementById('input-image-upload').addEventListener('change', function(event) {
+        var data = new FormData();    
+        data.append('file', document.getElementById('input-image-upload').files[0]);
+        
+        xhr = new XMLHttpRequest();
+
+        xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
+        xhr.onreadystatechange = function () { 
+            svgImage = "data:image/svg+xml;base64,"+btoa(this.responseText);
+        };
+        xhr.send( data );
+
+        event.preventDefault();
+    });
+    
     var canvasEditions = [];
     
     document.getElementById('save').addEventListener('click', function(event) {
@@ -48,10 +65,16 @@ loadingTask.promise.then(function(pdf) {
           canvasEdition.on('mouse:dblclick', function(event) {
               x = event.pointer.x
               y = event.pointer.y
-
-              fabric.loadSVGFromURL(signaturePad.toDataURL("image/svg+xml"), function(objects, options) {
-                  options.left = x - 100;
-                  options.top = y - 75;
+            
+              svg2add = signaturePad.toDataURL("image/svg+xml");
+              
+              if(svgImage) {
+                svg2add = svgImage;
+              }
+              
+              fabric.loadSVGFromURL(svg2add, function(objects, options) {
+                  options.left = x;
+                  options.top = y;
                   var obj = fabric.util.groupSVGElements(objects, options);
                   console.log(obj);
                   canvasEdition.add(obj).renderAll();

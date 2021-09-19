@@ -49,6 +49,46 @@ $f3->route('GET /@key',
         echo View::instance()->render('pdf.html.php');
     }
 );
+$f3->route('POST /image2svg',
+    function($f3) {
+        $files = Web::instance()->receive(function($file,$formFieldName){
+                if(strpos(Web::instance()->mime($file['tmp_name'], true), 'image/') !== 0) {
+
+                    return false;
+                }
+                if($file['size'] > (20 * 1024 * 1024)) { // if bigger than 20 MB
+
+                    return false;
+                }
+                return true;
+        }, true);
+
+        $imageFile = null;
+        foreach($files as $file => $valid) {
+            if(!$valid) {
+                continue;
+            }
+            $imageFile = $file;
+        }
+
+        if(!$imageFile) {
+            $f3->error(403);
+        }
+
+        if(Web::instance()->mime($imageFile, true) == 'image/svg+xml') {
+            header('Content-Type: image/svg+xml');
+            echo file_get_contents($imageFile);
+            return;
+        }
+
+        shell_exec(sprintf("convert -background white -flatten %s %s", $imageFile, $imageFile.".bmp"));
+        shell_exec(sprintf("mkbitmap %s -o %s", $imageFile.".bmp", $imageFile.".bpm"));
+        shell_exec(sprintf("potrace --svg %s -o %s", $imageFile.".bpm", $imageFile.".svg"));
+
+        header('Content-Type: image/svg+xml');
+        echo file_get_contents($imageFile.".svg");
+    }
+);
 $f3->route('POST /@key/save',
     function($f3) {
         $key = $f3->get('PARAMS.key');

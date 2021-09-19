@@ -15,8 +15,16 @@
         <div class="row">
             <div id="container-pages" class="col-lg-10 col-md-9 col-sm-8 col-xs-6 bg-light text-center"></div>
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
-                <h4><i class="bi bi-vector-pen"></i> Signature</h4> 
+                <h5><i class="bi bi-vector-pen"></i> Signature à main lever</h5> 
                 <canvas id="signature-pad" class="border bg-light" width=200 height=150></canvas>
+                <hr />
+                <form id="form-image-upload" action="/image2svg" method="POST" class="row g-3" enctype="multipart/form-data">
+                    <div class="col-12">
+                      <h5><i class="bi bi-image"></i> Importer une image</h5> 
+                      <input id="input-image-upload" class="form-control" name="image" type="file">
+                    </div>
+                </form>
+                <hr />
                 <p><small class="text-muted">Double-cliquez sur le PDF pour ajouter la signature</small></p>
                 <form id="form_pdf" action="/<?php echo $key ?>/save" method="post">
                     <div class="position-fixed bottom-0 mb-2">

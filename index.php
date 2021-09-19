@@ -53,9 +53,17 @@ $f3->route('POST /@key/save',
     function($f3) {
         $key = $f3->get('PARAMS.key');
         $svgData = $_POST['svg'];
-        file_put_contents($f3->get('UPLOADS').'/'.$key.'.svg', $svgData);
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $f3->get('UPLOADS').'/'.$key.'.svg.pdf', $f3->get('UPLOADS').'/'.$key.'.svg'));
-        shell_exec(sprintf("pdftk %s background %s output %s", $f3->get('UPLOADS').'/'.$key.'.svg.pdf', $f3->get('UPLOADS').'/'.$key.'.pdf', $f3->get('UPLOADS').'/'.$key.'_signe.pdf'));
+
+        $svgFiles = "";
+        foreach($svgData as $index => $svgItem) {
+            $svgFile = $f3->get('UPLOADS').'/'.$key.'_'.$index.'.svg';
+            file_put_contents($svgFile, $svgItem);
+            $svgFiles .= $svgFile . " ";
+        }
+
+
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $f3->get('UPLOADS').'/'.$key.'.svg.pdf', $svgFiles));
+        shell_exec(sprintf("pdftk %s multibackground %s output %s", $f3->get('UPLOADS').'/'.$key.'.svg.pdf', $f3->get('UPLOADS').'/'.$key.'.pdf', $f3->get('UPLOADS').'/'.$key.'_signe.pdf'));
         
         Web::instance()->send($f3->get('UPLOADS').'/'.$key.'_signe.pdf');
     }

@@ -62,6 +62,20 @@ loadingTask.promise.then(function(pdf) {
         }) 
     });
     
+    document.addEventListener('keydown', function(event) {
+        if(event.target.tagName != "BODY") {
+            return;
+        }
+        if(event.key == 'Delete') {
+            canvasEditions.forEach(function(canvasEdition, index) {
+                canvasEdition.getActiveObjects().forEach(function(activeObject) {
+                    canvasEdition.remove(activeObject);
+                });
+            })
+            return;
+        }
+    });
+    
     for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
         pdf.getPage(pageNumber).then(function(page) {
           var scale = 1.5;

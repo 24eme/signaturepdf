@@ -11,6 +11,9 @@ var loadingTask = pdfjsLib.getDocument(url);
 loadingTask.promise.then(function(pdf) {
     
     var fontCaveat = null;
+    var copiedObject = null;
+    var activeCanvas = null;
+    var activeCanvasPointer = null;
 
     opentype.load('font/Caveat-Regular.ttf', function(err, font) {
         fontCaveat = font;
@@ -74,6 +77,24 @@ loadingTask.promise.then(function(pdf) {
             })
             return;
         }
+        
+        if(event.ctrlKey && event.key == 'c') {
+            canvasEditions.forEach(function(canvasEdition, index) {
+                if(!canvasEdition.getActiveObject()) {
+                    return;
+                }
+                copiedObject = fabric.util.object.clone(canvasEdition.getActiveObject());
+            });
+            return;
+        }
+        
+        if(event.ctrlKey && event.key == 'v') {
+            copiedObject = fabric.util.object.clone(copiedObject);
+            copiedObject.left = activeCanvasPointer.x;
+            copiedObject.top = activeCanvasPointer.y;
+            activeCanvas.add(copiedObject).renderAll();
+            return;
+        }
     });
     
     for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
@@ -96,6 +117,11 @@ loadingTask.promise.then(function(pdf) {
           canvasEditionHTML.width = viewport.width;
 
           var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex);
+          
+          canvasEdition.on('mouse:move', function(event) {
+              activeCanvas = this;
+              activeCanvasPointer = event.pointer;
+          });
 
           canvasEdition.on('mouse:dblclick', function(event) {
               x = event.pointer.x

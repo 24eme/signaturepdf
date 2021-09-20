@@ -5,10 +5,17 @@ var pdfjsLib = window['pdfjs-dist/build/pdf'];
 // The workerSrc property shall be specified.
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
 
+
 // Asynchronous download of PDF
 var loadingTask = pdfjsLib.getDocument(url);
 loadingTask.promise.then(function(pdf) {
+    
+    var fontCaveat = null;
 
+    opentype.load('font/Caveat-Regular.ttf', function(err, font) {
+        fontCaveat = font;
+    });
+    
     var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         backgroundColor: 'rgba(255, 255, 255, 0)',
         penColor: 'rgb(0, 0, 0)',
@@ -99,12 +106,11 @@ loadingTask.promise.then(function(pdf) {
               }
 
               if(document.getElementById('radio_signature_text').checked) {
-                var textSignature = new fabric.Text(document.getElementById('input-text-signature').value, {
-                      fontFamily: 'Caveat'
-                });
-                textSignature.top = y - (textSignature.getScaledHeight() / 2);    
-                textSignature.left = x - (textSignature.getScaledWidth() / 2);    
-                canvasEdition.add(textSignature).renderAll();
+                var fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
+                var fabricPath = new fabric.Path(fontPath.toPathData());
+                fabricPath.top = y - (fabricPath.getScaledHeight() / 2);    
+                fabricPath.left = x - (fabricPath.getScaledWidth() / 2);    
+                canvasEdition.add(fabricPath).renderAll();
               }
               
               if(document.getElementById('radio_signature_text_classic').checked) {

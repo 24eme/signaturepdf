@@ -20,7 +20,7 @@
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_pad"></div>
                 <h5><i class="bi bi-vector-pen"></i> À main lever</h5> 
-                <canvas id="signature-pad" class="border bg-light" width=200 height=150></canvas>
+                <canvas id="signature-pad" class="border bg-light" width=235 height=125></canvas>
                 <hr />
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_text"></div>
                 <h5><i class="bi bi-fonts"></i> Texte à la main</h5>
@@ -54,5 +54,6 @@
     var url = '/data/<?php echo $key ?>.pdf';
     </script>
     <script src="/js/app.js"></script>
+    <script src="/js/opentype.min.js"></script>
   </body>
 </html>

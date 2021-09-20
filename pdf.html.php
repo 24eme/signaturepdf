@@ -29,7 +29,7 @@
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_image"></div>
                 <h5><i class="bi bi-image"></i> Image</h5> 
                 <div class="text-center">
-                <img id="img-upload" style="max-height: 80px" src="" />
+                <img id="img-upload" class="d-none" style="max-height: 80px" src="" />
                 </div>
                 <form id="form-image-upload" action="/image2svg" method="POST" enctype="multipart/form-data">
                     <input id="input-image-upload" class="form-control" name="image" type="file">
@@ -39,7 +39,7 @@
                 <h5><i class="bi bi-type"></i> Texte classique</h5>
                 <input id="input-signature-text-classic" type="text" class="form-control" placeholder="" />
                 <hr />
-                <p><small class="text-muted"><i class="bi bi-hand-index"></i><i class="bi bi-hand-index"></i> Double-cliquer sur le PDF pour <i class="bi bi-plus-circle-fill"></i> ajouter la signature</small></p>
+                <p><small class="text-muted"><i class="bi bi-hand-index"></i><i class="bi bi-hand-index"></i> <i class="bi bi-plus-circle-fill"></i> Double-cliquer sur le PDF pour ajouter l'élément séléctionné</small></p>
                 <form id="form_pdf" action="/<?php echo $key ?>/save" method="post">
                     <div class="position-fixed bottom-0 mb-2">
                         <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>

@@ -46,6 +46,8 @@ loadingTask.promise.then(function(pdf) {
         xhr.onreadystatechange = function () { 
             svgImage = "data:image/svg+xml;base64,"+btoa(this.responseText);
             document.getElementById('radio_signature_image').checked = true;
+            document.getElementById('img-upload').src = svgImage;
+            document.getElementById('img-upload').classList.remove("d-none");
         };
         xhr.send( data );
 
@@ -114,7 +116,7 @@ loadingTask.promise.then(function(pdf) {
               }
               
               if(document.getElementById('radio_signature_text_classic').checked) {
-                var textSignature = new fabric.Text(document.getElementById('input-signature-text-classic').value);
+                var textSignature = new fabric.Text(document.getElementById('input-signature-text-classic').value, { fontSize: 16 });
                 textSignature.top = y - (textSignature.getScaledHeight() / 2);    
                 textSignature.left = x - (textSignature.getScaledWidth() / 2);    
                 canvasEdition.add(textSignature).renderAll();

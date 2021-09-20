@@ -23,7 +23,7 @@
                 <canvas id="signature-pad" class="border bg-light" width=200 height=150></canvas>
                 <hr />
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_text"></div>
-                <h5><i class="bi bi-fonts"></i> Texte</h5>
+                <h5><i class="bi bi-fonts"></i> Texte à la main</h5>
                 <input id="input-text-signature" type="text" class="form-control" placeholder="Ma signature" style="font-family: 'Caveat', cursive; font-size: 24px;" />
                 <hr />
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_image"></div>
@@ -31,6 +31,10 @@
                 <form id="form-image-upload" action="/image2svg" method="POST" class="row g-3" enctype="multipart/form-data">
                     <input id="input-image-upload" class="form-control" name="image" type="file">
                 </form>
+                <hr />
+                <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_text_classic"></div>
+                <h5><i class="bi bi-type"></i> Texte classique</h5>
+                <input id="input-signature-text-classic" type="text" class="form-control" placeholder="" />
                 <hr />
                 <p><small class="text-muted"><i class="bi bi-hand-index"></i><i class="bi bi-hand-index"></i> Double-cliquer sur le PDF pour <i class="bi bi-plus-circle-fill"></i> ajouter la signature</small></p>
                 <form id="form_pdf" action="/<?php echo $key ?>/save" method="post">

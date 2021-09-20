@@ -23,6 +23,10 @@ loadingTask.promise.then(function(pdf) {
         document.getElementById('radio_signature_text').checked = true;
     });
     
+    document.getElementById('input-signature-text-classic').addEventListener('keypress', function(event) {
+        document.getElementById('radio_signature_text_classic').checked = true;
+    });
+    
     var svgImage = null;
     
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
@@ -98,6 +102,13 @@ loadingTask.promise.then(function(pdf) {
                 var textSignature = new fabric.Text(document.getElementById('input-text-signature').value, {
                       fontFamily: 'Caveat'
                 });
+                textSignature.top = y - (textSignature.getScaledHeight() / 2);    
+                textSignature.left = x - (textSignature.getScaledWidth() / 2);    
+                canvasEdition.add(textSignature).renderAll();
+              }
+              
+              if(document.getElementById('radio_signature_text_classic').checked) {
+                var textSignature = new fabric.Text(document.getElementById('input-signature-text-classic').value);
                 textSignature.top = y - (textSignature.getScaledHeight() / 2);    
                 textSignature.left = x - (textSignature.getScaledWidth() / 2);    
                 canvasEdition.add(textSignature).renderAll();

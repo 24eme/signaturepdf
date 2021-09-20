@@ -18,18 +18,21 @@
         <div class="row">
             <div id="container-pages" class="col-lg-10 col-md-9 col-sm-8 col-xs-6 bg-light text-center"></div>
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
-                <h5><i class="bi bi-vector-pen"></i> Signature à main lever</h5> 
+                <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_pad"></div>
+                <h5><i class="bi bi-vector-pen"></i> À main lever</h5> 
                 <canvas id="signature-pad" class="border bg-light" width=200 height=150></canvas>
                 <hr />
-                <h5><i class="bi bi-fonts"></i> Signature texte</h5>
-                <input id="input-text-signature" type="text" class="form-control" placeholder="Ma signature" style="font-family: 'Caveat', cursive; font-size: 24px;" /> 
+                <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_text"></div>
+                <h5><i class="bi bi-fonts"></i> Texte</h5>
+                <input id="input-text-signature" type="text" class="form-control" placeholder="Ma signature" style="font-family: 'Caveat', cursive; font-size: 24px;" />
                 <hr />
+                <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_image"></div>
+                <h5><i class="bi bi-image"></i> Image</h5> 
                 <form id="form-image-upload" action="/image2svg" method="POST" class="row g-3" enctype="multipart/form-data">
-                    <h5><i class="bi bi-image"></i> Importer une image</h5> 
                     <input id="input-image-upload" class="form-control" name="image" type="file">
                 </form>
                 <hr />
-                <p><small class="text-muted">Double-cliquez sur le PDF pour ajouter la signature</small></p>
+                <p><small class="text-muted"><i class="bi bi-hand-index"></i><i class="bi bi-hand-index"></i> Double-cliquer sur le PDF pour <i class="bi bi-plus-circle-fill"></i> ajouter la signature</small></p>
                 <form id="form_pdf" action="/<?php echo $key ?>/save" method="post">
                     <div class="position-fixed bottom-0 mb-2">
                         <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>

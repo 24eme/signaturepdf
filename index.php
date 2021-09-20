@@ -82,7 +82,7 @@ $f3->route('POST /image2svg',
         }
 
         shell_exec(sprintf("convert -background white -flatten %s %s", $imageFile, $imageFile.".bmp"));
-        shell_exec(sprintf("mkbitmap %s -o %s", $imageFile.".bmp", $imageFile.".bpm"));
+        shell_exec(sprintf("mkbitmap -x -f 8 %s -o %s", $imageFile.".bmp", $imageFile.".bpm"));
         shell_exec(sprintf("potrace --svg %s -o %s", $imageFile.".bpm", $imageFile.".svg"));
 
         header('Content-Type: image/svg+xml');

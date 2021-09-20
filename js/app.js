@@ -71,13 +71,23 @@ loadingTask.promise.then(function(pdf) {
               if(svgImage) {
                 svg2add = svgImage;
               }
+
+              if(document.getElementById('input-text-signature').value) {
+                var textSignature = new fabric.Text(document.getElementById('input-text-signature').value, {
+                      fontFamily: 'Caveat'
+                });
+                textSignature.top = y - (textSignature.getScaledHeight() / 2);    
+                textSignature.left = x - (textSignature.getScaledWidth() / 2);    
+                canvasEdition.add(textSignature).renderAll();
+              }
+              
               
               fabric.loadSVGFromURL(svg2add, function(objects, options) {
-                  options.left = x;
-                  options.top = y;
-                  var obj = fabric.util.groupSVGElements(objects, options);
-                  console.log(obj);
-                  canvasEdition.add(obj).renderAll();
+                  var svg = fabric.util.groupSVGElements(objects, options);
+                  svg.scaleToHeight(100);
+                  svg.top = y - (svg.getScaledHeight() / 2);
+                  svg.left = x - (svg.getScaledWidth() / 2);
+                  canvasEdition.add(svg).renderAll();
               });
 
           });

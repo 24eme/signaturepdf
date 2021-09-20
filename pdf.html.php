@@ -8,6 +8,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
     <title>Signature PDF</title>
   </head>
   <body>
@@ -18,11 +21,12 @@
                 <h5><i class="bi bi-vector-pen"></i> Signature à main lever</h5> 
                 <canvas id="signature-pad" class="border bg-light" width=200 height=150></canvas>
                 <hr />
+                <h5><i class="bi bi-fonts"></i> Signature texte</h5>
+                <input id="input-text-signature" type="text" class="form-control" placeholder="Ma signature" style="font-family: 'Caveat', cursive; font-size: 24px;" /> 
+                <hr />
                 <form id="form-image-upload" action="/image2svg" method="POST" class="row g-3" enctype="multipart/form-data">
-                    <div class="col-12">
-                      <h5><i class="bi bi-image"></i> Importer une image</h5> 
-                      <input id="input-image-upload" class="form-control" name="image" type="file">
-                    </div>
+                    <h5><i class="bi bi-image"></i> Importer une image</h5> 
+                    <input id="input-image-upload" class="form-control" name="image" type="file">
                 </form>
                 <hr />
                 <p><small class="text-muted">Double-cliquez sur le PDF pour ajouter la signature</small></p>

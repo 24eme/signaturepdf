@@ -53,7 +53,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fabric@4.4.0/dist/fabric.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.umd.min.js"></script>
     <script>
-    var url = '/data/<?php echo $key ?>.pdf';
+    var url = '/<?php echo $key ?>/pdf';
     </script>
     <script src="/js/app.js"></script>
     <script src="/js/opentype.min.js"></script>

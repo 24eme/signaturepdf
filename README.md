@@ -39,6 +39,7 @@ php -S localhost:8000
 ## Librairies utilisées
 
 - Fat-Free micro framework PHP : https://github.com/bcosca/fatfree (GPLv3)
+- Bootstrap framework html, css et javascript : https://getbootstrap.com/ (MIT)
 - PDF.js librairie de lecture de PDF dans un canvas HTML : https://github.com/mozilla/pdf.js (Apache-2.0)
 - Fabric.js librairie pour manipuler un canvas HTML : https://github.com/fabricjs/fabric.js (MIT)
 - PDFtk outils de manipulation de PDF (GPL)
@@ -46,3 +47,4 @@ php -S localhost:8000
 - potrace outils de transformation d'image bitamp en image vectorisé : http://potrace.sourceforge.net/ (GPLv2)
 - OpenType.js outils de transformation d'un texte et sa police en chemin : https://github.com/opentypejs/opentype.js (MIT)
 - ImageMagick ensemble d'outils de manipulation d'images : https://imagemagick.org/ (Apache-2.0)
+- Caveat police de caractère style écriture à la main : https://github.com/googlefonts/caveat (OFL-1.1) 

@@ -7,9 +7,14 @@
 
     <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
     <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <style>
+    @font-face {
+      font-family: 'Caveat';
+      font-style: normal;
+      font-weight: 400;
+      src: url(/vendor/fonts/Caveat-Regular.ttf) format('truetype');
+    }
+    </style>
     <title>Signature PDF</title>
   </head>
   <body>
@@ -23,7 +28,7 @@
                 <hr />
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_text"></div>
                 <h5><i class="bi bi-fonts"></i> Texte à la main</h5>
-                <input id="input-text-signature" type="text" class="form-control" placeholder="Ma signature" style="font-family: 'Caveat', cursive; font-size: 24px;" />
+                <input id="input-text-signature" type="text" class="form-control" placeholder="Ma signature" style="font-family: Caveat; font-size: 24px;" />
                 <hr />
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_image"></div>
                 <h5><i class="bi bi-image"></i> Image</h5> 

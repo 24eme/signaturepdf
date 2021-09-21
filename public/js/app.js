@@ -15,7 +15,7 @@ loadingTask.promise.then(function(pdf) {
     var activeCanvas = null;
     var activeCanvasPointer = null;
 
-    opentype.load('font/Caveat-Regular.ttf', function(err, font) {
+    opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {
         fontCaveat = font;
     });
     

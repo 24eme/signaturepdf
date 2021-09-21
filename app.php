@@ -10,7 +10,7 @@ if(!is_dir($f3->get('UPLOADS'))) {
 $f3->route('GET /',
     function($f3) {
         $f3->set('key', $f3->get('PARAMS.key'));
-        echo View::instance()->render('index.html.php');
+        echo View::instance()->render('../index.html.php');
     }
 );
 $f3->route('POST /upload',
@@ -46,7 +46,7 @@ $f3->route('POST /upload',
 $f3->route('GET /@key',
     function($f3) {
         $f3->set('key', $f3->get('PARAMS.key'));
-        echo View::instance()->render('pdf.html.php');
+        echo View::instance()->render('../pdf.html.php');
     }
 );
 $f3->route('POST /image2svg',

@@ -161,7 +161,7 @@ loadingTask.promise.then(function(pdf) {
                 canvasEdition.add(textSignature).renderAll();
               }
           });
-
+          
           canvasEditions.push(canvasEdition);
 
           var renderContext = {

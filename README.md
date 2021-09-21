@@ -20,7 +20,7 @@ Dépendances :
 Sur debian :
 
 `
-sudo aptitude install php rsvg-convert pdftk potrace
+sudo aptitude install php librsvg2-bin pdftk potrace
 `
 
 Récupération des sources :

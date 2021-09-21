@@ -15,12 +15,13 @@ Dépendances :
 - php >= 5.6 
 - rsvg-convert
 - pdftk
+- imagemagick
 - potrace
 
 Sur debian :
 
 `
-sudo aptitude install php librsvg2-bin pdftk potrace
+sudo aptitude install php librsvg2-bin pdftk imagemagick potrace
 `
 
 Récupération des sources :

@@ -32,7 +32,7 @@ $f3->route('POST /upload',
             if(!$valid) {
                 continue;
             }
-            $key = md5_file($file);
+            $key = substr(hash('sha256', hash_file('sha256', $file).uniqid()), 0, 24);
             rename($file, $f3->get('UPLOADS').'/'.$key.'.pdf');
         }
         

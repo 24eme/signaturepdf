@@ -29,7 +29,7 @@
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_image"></div>
                 <h5><i class="bi bi-image"></i> Image</h5> 
                 <div class="text-center">
-                <img id="img-upload" class="d-none" style="max-height: 80px" src="" />
+                <img id="img-upload" class="d-none" style="max-height: 80px; max-width: 235px;" src="" />
                 </div>
                 <form id="form-image-upload" action="/image2svg" method="POST" enctype="multipart/form-data">
                     <input id="input-image-upload" class="form-control" name="image" type="file">

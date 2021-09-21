@@ -79,12 +79,11 @@ loadingTask.promise.then(function(pdf) {
         }
         
         if(event.ctrlKey && event.key == 'c') {
-            canvasEditions.forEach(function(canvasEdition, index) {
-                if(!canvasEdition.getActiveObject()) {
-                    return;
-                }
-                copiedObject = fabric.util.object.clone(canvasEdition.getActiveObject());
-            });
+            if(!activeCanvas || !activeCanvas.getActiveObject()) {
+                return;
+            }
+            copiedObject = fabric.util.object.clone(activeCanvas.getActiveObject());
+        
             return;
         }
         

@@ -49,13 +49,13 @@
         </div>
     </div>
 
-    <script src="https://mozilla.github.io/pdf.js/legacy/build/pdf.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fabric@4.4.0/dist/fabric.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.umd.min.js"></script>
+    <script src="/vendor/pdf.js?legacy"></script>
+    <script src="/vendor/fabric.min.js?4.4.0"></script>
+    <script src="/vendor/signature_pad.umd.min.js?v3.0.0-beta.3"></script>
+    <script src="/vendor/opentype.min.js?v1.3.3"></script>
     <script>
     var url = '/<?php echo $key ?>/pdf';
     </script>
     <script src="/js/app.js"></script>
-    <script src="/js/opentype.min.js"></script>
   </body>
 </html>

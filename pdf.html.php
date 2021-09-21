@@ -19,7 +19,7 @@
             <div id="container-pages" class="col-lg-10 col-md-9 col-sm-8 col-xs-6 bg-light text-center"></div>
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_pad"></div>
-                <h5><i class="bi bi-vector-pen"></i> À main lever</h5> 
+                <h5><i class="bi bi-vector-pen"></i> À main levée</h5>
                 <canvas id="signature-pad" class="border bg-light" width=235 height=125></canvas>
                 <hr />
                 <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_text"></div>
@@ -39,7 +39,7 @@
                 <h5><i class="bi bi-type"></i> Texte classique</h5>
                 <input id="input-signature-text-classic" type="text" class="form-control" placeholder="" />
                 <hr />
-                <p><small class="text-muted"><i class="bi bi-hand-index"></i><i class="bi bi-hand-index"></i> <i class="bi bi-plus-circle-fill"></i> Double-cliquer sur le PDF pour ajouter l'élément séléctionné</small></p>
+                <p><small class="text-muted"><i class="bi bi-hand-index"></i><i class="bi bi-hand-index"></i> <i class="bi bi-plus-circle-fill"></i> Double-cliquez sur le PDF pour ajouter l'élément sélectionné</small></p>
                 <form id="form_pdf" action="/<?php echo $key ?>/save" method="post">
                     <div class="position-fixed bottom-0 mb-2">
                         <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
@@ -48,8 +48,7 @@
             </aside>
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
     <script src="https://mozilla.github.io/pdf.js/legacy/build/pdf.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fabric@4.4.0/dist/fabric.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@3.0.0-beta.3/dist/signature_pad.umd.min.js"></script>

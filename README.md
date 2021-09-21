@@ -1,8 +1,8 @@
 # Signature PDF
 
-Interface de signature de PDF.
+Interface web permettant de signé un PDF.
 
-C'est pour le moment au stade de preuve de conception.
+Ce projet est encore au stade de "preuve de conception".
 
 ## License
 
@@ -15,12 +15,13 @@ Dépendances :
 - php >= 5.6 
 - rsvg-convert
 - pdftk
+- imagemagick
 - potrace
 
 Sur debian :
 
 `
-sudo aptitude install php rsvg-convert pdftk potrace
+sudo aptitude install php librsvg2-bin pdftk imagemagick potrace
 `
 
 Récupération des sources :
@@ -44,3 +45,4 @@ php -S localhost:8000
 - librsvg outils de manipulation de SVG : https://gitlab.gnome.org/GNOME/librsvg (LGPL-2+)
 - potrace outils de transformation d'image bitamp en image vectorisé : http://potrace.sourceforge.net/ (GPLv2)
 - OpenType.js outils de transformation d'un texte et sa police en chemin : https://github.com/opentypejs/opentype.js (MIT)
+- ImageMagick ensemble d'outils de manipulation d'images : https://imagemagick.org/ (Apache-2.0)

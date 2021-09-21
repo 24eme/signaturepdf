@@ -5,9 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
     <title>Signature PDF</title>
 </head>
 <body>
@@ -28,7 +27,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">
+    <script>
         document.getElementById('input_pdf_upload').addEventListener('change', function(event) {
             document.getElementById('form_pdf_upload').submit();
         });

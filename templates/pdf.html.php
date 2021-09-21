@@ -5,9 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
@@ -51,8 +50,8 @@
 
     <script src="/vendor/pdf.js?legacy"></script>
     <script src="/vendor/fabric.min.js?4.4.0"></script>
-    <script src="/vendor/signature_pad.umd.min.js?v3.0.0-beta.3"></script>
-    <script src="/vendor/opentype.min.js?v1.3.3"></script>
+    <script src="/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>
+    <script src="/vendor/opentype.min.js?1.3.3"></script>
     <script>
     var url = '/<?php echo $key ?>/pdf';
     </script>

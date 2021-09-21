@@ -1,8 +1,8 @@
 # Signature PDF
 
-Interface de signature de PDF.
+Interface web permettant de signé un PDF.
 
-C'est pour le moment au stade de preuve de conception.
+Ce projet est encore au stade de "preuve de conception".
 
 ## License
 

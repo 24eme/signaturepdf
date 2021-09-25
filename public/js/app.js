@@ -50,7 +50,7 @@ loadingTask.promise.then(function(pdf) {
     
     document.getElementById('btn_modal_ajouter').addEventListener('click', function() {
         if(document.getElementById('nav-draw-tab').classList.contains('active')) {
-            svgCollections.push(signaturePad.toDataURL("image/svg+xml"));
+            svgCollections.push(document.getElementById('img-upload').src);
         }
         if(document.getElementById('nav-type-tab').classList.contains('active')) {
             var fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
@@ -73,9 +73,36 @@ loadingTask.promise.then(function(pdf) {
         document.querySelector('#svg_list label:last-child').click();
     });
     
+    function dataURLtoBlob(dataurl) {
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {type:mime});
+    }
+    
     var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         penColor: 'rgb(0, 0, 0)',
-        onEnd: function() { document.getElementById('btn_modal_ajouter').focus() }
+        minWidth: 1.5,
+        maxWidth: 2.25,
+        throttle: 0,
+        onEnd: function() { 
+            const file = new File([dataURLtoBlob(signaturePad.toDataURL("image/svg+xml"))], "draw.svg", {
+                type: 'image/svg+xml'
+            });
+            var data = new FormData();    
+            data.append('file', file);
+            xhr = new XMLHttpRequest();
+            xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
+            xhr.onreadystatechange = function () { 
+                var svgImage = "data:image/svg+xml;base64,"+btoa(this.responseText);
+                document.getElementById('img-upload').src = svgImage;
+                document.getElementById('img-upload').classList.remove("d-none");
+                document.getElementById('btn_modal_ajouter').focus();
+            };
+            xhr.send( data );
+        }
     });
     
     document.querySelectorAll('#modalAddSvg .nav-link').forEach(function(item) { item.addEventListener('shown.bs.tab', function (event) {

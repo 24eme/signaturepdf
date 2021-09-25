@@ -117,4 +117,5 @@ $f3->route('POST /@key/save',
         Web::instance()->send($f3->get('UPLOADS').$key.'_signe.pdf');
     }
 );
-$f3->run();
+
+return $f3;

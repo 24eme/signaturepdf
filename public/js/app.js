@@ -16,6 +16,11 @@ loadingTask.promise.then(function(pdf) {
     var activeCanvasPointer = null;
     var canvasEditions = [];
     var svgCollections = [];
+    
+    if(localStorage.getItem('svgCollections')) {
+        svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
+        console.log(svgCollections);
+    }
 
     opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {
         fontCaveat = font;
@@ -69,8 +74,8 @@ loadingTask.promise.then(function(pdf) {
             svgCollections.push(document.getElementById('img-upload').src);
         }
         displaysSVG();
-        
         document.querySelector('#svg_list label:last-child').click();
+        localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
     });
     
     function dataURLtoBlob(dataurl) {

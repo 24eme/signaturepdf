@@ -14,31 +14,77 @@ loadingTask.promise.then(function(pdf) {
     var copiedObject = null;
     var activeCanvas = null;
     var activeCanvasPointer = null;
+    var canvasEditions = [];
+    var svgCollections = [];
 
     opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {
         fontCaveat = font;
     });
     
+    
+    var displaysSVG = function() {
+        document.getElementById('svg_list').innerHTML = "";
+        svgCollections.forEach((svg, i) => {
+            var inputRadio = document.createElement('input');
+            inputRadio.type = "radio";
+            inputRadio.classList.add("btn-check");
+            inputRadio.id="radio_svg_"+i;
+            inputRadio.name = "svg_2_add";
+            inputRadio.autocomplete = "off";
+            inputRadio.value = svg;
+            var svgButton = document.createElement('label');
+            svgButton.classList.add('btn');
+            svgButton.classList.add('btn-lg');
+            svgButton.classList.add('btn-outline-secondary');
+            svgButton.htmlFor = "radio_svg_"+i;
+            var svgImg = document.createElement('img');
+            svgImg.src = svg;
+            svgImg.style = "max-width: 180px;max-height: 70px;";
+            svgButton.appendChild(svgImg);
+            document.getElementById('svg_list').appendChild(inputRadio);
+            document.getElementById('svg_list').appendChild(svgButton);
+        });
+    }
+    
+    displaysSVG();
+    
+    document.getElementById('btn_modal_ajouter').addEventListener('click', function() {
+        if(document.getElementById('nav-draw-tab').classList.contains('active')) {
+            svgCollections.push(signaturePad.toDataURL("image/svg+xml"));
+        }
+        if(document.getElementById('nav-type-tab').classList.contains('active')) {
+            var fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
+            var fabricPath = new fabric.Path(fontPath.toPathData());
+            fabricPath.top = 0;    
+            fabricPath.left = 0;    
+            fabricPath.height = fabricPath.getScaledHeight();
+            var textCanvas = document.createElement('canvas');
+            textCanvas.width = fabricPath.getScaledWidth();
+            textCanvas.height = fabricPath.getScaledHeight();
+            var textCanvas = new fabric.Canvas(textCanvas);
+            textCanvas.add(fabricPath).renderAll();
+            svgCollections.push("data:image/svg+xml;base64,"+btoa(textCanvas.toSVG()));
+        }
+        if(document.getElementById('nav-import-tab').classList.contains('active')) {
+            svgCollections.push(document.getElementById('img-upload').src);
+        }
+        displaysSVG();
+    });
+    
     var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
-        backgroundColor: 'rgba(255, 255, 255, 0)',
         penColor: 'rgb(0, 0, 0)',
         minWidth: 0.75,
-        maxWidth: 1.1,
-        onEnd: function() {
-            document.getElementById('radio_signature_pad').checked = true;
-        }
+        maxWidth: 1.1
     });
     
-    document.getElementById('input-text-signature').addEventListener('keypress', function(event) {
-        document.getElementById('radio_signature_text').checked = true;
-    });
-    
-    document.getElementById('input-signature-text-classic').addEventListener('keypress', function(event) {
-        document.getElementById('radio_signature_text_classic').checked = true;
-    });
-    
-    var svgImage = null;
-    
+    document.getElementById('modalAddSvg').addEventListener('hidden.bs.modal', function (event) {
+        signaturePad.clear();
+        document.getElementById('input-text-signature').value = null;
+        document.getElementById('input-image-upload').value = null;
+        document.getElementById('img-upload').src = null;
+        document.getElementById('img-upload').classList.add("d-none");
+    })
+
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
         var data = new FormData();    
         data.append('file', document.getElementById('input-image-upload').files[0]);
@@ -47,8 +93,7 @@ loadingTask.promise.then(function(pdf) {
 
         xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
         xhr.onreadystatechange = function () { 
-            svgImage = "data:image/svg+xml;base64,"+btoa(this.responseText);
-            document.getElementById('radio_signature_image').checked = true;
+            var svgImage = "data:image/svg+xml;base64,"+btoa(this.responseText);
             document.getElementById('img-upload').src = svgImage;
             document.getElementById('img-upload').classList.remove("d-none");
         };
@@ -57,12 +102,10 @@ loadingTask.promise.then(function(pdf) {
         event.preventDefault();
     });
     
-    var canvasEditions = [];
-    
     document.getElementById('save').addEventListener('click', function(event) {
         canvasEditions.forEach(function(canvasEdition, index) {
             document.getElementById('data-svg-'+index).value = canvasEdition.toSVG();
-        }) 
+        })        
     });
     
     document.addEventListener('keydown', function(event) {
@@ -125,19 +168,8 @@ loadingTask.promise.then(function(pdf) {
           canvasEdition.on('mouse:dblclick', function(event) {
               x = event.pointer.x
               y = event.pointer.y
-              
-              var svg2add = null;
-              
-              if(document.getElementById('radio_signature_pad').checked) {
-                 svg2add = signaturePad.toDataURL("image/svg+xml");
-              }
-              
-              if(document.getElementById('radio_signature_image').checked) {
-                svg2add = svgImage;
-              }
-              
-              if(svg2add) {
-                  fabric.loadSVGFromURL(svg2add, function(objects, options) {
+              if(document.querySelector('input[name="svg_2_add"]:checked')) {
+                  fabric.loadSVGFromURL(document.querySelector('input[name="svg_2_add"]:checked').value, function(objects, options) {
                       var svg = fabric.util.groupSVGElements(objects, options);
                       svg.scaleToHeight(100);
                       svg.top = y - (svg.getScaledHeight() / 2);
@@ -145,32 +177,25 @@ loadingTask.promise.then(function(pdf) {
                       canvasEdition.add(svg).renderAll();
                   });
               }
-
-              if(document.getElementById('radio_signature_text').checked) {
-                var fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
-                var fabricPath = new fabric.Path(fontPath.toPathData());
-                fabricPath.top = y - (fabricPath.getScaledHeight() / 2);    
-                fabricPath.left = x - (fabricPath.getScaledWidth() / 2);    
-                canvasEdition.add(fabricPath).renderAll();
-              }
               
-              if(document.getElementById('radio_signature_text_classic').checked) {
+              /*if(document.getElementById('radio_signature_text_classic').checked) {
                 var textSignature = new fabric.Text(document.getElementById('input-signature-text-classic').value, { fontSize: 16 });
                 textSignature.top = y - (textSignature.getScaledHeight() / 2);    
                 textSignature.left = x - (textSignature.getScaledWidth() / 2);    
                 canvasEdition.add(textSignature).renderAll();
-              }
+            }*/
           });
           
           canvasEditions.push(canvasEdition);
 
           var renderContext = {
             canvasContext: context,
-            viewport: viewport
+            viewport: viewport,
+            enhanceTextSelection: true
           };
           var renderTask = page.render(renderContext);
           renderTask.promise.then(function () {
-            console.log('Page rendered');
+
           });
         });
     }

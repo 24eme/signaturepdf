@@ -22,26 +22,10 @@
         <div class="row">
             <div id="container-pages" class="col-lg-10 col-md-9 col-sm-8 col-xs-6 bg-light text-center"></div>
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
-                <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_pad"></div>
-                <h5><i class="bi bi-vector-pen"></i> À main levée</h5>
-                <canvas id="signature-pad" class="border bg-light" width=235 height=125></canvas>
-                <hr />
-                <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_text"></div>
-                <h5><i class="bi bi-fonts"></i> Texte à la main</h5>
-                <input id="input-text-signature" type="text" class="form-control" placeholder="Ma signature" style="font-family: Caveat; font-size: 24px;" />
-                <hr />
-                <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_image"></div>
-                <h5><i class="bi bi-image"></i> Image</h5> 
-                <div class="text-center">
-                <img id="img-upload" class="d-none" style="max-height: 80px; max-width: 235px;" src="" />
+                <div id="svg_list" class="d-grid gap-2"></div>
+                <div class="d-grid gap-2 mt-3">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un élément</button>
                 </div>
-                <form id="form-image-upload" action="/image2svg" method="POST" enctype="multipart/form-data">
-                    <input id="input-image-upload" class="form-control" name="image" type="file">
-                </form>
-                <hr />
-                <div class="form-check form-switch float-end"><input class="form-check-input" type="radio" name="radio_signature" id="radio_signature_text_classic"></div>
-                <h5><i class="bi bi-type"></i> Texte classique</h5>
-                <input id="input-signature-text-classic" type="text" class="form-control" placeholder="" />
                 <hr />
                 <p><small class="text-muted"><i class="bi bi-hand-index"></i><i class="bi bi-hand-index"></i> <i class="bi bi-plus-circle-fill"></i> Double-cliquez sur le PDF pour ajouter l'élément sélectionné</small></p>
                 <form id="form_pdf" action="/<?php echo $key ?>/save" method="post">
@@ -53,6 +37,43 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalAddSvg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-draw-tab" data-bs-toggle="tab" data-bs-target="#nav-draw" type="button" role="tab" aria-controls="nav-draw" aria-selected="true"><i class="bi bi-vector-pen"></i> Dessiner</button>
+                    <button class="nav-link" id="nav-type-tab" data-bs-toggle="tab" data-bs-target="#nav-type" type="button" role="tab" aria-controls="nav-type" aria-selected="false"><i class="bi bi-fonts"></i> Saisir</button>
+                    <button class="nav-link" id="nav-import-tab" data-bs-toggle="tab" data-bs-target="#nav-import" type="button" role="tab" aria-controls="nav-import" aria-selected="false"><i class="bi bi-image"></i> Importer</button>
+                    </div>
+                </nav>
+                <div class="tab-content mt-3" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-draw" role="tabpanel" aria-labelledby="nav-draw-tab">
+                      <canvas id="signature-pad" class="border bg-light" width="462" height="175"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="nav-type" role="tabpanel" aria-labelledby="nav-type-tab">
+                        <input id="input-text-signature" type="text" class="form-control form-control-lg" placeholder="Ma signature" style="font-family: Caveat; font-size: 48px;" />
+                    </div>
+                    <div class="tab-pane fade" id="nav-import" role="tabpanel" aria-labelledby="nav-import-tab">
+                        <div class="text-center">
+                        <img id="img-upload" class="d-none" style="max-width: 460px;" src="" />
+                        </div>
+                        <form id="form-image-upload" action="/image2svg" method="POST" enctype="multipart/form-data">
+                        <input id="input-image-upload" class="form-control" name="image" type="file">
+                        </form>
+                </div>
+                </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button id="btn_modal_ajouter" type="button" class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
     <script src="/vendor/pdf.js?legacy"></script>
     <script src="/vendor/fabric.min.js?4.4.0"></script>
     <script src="/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>

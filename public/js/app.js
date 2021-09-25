@@ -69,20 +69,39 @@ loadingTask.promise.then(function(pdf) {
             svgCollections.push(document.getElementById('img-upload').src);
         }
         displaysSVG();
+        
+        document.querySelector('#svg_list label:last-child').click();
     });
     
     var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         penColor: 'rgb(0, 0, 0)',
-        minWidth: 0.75,
-        maxWidth: 1.1
+        onEnd: function() { document.getElementById('btn_modal_ajouter').focus() }
     });
     
+    document.querySelectorAll('#modalAddSvg .nav-link').forEach(function(item) { item.addEventListener('shown.bs.tab', function (event) {
+        var firstInput = document.querySelector(event.target.dataset.bsTarget).querySelector('input');
+        if(firstInput) {
+            firstInput.focus();
+        }
+    })});
+
+    document.getElementById('modalAddSvg').addEventListener('shown.bs.modal', function (event) {
+        document.querySelector('#modalAddSvg #nav-tab button:first-child').focus()
+    })
+
     document.getElementById('modalAddSvg').addEventListener('hidden.bs.modal', function (event) {
         signaturePad.clear();
         document.getElementById('input-text-signature').value = null;
         document.getElementById('input-image-upload').value = null;
         document.getElementById('img-upload').src = null;
         document.getElementById('img-upload').classList.add("d-none");
+        bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab button:first-child')).show();
+    })
+    
+    document.getElementById('input-text-signature').addEventListener('keypress', function(event) {
+        if(event.key == 'Enter') {
+            document.getElementById('btn_modal_ajouter').click()
+        }
     })
 
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
@@ -96,6 +115,7 @@ loadingTask.promise.then(function(pdf) {
             var svgImage = "data:image/svg+xml;base64,"+btoa(this.responseText);
             document.getElementById('img-upload').src = svgImage;
             document.getElementById('img-upload').classList.remove("d-none");
+            document.getElementById('btn_modal_ajouter').focus();
         };
         xhr.send( data );
 

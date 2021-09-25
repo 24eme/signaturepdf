@@ -48,7 +48,7 @@
                     <button class="nav-link" id="nav-import-tab" data-bs-toggle="tab" data-bs-target="#nav-import" type="button" role="tab" aria-controls="nav-import" aria-selected="false"><i class="bi bi-image"></i> Importer</button>
                     </div>
                 </nav>
-                <div class="tab-content mt-3" id="nav-tabContent">
+                <div class="tab-content mt-3" id="nav-svg-add">
                     <div class="tab-pane fade show active" id="nav-draw" role="tabpanel" aria-labelledby="nav-draw-tab">
                       <canvas id="signature-pad" class="border bg-light" width="462" height="175"></canvas>
                     </div>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="tab-pane fade" id="nav-import" role="tabpanel" aria-labelledby="nav-import-tab">
                         <div class="text-center">
-                        <img id="img-upload" class="d-none" style="max-width: 460px;" src="" />
+                        <img id="img-upload" class="d-none" style="max-width: 460px; max-height: 200px;" src="" />
                         </div>
                         <form id="form-image-upload" action="/image2svg" method="POST" enctype="multipart/form-data">
                         <input id="input-image-upload" class="form-control" name="image" type="file">
@@ -66,7 +66,7 @@
                 </div>
             </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button tabindex="-1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             <button id="btn_modal_ajouter" type="button" class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
           </div>
         </div>

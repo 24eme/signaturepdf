@@ -50,7 +50,7 @@
                 </nav>
                 <div class="tab-content mt-3" id="nav-svg-add">
                     <div class="tab-pane fade show active" id="nav-draw" role="tabpanel" aria-labelledby="nav-draw-tab">
-                      <canvas id="signature-pad" class="border bg-light" width="462" height="175"></canvas>
+                      <canvas id="signature-pad" class="border bg-light" width="462" height="200"></canvas>
                     </div>
                     <div class="tab-pane fade" id="nav-type" role="tabpanel" aria-labelledby="nav-type-tab">
                         <input id="input-text-signature" type="text" class="form-control form-control-lg" placeholder="Ma signature" style="font-family: Caveat; font-size: 48px;" />

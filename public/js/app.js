@@ -210,7 +210,7 @@ loadingTask.promise.then(function(pdf) {
           canvasEditionHTML.height = viewport.height;
           canvasEditionHTML.width = viewport.width;
 
-          var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex);
+          var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {'selection' : false});
           
           canvasEdition.on('mouse:move', function(event) {
               activeCanvas = this;

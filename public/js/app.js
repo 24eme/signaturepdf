@@ -89,8 +89,8 @@ loadingTask.promise.then(function(pdf) {
     
     var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         penColor: 'rgb(0, 0, 0)',
-        minWidth: 1.5,
-        maxWidth: 2.25,
+        minWidth: 1.25,
+        maxWidth: 2,
         throttle: 0,
         onEnd: function() { 
             const file = new File([dataURLtoBlob(signaturePad.toDataURL("image/svg+xml"))], "draw.svg", {

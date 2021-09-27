@@ -87,6 +87,29 @@ loadingTask.promise.then(function(pdf) {
         return new Blob([u8arr], {type:mime});
     }
     
+    function trimSvgWhitespace(svgContent) {
+        if(!svgContent) {
+            
+            return null;
+        }
+        var svgContainer = document.createElement("div")
+        svgContainer.classList.add('invisible');
+        svgContainer.classList.add('position-absolute');
+        svgContainer.classList.add('top-0');
+        svgContainer.classList.add('start-0');
+        svgContainer.style = "z-index: -1;";
+        svgContainer.innerHTML = svgContent;
+        document.body.appendChild(svgContainer);
+        var svg = svgContainer.querySelector('svg');
+        var box = svg.getBBox();
+        svg.setAttribute("viewBox", [box.x, box.y, box.width, box.height].join(" "));
+        svgContent = svgContainer.innerHTML;
+        document.body.removeChild(svgContainer)
+        
+        return svgContent = svgContainer.innerHTML;
+        document;
+    }
+    
     var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         penColor: 'rgb(0, 0, 0)',
         minWidth: 1.25,
@@ -101,7 +124,7 @@ loadingTask.promise.then(function(pdf) {
             xhr = new XMLHttpRequest();
             xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
             xhr.onreadystatechange = function () { 
-                var svgImage = "data:image/svg+xml;base64,"+btoa(this.responseText);
+                var svgImage = "data:image/svg+xml;base64,"+btoa(trimSvgWhitespace(this.responseText));
                 document.getElementById('img-upload').src = svgImage;
                 document.getElementById('img-upload').classList.remove("d-none");
                 document.getElementById('btn_modal_ajouter').focus();
@@ -141,10 +164,10 @@ loadingTask.promise.then(function(pdf) {
         data.append('file', document.getElementById('input-image-upload').files[0]);
         
         xhr = new XMLHttpRequest();
-
+        
         xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
         xhr.onreadystatechange = function () { 
-            var svgImage = "data:image/svg+xml;base64,"+btoa(this.responseText);
+            var svgImage = "data:image/svg+xml;base64,"+btoa(trimSvgWhitespace(this.responseText));
             document.getElementById('img-upload').src = svgImage;
             document.getElementById('img-upload').classList.remove("d-none");
             document.getElementById('btn_modal_ajouter').focus();

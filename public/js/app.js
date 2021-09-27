@@ -107,7 +107,6 @@ loadingTask.promise.then(function(pdf) {
         document.body.removeChild(svgContainer)
         
         return svgContent = svgContainer.innerHTML;
-        document;
     }
     
     var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {

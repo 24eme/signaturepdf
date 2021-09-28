@@ -42,7 +42,7 @@ loadingTask.promise.then(function(pdf) {
             svgButton.classList.add('btn-lg');
             svgButton.classList.add('btn-outline-secondary');
             svgButton.htmlFor = "radio_svg_"+i;
-            svgButton.innerHTML = '<a data-index="'+i+'" class="btn-svg-list-suppression link-dark position-absolute" style="right: 6px; top: 2px;"><small><i class="bi bi-trash"></i></small></a>';
+            svgButton.innerHTML = '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute fs-6" style="right: 6px; top: 2px;"><i class="bi bi-trash"></i></a>';
             var svgImg = document.createElement('img');
             svgImg.src = svg;
             svgImg.style = "max-width: 180px;max-height: 70px;";

@@ -250,24 +250,36 @@ loadingTask.promise.then(function(pdf) {
           });
 
           canvasEdition.on('mouse:dblclick', function(event) {
-              x = event.pointer.x
-              y = event.pointer.y
-              if(document.querySelector('input[name="svg_2_add"]:checked')) {
-                  fabric.loadSVGFromURL(document.querySelector('input[name="svg_2_add"]:checked').value, function(objects, options) {
-                      var svg = fabric.util.groupSVGElements(objects, options);
-                      svg.scaleToHeight(100);
-                      svg.top = y - (svg.getScaledHeight() / 2);
-                      svg.left = x - (svg.getScaledWidth() / 2);
-                      canvasEdition.add(svg).renderAll();
-                  });
+              var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+
+              if(!input_selected) {
+                  return;
               }
               
-              /*if(document.getElementById('radio_signature_text_classic').checked) {
-                var textSignature = new fabric.Text(document.getElementById('input-signature-text-classic').value, { fontSize: 16 });
-                textSignature.top = y - (textSignature.getScaledHeight() / 2);    
-                textSignature.left = x - (textSignature.getScaledWidth() / 2);    
-                canvasEdition.add(textSignature).renderAll();
-            }*/
+              x = event.pointer.x
+              y = event.pointer.y
+
+              if(input_selected.value == 'text') {
+                  var textbox = new fabric.Textbox('Texte à modifier', {
+                  left: x - 10,
+                  top: y - 10,
+                  width: 300,
+                  fontSize: 20
+                });
+                canvasEdition.add(textbox).setActiveObject(textbox);
+                textbox.enterEditing();
+                textbox.selectAll();
+                
+                return;
+              }
+
+              fabric.loadSVGFromURL(input_selected.value, function(objects, options) {
+                  var svg = fabric.util.groupSVGElements(objects, options);
+                  svg.scaleToHeight(100);
+                  svg.top = y - (svg.getScaledHeight() / 2);
+                  svg.left = x - (svg.getScaledWidth() / 2);
+                  canvasEdition.add(svg).renderAll();
+              });
           });
           
           canvasEditions.push(canvasEdition);

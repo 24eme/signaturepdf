@@ -19,7 +19,6 @@ loadingTask.promise.then(function(pdf) {
     
     if(localStorage.getItem('svgCollections')) {
         svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
-        console.log(svgCollections);
     }
 
     opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {
@@ -38,10 +37,12 @@ loadingTask.promise.then(function(pdf) {
             inputRadio.autocomplete = "off";
             inputRadio.value = svg;
             var svgButton = document.createElement('label');
+            svgButton.classList.add('position-relative');
             svgButton.classList.add('btn');
             svgButton.classList.add('btn-lg');
             svgButton.classList.add('btn-outline-secondary');
             svgButton.htmlFor = "radio_svg_"+i;
+            svgButton.innerHTML = '<a data-index="'+i+'" class="btn-svg-list-suppression link-dark position-absolute" style="right: 6px; top: 2px;"><small><i class="bi bi-trash"></i></small></a>';
             var svgImg = document.createElement('img');
             svgImg.src = svg;
             svgImg.style = "max-width: 180px;max-height: 70px;";
@@ -49,6 +50,15 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById('svg_list').appendChild(inputRadio);
             document.getElementById('svg_list').appendChild(svgButton);
         });
+
+        document.querySelectorAll('.btn-svg-list-suppression').forEach(function(item) {
+            item.addEventListener('click', function() {
+                svgCollections.splice(this.dataset.index, 1);
+                displaysSVG();
+                localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
+            });
+        });
+
     }
     
     displaysSVG();

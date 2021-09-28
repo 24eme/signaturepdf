@@ -73,7 +73,7 @@
       </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    <script src="/vendor/bootstrap.min.js?5.1.1"></script>
     <script src="/vendor/pdf.js?legacy"></script>
     <script src="/vendor/fabric.min.js?4.4.0"></script>
     <script src="/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>

@@ -132,6 +132,8 @@ loadingTask.promise.then(function(pdf) {
         maxWidth: 2,
         throttle: 0,
         onEnd: function() { 
+            document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
+
             const file = new File([dataURLtoBlob(signaturePad.toDataURL("image/svg+xml"))], "draw.svg", {
                 type: 'image/svg+xml'
             });
@@ -143,6 +145,7 @@ loadingTask.promise.then(function(pdf) {
                 var svgImage = "data:image/svg+xml;base64,"+btoa(trimSvgWhitespace(this.responseText));
                 document.getElementById('img-upload').src = svgImage;
                 document.getElementById('img-upload').classList.remove("d-none");
+                document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
                 document.getElementById('btn_modal_ajouter').focus();
             };
             xhr.send( data );
@@ -162,6 +165,7 @@ loadingTask.promise.then(function(pdf) {
 
     document.getElementById('modalAddSvg').addEventListener('hidden.bs.modal', function (event) {
         signaturePad.clear();
+        document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
         document.getElementById('input-text-signature').value = null;
         document.getElementById('input-image-upload').value = null;
         document.getElementById('img-upload').src = null;
@@ -170,12 +174,15 @@ loadingTask.promise.then(function(pdf) {
     })
     
     document.getElementById('input-text-signature').addEventListener('keypress', function(event) {
+        document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
         if(event.key == 'Enter') {
+            document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
             document.getElementById('btn_modal_ajouter').click()
         }
     })
 
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
+        document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
         var data = new FormData();    
         data.append('file', document.getElementById('input-image-upload').files[0]);
         
@@ -186,6 +193,7 @@ loadingTask.promise.then(function(pdf) {
             var svgImage = "data:image/svg+xml;base64,"+btoa(trimSvgWhitespace(this.responseText));
             document.getElementById('img-upload').src = svgImage;
             document.getElementById('img-upload').classList.remove("d-none");
+            document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
             document.getElementById('btn_modal_ajouter').focus();
         };
         xhr.send( data );

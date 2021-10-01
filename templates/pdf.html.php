@@ -74,7 +74,7 @@
             </div>
           <div class="modal-footer">
             <button tabindex="-1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button id="btn_modal_ajouter" type="button" class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
+            <button id="btn_modal_ajouter" type="button" disabled="disabled" class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
           </div>
         </div>
       </div>

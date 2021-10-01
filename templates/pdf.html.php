@@ -14,6 +14,12 @@
       font-weight: 400;
       src: url(/vendor/fonts/Caveat-Regular.ttf) format('truetype');
     }
+
+    aside .list-item-add label:hover, aside .list-item-add label:active, aside .list-item-add label.active, aside .list-item-add  .btn-check:active + btn-outline-secondary, aside .list-item-add .btn-check:checked + .btn-outline-secondary {
+        background: #e6ebf0;
+        border: 1px solid #000;
+        box-shadow: 0 .25rem .5rem rgba(0,0,0,.075) !important
+    }
     </style>
     <title>Signature PDF</title>
   </head>
@@ -24,12 +30,12 @@
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
                 <h5 class="mb-0">Motifs</h5>
                 <small class="text-muted">Signature, paraphe, tampon, etc.</small>
-                <div id="svg_list" class="d-grid gap-2 mt-2"></div>
+                <div id="svg_list" class="d-grid gap-2 mt-2 list-item-add"></div>
                 <div class="d-grid gap-2 mt-2">
                     <button type="button" id="btn-add-svg" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un motif</button>
                 </div>
                 <h5 class="mt-3">Texte</h5>
-                <div class="d-grid gap-2 mt-3">
+                <div class="d-grid gap-2 mt-3 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_text" name="svg_2_add" autocomplete="off" value="text">
                     <label class="btn btn-outline-secondary text-black text-start" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Zone de texte</label>
                 </div>

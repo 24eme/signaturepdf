@@ -53,9 +53,14 @@ loadingTask.promise.then(function(pdf) {
 
         document.getElementById('btn-add-svg').classList.add('btn-primary');
         document.getElementById('btn-add-svg').classList.remove('btn-light');
+
         if(svgCollections.length > 0) {
             document.getElementById('btn-add-svg').classList.add('btn-light');
             document.getElementById('btn-add-svg').classList.remove('btn-primary');
+        }
+
+        if(document.getElementById('btn-add-svg').classList.contains('btn-primary')) {
+            document.getElementById('btn-add-svg').focus();
         }
 
         document.querySelectorAll('.btn-svg-list-suppression').forEach(function(item) {
@@ -270,7 +275,9 @@ loadingTask.promise.then(function(pdf) {
               if(!input_selected) {
                   return;
               }
-              
+
+              save.removeAttribute('disabled');
+
               x = event.pointer.x
               y = event.pointer.y
 
@@ -296,7 +303,6 @@ loadingTask.promise.then(function(pdf) {
                   canvasEdition.add(svg).renderAll();
               });
 
-              save.removeAttribute('disabled');
           });
           
           canvasEditions.push(canvasEdition);

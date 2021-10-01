@@ -22,19 +22,22 @@
         <div class="row">
             <div id="container-pages" class="col-lg-10 col-md-9 col-sm-8 col-xs-6 bg-light text-center"></div>
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
-                <div id="svg_list" class="d-grid gap-2"></div>
+                <h5 class="mb-0">Motifs</h5>
+                <small class="text-muted">Signature, paraphe, tampon, etc.</small>
+                <div id="svg_list" class="d-grid gap-2 mt-2"></div>
                 <div class="d-grid gap-2 mt-2">
-                    <button type="button" class="btn btn-lg btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un élément</button>
+                    <button type="button" id="btn-add-svg" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un motif</button>
                 </div>
+                <h5 class="mt-3">Texte</h5>
                 <div class="d-grid gap-2 mt-3">
                     <input type="radio" class="btn-check" id="radio_svg_text" name="svg_2_add" autocomplete="off" value="text">
-                    <label class="btn btn-lg btn-outline-secondary text-black text-start" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Ajouter du texte</label>
+                    <label class="btn btn-outline-secondary text-black text-start" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Zone de texte</label>
                 </div>
-                <hr />
-                <p><small class="text-muted"><i class="bi bi-hand-index"></i><i class="bi bi-hand-index"></i> <i class="bi bi-plus-circle-fill"></i> Double-cliquez sur le PDF pour ajouter l'élément sélectionné</small></p>
-                <form id="form_pdf" action="/<?php echo $key ?>/save" method="post">
-                    <div class="position-fixed bottom-0 mb-2">
-                        <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
+
+                <form class="position-fixed bottom-0 pb-2 pe-2" id="form_pdf" action="/<?php echo $key ?>/save" method="post">
+                    <p class="fs-6"><small class="text-muted"><i class="bi bi-hand-index"></i> + <i class="bi bi-hand-index"></i> = <i class="bi bi-plus-circle-fill"></i><br />Double-cliquez sur le PDF pour ajouter le motif ou l'élément sélectionné</small></p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success " disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                     </div>
                 </form>
             </aside>

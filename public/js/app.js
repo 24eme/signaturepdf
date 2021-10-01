@@ -51,6 +51,13 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById('svg_list').appendChild(svgButton);
         });
 
+        document.getElementById('btn-add-svg').classList.add('btn-primary');
+        document.getElementById('btn-add-svg').classList.remove('btn-light');
+        if(svgCollections.length > 0) {
+            document.getElementById('btn-add-svg').classList.add('btn-light');
+            document.getElementById('btn-add-svg').classList.remove('btn-primary');
+        }
+
         document.querySelectorAll('.btn-svg-list-suppression').forEach(function(item) {
             item.addEventListener('click', function() {
                 svgCollections.splice(this.dataset.index, 1);
@@ -280,6 +287,8 @@ loadingTask.promise.then(function(pdf) {
                   svg.left = x - (svg.getScaledWidth() / 2);
                   canvasEdition.add(svg).renderAll();
               });
+
+              save.removeAttribute('disabled');
           });
           
           canvasEditions.push(canvasEdition);

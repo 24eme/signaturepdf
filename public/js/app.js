@@ -104,6 +104,9 @@ loadingTask.promise.then(function(pdf) {
     document.querySelectorAll('.btn-add-svg-type').forEach(function(item) {
         item.addEventListener('click', function(event) {
             document.getElementById('input-svg-type').value = this.dataset.type;
+            if(this.dataset.modalnav) {
+                bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab '+this.dataset.modalnav)).show();
+            }
         });
     });
 
@@ -210,7 +213,11 @@ loadingTask.promise.then(function(pdf) {
     })});
 
     document.getElementById('modalAddSvg').addEventListener('shown.bs.modal', function (event) {
-        document.querySelector('#modalAddSvg #nav-tab button:first-child').focus()
+        document.querySelector('#modalAddSvg #nav-tab button:first-child').focus();
+        var tab = document.querySelector('#modalAddSvg .tab-pane.active');
+        if(tab.querySelector('input')) {
+            tab.querySelector('input').focus();
+        }
     })
 
     document.getElementById('modalAddSvg').addEventListener('hidden.bs.modal', function (event) {

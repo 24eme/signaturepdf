@@ -37,12 +37,12 @@
                 <div id="svg_list_initials" class="list-item-add"></div>
                 <div class="d-grid gap-2 mb-2 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_initials_add" name="svg_2_add" autocomplete="off" value="intials">
-                    <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="initials" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_initials_add"><i class="bi bi-type"></i> Paraphe <small class="text-muted float-end">Ajouter</small></label>
+                    <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="initials" data-modalnav="#nav-type-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_initials_add"><i class="bi bi-type"></i> Paraphe <small class="text-muted float-end">Ajouter</small></label>
                 </div>
                 <div id="svg_list_rubber_stamber" class="list-item-add"></div>
                 <div class="d-grid gap-2 mb-2 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_rubber_stamber_add" name="svg_2_add" autocomplete="off" value="rubber_stamber">
-                    <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add"><i class="bi bi-card-text"></i> Tampon <small class="text-muted float-end">Ajouter</small></label>
+                    <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" data-modalnav="#nav-import-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add"><i class="bi bi-card-text"></i> Tampon <small class="text-muted float-end">Ajouter</small></label>
                 </div>
                 <div class="d-grid gap-2 mb-2 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_text" name="svg_2_add" autocomplete="off" value="text">

@@ -33,6 +33,16 @@ loadingTask.promise.then(function(pdf) {
         inputRadio.name = "svg_2_add";
         inputRadio.autocomplete = "off";
         inputRadio.value = svg.svg;
+        inputRadio.addEventListener('change', function() {
+            canvasEditions.forEach(function(canvasEdition, index) {
+                var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+                if(input_selected) {
+                    canvasEdition.defaultCursor = 'copy';
+                } else {
+                    canvasEdition.defaultCursor = 'default';
+                }
+            })
+        });
         var svgButton = document.createElement('label');
         svgButton.classList.add('position-relative');
         svgButton.classList.add('btn');
@@ -55,6 +65,7 @@ loadingTask.promise.then(function(pdf) {
         svgButton.draggable = true;
         svgButton.addEventListener('dragstart', function(event) {
             document.getElementById(this.htmlFor).checked = true;
+            document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
         });
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
@@ -117,6 +128,20 @@ loadingTask.promise.then(function(pdf) {
     document.querySelectorAll('label.btn-svg').forEach(function(item) {
         item.addEventListener('dragstart', function(event) {
             document.getElementById(this.htmlFor).checked = true;
+            document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
+        });
+    });
+
+    document.querySelectorAll('input[name="svg_2_add"]').forEach(function (item) {
+        item.addEventListener('change', function() {
+            canvasEditions.forEach(function(canvasEdition, index) {
+                var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+                if(input_selected) {
+                    canvasEdition.defaultCursor = 'copy';
+                } else {
+                    canvasEdition.defaultCursor = 'default';
+                }
+            })
         });
     });
 
@@ -357,29 +382,28 @@ loadingTask.promise.then(function(pdf) {
           var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {'selection' : false});
           
           document.getElementById('canvas-container-' + pageIndex).addEventListener('drop', function(event) {
-
               var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-
               if(!input_selected) {
                   return;
               }
 
               addSvgInCanvas(canvasEdition, input_selected.value, event.layerX, event.layerY);
+              input_selected.checked = false;
+              input_selected.dispatchEvent(new Event("change"));
           });
-
           canvasEdition.on('mouse:move', function(event) {
               activeCanvas = this;
               activeCanvasPointer = event.pointer;
           });
-
-          canvasEdition.on('mouse:dblclick', function(event) {
+          canvasEdition.on('mouse:down', function(event) {
               var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-
               if(!input_selected) {
                   return;
               }
 
               addSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y);
+              input_selected.checked = false;
+              input_selected.dispatchEvent(new Event("change"));
           });
           
           canvasEditions.push(canvasEdition);

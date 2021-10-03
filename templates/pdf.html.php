@@ -55,7 +55,6 @@
                 </div>
 
                 <form class="position-fixed bottom-0 pb-2 pe-2" id="form_pdf" action="/<?php echo $key ?>/save" method="post">
-                    <p class="fs-6"><small class="text-muted"><i class="bi bi-hand-index"></i> + <i class="bi bi-hand-index"></i> = <i class="bi bi-plus-circle-fill"></i><br />Double-cliquez sur le PDF pour ajouter le motif ou l'élément sélectionné</small></p>
                     <div class="d-grid gap-2">
                         <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                     </div>

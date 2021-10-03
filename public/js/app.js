@@ -52,9 +52,15 @@ loadingTask.promise.then(function(pdf) {
         }
         
         svgButton.innerHTML += '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute" style="right: 6px; top: 2px;"><i class="bi bi-trash"></i></a>';
+        svgButton.draggable = true;
+        svgButton.addEventListener('dragstart', function(event) {
+            document.getElementById(this.htmlFor).checked = true;
+        });
+
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
-        svgImg.style = "max-width: 180px;max-height: 70px;";
+        svgImg.draggable = false;
+        svgImg.style = "max-width: 180px;max-height: 70px;cursor: grab;";
         svgButton.appendChild(svgImg);
         var svgContainer = document.createElement('div');
         svgContainer.classList.add('d-grid');
@@ -296,6 +302,32 @@ loadingTask.promise.then(function(pdf) {
         }
     });
     
+    var addSvgInCanvas = function(canvas, item, x, y) {
+        save.removeAttribute('disabled');
+
+        if(item == 'text') {
+            var textbox = new fabric.Textbox('Texte à modifier', {
+            left: x - 10,
+            top: y - 10,
+            width: 300,
+            fontSize: 20
+          });
+          canvas.add(textbox).setActiveObject(textbox);
+          textbox.enterEditing();
+          textbox.selectAll();
+
+          return;
+        }
+
+        fabric.loadSVGFromURL(item, function(objects, options) {
+            var svg = fabric.util.groupSVGElements(objects, options);
+            svg.scaleToHeight(100);
+            svg.top = y - (svg.getScaledHeight() / 2);
+            svg.left = x - (svg.getScaledWidth() / 2);
+            canvas.add(svg).renderAll();
+        });
+    }
+
     for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
         pdf.getPage(pageNumber).then(function(page) {
           var scale = 1.5;
@@ -303,7 +335,7 @@ loadingTask.promise.then(function(pdf) {
           var pageIndex = page.pageNumber - 1;
           
           document.getElementById('form_pdf').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
-          document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-2 d-inline-block"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div><div></div>');
+          document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-2 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div><div></div>');
           
           var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
           var canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
@@ -317,6 +349,17 @@ loadingTask.promise.then(function(pdf) {
 
           var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {'selection' : false});
           
+          document.getElementById('canvas-container-' + pageIndex).addEventListener('drop', function(event) {
+
+              var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+
+              if(!input_selected) {
+                  return;
+              }
+
+              addSvgInCanvas(canvasEdition, input_selected.value, event.layerX, event.layerY);
+          });
+
           canvasEdition.on('mouse:move', function(event) {
               activeCanvas = this;
               activeCanvasPointer = event.pointer;
@@ -329,33 +372,7 @@ loadingTask.promise.then(function(pdf) {
                   return;
               }
 
-              save.removeAttribute('disabled');
-
-              x = event.pointer.x
-              y = event.pointer.y
-
-              if(input_selected.value == 'text') {
-                  var textbox = new fabric.Textbox('Texte à modifier', {
-                  left: x - 10,
-                  top: y - 10,
-                  width: 300,
-                  fontSize: 20
-                });
-                canvasEdition.add(textbox).setActiveObject(textbox);
-                textbox.enterEditing();
-                textbox.selectAll();
-                
-                return;
-              }
-
-              fabric.loadSVGFromURL(input_selected.value, function(objects, options) {
-                  var svg = fabric.util.groupSVGElements(objects, options);
-                  svg.scaleToHeight(100);
-                  svg.top = y - (svg.getScaledHeight() / 2);
-                  svg.left = x - (svg.getScaledWidth() / 2);
-                  canvasEdition.add(svg).renderAll();
-              });
-
+              addSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y);
           });
           
           canvasEditions.push(canvasEdition);

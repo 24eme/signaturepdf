@@ -25,34 +25,62 @@ loadingTask.promise.then(function(pdf) {
         fontCaveat = font;
     });
     
+    var getHtmlSvg = function(svg, i) {
+        var inputRadio = document.createElement('input');
+        inputRadio.type = "radio";
+        inputRadio.classList.add("btn-check");
+        inputRadio.id="radio_svg_"+i;
+        inputRadio.name = "svg_2_add";
+        inputRadio.autocomplete = "off";
+        inputRadio.value = svg.svg;
+        var svgButton = document.createElement('label');
+        svgButton.classList.add('position-relative');
+        svgButton.classList.add('btn');
+        svgButton.classList.add('btn-outline-secondary');
+        svgButton.htmlFor = "radio_svg_"+i;
+        if(svg.type == 'signature') {
+            svgButton.innerHTML += '<i class="bi bi-vector-pen text-black align-middle float-start"></i> ';
+        }
+        if(svg.type == 'initials') {
+            svgButton.innerHTML += '<i class="bi bi-type text-black align-middle float-start"></i> ';
+        }
+        if(svg.type == 'rubber_stamber') {
+            svgButton.innerHTML += '<i class="bi bi-card-text text-black align-middle float-start"></i> ';
+        }
+        if(svg.type) {
+            document.querySelector('.btn-add-svg-type[data-type="'+svg.type+'"]').classList.add('d-none');
+        }
+        
+        svgButton.innerHTML += '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute" style="right: 6px; top: 2px;"><i class="bi bi-trash"></i></a>';
+        var svgImg = document.createElement('img');
+        svgImg.src = svg.svg;
+        svgImg.style = "max-width: 180px;max-height: 70px;";
+        svgButton.appendChild(svgImg);
+        var svgContainer = document.createElement('div');
+        svgContainer.classList.add('d-grid');
+        svgContainer.classList.add('gap-2');
+        svgContainer.appendChild(inputRadio);
+        svgContainer.appendChild(svgButton);
+        
+        return svgContainer;
+    }
     
     var displaysSVG = function() {
         document.getElementById('svg_list').innerHTML = "";
-        svgCollections.forEach((svg, i) => {
-            var inputRadio = document.createElement('input');
-            inputRadio.type = "radio";
-            inputRadio.classList.add("btn-check");
-            inputRadio.id="radio_svg_"+i;
-            inputRadio.name = "svg_2_add";
-            inputRadio.autocomplete = "off";
-            inputRadio.value = svg;
-            var svgButton = document.createElement('label');
-            svgButton.classList.add('position-relative');
-            svgButton.classList.add('btn');
-            svgButton.classList.add('btn-lg');
-            svgButton.classList.add('btn-outline-secondary');
-            svgButton.htmlFor = "radio_svg_"+i;
-            svgButton.innerHTML = '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute fs-6" style="right: 6px; top: 2px;"><i class="bi bi-trash"></i></a>';
-            var svgImg = document.createElement('img');
-            svgImg.src = svg;
-            svgImg.style = "max-width: 180px;max-height: 70px;";
-            svgButton.appendChild(svgImg);
-            document.getElementById('svg_list').appendChild(inputRadio);
-            document.getElementById('svg_list').appendChild(svgButton);
+        document.getElementById('svg_list_signature').innerHTML = "";
+        document.getElementById('svg_list_initials').innerHTML = "";
+        document.getElementById('svg_list_rubber_stamber').innerHTML = "";
+        document.querySelectorAll('.btn-add-svg-type').forEach(function(item) {
+            item.classList.remove('d-none');
         });
-
-        document.getElementById('btn-add-svg').classList.add('btn-primary');
-        document.getElementById('btn-add-svg').classList.remove('btn-light');
+        svgCollections.forEach((svg, i) => {
+            var svgHtmlChild = getHtmlSvg(svg, i);
+            if(svg.type) {
+                document.getElementById('svg_list_'+svg.type).appendChild(svgHtmlChild);
+                return;
+            }
+            document.getElementById('svg_list').appendChild(svgHtmlChild);
+        });
 
         if(svgCollections.length > 0) {
             document.getElementById('btn-add-svg').classList.add('btn-light');
@@ -73,11 +101,21 @@ loadingTask.promise.then(function(pdf) {
 
     }
     
+    document.querySelectorAll('.btn-add-svg-type').forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            document.getElementById('input-svg-type').value = this.dataset.type;
+        });
+    });
+
     displaysSVG();
     
     document.getElementById('btn_modal_ajouter').addEventListener('click', function() {
+        var svgItem = {};
+        if(document.getElementById('input-svg-type').value) {
+            svgItem.type = document.getElementById('input-svg-type').value;
+        }
         if(document.getElementById('nav-draw-tab').classList.contains('active')) {
-            svgCollections.push(document.getElementById('img-upload').src);
+            svgItem.svg = document.getElementById('img-upload').src;
         }
         if(document.getElementById('nav-type-tab').classList.contains('active')) {
             var fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
@@ -90,11 +128,12 @@ loadingTask.promise.then(function(pdf) {
             textCanvas.height = fabricPath.getScaledHeight();
             var textCanvas = new fabric.Canvas(textCanvas);
             textCanvas.add(fabricPath).renderAll();
-            svgCollections.push("data:image/svg+xml;base64,"+btoa(textCanvas.toSVG()));
+            svgItem.svg = "data:image/svg+xml;base64,"+btoa(textCanvas.toSVG());
         }
         if(document.getElementById('nav-import-tab').classList.contains('active')) {
-            svgCollections.push(document.getElementById('img-upload').src);
+            svgItem.svg = document.getElementById('img-upload').src;
         }
+        svgCollections.push(svgItem);
         displaysSVG();
         document.querySelector('#svg_list label:last-child').click();
         localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
@@ -171,6 +210,7 @@ loadingTask.promise.then(function(pdf) {
     document.getElementById('modalAddSvg').addEventListener('hidden.bs.modal', function (event) {
         signaturePad.clear();
         document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
+        document.getElementById('input-svg-type').value = null;
         document.getElementById('input-text-signature').value = null;
         document.getElementById('input-image-upload').value = null;
         document.getElementById('img-upload').src = null;

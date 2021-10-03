@@ -15,7 +15,7 @@
       src: url(/vendor/fonts/Caveat-Regular.ttf) format('truetype');
     }
 
-    aside .list-item-add label:hover, aside .list-item-add label:active, aside .list-item-add label.active, aside .list-item-add  .btn-check:active + btn-outline-secondary, aside .list-item-add .btn-check:checked + .btn-outline-secondary {
+    aside .list-item-add label:hover, aside .list-item-add label:active, aside .list-item-add label.active, aside .list-item-add .btn-check:active + .btn-outline-secondary, aside .list-item-add .btn-check:checked + .btn-outline-secondary {
         background: #e6ebf0;
         border: 1px solid #000;
         box-shadow: 0 .25rem .5rem rgba(0,0,0,.075) !important
@@ -28,22 +28,36 @@
         <div class="row">
             <div id="container-pages" class="col-lg-10 col-md-9 col-sm-8 col-xs-6 bg-light text-center"></div>
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
-                <h5 class="mb-0">Motifs</h5>
-                <small class="text-muted">Signature, paraphe, tampon, etc.</small>
-                <div id="svg_list" class="d-grid gap-2 mt-2 list-item-add"></div>
-                <div class="d-grid gap-2 mt-2">
-                    <button type="button" id="btn-add-svg" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un motif</button>
+                <h5 class="mb-3">Signature du PDF</h5>
+                <div id="svg_list_signature"></div>
+                <div class="d-grid gap-2 mb-2">
+                    <input type="radio" class="btn-check" id="radio_svg_signature_add" name="svg_2_add" autocomplete="off" value="signature">
+                    <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="signature" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_signature_add"><i class="bi bi-vector-pen"></i> Signature <small class="text-muted float-end">Ajouter</small></label>
                 </div>
-                <h5 class="mt-3">Texte</h5>
-                <div class="d-grid gap-2 mt-3 list-item-add">
+                <div id="svg_list_initials"></div>
+                <div class="d-grid gap-2 mb-2">
+                    <input type="radio" class="btn-check" id="radio_svg_initials_add" name="svg_2_add" autocomplete="off" value="intials">
+                    <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="initials" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_initials_add"><i class="bi bi-type"></i> Paraphe <small class="text-muted float-end">Ajouter</small></label>
+                </div>
+                <div id="svg_list_rubber_stamber"></div>
+                <div class="d-grid gap-2 mb-2">
+                    <input type="radio" class="btn-check" id="radio_svg_rubber_stamber_add" name="svg_2_add" autocomplete="off" value="rubber_stamber">
+                    <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add"><i class="bi bi-card-text"></i> Tampon <small class="text-muted float-end">Ajouter</small></label>
+                </div>
+                <div class="d-grid gap-2 mb-2 svg_list_text">
                     <input type="radio" class="btn-check" id="radio_svg_text" name="svg_2_add" autocomplete="off" value="text">
-                    <label class="btn btn-outline-secondary text-black text-start" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Zone de texte</label>
+                    <label class="btn btn-outline-secondary text-black text-start" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Texte</label>
+                </div>
+                <div id="svg_list" class="d-grid gap-2 mt-2 mb-2 list-item-add"></div>
+
+                <div class="d-grid gap-2 mt-2">
+                    <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un élément</button>
                 </div>
 
                 <form class="position-fixed bottom-0 pb-2 pe-2" id="form_pdf" action="/<?php echo $key ?>/save" method="post">
                     <p class="fs-6"><small class="text-muted"><i class="bi bi-hand-index"></i> + <i class="bi bi-hand-index"></i> = <i class="bi bi-plus-circle-fill"></i><br />Double-cliquez sur le PDF pour ajouter le motif ou l'élément sélectionné</small></p>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-success " disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
+                        <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                     </div>
                 </form>
             </aside>
@@ -77,7 +91,8 @@
                         </form>
                 </div>
                 </div>
-            </div>
+                <input id="input-svg-type" type="hidden" />
+          </div>
           <div class="modal-footer">
             <button tabindex="-1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             <button id="btn_modal_ajouter" type="button" disabled="disabled" class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>

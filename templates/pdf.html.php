@@ -46,7 +46,7 @@
                 </div>
                 <div class="d-grid gap-2 mb-2 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_text" name="svg_2_add" autocomplete="off" value="text">
-                    <label class="btn btn-outline-secondary text-black text-start" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Texte</label>
+                    <label draggable="true" style="cursor: grab;" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Texte</label>
                 </div>
                 <div id="svg_list" class="d-grid gap-2 mt-2 mb-2 list-item-add"></div>
 

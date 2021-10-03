@@ -36,27 +36,23 @@ loadingTask.promise.then(function(pdf) {
         var svgButton = document.createElement('label');
         svgButton.classList.add('position-relative');
         svgButton.classList.add('btn');
+        svgButton.classList.add('btn-svg');
         svgButton.classList.add('btn-outline-secondary');
         svgButton.htmlFor = "radio_svg_"+i;
         if(svg.type == 'signature') {
-            svgButton.innerHTML += '<i class="bi bi-vector-pen text-black align-middle float-start"></i> ';
+            svgButton.innerHTML += '<i class="bi bi-vector-pen text-black align-middle float-start"></i>';
         }
         if(svg.type == 'initials') {
-            svgButton.innerHTML += '<i class="bi bi-type text-black align-middle float-start"></i> ';
+            svgButton.innerHTML += '<i class="bi bi-type text-black align-middle float-start"></i>';
         }
         if(svg.type == 'rubber_stamber') {
-            svgButton.innerHTML += '<i class="bi bi-card-text text-black align-middle float-start"></i> ';
+            svgButton.innerHTML += '<i class="bi bi-card-text text-black align-middle float-start"></i>';
         }
         if(svg.type) {
             document.querySelector('.btn-add-svg-type[data-type="'+svg.type+'"]').classList.add('d-none');
         }
-        
         svgButton.innerHTML += '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute" style="right: 6px; top: 2px;"><i class="bi bi-trash"></i></a>';
         svgButton.draggable = true;
-        svgButton.addEventListener('dragstart', function(event) {
-            document.getElementById(this.htmlFor).checked = true;
-        });
-
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
         svgImg.draggable = false;
@@ -71,6 +67,12 @@ loadingTask.promise.then(function(pdf) {
         return svgContainer;
     }
     
+    document.querySelectorAll('label.btn-svg').forEach(function(item) {
+        item.addEventListener('dragstart', function(event) {
+            document.getElementById(this.htmlFor).checked = true;
+        });
+    });
+
     var displaysSVG = function() {
         document.getElementById('svg_list').innerHTML = "";
         document.getElementById('svg_list_signature').innerHTML = "";
@@ -322,6 +324,9 @@ loadingTask.promise.then(function(pdf) {
         fabric.loadSVGFromURL(item, function(objects, options) {
             var svg = fabric.util.groupSVGElements(objects, options);
             svg.scaleToHeight(100);
+            if(svg.getScaledWidth() > 200) {
+                svg.scaleToWidth(200);
+            }
             svg.top = y - (svg.getScaledHeight() / 2);
             svg.left = x - (svg.getScaledWidth() / 2);
             canvas.add(svg).renderAll();

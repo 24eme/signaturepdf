@@ -16,7 +16,7 @@
     }
 
     aside .list-item-add label:hover, aside .list-item-add label:active, aside .list-item-add label.active, aside .list-item-add .btn-check:active + .btn-outline-secondary, aside .list-item-add .btn-check:checked + .btn-outline-secondary {
-        background: #e6ebf0;
+        background: #c9d1d8;
         border: 1px solid #000;
         box-shadow: 0 .25rem .5rem rgba(0,0,0,.075) !important
     }
@@ -29,22 +29,22 @@
             <div id="container-pages" class="col-lg-10 col-md-9 col-sm-8 col-xs-6 bg-light text-center"></div>
             <aside class="col-lg-2 col-md-3 col-sm-4 col-xs-6 mt-2 position-fixed end-0 bg-white">
                 <h5 class="mb-3">Signature du PDF</h5>
-                <div id="svg_list_signature"></div>
-                <div class="d-grid gap-2 mb-2">
+                <div id="svg_list_signature" class="list-item-add"></div>
+                <div class="d-grid gap-2 mb-2 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_signature_add" name="svg_2_add" autocomplete="off" value="signature">
                     <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="signature" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_signature_add"><i class="bi bi-vector-pen"></i> Signature <small class="text-muted float-end">Ajouter</small></label>
                 </div>
-                <div id="svg_list_initials"></div>
-                <div class="d-grid gap-2 mb-2">
+                <div id="svg_list_initials" class="list-item-add"></div>
+                <div class="d-grid gap-2 mb-2 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_initials_add" name="svg_2_add" autocomplete="off" value="intials">
                     <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="initials" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_initials_add"><i class="bi bi-type"></i> Paraphe <small class="text-muted float-end">Ajouter</small></label>
                 </div>
-                <div id="svg_list_rubber_stamber"></div>
-                <div class="d-grid gap-2 mb-2">
+                <div id="svg_list_rubber_stamber" class="list-item-add"></div>
+                <div class="d-grid gap-2 mb-2 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_rubber_stamber_add" name="svg_2_add" autocomplete="off" value="rubber_stamber">
                     <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add"><i class="bi bi-card-text"></i> Tampon <small class="text-muted float-end">Ajouter</small></label>
                 </div>
-                <div class="d-grid gap-2 mb-2 svg_list_text">
+                <div class="d-grid gap-2 mb-2 list-item-add">
                     <input type="radio" class="btn-check" id="radio_svg_text" name="svg_2_add" autocomplete="off" value="text">
                     <label class="btn btn-outline-secondary text-black text-start" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Texte</label>
                 </div>

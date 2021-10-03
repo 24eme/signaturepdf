@@ -135,8 +135,8 @@ loadingTask.promise.then(function(pdf) {
         }
         svgCollections.push(svgItem);
         displaysSVG();
-        document.querySelector('#svg_list label:last-child').click();
         localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
+        document.querySelector('#svg_list label:last-child').click();
     });
     
     function dataURLtoBlob(dataurl) {

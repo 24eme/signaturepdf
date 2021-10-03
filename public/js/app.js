@@ -53,6 +53,9 @@ loadingTask.promise.then(function(pdf) {
         }
         svgButton.innerHTML += '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute" style="right: 6px; top: 2px;"><i class="bi bi-trash"></i></a>';
         svgButton.draggable = true;
+        svgButton.addEventListener('dragstart', function(event) {
+            document.getElementById(this.htmlFor).checked = true;
+        });
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
         svgImg.draggable = false;
@@ -67,12 +70,6 @@ loadingTask.promise.then(function(pdf) {
         return svgContainer;
     }
     
-    document.querySelectorAll('label.btn-svg').forEach(function(item) {
-        item.addEventListener('dragstart', function(event) {
-            document.getElementById(this.htmlFor).checked = true;
-        });
-    });
-
     var displaysSVG = function() {
         document.getElementById('svg_list').innerHTML = "";
         document.getElementById('svg_list_signature').innerHTML = "";
@@ -106,7 +103,6 @@ loadingTask.promise.then(function(pdf) {
                 localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
             });
         });
-
     }
     
     document.querySelectorAll('.btn-add-svg-type').forEach(function(item) {
@@ -115,6 +111,12 @@ loadingTask.promise.then(function(pdf) {
             if(this.dataset.modalnav) {
                 bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab '+this.dataset.modalnav)).show();
             }
+        });
+    });
+
+    document.querySelectorAll('label.btn-svg').forEach(function(item) {
+        item.addEventListener('dragstart', function(event) {
+            document.getElementById(this.htmlFor).checked = true;
         });
     });
 

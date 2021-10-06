@@ -16,6 +16,17 @@ loadingTask.promise.then(function(pdf) {
     var activeCanvasPointer = null;
     var canvasEditions = [];
     var svgCollections = [];
+    var is_mobile = !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
+
+    var menu = document.getElementById('offcanvasTop')
+    var menuOffcanvas = new bootstrap.Offcanvas(menu)
+
+    if(is_mobile) {
+        menu.classList.remove('show');
+        menuOffcanvas.hide();
+    }
+    menu.classList.remove('d-md-block');
+    menu.classList.remove('d-none');
     
     if(localStorage.getItem('svgCollections')) {
         svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
@@ -34,6 +45,15 @@ loadingTask.promise.then(function(pdf) {
         inputRadio.autocomplete = "off";
         inputRadio.value = svg.svg;
         inputRadio.addEventListener('change', function() {
+            if(this.checked) {
+                document.getElementById('btn_svn_select').classList.add('d-none');
+                document.getElementById('svg_selected_container').classList.remove('d-none');
+                document.getElementById('svg_selected').src = this.value;
+            } else {
+                document.getElementById('btn_svn_select').classList.remove('d-none');
+                document.getElementById('svg_selected_container').classList.add('d-none');
+                document.getElementById('svg_selected').src = null;
+            }
             canvasEditions.forEach(function(canvasEdition, index) {
                 var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
                 if(input_selected) {
@@ -42,6 +62,9 @@ loadingTask.promise.then(function(pdf) {
                     canvasEdition.defaultCursor = 'default';
                 }
             })
+            if(is_mobile) {
+                menuOffcanvas.hide();
+            }
         });
         var svgButton = document.createElement('label');
         svgButton.classList.add('position-relative');
@@ -300,6 +323,10 @@ loadingTask.promise.then(function(pdf) {
         })        
     });
     
+    document.getElementById('save_mobile').addEventListener('click', function(event) {
+        document.getElementById('save').click();
+    });
+
     document.addEventListener('keydown', function(event) {
         if(event.target.tagName != "BODY") {
             return;
@@ -333,6 +360,7 @@ loadingTask.promise.then(function(pdf) {
     
     var addSvgInCanvas = function(canvas, item, x, y) {
         save.removeAttribute('disabled');
+        save_mobile.removeAttribute('disabled');
 
         if(item == 'text') {
             var textbox = new fabric.Textbox('Texte à modifier', {
@@ -364,22 +392,38 @@ loadingTask.promise.then(function(pdf) {
         pdf.getPage(pageNumber).then(function(page) {
           var scale = 1.5;
           var viewport = page.getViewport({scale: scale});
+          if(viewport.width > document.getElementById('container-pages').clientWidth - 40) {
+              viewport = page.getViewport({scale: 1});
+              scale = (document.getElementById('container-pages').clientWidth - 40) / viewport.width;
+              viewport = page.getViewport({ scale: scale });
+          }
+          
           var pageIndex = page.pageNumber - 1;
           
           document.getElementById('form_pdf').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
-          document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-2 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div><div></div>');
+          document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-2 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
           
           var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
           var canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
-          
           // Prepare canvas using PDF page dimensions
           var context = canvasPDF.getContext('2d');
           canvasPDF.height = viewport.height;
           canvasPDF.width = viewport.width;
-          canvasEditionHTML.height = viewport.height;
-          canvasEditionHTML.width = viewport.width;
+          canvasEditionHTML.height = canvasPDF.height;
+          canvasEditionHTML.width = canvasPDF.width;
+          
+          var renderContext = {
+            canvasContext: context,
+            viewport: viewport,
+            enhanceTextSelection: true
+          };
+          var renderTask = page.render(renderContext);
 
-          var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {'selection' : false});
+          var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {
+              selection : false
+          });
+          
+          canvasEdition.allowTouchScrolling = true;
           
           document.getElementById('canvas-container-' + pageIndex).addEventListener('drop', function(event) {
               var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
@@ -407,16 +451,6 @@ loadingTask.promise.then(function(pdf) {
           });
           
           canvasEditions.push(canvasEdition);
-
-          var renderContext = {
-            canvasContext: context,
-            viewport: viewport,
-            enhanceTextSelection: true
-          };
-          var renderTask = page.render(renderContext);
-          renderTask.promise.then(function () {
-
-          });
         });
     }
     }, function (reason) {

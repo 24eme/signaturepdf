@@ -244,9 +244,8 @@ loadingTask.promise.then(function(pdf) {
         throttle: 0,
         onEnd: function() { 
             document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
-
-            const file = new File([dataURLtoBlob(signaturePad.toDataURL("image/svg+xml"))], "draw.svg", {
-                type: 'image/svg+xml'
+            const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
+                type: 'image/png'
             });
             var data = new FormData();    
             data.append('file', file);

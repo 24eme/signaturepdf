@@ -68,7 +68,7 @@
         </div>
         <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow d-md-none">
             <div class="d-grid gap-2">
-            <button id="btn_svn_select" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="bi bi-check2-circle"></i> Séléctionner une signature</button>
+            <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="bi bi-hand-index"></i> Séléctionner une signature</button>
             </div>
             <div id="svg_selected_container" class="d-grid gap-2 d-none">
                 <div class="btn-group">

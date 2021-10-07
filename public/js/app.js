@@ -51,6 +51,7 @@ loadingTask.promise.then(function(pdf) {
                 document.getElementById('svg_selected').src = this.value;
             } else {
                 document.getElementById('btn_svn_select').classList.remove('d-none');
+                document.getElementById('btn_svn_select').focus();
                 document.getElementById('svg_selected_container').classList.add('d-none');
                 document.getElementById('svg_selected').src = null;
             }

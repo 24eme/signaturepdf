@@ -23,11 +23,14 @@
     </style>
     <title>Signature PDF</title>
   </head>
-  <body>
+  <body class="bg-light">
     <div class="container-fluid">
+        <div style="height: 65px;" class="d-md-none"></div>
         <div class="row">
-            <div id="container-pages" class="col-lg-9 col-md-9 col-sm-12 col-xs-12 bg-light text-center"></div>
+            <div id="container-pages" class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
+            </div>
         </div>
+        <div style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block" data-bs-backdrop="false" data-bs-scroll="true" data-keyboard="false" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header">
                 <h5 id="offcanvasTopLabel">Signature du PDF</h5>
@@ -66,7 +69,7 @@
               </form>
             </div>
         </div>
-        <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow d-md-none">
+        <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div class="d-grid gap-2">
             <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="bi bi-hand-index"></i> Séléctionner une signature</button>
             </div>

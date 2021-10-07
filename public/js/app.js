@@ -419,10 +419,9 @@ loadingTask.promise.then(function(pdf) {
           var renderTask = page.render(renderContext);
 
           var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {
-              selection : false
+            selection : false,
+            allowTouchScrolling: true
           });
-          
-          canvasEdition.allowTouchScrolling = true;
           
           document.getElementById('canvas-container-' + pageIndex).addEventListener('drop', function(event) {
               var input_selected = document.querySelector('input[name="svg_2_add"]:checked');

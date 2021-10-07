@@ -1,8 +1,12 @@
-# Signature PDF
+# Signature de PDF
 
-Interface web permettant de signer un PDF.
+Logiciel web libre permettant de signer un PDF.
 
-Ce projet est encore au stade de "preuve de conception".
+## Instances
+
+Liste des instances permettant d'utiliser ce logiciel :
+
+- [pdf.24eme.fr](https://pdf.24eme.fr)
 
 ## License
 
@@ -33,7 +37,7 @@ git clone https://github.com/24eme/signaturepdf.git
 Pour le tester :
 
 `
-php -S localhost:8000 
+php -S localhost:8000 -t public
 `
 
 ## Librairies utilisées
@@ -47,4 +51,4 @@ php -S localhost:8000
 - **potrace** outils de transformation d'image bitamp en image vectorisé : http://potrace.sourceforge.net/ (GPLv2)
 - **OpenType.js** outils de transformation d'un texte et sa police en chemin : https://github.com/opentypejs/opentype.js (MIT)
 - **ImageMagick** ensemble d'outils de manipulation d'images : https://imagemagick.org/ (Apache-2.0)
-- **Caveat** police de caractères style écriture à la main : https://github.com/googlefonts/caveat (OFL-1.1) 
+- **Caveat** police de caractères style écriture à la main : https://github.com/googlefonts/caveat (OFL-1.1)

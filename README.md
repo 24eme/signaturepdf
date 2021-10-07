@@ -2,8 +2,6 @@
 
 Interface web permettant de signer un PDF.
 
-Ce projet est encore au stade de "preuve de conception".
-
 ## License
 
 Logiciel libre sous license AGPL V3
@@ -33,7 +31,7 @@ git clone https://github.com/24eme/signaturepdf.git
 Pour le tester :
 
 `
-php -S localhost:8000 
+php -S localhost:8000 -t public
 `
 
 ## Librairies utilisées

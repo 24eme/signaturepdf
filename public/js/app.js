@@ -289,7 +289,7 @@ loadingTask.promise.then(function(pdf) {
         bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab button:first-child')).show();
     })
     
-    document.getElementById('input-text-signature').addEventListener('keypress', function(event) {
+    document.getElementById('input-text-signature').addEventListener('keydown', function(event) {
         document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
         if(event.key == 'Enter') {
             document.getElementById('btn_modal_ajouter').removeAttribute('disabled');

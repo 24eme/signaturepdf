@@ -15,6 +15,8 @@ loadingTask.promise.then(function(pdf) {
     var activeCanvas = null;
     var activeCanvasPointer = null;
     var canvasEditions = [];
+    var pdfRenderTasks = [];
+    var pdfPages = [];
     var svgCollections = [];
     var is_mobile = !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 
@@ -386,6 +388,53 @@ loadingTask.promise.then(function(pdf) {
             canvas.add(svg).renderAll();
         });
     }
+    
+    window.addEventListener('resize', function(event) {
+        is_mobile = !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
+        if(is_mobile) {
+            menu.classList.remove('show');
+            menuOffcanvas.hide();
+        } else {
+            menuOffcanvas.show();
+        }
+        menu.classList.remove('d-md-block');
+        menu.classList.remove('d-none');
+        resizePDF();
+    });
+    var resizeInProgress = false;
+    var resizePDF = function () {
+        pdfPages.forEach(function(page, pageIndex) {
+            var renderTask = pdfRenderTasks[pageIndex];
+            if(!renderTask) {
+                return;
+            }
+            var scale = 1.5;
+            var viewport = page.getViewport({scale: scale});
+            if(viewport.width > document.getElementById('container-pages').clientWidth - 40) {
+                viewport = page.getViewport({scale: 1});
+                scale = (document.getElementById('container-pages').clientWidth - 40) / viewport.width;
+                viewport = page.getViewport({ scale: scale });
+            }
+            var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
+            var canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
+            var context = canvasPDF.getContext('2d');
+            canvasPDF.height = viewport.height;
+            canvasPDF.width = viewport.width;
+            canvasEditionHTML.height = canvasPDF.height;
+            canvasEditionHTML.width = canvasPDF.width;
+            var renderContext = {
+              canvasContext: context,
+              viewport: viewport,
+              enhanceTextSelection: true
+            };
+            renderTask.cancel();
+            pdfRenderTasks[pageIndex] = null;
+            renderTask = page.render(renderContext);
+            renderTask.promise.then(function () {
+                pdfRenderTasks[pageIndex] = renderTask;
+            });
+        });
+    }
 
     for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
         pdf.getPage(pageNumber).then(function(page) {
@@ -417,7 +466,8 @@ loadingTask.promise.then(function(pdf) {
             enhanceTextSelection: true
           };
           var renderTask = page.render(renderContext);
-
+          pdfRenderTasks.push(renderTask);
+          pdfPages.push(page);
           var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {
             selection : false,
             allowTouchScrolling: true

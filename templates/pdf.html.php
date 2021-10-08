@@ -27,7 +27,7 @@
     <div class="container-fluid">
         <div style="height: 65px;" class="d-md-none"></div>
         <div class="row">
-            <div id="container-pages" class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-center">
+            <div id="container-pages" class="col-xxl-9 col-xl-8 col-lg-7 col-md-6 col-sm-12 col-xs-12 text-center">
             </div>
         </div>
         <div style="height: 55px;" class="d-md-none"></div>

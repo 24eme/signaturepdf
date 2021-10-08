@@ -420,8 +420,8 @@ loadingTask.promise.then(function(pdf) {
             var context = canvasPDF.getContext('2d');
             canvasPDF.height = viewport.height;
             canvasPDF.width = viewport.width;
-            canvasEditionHTML.height = canvasPDF.height;
-            canvasEditionHTML.width = canvasPDF.width;
+            /*canvasEditionHTML.height = canvasPDF.height;
+            canvasEditionHTML.width = canvasPDF.width;*/
             var renderContext = {
               canvasContext: context,
               viewport: viewport,

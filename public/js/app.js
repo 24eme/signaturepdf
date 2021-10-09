@@ -389,7 +389,12 @@ loadingTask.promise.then(function(pdf) {
         });
     }
     var resizeTimeout;
+    var windowWidth = window.innerWidth;
     window.addEventListener('resize', function(event) {
+        if(windowWidth == window.innerWidth) {
+            return;
+        }
+        windowWidth = window.innerWidth;
         is_mobile = !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
         if(is_mobile) {
             menu.classList.remove('show');

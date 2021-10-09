@@ -423,12 +423,26 @@ loadingTask.promise.then(function(pdf) {
                 viewport = page.getViewport({ scale: scale });
             }
             var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
-            var canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
             var context = canvasPDF.getContext('2d');
             canvasPDF.height = viewport.height;
             canvasPDF.width = viewport.width;
-            /*canvasEditionHTML.height = canvasPDF.height;
-            canvasEditionHTML.width = canvasPDF.width;*/
+            canvasEdition = canvasEditions[pageIndex];
+
+            var scaleMultiplier = canvasPDF.width / canvasEdition.width;
+            var objects = canvasEdition.getObjects();
+            for (var i in objects) {
+               objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+               objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+               objects[i].left = objects[i].left * scaleMultiplier;
+               objects[i].top = objects[i].top * scaleMultiplier;
+               objects[i].setCoords();
+            }
+
+            canvasEdition.setWidth(canvasEdition.getWidth() * scaleMultiplier);
+            canvasEdition.setHeight(canvasEdition.getHeight() * scaleMultiplier);
+            canvasEdition.renderAll();
+            canvasEdition.calcOffset();
+
             var renderContext = {
               canvasContext: context,
               viewport: viewport,
@@ -504,7 +518,6 @@ loadingTask.promise.then(function(pdf) {
               input_selected.checked = false;
               input_selected.dispatchEvent(new Event("change"));
           });
-          
           canvasEditions.push(canvasEdition);
         });
     }

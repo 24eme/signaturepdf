@@ -388,7 +388,7 @@ loadingTask.promise.then(function(pdf) {
             canvas.add(svg).renderAll();
         });
     }
-    
+    var resizeTimeout;
     window.addEventListener('resize', function(event) {
         is_mobile = !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
         if(is_mobile) {
@@ -399,13 +399,15 @@ loadingTask.promise.then(function(pdf) {
         }
         menu.classList.remove('d-md-block');
         menu.classList.remove('d-none');
-        resizePDF();
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resizePDF, 250);
     });
-    var resizeInProgress = false;
     var resizePDF = function () {
         pdfPages.forEach(function(page, pageIndex) {
             var renderTask = pdfRenderTasks[pageIndex];
             if(!renderTask) {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(resizePDF, 250);
                 return;
             }
             var scale = 1.5;

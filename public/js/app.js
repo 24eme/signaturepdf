@@ -357,6 +357,25 @@ loadingTask.promise.then(function(pdf) {
             activeCanvas.add(copiedObject).renderAll();
             return;
         }
+
+        if(event.ctrlKey && (event.key == 'à' || event.key == '0')) {
+            autoZoom();
+            event.preventDefault() && event.stopPropagation();
+
+            return;
+        }
+        if(event.ctrlKey && (event.key == '=' || event.key == '+')) {
+            zoomChange(1);
+            event.preventDefault() && event.stopPropagation();
+
+            return;
+        }
+        if(event.ctrlKey && event.key == '-') {
+            zoomChange(-1);
+            event.preventDefault() && event.stopPropagation();
+
+            return;
+        }
     });
     
     var addSvgInCanvas = function(canvas, item, x, y) {
@@ -389,8 +408,10 @@ loadingTask.promise.then(function(pdf) {
         });
     }
     var resizeTimeout;
+    var currentScale = 1.5;
     var windowWidth = window.innerWidth;
     window.addEventListener('resize', function(event) {
+        event.preventDefault() && event.stopPropagation();
         if(windowWidth == window.innerWidth) {
             return;
         }
@@ -404,24 +425,77 @@ loadingTask.promise.then(function(pdf) {
         }
         menu.classList.remove('d-md-block');
         menu.classList.remove('d-none');
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(resizePDF, 250);
+        
+        autoZoom();
     });
-    var resizePDF = function () {
+    document.addEventListener('wheel', function(event) {
+        if(!event.ctrlKey) {
+            return;
+        }
+        event.preventDefault() && event.stopPropagation();
+        
+        if(event.deltaY > 0) {
+            zoomChange(-1)
+        } else {
+            zoomChange(1)
+        }
+    }, { passive: false });
+    
+    var autoZoom = function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resizePDF, 100);
+    }
+    
+    var zoomChange = function (inOrOut) {
+        if(resizeTimeout) {
+            return;
+        }
+        
+        var deltaScale = 0.2 * inOrOut;
+        
+        if(currentScale + deltaScale < 0) {
+            return 
+        }
+        if(currentScale + deltaScale > 3) {
+            return 
+        }
+        
+        clearTimeout(resizeTimeout);
+        currentScale += deltaScale;
+        
+        console.log(currentScale);
+
+        resizeTimeout = setTimeout(resizePDF(currentScale), 50);
+    }
+    
+    var resizePDF = function (scale = 'auto') {
+        renderComplete = true;
+        pdfRenderTasks.forEach(function(renderTask) {
+            if(!renderTask) {
+                renderComplete = false;
+            }
+        });
+        
+        if(!renderComplete) {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function(){ resizePDF(scale) }, 50);
+            return;
+        }
+        
         pdfPages.forEach(function(page, pageIndex) {
             var renderTask = pdfRenderTasks[pageIndex];
-            if(!renderTask) {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(resizePDF, 250);
-                return;
+            
+            if(scale == 'auto' && page.getViewport({scale: 1.5}).width > document.getElementById('container-pages').clientWidth - 40) {
+                scale = (document.getElementById('container-pages').clientWidth - 40) / page.getViewport({scale: 1}).width;
             }
-            var scale = 1.5;
+
+            if(scale == 'auto') {
+                scale = 1.5;
+            }
+
             var viewport = page.getViewport({scale: scale});
-            if(viewport.width > document.getElementById('container-pages').clientWidth - 40) {
-                viewport = page.getViewport({scale: 1});
-                scale = (document.getElementById('container-pages').clientWidth - 40) / viewport.width;
-                viewport = page.getViewport({ scale: scale });
-            }
+            currentScale = scale;
+
             var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
             var context = canvasPDF.getContext('2d');
             canvasPDF.height = viewport.height;
@@ -442,7 +516,7 @@ loadingTask.promise.then(function(pdf) {
             canvasEdition.setHeight(canvasEdition.getHeight() * scaleMultiplier);
             canvasEdition.renderAll();
             canvasEdition.calcOffset();
-
+            
             var renderContext = {
               canvasContext: context,
               viewport: viewport,
@@ -453,6 +527,8 @@ loadingTask.promise.then(function(pdf) {
             renderTask = page.render(renderContext);
             renderTask.promise.then(function () {
                 pdfRenderTasks[pageIndex] = renderTask;
+                clearTimeout(resizeTimeout);
+                resizeTimeout = null;
             });
         });
     }
@@ -470,7 +546,7 @@ loadingTask.promise.then(function(pdf) {
           var pageIndex = page.pageNumber - 1;
           
           document.getElementById('form_pdf').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
-          document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-2 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
+          document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
           
           var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
           var canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);

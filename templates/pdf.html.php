@@ -27,11 +27,11 @@
     <div class="container-fluid">
         <div style="height: 65px;" class="d-md-none"></div>
         <div class="row">
-            <div id="container-pages" class="col-xxl-9 col-xl-8 col-lg-7 col-md-6 col-sm-12 col-xs-12 text-center">
+            <div id="container-pages" style="overflow-x: auto" class="col-xxl-9 col-xl-8 col-lg-7 col-md-6 col-sm-12 col-xs-12 pt-1 pb-1 text-center">
             </div>
         </div>
         <div style="height: 55px;" class="d-md-none"></div>
-        <div class="offcanvas offcanvas-end show d-none d-md-block" data-bs-backdrop="false" data-bs-scroll="true" data-keyboard="false" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+        <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-keyboard="false" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header">
                 <h5 id="offcanvasTopLabel">Signature du PDF</h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>

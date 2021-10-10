@@ -18,17 +18,32 @@ loadingTask.promise.then(function(pdf) {
     var pdfRenderTasks = [];
     var pdfPages = [];
     var svgCollections = [];
-    var is_mobile = !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
-
+    var resizeTimeout;
+    var currentScale = 1.5;
+    var windowWidth = window.innerWidth;
     var menu = document.getElementById('offcanvasTop')
     var menuOffcanvas = new bootstrap.Offcanvas(menu)
-
-    if(is_mobile) {
-        menu.classList.remove('show');
-        menuOffcanvas.hide();
+    
+    var is_mobile = function() {
+        return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
     }
-    menu.classList.remove('d-md-block');
-    menu.classList.remove('d-none');
+    
+    var responsiveDisplay = function() {
+        if(is_mobile()) {
+            document.body.style.paddingRight = "";
+            menu.classList.remove('show');
+            menuOffcanvas.hide();
+            document.getElementById('container-pages').classList.remove('vh-100');
+        } else {
+            menuOffcanvas.show();
+            document.body.style.paddingRight = "350px";
+            document.getElementById('container-pages').classList.add('vh-100');
+        }
+        menu.classList.remove('d-md-block');
+        menu.classList.remove('d-none');
+    }
+    
+    responsiveDisplay();
     
     if(localStorage.getItem('svgCollections')) {
         svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
@@ -64,7 +79,7 @@ loadingTask.promise.then(function(pdf) {
                     canvasEdition.defaultCursor = 'default';
                 }
             })
-            if(is_mobile) {
+            if(is_mobile()) {
                 menuOffcanvas.hide();
             }
         });
@@ -407,25 +422,14 @@ loadingTask.promise.then(function(pdf) {
             canvas.add(svg).renderAll();
         });
     }
-    var resizeTimeout;
-    var currentScale = 1.5;
-    var windowWidth = window.innerWidth;
+
     window.addEventListener('resize', function(event) {
         event.preventDefault() && event.stopPropagation();
         if(windowWidth == window.innerWidth) {
             return;
         }
+        responsiveDisplay();
         windowWidth = window.innerWidth;
-        is_mobile = !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
-        if(is_mobile) {
-            menu.classList.remove('show');
-            menuOffcanvas.hide();
-        } else {
-            menuOffcanvas.show();
-        }
-        menu.classList.remove('d-md-block');
-        menu.classList.remove('d-none');
-        
         autoZoom();
     });
     document.addEventListener('wheel', function(event) {

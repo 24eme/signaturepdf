@@ -81,6 +81,10 @@
             </div>
         </div>
         <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow d-md-none">
+            <div class="btn-group position-absolute opacity-25" style="top: -46px;">
+            <button id="btn-zoom-decrease" class="btn btn-secondary"><i class="bi bi-dash"></i></button>
+            <button id="btn-zoom-increase" class="btn btn-secondary"><i class="bi bi-plus"></i></button>
+            </div>
             <div class="d-grid gap-2">
                 <button class="btn btn-primary" disabled="disabled" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
             </div>

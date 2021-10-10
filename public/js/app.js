@@ -440,7 +440,13 @@ loadingTask.promise.then(function(pdf) {
             zoomChange(1)
         }
     }, { passive: false });
-    
+    document.getElementById('btn-zoom-decrease').addEventListener('click', function() {
+        zoomChange(-1)
+    });
+    document.getElementById('btn-zoom-increase').addEventListener('click', function() {
+        zoomChange(1)
+    });
+
     var autoZoom = function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(resizePDF, 100);
@@ -543,6 +549,8 @@ loadingTask.promise.then(function(pdf) {
               viewport = page.getViewport({ scale: scale });
           }
           
+          currentScale = scale;
+
           var pageIndex = page.pageNumber - 1;
           
           document.getElementById('form_pdf').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');

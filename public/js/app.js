@@ -42,17 +42,33 @@ loadingTask.promise.then(function(pdf) {
         menu.classList.remove('d-md-block');
         menu.classList.remove('d-none');
     }
-    
+
     responsiveDisplay();
-    
+
     if(localStorage.getItem('svgCollections')) {
         svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
+    }
+
+    var storeCollections = function () {
+        localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
+    }
+
+    var getSvgItem = function(svg) {
+        for (index in svgCollections) {
+            svgItem = svgCollections[index];
+            if(svgItem.svg == svg) {
+
+                return svgItem;
+            }
+        }
+
+        return null;
     }
 
     opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {
         fontCaveat = font;
     });
-    
+
     var getHtmlSvg = function(svg, i) {
         var inputRadio = document.createElement('input');
         inputRadio.type = "radio";
@@ -117,10 +133,10 @@ loadingTask.promise.then(function(pdf) {
         svgContainer.classList.add('gap-2');
         svgContainer.appendChild(inputRadio);
         svgContainer.appendChild(svgButton);
-        
+
         return svgContainer;
     }
-    
+
     var displaysSVG = function() {
         document.getElementById('svg_list').innerHTML = "";
         document.getElementById('svg_list_signature').innerHTML = "";
@@ -151,11 +167,11 @@ loadingTask.promise.then(function(pdf) {
             item.addEventListener('click', function() {
                 svgCollections.splice(this.dataset.index, 1);
                 displaysSVG();
-                localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
+                storeCollections();
             });
         });
     }
-    
+
     document.querySelectorAll('.btn-add-svg-type').forEach(function(item) {
         item.addEventListener('click', function(event) {
             document.getElementById('input-svg-type').value = this.dataset.type;
@@ -413,9 +429,14 @@ loadingTask.promise.then(function(pdf) {
 
         fabric.loadSVGFromURL(item, function(objects, options) {
             var svg = fabric.util.groupSVGElements(objects, options);
+            svg.svgOrigin = item;
             svg.scaleToHeight(100);
             if(svg.getScaledWidth() > 200) {
                 svg.scaleToWidth(200);
+            }
+            var svgItem = getSvgItem(item);
+            if(svgItem && svgItem.scale) {
+                svg.scaleToWidth(canvas.width * svgItem.scale);
             }
             svg.top = y - (svg.getScaledHeight() / 2);
             svg.left = x - (svg.getScaledWidth() / 2);
@@ -605,6 +626,14 @@ loadingTask.promise.then(function(pdf) {
               addSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y);
               input_selected.checked = false;
               input_selected.dispatchEvent(new Event("change"));
+          });
+          canvasEdition.on('object:scaled', function(event) {
+              var item = getSvgItem(event.target.svgOrigin);
+              if(!item) {
+                  return;
+              }
+              item.scale = event.target.width * event.target.scaleX / event.target.canvas.width;
+              storeCollections();
           });
           canvasEditions.push(canvasEdition);
         });

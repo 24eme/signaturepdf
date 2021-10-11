@@ -11,6 +11,7 @@ var loadingTask = pdfjsLib.getDocument(url);
 loadingTask.promise.then(function(pdf) {
 
     var fontCaveat = null;
+    var addLock = false;
     var copiedObject = null;
     var activeCanvas = null;
     var activeCanvasPointer = null;
@@ -88,6 +89,10 @@ loadingTask.promise.then(function(pdf) {
                 document.getElementById('svg_selected_container').classList.add('d-none');
                 document.getElementById('svg_selected').src = null;
             }
+            addLock = false;
+            document.querySelectorAll('.btn-svg').forEach(function(item) {
+                item.style.borderWidth = "1px";
+            });
             canvasEditions.forEach(function(canvasEdition, index) {
                 var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
                 if(input_selected) {
@@ -123,6 +128,18 @@ loadingTask.promise.then(function(pdf) {
         svgButton.addEventListener('dragstart', function(event) {
             document.getElementById(this.htmlFor).checked = true;
             document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
+        });
+        svgButton.addEventListener('click', function(event) {
+            if(addLock) {
+                svgButton.style.borderWidth = "1px";
+                addLock = false;
+
+                return;
+            }
+        });
+        svgButton.addEventListener('dblclick', function(event) {
+            svgButton.style.borderWidth = "2px";
+            addLock = true;
         });
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
@@ -186,6 +203,18 @@ loadingTask.promise.then(function(pdf) {
         item.addEventListener('dragstart', function(event) {
             document.getElementById(this.htmlFor).checked = true;
             document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
+        });
+        item.addEventListener('click', function(event) {
+            if(addLock) {
+                item.style.borderWidth = "1px";
+                addLock = false;
+
+                return;
+            }
+        });
+        item.addEventListener('dblclick', function(event) {
+            item.style.borderWidth = "2px";
+            addLock = true;
         });
     });
 
@@ -626,6 +655,10 @@ loadingTask.promise.then(function(pdf) {
               }
 
               addSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y);
+
+              if(addLock) {
+                  return;
+              }
               input_selected.checked = false;
               input_selected.dispatchEvent(new Event("change"));
           });

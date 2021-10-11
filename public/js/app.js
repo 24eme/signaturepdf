@@ -430,6 +430,7 @@ loadingTask.promise.then(function(pdf) {
         fabric.loadSVGFromURL(item, function(objects, options) {
             var svg = fabric.util.groupSVGElements(objects, options);
             svg.svgOrigin = item;
+            svg.lockScalingFlip = true;
             svg.scaleToHeight(100);
             if(svg.getScaledWidth() > 200) {
                 svg.scaleToWidth(200);
@@ -626,6 +627,14 @@ loadingTask.promise.then(function(pdf) {
               addSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y);
               input_selected.checked = false;
               input_selected.dispatchEvent(new Event("change"));
+          });
+          canvasEdition.on('object:scaling', function(event) {
+              if(event.transform.action == "scaleX") {
+                  event.target.scaleY = event.target.scaleX;
+              }
+              if(event.transform.action == "scaleY") {
+                  event.target.scaleX = event.target.scaleY;
+              }
           });
           canvasEdition.on('object:scaled', function(event) {
               var item = getSvgItem(event.target.svgOrigin);

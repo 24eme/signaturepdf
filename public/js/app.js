@@ -51,7 +51,6 @@ loadingTask.promise.then(function(pdf) {
     }
 
     var storeCollections = function () {
-        console.log('store');
         localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
     }
 
@@ -220,6 +219,19 @@ loadingTask.promise.then(function(pdf) {
 
     document.querySelectorAll('input[name="svg_2_add"]').forEach(function (item) {
         item.addEventListener('change', function() {
+            if(this.checked) {
+                document.getElementById('btn_svn_select').classList.add('d-none');
+                document.getElementById('svg_selected_container').classList.remove('d-none');
+                document.getElementById('svg_selected').src = (this.dataset.svg) ? this.dataset.svg : this.value;
+            } else {
+                document.getElementById('btn_svn_select').classList.remove('d-none');
+                document.getElementById('svg_selected_container').classList.add('d-none');
+                document.getElementById('svg_selected').src = null;
+            }
+            addLock = false;
+            document.querySelectorAll('.btn-svg').forEach(function(item) {
+                item.style.borderWidth = "1px";
+            });
             canvasEditions.forEach(function(canvasEdition, index) {
                 var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
                 if(input_selected) {
@@ -228,6 +240,9 @@ loadingTask.promise.then(function(pdf) {
                     canvasEdition.defaultCursor = 'default';
                 }
             })
+            if(is_mobile()) {
+                menuOffcanvas.hide();
+            }
         });
     });
 

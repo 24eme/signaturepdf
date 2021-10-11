@@ -9,7 +9,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 // Asynchronous download of PDF
 var loadingTask = pdfjsLib.getDocument(url);
 loadingTask.promise.then(function(pdf) {
-    
+
     var fontCaveat = null;
     var copiedObject = null;
     var activeCanvas = null;
@@ -23,11 +23,11 @@ loadingTask.promise.then(function(pdf) {
     var windowWidth = window.innerWidth;
     var menu = document.getElementById('offcanvasTop')
     var menuOffcanvas = new bootstrap.Offcanvas(menu)
-    
+
     var is_mobile = function() {
         return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
     }
-    
+
     var responsiveDisplay = function() {
         if(is_mobile()) {
             document.body.style.paddingRight = "";
@@ -50,6 +50,7 @@ loadingTask.promise.then(function(pdf) {
     }
 
     var storeCollections = function () {
+        console.log('store');
         localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
     }
 
@@ -202,7 +203,7 @@ loadingTask.promise.then(function(pdf) {
     });
 
     displaysSVG();
-    
+
     document.getElementById('btn_modal_ajouter').addEventListener('click', function() {
         var svgItem = {};
         if(document.getElementById('input-svg-type').value) {
@@ -214,8 +215,8 @@ loadingTask.promise.then(function(pdf) {
         if(document.getElementById('nav-type-tab').classList.contains('active')) {
             var fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
             var fabricPath = new fabric.Path(fontPath.toPathData());
-            fabricPath.top = 0;    
-            fabricPath.left = 0;    
+            fabricPath.top = 0;
+            fabricPath.left = 0;
             fabricPath.height = fabricPath.getScaledHeight();
             var textCanvas = document.createElement('canvas');
             textCanvas.width = fabricPath.getScaledWidth();
@@ -238,7 +239,7 @@ loadingTask.promise.then(function(pdf) {
 
         document.querySelector('#'+svg_list_id+' label:last-child').click();
     });
-    
+
     function dataURLtoBlob(dataurl) {
         var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
             bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
@@ -247,10 +248,10 @@ loadingTask.promise.then(function(pdf) {
         }
         return new Blob([u8arr], {type:mime});
     }
-    
+
     function trimSvgWhitespace(svgContent) {
         if(!svgContent) {
-            
+
             return null;
         }
         var svgContainer = document.createElement("div")
@@ -266,25 +267,25 @@ loadingTask.promise.then(function(pdf) {
         svg.setAttribute("viewBox", [box.x, box.y, box.width, box.height].join(" "));
         svgContent = svgContainer.innerHTML;
         document.body.removeChild(svgContainer)
-        
+
         return svgContent = svgContainer.innerHTML;
     }
-    
+
     var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         penColor: 'rgb(0, 0, 0)',
         minWidth: 1.25,
         maxWidth: 2,
         throttle: 0,
-        onEnd: function() { 
+        onEnd: function() {
             document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
             const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
                 type: 'image/png'
             });
-            var data = new FormData();    
+            var data = new FormData();
             data.append('file', file);
             xhr = new XMLHttpRequest();
             xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
-            xhr.onreadystatechange = function () { 
+            xhr.onreadystatechange = function () {
                 var svgImage = "data:image/svg+xml;base64,"+btoa(trimSvgWhitespace(this.responseText));
                 document.getElementById('img-upload').src = svgImage;
                 document.getElementById('img-upload').classList.remove("d-none");
@@ -294,7 +295,7 @@ loadingTask.promise.then(function(pdf) {
             xhr.send( data );
         }
     });
-    
+
     document.querySelectorAll('#modalAddSvg .nav-link').forEach(function(item) { item.addEventListener('shown.bs.tab', function (event) {
         var firstInput = document.querySelector(event.target.dataset.bsTarget).querySelector('input');
         if(firstInput) {
@@ -320,7 +321,7 @@ loadingTask.promise.then(function(pdf) {
         document.getElementById('img-upload').classList.add("d-none");
         bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab button:first-child')).show();
     })
-    
+
     document.getElementById('input-text-signature').addEventListener('keydown', function(event) {
         document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
         if(event.key == 'Enter') {
@@ -331,13 +332,13 @@ loadingTask.promise.then(function(pdf) {
 
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
         document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
-        var data = new FormData();    
+        var data = new FormData();
         data.append('file', document.getElementById('input-image-upload').files[0]);
-        
+
         xhr = new XMLHttpRequest();
-        
+
         xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
-        xhr.onreadystatechange = function () { 
+        xhr.onreadystatechange = function () {
             var svgImage = "data:image/svg+xml;base64,"+btoa(trimSvgWhitespace(this.responseText));
             document.getElementById('img-upload').src = svgImage;
             document.getElementById('img-upload').classList.remove("d-none");
@@ -348,13 +349,13 @@ loadingTask.promise.then(function(pdf) {
 
         event.preventDefault();
     });
-    
+
     document.getElementById('save').addEventListener('click', function(event) {
         canvasEditions.forEach(function(canvasEdition, index) {
             document.getElementById('data-svg-'+index).value = canvasEdition.toSVG();
-        })        
+        })
     });
-    
+
     document.getElementById('save_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
     });
@@ -371,16 +372,16 @@ loadingTask.promise.then(function(pdf) {
             })
             return;
         }
-        
+
         if(event.ctrlKey && event.key == 'c') {
             if(!activeCanvas || !activeCanvas.getActiveObject()) {
                 return;
             }
             copiedObject = fabric.util.object.clone(activeCanvas.getActiveObject());
-        
+
             return;
         }
-        
+
         if(event.ctrlKey && event.key == 'v') {
             copiedObject = fabric.util.object.clone(copiedObject);
             copiedObject.left = activeCanvasPointer.x;
@@ -408,7 +409,7 @@ loadingTask.promise.then(function(pdf) {
             return;
         }
     });
-    
+
     var addSvgInCanvas = function(canvas, item, x, y) {
         save.removeAttribute('disabled');
         save_mobile.removeAttribute('disabled');
@@ -420,6 +421,7 @@ loadingTask.promise.then(function(pdf) {
             width: 300,
             fontSize: 20
           });
+
           canvas.add(textbox).setActiveObject(textbox);
           textbox.enterEditing();
           textbox.selectAll();
@@ -459,13 +461,14 @@ loadingTask.promise.then(function(pdf) {
             return;
         }
         event.preventDefault() && event.stopPropagation();
-        
+
         if(event.deltaY > 0) {
             zoomChange(-1)
         } else {
             zoomChange(1)
         }
     }, { passive: false });
+
     document.getElementById('btn-zoom-decrease').addEventListener('click', function() {
         zoomChange(-1)
     });
@@ -477,29 +480,27 @@ loadingTask.promise.then(function(pdf) {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(resizePDF, 100);
     }
-    
+
     var zoomChange = function (inOrOut) {
         if(resizeTimeout) {
             return;
         }
-        
+
         var deltaScale = 0.2 * inOrOut;
-        
+
         if(currentScale + deltaScale < 0) {
-            return 
+            return
         }
         if(currentScale + deltaScale > 3) {
-            return 
+            return
         }
-        
+
         clearTimeout(resizeTimeout);
         currentScale += deltaScale;
-        
-        console.log(currentScale);
 
         resizeTimeout = setTimeout(resizePDF(currentScale), 50);
     }
-    
+
     var resizePDF = function (scale = 'auto') {
         renderComplete = true;
         pdfRenderTasks.forEach(function(renderTask) {
@@ -507,16 +508,16 @@ loadingTask.promise.then(function(pdf) {
                 renderComplete = false;
             }
         });
-        
+
         if(!renderComplete) {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(function(){ resizePDF(scale) }, 50);
             return;
         }
-        
+
         pdfPages.forEach(function(page, pageIndex) {
             var renderTask = pdfRenderTasks[pageIndex];
-            
+
             if(scale == 'auto' && page.getViewport({scale: 1.5}).width > document.getElementById('container-pages').clientWidth - 40) {
                 scale = (document.getElementById('container-pages').clientWidth - 40) / page.getViewport({scale: 1}).width;
             }
@@ -548,7 +549,7 @@ loadingTask.promise.then(function(pdf) {
             canvasEdition.setHeight(canvasEdition.getHeight() * scaleMultiplier);
             canvasEdition.renderAll();
             canvasEdition.calcOffset();
-            
+
             var renderContext = {
               canvasContext: context,
               viewport: viewport,
@@ -574,14 +575,14 @@ loadingTask.promise.then(function(pdf) {
               scale = (document.getElementById('container-pages').clientWidth - 40) / viewport.width;
               viewport = page.getViewport({ scale: scale });
           }
-          
+
           currentScale = scale;
 
           var pageIndex = page.pageNumber - 1;
-          
+
           document.getElementById('form_pdf').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
           document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
-          
+
           var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
           var canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
           // Prepare canvas using PDF page dimensions
@@ -590,7 +591,7 @@ loadingTask.promise.then(function(pdf) {
           canvasPDF.width = viewport.width;
           canvasEditionHTML.height = canvasPDF.height;
           canvasEditionHTML.width = canvasPDF.width;
-          
+
           var renderContext = {
             canvasContext: context,
             viewport: viewport,
@@ -603,7 +604,7 @@ loadingTask.promise.then(function(pdf) {
             selection : false,
             allowTouchScrolling: true
           });
-          
+
           document.getElementById('canvas-container-' + pageIndex).addEventListener('drop', function(event) {
               var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
               if(!input_selected) {

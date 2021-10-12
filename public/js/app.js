@@ -88,10 +88,9 @@ loadingTask.promise.then(function(pdf) {
                 document.getElementById('svg_selected_container').classList.add('d-none');
                 document.getElementById('svg_selected').src = null;
             }
-            addLock = false;
-            document.querySelectorAll('.btn-svg').forEach(function(item) {
-                item.style.borderWidth = "1px";
-            });
+
+            stateAddLock(false);
+
             canvasEditions.forEach(function(canvasEdition, index) {
                 var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
                 if(input_selected) {
@@ -130,15 +129,12 @@ loadingTask.promise.then(function(pdf) {
         });
         svgButton.addEventListener('click', function(event) {
             if(addLock) {
-                svgButton.style.borderWidth = "1px";
-                addLock = false;
-
+                stateAddLock(false);
                 return;
             }
         });
         svgButton.addEventListener('dblclick', function(event) {
-            svgButton.style.borderWidth = "2px";
-            addLock = true;
+            stateAddLock(true);
         });
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
@@ -152,6 +148,36 @@ loadingTask.promise.then(function(pdf) {
         svgContainer.appendChild(svgButton);
 
         return svgContainer;
+    }
+
+    document.getElementById('add-lock-checkbox').addEventListener('change', function() {
+        stateAddLock(this.checked);
+    });
+
+    var stateAddLock = function(state) {
+        var checkbox = document.getElementById('add-lock-checkbox');
+        var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+
+        addLock = state;
+
+        if(!input_selected) {
+            addLock = false;
+            checkbox.disabled = true;
+        } else {
+            checkbox.disabled = false;
+        }
+
+        if(addLock) {
+            var svgButton = document.querySelector('.btn-svg[for="'+input_selected.id+'"]');
+            svgButton.style.borderWidth = "2px";
+            checkbox.checked = true;
+            return;
+        }
+
+        document.querySelectorAll('.btn-svg').forEach(function(item) {
+            item.style.borderWidth = "1px";
+        });
+        checkbox.checked = false;
     }
 
     var displaysSVG = function() {
@@ -205,15 +231,13 @@ loadingTask.promise.then(function(pdf) {
         });
         item.addEventListener('click', function(event) {
             if(addLock) {
-                item.style.borderWidth = "1px";
-                addLock = false;
+                stateAddLock(false);
 
                 return;
             }
         });
         item.addEventListener('dblclick', function(event) {
-            item.style.borderWidth = "2px";
-            addLock = true;
+            stateAddLock(true);
         });
     });
 
@@ -228,10 +252,7 @@ loadingTask.promise.then(function(pdf) {
                 document.getElementById('svg_selected_container').classList.add('d-none');
                 document.getElementById('svg_selected').src = null;
             }
-            addLock = false;
-            document.querySelectorAll('.btn-svg').forEach(function(item) {
-                item.style.borderWidth = "1px";
-            });
+            stateAddLock(false);
             canvasEditions.forEach(function(canvasEdition, index) {
                 var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
                 if(input_selected) {
@@ -247,6 +268,7 @@ loadingTask.promise.then(function(pdf) {
     });
 
     displaysSVG();
+    stateAddLock();
 
     document.getElementById('btn_modal_ajouter').addEventListener('click', function() {
         var svgItem = {};

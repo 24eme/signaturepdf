@@ -29,11 +29,15 @@
         </div>
         <div style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-keyboard="false" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="width: 350px;">
-            <div class="offcanvas-header">
+            <div class="offcanvas-header mb-0 pb-0">
                 <h5 id="offcanvasTopLabel">Signature du PDF</h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
+                <div class="form-check form-switch mb-2 small">
+                  <input class="form-check-input" type="checkbox" id="add-lock-checkbox" disabled="disabled">
+                  <label class="form-check-label" for="add-lock-checkbox"> Garder la séléction active</label>
+                </div>
               <div id="svg_list_signature" class="list-item-add"></div>
               <div class="d-grid gap-2 mb-2 list-item-add">
                   <input type="radio" class="btn-check" id="radio_svg_signature_add" name="svg_2_add" autocomplete="off" value="signature">

@@ -485,7 +485,8 @@ loadingTask.promise.then(function(pdf) {
             left: x - 10,
             top: y - 10,
             width: 300,
-            fontSize: 20
+            fontSize: 20,
+            fontFamily: 'Monospace'
           });
 
           canvas.add(textbox).setActiveObject(textbox);

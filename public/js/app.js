@@ -344,6 +344,8 @@ loadingTask.promise.then(function(pdf) {
         throttle: 0,
         onEnd: function() {
             document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
+            document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
+            document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
             const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
                 type: 'image/png'
             });
@@ -356,6 +358,8 @@ loadingTask.promise.then(function(pdf) {
                 document.getElementById('img-upload').src = svgImage;
                 document.getElementById('img-upload').classList.remove("d-none");
                 document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
+                document.getElementById('btn_modal_ajouter_spinner').classList.add('d-none');
+                document.getElementById('btn_modal_ajouter_check').classList.remove('d-none');
                 document.getElementById('btn_modal_ajouter').focus();
             };
             xhr.send( data );
@@ -398,6 +402,8 @@ loadingTask.promise.then(function(pdf) {
 
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
         document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
+        document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
+        document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
         var data = new FormData();
         data.append('file', document.getElementById('input-image-upload').files[0]);
 
@@ -409,6 +415,8 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById('img-upload').src = svgImage;
             document.getElementById('img-upload').classList.remove("d-none");
             document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
+            document.getElementById('btn_modal_ajouter_spinner').classList.add('d-none');
+            document.getElementById('btn_modal_ajouter_check').classList.remove('d-none');
             document.getElementById('btn_modal_ajouter').focus();
         };
         xhr.send( data );

@@ -122,8 +122,8 @@
                 <input id="input-svg-type" type="hidden" />
           </div>
           <div class="modal-footer">
-            <button tabindex="-1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button id="btn_modal_ajouter" type="button" disabled="disabled" class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
+            <button tabindex="-1" type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+            <button id="btn_modal_ajouter" type="button" disabled="disabled" class="btn btn-primary" data-bs-dismiss="modal"><span id="btn_modal_ajouter_spinner" class="spinner-border spinner-border-sm d-none"></span><span id="btn_modal_ajouter_check" class="bi bi-check-circle"></span> Ajouter</button>
           </div>
         </div>
       </div>

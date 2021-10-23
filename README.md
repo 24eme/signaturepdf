@@ -24,21 +24,21 @@ Dépendances :
 
 Sur debian :
 
-`
+```
 sudo aptitude install php librsvg2-bin pdftk imagemagick potrace
-`
+```
 
 Récupération des sources :
 
-`
+```
 git clone https://github.com/24eme/signaturepdf.git
-`
+```
 
-Pour le tester :
+Pour le lancer :
 
-`
+```
 php -S localhost:8000 -t public
-`
+```
 
 ## Librairies utilisées
 
@@ -52,3 +52,14 @@ php -S localhost:8000 -t public
 - **OpenType.js** outils de transformation d'un texte et sa police en chemin : https://github.com/opentypejs/opentype.js (MIT)
 - **ImageMagick** ensemble d'outils de manipulation d'images : https://imagemagick.org/ (Apache-2.0)
 - **Caveat** police de caractères style écriture à la main : https://github.com/googlefonts/caveat (OFL-1.1)
+
+## Tests
+
+Pour exécuter les tests fonctionnels :
+
+```
+make test
+```
+
+Les tests sont réalisés avec `puppeteer` et `jest`.
+

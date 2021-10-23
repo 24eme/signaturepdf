@@ -104,6 +104,7 @@ loadingTask.promise.then(function(pdf) {
             }
         });
         var svgButton = document.createElement('label');
+        svgButton.id = "label_svg_"+i;
         svgButton.classList.add('position-relative');
         svgButton.classList.add('btn');
         svgButton.classList.add('btn-svg');

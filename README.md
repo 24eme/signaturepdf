@@ -63,10 +63,10 @@ make test
 
 Les tests sont réalisés avec `puppeteer` et `jest`.
 
-Pour lancer les tests et voir le navigateur (permet de débugger) :
+Pour lancer les tests et voir le navigateur (en mode debug) :
 
 ```
-SHOW=true make test
+DEBUG=1 make test
 ```
 
 

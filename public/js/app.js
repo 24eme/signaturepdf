@@ -5,6 +5,7 @@ var pdfjsLib = window['pdfjs-dist/build/pdf'];
 // The workerSrc property shall be specified.
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 
+var canvasEditions = [];
 
 // Asynchronous download of PDF
 var loadingTask = pdfjsLib.getDocument(url);
@@ -15,7 +16,6 @@ loadingTask.promise.then(function(pdf) {
     var copiedObject = null;
     var activeCanvas = null;
     var activeCanvasPointer = null;
-    var canvasEditions = [];
     var pdfRenderTasks = [];
     var pdfPages = [];
     var svgCollections = [];
@@ -396,7 +396,6 @@ loadingTask.promise.then(function(pdf) {
     document.getElementById('input-text-signature').addEventListener('keydown', function(event) {
         document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
         if(event.key == 'Enter') {
-            document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
             document.getElementById('btn_modal_ajouter').click()
         }
     })
@@ -657,7 +656,7 @@ loadingTask.promise.then(function(pdf) {
           var pageIndex = page.pageNumber - 1;
 
           document.getElementById('form_pdf').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
-          document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
+          document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
 
           var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
           var canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);

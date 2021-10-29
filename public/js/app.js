@@ -152,7 +152,6 @@ loadingTask.promise.then(function(pdf) {
                 this.dataset.lock = parseInt(addLock*1);
             }
             if(event.detail > 1){
-                console.log(parseInt(this.dataset.lock*1));
                 stateAddLock(parseInt(this.dataset.lock*1) != 1);
             }
             if(event.detail > 1) {

@@ -253,14 +253,21 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
         });
         item.addEventListener('click', function(event) {
-            if(addLock) {
+            if(event.detail > 1 && document.getElementById(this.htmlFor).checked){
+                stateAddLock(true);
+            }
+            if(event.detail > 1 && !document.getElementById(this.htmlFor).checked){
                 stateAddLock(false);
-
+            }
+            if(event.detail > 1) {
                 return;
             }
-        });
-        item.addEventListener('dblclick', function(event) {
-            stateAddLock(true);
+            if(!document.getElementById(this.htmlFor).checked) {
+                return;
+            }
+            document.getElementById(this.htmlFor).checked = false;
+            document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
+            event.preventDefault();
         });
     });
 
@@ -276,8 +283,20 @@ loadingTask.promise.then(function(pdf) {
                 document.getElementById('svg_selected').src = null;
             }
             stateAddLock(false);
+            var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+            if(input_selected) {
+                document.body.style.setProperty('cursor', 'copy');
+            } else {
+                document.body.style.removeProperty('cursor');
+            }
+            document.querySelectorAll('.btn-svg').forEach(function(item) {
+                if(input_selected && item.htmlFor == input_selected.id) {
+                    item.style.setProperty('cursor', 'copy');
+                } else {
+                    item.style.removeProperty('cursor');
+                }
+            });
             canvasEditions.forEach(function(canvasEdition, index) {
-                var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
                 if(input_selected) {
                     canvasEdition.defaultCursor = 'copy';
                 } else {

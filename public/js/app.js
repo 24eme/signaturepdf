@@ -143,21 +143,21 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
         });
         svgButton.addEventListener('click', function(event) {
-            if(event.detail > 1){
+            if(event.detail > 1 && document.getElementById(this.htmlFor).checked){
+                stateAddLock(true);
+            }
+            if(event.detail > 1 && !document.getElementById(this.htmlFor).checked){
+                stateAddLock(false);
+            }
+            if(event.detail > 1) {
                 return;
             }
             if(!document.getElementById(this.htmlFor).checked) {
                 return;
             }
-            if(addLock) {
-                return;
-            }
             document.getElementById(this.htmlFor).checked = false;
             document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
             event.preventDefault();
-        });
-        svgButton.addEventListener('dblclick', function(event) {
-            stateAddLock(!addLock);
         });
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;

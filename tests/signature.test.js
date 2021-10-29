@@ -12,11 +12,12 @@ var host = "localhost:"+(9000 + Math.floor((Math.random() * 1000)));
 describe("Signature d'un pdf", () => {
     var originX;
     var originY;
+    var hash;
     beforeAll(async () => {
         server = cp.spawn("php", ["-S", host, "-t", "public"]);
         browser = await puppeteer.launch({ headless: headless });
         page = await browser.newPage();
-        await page.setViewport({ width: 1200, height: 800 })
+        await page.setViewport({ width: 1200, height: 700 })
         await page.goto('http://' + host + '/');
     });
     it('Upload et chargement du pdf', async () => {
@@ -24,6 +25,7 @@ describe("Signature d'un pdf", () => {
         await page.waitForNavigation()
         await page.waitForSelector('#canvas-pdf-15', {visible: true});
         expect(await page.evaluate(() => { return document.querySelectorAll('.canvas-pdf').length })).toBe(16);
+        hash = await page.url().replace(/^.+\//, '');
     });
     it("Création d'une signature", async () => {
         await page.waitForSelector('#label_svg_signature_add', {visible: true});
@@ -78,11 +80,13 @@ describe("Signature d'un pdf", () => {
     it("Ajout d'une seconde signature", async () => {
         await page.click("#label_svg_0");
         await page.waitForTimeout(100);
-        await page.mouse.click(100,100);
+        await page.mouse.click(originX + 50, originY + 50);
         expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(2);
+        expect(await page.evaluate(() => { return Math.round(canvasEditions[0].getObjects()[1].getScaledHeight())})).toBe(150);
+        expect(await page.evaluate(() => { return Math.round(canvasEditions[0].getObjects()[1].getScaledWidth())})).toBe(150);
     });
-    it("Suppression de la seconde signature", async () => {
-        await page.mouse.click(100,100);
+    it("Suppression de la seconde signature du pdf", async () => {
+        await page.mouse.click(originX + 50, originY + 50);
         await page.waitForTimeout(100);
         await page.keyboard.press('Delete');
         expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(1);
@@ -92,20 +96,18 @@ describe("Signature d'un pdf", () => {
         await page.waitForTimeout(100);
         expect(await page.evaluate(() => { return document.querySelector("#label_svg_0 img") })).toBeNull();
     });
+    it("Téléchargement du pdf signé", async () => {
+        await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: './tests/downloads'});
+        await page.click("#save");
+        await page.waitForTimeout(500);
+        await expect(require('fs').existsSync('./tests/downloads/'+hash+'_signe.pdf')).toBe(true);
+    });
     afterAll(async () => {
         if(process.env.DEBUG) {
             return;
         }
+        await require('fs').unlinkSync('./tests/downloads/'+hash+'_signe.pdf');
         await server.kill();
         await browser.close();
     });
 });
-
-
-
-
-
-
-
-
-

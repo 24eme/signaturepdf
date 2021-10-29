@@ -79,8 +79,14 @@ describe("Signature d'un pdf", () => {
     });
     it("Ajout d'une seconde signature", async () => {
         await page.click("#label_svg_0");
+        expect(await page.evaluate(() => { return document.body.style.cursor; })).toBe("copy");
+        expect(await page.evaluate(() => { return document.querySelector('#label_svg_0').style.cursor; })).toBe("copy");
+        expect(await page.evaluate(() => { return canvasEditions[0].defaultCursor; })).toBe('copy');
         await page.waitForTimeout(100);
         await page.mouse.click(originX + 50, originY + 50);
+        expect(await page.evaluate(() => { return document.body.style.cursor; })).toBe("");
+        expect(await page.evaluate(() => { return document.querySelector('#label_svg_0').style.cursor; })).toBe("");
+        expect(await page.evaluate(() => { return canvasEditions[0].defaultCursor; })).toBe('default');
         expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(2);
         expect(await page.evaluate(() => { return Math.round(canvasEditions[0].getObjects()[1].getScaledHeight())})).toBe(150);
         expect(await page.evaluate(() => { return Math.round(canvasEditions[0].getObjects()[1].getScaledWidth())})).toBe(150);

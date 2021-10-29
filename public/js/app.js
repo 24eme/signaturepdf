@@ -91,8 +91,22 @@ loadingTask.promise.then(function(pdf) {
 
             stateAddLock(false);
 
+
+            var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+            if(input_selected) {
+                document.body.style.setProperty('cursor', 'copy');
+            } else {
+                document.body.style.removeProperty('cursor');
+            }
+            document.querySelectorAll('.btn-svg').forEach(function(item) {
+                if(input_selected && item.htmlFor == input_selected.id) {
+                    item.style.setProperty('cursor', 'copy');
+                } else {
+                    item.style.removeProperty('cursor');
+                }
+            });
+
             canvasEditions.forEach(function(canvasEdition, index) {
-                var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
                 if(input_selected) {
                     canvasEdition.defaultCursor = 'copy';
                 } else {
@@ -140,7 +154,7 @@ loadingTask.promise.then(function(pdf) {
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
         svgImg.draggable = false;
-        svgImg.style = "max-width: 180px;max-height: 70px;cursor: grab;";
+        svgImg.style = "max-width: 180px;max-height: 70px;";
         svgButton.appendChild(svgImg);
         var svgContainer = document.createElement('div');
         svgContainer.classList.add('d-grid');

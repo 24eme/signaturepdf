@@ -25,8 +25,6 @@
         border: 1px solid #000;
         box-shadow: 0 .25rem .5rem rgba(0,0,0,.075) !important;
     }
-
-
     </style>
     <title>Signature PDF</title>
   </head>
@@ -43,7 +41,7 @@
             <div class="offcanvas-body">
                 <div class="form-check form-switch mb-2 small">
                   <input class="form-check-input" type="checkbox" id="add-lock-checkbox" disabled="disabled">
-                  <label class="form-check-label" for="add-lock-checkbox"> Garder la séléction active</label>
+                  <label style="cursor: pointer;" class="form-check-label" for="add-lock-checkbox"> Garder la séléction active</label>
                 </div>
               <div id="svg_list_signature" class="list-item-add"></div>
               <div class="d-grid gap-2 mb-2 list-item-add">

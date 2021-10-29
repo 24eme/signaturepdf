@@ -15,11 +15,18 @@
       src: url(/vendor/fonts/Caveat-Regular.ttf) format('truetype');
     }
 
-    .offcanvas .list-item-add label:hover, .offcanvas .list-item-add label:active, .offcanvas .list-item-add label.active, .offcanvas .list-item-add .btn-check:active + .btn-outline-secondary, .offcanvas .list-item-add .btn-check:checked + .btn-outline-secondary {
+    .offcanvas .list-item-add label:hover {
+        background: #e8ebed;
+        border: 1px solid #505050;
+    }
+
+    .offcanvas .list-item-add label:active, .offcanvas .list-item-add label.active, .offcanvas .list-item-add .btn-check:active + .btn-outline-secondary, .offcanvas .list-item-add .btn-check:checked + .btn-outline-secondary {
         background: #c9d1d8;
         border: 1px solid #000;
-        box-shadow: 0 .25rem .5rem rgba(0,0,0,.075) !important
+        box-shadow: 0 .25rem .5rem rgba(0,0,0,.075) !important;
     }
+
+
     </style>
     <title>Signature PDF</title>
   </head>
@@ -55,7 +62,7 @@
               </div>
               <div class="d-grid gap-2 mb-2 list-item-add">
                   <input type="radio" class="btn-check" id="radio_svg_text" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdGV4dGFyZWEtdCIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMS41IDIuNUExLjUgMS41IDAgMCAxIDMgMWgxMGExLjUgMS41IDAgMCAxIDEuNSAxLjV2My41NjNhMiAyIDAgMCAxIDAgMy44NzRWMTMuNUExLjUgMS41IDAgMCAxIDEzIDE1SDNhMS41IDEuNSAwIDAgMS0xLjUtMS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNXptMSAzLjU2M2EyIDIgMCAwIDEgMCAzLjg3NFYxMy41YS41LjUgMCAwIDAgLjUuNWgxMGEuNS41IDAgMCAwIC41LS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNUEuNS41IDAgMCAwIDEzIDJIM2EuNS41IDAgMCAwLS41LjV2My41NjN6TTIgN2ExIDEgMCAxIDAgMCAyIDEgMSAwIDAgMCAwLTJ6bTEyIDBhMSAxIDAgMSAwIDAgMiAxIDEgMCAwIDAgMC0yeiIvPjxwYXRoIGQ9Ik0xMS40MzQgNEg0LjU2Nkw0LjUgNS45OTRoLjM4NmMuMjEtMS4yNTIuNjEyLTEuNDQ2IDIuMTczLTEuNDk1bC4zNDMtLjAxMXY2LjM0M2MwIC41MzctLjExNi42NjUtMS4wNDkuNzQ4VjEyaDMuMjk0di0uNDIxYy0uOTM4LS4wODMtMS4wNTQtLjIxLTEuMDU0LS43NDhWNC40ODhsLjM0OC4wMWMxLjU2LjA1IDEuOTYzLjI0NCAyLjE3MyAxLjQ5NmguMzg2TDExLjQzNCA0eiIvPjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="text">
-                  <label draggable="true" style="cursor: grab;" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Texte</label>
+                  <label draggable="true" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text"><i class="bi bi-textarea-t"></i> Texte</label>
               </div>
               <div id="svg_list" class="d-grid gap-2 mt-2 mb-2 list-item-add"></div>
 

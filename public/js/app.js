@@ -91,7 +91,6 @@ loadingTask.promise.then(function(pdf) {
 
             stateAddLock(false);
 
-
             var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
             if(input_selected) {
                 document.body.style.setProperty('cursor', 'copy');
@@ -101,8 +100,14 @@ loadingTask.promise.then(function(pdf) {
             document.querySelectorAll('.btn-svg').forEach(function(item) {
                 if(input_selected && item.htmlFor == input_selected.id) {
                     item.style.setProperty('cursor', 'copy');
+                    if(item.querySelector('.btn-svg-list-suppression')) {
+                        item.querySelector('.btn-svg-list-suppression').classList.add('d-none');
+                    }
                 } else {
                     item.style.removeProperty('cursor');
+                    if(item.querySelector('.btn-svg-list-suppression')) {
+                        item.querySelector('.btn-svg-list-suppression').classList.remove('d-none');
+                    }
                 }
             });
 
@@ -143,11 +148,12 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
         });
         svgButton.addEventListener('click', function(event) {
-            if(event.detail > 1 && document.getElementById(this.htmlFor).checked){
-                stateAddLock(true);
+            if(event.detail == 1) {
+                this.dataset.lock = parseInt(addLock*1);
             }
-            if(event.detail > 1 && !document.getElementById(this.htmlFor).checked){
-                stateAddLock(false);
+            if(event.detail > 1){
+                console.log(parseInt(this.dataset.lock*1));
+                stateAddLock(parseInt(this.dataset.lock*1) != 1);
             }
             if(event.detail > 1) {
                 return;
@@ -158,6 +164,11 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById(this.htmlFor).checked = false;
             document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
             event.preventDefault();
+        });
+        svgButton.addEventListener('dblclick', function(event) {
+            if(parseInt(this.dataset.lock*1) != 1) {
+                stateAddLock(true);
+            }
         });
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;

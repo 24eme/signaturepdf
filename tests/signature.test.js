@@ -77,24 +77,19 @@ describe("Signature d'un pdf", () => {
         expect(await page.evaluate(() => { return Math.round(canvasEditions[0].getObjects()[0].getScaledHeight())})).toBe(150);
         expect(await page.evaluate(() => { return Math.round(canvasEditions[0].getObjects()[0].getScaledWidth())})).toBe(150);
     });
-    it("Garder la séléction active", async () => {
-        expect(await page.evaluate(() => { return document.querySelector('#add-lock-checkbox').checked; })).toBe(false);
-        await page.click("#label_svg_0", {clickCount: 2});
-        expect(await page.evaluate(() => { return document.querySelector('#add-lock-checkbox').checked; })).toBe(true);
-        await page.click("#label_svg_0");
-        expect(await page.evaluate(() => { return document.querySelector('#add-lock-checkbox').checked; })).toBe(false);
-        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_0').checked; })).toBe(false);
-    });
-    it("Ajout d'une seconde signature", async () => {
+    it("Ajout d'une seconde signature : conservation de la dernière largeur et curseur", async () => {
         await page.click("#label_svg_0");
         expect(await page.evaluate(() => { return document.body.style.cursor; })).toBe("copy");
         expect(await page.evaluate(() => { return document.querySelector('#label_svg_0').style.cursor; })).toBe("copy");
         expect(await page.evaluate(() => { return canvasEditions[0].defaultCursor; })).toBe('copy');
         await page.waitForTimeout(100);
         await page.mouse.click(originX + 50, originY + 50);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_0').checked; })).toBe(false);
         expect(await page.evaluate(() => { return document.body.style.cursor; })).toBe("");
         expect(await page.evaluate(() => { return document.querySelector('#label_svg_0').style.cursor; })).toBe("");
         expect(await page.evaluate(() => { return canvasEditions[0].defaultCursor; })).toBe('default');
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(2);
+        await page.mouse.click(originX + 50, originY + 50);
         expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(2);
         expect(await page.evaluate(() => { return Math.round(canvasEditions[0].getObjects()[1].getScaledHeight())})).toBe(150);
         expect(await page.evaluate(() => { return Math.round(canvasEditions[0].getObjects()[1].getScaledWidth())})).toBe(150);
@@ -105,6 +100,27 @@ describe("Signature d'un pdf", () => {
         await page.keyboard.press('Delete');
         expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(1);
     })
+    it("Garder la séléction active", async () => {
+        expect(await page.evaluate(() => { return document.querySelector('#add-lock-checkbox').checked; })).toBe(false);
+        await page.click("#label_svg_0", {clickCount: 2});
+        expect(await page.evaluate(() => { return document.querySelector('#add-lock-checkbox').checked; })).toBe(true);
+        await page.mouse.click(originX + 50, originY + 50);
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(2);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_0').checked; })).toBe(true);
+        await page.mouse.click(originX + 50, originY + 50);
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(3);
+        await page.mouse.click(originX + 50, originY + 50);
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(4);
+        await page.click("#label_svg_0");
+        expect(await page.evaluate(() => { return document.querySelector('#add-lock-checkbox').checked; })).toBe(false);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_0').checked; })).toBe(false);
+        await page.mouse.click(originX + 50, originY + 50);
+        await page.keyboard.press('Delete');
+        await page.mouse.click(originX + 50, originY + 50);
+        await page.keyboard.press('Delete');
+        await page.mouse.click(originX + 50, originY + 50);
+        await page.keyboard.press('Delete');
+    });
     it("Suppression de la signature de la liste", async () => {
         await page.click("#label_svg_0 .btn-svg-list-suppression")
         await page.waitForTimeout(100);

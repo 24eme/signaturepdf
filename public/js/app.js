@@ -70,6 +70,81 @@ loadingTask.promise.then(function(pdf) {
         fontCaveat = font;
     });
 
+    var svgClick = function(label, event) {
+        if(event.detail == 1) {
+            label.dataset.lock = parseInt(addLock*1);
+        }
+        if(event.detail > 1){
+            stateAddLock(parseInt(label.dataset.lock*1) != 1);
+        }
+        if(event.detail > 1) {
+            return;
+        }
+        if(!document.getElementById(label.htmlFor).checked) {
+            return;
+        }
+        document.getElementById(label.htmlFor).checked = false;
+        document.getElementById(label.htmlFor).dispatchEvent(new Event("change"));
+        event.preventDefault();
+    }
+
+    var svgDblClick = function(label, event) {
+        if(parseInt(label.dataset.lock*1) == 1) {
+            return;
+        }
+        stateAddLock(true);
+    }
+
+    var svgDragStart = function(label, event) {
+        document.getElementById(label.htmlFor).checked = true;
+        document.getElementById(label.htmlFor).dispatchEvent(new Event("change"));
+    }
+
+    var svgChange = function(input, event) {
+        if(input.checked) {
+            document.getElementById('btn_svn_select').classList.add('d-none');
+            document.getElementById('svg_selected_container').classList.remove('d-none');
+            document.getElementById('svg_selected').src = input.value;
+        } else {
+            document.getElementById('btn_svn_select').classList.remove('d-none');
+            document.getElementById('svg_selected_container').classList.add('d-none');
+            document.getElementById('svg_selected').src = null;
+        }
+
+        stateAddLock(false);
+
+        var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+        if(input_selected) {
+            document.body.style.setProperty('cursor', 'copy');
+        } else {
+            document.body.style.removeProperty('cursor');
+        }
+        document.querySelectorAll('.btn-svg').forEach(function(item) {
+            if(input_selected && item.htmlFor == input_selected.id) {
+                item.style.setProperty('cursor', 'copy');
+                if(item.querySelector('.btn-svg-list-suppression')) {
+                    item.querySelector('.btn-svg-list-suppression').classList.add('d-none');
+                }
+            } else {
+                item.style.removeProperty('cursor');
+                if(item.querySelector('.btn-svg-list-suppression')) {
+                    item.querySelector('.btn-svg-list-suppression').classList.remove('d-none');
+                }
+            }
+        });
+
+        canvasEditions.forEach(function(canvasEdition, index) {
+            if(input_selected) {
+                canvasEdition.defaultCursor = 'copy';
+            } else {
+                canvasEdition.defaultCursor = 'default';
+            }
+        })
+        if(is_mobile()) {
+            menuOffcanvas.hide();
+        }
+    }
+
     var getHtmlSvg = function(svg, i) {
         var inputRadio = document.createElement('input');
         inputRadio.type = "radio";
@@ -79,48 +154,7 @@ loadingTask.promise.then(function(pdf) {
         inputRadio.autocomplete = "off";
         inputRadio.value = svg.svg;
         inputRadio.addEventListener('change', function() {
-            if(this.checked) {
-                document.getElementById('btn_svn_select').classList.add('d-none');
-                document.getElementById('svg_selected_container').classList.remove('d-none');
-                document.getElementById('svg_selected').src = this.value;
-            } else {
-                document.getElementById('btn_svn_select').classList.remove('d-none');
-                document.getElementById('svg_selected_container').classList.add('d-none');
-                document.getElementById('svg_selected').src = null;
-            }
-
-            stateAddLock(false);
-
-            var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-            if(input_selected) {
-                document.body.style.setProperty('cursor', 'copy');
-            } else {
-                document.body.style.removeProperty('cursor');
-            }
-            document.querySelectorAll('.btn-svg').forEach(function(item) {
-                if(input_selected && item.htmlFor == input_selected.id) {
-                    item.style.setProperty('cursor', 'copy');
-                    if(item.querySelector('.btn-svg-list-suppression')) {
-                        item.querySelector('.btn-svg-list-suppression').classList.add('d-none');
-                    }
-                } else {
-                    item.style.removeProperty('cursor');
-                    if(item.querySelector('.btn-svg-list-suppression')) {
-                        item.querySelector('.btn-svg-list-suppression').classList.remove('d-none');
-                    }
-                }
-            });
-
-            canvasEditions.forEach(function(canvasEdition, index) {
-                if(input_selected) {
-                    canvasEdition.defaultCursor = 'copy';
-                } else {
-                    canvasEdition.defaultCursor = 'default';
-                }
-            })
-            if(is_mobile()) {
-                menuOffcanvas.hide();
-            }
+            svgChange(this, event);
         });
         var svgButton = document.createElement('label');
         svgButton.id = "label_svg_"+i;
@@ -144,30 +178,13 @@ loadingTask.promise.then(function(pdf) {
         svgButton.innerHTML += '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute" style="right: 6px; top: 2px;"><i class="bi bi-trash"></i></a>';
         svgButton.draggable = true;
         svgButton.addEventListener('dragstart', function(event) {
-            document.getElementById(this.htmlFor).checked = true;
-            document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
+            svgDragStart(this, event);
         });
         svgButton.addEventListener('click', function(event) {
-            if(event.detail == 1) {
-                this.dataset.lock = parseInt(addLock*1);
-            }
-            if(event.detail > 1){
-                stateAddLock(parseInt(this.dataset.lock*1) != 1);
-            }
-            if(event.detail > 1) {
-                return;
-            }
-            if(!document.getElementById(this.htmlFor).checked) {
-                return;
-            }
-            document.getElementById(this.htmlFor).checked = false;
-            document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
-            event.preventDefault();
+            svgClick(this, event);
         });
         svgButton.addEventListener('dblclick', function(event) {
-            if(parseInt(this.dataset.lock*1) != 1) {
-                stateAddLock(true);
-            }
+            svgDblClick(this, event);
         });
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
@@ -259,63 +276,19 @@ loadingTask.promise.then(function(pdf) {
 
     document.querySelectorAll('label.btn-svg').forEach(function(item) {
         item.addEventListener('dragstart', function(event) {
-            document.getElementById(this.htmlFor).checked = true;
-            document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
+            svgDragStart(this, event);
         });
         item.addEventListener('click', function(event) {
-            if(event.detail > 1 && document.getElementById(this.htmlFor).checked){
-                stateAddLock(true);
-            }
-            if(event.detail > 1 && !document.getElementById(this.htmlFor).checked){
-                stateAddLock(false);
-            }
-            if(event.detail > 1) {
-                return;
-            }
-            if(!document.getElementById(this.htmlFor).checked) {
-                return;
-            }
-            document.getElementById(this.htmlFor).checked = false;
-            document.getElementById(this.htmlFor).dispatchEvent(new Event("change"));
-            event.preventDefault();
+            svgClick(this, event);
+        });
+        item.addEventListener('dblclick', function(event) {
+            svgDblClick(this, event);
         });
     });
 
     document.querySelectorAll('input[name="svg_2_add"]').forEach(function (item) {
-        item.addEventListener('change', function() {
-            if(this.checked) {
-                document.getElementById('btn_svn_select').classList.add('d-none');
-                document.getElementById('svg_selected_container').classList.remove('d-none');
-                document.getElementById('svg_selected').src = (this.dataset.svg) ? this.dataset.svg : this.value;
-            } else {
-                document.getElementById('btn_svn_select').classList.remove('d-none');
-                document.getElementById('svg_selected_container').classList.add('d-none');
-                document.getElementById('svg_selected').src = null;
-            }
-            stateAddLock(false);
-            var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-            if(input_selected) {
-                document.body.style.setProperty('cursor', 'copy');
-            } else {
-                document.body.style.removeProperty('cursor');
-            }
-            document.querySelectorAll('.btn-svg').forEach(function(item) {
-                if(input_selected && item.htmlFor == input_selected.id) {
-                    item.style.setProperty('cursor', 'copy');
-                } else {
-                    item.style.removeProperty('cursor');
-                }
-            });
-            canvasEditions.forEach(function(canvasEdition, index) {
-                if(input_selected) {
-                    canvasEdition.defaultCursor = 'copy';
-                } else {
-                    canvasEdition.defaultCursor = 'default';
-                }
-            })
-            if(is_mobile()) {
-                menuOffcanvas.hide();
-            }
+        item.addEventListener('change', function(event) {
+            svgChange(this, event);
         });
     });
 

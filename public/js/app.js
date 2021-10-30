@@ -115,7 +115,7 @@ loadingTask.promise.then(function(pdf) {
 
         var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
-        if(!input_selected.value.match(/^data:/) && input_selected.value != "text") {
+        if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text") {
             input_selected = null;
         }
 

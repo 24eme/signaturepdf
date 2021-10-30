@@ -368,26 +368,12 @@ loadingTask.promise.then(function(pdf) {
         maxWidth: 2,
         throttle: 0,
         onEnd: function() {
-            document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
-            document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
-            document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
             const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
                 type: 'image/png'
             });
             var data = new FormData();
             data.append('file', file);
-            xhr = new XMLHttpRequest();
-            xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
-            xhr.onreadystatechange = function () {
-                var svgImage = "data:image/svg+xml;base64,"+btoa(trimSvgWhitespace(this.responseText));
-                document.getElementById('img-upload').src = svgImage;
-                document.getElementById('img-upload').classList.remove("d-none");
-                document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
-                document.getElementById('btn_modal_ajouter_spinner').classList.add('d-none');
-                document.getElementById('btn_modal_ajouter_check').classList.remove('d-none');
-                document.getElementById('btn_modal_ajouter').focus();
-            };
-            xhr.send( data );
+            uploadSVG(data);
         }
     });
 
@@ -425,11 +411,16 @@ loadingTask.promise.then(function(pdf) {
     })
 
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
+        var data = new FormData();
+        data.append('file', document.getElementById('input-image-upload').files[0]);
+        uploadSVG(data);
+        event.preventDefault();
+    });
+
+    var uploadSVG = function(formData) {
         document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
         document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
         document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
-        var data = new FormData();
-        data.append('file', document.getElementById('input-image-upload').files[0]);
 
         xhr = new XMLHttpRequest();
 
@@ -443,10 +434,8 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById('btn_modal_ajouter_check').classList.remove('d-none');
             document.getElementById('btn_modal_ajouter').focus();
         };
-        xhr.send( data );
-
-        event.preventDefault();
-    });
+        xhr.send( formData );
+    }
 
     document.getElementById('save').addEventListener('click', function(event) {
         canvasEditions.forEach(function(canvasEdition, index) {

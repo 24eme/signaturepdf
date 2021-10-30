@@ -114,6 +114,11 @@ loadingTask.promise.then(function(pdf) {
         stateAddLock(false);
 
         var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+
+        if(!input_selected.value.match(/^data:/) && input_selected.value != "text") {
+            input_selected = null;
+        }
+
         if(input_selected) {
             document.body.style.setProperty('cursor', 'copy');
         } else {

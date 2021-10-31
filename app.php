@@ -19,26 +19,28 @@ $f3->route('GET /',
 $f3->route('POST /upload',
     function($f3) {
         $files = Web::instance()->receive(function($file,$formFieldName){
-                if(Web::instance()->mime($file['tmp_name'], true) != 'application/pdf') {
-                    
-                    return false; 
-                }
-                if($file['size'] > (20 * 1024 * 1024)) { // if bigger than 20 MB
-                    
-                    return false; 
-                }
-                return true;
-        }, true);
-        
-        $key = null;
+            if(Web::instance()->mime($file['tmp_name'], true) != 'application/pdf') {
+
+                return false;
+            }
+            if($file['size'] > (20 * 1024 * 1024)) { // if bigger than 20 MB
+
+                return false;
+            }
+            return true;
+        }, true, function($fileBaseName, $formFieldName) {
+
+            return substr(hash('sha256', $fileBaseName.uniqid().mt_rand()), 0, 24).".pdf";
+	    });
+
         foreach($files as $file => $valid) {
             if(!$valid) {
                 continue;
             }
-            $key = substr(hash('sha256', hash_file('sha256', $file).uniqid()), 0, 24);
-            rename($file, $f3->get('UPLOADS').$key.'.pdf');
+
+            $key = str_replace(".pdf", "", basename($file));
         }
-        
+
         if(!$key) {
             $f3->error(403);
         }
@@ -61,16 +63,20 @@ $f3->route('GET /@key/pdf',
 $f3->route('POST /image2svg',
     function($f3) {
         $files = Web::instance()->receive(function($file,$formFieldName){
-                if(strpos(Web::instance()->mime($file['tmp_name'], true), 'image/') !== 0) {
+            if(strpos(Web::instance()->mime($file['tmp_name'], true), 'image/') !== 0) {
 
-                    return false;
-                }
-                if($file['size'] > (20 * 1024 * 1024)) { // if bigger than 20 MB
+                return false;
+            }
+            if($file['size'] > (20 * 1024 * 1024)) { // if bigger than 20 MB
 
-                    return false;
-                }
-                return true;
-        }, true);
+                return false;
+            }
+
+            return true;
+        }, true, function($fileBaseName, $formFieldName) {
+
+            return substr(hash('sha256', $fileBaseName.uniqid().mt_rand()), 0, 24).strrchr($fileBaseName, '.');
+	    });
 
         $imageFile = null;
         foreach($files as $file => $valid) {
@@ -90,6 +96,7 @@ $f3->route('POST /image2svg',
 
         header('Content-Type: image/svg+xml');
         echo file_get_contents($imageFile.".svg");
+        array_map('unlink', glob($imageFile."*"));
     }
 );
 $f3->route('POST /@key/save',
@@ -104,11 +111,14 @@ $f3->route('POST /@key/save',
             $svgFiles .= $svgFile . " ";
         }
 
-
         shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $f3->get('UPLOADS').$key.'.svg.pdf', $svgFiles));
         shell_exec(sprintf("pdftk %s multibackground %s output %s", $f3->get('UPLOADS').$key.'.svg.pdf', $f3->get('UPLOADS').$key.'.pdf', $f3->get('UPLOADS').$key.'_signe.pdf'));
-        
+
         Web::instance()->send($f3->get('UPLOADS').$key.'_signe.pdf');
+
+        array_map('unlink', glob($f3->get('UPLOADS').$key."_*.svg"));
+        unlink($f3->get('UPLOADS').$key.'.svg.pdf');
+        unlink($f3->get('UPLOADS').$key.'_signe.pdf');
     }
 );
 

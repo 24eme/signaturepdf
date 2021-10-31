@@ -2,7 +2,10 @@
 
 $f3 = require(__DIR__.'/vendor/fatfree/lib/base.php');
 
-$f3->set('DEBUG',1);
+if(getenv("DEBUG")) {
+    $f3->set('DEBUG', getenv("DEBUG"));
+}
+
 $f3->set('ROOT', __DIR__);
 $f3->set('UI', $f3->get('ROOT')."/templates/");
 $f3->set('UPLOADS', $f3->get('ROOT').'/data/');
@@ -96,6 +99,10 @@ $f3->route('POST /image2svg',
 
         header('Content-Type: image/svg+xml');
         echo file_get_contents($imageFile.".svg");
+
+        if($f3->get('DEBUG')) {
+            return;
+        }
         array_map('unlink', glob($imageFile."*"));
     }
 );
@@ -116,6 +123,9 @@ $f3->route('POST /@key/save',
 
         Web::instance()->send($f3->get('UPLOADS').$key.'_signe.pdf');
 
+        if($f3->get('DEBUG')) {
+            return;
+        }
         array_map('unlink', glob($f3->get('UPLOADS').$key."_*.svg"));
         unlink($f3->get('UPLOADS').$key.'.svg.pdf');
         unlink($f3->get('UPLOADS').$key.'_signe.pdf');

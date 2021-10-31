@@ -103,12 +103,14 @@ loadingTask.promise.then(function(pdf) {
     var svgChange = function(input, event) {
         if(input.checked) {
             document.getElementById('btn_svn_select').classList.add('d-none');
+            document.getElementById('svg_object_actions').classList.add('d-none');
             document.getElementById('svg_selected_container').classList.remove('d-none');
             document.getElementById('svg_selected').src = input.value;
         } else {
             document.getElementById('btn_svn_select').classList.remove('d-none');
+            document.getElementById('svg_object_actions').classList.add('d-none');
             document.getElementById('svg_selected_container').classList.add('d-none');
-            document.getElementById('svg_selected').src = null;
+            document.getElementById('svg_selected').src = "";
         }
 
         stateAddLock(false);
@@ -403,7 +405,7 @@ loadingTask.promise.then(function(pdf) {
         document.getElementById('input-svg-type').value = null;
         document.getElementById('input-text-signature').value = null;
         document.getElementById('input-image-upload').value = null;
-        document.getElementById('img-upload').src = null;
+        document.getElementById('img-upload').src = "";
         document.getElementById('img-upload').classList.add("d-none");
         bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab button:first-child')).show();
     })
@@ -452,16 +454,24 @@ loadingTask.promise.then(function(pdf) {
         document.getElementById('save').click();
     });
 
+    document.getElementById('btn-svg-pdf-delete').addEventListener('click', function(event) {
+        deleteActiveObject();
+    });
+
+    var deleteActiveObject = function() {
+        canvasEditions.forEach(function(canvasEdition, index) {
+            canvasEdition.getActiveObjects().forEach(function(activeObject) {
+                canvasEdition.remove(activeObject);
+            });
+        })
+    }
+
     document.addEventListener('keydown', function(event) {
         if(event.target.tagName != "BODY") {
             return;
         }
         if(event.key == 'Delete') {
-            canvasEditions.forEach(function(canvasEdition, index) {
-                canvasEdition.getActiveObjects().forEach(function(activeObject) {
-                    canvasEdition.remove(activeObject);
-                });
-            })
+            deleteActiveObject();
             return;
         }
 
@@ -502,7 +512,27 @@ loadingTask.promise.then(function(pdf) {
         }
     });
 
-    var addSvgInCanvas = function(canvas, item, x, y) {
+    var addObjectInCanvas = function(canvas, item) {
+        item.on('selected', function(event) {
+            if(!is_mobile()) {
+                return;
+            }
+            document.getElementById('svg_object_actions').classList.remove('d-none');
+            document.getElementById('btn_svn_select').classList.add('d-none');
+        });
+
+        item.on('deselected', function(event) {
+            if(!is_mobile()) {
+                return;
+            }
+            document.getElementById('btn_svn_select').classList.remove('d-none');
+            document.getElementById('svg_object_actions').classList.add('d-none');
+        });
+
+        return canvas.add(item);
+    }
+
+    var createAndAddSvgInCanvas = function(canvas, item, x, y) {
         save.removeAttribute('disabled');
         save_mobile.removeAttribute('disabled');
 
@@ -515,7 +545,7 @@ loadingTask.promise.then(function(pdf) {
             fontFamily: 'Monospace'
           });
 
-          canvas.add(textbox).setActiveObject(textbox);
+          addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
           textbox.enterEditing();
           textbox.selectAll();
 
@@ -536,7 +566,8 @@ loadingTask.promise.then(function(pdf) {
             }
             svg.top = y - (svg.getScaledHeight() / 2);
             svg.left = x - (svg.getScaledWidth() / 2);
-            canvas.add(svg).renderAll();
+
+            addObjectInCanvas(canvas, svg);
         });
     }
 
@@ -704,7 +735,7 @@ loadingTask.promise.then(function(pdf) {
                   return;
               }
 
-              addSvgInCanvas(canvasEdition, input_selected.value, event.layerX, event.layerY);
+              createAndAddSvgInCanvas(canvasEdition, input_selected.value, event.layerX, event.layerY);
               input_selected.checked = false;
               input_selected.dispatchEvent(new Event("change"));
           });
@@ -718,7 +749,7 @@ loadingTask.promise.then(function(pdf) {
                   return;
               }
 
-              addSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y);
+              createAndAddSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y);
 
               if(addLock) {
                   return;

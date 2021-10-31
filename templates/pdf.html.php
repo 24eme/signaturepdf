@@ -85,6 +85,9 @@
                     <button class="btn btn-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"> Changer</button>
                 </div>
             </div>
+            <div id="svg_object_actions" class="d-none">
+                <button id="btn-svg-pdf-delete" class="btn btn-lg btn-light"><i class="bi bi-trash"></i></button>
+            </div>
         </div>
         <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow d-md-none">
             <div class="btn-group position-absolute opacity-25" style="top: -46px;">

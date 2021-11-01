@@ -21,6 +21,7 @@ $f3->route('GET /',
 );
 $f3->route('POST /upload',
     function($f3) {
+        $fileName = null;
         $files = Web::instance()->receive(function($file,$formFieldName){
             if(Web::instance()->mime($file['tmp_name'], true) != 'application/pdf') {
 
@@ -31,8 +32,8 @@ $f3->route('POST /upload',
                 return false;
             }
             return true;
-        }, true, function($fileBaseName, $formFieldName) {
-
+        }, true, function($fileBaseName, $formFieldName) use (&$fileName) {
+            $fileName = $fileBaseName;
             return substr(hash('sha256', $fileBaseName.uniqid().mt_rand()), 0, 24).".pdf";
 	    });
 
@@ -48,12 +49,20 @@ $f3->route('POST /upload',
             $f3->error(403);
         }
 
+        if($fileName) {
+            $f3->set('SESSION.fileName', $fileName);
+        }
+
         return $f3->reroute('/'.$key);
     }
 );
 $f3->route('GET /@key',
     function($f3) {
         $f3->set('key', $f3->get('PARAMS.key'));
+        if($f3->get('SESSION.fileName')) {
+            $f3->set('fileName', $f3->get('SESSION.fileName'));
+            $f3->clear('SESSION.fileName');
+        }
         echo View::instance()->render('pdf.html.php');
     }
 );
@@ -110,6 +119,10 @@ $f3->route('POST /@key/save',
     function($f3) {
         $key = $f3->get('PARAMS.key');
         $svgData = $_POST['svg'];
+        $filename = null;
+        if(isset($_POST['filename']) && $_POST['filename']) {
+            $filename = str_replace(".pdf", "_signe.pdf", $_POST['filename']);
+        }
 
         $svgFiles = "";
         foreach($svgData as $index => $svgItem) {
@@ -121,7 +134,7 @@ $f3->route('POST /@key/save',
         shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $f3->get('UPLOADS').$key.'.svg.pdf', $svgFiles));
         shell_exec(sprintf("pdftk %s multibackground %s output %s", $f3->get('UPLOADS').$key.'.svg.pdf', $f3->get('UPLOADS').$key.'.pdf', $f3->get('UPLOADS').$key.'_signe.pdf'));
 
-        Web::instance()->send($f3->get('UPLOADS').$key.'_signe.pdf');
+        Web::instance()->send($f3->get('UPLOADS').$key.'_signe.pdf', null, 0, TRUE, $filename);
 
         if($f3->get('DEBUG')) {
             return;

@@ -20,10 +20,15 @@ loadingTask.promise.then(function(pdf) {
     var pdfPages = [];
     var svgCollections = [];
     var resizeTimeout;
+    var pdfHistory = {};
     var currentScale = 1.5;
     var windowWidth = window.innerWidth;
     var menu = document.getElementById('offcanvasTop')
     var menuOffcanvas = new bootstrap.Offcanvas(menu)
+
+    if(localStorage.getItem('pdfHistory')) {
+        pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
+    }
 
     var is_mobile = function() {
         return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
@@ -436,6 +441,10 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById('btn_modal_ajouter').focus();
         };
         xhr.send( formData );
+    }
+
+    if(filename) {
+        document.getElementById('input_filename').value = filename;
     }
 
     document.getElementById('save').addEventListener('click', function(event) {

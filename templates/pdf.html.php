@@ -69,6 +69,7 @@
               </div>
 
               <form class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100 d-none d-sm-none d-md-block" id="form_pdf" action="/<?php echo $key ?>/save" method="post">
+                    <input id="input_filename" type="hidden" name="filename" value="" />
                     <div class="d-grid gap-2 mt-2">
                         <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i    class="bi bi-download"></i> Télécharger le PDF Signé</button>
                     </div>
@@ -144,6 +145,21 @@
     <script src="/vendor/opentype.min.js?1.3.3"></script>
     <script>
     var url = '/<?php echo $key ?>/pdf';
+    var pdfHistory = {};
+    var filename = null;
+    if(localStorage.getItem('pdfHistory')) {
+        pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
+    }
+    <?php if(isset($fileName)): ?>
+        pdfHistoryItem = {};
+        pdfHistoryItem.filename = "<?php echo $fileName ?>";
+        pdfHistoryItem.key = "<?php echo $key ?>";
+        pdfHistory[pdfHistoryItem.key] = pdfHistoryItem;
+        localStorage.setItem('pdfHistory', JSON.stringify(pdfHistory));
+    <?php endif;?>
+    if(pdfHistory["<?php echo $key ?>"]) {
+        filename = pdfHistory["<?php echo $key ?>"].filename;
+    }
     </script>
     <script src="/js/app.js"></script>
   </body>

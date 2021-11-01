@@ -130,13 +130,13 @@ describe("Signature d'un pdf", () => {
         await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: './tests/downloads'});
         await page.click("#save");
         await page.waitForTimeout(500);
-        await expect(require('fs').existsSync('./tests/downloads/'+hash+'_signe.pdf')).toBe(true);
+        await expect(require('fs').existsSync('./tests/downloads/document_signe.pdf')).toBe(true);
     });
     afterAll(async () => {
         if(process.env.DEBUG) {
             return;
         }
-        await require('fs').unlinkSync('./tests/downloads/'+hash+'_signe.pdf');
+        await require('fs').unlinkSync('./tests/downloads/document_signe.pdf');
         await server.kill();
         await browser.close();
     });

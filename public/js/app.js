@@ -129,14 +129,8 @@ loadingTask.promise.then(function(pdf) {
         document.querySelectorAll('.btn-svg').forEach(function(item) {
             if(input_selected && item.htmlFor == input_selected.id) {
                 item.style.setProperty('cursor', 'copy');
-                if(item.querySelector('.btn-svg-list-suppression')) {
-                    item.querySelector('.btn-svg-list-suppression').classList.add('d-none');
-                }
             } else {
                 item.style.removeProperty('cursor');
-                if(item.querySelector('.btn-svg-list-suppression')) {
-                    item.querySelector('.btn-svg-list-suppression').classList.remove('d-none');
-                }
             }
         });
 

@@ -26,10 +26,10 @@ describe("Signature d'un pdf", () => {
         await page.waitForSelector('#canvas-pdf-15', {visible: true});
         expect(await page.evaluate(() => { return document.querySelectorAll('.canvas-pdf').length })).toBe(16);
         hash = await page.url().replace(/^.+\//, '');
+        await page.waitForTimeout(300);
     });
     it("Création d'une signature", async () => {
         await page.waitForSelector('#label_svg_signature_add', {visible: true});
-        await page.waitForTimeout(300);
         await page.click("#label_svg_signature_add")
         await page.waitForSelector('#signature-pad', {visible: true});
         await page.waitForTimeout(200);
@@ -96,7 +96,6 @@ describe("Signature d'un pdf", () => {
     });
     it("Suppression de la seconde signature du pdf", async () => {
         await page.mouse.click(originX + 50, originY + 50);
-        await page.waitForTimeout(100);
         await page.keyboard.press('Delete');
         expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(1);
     })
@@ -121,11 +120,30 @@ describe("Signature d'un pdf", () => {
         await page.mouse.click(originX + 50, originY + 50);
         await page.keyboard.press('Delete');
     });
-    it("Suppression de la signature de la liste", async () => {
-        await page.click("#label_svg_0 .btn-svg-list-suppression")
-        await page.waitForTimeout(100);
-        expect(await page.evaluate(() => { return document.querySelector("#label_svg_0 img") })).toBeNull();
+    it("Création d'une paraphe", async () => {
+        await page.click("#label_svg_initials_add");
+        await page.waitForSelector('#input-text-signature', {visible: true});
+        await page.type("#input-text-signature", "AL");
+        await page.waitForSelector('button#btn_modal_ajouter:not([disabled])');
+        await page.waitForTimeout(300);
+        await page.click('button#btn_modal_ajouter');
+        await page.waitForTimeout(300);
+        expect(await page.evaluate(() => { return document.querySelector("#label_svg_1 img").src })).toMatch(/^data:image\/svg\+xml;base64,.+/);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_1').checked; })).toBe(true);
+        await page.click("#label_svg_1");
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_1').checked; })).toBe(false);
+    })
+    it("Ajout de la paraphe au pdf", async () => {
+        await page.click("#label_svg_1");
+        await page.mouse.click(originX + 700, originY + 600);
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(2);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_1').checked; })).toBe(false);
     });
+    it("Suppression de la signature et de la paraphe de la liste", async () => {
+        await page.click("#label_svg_0 .btn-svg-list-suppression")
+        await page.click("#label_svg_0 .btn-svg-list-suppression")
+        expect(await page.evaluate(() => { return document.querySelector("#label_svg_0 img") })).toBeNull();
+    })
     it("Téléchargement du pdf signé", async () => {
         await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: './tests/downloads'});
         await page.click("#save");

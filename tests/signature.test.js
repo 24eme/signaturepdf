@@ -47,7 +47,7 @@ describe("Signature d'un pdf", () => {
         await page.waitForTimeout(300);
         expect(await page.evaluate(() => { return document.querySelector("#label_svg_0 img").src })).toMatch(/^data:image\/svg\+xml;base64,.+/);
     });
-    it('Ajout de la signature dans le pdf', async () => {
+    it('Ajout de la signature au pdf', async () => {
         originX = await page.evaluate(() => { return document.querySelector("#canvas-container-0").offsetLeft; });
         originY = await page.evaluate(() => { return document.querySelector("#canvas-container-0").offsetTop; });
         await page.mouse.click(originX + 50, originY + 50);
@@ -123,7 +123,7 @@ describe("Signature d'un pdf", () => {
     it("Création d'une paraphe", async () => {
         await page.click("#label_svg_initials_add");
         await page.waitForSelector('#input-text-signature', {visible: true});
-        await page.type("#input-text-signature", "AL");
+        await page.type("#input-text-signature", "FSF");
         await page.waitForSelector('button#btn_modal_ajouter:not([disabled])');
         await page.waitForTimeout(300);
         await page.click('button#btn_modal_ajouter');
@@ -139,7 +139,58 @@ describe("Signature d'un pdf", () => {
         expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(2);
         expect(await page.evaluate(() => { return document.querySelector('#radio_svg_1').checked; })).toBe(false);
     });
-    it("Suppression de la signature et de la paraphe de la liste", async () => {
+    it("Création d'un tampon", async () => {
+        await page.click("#label_svg_rubber_stamber_add");
+        await page.waitForSelector('#input-image-upload', {visible: true});
+        await (await page.$("input#input-image-upload")).uploadFile(require('path').resolve(__dirname + '/files/tampon.png'));
+        await page.waitForSelector('button#btn_modal_ajouter:not([disabled])');
+        await page.waitForTimeout(300);
+        await page.click('button#btn_modal_ajouter');
+        await page.waitForTimeout(300);
+        expect(await page.evaluate(() => { return document.querySelector("#label_svg_2 img").src })).toMatch(/^data:image\/svg\+xml;base64,.+/);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_2').checked; })).toBe(true);
+        await page.click("#label_svg_2");
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_2').checked; })).toBe(false);
+    })
+    it("Ajout du tampon au pdf", async () => {
+        await page.click("#label_svg_2");
+        await page.mouse.click(originX + 650, originY + 375);
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(3);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_2').checked; })).toBe(false);
+    });
+    it("Création d'une signature à partir d'une image", async () => {
+        await page.click("#btn-add-svg");
+        await page.waitForSelector('#nav-import-tab', {visible: true});
+        await page.click("#nav-import-tab");
+        await page.waitForSelector('#input-image-upload', {visible: true});
+        await (await page.$("input#input-image-upload")).uploadFile(require('path').resolve(__dirname + '/files/signature.png'));
+        await page.waitForSelector('button#btn_modal_ajouter:not([disabled])');
+        await page.waitForTimeout(300);
+        await page.click('button#btn_modal_ajouter');
+        await page.waitForTimeout(300);
+        expect(await page.evaluate(() => { return document.querySelector("#label_svg_3 img").src })).toMatch(/^data:image\/svg\+xml;base64,.+/);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_3').checked; })).toBe(true);
+        await page.click("#label_svg_2");
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_3').checked; })).toBe(false);
+    });
+    it("Ajout de la signature au pdf", async () => {
+        await page.click("#label_svg_3");
+        await page.mouse.click(originX + 400, originY + 600);
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(4);
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_3').checked; })).toBe(false);
+    });
+    it("Ajout de texte au pdf", async () => {
+        await page.click("#label_svg_text");
+        await page.mouse.click(originX + 150, originY + 100);
+        await page.keyboard.type('Bon pour un logiciel libre !');
+        await page.mouse.click(originX + 150, originY + 50);
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(5);
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects()[4].text; })).toBe('Bon pour un logiciel libre !');
+        expect(await page.evaluate(() => { return document.querySelector('#radio_svg_text').checked; })).toBe(false);
+    });
+    it("Suppression de tous les éléments ajoutés à la liste", async () => {
+        await page.click("#label_svg_0 .btn-svg-list-suppression")
+        await page.click("#label_svg_0 .btn-svg-list-suppression")
         await page.click("#label_svg_0 .btn-svg-list-suppression")
         await page.click("#label_svg_0 .btn-svg-list-suppression")
         expect(await page.evaluate(() => { return document.querySelector("#label_svg_0 img") })).toBeNull();

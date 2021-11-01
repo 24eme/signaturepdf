@@ -85,6 +85,9 @@ loadingTask.promise.then(function(pdf) {
         if(event.detail > 1) {
             return;
         }
+        if(!document.getElementById(label.htmlFor)) {
+            return;
+        }
         if(!document.getElementById(label.htmlFor).checked) {
             return;
         }

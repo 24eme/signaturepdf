@@ -31,6 +31,26 @@
         document.getElementById('input_pdf_upload').addEventListener('change', function(event) {
             document.getElementById('form_pdf_upload').submit();
         });
+        async function uploadFromUrl(url) {
+            var response = await fetch(url);
+            if(response.status != 200) {
+                return;
+            }
+            var pdfBlob = await response.blob();
+            if(pdfBlob.type != 'application/pdf' && pdfBlob.type != 'application/octet-stream') {
+                return;
+            }
+            var dataTransfer = new DataTransfer();
+            var filename = url.replace(/^.*\//, '');
+            dataTransfer.items.add(new File([pdfBlob], filename, {
+                type: 'application/pdf'
+            }));
+            document.getElementById('input_pdf_upload').files = dataTransfer.files;
+            document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
+        }
+        if(window.location.hash) {
+            uploadFromUrl(window.location.hash.replace(/^\#/, ''));
+        }
     </script>
 </body>
 </html>

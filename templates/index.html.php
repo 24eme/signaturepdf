@@ -15,8 +15,9 @@
         <div class="col-lg-3 mx-auto">
             <form id="form_pdf_upload" action="/upload" method="POST" class="row g-3" enctype="multipart/form-data">
                 <div class="col-12">
-                  <label for="formFileLg" class="form-label">Choisir un PDF</label>
+                  <label for="input_pdf_upload" class="form-label">Choisir un PDF</label>
                   <input id="input_pdf_upload" class="form-control form-control-lg" name="pdf" type="file">
+                  <a class="btn btn-sm btn-link opacity-75" href="/#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">(Tester avec le PDF de démo)</a>
                 </div>
                 <div class="col-12">
                     <div class="d-grid gap-2">
@@ -50,10 +51,15 @@
             }));
             document.getElementById('input_pdf_upload').files = dataTransfer.files;
             document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
+
+            history.replaceState({}, "Signature de PDF", "/");
         }
         if(window.location.hash) {
             uploadFromUrl(window.location.hash.replace(/^\#/, ''));
         }
+        window.addEventListener('hashchange', function() {
+            uploadFromUrl(window.location.hash.replace(/^\#/, ''));
+        })
     </script>
 </body>
 </html>

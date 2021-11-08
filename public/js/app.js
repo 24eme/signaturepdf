@@ -25,6 +25,7 @@ loadingTask.promise.then(function(pdf) {
     var windowWidth = window.innerWidth;
     var menu = document.getElementById('offcanvasTop')
     var menuOffcanvas = new bootstrap.Offcanvas(menu)
+    var currentCursor = null;
 
     if(localStorage.getItem('pdfHistory')) {
         pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
@@ -557,8 +558,8 @@ loadingTask.promise.then(function(pdf) {
 
         if(item == 'text') {
             var textbox = new fabric.Textbox('Texte à modifier', {
-            left: x - 10,
-            top: y - 10,
+            left: x,
+            top: y - 20,
             width: 300,
             fontSize: 20,
             fontFamily: 'Monospace'
@@ -762,8 +763,14 @@ loadingTask.promise.then(function(pdf) {
               activeCanvas = this;
               activeCanvasPointer = event.pointer;
           });
+          canvasEdition.on('mouse:down:before', function(event) {
+              currentCursor = this.defaultCursor;
+          });
           canvasEdition.on('mouse:down', function(event) {
               if(event.target) {
+                  return;
+              }
+              if(currentCursor != 'copy') {
                   return;
               }
               var input_selected = document.querySelector('input[name="svg_2_add"]:checked');

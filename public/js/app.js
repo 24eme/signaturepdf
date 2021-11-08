@@ -12,7 +12,8 @@ var loadingTask = pdfjsLib.getDocument(url);
 loadingTask.promise.then(function(pdf) {
 
     var fontCaveat = null;
-    var addLock = false;
+    var forceAddLock = true;
+    var addLock = forceAddLock;
     var copiedObject = null;
     var activeCanvas = null;
     var activeCanvasPointer = null;
@@ -215,6 +216,9 @@ loadingTask.promise.then(function(pdf) {
     });
 
     var stateAddLock = function(state) {
+        if(forceAddLock) {
+            state = true;
+        }
         var checkbox = document.getElementById('add-lock-checkbox');
         var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
@@ -227,16 +231,17 @@ loadingTask.promise.then(function(pdf) {
             checkbox.disabled = false;
         }
 
-        if(addLock) {
+        document.querySelectorAll('.btn-svg').forEach(function(item) {
+            item.style.borderWidth = "1px";
+        });
+
+        if(addLock && input_selected) {
             var svgButton = document.querySelector('.btn-svg[for="'+input_selected.id+'"]');
             svgButton.style.borderWidth = "2px";
             checkbox.checked = true;
             return;
         }
 
-        document.querySelectorAll('.btn-svg').forEach(function(item) {
-            item.style.borderWidth = "1px";
-        });
         checkbox.checked = false;
     }
 

@@ -750,6 +750,9 @@ loadingTask.promise.then(function(pdf) {
               activeCanvasPointer = event.pointer;
           });
           canvasEdition.on('mouse:down', function(event) {
+              if(event.target) {
+                  return;
+              }
               var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
               if(!input_selected) {
                   return;

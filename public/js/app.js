@@ -464,6 +464,19 @@ loadingTask.promise.then(function(pdf) {
         deleteActiveObject();
     });
 
+    document.addEventListener('click', function(event) {
+        if(event.target.nodeName == "DIV") {
+
+            var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+            if(!input_selected) {
+                return;
+            }
+            stateAddLock(false);
+            input_selected.checked = false;
+            input_selected.dispatchEvent(new Event("change"));
+        }
+    });
+
     var deleteActiveObject = function() {
         canvasEditions.forEach(function(canvasEdition, index) {
             canvasEdition.getActiveObjects().forEach(function(activeObject) {

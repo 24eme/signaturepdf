@@ -198,7 +198,7 @@ describe("Signature d'un pdf", () => {
     it("Téléchargement du pdf signé", async () => {
         await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: './tests/downloads'});
         await page.click("#save");
-        await page.waitForTimeout(500);
+        await page.waitForTimeout(600);
         await expect(require('fs').existsSync('./tests/downloads/document_signe.pdf')).toBe(true);
     });
     afterAll(async () => {

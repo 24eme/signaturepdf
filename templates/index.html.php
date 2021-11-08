@@ -26,6 +26,9 @@
             </form>
         </div>
     </div>
+    <footer class="text-center text-muted mb-2 fixed-bottom">
+        <small>Logiciel libre sous license AGPL-3.0 : <a href="https://github.com/24eme/signaturepdf">voir le code source</a></small>
+    </footer>
 
     <script>
         document.getElementById('input_pdf_upload').addEventListener('change', function(event) {

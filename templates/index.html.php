@@ -17,7 +17,7 @@
                 <div class="col-12">
                   <label for="input_pdf_upload" class="form-label">Choisir un PDF</label>
                   <input id="input_pdf_upload" class="form-control form-control-lg" name="pdf" type="file">
-                  <a class="btn btn-sm btn-link opacity-75" href="/#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">(Tester avec le PDF de démo)</a>
+                  <a class="btn btn-sm btn-link opacity-75" href="/#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">(Tester avec un PDF de démo)</a>
                 </div>
                 <div class="col-12">
                     <div class="d-grid gap-2">

@@ -33,7 +33,7 @@
         <div id="container-pages" style="overflow: auto" class="col-12 pt-1 pb-1 text-center vh-100">
         </div>
         <div style="height: 55px;" class="d-md-none"></div>
-        <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-keyboard="false" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="width: 350px;">
+        <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="width: 350px;">
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 id="offcanvasTopLabel">Signature du PDF</h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>

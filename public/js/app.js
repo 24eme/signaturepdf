@@ -492,6 +492,17 @@ loadingTask.promise.then(function(pdf) {
     }
 
     document.addEventListener('keydown', function(event) {
+        if(event.key == 'Escape' && (event.target.tagName == "BODY" || event.target.name == "svg_2_add")) {
+            var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+            if(!input_selected) {
+                return;
+            }
+            input_selected.checked = false;
+            stateAddLock(false);
+            input_selected.dispatchEvent(new Event("change"));
+            input_selected.blur();
+            return;
+        }
         if(event.target.tagName != "BODY") {
             return;
         }

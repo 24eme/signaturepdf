@@ -231,13 +231,13 @@ loadingTask.promise.then(function(pdf) {
             checkbox.disabled = false;
         }
 
-        document.querySelectorAll('.btn-svg').forEach(function(item) {
+        /*document.querySelectorAll('.btn-svg').forEach(function(item) {
             item.style.borderWidth = "1px";
-        });
+        });*/
 
         if(addLock && input_selected) {
             var svgButton = document.querySelector('.btn-svg[for="'+input_selected.id+'"]');
-            svgButton.style.borderWidth = "2px";
+            //svgButton.style.borderWidth = "2px";
             checkbox.checked = true;
             return;
         }

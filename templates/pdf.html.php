@@ -39,7 +39,7 @@
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <div class="form-check form-switch mb-2 small">
+                <div class="form-check form-switch mb-2 small d-none">
                   <input class="form-check-input" type="checkbox" id="add-lock-checkbox" disabled="disabled">
                   <label style="cursor: pointer;" class="form-check-label" for="add-lock-checkbox"> Garder la séléction active</label>
                 </div>

@@ -391,6 +391,11 @@ loadingTask.promise.then(function(pdf) {
         }
     });
 
+    document.getElementById('signature-pad-reset').addEventListener('click', function(event) {
+        signaturePad.clear();
+        event.preventDefault();
+    })
+
     document.querySelectorAll('#modalAddSvg .nav-link').forEach(function(item) { item.addEventListener('shown.bs.tab', function (event) {
         var firstInput = document.querySelector(event.target.dataset.bsTarget).querySelector('input');
         if(firstInput) {

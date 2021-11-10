@@ -113,6 +113,7 @@
                 </nav>
                 <div class="tab-content mt-3" id="nav-svg-add">
                     <div class="tab-pane fade show active" id="nav-draw" role="tabpanel" aria-labelledby="nav-draw-tab">
+                      <small id="signature-pad-reset" class="text-muted opacity-75 position-absolute" style="right: 25px; bottom: 25px; cursor: pointer;" title="Effacer la signature"><i class="bi bi-trash"></i></small>
                       <canvas id="signature-pad" class="border bg-light" width="462" height="200"></canvas>
                     </div>
                     <div class="tab-pane fade" id="nav-type" role="tabpanel" aria-labelledby="nav-type-tab">

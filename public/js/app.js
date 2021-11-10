@@ -404,6 +404,11 @@ loadingTask.promise.then(function(pdf) {
         if(tab.querySelector('input')) {
             tab.querySelector('input').focus();
         }
+        var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+        if(input_selected) {
+            input_selected.checked = false;
+            input_selected.dispatchEvent(new Event("change"));
+        }
     })
 
     document.getElementById('modalAddSvg').addEventListener('hidden.bs.modal', function (event) {

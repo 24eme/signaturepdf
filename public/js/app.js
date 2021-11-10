@@ -11,9 +11,12 @@ var canvasEditions = [];
 var loadingTask = pdfjsLib.getDocument(url);
 loadingTask.promise.then(function(pdf) {
 
+    var is_mobile = function() {
+        return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
+    }
     var fontCaveat = null;
-    var forceAddLock = true;
     var addLock = forceAddLock;
+    var forceAddLock = !is_mobile();
     var copiedObject = null;
     var activeCanvas = null;
     var activeCanvasPointer = null;
@@ -30,10 +33,6 @@ loadingTask.promise.then(function(pdf) {
 
     if(localStorage.getItem('pdfHistory')) {
         pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
-    }
-
-    var is_mobile = function() {
-        return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
     }
 
     var responsiveDisplay = function() {

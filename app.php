@@ -15,12 +15,18 @@ if(!is_dir($f3->get('UPLOADS'))) {
 }
 $f3->route('GET /',
     function($f3) {
-        $f3->set('key', $f3->get('PARAMS.key'));
+        $f3->set('key', hash('md5', uniqid().rand()));
         echo View::instance()->render('index.html.php');
     }
 );
 $f3->route('POST /upload',
     function($f3) {
+        $key = $f3->get('POST.key');
+
+        if(!$key || !preg_match('/^[0-9a-z]+$/', $key)) {
+            $f3->error(403);
+        }
+
         $fileName = null;
         $files = Web::instance()->receive(function($file,$formFieldName){
             if(Web::instance()->mime($file['tmp_name'], true) != 'application/pdf') {
@@ -29,20 +35,21 @@ $f3->route('POST /upload',
             }
 
             return true;
-        }, true, function($fileBaseName, $formFieldName) use (&$fileName) {
+        }, true, function($fileBaseName, $formFieldName) use (&$fileName, $key) {
             $fileName = $fileBaseName;
-            return substr(hash('sha256', $fileBaseName.uniqid().mt_rand()), 0, 24).".pdf";
+            return $key.".pdf";
 	    });
 
+        $filePdf = null;
         foreach($files as $file => $valid) {
             if(!$valid) {
                 continue;
             }
 
-            $key = str_replace(".pdf", "", basename($file));
+            $filePdf = $file;
         }
 
-        if(!$key) {
+        if(!$filePdf) {
             $f3->error(403);
         }
 

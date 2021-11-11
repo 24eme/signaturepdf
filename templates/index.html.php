@@ -14,6 +14,7 @@
         <h1 class="display-5 fw-bold"><i class="bi bi-vector-pen"></i> Signer un PDF</h1>
         <div class="col-lg-3 mx-auto">
             <form id="form_pdf_upload" action="/upload" method="POST" class="row g-3" enctype="multipart/form-data">
+                <input id="input_key" name="key" type="hidden" value="<?php echo $key ?>">
                 <div class="col-12">
                   <label for="input_pdf_upload" class="form-label">Choisir un PDF</label>
                   <input id="input_pdf_upload" class="form-control form-control-lg" name="pdf" type="file">

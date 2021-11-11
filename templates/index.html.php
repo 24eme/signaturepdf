@@ -33,7 +33,14 @@
     </footer>
 
     <script>
+        var key = "<?php echo $key ?>";
+        var pdfHistory = {};
+        if(localStorage.getItem('pdfHistory')) {
+            pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
+        }
         document.getElementById('input_pdf_upload').addEventListener('change', function(event) {
+            pdfHistory[key] = { filename: document.getElementById('input_pdf_upload').files[0].name }
+            localStorage.setItem('pdfHistory', JSON.stringify(pdfHistory));
             document.getElementById('form_pdf_upload').submit();
         });
         async function uploadFromUrl(url) {

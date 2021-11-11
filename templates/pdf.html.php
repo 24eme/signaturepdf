@@ -151,13 +151,6 @@
     if(localStorage.getItem('pdfHistory')) {
         pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
     }
-    <?php if(isset($fileName)): ?>
-        pdfHistoryItem = {};
-        pdfHistoryItem.filename = "<?php echo $fileName ?>";
-        pdfHistoryItem.key = "<?php echo $key ?>";
-        pdfHistory[pdfHistoryItem.key] = pdfHistoryItem;
-        localStorage.setItem('pdfHistory', JSON.stringify(pdfHistory));
-    <?php endif;?>
     if(pdfHistory["<?php echo $key ?>"]) {
         filename = pdfHistory["<?php echo $key ?>"].filename;
     }

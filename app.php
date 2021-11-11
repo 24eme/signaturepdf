@@ -27,7 +27,6 @@ $f3->route('POST /upload',
             $f3->error(403);
         }
 
-        $fileName = null;
         $files = Web::instance()->receive(function($file,$formFieldName){
             if(Web::instance()->mime($file['tmp_name'], true) != 'application/pdf') {
 
@@ -35,8 +34,7 @@ $f3->route('POST /upload',
             }
 
             return true;
-        }, true, function($fileBaseName, $formFieldName) use (&$fileName, $key) {
-            $fileName = $fileBaseName;
+        }, true, function($fileBaseName, $formFieldName) use ($key) {
             return $key.".pdf";
 	    });
 
@@ -53,20 +51,13 @@ $f3->route('POST /upload',
             $f3->error(403);
         }
 
-        if($fileName) {
-            $f3->set('SESSION.fileName', $fileName);
-        }
-
         return $f3->reroute('/'.$key);
     }
 );
 $f3->route('GET /@key',
     function($f3) {
         $f3->set('key', $f3->get('PARAMS.key'));
-        if($f3->get('SESSION.fileName')) {
-            $f3->set('fileName', $f3->get('SESSION.fileName'));
-            $f3->clear('SESSION.fileName');
-        }
+
         echo View::instance()->render('pdf.html.php');
     }
 );

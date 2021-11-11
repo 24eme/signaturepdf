@@ -85,9 +85,9 @@ $f3->route('POST /image2svg',
             }
 
             return true;
-        }, true, function($fileBaseName, $formFieldName) {
+        }, true, function($fileBaseName, $formFieldName) use ($f3) {
 
-            return substr(hash('sha256', $fileBaseName.uniqid().mt_rand()), 0, 24).strrchr($fileBaseName, '.');
+            return basename(tempnam($f3->get('UPLOADS'), 'pdfsignature_image2svg'));
 	    });
 
         $imageFile = null;

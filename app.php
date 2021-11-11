@@ -27,10 +27,7 @@ $f3->route('POST /upload',
 
                 return false;
             }
-            if($file['size'] > (20 * 1024 * 1024)) { // if bigger than 20 MB
 
-                return false;
-            }
             return true;
         }, true, function($fileBaseName, $formFieldName) use (&$fileName) {
             $fileName = $fileBaseName;
@@ -76,10 +73,6 @@ $f3->route('POST /image2svg',
     function($f3) {
         $files = Web::instance()->receive(function($file,$formFieldName){
             if(strpos(Web::instance()->mime($file['tmp_name'], true), 'image/') !== 0) {
-
-                return false;
-            }
-            if($file['size'] > (20 * 1024 * 1024)) { // if bigger than 20 MB
 
                 return false;
             }

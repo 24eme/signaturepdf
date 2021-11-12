@@ -8,11 +8,8 @@ if(getenv("DEBUG")) {
 
 $f3->set('ROOT', __DIR__);
 $f3->set('UI', $f3->get('ROOT')."/templates/");
-$f3->set('UPLOADS', $f3->get('ROOT').'/data/');
+$f3->set('UPLOADS', sys_get_temp_dir()."/");
 
-if(!is_dir($f3->get('UPLOADS'))) {
-    mkdir($f3->get('UPLOADS'));
-}
 $f3->route('GET /',
     function($f3) {
         $f3->set('key', hash('md5', uniqid().rand()));
@@ -50,6 +47,12 @@ $f3->route('POST /upload',
         if(!$filePdf) {
             $f3->error(403);
         }
+
+        if($f3->get('DEBUG')) {
+            return;
+        }
+
+        unlink($filePdf);
 
         return $f3->reroute('/'.$key);
     }
@@ -103,12 +106,37 @@ $f3->route('POST /image2svg',
         if($f3->get('DEBUG')) {
             return;
         }
+
         array_map('unlink', glob($imageFile."*"));
     }
 );
 $f3->route('POST /@key/save',
     function($f3) {
         $key = $f3->get('PARAMS.key');
+        $files = Web::instance()->receive(function($file,$formFieldName){
+            if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+
+                return false;
+            }
+
+            return true;
+        }, true, function($fileBaseName, $formFieldName) use ($key) {
+
+            return $key.".pdf";
+	    });
+
+        $pdfFile = null;
+        foreach($files as $file => $valid) {
+            if(!$valid) {
+                continue;
+            }
+            $pdfFile = $file;
+        }
+
+        if(!$pdfFile) {
+            $f3->error(403);
+        }
+
         $svgData = $_POST['svg'];
         $filename = null;
         if(isset($_POST['filename']) && $_POST['filename']) {
@@ -130,9 +158,7 @@ $f3->route('POST /@key/save',
         if($f3->get('DEBUG')) {
             return;
         }
-        array_map('unlink', glob($f3->get('UPLOADS').$key."_*.svg"));
-        unlink($f3->get('UPLOADS').$key.'.svg.pdf');
-        unlink($f3->get('UPLOADS').$key.'_signe.pdf');
+        array_map('unlink', glob($f3->get('UPLOADS').$key."*"));
     }
 );
 

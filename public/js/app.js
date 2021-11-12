@@ -1,11 +1,22 @@
+var canvasEditions = [];
+(async function () {
+
+const cache = await caches.open('pdf');
+var responsePdf = await cache.match(url);
+var pdfBlob = await responsePdf.blob();
+url = await URL.createObjectURL(pdfBlob);
+
+var dataTransfer = new DataTransfer();
+dataTransfer.items.add(new File([pdfBlob], filename, {
+    type: 'application/pdf'
+}));
+document.getElementById('input_pdf').files = dataTransfer.files;
 
 // Loaded via <script> tag, create shortcut to access PDF.js exports.
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
 // The workerSrc property shall be specified.
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
-
-var canvasEditions = [];
 
 // Asynchronous download of PDF
 var loadingTask = pdfjsLib.getDocument(url);
@@ -129,6 +140,7 @@ loadingTask.promise.then(function(pdf) {
         if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text") {
             input_selected = null;
         }
+
 
         if(input_selected) {
             document.body.style.setProperty('cursor', 'copy');

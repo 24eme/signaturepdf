@@ -33,41 +33,57 @@
     </footer>
 
     <script>
-        var key = "<?php echo $key ?>";
-        var pdfHistory = {};
-        if(localStorage.getItem('pdfHistory')) {
-            pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
-        }
-        document.getElementById('input_pdf_upload').addEventListener('change', function(event) {
-            pdfHistory[key] = { filename: document.getElementById('input_pdf_upload').files[0].name }
-            localStorage.setItem('pdfHistory', JSON.stringify(pdfHistory));
-            document.getElementById('form_pdf_upload').submit();
-        });
-        async function uploadFromUrl(url) {
-            var response = await fetch(url);
-            if(response.status != 200) {
-                return;
+        (async function () {
+            const cache = await caches.open('pdf');
+            var key = "<?php echo $key ?>";
+            var pdfHistory = {};
+            function dataURLtoBlob(dataurl) {
+                var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+                while(n--){
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], {type:mime});
             }
-            var pdfBlob = await response.blob();
-            if(pdfBlob.type != 'application/pdf' && pdfBlob.type != 'application/octet-stream') {
-                return;
+            if(localStorage.getItem('pdfHistory')) {
+                pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
             }
-            var dataTransfer = new DataTransfer();
-            var filename = url.replace(/^.*\//, '');
-            dataTransfer.items.add(new File([pdfBlob], filename, {
-                type: 'application/pdf'
-            }));
-            document.getElementById('input_pdf_upload').files = dataTransfer.files;
-            document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
+            document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
+                var response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
+                await cache.put('/'+key+'/pdf', response);
+                console.log(await (await cache.match('/'+key+'/pdf')).blob());
 
-            history.replaceState({}, "Signature de PDF", "/");
-        }
-        if(window.location.hash) {
-            uploadFromUrl(window.location.hash.replace(/^\#/, ''));
-        }
-        window.addEventListener('hashchange', function() {
-            uploadFromUrl(window.location.hash.replace(/^\#/, ''));
-        })
+                pdfHistory[key] = { filename: document.getElementById('input_pdf_upload').files[0].name }
+                localStorage.setItem('pdfHistory', JSON.stringify(pdfHistory));
+                document.getElementById('form_pdf_upload').submit();
+            });
+            async function uploadFromUrl(url) {
+                var response = await fetch(url);
+                if(response.status != 200) {
+                    return;
+                }
+                var pdfBlob = await response.blob();
+
+                if(pdfBlob.type != 'application/pdf' && pdfBlob.type != 'application/octet-stream') {
+                    return;
+                }
+                var dataTransfer = new DataTransfer();
+                var filename = url.replace(/^.*\//, '');
+                dataTransfer.items.add(new File([pdfBlob], filename, {
+                    type: 'application/pdf'
+                }));
+                document.getElementById('input_pdf_upload').files = dataTransfer.files;
+                document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
+
+                history.replaceState({}, "Signature de PDF", "/");
+            }
+            if(window.location.hash) {
+                uploadFromUrl(window.location.hash.replace(/^\#/, ''));
+            }
+            window.addEventListener('hashchange', function() {
+                uploadFromUrl(window.location.hash.replace(/^\#/, ''));
+            })
+        })();
     </script>
 </body>
 </html>

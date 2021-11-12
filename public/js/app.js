@@ -22,6 +22,12 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 var loadingTask = pdfjsLib.getDocument(url);
 loadingTask.promise.then(function(pdf) {
 
+    if(pdf.numPages > maxPage) {
+        alert("Le PDF de doit pas dépasser "+maxPage+" pages");
+        document.location = "/";
+        return;
+    }
+
     var is_mobile = function() {
         return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
     }
@@ -340,7 +346,7 @@ loadingTask.promise.then(function(pdf) {
             textCanvas.height = fabricPath.getScaledHeight();
             var textCanvas = new fabric.Canvas(textCanvas);
             textCanvas.add(fabricPath).renderAll();
-            svgItem.svg = "data:image/svg+xml;base64,"+btoa(textCanvas.toSVG());
+            svgItem.svg = svgToDataUrl(textCanvas.toSVG());
         }
         if(document.getElementById('nav-import-tab').classList.contains('active')) {
             svgItem.svg = document.getElementById('img-upload').src;
@@ -364,6 +370,11 @@ loadingTask.promise.then(function(pdf) {
             u8arr[n] = bstr.charCodeAt(n);
         }
         return new Blob([u8arr], {type:mime});
+    }
+
+    function svgToDataUrl(svg) {
+
+        return "data:image/svg+xml;base64,"+btoa(svg);
     }
 
     function trimSvgWhitespace(svgContent) {
@@ -462,7 +473,7 @@ loadingTask.promise.then(function(pdf) {
 
         xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
         xhr.onreadystatechange = function () {
-            var svgImage = "data:image/svg+xml;base64,"+btoa(trimSvgWhitespace(this.responseText));
+            var svgImage = svgToDataUrl(trimSvgWhitespace(this.responseText));
             document.getElementById('img-upload').src = svgImage;
             document.getElementById('img-upload').classList.remove("d-none");
             document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
@@ -474,9 +485,13 @@ loadingTask.promise.then(function(pdf) {
     }
 
     document.getElementById('save').addEventListener('click', function(event) {
+        var dataTransfer = new DataTransfer();
         canvasEditions.forEach(function(canvasEdition, index) {
-            document.getElementById('data-svg-'+index).value = canvasEdition.toSVG();
+            dataTransfer.items.add(new File([dataURLtoBlob(svgToDataUrl(canvasEdition.toSVG()))], index+'.svg', {
+                type: 'image/svg+xml'
+            }));
         })
+        document.getElementById('input_svg').files = dataTransfer.files;
     });
 
     document.getElementById('save_mobile').addEventListener('click', function(event) {

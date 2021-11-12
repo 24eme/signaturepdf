@@ -16,7 +16,7 @@
             <div class="col-12">
               <label for="input_pdf_upload" class="form-label">Choisir un PDF</label>
               <input id="input_pdf_upload" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf">
-              <p><small class="text-muted">Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo</small></p>
+              <p class="mt-1 opacity-50"><small class="text-muted">Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo et faire plus de <?php echo $maxPage ?> pages</small></p>
               <a class="btn btn-sm btn-link opacity-75" href="/#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">Tester avec un PDF de démo</a>
             </div>
         </div>

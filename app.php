@@ -42,6 +42,7 @@ $f3->route('GET /',
     function($f3) {
         $f3->set('key', hash('md5', uniqid().rand()));
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+        $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
         echo View::instance()->render('index.html.php');
     }
@@ -49,6 +50,7 @@ $f3->route('GET /',
 $f3->route('GET /@key',
     function($f3) {
         $f3->set('key', $f3->get('PARAMS.key'));
+        $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
         echo View::instance()->render('pdf.html.php');
     }
@@ -96,49 +98,51 @@ $f3->route('POST /image2svg',
 $f3->route('POST /sign',
     function($f3) {
         $filename = null;
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign');
+        unlink($tmpfile);
+        $svgFiles = "";
+
+
         $files = Web::instance()->receive(function($file,$formFieldName){
-            if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
-                return false;
+            if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+
+            if($formFieldName == "svg" && strpos(Web::instance()->mime($file['tmp_name'], true), 'image/svg+xml') !== 0) {
+                $f3->error(403);
             }
 
             return true;
-        }, true, function($fileBaseName, $formFieldName) use ($f3, &$filename) {
-            $filename = str_replace(".pdf", "_signe.pdf", $fileBaseName);
-            $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_pdf');
-            unlink($tmpfile);
-            return basename($tmpfile).".pdf";
+        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$filename, &$svgFiles) {
+            if($formFieldName == "pdf") {
+                $filename = str_replace(".pdf", "_signe.pdf", $fileBaseName);
+                return basename($tmpfile).".pdf";
+            }
+
+            if($formFieldName == "svg") {
+                $svgFiles .= " ".$tmpfile."_".$fileBaseName;
+
+                return basename($tmpfile."_".$fileBaseName);
+            }
 	    });
 
-        $pdfFile = null;
-        foreach($files as $file => $valid) {
-            if(!$valid) {
-                continue;
-            }
-            $pdfFile = $file;
-        }
-
-        if(!$pdfFile) {
+        if(!is_file($tmpfile.".pdf")) {
             $f3->error(403);
         }
 
-        $svgData = $_POST['svg'];
-
-        $svgFiles = "";
-        foreach($svgData as $index => $svgItem) {
-            $svgFile = $pdfFile.'_'.$index.'.svg';
-            file_put_contents($svgFile, $svgItem);
-            $svgFiles .= $svgFile . " ";
+        if(!$svgFiles) {
+            $f3->error(403);
         }
 
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $pdfFile.'.svg.pdf', $svgFiles));
-        shell_exec(sprintf("pdftk %s multibackground %s output %s", $pdfFile.'.svg.pdf', $pdfFile, $pdfFile.'_signe.pdf'));
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
+        shell_exec(sprintf("pdftk %s multibackground %s output %s", $tmpfile.'.svg.pdf', $tmpfile.".pdf", $tmpfile.'_signe.pdf'));
 
-        Web::instance()->send($pdfFile.'_signe.pdf', null, 0, TRUE, $filename);
+        Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
 
         if($f3->get('DEBUG')) {
             return;
         }
-        array_map('unlink', glob($pdfFile."*"));
+        array_map('unlink', glob($tmpfile."*"));
     }
 );
 

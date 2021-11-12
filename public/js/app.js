@@ -845,3 +845,4 @@ loadingTask.promise.then(function(pdf) {
     }, function (reason) {
     console.error(reason);
 });
+})();

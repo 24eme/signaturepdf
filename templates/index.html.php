@@ -13,19 +13,12 @@
     <div class="px-4 py-5 my-5 text-center">
         <h1 class="display-5 fw-bold"><i class="bi bi-vector-pen"></i> Signer un PDF</h1>
         <div class="col-lg-3 mx-auto">
-            <form id="form_pdf_upload" action="/upload" method="POST" class="row g-3" enctype="multipart/form-data">
-                <input id="input_key" name="key" type="hidden" value="<?php echo $key ?>">
-                <div class="col-12">
-                  <label for="input_pdf_upload" class="form-label">Choisir un PDF</label>
-                  <input id="input_pdf_upload" class="form-control form-control-lg" name="pdf" type="file" accept=".pdf,application/pdf">
-                  <a class="btn btn-sm btn-link opacity-75" href="/#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">(Tester avec un PDF de démo)</a>
-                </div>
-                <div class="col-12">
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-light" type="submit" id="save"><i class="bi bi-upload"></i> Transmettre le PDF</button>
-                    </div>
-                </div>
-            </form>
+            <div class="col-12">
+              <label for="input_pdf_upload" class="form-label">Choisir un PDF</label>
+              <input id="input_pdf_upload" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf">
+              <p><small class="text-muted">(Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> mo)</small></p>
+              <a class="btn btn-sm btn-link opacity-75" href="/#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">Tester avec un PDF de démo</a>
+            </div>
         </div>
     </div>
     <footer class="text-center text-muted mb-2 fixed-bottom">
@@ -36,18 +29,25 @@
         (async function () {
             const cache = await caches.open('pdf');
             var key = "<?php echo $key ?>";
+            var urlPdf = '/'+key+'/pdf';
+            var urlSignature = '/'+key;
             var pdfHistory = {};
+            var maxSize = <?php echo $maxSize ?>;
             if(localStorage.getItem('pdfHistory')) {
                 pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
             }
             document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-                var response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
-                await cache.put('/'+key+'/pdf', response);
-                console.log(await (await cache.match('/'+key+'/pdf')).blob());
+                if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
 
+                    alert("Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> mo");
+                    document.getElementById('input_pdf_upload').value = "";
+                    return;
+                }
+                var response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
+                await cache.put(urlPdf, response);
                 pdfHistory[key] = { filename: document.getElementById('input_pdf_upload').files[0].name }
                 localStorage.setItem('pdfHistory', JSON.stringify(pdfHistory));
-                document.getElementById('form_pdf_upload').submit();
+                document.location = urlSignature;
             });
             async function uploadFromUrl(url) {
                 var response = await fetch(url);

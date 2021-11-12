@@ -10,51 +10,40 @@ $f3->set('ROOT', __DIR__);
 $f3->set('UI', $f3->get('ROOT')."/templates/");
 $f3->set('UPLOADS', sys_get_temp_dir()."/");
 
+function convertPHPSizeToBytes($sSize)
+{
+    //
+    $sSuffix = strtoupper(substr($sSize, -1));
+    if (!in_array($sSuffix,array('P','T','G','M','K'))){
+        return (int)$sSize;
+    }
+    $iValue = substr($sSize, 0, -1);
+    switch ($sSuffix) {
+        case 'P':
+            $iValue *= 1024;
+            // Fallthrough intended
+        case 'T':
+            $iValue *= 1024;
+            // Fallthrough intended
+        case 'G':
+            $iValue *= 1024;
+            // Fallthrough intended
+        case 'M':
+            $iValue *= 1024;
+            // Fallthrough intended
+        case 'K':
+            $iValue *= 1024;
+            break;
+    }
+    return (int)$iValue;
+}
+
 $f3->route('GET /',
     function($f3) {
         $f3->set('key', hash('md5', uniqid().rand()));
+        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+
         echo View::instance()->render('index.html.php');
-    }
-);
-$f3->route('POST /upload',
-    function($f3) {
-        $key = $f3->get('POST.key');
-
-        if(!$key || !preg_match('/^[0-9a-z]+$/', $key)) {
-            $f3->error(403);
-        }
-
-        $files = Web::instance()->receive(function($file,$formFieldName){
-            if(Web::instance()->mime($file['tmp_name'], true) != 'application/pdf') {
-
-                return false;
-            }
-
-            return true;
-        }, true, function($fileBaseName, $formFieldName) use ($key) {
-            return $key.".pdf";
-	    });
-
-        $filePdf = null;
-        foreach($files as $file => $valid) {
-            if(!$valid) {
-                continue;
-            }
-
-            $filePdf = $file;
-        }
-
-        if(!$filePdf) {
-            $f3->error(403);
-        }
-
-        if($f3->get('DEBUG')) {
-            return;
-        }
-
-        unlink($filePdf);
-
-        return $f3->reroute('/'.$key);
     }
 );
 $f3->route('GET /@key',
@@ -62,12 +51,6 @@ $f3->route('GET /@key',
         $f3->set('key', $f3->get('PARAMS.key'));
 
         echo View::instance()->render('pdf.html.php');
-    }
-);
-$f3->route('GET /@key/pdf',
-    function($f3) {
-        $key = $f3->get('PARAMS.key');
-        Web::instance()->send($f3->get('UPLOADS').$key.'.pdf');
     }
 );
 $f3->route('POST /image2svg',

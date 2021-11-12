@@ -16,7 +16,7 @@
             <div class="col-12">
               <label for="input_pdf_upload" class="form-label">Choisir un PDF</label>
               <input id="input_pdf_upload" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf">
-              <p><small class="text-muted">(Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> mo)</small></p>
+              <p><small class="text-muted">Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo</small></p>
               <a class="btn btn-sm btn-link opacity-75" href="/#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">Tester avec un PDF de démo</a>
             </div>
         </div>
@@ -39,7 +39,7 @@
             document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
                 if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
 
-                    alert("Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> mo");
+                    alert("Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo");
                     document.getElementById('input_pdf_upload').value = "";
                     return;
                 }

@@ -93,19 +93,20 @@ $f3->route('POST /image2svg',
         array_map('unlink', glob($imageFile."*"));
     }
 );
-$f3->route('POST /@key/save',
+$f3->route('POST /sign',
     function($f3) {
-        $key = $f3->get('PARAMS.key');
+        $filename = null;
         $files = Web::instance()->receive(function($file,$formFieldName){
             if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
-
                 return false;
             }
 
             return true;
-        }, true, function($fileBaseName, $formFieldName) use ($key) {
-
-            return $key.".pdf";
+        }, true, function($fileBaseName, $formFieldName) use ($f3, &$filename) {
+            $filename = str_replace(".pdf", "_signe.pdf", $fileBaseName);
+            $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_pdf');
+            unlink($tmpfile);
+            return basename($tmpfile).".pdf";
 	    });
 
         $pdfFile = null;
@@ -121,27 +122,23 @@ $f3->route('POST /@key/save',
         }
 
         $svgData = $_POST['svg'];
-        $filename = null;
-        if(isset($_POST['filename']) && $_POST['filename']) {
-            $filename = str_replace(".pdf", "_signe.pdf", $_POST['filename']);
-        }
 
         $svgFiles = "";
         foreach($svgData as $index => $svgItem) {
-            $svgFile = $f3->get('UPLOADS').$key.'_'.$index.'.svg';
+            $svgFile = $pdfFile.'_'.$index.'.svg';
             file_put_contents($svgFile, $svgItem);
             $svgFiles .= $svgFile . " ";
         }
 
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $f3->get('UPLOADS').$key.'.svg.pdf', $svgFiles));
-        shell_exec(sprintf("pdftk %s multibackground %s output %s", $f3->get('UPLOADS').$key.'.svg.pdf', $f3->get('UPLOADS').$key.'.pdf', $f3->get('UPLOADS').$key.'_signe.pdf'));
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $pdfFile.'.svg.pdf', $svgFiles));
+        shell_exec(sprintf("pdftk %s multibackground %s output %s", $pdfFile.'.svg.pdf', $pdfFile, $pdfFile.'_signe.pdf'));
 
-        Web::instance()->send($f3->get('UPLOADS').$key.'_signe.pdf', null, 0, TRUE, $filename);
+        Web::instance()->send($pdfFile.'_signe.pdf', null, 0, TRUE, $filename);
 
         if($f3->get('DEBUG')) {
             return;
         }
-        array_map('unlink', glob($f3->get('UPLOADS').$key."*"));
+        array_map('unlink', glob($pdfFile."*"));
     }
 );
 

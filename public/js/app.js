@@ -473,10 +473,6 @@ loadingTask.promise.then(function(pdf) {
         xhr.send( formData );
     }
 
-    if(filename) {
-        document.getElementById('input_filename').value = filename;
-    }
-
     document.getElementById('save').addEventListener('click', function(event) {
         canvasEditions.forEach(function(canvasEdition, index) {
             document.getElementById('data-svg-'+index).value = canvasEdition.toSVG();

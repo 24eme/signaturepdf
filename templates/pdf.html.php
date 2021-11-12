@@ -68,8 +68,7 @@
                   <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un élément</button>
               </div>
 
-              <form class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100 d-none d-sm-none d-md-block" id="form_pdf" action="/<?php echo $key ?>/save" method="post" enctype="multipart/form-data">
-                    <input id="input_filename" type="hidden" name="filename" value="" />
+              <form class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100 d-none d-sm-none d-md-block" id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
                     <input id="input_pdf" name="pdf" type="file" class="d-none" />
                     <div class="d-grid gap-2 mt-2">
                         <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i    class="bi bi-download"></i> Télécharger le PDF Signé</button>

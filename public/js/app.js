@@ -147,12 +147,6 @@ loadingTask.promise.then(function(pdf) {
             input_selected = null;
         }
 
-
-        if(input_selected) {
-            document.body.style.setProperty('cursor', 'copy');
-        } else {
-            document.body.style.removeProperty('cursor');
-        }
         document.querySelectorAll('.btn-svg').forEach(function(item) {
             if(input_selected && item.htmlFor == input_selected.id) {
                 item.style.setProperty('cursor', 'copy');
@@ -214,6 +208,9 @@ loadingTask.promise.then(function(pdf) {
         svgButton.addEventListener('dblclick', function(event) {
             svgDblClick(this, event);
         });
+        svgButton.addEventListener('mouseout', function(event) {
+            this.style.removeProperty('cursor');
+        })
         var svgImg = document.createElement('img');
         svgImg.src = svg.svg;
         svgImg.draggable = false;
@@ -816,12 +813,16 @@ loadingTask.promise.then(function(pdf) {
           });
           canvasEdition.on('mouse:down', function(event) {
               if(event.target) {
+                  this.defaultCursor = 'default';
                   return;
+              }
+              var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+              if(currentCursor == 'default' && input_selected) {
+                   this.defaultCursor = 'copy';
               }
               if(currentCursor != 'copy') {
                   return;
               }
-              var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
               if(!input_selected) {
                   return;
               }

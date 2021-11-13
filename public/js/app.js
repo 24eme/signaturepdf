@@ -12,6 +12,8 @@ dataTransfer.items.add(new File([pdfBlob], filename, {
 }));
 document.getElementById('input_pdf').files = dataTransfer.files;
 
+fabric.Textbox.prototype._wordJoiners = /[]/;
+
 // Loaded via <script> tag, create shortcut to access PDF.js exports.
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
@@ -605,7 +607,6 @@ loadingTask.promise.then(function(pdf) {
             var textbox = new fabric.Textbox('Texte à modifier', {
             left: x,
             top: y - 20,
-            width: 300,
             fontSize: 20,
             fontFamily: 'Monospace'
           });
@@ -850,6 +851,13 @@ loadingTask.promise.then(function(pdf) {
               }
               item.scale = event.target.width * event.target.scaleX / event.target.canvas.width;
               storeCollections();
+          });
+          canvasEdition.on("text:changed", function(event) {
+               if (!event.target instanceof fabric.IText) {
+                   return;
+               }
+              const textLinesMaxWidth = event.target.textLines.reduce((max, _, i) => Math.max(max, event.target.getLineWidth(i)), 0);
+              event.target.set({width: textLinesMaxWidth});
           });
           canvasEditions.push(canvasEdition);
         });

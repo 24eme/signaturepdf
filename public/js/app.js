@@ -617,9 +617,13 @@ loadingTask.promise.then(function(pdf) {
         return canvas.add(item);
     }
 
-    var createAndAddSvgInCanvas = function(canvas, item, x, y) {
+    var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
         save.removeAttribute('disabled');
         save_mobile.removeAttribute('disabled');
+
+        if(!height) {
+            height = 100;
+        }
 
         if(item == 'text') {
             var textbox = new fabric.Textbox('Texte à modifier', {
@@ -643,7 +647,7 @@ loadingTask.promise.then(function(pdf) {
             var svg = fabric.util.groupSVGElements(objects, options);
             svg.svgOrigin = item;
             svg.lockScalingFlip = true;
-            svg.scaleToHeight(100);
+            svg.scaleToHeight(height);
             if(svg.getScaledWidth() > 200) {
                 svg.scaleToWidth(200);
             }
@@ -822,7 +826,7 @@ loadingTask.promise.then(function(pdf) {
                   return;
               }
 
-              createAndAddSvgInCanvas(canvasEdition, input_selected.value, event.layerX, event.layerY);
+              createAndAddSvgInCanvas(canvasEdition, input_selected.value, event.layerX, event.layerY, input_selected.dataset.height);
               input_selected.checked = false;
               input_selected.dispatchEvent(new Event("change"));
           });
@@ -849,7 +853,7 @@ loadingTask.promise.then(function(pdf) {
                   return;
               }
 
-              createAndAddSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y);
+              createAndAddSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y, input_selected.dataset.height);
 
               if(addLock) {
                   return;

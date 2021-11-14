@@ -133,7 +133,11 @@ loadingTask.promise.then(function(pdf) {
             document.getElementById('btn_svn_select').classList.add('d-none');
             document.getElementById('svg_object_actions').classList.add('d-none');
             document.getElementById('svg_selected_container').classList.remove('d-none');
-            document.getElementById('svg_selected').src = input.value;
+            if(input.value.match(/^data:/)) {
+                document.getElementById('svg_selected').src = input.value;
+            } else {
+                document.getElementById('svg_selected').src = input.dataset.svg;
+            }
         } else {
             document.getElementById('btn_svn_select').classList.remove('d-none');
             document.getElementById('svg_object_actions').classList.add('d-none');
@@ -501,6 +505,15 @@ loadingTask.promise.then(function(pdf) {
         deleteActiveObject();
     });
 
+    document.getElementById('btn_svg_selected_close').addEventListener('click', function(event) {
+        var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+
+        stateAddLock(false);
+        input_selected.checked = false;
+        input_selected.dispatchEvent(new Event("change"));
+        this.blur();
+    });
+
     document.addEventListener('click', function(event) {
         if(event.target.nodeName == "DIV") {
 
@@ -585,6 +598,7 @@ loadingTask.promise.then(function(pdf) {
                 return;
             }
             document.getElementById('svg_object_actions').classList.remove('d-none');
+            document.getElementById('svg_selected_container').classList.add('d-none');
             document.getElementById('btn_svn_select').classList.add('d-none');
         });
 
@@ -592,7 +606,11 @@ loadingTask.promise.then(function(pdf) {
             if(!is_mobile()) {
                 return;
             }
-            document.getElementById('btn_svn_select').classList.remove('d-none');
+            if(document.querySelector('input[name="svg_2_add"]:checked')) {
+                document.getElementById('svg_selected_container').classList.remove('d-none');
+            } else {
+                document.getElementById('btn_svn_select').classList.remove('d-none');
+            }
             document.getElementById('svg_object_actions').classList.add('d-none');
         });
 

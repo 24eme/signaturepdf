@@ -81,11 +81,9 @@
             <div class="d-grid gap-2">
             <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="bi bi-hand-index"></i> Séléctionner une signature</button>
             </div>
-            <div id="svg_selected_container" class="d-grid gap-2 d-none">
-                <div class="btn-group">
-                    <button class="btn btn-outline-secondary"><img id="svg_selected" src="" style="max-height: 40px;" class="img-fluid"/></button>
-                    <button class="btn btn-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"> Changer</button>
-                </div>
+            <div id="svg_selected_container" class="text-center d-none position-relative">
+                <img id="svg_selected" src="" style="max-height: 40px;" class="img-fluid"/>
+                <button type="button" id="btn_svg_selected_close" class="btn-close text-reset position-absolute top-0 end-0"></button>
             </div>
             <div id="svg_object_actions" class="d-none">
                 <button id="btn-svg-pdf-delete" class="btn btn-lg btn-light"><i class="bi bi-trash"></i></button>

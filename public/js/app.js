@@ -612,8 +612,11 @@ loadingTask.promise.then(function(pdf) {
           });
 
           addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
+          textbox.keysMap[13] = "exitEditing";
+          textbox.lockScalingFlip = true;
           textbox.enterEditing();
           textbox.selectAll();
+
 
           return;
         }

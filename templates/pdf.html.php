@@ -82,7 +82,7 @@
             <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="bi bi-hand-index"></i> Séléctionner une signature</button>
             </div>
             <div id="svg_selected_container" class="text-center d-none position-relative">
-                <img id="svg_selected" src="" style="height: 40px;" class="img-fluid"/>
+                <img id="svg_selected" src="" style="height: 48px;" class="img-fluid"/>
                 <button type="button" id="btn_svg_selected_close" class="btn-close text-reset position-absolute" style="top: 9px; right: 9px;"></button>
             </div>
             <div id="svg_object_actions" class="d-none">

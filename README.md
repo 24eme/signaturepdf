@@ -40,6 +40,14 @@ Pour le lancer :
 php -S localhost:8000 -t public
 ```
 
+### Configuration de PHP
+
+```
+upload_max_filesize = 24M # Taille maximum du fichier PDF à signer
+post_max_size = 24M # Taille maximum du fichier PDF à signer
+max_file_uploads = 201 # Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine
+```
+
 ## Librairies utilisées
 
 - **Fat-Free** micro framework PHP : https://github.com/bcosca/fatfree (GPLv3)

@@ -490,7 +490,7 @@ loadingTask.promise.then(function(pdf) {
     document.getElementById('save').addEventListener('click', function(event) {
         var dataTransfer = new DataTransfer();
         canvasEditions.forEach(function(canvasEdition, index) {
-            dataTransfer.items.add(new File([dataURLtoBlob(svgToDataUrl(canvasEdition.toSVG()))], index+'.svg', {
+            dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
                 type: 'image/svg+xml'
             }));
         })

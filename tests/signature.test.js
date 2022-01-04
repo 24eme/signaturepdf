@@ -157,10 +157,10 @@ describe("Signature d'un pdf", () => {
     it("Ajout de texte au pdf", async () => {
         await page.click("#label_svg_text");
         await page.mouse.click(originX + 150, originY + 100);
-        await page.keyboard.type('Bon pour un logiciel libre !');
+        await page.keyboard.type('Bon pour un logiciel libre épatant !');
         await page.mouse.click(originX + 150, originY + 50);
         expect(await page.evaluate(() => { return canvasEditions[0].getObjects().length; })).toBe(5);
-        expect(await page.evaluate(() => { return canvasEditions[0].getObjects()[4].text; })).toBe('Bon pour un logiciel libre !');
+        expect(await page.evaluate(() => { return canvasEditions[0].getObjects()[4].text; })).toBe('Bon pour un logiciel libre épatant !');
         expect(await page.evaluate(() => { return document.querySelector('#radio_svg_text').checked; })).toBe(true);
     });
     it("Suppression de tous les éléments ajoutés à la liste", async () => {

@@ -15,6 +15,7 @@ var windowWidth = window.innerWidth;
 var menu = null;
 var menuOffcanvas = null;
 var currentCursor = null;
+var signaturePad = null;
 
 var loadPDF = async function(url) {
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -614,23 +615,7 @@ var resizePDF = function (scale = 'auto') {
     });
 };
 
-(function () {
-
-    fabric.Textbox.prototype._wordJoiners = /[]/;
-    menu = document.getElementById('sidebarTools');
-    menuOffcanvas = new bootstrap.Offcanvas(menu);
-    forceAddLock = !is_mobile();
-    addLock = forceAddLock;
-
-    responsiveDisplay();
-
-    if(localStorage.getItem('svgCollections')) {
-        svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
-    }
-
-    opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {
-        fontCaveat = font;
-    });
+var createEventsListener = function() {
 
     document.getElementById('add-lock-checkbox').addEventListener('change', function() {
         stateAddLock(this.checked);
@@ -662,9 +647,6 @@ var resizePDF = function (scale = 'auto') {
             svgChange(this, event);
         });
     });
-
-    displaysSVG();
-    stateAddLock();
 
     document.getElementById('btn_modal_ajouter').addEventListener('click', function() {
         var svgItem = {};
@@ -702,20 +684,6 @@ var resizePDF = function (scale = 'auto') {
         document.querySelector('#'+svg_list_id+' label:last-child').click();
     });
 
-    var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
-        penColor: 'rgb(0, 0, 0)',
-        minWidth: 1.25,
-        maxWidth: 2,
-        throttle: 0,
-        onEnd: function() {
-            const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
-                type: 'image/png'
-            });
-            var data = new FormData();
-            data.append('file', file);
-            uploadSVG(data);
-        }
-    });
 
     document.getElementById('signature-pad-reset').addEventListener('click', function(event) {
         signaturePad.clear();
@@ -892,7 +860,46 @@ var resizePDF = function (scale = 'auto') {
     document.getElementById('btn-zoom-increase').addEventListener('click', function() {
         zoomChange(1)
     });
+};
 
+var createSignaturePad = function() {
+    signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
+        penColor: 'rgb(0, 0, 0)',
+        minWidth: 1.25,
+        maxWidth: 2,
+        throttle: 0,
+        onEnd: function() {
+            const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
+                type: 'image/png'
+            });
+            var data = new FormData();
+            data.append('file', file);
+            uploadSVG(data);
+        }
+    });
+};
+
+(function () {
+
+    fabric.Textbox.prototype._wordJoiners = /[]/;
+    menu = document.getElementById('sidebarTools');
+    menuOffcanvas = new bootstrap.Offcanvas(menu);
+    forceAddLock = !is_mobile();
+    addLock = forceAddLock;
+
+    if(localStorage.getItem('svgCollections')) {
+        svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
+    }
+
+    opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {
+        fontCaveat = font;
+    });
+
+    createSignaturePad();
+    responsiveDisplay();
+    displaysSVG();
+    stateAddLock();
+    createEventsListener();
     loadPDF(url);
 
 })();

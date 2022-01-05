@@ -7,35 +7,17 @@
 
     <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
     <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
-    <style>
-    @font-face {
-      font-family: 'Caveat';
-      font-style: normal;
-      font-weight: 400;
-      src: url(/vendor/fonts/Caveat-Regular.ttf) format('truetype');
-    }
-
-    .offcanvas .list-item-add label:hover {
-        background: #e8ebed;
-        border: 1px solid #505050;
-    }
-
-    .offcanvas .list-item-add label:active, .offcanvas .list-item-add label.active, .offcanvas .list-item-add .btn-check:active + .btn-outline-secondary, .offcanvas .list-item-add .btn-check:checked + .btn-outline-secondary {
-        background: #c9d1d8;
-        border: 1px solid #000;
-        box-shadow: 0 .25rem .5rem rgba(0,0,0,.075) !important;
-    }
-    </style>
+    <link href="/css/app.css" rel="stylesheet">
     <title>Signature PDF</title>
   </head>
   <body class="bg-light" style="padding-right: 350px;">
         <div style="height: 65px;" class="d-md-none"></div>
-        <div id="container-pages" style="overflow: auto" class="col-12 pt-1 pb-1 text-center vh-100">
+        <div id="container-pages" class="col-12 pt-1 pb-1 text-center vh-100">
         </div>
         <div style="height: 55px;" class="d-md-none"></div>
-        <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="width: 350px;">
+        <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <div class="offcanvas-header mb-0 pb-0">
-                <h5 id="offcanvasTopLabel">Signature du PDF</h5>
+                <h5 id="sidebarToolsLabel">Signature du PDF</h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -76,14 +58,14 @@
                     <input id="input_pdf" name="pdf" type="file" class="d-none" />
                     <input id="input_svg" name="svg[]" type="file" class="d-none" />
                     <div class="d-grid gap-2 mt-2">
-                        <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i    class="bi bi-download"></i> Télécharger le PDF Signé</button>
+                        <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                     </div>
               </form>
             </div>
         </div>
         <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div class="d-grid gap-2">
-            <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="bi bi-hand-index"></i> Séléctionner une signature</button>
+            <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#sidebarTools" aria-controls="sidebarTools"><i class="bi bi-hand-index"></i> Séléctionner une signature</button>
             </div>
             <div id="svg_selected_container" class="text-center d-none position-relative">
                 <img id="svg_selected" src="" style="height: 48px;" class="img-fluid"/>
@@ -120,11 +102,11 @@
                       <canvas id="signature-pad" class="border bg-light" width="462" height="200"></canvas>
                     </div>
                     <div class="tab-pane fade" id="nav-type" role="tabpanel" aria-labelledby="nav-type-tab">
-                        <input id="input-text-signature" type="text" class="form-control form-control-lg" placeholder="Ma signature" style="font-family: Caveat; font-size: 48px;" />
+                        <input id="input-text-signature" type="text" class="form-control form-control-lg" placeholder="Ma signature" />
                     </div>
                     <div class="tab-pane fade" id="nav-import" role="tabpanel" aria-labelledby="nav-import-tab">
                         <div class="text-center">
-                        <img id="img-upload" class="d-none" style="max-width: 460px; max-height: 200px;" src="" />
+                        <img id="img-upload" class="d-none" src="" />
                         </div>
                         <form id="form-image-upload" action="/image2svg" method="POST" enctype="multipart/form-data">
                         <input id="input-image-upload" class="form-control" name="image" type="file">

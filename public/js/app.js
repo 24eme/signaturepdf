@@ -46,7 +46,7 @@ loadingTask.promise.then(function(pdf) {
     var pdfHistory = {};
     var currentScale = 1.5;
     var windowWidth = window.innerWidth;
-    var menu = document.getElementById('offcanvasTop')
+    var menu = document.getElementById('sidebarTools');
     var menuOffcanvas = new bootstrap.Offcanvas(menu)
     var currentCursor = null;
 
@@ -56,7 +56,7 @@ loadingTask.promise.then(function(pdf) {
 
     var responsiveDisplay = function() {
         if(is_mobile()) {
-            document.body.style.paddingRight = "";
+            document.body.style.paddingRight = "inherit";
             menu.classList.remove('show');
             menuOffcanvas.hide();
             document.getElementById('container-pages').classList.remove('vh-100');

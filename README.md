@@ -47,6 +47,22 @@ upload_max_filesize = 24M # Taille maximum du fichier PDF à signer
 post_max_size = 24M # Taille maximum du fichier PDF à signer
 max_file_uploads = 201 # Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine
 ```
+
+### Déployer avec apache
+
+```
+DocumentRoot /path/to/signaturepdf/public
+
+<Directory /path/to/signaturepdf/public>
+    AllowOverride All
+    Require all granted
+    FallbackResource /index.php
+    php_value max_file_uploads 201
+    php_value upload_max_filesize 24M
+    php_value post_max_size 24M
+</Directory>
+```
+
 ## Tests
 
 Pour exécuter les tests fonctionnels :

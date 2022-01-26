@@ -54,7 +54,6 @@ max_file_uploads = 201 # Nombre de pages maximum du PDF, ici 200 pages + le PDF 
 DocumentRoot /path/to/signaturepdf/public
 
 <Directory /path/to/signaturepdf/public>
-    AllowOverride All
     Require all granted
     FallbackResource /index.php
     php_value max_file_uploads 201

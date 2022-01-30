@@ -77,7 +77,7 @@ docker build -t signaturepdf .
 docker run -d --name=signaturepdf -p 8080:80 signaturepdf
 ````
 
-[localhost:8080](localhost:8080)
+[localhost:8080](http://localhost:8080)
 
 #### Configuration
 
@@ -86,8 +86,8 @@ Les variables suivantes permettent de configurer le déployement :
 |Variable|description|exemple|defaut|
 |-----|-----|-----|-----|
 |`SERVERNAME`|url de déploiement|`pdf.24eme.fr`|localhost|
-|`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48|24M|
-|`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48|24M|
+|`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48M|24M|
+|`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48M|24M|
 |`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
 
 ```bash

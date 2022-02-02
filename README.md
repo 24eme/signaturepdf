@@ -7,6 +7,7 @@ Logiciel web libre permettant de signer un PDF.
 Liste des instances permettant d'utiliser ce logiciel :
 
 - [pdf.24eme.fr](https://pdf.24eme.fr)
+- [pdf.libreon.fr](https://pdf.libreon.fr)
 
 ## License
 
@@ -61,6 +62,37 @@ DocumentRoot /path/to/signaturepdf/public
     php_value post_max_size 24M
 </Directory>
 ```
+
+### Déployer avec docker
+
+#### Construction de l'image
+
+```bash
+docker build -t signaturepdf .
+````
+
+#### Lancement d'un conteneur
+
+```bash
+docker run -d --name=signaturepdf -p 8080:80 signaturepdf
+````
+
+[localhost:8080](http://localhost:8080)
+
+#### Configuration
+
+Les variables suivantes permettent de configurer le déployement :
+
+|Variable|description|exemple|defaut|
+|-----|-----|-----|-----|
+|`SERVERNAME`|url de déploiement|`pdf.24eme.fr`|localhost|
+|`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48M|24M|
+|`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48M|24M|
+|`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
+
+```bash
+docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 signaturepdf
+````
 
 ## Tests
 

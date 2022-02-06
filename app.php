@@ -40,16 +40,14 @@ function convertPHPSizeToBytes($sSize)
 
 $f3->route('GET /',
     function($f3) {
-        $f3->set('key', hash('md5', uniqid().rand()));
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
         echo View::instance()->render('index.html.php');
     }
 );
-$f3->route('GET /@key',
+$f3->route('GET /sign',
     function($f3) {
-        $f3->set('key', $f3->get('PARAMS.key'));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
         echo View::instance()->render('pdf.html.php');

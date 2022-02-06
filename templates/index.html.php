@@ -28,26 +28,19 @@
     <script>
         (async function () {
             const cache = await caches.open('pdf');
-            var key = "<?php echo $key ?>";
-            var urlPdf = '/'+key+'/pdf';
-            var urlSignature = '/'+key;
-            var pdfHistory = {};
             var maxSize = <?php echo $maxSize ?>;
-            if(localStorage.getItem('pdfHistory')) {
-                pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
-            }
             document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-                if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
+                    if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
 
                     alert("Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo");
                     document.getElementById('input_pdf_upload').value = "";
                     return;
                 }
+                let filename = document.getElementById('input_pdf_upload').files[0].name;
                 var response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
+                let urlPdf = '/pdf/#'+filename;
                 await cache.put(urlPdf, response);
-                pdfHistory[key] = { filename: document.getElementById('input_pdf_upload').files[0].name }
-                localStorage.setItem('pdfHistory', JSON.stringify(pdfHistory));
-                document.location = urlSignature;
+                document.location = '/sign/#'+filename;
             });
             async function uploadFromUrl(url) {
                 var response = await fetch(url);
@@ -69,7 +62,7 @@
 
                 history.replaceState({}, "Signature de PDF", "/");
             }
-            if(window.location.hash) {
+            if(window.location.hash && window.location.hash.match(/^\#http/)) {
                 uploadFromUrl(window.location.hash.replace(/^\#/, ''));
             }
             window.addEventListener('hashchange', function() {

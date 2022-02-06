@@ -130,16 +130,9 @@
     <script src="/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>
     <script src="/vendor/opentype.min.js?1.3.3"></script>
     <script>
-    var url = '/<?php echo $key ?>/pdf';
-    var pdfHistory = {};
+    var url = '/pdf/'+window.location.hash;
     var maxPage = <?php echo $maxPage ?>;
-    var filename = null;
-    if(localStorage.getItem('pdfHistory')) {
-        pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
-    }
-    if(pdfHistory["<?php echo $key ?>"]) {
-        filename = pdfHistory["<?php echo $key ?>"].filename;
-    }
+    var filename = window.location.hash.replace(/^\#/, '');
     </script>
     <script src="/js/app.js"></script>
   </body>

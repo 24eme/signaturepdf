@@ -142,7 +142,7 @@
   </div>
     <span id="is_mobile" class="d-md-none"></span>
 
-    <script src="/vendor/bootstrap.min.js?5.1.1"></script>
+    <script src="/vendor/bootstrap.min.js?5.1.3"></script>
     <script src="/vendor/pdf.js?legacy"></script>
     <script src="/vendor/fabric.min.js?4.6.0"></script>
     <script src="/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>

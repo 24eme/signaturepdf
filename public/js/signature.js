@@ -890,6 +890,7 @@ async function getPDFBlobFromCache(cacheUrl) {
 }
 
 async function uploadFromUrl(url) {
+    history.replaceState({}, '', '/signature');
     var response = await fetch(url);
     if(response.status != 200) {
         return;
@@ -909,8 +910,6 @@ async function uploadFromUrl(url) {
 }
 
 var pageUpload = async function() {
-    history.replaceState({}, "Signature de PDF", "/signature");
-
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-signature').classList.add('d-none');
@@ -927,13 +926,14 @@ var pageUpload = async function() {
         let response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
         let urlPdf = '/pdf/'+filename;
         await cache.put(urlPdf, response);
-
-        history.replaceState({}, "Signature de PDF", '/signature#'+filename);
+        history.pushState({}, '', '/signature#'+filename);
         pageSignature(urlPdf)
     });
 }
 
 var pageSignature = async function(url) {
+    let filename = url.replace('/pdf/', '');
+    document.title = filename + ' - ' + document.title;
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-signature').classList.remove('d-none');
     fabric.Textbox.prototype._wordJoiners = /[]/;
@@ -951,7 +951,6 @@ var pageSignature = async function(url) {
     });
 
     let pdfBlob = await getPDFBlobFromCache(url);
-    let filename = url.replace('/pdf/', '');
     if(!pdfBlob) {
         document.location = '/signature';
         return;
@@ -976,8 +975,6 @@ var pageSignature = async function(url) {
         pageUpload();
     }
     window.addEventListener('hashchange', function() {
-        //window.location.href = window.location.href;
         window.location.reload();
     })
-    //pageSignature(url);
 })();

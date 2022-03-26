@@ -41,17 +41,15 @@ function convertPHPSizeToBytes($sSize)
 
 $f3->route('GET /',
     function($f3) {
+        $f3->reroute('/signature');
+    }
+);
+$f3->route('GET /signature',
+    function($f3) {
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
-        echo View::instance()->render('index.html.php');
-    }
-);
-$f3->route('GET /sign',
-    function($f3) {
-        $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
-
-        echo View::instance()->render('pdf.html.php');
+        echo View::instance()->render('signature.html.php');
     }
 );
 $f3->route('POST /image2svg',

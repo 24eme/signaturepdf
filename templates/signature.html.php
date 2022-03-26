@@ -10,7 +10,24 @@
     <link href="/css/app.css" rel="stylesheet">
     <title>Signature PDF</title>
   </head>
-  <body class="bg-light" style="padding-right: 350px;">
+  <body class="bg-light">
+    <div id="page-upload">
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold"><i class="bi bi-vector-pen"></i> Signer un PDF</h1>
+            <div class="col-lg-3 mx-auto">
+                <div class="col-12">
+                  <label for="input_pdf_upload" class="form-label">Choisir un PDF</label>
+                  <input id="input_pdf_upload" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf">
+                  <p class="mt-1 opacity-50"><small class="text-muted">Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo et <?php echo $maxPage ?> pages</small></p>
+                  <a class="btn btn-sm btn-link opacity-75" href="/signature#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">Tester avec un PDF de démo</a>
+                </div>
+            </div>
+        </div>
+        <footer class="text-center text-muted mb-2 fixed-bottom">
+            <small>Logiciel libre sous license AGPL-3.0 : <a href="https://github.com/24eme/signaturepdf">voir le code source</a></small>
+        </footer>
+    </div>
+    <div id="page-signature" style="padding-right: 350px;" class="d-none">
         <div style="height: 65px;" class="d-md-none"></div>
         <div id="container-pages" class="col-12 pt-1 pb-1 text-center vh-100">
         </div>
@@ -122,6 +139,7 @@
         </div>
       </div>
     </div>
+  </div>
     <span id="is_mobile" class="d-md-none"></span>
 
     <script src="/vendor/bootstrap.min.js?5.1.1"></script>
@@ -130,10 +148,9 @@
     <script src="/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>
     <script src="/vendor/opentype.min.js?1.3.3"></script>
     <script>
-    var url = '/pdf/'+window.location.hash;
+    var maxSize = <?php echo $maxSize ?>;
     var maxPage = <?php echo $maxPage ?>;
-    var filename = window.location.hash.replace(/^\#/, '');
     </script>
-    <script src="/js/app.js"></script>
+    <script src="/js/signature.js?202203261059"></script>
   </body>
 </html>

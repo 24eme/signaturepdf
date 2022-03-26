@@ -150,7 +150,7 @@ class Mapper extends \DB\Cursor {
 				);
 				$tmp=$this->db->selectcollection(
 					$fw->HOST.'.'.$fw->BASE.'.'.
-					uniqid(NULL,TRUE).'.tmp'
+					uniqid('',TRUE).'.tmp'
 				);
 				$tmp->batchinsert($grp['retval'],['w'=>1]);
 				$filter=[];

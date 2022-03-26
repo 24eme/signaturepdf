@@ -21,7 +21,7 @@
 */
 
 //! Cache-based session handler
-class Session {
+class Session extends Magic {
 
 	protected
 		//! Session ID
@@ -35,7 +35,9 @@ class Session {
 		//! Suspect callback
 		$onsuspect,
 		//! Cache instance
-		$_cache;
+		$_cache,
+		//! Session meta data
+		$_data=[];
 
 	/**
 	*	Open session
@@ -53,6 +55,7 @@ class Session {
 	**/
 	function close() {
 		$this->sid=NULL;
+		$this->_data=[];
 		return TRUE;
 	}
 
@@ -65,6 +68,7 @@ class Session {
 		$this->sid=$id;
 		if (!$data=$this->_cache->get($id.'.@'))
 			return '';
+		$this->_data = $data;
 		if ($data['ip']!=$this->_ip || $data['agent']!=$this->_agent) {
 			$fw=Base::instance();
 			if (!isset($this->onsuspect) ||
@@ -193,4 +197,29 @@ class Session {
 		$this->_ip=$fw->IP;
 	}
 
+	/**
+	 * check latest meta data existence
+	 * @param string $key
+	 * @return bool
+	 */
+	function exists($key) {
+		return isset($this->_data[$key]);
+	}
+
+	/**
+	 * get meta data from latest session
+	 * @param string $key
+	 * @return mixed
+	 */
+	function &get($key) {
+		return $this->_data[$key];
+	}
+
+	function set($key,$val) {
+		trigger_error('Unable to set data on previous session');
+	}
+
+	function clear($key) {
+		trigger_error('Unable to clear data on previous session');
+	}
 }

@@ -43,7 +43,7 @@ class Template extends Preview {
 		$out='';
 		foreach ($node['@attrib'] as $key=>$val)
 			$out.='$'.$key.'='.
-				(preg_match('/\{\{(.+?)\}\}/',$val)?
+				(preg_match('/\{\{(.+?)\}\}/',$val?:'')?
 					$this->token($val):
 					Base::instance()->stringify($val)).'; ';
 		return '<?php '.$out.'?>';

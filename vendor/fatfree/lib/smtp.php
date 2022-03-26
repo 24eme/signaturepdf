@@ -256,7 +256,7 @@ class SMTP extends Magic {
 		foreach ($headers as $key=>&$val) {
 			if (in_array($key,['From','To','Cc','Bcc'])) {
 				$email='';
-				preg_match_all('/(?:".+?" )?(?:<.+?>|[^ ,]+)/',
+				preg_match_all('/(?:".+?" |=\?.+?\?= )?(?:<.+?>|[^ ,]+)/',
 					$val,$matches,PREG_SET_ORDER);
 				foreach ($matches as $raw)
 					$email.=($email?', ':'').
@@ -283,7 +283,7 @@ class SMTP extends Magic {
 			unset($headers['Content-Type']);
 			$enc=$headers['Content-Transfer-Encoding'];
 			unset($headers['Content-Transfer-Encoding']);
-			$hash=uniqid(NULL,TRUE);
+			$hash=uniqid('',TRUE);
 			// Send mail headers
 			$out='Content-Type: multipart/mixed; boundary="'.$hash.'"'.$eol;
 			foreach ($headers as $key=>$val)
@@ -352,7 +352,7 @@ class SMTP extends Magic {
 			'Content-Type'=>'text/plain; '.
 				'charset='.Base::instance()->ENCODING
 		];
-		$this->host=strtolower((($this->scheme=strtolower($scheme))=='ssl'?
+		$this->host=strtolower((($this->scheme=strtolower($scheme?:''))=='ssl'?
 			'ssl':'tcp').'://'.$host);
 		$this->port=$port;
 		$this->user=$user;

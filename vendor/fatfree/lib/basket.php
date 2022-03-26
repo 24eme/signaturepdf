@@ -148,7 +148,7 @@ class Basket extends Magic {
 	**/
 	function save() {
 		if (!$this->id)
-			$this->id=uniqid(NULL,TRUE);
+			$this->id=uniqid('',TRUE);
 		$_SESSION[$this->key][$this->id]=$this->item;
 		return $this->item;
 	}

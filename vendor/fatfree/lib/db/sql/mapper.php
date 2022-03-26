@@ -427,6 +427,7 @@ class Mapper extends \DB\Cursor {
 		$values='';
 		$filter='';
 		$pkeys=[];
+		$aikeys=[];
 		$nkeys=[];
 		$ckeys=[];
 		$inc=NULL;
@@ -449,6 +450,9 @@ class Mapper extends \DB\Cursor {
 				unset($field);
 			}
 		foreach ($this->fields as $key=>&$field) {
+			if ($field['auto_inc']) {
+                $aikeys[] = $key;
+            }
 			if ($field['pkey']) {
 				$field['previous']=$field['value'];
 				if (!$inc && empty($field['value']) &&
@@ -469,7 +473,7 @@ class Mapper extends \DB\Cursor {
 			}
 			unset($field);
 		}
-		if ($fields) {
+        if ($fields) {
 			$add=$aik='';
 			if ($this->engine=='pgsql' && !empty($pkeys)) {
 				$names=array_keys($pkeys);
@@ -478,7 +482,7 @@ class Mapper extends \DB\Cursor {
 			}
 			$lID=$this->db->exec(
 				(preg_match('/mssql|dblib|sqlsrv/',$this->engine) &&
-				array_intersect(array_keys($pkeys),$ckeys)?
+				array_intersect(array_keys($aikeys),$ckeys)?
 					'SET IDENTITY_INSERT '.$this->table.' ON;':'').
 				'INSERT INTO '.$this->table.' ('.$fields.') '.
 				'VALUES ('.$values.')'.$add,$args

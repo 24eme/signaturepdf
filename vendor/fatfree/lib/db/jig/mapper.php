@@ -325,7 +325,7 @@ class Mapper extends \DB\Cursor {
 					if (!array_key_exists($col,$val2))
 						$val2[$col]=NULL;
 					list($v1,$v2)=[$val1[$col],$val2[$col]];
-					if ($out=strnatcmp($v1,$v2)*
+					if ($out=strnatcmp($v1?:'',$v2?:'')*
 						(($order==SORT_ASC)*2-1))
 						return $out;
 				}
@@ -383,7 +383,7 @@ class Mapper extends \DB\Cursor {
 			return $this->update();
 		$db=$this->db;
 		$now=microtime(TRUE);
-		while (($id=uniqid(NULL,TRUE)) &&
+		while (($id=uniqid('',TRUE)) &&
 			($data=&$db->read($this->file)) && isset($data[$id]) &&
 			!connection_aborted())
 			usleep(mt_rand(0,100));

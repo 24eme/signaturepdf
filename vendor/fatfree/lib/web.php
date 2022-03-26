@@ -232,7 +232,7 @@ class Web extends Prefab {
 					// Throttle output
 					++$ctr;
 					if ($ctr/$kbps>$elapsed=microtime(TRUE)-$start)
-						usleep(1e6*($ctr/$kbps-$elapsed));
+						usleep(round(1e6*($ctr/$kbps-$elapsed)));
 				}
 				// Send 1KiB and reset timer
 				echo fread($handle,1024);
@@ -1006,7 +1006,7 @@ if (!function_exists('gzdecode')) {
 		if (!is_dir($tmp=$fw->TEMP))
 			mkdir($tmp,Base::MODE,TRUE);
 		file_put_contents($file=$tmp.'/'.$fw->SEED.'.'.
-			$fw->hash(uniqid(NULL,TRUE)).'.gz',$str,LOCK_EX);
+			$fw->hash(uniqid('',TRUE)).'.gz',$str,LOCK_EX);
 		ob_start();
 		readgzfile($file);
 		$out=ob_get_clean();

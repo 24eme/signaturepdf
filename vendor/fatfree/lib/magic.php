@@ -57,6 +57,7 @@ abstract class Magic implements ArrayAccess {
 	*	@return mixed
 	*	@param $key string
 	**/
+	#[\ReturnTypeWillChange]
 	function offsetexists($key) {
 		return Base::instance()->visible($this,$key)?
 			isset($this->$key):
@@ -69,6 +70,7 @@ abstract class Magic implements ArrayAccess {
 	*	@param $key string
 	*	@param $val mixed
 	**/
+	#[\ReturnTypeWillChange]
 	function offsetset($key,$val) {
 		return Base::instance()->visible($this,$key)?
 			($this->$key=$val):$this->set($key,$val);
@@ -79,6 +81,7 @@ abstract class Magic implements ArrayAccess {
 	*	@return mixed
 	*	@param $key string
 	**/
+	#[\ReturnTypeWillChange]
 	function &offsetget($key) {
 		if (Base::instance()->visible($this,$key))
 			$val=&$this->$key;
@@ -92,6 +95,7 @@ abstract class Magic implements ArrayAccess {
 	*	@return NULL
 	*	@param $key string
 	**/
+	#[\ReturnTypeWillChange]
 	function offsetunset($key) {
 		if (Base::instance()->visible($this,$key))
 			unset($this->$key);

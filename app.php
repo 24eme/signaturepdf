@@ -1,6 +1,6 @@
 <?php
 
-$f3 = require(__DIR__.'/vendor/fatfree/lib/base.php');
+$f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
 if(getenv("DEBUG")) {
     $f3->set('DEBUG', getenv("DEBUG"));

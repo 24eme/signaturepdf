@@ -23,15 +23,11 @@ var loadPDF = async function(pdfBlob, filename) {
 
     let url = await URL.createObjectURL(pdfBlob);
 
-    var dataTransfer = new DataTransfer();
+    let dataTransfer = new DataTransfer();
     dataTransfer.items.add(new File([pdfBlob], filename, {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf').files = dataTransfer.files;
-
-    if(localStorage.getItem('pdfHistory')) {
-        pdfHistory = JSON.parse(localStorage.getItem('pdfHistory'));
-    }
 
     var loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {

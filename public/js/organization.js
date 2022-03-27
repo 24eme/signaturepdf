@@ -31,7 +31,7 @@ var loadPDF = async function(pdfBlob, filename) {
 
                 var pageIndex = page.pageNumber - 1;
 
-                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf"></canvas><div class="position-absolute text-center" style="bottom: 7px; width: 100%; background: rgba(0,0,0,0.2);"><input form="form_pdf" class="form-check-input checkbox-page" type="checkbox" checked="checked" value="'+page.pageNumber+'" name="pages[]" /></div></div>');
+                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf"></canvas><div class="position-absolute text-center" style="bottom: 7px; width: 100%; background: rgba(255,255,255,0.8);"><input form="form_pdf" class="form-check-input checkbox-page" type="checkbox" checked="checked" value="'+page.pageNumber+'" name="pages[]" /></div></div>');
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 let canvasCheckbox = canvasContainer.querySelector('input[type=checkbox]');

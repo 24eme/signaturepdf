@@ -52,6 +52,13 @@ $f3->route('GET /signature',
         echo View::instance()->render('signature.html.php');
     }
 );
+$f3->route('GET /organization',
+    function($f3) {
+        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+
+        echo View::instance()->render('organization.html.php');
+    }
+);
 $f3->route('POST /image2svg',
     function($f3) {
         $files = Web::instance()->receive(function($file,$formFieldName){
@@ -135,6 +142,39 @@ $f3->route('POST /sign',
         shell_exec(sprintf("pdftk %s multibackground %s output %s", $tmpfile.'.svg.pdf', $tmpfile.".pdf", $tmpfile.'_signe.pdf'));
 
         Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
+
+        if($f3->get('DEBUG')) {
+            return;
+        }
+        array_map('unlink', glob($tmpfile."*"));
+    }
+);
+
+$f3->route('POST /organize',
+    function($f3) {
+        $filename = null;
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
+        unlink($tmpfile);
+
+        $files = Web::instance()->receive(function($file,$formFieldName){
+            if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+            return true;
+        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$filename, &$svgFiles) {
+            if($formFieldName == "pdf") {
+                $filename = str_replace(".pdf", "_organise.pdf", $fileBaseName);
+                return basename($tmpfile).".pdf";
+            }
+	    });
+
+        if(!is_file($tmpfile.".pdf")) {
+            $f3->error(403);
+        }
+
+        shell_exec(sprintf("pdftk %s cat %s output %s", $tmpfile.".pdf", implode(" ", $f3->get('POST.pages')), $tmpfile.'_organise.pdf'));
+
+        Web::instance()->send($tmpfile."_organise.pdf", null, 0, TRUE, $filename);
 
         if($f3->get('DEBUG')) {
             return;

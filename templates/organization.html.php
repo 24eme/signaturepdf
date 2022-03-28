@@ -35,11 +35,18 @@
         <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-lg">
             <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                 <input id="input_pdf" name="pdf" type="file" class="d-none" />
-                <button class="btn btn-primary float-end" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF</button>
-                <div class="form-check pt-2 ps-5">
-                    <input class="form-check-input" checked="checked" type="checkbox"  id="checkbox_all_pages">
-                    <label class="form-check-label" for="checkbox_all_pages">Sélectionner toutes les pages</label>
-                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <div class="form-check">
+                            <input class="form-check-input" checked="checked" type="checkbox"  id="checkbox_all_pages">
+                            <label class="form-check-label" for="checkbox_all_pages">Sélectionner toutes les pages</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF</button>
+                        </div>
+                    </div>
             </form>
         </div>
     </div>

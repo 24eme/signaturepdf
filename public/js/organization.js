@@ -4,7 +4,7 @@ var windowWidth = window.innerWidth;
 var is_mobile = function() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 };
-var nbPagePerLine = 4;
+var nbPagePerLine = 5;
 if(is_mobile()) {
     nbPagePerLine = 2;
 }
@@ -25,7 +25,7 @@ var loadPDF = async function(pdfBlob, filename) {
         for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
             pdf.getPage(pageNumber).then(function(page) {
                 let viewport = page.getViewport({scale: 1});
-                let scale = (document.getElementById('container-pages').clientWidth - (8*nbPagePerLine) - 10) / viewport.width / nbPagePerLine;
+                let scale = (document.getElementById('container-pages').clientWidth - (8*nbPagePerLine) - 12) / viewport.width / nbPagePerLine;
                 viewport = page.getViewport({scale: scale});
 
                 var pageIndex = page.pageNumber - 1;
@@ -37,10 +37,12 @@ var loadPDF = async function(pdfBlob, filename) {
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
                     e.dataTransfer.setData('element', this.id);
                     this.querySelector('.canvas-pdf').style.opacity = 0.4;
+                    document.querySelector('#container-bar').classList.add('d-none');
                 });
                 canvasContainer.addEventListener('dragend', function(e) {
                     this.querySelector('.canvas-pdf').classList.remove('shadow-lg');
                     this.querySelector('.canvas-pdf').style.opacity = 1;
+                    document.querySelector('#container-bar').classList.remove('d-none');
                 });
                 canvasContainer.addEventListener('dragover', function(e) {
                     if (e.preventDefault) {

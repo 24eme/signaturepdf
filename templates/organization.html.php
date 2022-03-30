@@ -32,7 +32,7 @@
     <div id="page-organization" class="d-none">
         <div id="container-pages" class="col-12 pt-1 vh-100" style="padding-bottom: 60px;">
         </div>
-        <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-lg">
+        <div id="container-bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-lg">
             <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                 <input id="input_pdf" name="pdf" type="file" class="d-none" />
                 <input id="input_pages" type="hidden" value="" name="pages" />
@@ -67,6 +67,6 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?202203261059"></script>
+    <script src="/js/organization.js?202203301018"></script>
   </body>
 </html>

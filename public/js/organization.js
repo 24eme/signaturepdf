@@ -1,5 +1,3 @@
-var pdfRenderTasks = [];
-var pdfPages = [];
 var windowWidth = window.innerWidth;
 var is_mobile = function() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
@@ -8,19 +6,23 @@ var nbPagePerLine = 5;
 if(is_mobile()) {
     nbPagePerLine = 2;
 }
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
+var nbPDF = 0;
 
-var loadPDF = async function(pdfBlob, filename) {
-    var pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
+var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     let url = await URL.createObjectURL(pdfBlob);
 
     let dataTransfer = new DataTransfer();
+    for (var i = 0; i < document.getElementById('input_pdf').files.length; i++) {
+        dataTransfer.items.add(document.getElementById('input_pdf').files[i]);
+    }
     dataTransfer.items.add(new File([pdfBlob], filename, {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf').files = dataTransfer.files;
 
-    var loadingTask = pdfjsLib.getDocument(url);
+    let loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {
         for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
             pdf.getPage(pageNumber).then(function(page) {
@@ -30,9 +32,9 @@ var loadPDF = async function(pdfBlob, filename) {
 
                 var pageIndex = page.pageNumber - 1;
 
-                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-1 mb-0 d-inline-block canvas-container" id="canvas-container-' + pageIndex +'" draggable="true"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 7px; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+page.pageNumber+'"" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 7px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p></div>');
+                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-1 mb-0 d-inline-block canvas-container" id="canvas-container-' + pdfIndex + "_" + pageIndex +'" draggable="true"><canvas class="shadow-sm canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 7px; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+page.pageNumber+'"" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 7px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p></div>');
 
-                let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
+                let canvasContainer = document.getElementById('canvas-container-' + pdfIndex + "_" + pageIndex);
                 canvasContainer.addEventListener('dragstart', function(e) {
                     this.querySelector('.container-checkbox').classList.add('d-none');
                     this.querySelector('.container-resize').classList.add('d-none');
@@ -78,7 +80,7 @@ var loadPDF = async function(pdfBlob, filename) {
                     stateCheckboxAll();
                 });
 
-                var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
+                var canvasPDF = canvasContainer.querySelector('.canvas-pdf');
 
                 // Prepare canvas using PDF page dimensions
                 var context = canvasPDF.getContext('2d');
@@ -90,9 +92,7 @@ var loadPDF = async function(pdfBlob, filename) {
                 viewport: viewport,
                 enhanceTextSelection: true
                 };
-                var renderTask = page.render(renderContext);
-                pdfRenderTasks.push(renderTask);
-                pdfPages.push(page);
+                page.render(renderContext);
             });
         }
     }, function (reason) {
@@ -136,6 +136,23 @@ var createEventsListener = function() {
             }
         });
         document.querySelector('#input_pages').value = order.join(',');
+    });
+    document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
+        if(this.files[0].size > maxSize) {
+
+            alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
+            this.value = "";
+            return;
+        }
+        const cache = await caches.open('pdf');
+        let filename = this.files[0].name;
+        let response = new Response(this.files[0], { "status" : 200, "statusText" : "OK" });
+        let urlPdf = '/pdf/'+filename;
+        await cache.put(urlPdf, response);
+        let pdfBlob = await getPDFBlobFromCache(urlPdf);
+        nbPDF++;
+        loadPDF(pdfBlob, filename, nbPDF);
+        this.value = '';
     });
 }
 
@@ -206,7 +223,7 @@ var pageOrganization = async function(url) {
         return;
     }
     createEventsListener();
-    loadPDF(pdfBlob, filename);
+    loadPDF(pdfBlob, filename, nbPDF);
 };
 
 (function () {

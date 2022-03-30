@@ -47,10 +47,20 @@
                     </div>
                     <div class="col-1 d-none d-sm-none d-md-block">
                         <select class="form-select">
-                          <option selected>4 pages</option>
+                            <option>3 pages</option>
+                            <option>4 pages</option>
+                            <option selected>5 pages</option>
+                            <option>8 pages</option>
+                            <option>10 pages</option>
                         </select>
                     </div>
-                    <div class="col-4 d-none d-sm-none d-md-block">
+                    <div class="col-2 d-none d-sm-none d-md-block">
+                    </div>
+                    <div class="col-2 d-none d-sm-none d-md-block">
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
+                        </div>
+                        <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf">
                     </div>
                     <div class="col-sm-12 col-md-2">
                         <div class="d-grid gap-2">

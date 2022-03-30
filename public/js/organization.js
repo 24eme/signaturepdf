@@ -1,7 +1,13 @@
 var pdfRenderTasks = [];
 var pdfPages = [];
 var windowWidth = window.innerWidth;
+var is_mobile = function() {
+    return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
+};
 var nbPagePerLine = 4;
+if(is_mobile()) {
+    nbPagePerLine = 2;
+}
 
 var loadPDF = async function(pdfBlob, filename) {
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -30,9 +36,11 @@ var loadPDF = async function(pdfBlob, filename) {
                 canvasContainer.addEventListener('dragstart', function(e) {
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
                     e.dataTransfer.setData('element', this.id);
+                    this.querySelector('.canvas-pdf').style.opacity = 0.4;
                 });
                 canvasContainer.addEventListener('dragend', function(e) {
                     this.querySelector('.canvas-pdf').classList.remove('shadow-lg');
+                    this.querySelector('.canvas-pdf').style.opacity = 1;
                 });
                 canvasContainer.addEventListener('dragover', function(e) {
                     if (e.preventDefault) {
@@ -81,10 +89,6 @@ var loadPDF = async function(pdfBlob, filename) {
     }, function (reason) {
         console.error(reason);
     });
-};
-
-var is_mobile = function() {
-    return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 };
 
 var stateCheckbox = function(checkbox) {

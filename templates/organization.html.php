@@ -37,22 +37,22 @@
                 <input id="input_pdf" name="pdf" type="file" class="d-none" />
                 <input id="input_pages" type="hidden" value="" name="pages" />
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3 d-none d-sm-none d-md-block">
                         <div class="form-switch mt-2 ms-2">
                             <input class="form-check-input" checked="checked" type="checkbox"  id="checkbox_all_pages">
                             <label class="form-check-label" for="checkbox_all_pages">Séléctionner toutes les pages</label>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 d-none d-sm-none d-md-block">
                     </div>
-                    <div class="col-1">
+                    <div class="col-1 d-none d-sm-none d-md-block">
                         <select class="form-select">
                           <option selected>4 pages</option>
                         </select>
                     </div>
-                    <div class="col-4">
+                    <div class="col-4 d-none d-sm-none d-md-block">
                     </div>
-                    <div class="col-2">
+                    <div class="col-sm-12 col-md-2">
                         <div class="d-grid gap-2">
                             <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF</button>
                         </div>

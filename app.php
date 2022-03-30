@@ -155,15 +155,16 @@ $f3->route('POST /organize',
         $filename = null;
         $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
         unlink($tmpfile);
+        $pages = explode(',', $f3->get('POST.pages'));
 
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);
             }
             return true;
-        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$filename, &$svgFiles) {
+        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$filename, $pages) {
             if($formFieldName == "pdf") {
-                $filename = str_replace(".pdf", "_organise.pdf", $fileBaseName);
+                $filename = str_replace(".pdf", "_page_".implode("-", $pages).".pdf", $fileBaseName);
                 return basename($tmpfile).".pdf";
             }
 	    });
@@ -172,9 +173,9 @@ $f3->route('POST /organize',
             $f3->error(403);
         }
 
-        shell_exec(sprintf("pdftk %s cat %s output %s", $tmpfile.".pdf", implode(" ", $f3->get('POST.pages')), $tmpfile.'_organise.pdf'));
+        shell_exec(sprintf("pdftk %s cat %s output %s", $tmpfile.".pdf", implode(" ", $pages), $tmpfile.'_organize.pdf'));
 
-        Web::instance()->send($tmpfile."_organise.pdf", null, 0, TRUE, $filename);
+        Web::instance()->send($tmpfile."_organize.pdf", null, 0, TRUE, $filename);
 
         if($f3->get('DEBUG')) {
             return;

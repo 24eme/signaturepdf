@@ -35,12 +35,22 @@
         <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-lg">
             <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                 <input id="input_pdf" name="pdf" type="file" class="d-none" />
+                <input id="input_pages" type="hidden" value="" name="pages" />
                 <div class="row">
-                    <div class="col-10">
-                        <div class="form-check">
+                    <div class="col-3">
+                        <div class="form-switch mt-2 ms-2">
                             <input class="form-check-input" checked="checked" type="checkbox"  id="checkbox_all_pages">
-                            <label class="form-check-label" for="checkbox_all_pages">Sélectionner toutes les pages</label>
+                            <label class="form-check-label" for="checkbox_all_pages">Séléctionner toutes les pages</label>
                         </div>
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-1">
+                        <select class="form-select">
+                          <option selected>4 pages</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
                     </div>
                     <div class="col-2">
                         <div class="d-grid gap-2">
@@ -54,9 +64,6 @@
 
     <script src="/vendor/bootstrap.min.js?5.1.3"></script>
     <script src="/vendor/pdf.js?legacy"></script>
-    <script src="/vendor/fabric.min.js?4.6.0"></script>
-    <script src="/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>
-    <script src="/vendor/opentype.min.js?1.3.3"></script>
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>

@@ -33,3 +33,14 @@
     max-width: 460px;
     max-height: 200px;
 }
+
+.canvas-container .btn-drag {
+    font-size: 30px;
+    cursor: move;
+    background: rgb(255,255,255,0.6);
+    opacity: 0;
+}
+
+.canvas-container:hover .btn-drag {
+    opacity: 1;
+}

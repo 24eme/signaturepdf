@@ -25,24 +25,31 @@ var loadPDF = async function(pdfBlob, filename) {
         for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
             pdf.getPage(pageNumber).then(function(page) {
                 let viewport = page.getViewport({scale: 1});
-                let scale = (document.getElementById('container-pages').clientWidth - (8*nbPagePerLine) - 12) / viewport.width / nbPagePerLine;
+                let scale = (document.getElementById('container-pages').clientWidth - (12*nbPagePerLine) - 12) / viewport.width / nbPagePerLine;
                 viewport = page.getViewport({scale: scale});
 
                 var pageIndex = page.pageNumber - 1;
 
-                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block canvas-container" id="canvas-container-' + pageIndex +'" draggable="true"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf" style="box-sizing: border-box;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute text-center w-100 pt-2 pb-0 container-checkbox" style="background: rgb(255,255,255,0.8); bottom: 7px; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+page.pageNumber+'"" /></div><p class="mt-2 mb-0" style="font-size: 10px;">Page '+page.pageNumber+' - '+filename+'</p></div></div>');
+                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-1 mb-0 d-inline-block canvas-container" id="canvas-container-' + pageIndex +'" draggable="true"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 7px; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+page.pageNumber+'"" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 7px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p></div>');
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('dragstart', function(e) {
+                    this.querySelector('.container-checkbox').classList.add('d-none');
+                    this.querySelector('.container-resize').classList.add('d-none');
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
+                    this.querySelector('.canvas-pdf').style.border = '2px dashed #777';
                     e.dataTransfer.setData('element', this.id);
-                    this.querySelector('.canvas-pdf').style.opacity = 0.4;
+                    this.style.opacity = 0.4;
                     document.querySelector('#container-bar').classList.add('d-none');
                 });
                 canvasContainer.addEventListener('dragend', function(e) {
+                    this.querySelector('.container-checkbox').classList.remove('d-none');
+                    this.querySelector('.container-resize').classList.remove('d-none');
                     this.querySelector('.canvas-pdf').classList.remove('shadow-lg');
-                    this.querySelector('.canvas-pdf').style.opacity = 1;
+                    this.querySelector('.canvas-pdf').style.border = '2px solid transparent';
+                    this.style.opacity = 1;
                     document.querySelector('#container-bar').classList.remove('d-none');
+                    stateCheckbox(this.querySelector('input[type=checkbox]'));
                 });
                 canvasContainer.addEventListener('dragover', function(e) {
                     if (e.preventDefault) {

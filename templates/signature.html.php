@@ -157,6 +157,10 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     var maxPage = <?php echo $maxPage ?>;
+    var hash = null;
+    <?php if(isset($hash)): ?>
+    hash = "<?php echo $hash ?>";
+    <?php endif; ?>
     </script>
     <script src="/js/signature.js?202203261059"></script>
   </body>

@@ -85,6 +85,13 @@
                             <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                         </div>
                   </form>
+                  <?php else: ?>
+                  <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data">
+                        <input id="input_svg" name="svg[]" type="file" class="d-none" />
+                        <div class="d-grid gap-2 mt-2">
+                            <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-save"></i> Enregistrer ma signature</button>
+                        </div>
+                  </form>
                   <?php endif; ?>
               </div>
             </div>

@@ -263,4 +263,39 @@ $f3->route('GET /signature/@hash/pdf',
     }
 );
 
+$f3->route('POST /signature/@hash/save',
+    function($f3) {
+        $targetDir = $f3->get('STORAGE').$f3->get('PARAMS.hash').'/';
+        $f3->set('UPLOADS', $targetDir);
+        $tmpfile = tempnam($targetDir, 'pdfsignature_sign');
+        unlink($tmpfile);
+        $svgFiles = "";
+
+
+        $files = Web::instance()->receive(function($file,$formFieldName){
+            if($formFieldName == "svg" && strpos(Web::instance()->mime($file['tmp_name'], true), 'image/svg+xml') !== 0) {
+                $f3->error(403);
+            }
+            return true;
+        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$svgFiles) {
+            if($formFieldName == "svg") {
+                $svgFiles .= " ".$tmpfile."_".$fileBaseName;
+                return basename($tmpfile."_".$fileBaseName);
+            }
+	    });
+
+        if(!$svgFiles) {
+            $f3->error(403);
+        }
+
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
+
+        if(!$f3->get('DEBUG')) {
+            array_map('unlink', $svgFiles);
+        }
+
+        $f3->reroute('/signature/'.$f3->get('PARAMS.hash'));
+    }
+);
+
 return $f3;

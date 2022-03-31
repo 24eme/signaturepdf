@@ -232,12 +232,15 @@ $f3->route('GET /signature/@hash/pdf',
         $originalFilename = null;
         $layers = [];
         foreach($files as $file) {
-            if (strpos($file, 'svg.pdf') === false) {
-                $original = $targetDir.'/'.$file;
-                $originalFilename = $file;
-            } else {
-                $layers[] = $targetDir.'/'.$file;
+            if (strpos($file, 'signe.pdf') !== false) {
+                continue;
             }
+            if(strpos($file, 'svg.pdf') !== false) {
+                $layers[] = $targetDir.'/'.$file;
+                continue;
+            }
+            $original = $targetDir.'/'.$file;
+            $originalFilename = $file;
         }
         if (!$original) {
             $f3->error(404);

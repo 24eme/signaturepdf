@@ -75,6 +75,7 @@
                   <?php if(!isset($hash)): ?>
                   <form id="form_sharing" action="/share" method="post" enctype="multipart/form-data">
                         <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
+                        <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
                         <div class="d-grid gap-2 mt-2">
                             <button class="btn btn-outline-secondary" type="submit" id="save"><i class="bi bi-share"></i> Partager pour signature</button>
                         </div>

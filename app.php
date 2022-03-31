@@ -172,22 +172,43 @@ $f3->route('POST /share',
         $f3->set('UPLOADS', $sharingFolder);
         mkdir($sharingFolder);
         $filename = "original.pdf";
+        $tmpfile = tempnam($sharingFolder, date('YmdHis'));
+        $svgFiles = "";
 
         $files = Web::instance()->receive(function($file,$formFieldName){
-            if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+            if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+            if($formFieldName == "svg" && strpos(Web::instance()->mime($file['tmp_name'], true), 'image/svg+xml') !== 0) {
                 $f3->error(403);
             }
 
             return true;
-        }, false, function($fileBaseName, $formFieldName) use ($filename) {
-
-            return $filename;
+        }, false, function($fileBaseName, $formFieldName) use ($tmpfile, $filename, &$svgFiles) {
+                if($formFieldName == "pdf") {
+                    return $filename;
+                }
+                if($formFieldName == "svg") {
+                    $svgFiles .= " ".$tmpfile."_".$fileBaseName;
+                    return basename($tmpfile."_".$fileBaseName);
+                }
 	    });
 
         if(!count($files)) {
             $f3->error(403);
         }
-        $f3->reroute('/signature/'.$hash."#informations");
+
+        if(!$svgFiles) {
+            $f3->error(403);
+        }
+
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
+
+        if(!$f3->get('DEBUG')) {
+            array_map('unlink', $svgFiles);
+        }
+
+        $f3->reroute('/signature/'.$hash);
     }
 
 );

@@ -182,14 +182,14 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="bi bi-check-circle text-success"></i> PDF Signé</h5>
-                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                    <h5 class="modal-title"><i class="bi bi-file-earmark-check"></i> PDF Signé</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Merci, votre signature a bien été prise en compte !</p>
+                    <p class="mb-1"><i class="bi bi-check-circle text-success"></i> Votre signature a bien été prise en compte !</p>
                 </div>
                 <div class="modal-footer text-center d-block">
-                    <a class="btn btn-sm btn-light" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
+                    <a class="btn btn-outline-dark btn-sm" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                 </div>
             </div>
         </div>

@@ -968,8 +968,6 @@ var pageSignature = async function(url) {
         modalSigned.show();
     }
 
-    let filename = url.replace('/pdf/', '');
-    document.title = filename + ' - ' + document.title;
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-signature').classList.remove('d-none');
     fabric.Textbox.prototype._wordJoiners = /[]/;
@@ -987,6 +985,7 @@ var pageSignature = async function(url) {
     });
 
     let pdfBlob = null;
+    let filename = url.replace('/pdf/', '');
 
     if(hash) {
         var response = await fetch(url);
@@ -994,9 +993,15 @@ var pageSignature = async function(url) {
             return;
         }
         pdfBlob = await response.blob();
+        if(response.headers.get('Content-Disposition').match(/attachment; filename="/)) {
+            filename = response.headers.get('Content-Disposition').replace(/^[^"]*"/, "").replace(/"[^"]*$/, "");
+        }
     } else {
         pdfBlob = await getPDFBlobFromCache(url);
     }
+
+    document.title = filename + ' - ' + document.title;
+
     if(!pdfBlob) {
         document.location = '/signature';
         return;

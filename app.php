@@ -183,8 +183,9 @@ $f3->route('POST /share',
             }
 
             return true;
-        }, false, function($fileBaseName, $formFieldName) use ($tmpfile, $filename, &$svgFiles) {
+        }, false, function($fileBaseName, $formFieldName) use ($tmpfile, $filename, $sharingFolder, &$svgFiles) {
                 if($formFieldName == "pdf") {
+                    file_put_contents($sharingFolder."filename.txt", $fileBaseName);
                     return $filename;
                 }
                 if($formFieldName == "svg") {
@@ -252,6 +253,10 @@ $f3->route('GET /signature/@hash/pdf',
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
         $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').'.pdf';
+        $filename = $f3->get('PARAMS.hash').'.pdf';
+        if(file_exists($sharingFolder."/filename.txt")) {
+            $filename = file_get_contents($sharingFolder."/filename.txt");
+        }
         $layers = [];
         foreach($files as $file) {
             if(strpos($file, 'svg.pdf') !== false) {
@@ -259,14 +264,14 @@ $f3->route('GET /signature/@hash/pdf',
             }
         }
         if (!$layers) {
-            Web::instance()->send($originalFile, null, 0, TRUE, $f3->get('PARAMS.hash').'.pdf');
+            Web::instance()->send($originalFile, null, 0, TRUE, $filename);
         }
         $bufferFile =  str_replace('.pdf', '_tmp.pdf', $originalFile);
         shell_exec(sprintf("cp %s %s", $originalFile, $finalFile));
         foreach($layers as $layer) {
             shell_exec(sprintf("pdftk %1\$s multistamp %2\$s output %3\$s && mv %3\$s %1\$s", $finalFile, $layer, $bufferFile));
         }
-        Web::instance()->send($finalFile, null, 0, TRUE, $f3->get('PARAMS.hash').'.pdf');
+        Web::instance()->send($finalFile, null, 0, TRUE, $filename);
     }
 );
 

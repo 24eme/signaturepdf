@@ -255,6 +255,11 @@ $f3->route('GET /signature/@hash/pdf',
             shell_exec(sprintf("pdftk %1\$s multibackground %2\$s output %3\$s && mv %3\$s %2\$s", $layers[$i], $newFile, str_replace('_signe.pdf', '_tmp_signe.pdf', $newFile)));
         }
         Web::instance()->send($newFile, null, 0, TRUE, $newFilename);
+
+        if($f3->get('DEBUG')) {
+            return;
+        }
+        unlink($newFile);
     }
 );
 

@@ -154,18 +154,19 @@
     </div>
     <?php if(isset($shareLink)): ?>
     <div id="modal-share-informations" class="modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Partager la signature du PDF</h5>
+                    <h5 class="modal-title"><i class="bi bi-people"></i> Signer ce PDF à plusieurs</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Pour permettre à une ou plusieurs personnes de signer ce PDF il suffit de partager ce lien :</p>
+                    <p>Plusieurs personnes peuvent signer ce PDF en même temps en allant sur cette page :</p>
                     <div class="input-group mb-3">
-                        <input type="text" readonly="readonly" class="form-control"  value="<?php echo $shareLink ?>">
-                        <button class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i></button>
+                        <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control" value="<?php echo $shareLink ?>">
+                        <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = 'Copié !';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> Copier</button>
                     </div>
+                    <p>C'est aussi depuis cette page qu'il est possible de télécharger le PDF signer par tous.</p>
                 </div>
                 <div class="modal-footer text-start">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>

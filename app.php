@@ -154,7 +154,7 @@ $f3->route('POST /sign',
         }
 
         shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
-        shell_exec(sprintf("pdftk %s multibackground %s output %s", $tmpfile.'.svg.pdf', $tmpfile.".pdf", $tmpfile.'_signe.pdf'));
+        shell_exec(sprintf("pdftk %s multistamp %s output %s", $tmpfile.".pdf", $tmpfile.'.svg.pdf', $tmpfile.'_signe.pdf'));
 
         Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
 
@@ -265,7 +265,7 @@ $f3->route('GET /signature/@hash/pdf',
         $bufferFile =  str_replace('.pdf', '_tmp.pdf', $originalFile);
         shell_exec(sprintf("cp %s %s", $originalFile, $finalFile));
         foreach($layers as $layer) {
-            shell_exec(sprintf("pdftk %1\$s multibackground %2\$s output %3\$s && mv %3\$s %2\$s", $layer, $finalFile, $bufferFile));
+            shell_exec(sprintf("pdftk %1\$s multistamp %2\$s output %3\$s && mv %3\$s %1\$s", $finalFile, $layer, $bufferFile));
         }
         Web::instance()->send($finalFile, null, 0, TRUE, $f3->get('PARAMS.hash').'.pdf');
     }

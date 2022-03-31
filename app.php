@@ -227,7 +227,7 @@ $f3->route('POST /organize',
 $f3->route('GET /signature/@hash/pdf',
     function($f3) {
         $targetDir = $f3->get('STORAGE').$f3->get('PARAMS.hash');
-        $files = array_diff(scandir($targetDir), array('..', '.'));;
+        $files = array_diff(scandir($targetDir), array('..', '.'));
         $original = null;
         $originalFilename = null;
         $layers = [];

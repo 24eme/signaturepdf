@@ -484,6 +484,10 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
     if(document.getElementById('save_mobile')) {
         document.getElementById('save_mobile').removeAttribute('disabled');
     }
+    if(document.getElementById('btn_download')) {
+        document.getElementById('btn_download').classList.add('disabled');
+    }
+
 
     if(!height) {
         height = 100;

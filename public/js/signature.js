@@ -938,6 +938,12 @@ var pageUpload = async function() {
 }
 
 var pageSignature = async function(url) {
+
+    if(window.location.hash == '#informations') {
+        let modalInformations = new bootstrap.Modal(document.getElementById('modal-share-informations'));
+        modalInformations.show();
+    }
+
     let filename = url.replace('/pdf/', '');
     document.title = filename + ' - ' + document.title;
     document.getElementById('page-upload').classList.add('d-none');
@@ -985,6 +991,7 @@ var pageSignature = async function(url) {
         pageSignature('/signature/'+hash+'/pdf');
         return;
     }
+
 
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         let hashUrl = window.location.hash.replace(/^\#/, '');

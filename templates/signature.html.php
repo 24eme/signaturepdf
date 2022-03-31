@@ -35,6 +35,7 @@
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 id="sidebarToolsLabel">Signature du PDF</h5>
+                <p class="text-muted"><i class="bi bi-laptop"></i> document.pdf</p>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -75,7 +76,7 @@
                   <form id="form_sharing" action="/share" method="post" enctype="multipart/form-data">
                         <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                         <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-outline-secondary" type="submit" id="save"><i class="bi bi-share"></i> Partager ce PDF</button>
+                            <button class="btn btn-outline-secondary" type="submit" id="save"><i class="bi bi-share"></i> Partager pour signature</button>
                         </div>
                   </form>
                   <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
@@ -148,7 +149,30 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
+    <?php if(isset($shareLink)): ?>
+    <div id="modal-share-informations" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Partager la signature du PDF</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Pour permettre à une ou plusieurs personnes de signer ce PDF il suffit de partager ce lien :</p>
+                    <div class="input-group mb-3">
+                        <input type="text" readonly="readonly" class="form-control"  value="<?php echo $shareLink ?>">
+                        <button class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i></button>
+                    </div>
+                </div>
+                <div class="modal-footer text-start">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <span id="is_mobile" class="d-md-none"></span>
 
     <script src="/vendor/bootstrap.min.js?5.1.3"></script>

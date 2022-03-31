@@ -57,6 +57,8 @@ $f3->route('GET /signature',
 $f3->route('GET /signature/@hash',
     function($f3, $param) {
         $f3->set('hash', $param['hash']);
+        $port = $f3->get('PORT');
+        $f3->set('shareLink', $f3->set('urlbase', $f3->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].(!in_array($port,[80,443])?(':'.$port):'').$f3->get('BASE')).$f3->get('URI'));
 
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
@@ -185,7 +187,7 @@ $f3->route('POST /share',
         if(!count($files)) {
             $f3->error(403);
         }
-        $f3->reroute('/signature/'.$hash);
+        $f3->reroute('/signature/'.$hash."#informations");
     }
 
 );

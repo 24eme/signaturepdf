@@ -938,7 +938,7 @@ var pageUpload = async function() {
     document.getElementById('input_pdf_upload').focus();
     const cache = await caches.open('pdf');
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-            if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
+        if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
 
             alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");s
             document.getElementById('input_pdf_upload').value = "";
@@ -1012,7 +1012,6 @@ var pageSignature = async function(url) {
         pageSignature('/signature/'+hash+'/pdf');
         return;
     }
-
 
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         let hashUrl = window.location.hash.replace(/^\#/, '');

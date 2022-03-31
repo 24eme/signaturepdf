@@ -121,7 +121,6 @@ $f3->route('POST /sign',
         unlink($tmpfile);
         $svgFiles = "";
 
-
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);

@@ -947,14 +947,16 @@ var pageSignature = async function(url) {
         fontCaveat = font;
     });
 
+    let pdfBlob = null;
+
     if(hash) {
         var response = await fetch(url);
         if(response.status != 200) {
             return;
         }
-        let pdfBlob = await response.blob();
+        pdfBlob = await response.blob();
     } else {
-        let pdfBlob = await getPDFBlobFromCache(url);
+        pdfBlob = await getPDFBlobFromCache(url);
     }
     if(!pdfBlob) {
         document.location = '/signature';

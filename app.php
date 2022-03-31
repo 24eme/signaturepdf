@@ -229,26 +229,74 @@ $f3->route('POST /organize',
 $f3->route('GET /signature/@hash/pdf',
     function($f3) {
         $targetDir = $f3->get('STORAGE').$f3->get('PARAMS.hash');
-        $files = array_diff(scandir($targetDir), array('..', '.'));;
+        $files = array_diff(scandir($targetDir), array('..', '.'));
         $original = null;
         $originalFilename = null;
         $layers = [];
         foreach($files as $file) {
-            if (strpos($file, 'svg.pdf') === false) {
-                $original = $targetDir.'/'.$file;
-                $originalFilename = $file;
-            } else {
-                $layers[] = $targetDir.'/'.$file;
+            if (strpos($file, '.pdf') === false || strpos($file, 'signe.pdf') !== false) {
+                continue;
             }
+            if(strpos($file, 'svg.pdf') !== false) {
+                $layers[] = $targetDir.'/'.$file;
+                continue;
+            }
+            $original = $targetDir.'/'.$file;
+            $originalFilename = $file;
         }
         if (!$original) {
             $f3->error(404);
         }
-        if (!$layers||1==1) {
+        if (!$layers) {
             Web::instance()->send($original, null, 0, TRUE, str_replace('.pdf', '_signe.pdf', $originalFilename));
         }
-        shell_exec(sprintf("pdftk %s multibackground %s output %s", implode(' ', $layers), $original, str_replace('.pdf', '_signe.pdf', $original)));
-        Web::instance()->send(str_replace('.pdf', '_signe.pdf', $original), null, 0, TRUE, str_replace('.pdf', '_signe.pdf', $originalFilename));
+        $newFile =  str_replace('.pdf', '_signe.pdf', $original);
+        $newFilename = str_replace('.pdf', '_signe.pdf', $originalFilename);
+        shell_exec(sprintf("pdftk %s multibackground %s output %s", $layers[0], $original, $newFile));
+        for($i = 1, $max = count($layers); $i < $max; $i++) {
+            shell_exec(sprintf("pdftk %1\$s multibackground %2\$s output %3\$s && mv %3\$s %2\$s", $layers[$i], $newFile, str_replace('_signe.pdf', '_tmp_signe.pdf', $newFile)));
+        }
+        Web::instance()->send($newFile, null, 0, TRUE, $newFilename);
+
+        if($f3->get('DEBUG')) {
+            return;
+        }
+        unlink($newFile);
+    }
+);
+
+$f3->route('POST /signature/@hash/save',
+    function($f3) {
+        $targetDir = $f3->get('STORAGE').$f3->get('PARAMS.hash').'/';
+        $f3->set('UPLOADS', $targetDir);
+        $tmpfile = tempnam($targetDir, 'pdfsignature_sign');
+        unlink($tmpfile);
+        $svgFiles = "";
+
+
+        $files = Web::instance()->receive(function($file,$formFieldName){
+            if($formFieldName == "svg" && strpos(Web::instance()->mime($file['tmp_name'], true), 'image/svg+xml') !== 0) {
+                $f3->error(403);
+            }
+            return true;
+        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$svgFiles) {
+            if($formFieldName == "svg") {
+                $svgFiles .= " ".$tmpfile."_".$fileBaseName;
+                return basename($tmpfile."_".$fileBaseName);
+            }
+	    });
+
+        if(!$svgFiles) {
+            $f3->error(403);
+        }
+
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
+
+        if(!$f3->get('DEBUG')) {
+            array_map('unlink', $svgFiles);
+        }
+
+        $f3->reroute('/signature/'.$f3->get('PARAMS.hash'));
     }
 );
 

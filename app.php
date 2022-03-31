@@ -185,4 +185,30 @@ $f3->route('POST /organize',
     }
 );
 
+$f3->route('GET /signature/@hash/pdf',
+    function($f3) {
+        $targetDir = $f3->get('STORAGE').$f3->get('PARAMS.hash');
+        $files = array_diff(scandir($targetDir), array('..', '.'));;
+        $original = null;
+        $originalFilename = null;
+        $layers = [];
+        foreach($files as $file) {
+            if (strpos($file, 'svg.pdf') === false) {
+                $original = $targetDir.'/'.$file;
+                $originalFilename = $file;
+            } else {
+                $layers[] = $targetDir.'/'.$file;
+            }
+        }
+        if (!$original) {
+            $f3->error(404);
+        }
+        if (!$layers||1==1) {
+            Web::instance()->send($original, null, 0, TRUE, str_replace('.pdf', '_signe.pdf', $originalFilename));
+        }
+        shell_exec(sprintf("pdftk %s multibackground %s output %s", implode(' ', $layers), $original, str_replace('.pdf', '_signe.pdf', $original)));
+        Web::instance()->send(str_replace('.pdf', '_signe.pdf', $original), null, 0, TRUE, str_replace('.pdf', '_signe.pdf', $originalFilename));
+    }
+);
+
 return $f3;

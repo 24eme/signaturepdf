@@ -75,24 +75,18 @@
                   <?php if(!isset($hash)): ?>
                   <form id="form_sharing" action="/share" method="post" enctype="multipart/form-data">
                         <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
-                        <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-outline-secondary" type="submit" id="save"><i class="bi bi-share"></i> Partager pour signature</button>
-                        </div>
+                        <button class="btn btn-outline-dark w-100" type="submit" id="save_share"><i class="bi bi-share"></i> Partager pour signer à plusieurs <i class="bi bi-people"></i></button>
                   </form>
                   <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
-                        <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
-                        </div>
+                        <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                   </form>
                   <?php else: ?>
-                  <a class="btn btn-outline-secondary w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
+                  <a class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                   <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data">
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
-                        <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-save"></i> Enregistrer ma signature</button>
-                        </div>
+                        <button class="btn btn-success w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-check-circle"></i> Enregistrer ma signature</button>
                   </form>
                   <?php endif; ?>
               </div>

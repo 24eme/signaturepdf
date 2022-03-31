@@ -86,6 +86,7 @@
                         </div>
                   </form>
                   <?php else: ?>
+                  <a class="btn btn-outline-secondary w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                   <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data">
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
                         <div class="d-grid gap-2 mt-2">

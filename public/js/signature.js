@@ -28,6 +28,7 @@ var loadPDF = async function(pdfBlob, filename) {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf').files = dataTransfer.files;
+    document.getElementById('input_pdf_share').files = dataTransfer.files;
 
     var loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {
@@ -946,7 +947,15 @@ var pageSignature = async function(url) {
         fontCaveat = font;
     });
 
-    let pdfBlob = await getPDFBlobFromCache(url);
+    if(hash) {
+        var response = await fetch(url);
+        if(response.status != 200) {
+            return;
+        }
+        let pdfBlob = await response.blob();
+    } else {
+        let pdfBlob = await getPDFBlobFromCache(url);
+    }
     if(!pdfBlob) {
         document.location = '/signature';
         return;
@@ -961,6 +970,11 @@ var pageSignature = async function(url) {
 };
 
 (function () {
+    if(hash) {
+        pageSignature('/signature/'+hash+'/pdf');
+        return;
+    }
+
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         let hashUrl = window.location.hash.replace(/^\#/, '');
         pageUpload();

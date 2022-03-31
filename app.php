@@ -53,6 +53,18 @@ $f3->route('GET /signature',
         echo View::instance()->render('signature.html.php');
     }
 );
+
+$f3->route('GET /signature/@hash',
+    function($f3, $param) {
+        $f3->set('hash', $param['hash']);
+
+        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+        $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
+
+        echo View::instance()->render('signature.html.php');
+    }
+);
+
 $f3->route('GET /organization',
     function($f3) {
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
@@ -149,6 +161,33 @@ $f3->route('POST /sign',
         }
         array_map('unlink', glob($tmpfile."*"));
     }
+);
+
+$f3->route('POST /share',
+    function($f3) {
+        $hash = substr(hash('sha512', uniqid().rand()), 0, 20);
+        $sharingFolder = $f3->get('STORAGE').$hash."/";
+        $f3->set('UPLOADS', $sharingFolder);
+        mkdir($sharingFolder);
+        $filename = "original.pdf";
+
+        $files = Web::instance()->receive(function($file,$formFieldName){
+            if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+
+            return true;
+        }, false, function($fileBaseName, $formFieldName) use ($filename) {
+
+            return $filename;
+	    });
+
+        if(!count($files)) {
+            $f3->error(403);
+        }
+        $f3->reroute('/signature/'.$hash);
+    }
+
 );
 
 $f3->route('POST /organize',

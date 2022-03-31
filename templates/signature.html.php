@@ -70,14 +70,21 @@
               <div class="d-grid gap-2 mt-2">
                   <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un élément</button>
               </div>
-
-              <form class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100 d-none d-sm-none d-md-block" id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
-                    <input id="input_pdf" name="pdf" type="file" class="d-none" />
-                    <input id="input_svg" name="svg[]" type="file" class="d-none" />
-                    <div class="d-grid gap-2 mt-2">
-                        <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
-                    </div>
-              </form>
+              <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100 d-none d-sm-none d-md-block">
+                  <form id="form_sharing" action="/share" method="post" enctype="multipart/form-data">
+                        <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
+                        <div class="d-grid gap-2 mt-2">
+                            <button class="btn btn-outline-secondary" type="submit" id="save"><i class="bi bi-share"></i> Partager ce PDF</button>
+                        </div>
+                  </form>
+                  <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
+                        <input id="input_pdf" name="pdf" type="file" class="d-none" />
+                        <input id="input_svg" name="svg[]" type="file" class="d-none" />
+                        <div class="d-grid gap-2 mt-2">
+                            <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
+                        </div>
+                  </form>
+              </div>
             </div>
         </div>
         <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
@@ -150,6 +157,10 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     var maxPage = <?php echo $maxPage ?>;
+    var hash = null;
+    <?php if(isset($hash)): ?>
+    hash = "<?php echo $hash ?>";
+    <?php endif; ?>
     </script>
     <script src="/js/signature.js?202203261059"></script>
   </body>

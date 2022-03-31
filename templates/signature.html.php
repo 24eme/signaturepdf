@@ -35,7 +35,6 @@
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 id="sidebarToolsLabel">Signature du PDF</h5>
-                <p class="text-muted"><i class="bi bi-laptop"></i> document.pdf</p>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">

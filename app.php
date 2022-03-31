@@ -10,6 +10,7 @@ $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);
 $f3->set('UI', $f3->get('ROOT')."/templates/");
 $f3->set('UPLOADS', sys_get_temp_dir()."/");
+$f3->set('STORAGE', sys_get_temp_dir()."/pdf/");
 
 function convertPHPSizeToBytes($sSize)
 {

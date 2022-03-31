@@ -248,8 +248,13 @@ $f3->route('GET /signature/@hash/pdf',
         if (!$layers||1==1) {
             Web::instance()->send($original, null, 0, TRUE, str_replace('.pdf', '_signe.pdf', $originalFilename));
         }
-        shell_exec(sprintf("pdftk %s multibackground %s output %s", implode(' ', $layers), $original, str_replace('.pdf', '_signe.pdf', $original)));
-        Web::instance()->send(str_replace('.pdf', '_signe.pdf', $original), null, 0, TRUE, str_replace('.pdf', '_signe.pdf', $originalFilename));
+        $newFile =  str_replace('.pdf', '_signe.pdf', $original);
+        $newFilename = str_replace('.pdf', '_signe.pdf', $originalFilename);
+        shell_exec(sprintf("pdftk %s multibackground %s output %s", $layers[0], $original, $newFile));
+        for($i = 1, $max = count($layers); $i < $max; $i++) {
+            shell_exec(sprintf("pdftk %1\$s multibackground %2\$s output %3\$s && mv %3\$s %2\$s", $layers[$i], $newFile, str_replace('_signe.pdf', '_tmp_signe.pdf', $newFile)));
+        }
+        Web::instance()->send($newFile, null, 0, TRUE, $newFilename);
     }
 );
 

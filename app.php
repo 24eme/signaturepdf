@@ -245,7 +245,7 @@ $f3->route('GET /signature/@hash/pdf',
         if (!$original) {
             $f3->error(404);
         }
-        if (!$layers||1==1) {
+        if (!$layers) {
             Web::instance()->send($original, null, 0, TRUE, str_replace('.pdf', '_signe.pdf', $originalFilename));
         }
         $newFile =  str_replace('.pdf', '_signe.pdf', $original);

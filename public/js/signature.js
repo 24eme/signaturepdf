@@ -960,6 +960,11 @@ var pageSignature = async function(url) {
         modalInformations.show();
     }
 
+    if(window.location.hash == '#signed') {
+        let modalSigned = new bootstrap.Modal(document.getElementById('modal-signed'));
+        modalSigned.show();
+    }
+
     let filename = url.replace('/pdf/', '');
     document.title = filename + ' - ' + document.title;
     document.getElementById('page-upload').classList.add('d-none');

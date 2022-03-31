@@ -168,10 +168,28 @@
                         <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control" value="<?php echo $shareLink ?>">
                         <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = 'Copié !';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> Copier</button>
                     </div>
-                    <p>C'est aussi depuis cette page qu'il est possible de télécharger le PDF signer par tous.</p>
+                    <p>C'est aussi depuis cette page qu'il est possible de télécharger le PDF signer par tous le monde.</p>
                 </div>
                 <div class="modal-footer text-start">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if(isset($hash)): ?>
+    <div id="modal-signed" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-check-circle text-success"></i> PDF Signé</h5>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                </div>
+                <div class="modal-body">
+                    <p>Merci, votre signature a bien été prise en compte !</p>
+                </div>
+                <div class="modal-footer text-center d-block">
+                    <a class="btn btn-sm btn-light" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                 </div>
             </div>
         </div>

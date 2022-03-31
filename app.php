@@ -208,7 +208,7 @@ $f3->route('POST /share',
             array_map('unlink', $svgFiles);
         }
 
-        $f3->reroute('/signature/'.$hash);
+        $f3->reroute('/signature/'.$hash."#informations");
     }
 
 );
@@ -302,7 +302,7 @@ $f3->route('POST /signature/@hash/save',
             array_map('unlink', $svgFiles);
         }
 
-        $f3->reroute('/signature/'.$f3->get('PARAMS.hash'));
+        $f3->reroute('/signature/'.$f3->get('PARAMS.hash')."#signed");
     }
 );
 

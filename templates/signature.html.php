@@ -34,7 +34,7 @@
         <div style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <div class="offcanvas-header mb-0 pb-0">
-                <h5 id="sidebarToolsLabel">Signature du PDF</h5>
+                <h5 class="mb-1" id="sidebarToolsLabel">Signature du PDF<?php if(isset($hash)): ?> <i class="bi bi-people-fill"></i><?php endif; ?></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body pt-0">
@@ -77,7 +77,7 @@
                         <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                         <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
                         <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-outline-dark w-100" type="submit" id="save_share"><i class="bi bi-share"></i> Partager pour signer à plusieurs <i class="bi bi-people"></i></button>
+                            <button class="btn btn-outline-dark w-100" type="submit" id="save_share"><i class="bi bi-share"></i> Partager pour signer <i class="bi bi-people-fill"></i> à plusieurs </button>
                         </div>
                   </form>
                   <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
@@ -160,7 +160,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="bi bi-people"></i> Signer ce PDF à plusieurs</h5>
+                    <h5 class="modal-title"><i class="bi bi-people-fill"></i> Signer ce PDF à plusieurs</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

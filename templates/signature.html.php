@@ -191,7 +191,7 @@
                     <p class="mb-1"><i class="bi bi-check-circle text-success"></i> Votre signature a bien été prise en compte !</p>
                 </div>
                 <div class="modal-footer text-center d-block">
-                    <a class="btn btn-outline-dark btn-sm" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
+                    <a class="btn btn-outline-dark" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                 </div>
             </div>
         </div>

@@ -28,6 +28,7 @@ var loadPDF = async function(pdfBlob, filename) {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf').files = dataTransfer.files;
+    document.getElementById('input_pdf_share').files = dataTransfer.files;
 
     var loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {

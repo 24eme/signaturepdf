@@ -70,7 +70,8 @@
               <div class="d-grid gap-2 mt-2">
                   <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Ajouter un élément</button>
               </div>
-              <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100 d-none d-sm-none d-md-block">
+              <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100 d-none d-sm-none d-md-block">
+                  <?php if(!isset($hash)): ?>
                   <form id="form_sharing" action="/share" method="post" enctype="multipart/form-data">
                         <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                         <div class="d-grid gap-2 mt-2">
@@ -84,6 +85,7 @@
                             <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                         </div>
                   </form>
+                  <?php endif; ?>
               </div>
             </div>
         </div>

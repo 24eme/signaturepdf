@@ -23,6 +23,9 @@ var loadPDF = async function(pdfBlob, filename) {
 
     let url = await URL.createObjectURL(pdfBlob);
 
+    text_document_name.querySelector('span').innerText = filename;
+    text_document_name.setAttribute('title', filename);
+
     let dataTransfer = new DataTransfer();
     dataTransfer.items.add(new File([pdfBlob], filename, {
         type: 'application/pdf'

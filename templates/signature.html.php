@@ -35,7 +35,6 @@
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 id="sidebarToolsLabel">Signature du PDF</h5>
-                <p class="text-muted"><i class="bi bi-laptop"></i> document.pdf</p>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -77,23 +76,19 @@
                         <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                         <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
                         <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-outline-secondary" type="submit" id="save"><i class="bi bi-share"></i> Partager pour signature</button>
+                            <button class="btn btn-outline-dark w-100" type="submit" id="save_share"><i class="bi bi-share"></i> Partager pour signer à plusieurs <i class="bi bi-people"></i></button>
                         </div>
                   </form>
                   <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
-                        <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
-                        </div>
+                        <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
                   </form>
                   <?php else: ?>
-                  <a class="btn btn-outline-secondary w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
+                  <a class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                   <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data">
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
-                        <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-primary" disabled="disabled" type="submit" id="save"><i class="bi bi-save"></i> Enregistrer ma signature</button>
-                        </div>
+                        <button class="btn btn-success w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-check-circle"></i> Enregistrer ma signature</button>
                   </form>
                   <?php endif; ?>
               </div>
@@ -161,18 +156,19 @@
     </div>
     <?php if(isset($shareLink)): ?>
     <div id="modal-share-informations" class="modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Partager la signature du PDF</h5>
+                    <h5 class="modal-title"><i class="bi bi-people"></i> Signer ce PDF à plusieurs</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Pour permettre à une ou plusieurs personnes de signer ce PDF il suffit de partager ce lien :</p>
+                    <p>Plusieurs personnes peuvent signer ce PDF en même temps en allant sur cette page :</p>
                     <div class="input-group mb-3">
-                        <input type="text" readonly="readonly" class="form-control"  value="<?php echo $shareLink ?>">
-                        <button class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i></button>
+                        <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control" value="<?php echo $shareLink ?>">
+                        <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = 'Copié !';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> Copier</button>
                     </div>
+                    <p>C'est aussi depuis cette page qu'il est possible de télécharger le PDF signer par tous.</p>
                 </div>
                 <div class="modal-footer text-start">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>

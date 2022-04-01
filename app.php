@@ -34,10 +34,14 @@ $f3->route('GET /signature',
 );
 
 $f3->route('GET /signature/@hash',
-    function($f3, $param) {
-        $f3->set('hash', $param['hash']);
+    function($f3) {
+        $f3->set('hash', Web::instance()->slug($f3->get('PARAMS.hash')));
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
+
+        if(!is_dir($f3->get('PDF_STORAGE_PATH').$f3->get('hash'))) {
+            $f3->error(404);
+        }
 
         echo View::instance()->render('signature.html.php');
     }
@@ -188,7 +192,8 @@ $f3->route('POST /share',
 
 $f3->route('GET /signature/@hash/pdf',
     function($f3) {
-        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$f3->get('PARAMS.hash');
+        $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
+        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
         $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').'.pdf';
@@ -217,12 +222,12 @@ $f3->route('GET /signature/@hash/pdf',
 
 $f3->route('POST /signature/@hash/save',
     function($f3) {
-        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$f3->get('PARAMS.hash').'/';
+        $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
+        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash.'/';
         $f3->set('UPLOADS', $sharingFolder);
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));
         unlink($tmpfile);
         $svgFiles = "";
-
 
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "svg" && strpos(Web::instance()->mime($file['tmp_name'], true), 'image/svg+xml') !== 0) {
@@ -252,7 +257,8 @@ $f3->route('POST /signature/@hash/save',
 
 $f3->route('GET /signature/@hash/nblayers',
     function($f3) {
-        $files = scandir($f3->get('PDF_STORAGE_PATH').$f3->get('PARAMS.hash'));
+        $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
+        $files = scandir($f3->get('PDF_STORAGE_PATH').$hash);
         $nbLayers = 0;
         foreach($files as $file) {
             if(strpos($file, 'svg.pdf') !== false) {

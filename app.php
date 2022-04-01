@@ -169,6 +169,12 @@ $f3->route('POST /share',
         $hash = substr(hash('sha512', uniqid().rand()), 0, 20);
         $sharingFolder = $f3->get('STORAGE').$hash."/";
         $f3->set('UPLOADS', $sharingFolder);
+        if (!is_dir($f3->get('STORAGE'))) {
+            $f3->error(500, 'Sharing folder doesn\'t exist');
+        }
+        if (!is_writable($f3->get('STORAGE'))) {
+            $f3->error(500, 'Sharing folder is not writable');
+        }
         mkdir($sharingFolder);
         $filename = "original.pdf";
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));

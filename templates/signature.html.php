@@ -11,6 +11,11 @@
     <title>Signature PDF</title>
   </head>
   <body class="bg-light">
+    <noscript>
+        <div class="alert alert-danger text-center" role="alert">
+          <i class="bi bi-exclamation-triangle"></i> Site non fonctionnel sans JavaScript activé
+        </div>
+    </noscript>
     <div id="page-upload">
         <div class="px-4 py-5 my-5 text-center">
             <h1 class="display-5 fw-bold"><i class="bi bi-vector-pen"></i> Signer un PDF</h1>

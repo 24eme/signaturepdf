@@ -10,7 +10,12 @@ $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);
 $f3->set('UI', $f3->get('ROOT')."/templates/");
 $f3->set('UPLOADS', sys_get_temp_dir()."/");
-$f3->set('STORAGE', sys_get_temp_dir()."/pdf/");
+$f3->config(__DIR__.'/config/config.ini');
+
+
+if($f3->get('STORAGE') && !preg_match('|/$|', $f3->get('STORAGE'))) {
+    $f3->set('STORAGE', $f3->get('STORAGE').'/');
+}
 
 function convertPHPSizeToBytes($sSize)
 {
@@ -50,6 +55,9 @@ $f3->route('GET /signature',
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
+        if(!$f3->get('STORAGE')) {
+            $f3->set('noSharingMode', true);
+        }
         echo View::instance()->render('signature.html.php');
     }
 );

@@ -211,7 +211,7 @@ $f3->route('POST /share',
         shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
 
         if(!$f3->get('DEBUG')) {
-            array_map('unlink', $svgFiles);
+            array_map('unlink', explode(' ', trim($svgFiles)));
         }
 
         $f3->reroute('/signature/'.$hash."#informations");
@@ -309,7 +309,7 @@ $f3->route('POST /signature/@hash/save',
         shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
 
         if(!$f3->get('DEBUG')) {
-            array_map('unlink', $svgFiles);
+            array_map('unlink', explode(' ', trim($svgFiles)));
         }
 
         $f3->reroute('/signature/'.$f3->get('PARAMS.hash')."#signed");

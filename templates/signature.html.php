@@ -76,29 +76,30 @@
               <div class="d-grid gap-2 mt-2">
                   <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> Créer un élément</button>
               </div>
-              <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100 d-none d-sm-none d-md-block">
+              <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                   <?php if(!isset($hash)): ?>
                   <?php if(!isset($noSharingMode)): ?>
                   <form id="form_sharing" action="/share" method="post" enctype="multipart/form-data">
                         <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                         <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
-                        <div class="d-grid gap-2 mb-1">
+                        <div class="d-grid gap-2">
                             <button class="btn btn-outline-dark w-100" type="submit" id="save_share"><i class="bi bi-share"></i> Partager pour signer <i class="bi bi-people-fill"></i> à plusieurs </button>
                         </div>
                   </form>
                 <?php endif; ?>
-                  <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
+                  <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
                         <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
                   </form>
                 <?php elseif(!isset($noSharingMode)): ?>
-                  <p id="nblayers_text" class="small d-none mb-2 opacity-50">Vous êtes <span class="badge rounded-pill bg-dark text-white"><span class="nblayers">0</span> <i class="bi bi-people-fill"></i></span> à avoir signé ce PDF</p>
-                  <div class="btn-group w-100 mb-1">
+                  <div class="d-none d-sm-none d-md-block">
+                  <p id="nblayers_text" class="small d-none mb-2 opacity-50 ">Vous êtes <span class="badge rounded-pill bg-dark text-white"><span class="nblayers">0</span> <i class="bi bi-people-fill"></i></span> à avoir signé ce PDF</p></div>
+                  <div class="btn-group w-100">
                       <a id="btn_download" class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                       <button class="btn btn-outline-dark" type="button" id="btn_share" data-bs-toggle="modal" data-bs-target="#modal-share-informations"><i class="bi bi-share"></i></button>
                   </div>
-                  <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data">
+                  <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
                         <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-cloud-upload"></i> Transmettre ma signature</button>
                   </form>
@@ -124,7 +125,11 @@
             <button id="btn-zoom-increase" class="btn btn-secondary"><i class="bi bi-plus"></i></button>
             </div>
             <div class="d-grid gap-2">
-                <button class="btn btn-primary" disabled="disabled" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
+                <?php if(isset($hash)): ?>
+                    <button class="btn btn-primary" disabled="disabled" type="submit" id="save_mobile"><i class="bi bi-cloud-upload"></i> Transmettre ma signature</button>
+                <?php else: ?>
+                    <button class="btn btn-primary" disabled="disabled" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -200,7 +205,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="mb-1"><i class="bi bi-check-circle text-success"></i> Votre signature a bien été prise en compte !</p>
+                    <p class="mb-1"><i class="bi bi-check-circle text-success"></i> Votre signature a bien été prise en compte&nbsp;!</p>
                 </div>
                 <div class="modal-footer text-center d-block">
                     <a class="btn btn-outline-dark" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>

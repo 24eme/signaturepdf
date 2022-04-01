@@ -976,6 +976,17 @@ var pageUpload = async function() {
     });
 }
 
+var printNbLayers = function(element) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', element.getAttribute('data-ajax'), true);
+    xhr.onload = function() {
+      if (xhr.status == 200) {
+          element.innerHTML = xhr.response;
+      }
+    };
+    xhr.send();
+};
+
 var pageSignature = async function(url) {
     modalSharing();
     document.getElementById('page-upload').classList.add('d-none');
@@ -1023,6 +1034,14 @@ var pageSignature = async function(url) {
     stateAddLock();
     createEventsListener();
     loadPDF(pdfBlob, filename);
+
+    let element = document.getElementById('nblayers');
+    if(element) {
+        printNbLayers(element);
+        setInterval(function() {
+            printNbLayers(element);
+        }, 10000);
+    }
 };
 
 (function () {

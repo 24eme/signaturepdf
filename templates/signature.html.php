@@ -91,6 +91,7 @@
                         <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
                   </form>
                   <?php else: ?>
+                  <p>Nombre de signataire : <span id="nblayers" data-ajax="/signature/<?php echo $hash ?>/nblayers">0</span></p>
                   <a id="btn_download" class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                   <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data">
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />

@@ -75,9 +75,9 @@ Créer le fichier `config/config.ini`
 cp config/config.ini{.example,}
 ```
 
-Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `STORAGE` avec le chemin vers lequel les fichiers pdf uploadé pourront être stockés :
+Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `PDF_STORAGE_PATH` avec le chemin vers lequel les fichiers pdf uploadé pourront être stockés :
 ```
-STORAGE=/path/to/folder/to/store/pdf
+PDF_STORAGE_PATH=/path/to/folder/to/store/pdf
 ```
 
 Créer ce dossier :

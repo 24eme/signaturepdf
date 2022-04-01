@@ -940,7 +940,9 @@ var modalSharing = function() {
         let modalInformations = bootstrap.Modal.getOrCreateInstance(modalInformationsEl);
         modalInformations.show();
         modalInformationsEl.addEventListener('hidden.bs.modal', function (event) {
-            history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
+            if(window.location.hash) {
+                history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
+            }
         })
     }
 
@@ -949,7 +951,9 @@ var modalSharing = function() {
         let modalSigned = bootstrap.Modal.getOrCreateInstance(modalSignedEl);
         modalSigned.show();
         modalSignedEl.addEventListener('hidden.bs.modal', function (event) {
-            history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
+            if(window.location.hash) {
+                history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
+            }
         })
     }
 }

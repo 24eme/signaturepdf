@@ -763,11 +763,13 @@ var createEventsListener = function() {
     if(document.getElementById('save_share')) {
         document.getElementById('save_share').addEventListener('click', function(event) {
             var dataTransfer = new DataTransfer();
-            canvasEditions.forEach(function(canvasEdition, index) {
-                dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
-                    type: 'image/svg+xml'
-                }));
-            })
+            if(!document.getElementById('save').hasAttribute('disabled')) {
+                canvasEditions.forEach(function(canvasEdition, index) {
+                    dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
+                        type: 'image/svg+xml'
+                    }));
+                })
+            }
             document.getElementById('input_svg_share').files = dataTransfer.files;
         });
     }

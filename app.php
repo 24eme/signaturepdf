@@ -208,14 +208,12 @@ $f3->route('POST /share',
             $f3->error(403);
         }
 
-        if(!$svgFiles) {
-            $f3->error(403);
+        if($svgFiles) {
+            shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
         }
 
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
-
         if(!$f3->get('DEBUG')) {
-            array_map('unlink', explode(' ', trim($svgFiles)));
+            array_map('unlink', glob($tmpfile."*.svg"));
         }
 
         $f3->reroute('/signature/'.$hash."#informations");

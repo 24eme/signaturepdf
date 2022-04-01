@@ -82,7 +82,7 @@ PDF_STORAGE_PATH=/path/to/folder/to/store/pdf
 
 Créer ce dossier :
 ```
-cp /path/to/folder/to/store/pdf
+mkdir /path/to/folder/to/store/pdf
 ```
 
 Le serveur web devra avoir les droits en écriture sur ce dossier.

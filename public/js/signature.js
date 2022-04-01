@@ -23,12 +23,19 @@ var loadPDF = async function(pdfBlob, filename) {
 
     let url = await URL.createObjectURL(pdfBlob);
 
+    text_document_name.querySelector('span').innerText = filename;
+    text_document_name.setAttribute('title', filename);
+
     let dataTransfer = new DataTransfer();
     dataTransfer.items.add(new File([pdfBlob], filename, {
         type: 'application/pdf'
     }));
-    document.getElementById('input_pdf').files = dataTransfer.files;
-
+    if(document.getElementById('input_pdf')) {
+        document.getElementById('input_pdf').files = dataTransfer.files;
+    }
+    if(document.getElementById('input_pdf_share')) {
+        document.getElementById('input_pdf_share').files = dataTransfer.files;
+    }
     var loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {
 
@@ -51,7 +58,7 @@ var loadPDF = async function(pdfBlob, filename) {
 
               var pageIndex = page.pageNumber - 1;
 
-              document.getElementById('form_pdf').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
+              document.getElementById('form_block').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
               document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
 
               var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
@@ -474,8 +481,21 @@ var addObjectInCanvas = function(canvas, item) {
 };
 
 var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
-    save.removeAttribute('disabled');
-    save_mobile.removeAttribute('disabled');
+    if(document.getElementById('save')) {
+        document.getElementById('save').removeAttribute('disabled');
+    }
+    if(document.getElementById('save_mobile')) {
+        document.getElementById('save_mobile').removeAttribute('disabled');
+    }
+    if(document.getElementById('btn_download')) {
+        document.getElementById('btn_download').classList.remove('btn-outline-dark');
+        document.getElementById('btn_download').classList.add('btn-outline-secondary');
+    }
+    if(document.getElementById('btn_share')) {
+        document.getElementById('btn_share').classList.remove('btn-outline-dark');
+        document.getElementById('btn_share').classList.add('btn-outline-secondary');
+    }
+
 
     if(!height) {
         height = 100;
@@ -728,15 +748,29 @@ var createEventsListener = function() {
         event.preventDefault();
     });
 
-    document.getElementById('save').addEventListener('click', function(event) {
-        var dataTransfer = new DataTransfer();
-        canvasEditions.forEach(function(canvasEdition, index) {
-            dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
-                type: 'image/svg+xml'
-            }));
-        })
-        document.getElementById('input_svg').files = dataTransfer.files;
-    });
+    if(document.getElementById('save')) {
+        document.getElementById('save').addEventListener('click', function(event) {
+            var dataTransfer = new DataTransfer();
+            canvasEditions.forEach(function(canvasEdition, index) {
+                dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
+                    type: 'image/svg+xml'
+                }));
+            })
+            document.getElementById('input_svg').files = dataTransfer.files;
+        });
+    }
+
+    if(document.getElementById('save_share')) {
+        document.getElementById('save_share').addEventListener('click', function(event) {
+            var dataTransfer = new DataTransfer();
+            canvasEditions.forEach(function(canvasEdition, index) {
+                dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
+                    type: 'image/svg+xml'
+                }));
+            })
+            document.getElementById('input_svg_share').files = dataTransfer.files;
+        });
+    }
 
     document.getElementById('save_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
@@ -853,6 +887,13 @@ var createEventsListener = function() {
     document.getElementById('btn-zoom-increase').addEventListener('click', function() {
         zoomChange(1)
     });
+
+    if(hash) {
+        updateNbLayers();
+        setInterval(function() {
+            updateNbLayers();
+        }, 10000);
+    }
 };
 
 var createSignaturePad = function() {
@@ -905,6 +946,30 @@ async function uploadFromUrl(url) {
     document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
 }
 
+var modalSharing = function() {
+    if(window.location.hash == '#informations') {
+        let modalInformationsEl = document.getElementById('modal-share-informations');
+        let modalInformations = bootstrap.Modal.getOrCreateInstance(modalInformationsEl);
+        modalInformations.show();
+        modalInformationsEl.addEventListener('hidden.bs.modal', function (event) {
+            if(window.location.hash) {
+                history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
+            }
+        })
+    }
+
+    if(window.location.hash == '#signed') {
+        let modalSignedEl = document.getElementById('modal-signed');
+        let modalSigned = bootstrap.Modal.getOrCreateInstance(modalSignedEl);
+        modalSigned.show();
+        modalSignedEl.addEventListener('hidden.bs.modal', function (event) {
+            if(window.location.hash) {
+                history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
+            }
+        })
+    }
+}
+
 var pageUpload = async function() {
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
@@ -912,7 +977,7 @@ var pageUpload = async function() {
     document.getElementById('input_pdf_upload').focus();
     const cache = await caches.open('pdf');
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-            if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
+        if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
 
             alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");s
             document.getElementById('input_pdf_upload').value = "";
@@ -927,9 +992,26 @@ var pageUpload = async function() {
     });
 }
 
+var updateNbLayers = function() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/signature/'+hash+'/nblayers', true);
+    xhr.onload = function() {
+      if (xhr.status == 200) {
+          let nblayers = xhr.response;
+          document.querySelectorAll('.nblayers').forEach(function(item) {
+            item.innerHTML = nblayers;
+          });
+          document.querySelector('#nblayers_text').classList.remove('d-none');
+          if(!nblayers) {
+              document.querySelector('#nblayers_text').classList.add('d-none');
+          }
+      }
+    };
+    xhr.send();
+};
+
 var pageSignature = async function(url) {
-    let filename = url.replace('/pdf/', '');
-    document.title = filename + ' - ' + document.title;
+    modalSharing();
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-signature').classList.remove('d-none');
     fabric.Textbox.prototype._wordJoiners = /[]/;
@@ -946,7 +1028,24 @@ var pageSignature = async function(url) {
         fontCaveat = font;
     });
 
-    let pdfBlob = await getPDFBlobFromCache(url);
+    let pdfBlob = null;
+    let filename = url.replace('/pdf/', '');
+
+    if(hash) {
+        var response = await fetch(url);
+        if(response.status != 200) {
+            return;
+        }
+        pdfBlob = await response.blob();
+        if(response.headers.get('Content-Disposition').match(/attachment; filename="/)) {
+            filename = response.headers.get('Content-Disposition').replace(/^[^"]*"/, "").replace(/"[^"]*$/, "");
+        }
+    } else {
+        pdfBlob = await getPDFBlobFromCache(url);
+    }
+
+    document.title = filename + ' - ' + document.title;
+
     if(!pdfBlob) {
         document.location = '/signature';
         return;
@@ -961,6 +1060,14 @@ var pageSignature = async function(url) {
 };
 
 (function () {
+    if(hash) {
+        pageSignature('/signature/'+hash+'/pdf');
+        window.addEventListener('hashchange', function() {
+            window.location.reload();
+        })
+        return;
+    }
+
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         let hashUrl = window.location.hash.replace(/^\#/, '');
         pageUpload();

@@ -2,3 +2,4 @@ package-lock.json
 package.json
 node_modules
 tests/downloads/
+config/config.ini

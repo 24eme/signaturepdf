@@ -63,6 +63,35 @@ DocumentRoot /path/to/signaturepdf/public
 </Directory>
 ```
 
+### Activation et configuration du mode partage de signature à plusieurs
+
+Ce mode permet de proposer la signature d'un pdf à plusieurs personnes mais il nécessite que les PDF soient stockés sur le serveur, il convient donc de définir un dossier qui contiendra ces PDF.
+
+Il n'est pas obligatoire d'activer ce mode pour que l'application fonctionne c'est une option.
+
+Créer le fichier `config/config.ini`
+
+```
+cp config/config.ini{.example,}
+```
+
+Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `STORAGE` avec le chemin vers lequel les fichiers pdf uploadé pourront être stockés :
+```
+STORAGE=/path/to/folder/to/store/pdf
+```
+
+Créer ce dossier :
+```
+cp /path/to/folder/to/store/pdf
+```
+
+Le serveur web devra avoir les droits en écriture sur ce dossier.
+
+Par exemple pour apache :
+```
+chown www-data /path/to/folder/to/store/pdf
+```
+
 ### Déployer avec docker
 
 #### Construction de l'image

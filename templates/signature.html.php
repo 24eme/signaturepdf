@@ -11,6 +11,11 @@
     <title>Signature PDF</title>
   </head>
   <body class="bg-light">
+    <noscript>
+        <div class="alert alert-danger text-center" role="alert">
+          <i class="bi bi-exclamation-triangle"></i> Site non fonctionnel sans JavaScript activé
+        </div>
+    </noscript>
     <div id="page-upload">
         <div class="px-4 py-5 my-5 text-center">
             <h1 class="display-5 fw-bold"><i class="bi bi-vector-pen"></i> Signer un PDF</h1>
@@ -83,7 +88,7 @@
                   <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
-                        <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
+                        <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
                   </form>
                   <?php else: ?>
                   <a id="btn_download" class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
@@ -113,7 +118,7 @@
             <button id="btn-zoom-increase" class="btn btn-secondary"><i class="bi bi-plus"></i></button>
             </div>
             <div class="d-grid gap-2">
-                <button class="btn btn-primary" disabled="disabled" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF Signé</button>
+                <button class="btn btn-primary" disabled="disabled" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
             </div>
         </div>
 
@@ -185,7 +190,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="bi bi-file-earmark-check"></i> PDF Signé</h5>
+                    <h5 class="modal-title"><i class="bi bi-file-earmark-check"></i> PDF signé</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

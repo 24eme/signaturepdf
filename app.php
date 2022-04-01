@@ -12,9 +12,8 @@ $f3->set('UI', $f3->get('ROOT')."/templates/");
 $f3->set('UPLOADS', sys_get_temp_dir()."/");
 $f3->config(__DIR__.'/config/config.ini');
 
-
-if($f3->get('STORAGE') && !preg_match('|/$|', $f3->get('STORAGE'))) {
-    $f3->set('STORAGE', $f3->get('STORAGE').'/');
+if($f3->get('PDF_STORAGE_PATH') && !preg_match('|/$|', $f3->get('PDF_STORAGE_PATH'))) {
+    $f3->set('PDF_STORAGE_PATH', $f3->get('PDF_STORAGE_PATH').'/');
 }
 
 function convertPHPSizeToBytes($sSize)
@@ -55,7 +54,7 @@ $f3->route('GET /signature',
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
-        if(!$f3->get('STORAGE')) {
+        if(!$f3->get('PDF_STORAGE_PATH')) {
             $f3->set('noSharingMode', true);
         }
         echo View::instance()->render('signature.html.php');
@@ -172,12 +171,12 @@ $f3->route('POST /sign',
 $f3->route('POST /share',
     function($f3) {
         $hash = substr(hash('sha512', uniqid().rand()), 0, 20);
-        $sharingFolder = $f3->get('STORAGE').$hash."/";
+        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash."/";
         $f3->set('UPLOADS', $sharingFolder);
-        if (!is_dir($f3->get('STORAGE'))) {
+        if (!is_dir($f3->get('PDF_STORAGE_PATH'))) {
             $f3->error(500, 'Sharing folder doesn\'t exist');
         }
-        if (!is_writable($f3->get('STORAGE'))) {
+        if (!is_writable($f3->get('PDF_STORAGE_PATH'))) {
             $f3->error(500, 'Sharing folder is not writable');
         }
         mkdir($sharingFolder);
@@ -260,7 +259,7 @@ $f3->route('POST /organize',
 
 $f3->route('GET /signature/@hash/pdf',
     function($f3) {
-        $sharingFolder = $f3->get('STORAGE').$f3->get('PARAMS.hash');
+        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$f3->get('PARAMS.hash');
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
         $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').'.pdf';
@@ -288,7 +287,7 @@ $f3->route('GET /signature/@hash/pdf',
 
 $f3->route('POST /signature/@hash/save',
     function($f3) {
-        $sharingFolder = $f3->get('STORAGE').$f3->get('PARAMS.hash').'/';
+        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$f3->get('PARAMS.hash').'/';
         $f3->set('UPLOADS', $sharingFolder);
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));
         unlink($tmpfile);
@@ -323,7 +322,7 @@ $f3->route('POST /signature/@hash/save',
 
 $f3->route('GET /signature/@hash/nblayers',
     function($f3) {
-        $files = scandir($f3->get('STORAGE').$f3->get('PARAMS.hash'));
+        $files = scandir($f3->get('PDF_STORAGE_PATH').$f3->get('PARAMS.hash'));
         $nbLayers = 0;
         foreach($files as $file) {
             if(strpos($file, 'svg.pdf') !== false) {

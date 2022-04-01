@@ -210,6 +210,7 @@ $f3->route('GET /signature/@hash/pdf',
         if (!$layers) {
             Web::instance()->send($originalFile, null, 0, TRUE, $filename);
         }
+        $filename = str_replace('.pdf', '_signe-'.count($layers).'x.pdf', $filename);
         copy($originalFile, $finalFile);
         $bufferFile =  str_replace('.pdf', '_tmp.pdf', $originalFile);
         foreach($layers as $layerFile) {

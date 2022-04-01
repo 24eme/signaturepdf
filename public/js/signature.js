@@ -1040,7 +1040,7 @@ var pageSignature = async function(url) {
         }
         pdfBlob = await response.blob();
         if(response.headers.get('Content-Disposition').match(/attachment; filename="/)) {
-            filename = response.headers.get('Content-Disposition').replace(/^[^"]*"/, "").replace(/"[^"]*$/, "");
+            filename = response.headers.get('Content-Disposition').replace(/^[^"]*"/, "").replace(/"[^"]*$/, "").replace(/_signe-[0-9]+\x.pdf/, '.pdf');
         }
     } else {
         pdfBlob = await getPDFBlobFromCache(url);

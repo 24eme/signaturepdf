@@ -77,12 +77,12 @@ cp config/config.ini{.example,}
 
 Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `PDF_STORAGE_PATH` avec le chemin vers lequel les fichiers pdf uploadé pourront être stockés :
 ```
-PDF_STORAGE_PATH=/path/to/folder/to/store/pdf
+PDF_STORAGE_PATH=/path/to/folder
 ```
 
 Créer ce dossier :
 ```
-cp /path/to/folder/to/store/pdf
+mkdir /path/to/folder
 ```
 
 Le serveur web devra avoir les droits en écriture sur ce dossier.

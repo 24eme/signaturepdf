@@ -934,6 +934,26 @@ async function uploadFromUrl(url) {
     document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
 }
 
+var modalSharing = function() {
+    if(window.location.hash == '#informations') {
+        let modalInformationsEl = document.getElementById('modal-share-informations');
+        let modalInformations = bootstrap.Modal.getOrCreateInstance(modalInformationsEl);
+        modalInformations.show();
+        modalInformationsEl.addEventListener('hidden.bs.modal', function (event) {
+            history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
+        })
+    }
+
+    if(window.location.hash == '#signed') {
+        let modalSignedEl = document.getElementById('modal-signed');
+        let modalSigned = bootstrap.Modal.getOrCreateInstance(modalSignedEl);
+        modalSigned.show();
+        modalSignedEl.addEventListener('hidden.bs.modal', function (event) {
+            history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
+        })
+    }
+}
+
 var pageUpload = async function() {
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
@@ -957,17 +977,7 @@ var pageUpload = async function() {
 }
 
 var pageSignature = async function(url) {
-
-    if(window.location.hash == '#informations') {
-        let modalInformations = new bootstrap.Modal(document.getElementById('modal-share-informations'));
-        modalInformations.show();
-    }
-
-    if(window.location.hash == '#signed') {
-        let modalSigned = new bootstrap.Modal(document.getElementById('modal-signed'));
-        modalSigned.show();
-    }
-
+    modalSharing();
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-signature').classList.remove('d-none');
     fabric.Textbox.prototype._wordJoiners = /[]/;
@@ -1018,6 +1028,9 @@ var pageSignature = async function(url) {
 (function () {
     if(hash) {
         pageSignature('/signature/'+hash+'/pdf');
+        window.addEventListener('hashchange', function() {
+            window.location.reload();
+        })
         return;
     }
 

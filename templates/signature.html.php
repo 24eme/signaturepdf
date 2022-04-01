@@ -155,7 +155,7 @@
       </div>
     </div>
     </div>
-    <?php if(isset($shareLink)): ?>
+    <?php if(isset($hash)): ?>
     <div id="modal-share-informations" class="modal" tabindex="-1">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -167,8 +167,9 @@
                     <p>Plusieurs personnes peuvent signer ce PDF en même temps sur cette page.</p>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Lien à partager</span>
-                        <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control bg-light font-monospace" value="<?php echo $shareLink ?>">
+                        <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control bg-light font-monospace" value="">
                         <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = 'Copié !';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> Copier</button>
+                        <script>document.querySelector('#input-share-link').value = document.location.href.replace(/#.*/, '');</script>
                     </div>
                     <p>C'est aussi depuis cette page qu'il est possible de télécharger le PDF signé par tout le monde.</p>
                 </div>

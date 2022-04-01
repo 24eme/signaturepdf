@@ -39,7 +39,7 @@
         <div style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <div class="offcanvas-header mb-0 pb-0">
-                <h5 class="mb-1" id="sidebarToolsLabel">Signature du PDF<?php if(isset($hash)): ?> <i class="bi bi-people-fill"></i><?php endif; ?></h5>
+                <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Signature du PDF <?php if(isset($hash)): ?><span class="small float-end"><i class="bi bi-people-fill"></i> <span class="nblayers">0</span></span><?php else: ?><span class="float-end opacity-25 small"><i class="bi bi-person-workspace"></i></span></span><?php endif; ?></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body pt-0">
@@ -81,7 +81,7 @@
                   <form id="form_sharing" action="/share" method="post" enctype="multipart/form-data">
                         <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                         <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
-                        <div class="d-grid gap-2 mt-2">
+                        <div class="d-grid gap-2 mb-1">
                             <button class="btn btn-outline-dark w-100" type="submit" id="save_share"><i class="bi bi-share"></i> Partager pour signer <i class="bi bi-people-fill"></i> à plusieurs </button>
                         </div>
                   </form>
@@ -91,8 +91,8 @@
                         <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
                   </form>
                   <?php else: ?>
-                  <p>Nombre de signataire : <span id="nblayers" data-ajax="/signature/<?php echo $hash ?>/nblayers">0</span></p>
-                  <div class="btn-group w-100">
+                  <p id="nblayers_text" class="small d-none mb-2 opacity-50">Vous êtes <span class="badge rounded-pill bg-dark text-white"><span class="nblayers">0</span> <i class="bi bi-people-fill"></i></span> à avoir signé ce PDF</p>
+                  <div class="btn-group w-100 mb-1">
                       <a id="btn_download" class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                       <button class="btn btn-outline-dark" type="button" id="btn_share" data-bs-toggle="modal" data-bs-target="#modal-share-informations"><i class="bi bi-share"></i></button>
                   </div>

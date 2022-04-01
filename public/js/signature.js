@@ -887,6 +887,13 @@ var createEventsListener = function() {
     document.getElementById('btn-zoom-increase').addEventListener('click', function() {
         zoomChange(1)
     });
+
+    if(hash) {
+        updateNbLayers();
+        setInterval(function() {
+            updateNbLayers();
+        }, 10000);
+    }
 };
 
 var createSignaturePad = function() {
@@ -985,12 +992,19 @@ var pageUpload = async function() {
     });
 }
 
-var printNbLayers = function(element) {
+var updateNbLayers = function() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', element.getAttribute('data-ajax'), true);
+    xhr.open('GET', '/signature/'+hash+'/nblayers', true);
     xhr.onload = function() {
       if (xhr.status == 200) {
-          element.innerHTML = xhr.response;
+          let nblayers = xhr.response;
+          document.querySelectorAll('.nblayers').forEach(function(item) {
+            item.innerHTML = nblayers;
+          });
+          document.querySelector('#nblayers_text').classList.remove('d-none');
+          if(!nblayers) {
+              document.querySelector('#nblayers_text').classList.add('d-none');
+          }
       }
     };
     xhr.send();
@@ -1043,14 +1057,6 @@ var pageSignature = async function(url) {
     stateAddLock();
     createEventsListener();
     loadPDF(pdfBlob, filename);
-
-    let element = document.getElementById('nblayers');
-    if(element) {
-        printNbLayers(element);
-        setInterval(function() {
-            printNbLayers(element);
-        }, 10000);
-    }
 };
 
 (function () {

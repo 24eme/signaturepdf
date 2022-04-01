@@ -488,7 +488,12 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
         document.getElementById('save_mobile').removeAttribute('disabled');
     }
     if(document.getElementById('btn_download')) {
-        document.getElementById('btn_download').classList.add('disabled');
+        document.getElementById('btn_download').classList.remove('btn-outline-dark');
+        document.getElementById('btn_download').classList.add('btn-outline-secondary');
+    }
+    if(document.getElementById('btn_share')) {
+        document.getElementById('btn_share').classList.remove('btn-outline-dark');
+        document.getElementById('btn_share').classList.add('btn-outline-secondary');
     }
 
 

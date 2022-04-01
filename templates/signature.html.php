@@ -93,7 +93,7 @@
                   <?php else: ?>
                   <div class="btn-group w-100">
                       <a id="btn_download" class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
-                      <button class="btn btn-outline-dark" type="button" id="save_share" data-bs-toggle="modal" data-bs-target="#modal-share-informations"><i class="bi bi-share"></i></button>
+                      <button class="btn btn-outline-dark" type="button" id="btn_share" data-bs-toggle="modal" data-bs-target="#modal-share-informations"><i class="bi bi-share"></i></button>
                   </div>
                   <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data">
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />

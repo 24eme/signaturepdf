@@ -38,6 +38,7 @@
         </div>
         <div style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
+            <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/signature"></a>
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Signature du PDF <?php if(isset($hash)): ?><span class="float-end small me-2" title="Ce PDF est partagé avec d'autres personnes pour être signé à plusieurs"><span class="nblayers"></span> <i class="bi bi-people-fill"></i></span><?php else: ?><span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi bi-person-workspace"></i></span><?php endif; ?></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>

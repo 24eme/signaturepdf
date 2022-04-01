@@ -170,7 +170,7 @@
                         <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control bg-light font-monospace" value="<?php echo $shareLink ?>">
                         <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = 'Copié !';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> Copier</button>
                     </div>
-                    <p>C'est aussi depuis cette page qu'il est possible de télécharger le PDF signé par tous le monde.</p>
+                    <p>C'est aussi depuis cette page qu'il est possible de télécharger le PDF signé par tout le monde.</p>
                 </div>
                 <div class="modal-footer text-start">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>

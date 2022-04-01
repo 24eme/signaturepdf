@@ -16,34 +16,6 @@ if($f3->get('PDF_STORAGE_PATH') && !preg_match('|/$|', $f3->get('PDF_STORAGE_PAT
     $f3->set('PDF_STORAGE_PATH', $f3->get('PDF_STORAGE_PATH').'/');
 }
 
-function convertPHPSizeToBytes($sSize)
-{
-    //
-    $sSuffix = strtoupper(substr($sSize, -1));
-    if (!in_array($sSuffix,array('P','T','G','M','K'))){
-        return (int)$sSize;
-    }
-    $iValue = substr($sSize, 0, -1);
-    switch ($sSuffix) {
-        case 'P':
-            $iValue *= 1024;
-            // Fallthrough intended
-        case 'T':
-            $iValue *= 1024;
-            // Fallthrough intended
-        case 'G':
-            $iValue *= 1024;
-            // Fallthrough intended
-        case 'M':
-            $iValue *= 1024;
-            // Fallthrough intended
-        case 'K':
-            $iValue *= 1024;
-            break;
-    }
-    return (int)$iValue;
-}
-
 $f3->route('GET /',
     function($f3) {
         $f3->reroute('/signature');
@@ -71,13 +43,6 @@ $f3->route('GET /signature/@hash',
     }
 );
 
-$f3->route('GET /organization',
-    function($f3) {
-        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
-
-        echo View::instance()->render('organization.html.php');
-    }
-);
 $f3->route('POST /image2svg',
     function($f3) {
         $files = Web::instance()->receive(function($file,$formFieldName){
@@ -221,40 +186,6 @@ $f3->route('POST /share',
 
 );
 
-$f3->route('POST /organize',
-    function($f3) {
-        $filename = null;
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
-        unlink($tmpfile);
-        $pages = explode(',', $f3->get('POST.pages'));
-
-        $files = Web::instance()->receive(function($file,$formFieldName){
-            if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
-                $f3->error(403);
-            }
-            return true;
-        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$filename, $pages) {
-            if($formFieldName == "pdf") {
-                $filename = str_replace(".pdf", "_page_".implode("-", $pages).".pdf", $fileBaseName);
-                return basename($tmpfile).".pdf";
-            }
-	    });
-
-        if(!is_file($tmpfile.".pdf")) {
-            $f3->error(403);
-        }
-
-        shell_exec(sprintf("pdftk %s cat %s output %s", $tmpfile.".pdf", implode(" ", $pages), $tmpfile.'_organize.pdf'));
-
-        Web::instance()->send($tmpfile."_organize.pdf", null, 0, TRUE, $filename);
-
-        if($f3->get('DEBUG')) {
-            return;
-        }
-        array_map('unlink', glob($tmpfile."*"));
-    }
-);
-
 $f3->route('GET /signature/@hash/pdf',
     function($f3) {
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$f3->get('PARAMS.hash');
@@ -330,5 +261,64 @@ $f3->route('GET /signature/@hash/nblayers',
         echo $nbLayers;
     }
 );
+
+$f3->route('GET /organization',
+    function($f3) {
+        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+
+        echo View::instance()->render('organization.html.php');
+    }
+);
+
+$f3->route('POST /organize',
+    function($f3) {
+        $filename = null;
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
+        unlink($tmpfile);
+        $pages = explode(',', $f3->get('POST.pages'));
+
+        $files = Web::instance()->receive(function($file,$formFieldName){
+            if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+            return true;
+        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$filename, $pages) {
+            if($formFieldName == "pdf") {
+                $filename = str_replace(".pdf", "_page_".implode("-", $pages).".pdf", $fileBaseName);
+                return basename($tmpfile).".pdf";
+            }
+	    });
+
+        if(!is_file($tmpfile.".pdf")) {
+            $f3->error(403);
+        }
+
+        shell_exec(sprintf("pdftk %s cat %s output %s", $tmpfile.".pdf", implode(" ", $pages), $tmpfile.'_organize.pdf'));
+
+        Web::instance()->send($tmpfile."_organize.pdf", null, 0, TRUE, $filename);
+
+        if($f3->get('DEBUG')) {
+            return;
+        }
+        array_map('unlink', glob($tmpfile."*"));
+    }
+);
+
+function convertPHPSizeToBytes($sSize)
+{
+    $sSuffix = strtoupper(substr($sSize, -1));
+    if (!in_array($sSuffix,array('P','T','G','M','K'))){
+        return (int)$sSize;
+    }
+    $iValue = substr($sSize, 0, -1);
+    switch ($sSuffix) {
+        case 'P': $iValue *= 1024;
+        case 'T': $iValue *= 1024;
+        case 'G': $iValue *= 1024;
+        case 'M': $iValue *= 1024;
+        case 'K': $iValue *= 1024; break;
+    }
+    return (int)$iValue;
+}
 
 return $f3;

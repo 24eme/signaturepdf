@@ -205,10 +205,11 @@ $f3->route('GET /signature/@hash/pdf',
         if (!$layers) {
             Web::instance()->send($originalFile, null, 0, TRUE, $filename);
         }
+        copy($originalFile, $finalFile);
         $bufferFile =  str_replace('.pdf', '_tmp.pdf', $originalFile);
-        shell_exec(sprintf("cp %s %s", $originalFile, $finalFile));
-        foreach($layers as $layer) {
-            shell_exec(sprintf("pdftk %1\$s multistamp %2\$s output %3\$s && mv %3\$s %1\$s", $finalFile, $layer, $bufferFile));
+        foreach($layers as $layerFile) {
+            shell_exec(sprintf("pdftk %s multistamp %s output %s", $finalFile, $layerFile, $bufferFile));
+            rename($bufferFile, $finalFile);
         }
         Web::instance()->send($finalFile, null, 0, TRUE, $filename);
     }

@@ -313,4 +313,17 @@ $f3->route('POST /signature/@hash/save',
     }
 );
 
+$f3->route('GET /signature/@hash/nblayers',
+    function($f3) {
+        $files = scandir($f3->get('STORAGE').$f3->get('PARAMS.hash'));
+        $nbLayers = 0;
+        foreach($files as $file) {
+            if(strpos($file, 'svg.pdf') !== false) {
+                $nbLayers++;
+            }
+        }
+        echo $nbLayers;
+    }
+);
+
 return $f3;

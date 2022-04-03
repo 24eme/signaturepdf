@@ -280,34 +280,40 @@ $f3->route('GET /organization',
 
 $f3->route('POST /organize',
     function($f3) {
-        $filename = null;
+        $filenames = array();
         $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
         unlink($tmpfile);
-        $pages = explode(',', $f3->get('POST.pages'));
+        $pages = explode(',', preg_replace('/[^A-Z0-9,]+/', '', $f3->get('POST.pages')));
 
         $files = Web::instance()->receive(function($file,$formFieldName){
-            if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+            if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);
             }
+
             return true;
-        }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$filename, $pages) {
-            if($formFieldName == "pdf") {
-                $filename = str_replace(".pdf", "_page_".implode("-", $pages).".pdf", $fileBaseName);
-                return basename($tmpfile).".pdf";
-            }
+        }, false, function($fileBaseName, $formFieldName) use ($tmpfile, &$filenames) {
+            $filenames[] = str_replace('.pdf', '', $fileBaseName);
+
+            return basename($tmpfile).uniqid().".pdf";
 	    });
 
-        if(!is_file($tmpfile.".pdf")) {
+        if(!count($files)) {
             $f3->error(403);
         }
 
-        shell_exec(sprintf("pdftk %s cat %s output %s", $tmpfile.".pdf", implode(" ", $pages), $tmpfile.'_organize.pdf'));
+        $pdfs = array();
+        foreach(array_keys($files) as $i => $file) {
+            $pdfs[] = chr(65 + $i)."=".$file;
+        }
 
-        Web::instance()->send($tmpfile."_organize.pdf", null, 0, TRUE, $filename);
+        shell_exec(sprintf("pdftk %s cat %s output %s", implode(" ", $pdfs), implode(" ", $pages), $tmpfile.'_final.pdf'));
+
+        Web::instance()->send($tmpfile."_final.pdf", null, 0, TRUE, implode('_', $filenames));
 
         if($f3->get('DEBUG')) {
             return;
         }
+
         array_map('unlink', glob($tmpfile."*"));
     }
 );

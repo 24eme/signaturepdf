@@ -39,7 +39,7 @@
         </div>
         <div id="container-bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-lg">
             <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
-                <input id="input_pdf" name="pdf" type="file" class="d-none" />
+                <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                 <input id="input_pages" type="hidden" value="" name="pages" />
                 <div class="row">
                     <div class="col-3 d-none d-sm-none d-md-block">

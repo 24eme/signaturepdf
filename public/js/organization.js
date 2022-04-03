@@ -14,13 +14,16 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     let url = await URL.createObjectURL(pdfBlob);
 
     let dataTransfer = new DataTransfer();
-    for (var i = 0; i < document.getElementById('input_pdf').files.length; i++) {
+    let i = 0;
+    for (i = 0; i < document.getElementById('input_pdf').files.length; i++) {
         dataTransfer.items.add(document.getElementById('input_pdf').files[i]);
     }
     dataTransfer.items.add(new File([pdfBlob], filename, {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf').files = dataTransfer.files;
+
+    let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
 
     let loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {
@@ -30,9 +33,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 let scale = (document.getElementById('container-pages').clientWidth - (12*nbPagePerLine) - 12) / viewport.width / nbPagePerLine;
                 viewport = page.getViewport({scale: scale});
 
-                var pageIndex = page.pageNumber - 1;
+                let pageIndex = page.pageNumber - 1;
 
-                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-1 mb-0 d-inline-block canvas-container" id="canvas-container-' + pdfIndex + "_" + pageIndex +'" draggable="true"><canvas class="shadow-sm canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 7px; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+page.pageNumber+'"" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 7px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p></div>');
+                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-1 mb-0 d-inline-block canvas-container" id="canvas-container-' + pdfIndex + "_" + pageIndex +'" draggable="true"><canvas class="shadow-sm canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 7px; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 7px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p></div>');
 
                 let canvasContainer = document.getElementById('canvas-container-' + pdfIndex + "_" + pageIndex);
                 canvasContainer.addEventListener('dragstart', function(e) {

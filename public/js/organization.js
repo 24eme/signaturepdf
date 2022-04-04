@@ -9,6 +9,7 @@ if(is_mobile()) {
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 var nbPDF = 0;
+var pages = [];
 
 var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     let url = await URL.createObjectURL(pdfBlob);
@@ -29,15 +30,12 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     loadingTask.promise.then(function(pdf) {
         for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
             pdf.getPage(pageNumber).then(function(page) {
-                let viewport = page.getViewport({scale: 1});
-                let scale = (document.getElementById('container-pages').clientWidth - (12*nbPagePerLine) - 12) / viewport.width / nbPagePerLine;
-                viewport = page.getViewport({scale: scale});
+                let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
+                pages[pageIndex] = page;
 
-                let pageIndex = page.pageNumber - 1;
+                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-1 mb-0 d-inline-block canvas-container" id="canvas-container-' + pageIndex +'" draggable="true"><canvas class="shadow-sm canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle container-rotate btn-rotate"><i class="bi bi-arrow-clockwise"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 7px; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 7px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p><input type="hidden" value="0" id="input_rotate_'+pageIndex+'" /></div>');
 
-                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-1 mb-0 d-inline-block canvas-container" id="canvas-container-' + pdfIndex + "_" + pageIndex +'" draggable="true"><canvas class="shadow-sm canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 7px; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 7px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p></div>');
-
-                let canvasContainer = document.getElementById('canvas-container-' + pdfIndex + "_" + pageIndex);
+                let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('dragstart', function(e) {
                     this.querySelector('.container-checkbox').classList.add('d-none');
                     this.querySelector('.container-resize').classList.add('d-none');
@@ -76,32 +74,43 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     stateCheckbox(this);
                     stateCheckboxAll();
                 });
-                canvasContainer.addEventListener('click', function(e) {
+                canvasContainer.querySelector('.container-checkbox').addEventListener('click', function(e) {
                     let checkbox = this.querySelector('input[type=checkbox]');
                     checkbox.checked = !checkbox.checked;
                     stateCheckbox(checkbox);
                     stateCheckboxAll();
                 });
+                canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
+                    console.log(document.querySelector('#input_rotate_'+pageIndex));
+                    pageRender(pageIndex, parseInt(document.querySelector('#input_rotate_'+pageIndex).value) + 90);
+                })
 
-                var canvasPDF = canvasContainer.querySelector('.canvas-pdf');
-
-                // Prepare canvas using PDF page dimensions
-                var context = canvasPDF.getContext('2d');
-                canvasPDF.height = viewport.height;
-                canvasPDF.width = viewport.width;
-
-                var renderContext = {
-                canvasContext: context,
-                viewport: viewport,
-                enhanceTextSelection: true
-                };
-                page.render(renderContext);
+                pageRender(pageIndex);
             });
         }
     }, function (reason) {
         console.error(reason);
     });
 };
+
+var pageRender = function(pageIndex, rotation = 0) {
+  let page = pages[pageIndex];
+  let viewport = page.getViewport({scale: 1, rotation: rotation});
+  let scale = (document.getElementById('container-pages').clientWidth - (12*nbPagePerLine) - 12) / viewport.width / nbPagePerLine;
+  viewport = page.getViewport({scale: scale, rotation: rotation});
+  let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
+  let canvasPDF = canvasContainer.querySelector('.canvas-pdf');
+  let context = canvasPDF.getContext('2d');
+  document.querySelector('#input_rotate_'+pageIndex).value = rotation;
+  canvasPDF.height = viewport.height;
+  canvasPDF.width = viewport.width;
+
+  page.render({
+  canvasContext: context,
+  viewport: viewport,
+  enhanceTextSelection: true
+  });
+}
 
 var stateCheckbox = function(checkbox) {
     let checkboxContainer = checkbox.parentNode.parentNode.parentNode;

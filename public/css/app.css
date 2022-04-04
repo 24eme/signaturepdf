@@ -34,13 +34,17 @@
     max-height: 200px;
 }
 
-.canvas-container .btn-drag {
+.canvas-container .btn-drag, .canvas-container .btn-rotate {
     font-size: 30px;
     cursor: move;
     background: rgb(255,255,255,0.6);
     opacity: 0;
 }
 
-.canvas-container:hover .btn-drag {
+.canvas-container .btn-rotate {
+    cursor: pointer;
+}
+
+.canvas-container:hover .btn-drag, .canvas-container:hover .btn-rotate {
     opacity: 1;
 }

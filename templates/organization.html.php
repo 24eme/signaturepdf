@@ -35,7 +35,7 @@
         </footer>
     </div>
     <div id="page-organization" class="d-none">
-        <div id="container-pages" class="col-12 pt-1 vh-100" style="padding-bottom: 60px;">
+        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex flex-wrap" style="padding-bottom: 60px;">
         </div>
         <div id="container-bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-lg">
             <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">

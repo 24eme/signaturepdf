@@ -81,8 +81,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     stateCheckboxAll();
                 });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
-                    console.log(document.querySelector('#input_rotate_'+pageIndex));
-                    pageRender(pageIndex, parseInt(document.querySelector('#input_rotate_'+pageIndex).value) + 90);
+                    let inputRotate = document.querySelector('#input_rotate_'+pageIndex);
+                    inputRotate.value = parseInt(inputRotate.value) + 90;
+                    pageRender(pageIndex);
                 })
 
                 pageRender(pageIndex);
@@ -93,8 +94,15 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     });
 };
 
-var pageRender = function(pageIndex, rotation = 0) {
+var pageRenderAll = function() {
+    for(pageIndex in pages) {
+        pageRender(pageIndex);
+    }
+}
+
+var pageRender = function(pageIndex) {
   let page = pages[pageIndex];
+  let rotation = parseInt(document.querySelector('#input_rotate_'+pageIndex).value);
   let viewport = page.getViewport({scale: 1, rotation: rotation});
   let size =  (document.getElementById('container-pages').offsetWidth - (12*nbPagePerLine) - 12) / nbPagePerLine;
   let scaleWidth = size / viewport.width;
@@ -113,7 +121,6 @@ var pageRender = function(pageIndex, rotation = 0) {
   canvasContainer.style.width = (size + 4) + "px";
   let canvasPDF = canvasContainer.querySelector('.canvas-pdf');
   let context = canvasPDF.getContext('2d');
-  document.querySelector('#input_rotate_'+pageIndex).value = rotation;
   canvasPDF.height = viewport.height;
   canvasPDF.width = viewport.width;
 
@@ -176,6 +183,14 @@ var createEventsListener = function() {
         nbPDF++;
         loadPDF(pdfBlob, filename, nbPDF);
         this.value = '';
+    });
+    document.getElementById('btn-zoom-decrease').addEventListener('click', function(event) {
+        nbPagePerLine++;
+        pageRenderAll();
+    });
+    document.getElementById('btn-zoom-increase').addEventListener('click', function(event) {
+        nbPagePerLine--;
+        pageRenderAll();
     });
 }
 

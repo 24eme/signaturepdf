@@ -35,7 +35,7 @@
         </footer>
     </div>
     <div id="page-organization" class="d-none">
-        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex flex-wrap" style="padding-bottom: 60px;">
+        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap" style="padding-bottom: 60px;">
         </div>
         <div id="container-bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-lg">
             <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
@@ -51,13 +51,10 @@
                     <div class="col-2 d-none d-sm-none d-md-block">
                     </div>
                     <div class="col-1 d-none d-sm-none d-md-block">
-                        <select class="form-select">
-                            <option>3 pages</option>
-                            <option>4 pages</option>
-                            <option selected>5 pages</option>
-                            <option>8 pages</option>
-                            <option>10 pages</option>
-                        </select>
+                        <div class="btn-group">
+                            <button id="btn-zoom-decrease" type="button" class="btn btn-outline-dark"><i class="bi bi-dash"></i></button>
+                            <button id="btn-zoom-increase" type="button" class="btn btn-outline-dark"><i class="bi bi-plus"></i></button>
+                        </div>
                     </div>
                     <div class="col-2 d-none d-sm-none d-md-block">
                     </div>

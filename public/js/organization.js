@@ -33,7 +33,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
                 pages[pageIndex] = page;
 
-                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-1 mb-2 canvas-container shadow-sm d-flex align-items-center justify-content-center bg-white" id="canvas-container-' + pageIndex +'" draggable="true"><canvas class="canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle container-rotate btn-rotate"><i class="bi bi-arrow-clockwise"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 0; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p><input type="hidden" value="0" id="input_rotate_'+pageIndex+'" /></div>');
+                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container shadow-sm d-flex align-items-center justify-content-center bg-white" id="canvas-container-' + pageIndex +'" draggable="true"><canvas class="canvas-pdf" style="border: 2px solid transparent;"></canvas><div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div><div class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle container-rotate btn-rotate"><i class="bi bi-arrow-clockwise"></i></div><div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div><p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 0; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p><input type="hidden" value="0" id="input_rotate_'+pageIndex+'" /></div>');
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('dragstart', function(e) {
@@ -104,7 +104,7 @@ var pageRender = function(pageIndex) {
   let page = pages[pageIndex];
   let rotation = parseInt(document.querySelector('#input_rotate_'+pageIndex).value);
   let viewport = page.getViewport({scale: 1, rotation: rotation});
-  let size =  (document.getElementById('container-pages').offsetWidth - (12*nbPagePerLine) - 12) / nbPagePerLine;
+  let size =  Math.floor((document.getElementById('container-pages').offsetWidth - (8*(nbPagePerLine+1)) - 12) / nbPagePerLine);
   let scaleWidth = size / viewport.width;
   let scaleHeight = size / viewport.height;
   let viewportWidth = page.getViewport({scale: scaleWidth, rotation: rotation});
@@ -137,11 +137,13 @@ var stateCheckbox = function(checkbox) {
         checkboxContainer.querySelector('.canvas-pdf').style.opacity = '1';
         checkboxContainer.querySelector('.canvas-pdf').style.cursor = 'inherit';
         checkboxContainer.querySelector('.container-resize').classList.remove('d-none');
+        checkboxContainer.querySelector('.container-rotate').classList.remove('d-none');
         checkboxContainer.querySelector('.container-checkbox').style.background = 'rgb(255,255,255,0.8)';
     } else {
         checkboxContainer.querySelector('.canvas-pdf').style.opacity = '0.3';
         checkboxContainer.querySelector('.canvas-pdf').style.cursor = 'pointer';
         checkboxContainer.querySelector('.container-resize').classList.add('d-none');
+        checkboxContainer.querySelector('.container-rotate').classList.add('d-none');
         checkboxContainer.querySelector('.container-checkbox').style.background = 'transparent';
     }
 };

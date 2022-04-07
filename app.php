@@ -283,7 +283,7 @@ $f3->route('POST /organize',
         $filenames = array();
         $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
         unlink($tmpfile);
-        $pages = explode(',', preg_replace('/[^A-Z0-9,]+/', '', $f3->get('POST.pages')));
+        $pages = explode(',', preg_replace('/[^A-Z0-9a-z,]+/', '', $f3->get('POST.pages')));
 
         $files = Web::instance()->receive(function($file,$formFieldName){
             if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {

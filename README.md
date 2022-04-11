@@ -75,7 +75,7 @@ Créer le fichier `config/config.ini`
 cp config/config.ini{.example,}
 ```
 
-Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `PDF_STORAGE_PATH` avec le chemin vers lequel les fichiers pdf uploadé pourront être stockés :
+Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `PDF_STORAGE_PATH` avec le chemin vers lequel les fichiers pdf uploadés pourront être stockés :
 ```
 PDF_STORAGE_PATH=/path/to/folder
 ```
@@ -118,9 +118,10 @@ Les variables suivantes permettent de configurer le déployement :
 |`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48M|24M|
 |`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48M|24M|
 |`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
+|`PDF_STORAGE_PATH`|chemin vers lequel les fichiers pdf uploadés pourront être stockés|/data||
 
 ```bash
-docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 signaturepdf
+docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
 ````
 
 ## Tests

@@ -80,14 +80,8 @@
               <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                   <?php if(!isset($hash)): ?>
                   <?php if(!isset($noSharingMode)): ?>
-                  <form id="form_sharing" action="/share" method="post" enctype="multipart/form-data">
-                        <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
-                        <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-outline-dark w-100" type="submit" id="save_share"><i class="bi bi-share"></i> Partager pour signer <i class="bi bi-people-fill"></i> à plusieurs </button>
-                        </div>
-                  </form>
-                <?php endif; ?>
+                    <button class="btn btn-outline-dark w-100" type="button" data-bs-toggle="modal" data-bs-target="#modal-start-share"><i class="bi bi-share"></i> Partager pour signer <i class="bi bi-people-fill"></i> à plusieurs</button>
+                  <?php endif; ?>
                   <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
@@ -160,7 +154,7 @@
                         <form id="form-image-upload" action="/image2svg" method="POST" enctype="multipart/form-data">
                         <input id="input-image-upload" class="form-control" name="image" type="file">
                         </form>
-                </div>
+                    </div>
                 </div>
                 <input id="input-svg-type" type="hidden" />
           </div>
@@ -172,6 +166,29 @@
       </div>
     </div>
     </div>
+    <?php if(!isset($hash) && !isset($noSharingMode)): ?>
+    <div id="modal-start-share" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-share"></i> Partager ce PDF pour le signer à plusieurs </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>En activant le partage de ce PDF vous allez pouvoir proposer un lien aux personnes de votre choix pour qu'elles puissent signer ce PDF.</p>
+                    <p><i class="bi bi-hdd-network"></i> Ce partage nécessite que le PDF soit transféré et stocké sur le serveur afin qu'il soit accessible aux autres futurs signataires.</p>
+                </div>
+                <div class="modal-footer text-center d-block">
+                    <form id="form_sharing" clas action="/share" method="post" enctype="multipart/form-data">
+                          <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
+                          <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
+                          <button  class="btn btn-primary w-50" type="submit" id="save_share"><i class="bi bi-cloud-upload"></i> Démarrer le partage</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
     <?php if(isset($hash)): ?>
     <div id="modal-share-informations" class="modal" tabindex="-1">
         <div class="modal-dialog modal-md">

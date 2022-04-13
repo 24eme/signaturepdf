@@ -19,11 +19,11 @@
     <div id="page-upload">
         <div class="px-4 py-5 my-5 text-center">
             <h1 class="display-5 fw-bold"><i class="bi bi-vector-pen"></i> Signer un PDF</h1>
-            <div class="col-lg-3 mx-auto">
+            <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
                   <label class="form-label mt-2" for="input_pdf_upload">Choisir un PDF <small class="opacity-75" title="Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo et <?php echo $maxPage ?> pages"><i class="bi bi-info-circle"></i></small></label>
                   <input id="input_pdf_upload" placeholder="Choisir un PDF" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
-                  <p class="mt-3 small text-muted opacity-75">Le PDF transitera sur le serveur au moment du traitement final durant 1 à 2 secondes, il ne sera pas conservé ni stocké.</p>
+                  <p class="mt-2 small text-muted opacity-75">Le PDF sera traité par le serveur sans être conservé ni stocké</p>
                   <a class="btn btn-sm btn-link opacity-75" href="/signature#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">Tester avec un PDF de démo</a>
                 </div>
             </div>

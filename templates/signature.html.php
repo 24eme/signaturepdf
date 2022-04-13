@@ -174,13 +174,13 @@
                 </div>
                 <div class="modal-body">
                     <p>En activant le partage de ce PDF vous allez pouvoir proposer un lien aux personnes de votre choix pour qu'elles puissent signer ce PDF.</p>
-                    <p><i class="bi bi-hdd-network"></i> Ce partage nécessite que le PDF soit transféré et stocké sur le serveur afin qu'il soit accessible aux autres futurs signataires.</p>
+                    <p><i class="bi bi-hdd-network"></i> Ce partage nécessite que le PDF soit transféré et stocké sur le serveur afin d'être accessible aux futurs signataires.</p>
                 </div>
                 <div class="modal-footer text-center d-block">
                     <form id="form_sharing" clas action="/share" method="post" enctype="multipart/form-data">
                           <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                           <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
-                          <button  class="btn btn-primary w-50" type="submit" id="save_share"><i class="bi bi-cloud-upload"></i> Démarrer le partage</button>
+                          <button  class="btn col-9 col-md-6 btn-primary" type="submit" id="save_share"><i class="bi bi-cloud-upload"></i> Démarrer le partage</button>
                     </form>
                 </div>
             </div>

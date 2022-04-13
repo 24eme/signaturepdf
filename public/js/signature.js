@@ -901,7 +901,7 @@ var createEventsListener = function() {
 var createSignaturePad = function() {
     signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         penColor: 'rgb(0, 0, 0)',
-        minWidth: 0.75,
+        minWidth: 1,
         maxWidth: 2,
         onEnd: function() {
             const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {

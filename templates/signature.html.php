@@ -10,7 +10,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <title>Signature PDF</title>
   </head>
-  <body class="bg-light">
+  <body>
     <noscript>
         <div class="alert alert-danger text-center" role="alert">
           <i class="bi bi-exclamation-triangle"></i> Site non fonctionnel sans JavaScript activé

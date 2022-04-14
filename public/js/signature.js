@@ -967,6 +967,7 @@ var modalSharing = function() {
 }
 
 var pageUpload = async function() {
+    document.querySelector('body').classList.remove('bg-light');
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-signature').classList.add('d-none');
@@ -1007,6 +1008,7 @@ var updateNbLayers = function() {
 };
 
 var pageSignature = async function(url) {
+    document.querySelector('body').classList.add('bg-light');
     modalSharing();
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-signature').classList.remove('d-none');

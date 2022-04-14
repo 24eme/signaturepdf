@@ -63,6 +63,14 @@ DocumentRoot /path/to/signaturepdf/public
 </Directory>
 ```
 
+### Mise à jour vers la dernière version
+
+La dernière version stable est sur la branche `master`, pour la mise à jour il suffit de récupérer les dernières modifications :
+
+```
+git pull -r
+```
+
 ### Activation et configuration du mode partage de signature à plusieurs
 
 Ce mode permet de proposer la signature d'un pdf à plusieurs personnes mais il nécessite que les PDF soient stockés sur le serveur, il convient donc de définir un dossier qui contiendra ces PDF.

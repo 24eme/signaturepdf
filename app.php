@@ -196,7 +196,7 @@ $f3->route('GET /signature/@hash/pdf',
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
-        $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').'.pdf';
+        $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').uniqid().'.pdf';
         $filename = $f3->get('PARAMS.hash').'.pdf';
         if(file_exists($sharingFolder."/filename.txt")) {
             $filename = file_get_contents($sharingFolder."/filename.txt");
@@ -212,12 +212,17 @@ $f3->route('GET /signature/@hash/pdf',
         }
         $filename = str_replace('.pdf', '_signe-'.count($layers).'x.pdf', $filename);
         copy($originalFile, $finalFile);
-        $bufferFile =  str_replace('.pdf', '_tmp.pdf', $originalFile);
+        $bufferFile =  $finalFile.".tmp";
         foreach($layers as $layerFile) {
             shell_exec(sprintf("pdftk %s multistamp %s output %s", $finalFile, $layerFile, $bufferFile));
             rename($bufferFile, $finalFile);
         }
         Web::instance()->send($finalFile, null, 0, TRUE, $filename);
+
+        if($f3->get('DEBUG')) {
+            return;
+        }
+        array_map('unlink', glob($finalFile."*"));
     }
 );
 

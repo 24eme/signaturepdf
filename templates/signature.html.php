@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fr_FR">
+<html lang="fr">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="description" content="Logiciel libre de signature de PDF en ligne">
     <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
     <link href="/vendor/bootstrap-icons.css?1.8.1" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">

@@ -16,9 +16,10 @@ var menu = null;
 var menuOffcanvas = null;
 var currentCursor = null;
 var signaturePad = null;
+var nblayers = null;
 
 var loadPDF = async function(pdfBlob, filename) {
-    let pdfjsLib = window['pdfjs-dist/build/pdf'];
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
     pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 
     let url = await URL.createObjectURL(pdfBlob);
@@ -37,7 +38,7 @@ var loadPDF = async function(pdfBlob, filename) {
     if(document.getElementById('input_pdf_share')) {
         document.getElementById('input_pdf_share').files = dataTransfer.files;
     }
-    var loadingTask = pdfjsLib.getDocument(url);
+    let loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {
 
         if(pdf.numPages > maxPage) {
@@ -155,6 +156,23 @@ var loadPDF = async function(pdfBlob, filename) {
         console.error(reason);
     });
 };
+
+var reloadPDF = async function(url) {
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
+
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
+        for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
+            pdf.getPage(pageNumber).then(function(page) {
+                page.render({
+                  canvasContext: document.getElementById('canvas-pdf-' + (page.pageNumber - 1)).getContext('2d'),
+                  viewport: page.getViewport({scale: currentScale}),
+                  enhanceTextSelection: true
+                });
+            });
+        }
+    });
+}
 
 var is_mobile = function() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
@@ -994,7 +1012,11 @@ var updateNbLayers = function() {
     xhr.open('GET', '/signature/'+hash+'/nblayers', true);
     xhr.onload = function() {
       if (xhr.status == 200) {
-          let nblayers = xhr.response;
+          let newNblayers = xhr.response;
+          if(nblayers !== null && nblayers != newNblayers) {
+              reloadPDF('/signature/'+hash+'/pdf');
+          }
+          nblayers = newNblayers;
           document.querySelectorAll('.nblayers').forEach(function(item) {
             item.innerHTML = nblayers;
           });

@@ -247,6 +247,6 @@
     hash = "<?php echo $hash ?>";
     <?php endif; ?>
     </script>
-    <script src="/js/signature.js?202204141030"></script>
+    <script src="/js/signature.js?202204150047"></script>
   </body>
 </html>

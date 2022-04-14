@@ -18,11 +18,12 @@ var currentCursor = null;
 var signaturePad = null;
 
 var loadPDF = async function(pdfBlob, filename) {
-    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    let pdfjsLib = window['pdfjs-dist/build/pdf'];
     pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 
     let url = await URL.createObjectURL(pdfBlob);
 
+    let text_document_name = document.querySelector('#text_document_name');
     text_document_name.querySelector('span').innerText = filename;
     text_document_name.setAttribute('title', filename);
 
@@ -44,10 +45,10 @@ var loadPDF = async function(pdfBlob, filename) {
             document.location = "/";
             return;
         }
-        for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
+        for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
             pdf.getPage(pageNumber).then(function(page) {
-              var scale = 1.5;
-              var viewport = page.getViewport({scale: scale});
+              let scale = 1.5;
+              let viewport = page.getViewport({scale: scale});
               if(viewport.width > document.getElementById('container-pages').clientWidth - 40) {
                   viewport = page.getViewport({scale: 1});
                   scale = (document.getElementById('container-pages').clientWidth - 40) / viewport.width;
@@ -56,29 +57,29 @@ var loadPDF = async function(pdfBlob, filename) {
 
               currentScale = scale;
 
-              var pageIndex = page.pageNumber - 1;
+              let pageIndex = page.pageNumber - 1;
 
               document.getElementById('form_block').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
               document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
 
-              var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
-              var canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
+              let canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
+              let canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
               // Prepare canvas using PDF page dimensions
-              var context = canvasPDF.getContext('2d');
+              let context = canvasPDF.getContext('2d');
               canvasPDF.height = viewport.height;
               canvasPDF.width = viewport.width;
               canvasEditionHTML.height = canvasPDF.height;
               canvasEditionHTML.width = canvasPDF.width;
 
-              var renderContext = {
+              let renderContext = {
                 canvasContext: context,
                 viewport: viewport,
                 enhanceTextSelection: true
               };
-              var renderTask = page.render(renderContext);
+              let renderTask = page.render(renderContext);
               pdfRenderTasks.push(renderTask);
               pdfPages.push(page);
-              var canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {
+              let canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {
                 selection : false,
                 allowTouchScrolling: true
               });
@@ -180,7 +181,7 @@ var storeCollections = function () {
 
 var getSvgItem = function(svg) {
     for (index in svgCollections) {
-        svgItem = svgCollections[index];
+        let svgItem = svgCollections[index];
         if(svgItem.svg == svg) {
 
             return svgItem;
@@ -242,7 +243,7 @@ var svgChange = function(input, event) {
 
     stateAddLock(false);
 
-    var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+    let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
     if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text") {
         input_selected = null;
@@ -269,7 +270,7 @@ var svgChange = function(input, event) {
 };
 
 var getHtmlSvg = function(svg, i) {
-    var inputRadio = document.createElement('input');
+    let inputRadio = document.createElement('input');
     inputRadio.type = "radio";
     inputRadio.classList.add("btn-check");
     inputRadio.id="radio_svg_"+i;
@@ -279,7 +280,7 @@ var getHtmlSvg = function(svg, i) {
     inputRadio.addEventListener('change', function() {
         svgChange(this, event);
     });
-    var svgButton = document.createElement('label');
+    let svgButton = document.createElement('label');
     svgButton.id = "label_svg_"+i;
     svgButton.classList.add('position-relative');
     svgButton.classList.add('btn');
@@ -312,12 +313,12 @@ var getHtmlSvg = function(svg, i) {
     svgButton.addEventListener('mouseout', function(event) {
         this.style.removeProperty('cursor');
     })
-    var svgImg = document.createElement('img');
+    let svgImg = document.createElement('img');
     svgImg.src = svg.svg;
     svgImg.draggable = false;
     svgImg.style = "max-width: 180px;max-height: 70px;";
     svgButton.appendChild(svgImg);
-    var svgContainer = document.createElement('div');
+    let svgContainer = document.createElement('div');
     svgContainer.classList.add('d-grid');
     svgContainer.classList.add('gap-2');
     svgContainer.appendChild(inputRadio);
@@ -330,8 +331,8 @@ var stateAddLock = function(state) {
     if(forceAddLock) {
         state = true;
     }
-    var checkbox = document.getElementById('add-lock-checkbox');
-    var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+    let checkbox = document.getElementById('add-lock-checkbox');
+    let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
     addLock = state;
 
@@ -342,13 +343,8 @@ var stateAddLock = function(state) {
         checkbox.disabled = false;
     }
 
-    /*document.querySelectorAll('.btn-svg').forEach(function(item) {
-        item.style.borderWidth = "1px";
-    });*/
-
     if(addLock && input_selected) {
-        var svgButton = document.querySelector('.btn-svg[for="'+input_selected.id+'"]');
-        //svgButton.style.borderWidth = "2px";
+        let svgButton = document.querySelector('.btn-svg[for="'+input_selected.id+'"]');
         checkbox.checked = true;
         return;
     }
@@ -365,7 +361,7 @@ var displaysSVG = function() {
         item.classList.remove('d-none');
     });
     svgCollections.forEach((svg, i) => {
-        var svgHtmlChild = getHtmlSvg(svg, i);
+        let svgHtmlChild = getHtmlSvg(svg, i);
         if(svg.type) {
             document.getElementById('svg_list_'+svg.type).appendChild(svgHtmlChild);
             return;
@@ -392,7 +388,7 @@ var displaysSVG = function() {
 };
 
 function dataURLtoBlob(dataurl) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+    let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
     while(n--){
         u8arr[n] = bstr.charCodeAt(n);
@@ -410,7 +406,7 @@ function trimSvgWhitespace(svgContent) {
 
         return null;
     }
-    var svgContainer = document.createElement("div")
+    let svgContainer = document.createElement("div")
     svgContainer.classList.add('invisible');
     svgContainer.classList.add('position-absolute');
     svgContainer.classList.add('top-0');
@@ -418,8 +414,8 @@ function trimSvgWhitespace(svgContent) {
     svgContainer.style = "z-index: -1;";
     svgContainer.innerHTML = svgContent;
     document.body.appendChild(svgContainer);
-    var svg = svgContainer.querySelector('svg');
-    var box = svg.getBBox();
+    let svg = svgContainer.querySelector('svg');
+    let box = svg.getBBox();
     svg.setAttribute("viewBox", [box.x, box.y, box.width, box.height].join(" "));
     svgContent = svgContainer.innerHTML;
     document.body.removeChild(svgContainer)
@@ -432,7 +428,7 @@ var uploadSVG = function(formData) {
     document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
     document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
 
-    xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
 
     xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
     xhr.onreadystatechange = function () {
@@ -502,7 +498,7 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
     }
 
     if(item == 'text') {
-        var textbox = new fabric.Textbox('Texte à modifier', {
+        let textbox = new fabric.Textbox('Texte à modifier', {
         left: x,
         top: y - 20,
         fontSize: 20,
@@ -520,14 +516,14 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
     }
 
     fabric.loadSVGFromURL(item, function(objects, options) {
-        var svg = fabric.util.groupSVGElements(objects, options);
+        let svg = fabric.util.groupSVGElements(objects, options);
         svg.svgOrigin = item;
         svg.lockScalingFlip = true;
         svg.scaleToHeight(height);
         if(svg.getScaledWidth() > 200) {
             svg.scaleToWidth(200);
         }
-        var svgItem = getSvgItem(item);
+        let svgItem = getSvgItem(item);
         if(svgItem && svgItem.scale) {
             svg.scaleToWidth(canvas.width * svgItem.scale);
         }
@@ -548,7 +544,7 @@ var zoomChange = function (inOrOut) {
         return;
     }
 
-    var deltaScale = 0.2 * inOrOut;
+    let deltaScale = 0.2 * inOrOut;
 
     if(currentScale + deltaScale < 0) {
         return
@@ -578,7 +574,7 @@ var resizePDF = function (scale = 'auto') {
     }
 
     pdfPages.forEach(function(page, pageIndex) {
-        var renderTask = pdfRenderTasks[pageIndex];
+        let renderTask = pdfRenderTasks[pageIndex];
 
         if(scale == 'auto' && page.getViewport({scale: 1.5}).width > document.getElementById('container-pages').clientWidth - 40) {
             scale = (document.getElementById('container-pages').clientWidth - 40) / page.getViewport({scale: 1}).width;
@@ -588,18 +584,18 @@ var resizePDF = function (scale = 'auto') {
             scale = 1.5;
         }
 
-        var viewport = page.getViewport({scale: scale});
+        let viewport = page.getViewport({scale: scale});
         currentScale = scale;
 
-        var canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
-        var context = canvasPDF.getContext('2d');
+        let canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
+        let context = canvasPDF.getContext('2d');
         canvasPDF.height = viewport.height;
         canvasPDF.width = viewport.width;
         canvasEdition = canvasEditions[pageIndex];
 
-        var scaleMultiplier = canvasPDF.width / canvasEdition.width;
-        var objects = canvasEdition.getObjects();
-        for (var i in objects) {
+        let scaleMultiplier = canvasPDF.width / canvasEdition.width;
+        let objects = canvasEdition.getObjects();
+        for (let i in objects) {
            objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
            objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
            objects[i].left = objects[i].left * scaleMultiplier;
@@ -612,7 +608,7 @@ var resizePDF = function (scale = 'auto') {
         canvasEdition.renderAll();
         canvasEdition.calcOffset();
 
-        var renderContext = {
+        let renderContext = {
           canvasContext: context,
           viewport: viewport,
           enhanceTextSelection: true
@@ -662,7 +658,7 @@ var createEventsListener = function() {
     });
 
     document.getElementById('btn_modal_ajouter').addEventListener('click', function() {
-        var svgItem = {};
+        let svgItem = {};
         if(document.getElementById('input-svg-type').value) {
             svgItem.type = document.getElementById('input-svg-type').value;
         }
@@ -670,17 +666,17 @@ var createEventsListener = function() {
             svgItem.svg = document.getElementById('img-upload').src;
         }
         if(document.getElementById('nav-type-tab').classList.contains('active')) {
-            var fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
-            var fabricPath = new fabric.Path(fontPath.toPathData());
+            let fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
+            let fabricPath = new fabric.Path(fontPath.toPathData());
             fabricPath.top = 0;
             fabricPath.left = 0;
             fabricPath.height = fabricPath.getScaledHeight();
-            var textCanvas = document.createElement('canvas');
+            let textCanvas = document.createElement('canvas');
             textCanvas.width = fabricPath.getScaledWidth();
             textCanvas.height = fabricPath.getScaledHeight();
-            var textCanvas = new fabric.Canvas(textCanvas);
-            textCanvas.add(fabricPath).renderAll();
-            svgItem.svg = svgToDataUrl(textCanvas.toSVG());
+            let textCanvasFabric = new fabric.Canvas(textCanvas);
+            textCanvasFabric.add(fabricPath).renderAll();
+            svgItem.svg = svgToDataUrl(textCanvasFabric.toSVG());
         }
         if(document.getElementById('nav-import-tab').classList.contains('active')) {
             svgItem.svg = document.getElementById('img-upload').src;
@@ -689,7 +685,7 @@ var createEventsListener = function() {
         displaysSVG();
         localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
 
-        var svg_list_id = "svg_list";
+        let svg_list_id = "svg_list";
         if(svgItem.type) {
             svg_list_id = svg_list_id + "_" + svgItem.type;
         }
@@ -704,7 +700,7 @@ var createEventsListener = function() {
     })
 
     document.querySelectorAll('#modalAddSvg .nav-link').forEach(function(item) { item.addEventListener('shown.bs.tab', function (event) {
-        var firstInput = document.querySelector(event.target.dataset.bsTarget).querySelector('input');
+        let firstInput = document.querySelector(event.target.dataset.bsTarget).querySelector('input');
         if(firstInput) {
             firstInput.focus();
         }
@@ -712,11 +708,11 @@ var createEventsListener = function() {
 
     document.getElementById('modalAddSvg').addEventListener('shown.bs.modal', function (event) {
         document.querySelector('#modalAddSvg #nav-tab button:first-child').focus();
-        var tab = document.querySelector('#modalAddSvg .tab-pane.active');
+        let tab = document.querySelector('#modalAddSvg .tab-pane.active');
         if(tab.querySelector('input')) {
             tab.querySelector('input').focus();
         }
-        var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+        let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
         if(input_selected) {
             input_selected.checked = false;
             input_selected.dispatchEvent(new Event("change"));
@@ -742,7 +738,7 @@ var createEventsListener = function() {
     })
 
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
-        var data = new FormData();
+        let data = new FormData();
         data.append('file', document.getElementById('input-image-upload').files[0]);
         uploadSVG(data);
         event.preventDefault();
@@ -750,7 +746,7 @@ var createEventsListener = function() {
 
     if(document.getElementById('save')) {
         document.getElementById('save').addEventListener('click', function(event) {
-            var dataTransfer = new DataTransfer();
+            let dataTransfer = new DataTransfer();
             canvasEditions.forEach(function(canvasEdition, index) {
                 dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
                     type: 'image/svg+xml'
@@ -762,7 +758,7 @@ var createEventsListener = function() {
 
     if(document.getElementById('save_share')) {
         document.getElementById('save_share').addEventListener('click', function(event) {
-            var dataTransfer = new DataTransfer();
+            let dataTransfer = new DataTransfer();
             if(!document.getElementById('save').hasAttribute('disabled')) {
                 canvasEditions.forEach(function(canvasEdition, index) {
                     dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
@@ -783,7 +779,7 @@ var createEventsListener = function() {
     });
 
     document.getElementById('btn_svg_selected_close').addEventListener('click', function(event) {
-        var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+        let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
         stateAddLock(false);
         input_selected.checked = false;
@@ -793,8 +789,7 @@ var createEventsListener = function() {
 
     document.addEventListener('click', function(event) {
         if(event.target.nodeName == "DIV") {
-
-            var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+            let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
             if(!input_selected) {
                 return;
             }
@@ -806,7 +801,7 @@ var createEventsListener = function() {
 
     document.addEventListener('keydown', function(event) {
         if(event.key == 'Escape' && (event.target.tagName == "BODY" || event.target.name == "svg_2_add")) {
-            var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+            let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
             if(!input_selected) {
                 return;
             }
@@ -907,7 +902,7 @@ var createSignaturePad = function() {
             const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
                 type: 'image/png'
             });
-            var data = new FormData();
+            let data = new FormData();
             data.append('file', file);
             uploadSVG(data);
         }
@@ -929,11 +924,11 @@ async function getPDFBlobFromCache(cacheUrl) {
 
 async function uploadFromUrl(url) {
     history.replaceState({}, '', '/signature');
-    var response = await fetch(url);
+    let response = await fetch(url);
     if(response.status != 200) {
         return;
     }
-    var pdfBlob = await response.blob();
+    let pdfBlob = await response.blob();
 
     if(pdfBlob.type != 'application/pdf' && pdfBlob.type != 'application/octet-stream') {
         return;
@@ -1033,7 +1028,7 @@ var pageSignature = async function(url) {
     let filename = url.replace('/pdf/', '');
 
     if(hash) {
-        var response = await fetch(url);
+        let response = await fetch(url);
         if(response.status != 200) {
             return;
         }

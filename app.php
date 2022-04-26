@@ -140,8 +140,8 @@ $f3->route('POST /sign',
 $f3->route('POST /share',
     function($f3) {
         $hash = substr(hash('sha512', uniqid().rand()), 0, 20);
-        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash."/";
-        $f3->set('UPLOADS', $sharingFolder);
+        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
+        $f3->set('UPLOADS', $sharingFolder."/");
         if (!is_dir($f3->get('PDF_STORAGE_PATH'))) {
             $f3->error(500, 'Sharing folder doesn\'t exist');
         }
@@ -149,6 +149,9 @@ $f3->route('POST /share',
             $f3->error(500, 'Sharing folder is not writable');
         }
         mkdir($sharingFolder);
+        $expireFile = $sharingFolder.".expire";
+        file_put_contents($expireFile, $f3->get('POST.duration'));
+        touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
         $filename = "original.pdf";
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));
         $svgFiles = "";
@@ -164,7 +167,7 @@ $f3->route('POST /share',
             return true;
         }, false, function($fileBaseName, $formFieldName) use ($tmpfile, $filename, $sharingFolder, &$svgFiles) {
                 if($formFieldName == "pdf") {
-                    file_put_contents($sharingFolder."filename.txt", $fileBaseName);
+                    file_put_contents($sharingFolder."/filename.txt", $fileBaseName);
                     return $filename;
                 }
                 if($formFieldName == "svg") {
@@ -229,11 +232,14 @@ $f3->route('GET /signature/@hash/pdf',
 $f3->route('POST /signature/@hash/save',
     function($f3) {
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
-        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash.'/';
-        $f3->set('UPLOADS', $sharingFolder);
+        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
+        $f3->set('UPLOADS', $sharingFolder.'/');
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));
         unlink($tmpfile);
         $svgFiles = "";
+
+        $expireFile = $sharingFolder.".expire";
+        touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
 
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "svg" && strpos(Web::instance()->mime($file['tmp_name'], true), 'image/svg+xml') !== 0) {
@@ -274,6 +280,19 @@ $f3->route('GET /signature/@hash/nblayers',
         echo $nbLayers;
     }
 );
+
+$f3->route('GET /cron', function($f3) {
+    $sharingFolder = $f3->get('PDF_STORAGE_PATH');
+    foreach(glob($sharingFolder.'*.expire') as $expireFile) {
+        if(filemtime($expireFile) > time()) {
+            continue;
+        }
+        $expiredFolder = str_replace('.expire', '', $expireFile);
+        array_map('unlink', glob($expiredFolder."/*"));
+        rmdir($expiredFolder);
+        unlink($expireFile);
+    }
+});
 
 $f3->route('GET /organization',
     function($f3) {

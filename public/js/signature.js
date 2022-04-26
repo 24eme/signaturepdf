@@ -984,6 +984,12 @@ var modalSharing = function() {
     }
 }
 
+var runCron = function() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/cron');
+    xhr.send();
+}
+
 var pageUpload = async function() {
     document.querySelector('body').classList.remove('bg-light');
     document.getElementById('input_pdf_upload').value = '';
@@ -1080,6 +1086,9 @@ var pageSignature = async function(url) {
 };
 
 (function () {
+    if(sharingMode) {
+        setTimeout(function() { runCron() }, 2000);
+    }
     if(hash) {
         pageSignature('/signature/'+hash+'/pdf');
         window.addEventListener('hashchange', function() {

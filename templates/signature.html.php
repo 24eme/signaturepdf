@@ -175,6 +175,7 @@
                 <div class="modal-body">
                     <p>En activant le partage de ce PDF vous allez pouvoir proposer un lien aux personnes de votre choix pour qu'elles puissent signer ce PDF.</p>
                     <p><i class="bi bi-hdd-network"></i> Ce partage nécessite que le PDF soit transféré et stocké sur le serveur afin d'être accessible aux futurs signataires.</p>
+                    <p class="mb-0"><i class="bi bi-hourglass-split"></i> Le PDF sera conservé <select name="duration" form="form_sharing"><option value="+1 year">un an</option><option value="+6 month">six mois</option><option value="+1 month" selected="selected">un mois</option><option value="+1 week">une semaine</option><option value="+1 day">un jour</option><option value="+1 hour">une heure</option></select> après la dernière signature.</p>
                 </div>
                 <div class="modal-footer text-center d-block">
                     <form id="form_sharing" clas action="/share" method="post" enctype="multipart/form-data">
@@ -204,7 +205,7 @@
                         <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = 'Copié !';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> Copier</button>
                         <script>document.querySelector('#input-share-link').value = document.location.href.replace(/#.*/, '');</script>
                     </div>
-                    <p>Chacun des signataires pourra à tout moment télécharger la dernière version du PDF signé.</p>
+                    <p class="mb-0">Chacun des signataires pourra à tout moment télécharger la dernière version du PDF signé.</p>
                 </div>
                 <div class="modal-footer text-start">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
@@ -242,11 +243,12 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     var maxPage = <?php echo $maxPage ?>;
+    var sharingMode = <?php echo intval(!isset($noSharingMode)) ?>;
     var hash = null;
     <?php if(isset($hash)): ?>
     hash = "<?php echo $hash ?>";
     <?php endif; ?>
     </script>
-    <script src="/js/signature.js?202204150047"></script>
+    <script src="/js/signature.js?202204270035"></script>
   </body>
 </html>

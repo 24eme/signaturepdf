@@ -166,9 +166,7 @@ Pour les tests :
 - **Jest** Framework de Test Javascript : https://jestjs.io/ (MIT)
 - **Puppeteer** librairie Node.js pour contrôler un navigateur : https://github.com/puppeteer/puppeteer (Apache-2.0)
 
-## Contributions
-
-### Les contributeurs
+## Contributeurs
 
 - Vincent LAURENT (24ème)
 - Le Metayer Jean-Baptiste (24ème)

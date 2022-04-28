@@ -166,5 +166,17 @@ Pour les tests :
 - **Jest** Framework de Test Javascript : https://jestjs.io/ (MIT)
 - **Puppeteer** librairie Node.js pour contrôler un navigateur : https://github.com/puppeteer/puppeteer (Apache-2.0)
 
+## Contributeurs
+
+- Vincent LAURENT (24ème)
+- Le Metayer Jean-Baptiste (24ème)
+- Xavier Garnier (Logilab)
+- Simon Chabot (Logilab)
+- Gabriel POMA (24ème)
+
+Logilab a apporté une contribution financière de 1 365 € TTC à la société 24ème pour développer le mode multi signature.
+
+Le développement du logiciel a principalement été réalisé sur le temps de travail de salariés du 24ème.
+
 
 

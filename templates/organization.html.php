@@ -36,7 +36,11 @@
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
         <div style="height: 65px;" class="d-md-none"></div>
-        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap" style="padding-bottom: 60px;">
+        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap" style="padding-bottom: 60px; overflow-y: scroll;">
+        </div>
+        <div class="btn-group-vertical position-absolute" style="top: 6px; right: 368px;">
+            <button id="btn-zoom-increase" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-in"></i></button>
+            <button id="btn-zoom-decrease" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-out"></i></button>
         </div>
         <div style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
@@ -45,18 +49,16 @@
                 <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Organisation de PDF <span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi-ui-checks-grid"></i></span></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body pt-0">
+            <div class="offcanvas-body pt-4">
+                <ul id="list_pdf" class="list-group">
+                </ul>
+                <div class="d-grid gap-2 mt-2">
+                    <button type="button" class="btn btn-light" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
+                    <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf">
+                </div>
                 <div class="form-switch mt-3">
                     <input class="form-check-input" checked="checked" type="checkbox"  id="checkbox_all_pages">
                     <label class="form-check-label" for="checkbox_all_pages">Séléctionner toutes les pages</label>
-                </div>
-                <div class="btn-group mt-2">
-                    <button id="btn-zoom-decrease" type="button" class="btn btn-outline-dark"><i class="bi bi-dash"></i></button>
-                    <button id="btn-zoom-increase" type="button" class="btn btn-outline-dark"><i class="bi bi-plus"></i></button>
-                </div>
-                <div class="d-grid gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
-                    <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf">
                 </div>
                 <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                     <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">

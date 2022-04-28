@@ -23,6 +23,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf').files = dataTransfer.files;
+    updateListePDF();
 
     let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
 
@@ -151,6 +152,14 @@ var stateCheckbox = function(checkbox) {
 var stateCheckboxAll = function() {
     document.querySelector('#checkbox_all_pages').checked = (document.querySelectorAll('.checkbox-page:checked').length == document.querySelectorAll('.checkbox-page').length);
 };
+
+var updateListePDF = function() {
+    document.querySelector('#list_pdf').innerHTML = "";
+    for (var i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
+        const pdfFile = document.querySelector('#input_pdf').files.item(i);
+        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li  class="list-group-item small" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i> '+decodeURI(pdfFile.name)+'</li>');
+    }
+}
 
 var createEventsListener = function() {
     document.querySelector('#checkbox_all_pages').addEventListener('change', function() {

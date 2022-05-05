@@ -56,10 +56,6 @@
                     <button type="button" class="btn btn-light" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
                     <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf">
                 </div>
-                <div class="form-switch mt-3">
-                    <input class="form-check-input" checked="checked" type="checkbox"  id="checkbox_all_pages">
-                    <label class="form-check-label" for="checkbox_all_pages">Séléctionner toutes les pages</label>
-                </div>
                 <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                     <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />

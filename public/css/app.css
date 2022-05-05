@@ -34,17 +34,18 @@
     max-height: 200px;
 }
 
-.canvas-container .btn-drag, .canvas-container .btn-rotate {
+.canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download {
     font-size: 30px;
     cursor: move;
     background: rgb(255,255,255,0.6);
     opacity: 0;
 }
 
-.canvas-container .btn-rotate {
+.canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download {
     cursor: pointer;
+    font-size: 25px;
 }
 
-.canvas-container:hover .btn-drag, .canvas-container:hover .btn-rotate {
+.canvas-container:hover .btn-drag, .canvas-container:hover .btn-rotate, .canvas-container:hover .btn-delete, .canvas-container:hover .btn-select, .canvas-container:hover .btn-download {
     opacity: 1;
 }

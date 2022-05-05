@@ -45,6 +45,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4 d-none" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch d-none"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div>';
                     pageHTML += '<p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 0; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
                     pageHTML += '<input type="hidden" class="input-rotate" value="0" id="input_rotate_'+pageIndex+'" />';
+                    pageHTML += '<input type="checkbox" class="input-select d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
                 pageHTML += '</div>';
 
                 document.getElementById('container-pages').insertAdjacentHTML('beforeend', pageHTML);
@@ -84,6 +85,20 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     let checkbox = this.parentNode.querySelector('input[type=checkbox]');
                     checkbox.checked = !checkbox.checked;
                     stateCheckbox(checkbox);
+                });
+                canvasContainer.querySelector('.btn-select').addEventListener('click', function(e) {
+                    let checkbox = this.parentNode.querySelector('input[type=checkbox].input-select');
+                    checkbox.checked = !checkbox.checked;
+                    let container = this.parentNode;
+                    if(checkbox.checked) {
+                        container.classList.add('border');
+                        container.classList.add('border-primary');
+                        container.classList.add('border-3');
+                    } else {
+                        container.classList.remove('border');
+                        container.classList.remove('border-primary');
+                        container.classList.remove('border-3');
+                    }
                 });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
                     let inputRotate = document.querySelector('#input_rotate_'+pageIndex);
@@ -156,8 +171,17 @@ var updateListePDF = function() {
 var createEventsListener = function() {
     document.getElementById('save').addEventListener('click', function(event) {
         let order = [];
+
+        let selectionMode = false;
+        if(document.querySelectorAll('.canvas-container .input-select:checked').length > 0) {
+            selectionMode = true;
+        }
+
         document.querySelectorAll('.canvas-container').forEach(function(canvasContainer) {
             let checkbox = canvasContainer.querySelector('.checkbox-page');
+            if(selectionMode) {
+                checkbox = canvasContainer.querySelector('.input-select');
+            }
             let inputRotate = canvasContainer.querySelector('.input-rotate');
             let pageValue = "";
             if(checkbox.checked) {

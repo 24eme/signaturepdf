@@ -34,8 +34,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
                 pages[pageIndex] = page;
 
-                let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container shadow-sm d-flex align-items-center justify-content-center bg-white" id="canvas-container-' + pageIndex +'" draggable="true">';
-                    pageHTML += '<canvas class="canvas-pdf" style="border: 2px solid transparent;"></canvas>';
+                let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container shadow-sm d-flex align-items-center justify-content-center bg-white bg-opacity-50 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
+                    pageHTML += '<canvas class="canvas-pdf"></canvas>';
                     pageHTML += '<div class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 rounded-circle btn-select"><i class="bi bi-check-square"></i></div>';
                     pageHTML += '<div class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle btn-delete"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div>';
@@ -52,21 +52,17 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('dragstart', function(e) {
-                    this.querySelector('.container-checkbox').classList.add('d-none');
                     this.querySelector('.container-resize').classList.add('d-none');
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
                     this.querySelector('.canvas-pdf').style.border = '2px dashed #777';
                     e.dataTransfer.setData('element', this.id);
                     this.style.opacity = 0.4;
-                    document.querySelector('#container-bar').classList.add('d-none');
                 });
                 canvasContainer.addEventListener('dragend', function(e) {
-                    this.querySelector('.container-checkbox').classList.remove('d-none');
                     this.querySelector('.container-resize').classList.remove('d-none');
                     this.querySelector('.canvas-pdf').classList.remove('shadow-lg');
                     this.querySelector('.canvas-pdf').style.border = '2px solid transparent';
                     this.style.opacity = 1;
-                    document.querySelector('#container-bar').classList.remove('d-none');
                     stateCheckbox(this.querySelector('input[type=checkbox]'));
                 });
                 canvasContainer.addEventListener('dragover', function(e) {
@@ -91,13 +87,18 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     checkbox.checked = !checkbox.checked;
                     let container = this.parentNode;
                     if(checkbox.checked) {
-                        container.classList.add('border');
-                        container.classList.add('border-primary');
-                        container.classList.add('border-3');
+                        container.classList.add('border-primary', 'shadow', 'bg-primary');
+                        container.classList.remove('border-transparent', 'shadow-sm', 'bg-white');
                     } else {
-                        container.classList.remove('border');
-                        container.classList.remove('border-primary');
-                        container.classList.remove('border-3');
+                        container.classList.remove('border-primary', 'shadow', 'bg-primary');
+                        container.classList.add('border-transparent', 'shadow-sm', 'bg-white');
+                    }
+                    if(document.querySelectorAll('.canvas-container .input-select:checked').length > 0) {
+                        document.querySelector('#container-btn-save-select').classList.remove('d-none');
+                        document.querySelector('#container-btn-save').classList.add('d-none');
+                    } else {
+                        document.querySelector('#container-btn-save-select').classList.add('d-none');
+                        document.querySelector('#container-btn-save').classList.remove('d-none');
                     }
                 });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
@@ -227,6 +228,12 @@ var createEventsListener = function() {
         nbPagePerLine--;
         pageRenderAll();
     });
+    document.getElementById('btn_cancel_select').addEventListener('click', function(event) {
+        document.querySelectorAll('.input-select:checked').forEach(function(input) {
+            input.parentNode.querySelector('.btn-select').click();
+        });
+    });
+
 }
 
 async function getPDFBlobFromCache(cacheUrl) {

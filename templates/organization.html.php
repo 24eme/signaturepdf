@@ -60,7 +60,11 @@
                     <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
-                        <div class="d-grid gap-2 mt-2">
+                        <div id="container-btn-save-select" class="d-grid gap-2 mt-2 d-none">
+                            <button id="btn_cancel_select" type="button" class="btn btn-link">Annuler la sélection</button>
+                            <button class="btn btn-outline-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger les pages séléctionnées</button>
+                        </div>
+                        <div id="container-btn-save" class="d-grid gap-2 mt-2">
                             <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF</button>
                         </div>
                     </form>

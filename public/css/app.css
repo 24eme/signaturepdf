@@ -49,3 +49,7 @@
 .canvas-container:hover .btn-drag, .canvas-container:hover .btn-rotate, .canvas-container:hover .btn-delete, .canvas-container:hover .btn-select, .canvas-container:hover .btn-download {
     opacity: 1;
 }
+
+.border-transparent {
+    border-color: transparent !important;
+}

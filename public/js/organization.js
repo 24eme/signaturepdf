@@ -101,6 +101,16 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                         document.querySelector('#container-btn-save').classList.remove('d-none');
                     }
                 });
+                canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
+                    let container = this.parentNode;
+                    let pageValue = container.querySelector('.checkbox-page').value;
+                    let orientation = degreesToOrientation(container.querySelector('.input-rotate').value);
+                    if(orientation) {
+                        pageValue = pageValue + "-" + orientation;
+                    }
+                    document.querySelector('#input_pages').value = pageValue;
+                    document.querySelector('#form_pdf').submit();
+                });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
                     let inputRotate = document.querySelector('#input_rotate_'+pageIndex);
                     inputRotate.value = (parseInt(inputRotate.value) + 90) % 360;
@@ -169,7 +179,18 @@ var updateListePDF = function() {
     }
 }
 
+var degreesToOrientation = function(degrees) {
+    if(degrees == 90) { return "east"; }
+    if(degrees == 180) { return "south"; }
+    if(degrees == 270) { return "west"; }
+
+    return null;
+}
+
 var createEventsListener = function() {
+    document.getElementById('save-select').addEventListener('click', function(event) {
+        document.getElementById('save').click();
+    });
     document.getElementById('save').addEventListener('click', function(event) {
         let order = [];
 
@@ -188,14 +209,9 @@ var createEventsListener = function() {
             if(checkbox.checked) {
                 pageValue = checkbox.value;
             }
-            if(pageValue && inputRotate.value == 90) {
-                pageValue = pageValue + "-east";
-            }
-            if(pageValue && inputRotate.value == 180) {
-                pageValue = pageValue + "-south";
-            }
-            if(pageValue && inputRotate.value == 270) {
-                pageValue = pageValue + "-west";
+            let orientation = degreesToOrientation(inputRotate.value);
+            if(pageValue && orientation) {
+                pageValue = pageValue + "-" + orientation;
             }
             if(pageValue) {
                 order.push(pageValue);

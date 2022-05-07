@@ -10,6 +10,7 @@ var pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 var nbPDF = 0;
 var pages = [];
+var pdfRenderTasks = [];
 
 var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     let url = await URL.createObjectURL(pdfBlob);
@@ -131,7 +132,7 @@ var pageRenderAll = function() {
     }
 }
 
-var pageRender = function(pageIndex) {
+var pageRender = async function(pageIndex) {
   let page = pages[pageIndex];
   let rotation = parseInt(document.querySelector('#input_rotate_'+pageIndex).value);
   let viewport = page.getViewport({scale: 1, rotation: rotation});
@@ -155,9 +156,12 @@ var pageRender = function(pageIndex) {
   canvasPDF.height = viewport.height;
   canvasPDF.width = viewport.width;
 
-  page.render({
-  canvasContext: context,
-  viewport: viewport,
+  if(pdfRenderTasks[pageIndex]) {
+    pdfRenderTasks[pageIndex].cancel();
+  }
+  pdfRenderTasks[pageIndex] = await page.render({
+    canvasContext: context,
+    viewport: viewport,
   });
 }
 

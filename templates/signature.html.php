@@ -17,7 +17,15 @@
         </div>
     </noscript>
     <div id="page-upload">
-        <div class="px-4 py-5 my-5 text-center">
+        <ul class="nav justify-content-center nav-tabs mt-2">
+          <li class="nav-item">
+            <a class="nav-link active" href="/signature"><i class="bi bi-vector-pen"></i> Signer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
+          </li>
+        </ul>
+        <div class="px-4 py-5 text-center">
             <h1 class="display-5 fw-bold"><i class="bi bi-vector-pen"></i> Signer un PDF</h1>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">

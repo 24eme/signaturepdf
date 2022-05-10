@@ -1,10 +1,27 @@
 var windowWidth = window.innerWidth;
+var menu = null;
+var menuOffcanvas = null;
 var is_mobile = function() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 };
+var responsiveDisplay = function() {
+    if(is_mobile()) {
+        document.getElementById('page-organization').style.paddingRight = "inherit";
+        menu.classList.remove('show');
+        menuOffcanvas.hide();
+        document.getElementById('container-pages').classList.remove('vh-100');
+    } else {
+        menuOffcanvas.show();
+        document.getElementById('page-organization').style.paddingRight = "350px";
+        document.getElementById('container-pages').classList.add('vh-100');
+    }
+    menu.classList.remove('d-md-block');
+    menu.classList.remove('d-none');
+};
+
 var nbPagePerLine = 5;
 if(is_mobile()) {
-    nbPagePerLine = 2;
+    nbPagePerLine = 1;
 }
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
@@ -316,12 +333,16 @@ var pageOrganization = async function(url) {
     document.title = filename + ' - ' + document.title;
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-organization').classList.remove('d-none');
+    menu = document.getElementById('sidebarTools');
+    menuOffcanvas = new bootstrap.Offcanvas(menu);
+    responsiveDisplay();
 
     let pdfBlob = await getPDFBlobFromCache(url);
     if(!pdfBlob) {
         document.location = '/organization';
         return;
     }
+
     createEventsListener();
     loadPDF(pdfBlob, filename, nbPDF);
 };

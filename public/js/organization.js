@@ -63,8 +63,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
                 pages[pageIndex] = page;
 
-                let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container shadow-sm d-flex align-items-center justify-content-center bg-white bg-opacity-50 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
-                    pageHTML += '<canvas class="canvas-pdf"></canvas>';
+                let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container d-flex align-items-center justify-content-center bg-transparent bg-opacity-25 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
+                    pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
                     pageHTML += '<div class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 rounded-circle btn-select"><i class="bi bi-check-square"></i></div>';
                     pageHTML += '<div class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle btn-delete"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div>';
@@ -125,11 +125,11 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     checkbox.checked = !checkbox.checked;
                     let container = this.parentNode;
                     if(checkbox.checked) {
-                        container.classList.add('border-primary', 'shadow', 'bg-primary');
-                        container.classList.remove('border-transparent', 'shadow-sm', 'bg-white');
+                        container.classList.add('border-primary', 'shadow-sm', 'bg-primary');
+                        container.classList.remove('border-transparent', 'bg-transparent');
                     } else {
-                        container.classList.remove('border-primary', 'shadow', 'bg-primary');
-                        container.classList.add('border-transparent', 'shadow-sm', 'bg-white');
+                        container.classList.remove('border-primary', 'shadow-sm', 'bg-primary');
+                        container.classList.add('border-transparent', 'bg-transparent');
                     }
                     if(document.querySelectorAll('.canvas-container .input-select:checked').length > 0) {
                         document.querySelector('#container-btn-save-select').classList.remove('d-none');
@@ -335,6 +335,7 @@ async function uploadFromUrl(url) {
 }
 
 var pageUpload = async function() {
+    document.querySelector('body').classList.remove('bg-light');
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-organization').classList.add('d-none');
@@ -359,6 +360,7 @@ var pageUpload = async function() {
 var pageOrganization = async function(url) {
     let filename = url.replace('/pdf/', '');
     document.title = filename + ' - ' + document.title;
+    document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-organization').classList.remove('d-none');
     menu = document.getElementById('sidebarTools');

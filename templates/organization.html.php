@@ -68,9 +68,13 @@
                     <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
-                        <div id="container-btn-save-select" class="d-grid gap-2 mt-2 d-none">
-                            <button id="btn_cancel_select" type="button" class="btn btn-link">Annuler la sélection</button>
-                            <button class="btn btn-outline-primary" type="submit" id="save-select"><i class="bi bi-download"></i> Télécharger les pages séléctionnées</button>
+                        <div id="container-btn-save-select" class="d-none">
+                            <button id="btn_cancel_select" type="button" class="btn btn-link w-100">Annuler la sélection</button>
+                            <div class="btn-group mb-2 mt-2" role="group">
+                              <button id="btn_delete_select" type="button" class="btn btn-outline-primary"><i class="bi bi-trash"></i> Supprimer</button>
+                              <button id="btn_rotate_select" type="button" class="btn btn-outline-primary"><i class="bi bi-arrow-clockwise"></i> Tourner</button>
+                            </div>
+                            <button class="btn w-100 btn-outline-primary" type="submit" id="save-select"><i class="bi bi-download"></i> Télécharger les pages séléctionnées</button>
                         </div>
                         <div id="container-btn-save" class="d-grid gap-2 mt-2">
                             <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF</button>

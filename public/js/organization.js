@@ -107,18 +107,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     return false;
                 });
                 canvasContainer.querySelector('.btn-delete').addEventListener('click', function(e) {
-                    let pages = getPagesSelected();
-                    if(!pages.length) {
-                        pages[pageIndex] = this.parentNode;
-                    }
-                    for(index in pages) {
-                        let checkbox = pages[index].querySelector('input[type=checkbox]');
-                        checkbox.checked = !checkbox.checked;
-                        stateCheckbox(checkbox);
-                    }
-                    if(isSelectionMode()) {
-                        document.querySelector('#btn_cancel_select').click();
-                    }
+                    let checkbox = this.parentNode.querySelector('input[type=checkbox]');
+                    checkbox.checked = !checkbox.checked;
+                    stateCheckbox(checkbox);
                 });
                 canvasContainer.querySelector('.btn-select').addEventListener('click', function(e) {
                     let checkbox = this.parentNode.querySelector('input[type=checkbox].input-select');
@@ -140,11 +131,6 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     }
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
-                    if(isSelectionMode()) {
-                        document.querySelector('#save-select').click();
-                        return false;
-                    }
-
                     let container = this.parentNode;
                     let pageValue = container.querySelector('.checkbox-page').value;
                     let orientation = degreesToOrientation(container.querySelector('.input-rotate').value);
@@ -155,15 +141,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     document.querySelector('#form_pdf').submit();
                 });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
-                    let pages = getPagesSelected();
-                    if(!pages.length) {
-                        pages[pageIndex] = this.parentNode;
-                    }
-                    for(index in pages) {
-                        let inputRotate = pages[index].querySelector('.input-rotate');
-                        inputRotate.value = (parseInt(inputRotate.value) + 90) % 360;
-                        pageRender(index);
-                    }
+                    let inputRotate = this.parentNode.querySelector('.input-rotate');
+                    inputRotate.value = (parseInt(inputRotate.value) + 90) % 360;
+                    pageRender(pageIndex);
                 })
 
                 pageRender(pageIndex);
@@ -298,7 +278,23 @@ var createEventsListener = function() {
             input.parentNode.querySelector('.btn-select').click();
         });
     });
-
+    document.getElementById('btn_delete_select').addEventListener('click', function(event) {
+        let pages = getPagesSelected();
+        for(index in pages) {
+            let checkbox = pages[index].querySelector('input[type=checkbox]');
+            checkbox.checked = !checkbox.checked;
+            stateCheckbox(checkbox);
+        }
+        document.querySelector('#btn_cancel_select').click();
+    });
+    document.getElementById('btn_rotate_select').addEventListener('click', function(event) {
+        let pages = getPagesSelected();
+        for(index in pages) {
+            let inputRotate = pages[index].querySelector('.input-rotate');
+            inputRotate.value = (parseInt(inputRotate.value) + 90) % 360;
+            pageRender(index);
+        }
+    });
 }
 
 async function getPDFBlobFromCache(cacheUrl) {

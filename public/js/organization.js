@@ -65,14 +65,14 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container d-flex align-items-center justify-content-center bg-transparent bg-opacity-25 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
                     pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
-                    pageHTML += '<div class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 rounded-circle btn-select"><i class="bi bi-check-square"></i></div>';
-                    pageHTML += '<div class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle btn-delete"><i class="bi bi-trash"></i></div>';
+                    pageHTML += '<div class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select"><i class="bi bi-check-square"></i></div>';
+                    pageHTML += '<div class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle container-rotate btn-rotate"><i class="bi bi-arrow-clockwise"></i></div>';
-                    pageHTML += '<div class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 rounded-circle btn-download"><i class="bi bi-download"></i></div>';
+                    pageHTML += '<div class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate"><i class="bi bi-arrow-clockwise"></i></div>';
+                    pageHTML += '<div class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download"><i class="bi bi-download"></i></div>';
                     pageHTML += '<div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4 d-none" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch d-none"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div>';
                     pageHTML += '<div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4 d-none" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch d-none"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div>';
-                    pageHTML += '<p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 0; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
+                    pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
                     pageHTML += '<input type="hidden" class="input-rotate" value="0" id="input_rotate_'+pageIndex+'" />';
                     pageHTML += '<input type="checkbox" class="input-select d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
                 pageHTML += '</div>';
@@ -80,6 +80,22 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 document.getElementById('container-pages').insertAdjacentHTML('beforeend', pageHTML);
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
+                canvasContainer.addEventListener('mouseenter', function(e) {
+                    this.querySelector('.page-title').classList.remove('d-none');
+                    if(this.querySelector('input[type=checkbox].input-select').checked) {
+                        return;
+                    }
+                    this.classList.add('border-secondary', 'bg-secondary');
+                    this.classList.remove('border-transparent', 'bg-transparent');
+                });
+                canvasContainer.addEventListener('mouseleave', function(e) {
+                    this.querySelector('.page-title').classList.add('d-none');
+                    if(this.querySelector('input[type=checkbox].input-select').checked) {
+                        return;
+                    }
+                    this.classList.remove('border-secondary', 'bg-secondary');
+                    this.classList.add('border-transparent', 'bg-transparent');
+                });
                 canvasContainer.addEventListener('dragstart', function(e) {
                     this.querySelector('.container-resize').classList.add('d-none');
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
@@ -117,7 +133,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     let container = this.parentNode;
                     if(checkbox.checked) {
                         container.classList.add('border-primary', 'shadow-sm', 'bg-primary');
-                        container.classList.remove('border-transparent', 'bg-transparent');
+                        container.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
                     } else {
                         container.classList.remove('border-primary', 'shadow-sm', 'bg-primary');
                         container.classList.add('border-transparent', 'bg-transparent');
@@ -197,9 +213,9 @@ var stateCheckbox = function(checkbox) {
     let checkboxContainer = checkbox.parentNode.parentNode.parentNode;
 
     if(checkbox.checked) {
-        checkboxContainer.style.opacity = '1'
+        checkboxContainer.querySelector('.canvas-pdf').style.opacity = '1'
     } else {
-        checkboxContainer.style.opacity = '0.2';
+        checkboxContainer.querySelector('.canvas-pdf').style.opacity = '0.15';
     }
 };
 

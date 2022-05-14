@@ -180,21 +180,22 @@ var pageRender = async function(pageIndex) {
   let page = pages[pageIndex];
   let rotation = parseInt(document.querySelector('#input_rotate_'+pageIndex).value);
   let viewport = page.getViewport({scale: 1, rotation: rotation});
-  let size =  Math.floor((document.getElementById('container-pages').offsetWidth - (8*(nbPagePerLine+1)) - 12) / nbPagePerLine);
-  let scaleWidth = size / viewport.width;
-  let scaleHeight = size / viewport.height;
+  let sizeWidth = Math.floor((document.getElementById('container-pages').offsetWidth - (8*(nbPagePerLine+1)) - 12) / nbPagePerLine);
+  let sizeHeight = sizeWidth * 1.25;
+  let scaleWidth = sizeWidth / viewport.width;
+  let scaleHeight = sizeHeight / viewport.height;
   let viewportWidth = page.getViewport({scale: scaleWidth, rotation: rotation});
   let viewportHeight = page.getViewport({scale: scaleHeight, rotation: rotation});
 
-  if(viewportWidth.height > size) {
+  if(viewportWidth.height > sizeWidth) {
       viewport = viewportHeight;
   } else {
       viewport = viewportWidth;
   }
 
   let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
-  canvasContainer.style.height = (size + 4) + "px";
-  canvasContainer.style.width = (size + 4) + "px";
+  canvasContainer.style.height = (sizeHeight + 4) + "px";
+  canvasContainer.style.width = (sizeWidth + 4) + "px";
   let canvasPDF = canvasContainer.querySelector('.canvas-pdf');
   let context = canvasPDF.getContext('2d');
   canvasPDF.height = viewport.height;

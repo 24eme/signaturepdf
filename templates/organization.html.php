@@ -64,16 +64,18 @@
                     <button type="button" class="btn btn-sm btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
                     <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf">
                 </div>
+                <hr />
+                <div id="container_btn_select" class="d-grid gap-2 mt-2 opacity-50">
+                    <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-dark"><i class="bi bi-arrow-clockwise"></i> Tourner les pages sélectionnées de 90°</button>
+                    <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-dark"><i class="bi bi-trash"></i> Supprimer les pages sélectionnées</button>
+                    <button id="btn_cancel_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-dark"><i class="bi bi-check-square"></i> Annuler la sélection de pages</button>
+                </div>
+
                 <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                     <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
                         <div id="container-btn-save-select" class="d-none">
-                            <button id="btn_cancel_select" type="button" class="btn btn-link w-100">Annuler la sélection</button>
-                            <div class="btn-group mb-2 mt-2" role="group">
-                              <button id="btn_delete_select" type="button" class="btn btn-outline-primary"><i class="bi bi-trash"></i> Supprimer</button>
-                              <button id="btn_rotate_select" type="button" class="btn btn-outline-primary"><i class="bi bi-arrow-clockwise"></i> Tourner</button>
-                            </div>
                             <button class="btn w-100 btn-outline-primary" type="submit" id="save-select"><i class="bi bi-download"></i> Télécharger les pages séléctionnées</button>
                         </div>
                         <div id="container-btn-save" class="d-grid gap-2 mt-2">

@@ -139,9 +139,21 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                         container.classList.add('border-transparent', 'bg-transparent');
                     }
                     if(document.querySelectorAll('.canvas-container .input-select:checked').length > 0) {
+                        document.querySelector('#container_btn_select').classList.remove('opacity-50');
+                        document.querySelectorAll('#container_btn_select button').forEach(function(button) {
+                            button.classList.add('btn-outline-primary');
+                            button.classList.remove('btn-outline-dark');
+                            button.removeAttribute('disabled');
+                        });
                         document.querySelector('#container-btn-save-select').classList.remove('d-none');
                         document.querySelector('#container-btn-save').classList.add('d-none');
                     } else {
+                        document.querySelector('#container_btn_select').classList.add('opacity-50');
+                        document.querySelectorAll('#container_btn_select button').forEach(function(button) {
+                            button.classList.add('btn-outline-dark');
+                            button.classList.remove('btn-outline-primary');
+                            button.setAttribute('disabled', 'disabled');
+                        });
                         document.querySelector('#container-btn-save-select').classList.add('d-none');
                         document.querySelector('#container-btn-save').classList.remove('d-none');
                     }
@@ -224,7 +236,7 @@ var updateListePDF = function() {
     document.querySelector('#list_pdf').innerHTML = "";
     for (var i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
         const pdfFile = document.querySelector('#input_pdf').files.item(i);
-        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li  class="list-group-item small" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i> '+decodeURI(pdfFile.name)+'</li>');
+        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li class="list-group-item small" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i> <input class="form-check-input me-1 ms-1" type="checkbox" /> '+decodeURI(pdfFile.name)+'</li>');
     }
 }
 

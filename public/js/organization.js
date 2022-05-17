@@ -65,36 +65,29 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container d-flex align-items-center justify-content-center bg-transparent bg-opacity-25 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
                     pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
-                    pageHTML += '<div title="Séléctionner cette page" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select"><i class="bi bi-check-square"></i></div>';
-                    pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete"><i class="bi bi-trash"></i></div>';
+                    pageHTML += '<div title="Séléctionner cette page" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select d-none"><i class="bi bi-check-square"></i></div>';
+                    pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div title="Restaurer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
-                    pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate"><i class="bi bi-arrow-clockwise"></i></div>';
+                    pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
+                    pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="Télécharger cette page" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download"><i class="bi bi-download"></i></div>';
                     pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
                     pageHTML += '<input form="form_pdf" class="checkbox-page d-none" role="switch" type="checkbox" checked="checked" value="'+pdfLetter+page.pageNumber+'" />';
                     pageHTML += '<input type="hidden" class="input-rotate" value="0" id="input_rotate_'+pageIndex+'" />';
                     pageHTML += '<input type="checkbox" class="input-select d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
+                    pageHTML += '<input type="checkbox" class="input-hover d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
                 pageHTML += '</div>';
 
                 document.getElementById('container-pages').insertAdjacentHTML('beforeend', pageHTML);
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('mouseenter', function(e) {
-                    this.querySelector('.page-title').classList.remove('d-none');
-                    if(this.querySelector('input[type=checkbox].input-select').checked) {
-                        return;
-                    }
-                    this.classList.add('border-secondary', 'bg-secondary');
-                    this.classList.remove('border-transparent', 'bg-transparent');
+                    this.querySelector('input[type=checkbox].input-hover').checked = true;
+                    updatePageState(this);
                 });
                 canvasContainer.addEventListener('mouseleave', function(e) {
-                    this.querySelector('.page-title').classList.add('d-none');
-                    if(this.querySelector('input[type=checkbox].input-select').checked) {
-                        return;
-                    }
-                    this.classList.remove('border-secondary', 'bg-secondary');
-                    this.classList.add('border-transparent', 'bg-transparent');
+                    this.querySelector('input[type=checkbox].input-hover').checked = false;
+                    updatePageState(this);
                 });
                 canvasContainer.addEventListener('dragstart', function(e) {
                     this.querySelector('.container-resize').classList.add('d-none');
@@ -218,31 +211,48 @@ var isPageDeleted = function(page) {
     return !page.querySelector('input[type=checkbox].checkbox-page').checked;
 }
 
+var isPageHover = function(page) {
+
+    return page.querySelector('input[type=checkbox].input-hover').checked;
+}
+
 var updatePageState = function(page) {
-    page.classList.remove('border-primary', 'shadow-sm', 'bg-primary');
+    page.classList.remove('border-primary', 'shadow-sm', 'bg-primary', 'border-secondary', 'bg-secondary');
     page.classList.add('border-transparent', 'bg-transparent');
     page.querySelector('.canvas-pdf').style.opacity = '1'
-    page.querySelector('.btn-rotate').classList.remove('d-none');
-    page.querySelector('.btn-download').classList.remove('d-none');
-    page.querySelector('.btn-delete').classList.remove('d-none');
-    page.querySelector('.btn-select').classList.remove('d-none', 'text-primary', 'opacity-100');
-    page.querySelector('.btn-drag').classList.remove('d-none');
+    page.querySelector('.btn-rotate').classList.add('d-none');
+    page.querySelector('.btn-download').classList.add('d-none');
+    page.querySelector('.btn-delete').classList.add('d-none');
+    page.querySelector('.btn-select').classList.add('d-none');
+    page.querySelector('.btn-select').classList.remove('text-primary');
+    page.querySelector('.btn-drag').classList.add('d-none');
     page.querySelector('.btn-restore').classList.add('d-none');
+    page.querySelector('.page-title').classList.add('d-none');
 
     if(isPageDeleted(page)) {
         page.querySelector('.canvas-pdf').style.opacity = '0.15';
-        page.querySelector('.btn-rotate').classList.add('d-none');
-        page.querySelector('.btn-download').classList.add('d-none');
-        page.querySelector('.btn-delete').classList.add('d-none');
-        page.querySelector('.btn-select').classList.add('d-none');
-        page.querySelector('.btn-drag').classList.add('d-none');
+    }
+
+    if(isPageHover(page) && !isPageDeleted(page)) {
+        page.querySelector('.page-title').classList.remove('d-none');
+        page.classList.add('border-secondary', 'bg-secondary');
+        page.classList.remove('border-transparent', 'bg-transparent');
+        page.querySelector('.btn-rotate').classList.remove('d-none');
+        page.querySelector('.btn-download').classList.remove('d-none');
+        page.querySelector('.btn-delete').classList.remove('d-none');
+        page.querySelector('.btn-select').classList.remove('d-none')
+        page.querySelector('.btn-drag').classList.remove('d-none');
+    }
+
+    if(isPageHover(page) && isPageDeleted(page)) {
         page.querySelector('.btn-restore').classList.remove('d-none');
     }
 
     if(isPageSelected(page)) {
         page.classList.add('border-primary', 'shadow-sm', 'bg-primary');
         page.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
-        page.querySelector('.btn-select').classList.add('text-primary', 'opacity-100');
+        page.querySelector('.btn-select').classList.add('text-primary');
+        page.querySelector('.btn-select').classList.remove('d-none')
     }
 }
 

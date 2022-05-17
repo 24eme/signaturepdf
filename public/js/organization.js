@@ -81,7 +81,18 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 document.getElementById('container-pages').insertAdjacentHTML('beforeend', pageHTML);
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
+                canvasContainer.addEventListener('click', function(e) {
+                    if(!is_mobile()) {
+                        return;
+                    }
+                    let checkbox = this.querySelector('input[type=checkbox].input-hover');
+                    checkbox.checked = !checkbox.checked;
+                    updatePageState(this);
+                });
                 canvasContainer.addEventListener('mouseenter', function(e) {
+                    if(is_mobile()) {
+                        return false;
+                    }
                     this.querySelector('input[type=checkbox].input-hover').checked = true;
                     updatePageState(this);
                 });

@@ -67,12 +67,12 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
                     pageHTML += '<div title="Séléctionner cette page" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select"><i class="bi bi-check-square"></i></div>';
                     pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete"><i class="bi bi-trash"></i></div>';
+                    pageHTML += '<div title="Restaurer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
                     pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div>';
                     pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="Télécharger cette page" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download"><i class="bi bi-download"></i></div>';
-                    pageHTML += '<div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4 d-none" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch d-none"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div>';
-                    pageHTML += '<div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4 d-none" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch d-none"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div>';
                     pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
+                    pageHTML += '<input form="form_pdf" class="checkbox-page d-none" role="switch" type="checkbox" checked="checked" value="'+pdfLetter+page.pageNumber+'" />';
                     pageHTML += '<input type="hidden" class="input-rotate" value="0" id="input_rotate_'+pageIndex+'" />';
                     pageHTML += '<input type="checkbox" class="input-select d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
                 pageHTML += '</div>';
@@ -108,7 +108,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     this.querySelector('.canvas-pdf').classList.remove('shadow-lg');
                     this.querySelector('.canvas-pdf').style.border = '2px solid transparent';
                     this.style.opacity = 1;
-                    stateCheckbox(this.querySelector('input[type=checkbox]'));
+                    updatePageState(this);
                 });
                 canvasContainer.addEventListener('dragover', function(e) {
                     if (e.preventDefault) {
@@ -123,40 +123,13 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     return false;
                 });
                 canvasContainer.querySelector('.btn-delete').addEventListener('click', function(e) {
-                    let checkbox = this.parentNode.querySelector('input[type=checkbox]');
-                    checkbox.checked = !checkbox.checked;
-                    stateCheckbox(checkbox);
+                    toggleDeletePage(this.parentNode);
+                });
+                canvasContainer.querySelector('.btn-restore').addEventListener('click', function(e) {
+                    toggleDeletePage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-select').addEventListener('click', function(e) {
-                    let checkbox = this.parentNode.querySelector('input[type=checkbox].input-select');
-                    checkbox.checked = !checkbox.checked;
-                    let container = this.parentNode;
-                    if(checkbox.checked) {
-                        container.classList.add('border-primary', 'shadow-sm', 'bg-primary');
-                        container.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
-                    } else {
-                        container.classList.remove('border-primary', 'shadow-sm', 'bg-primary');
-                        container.classList.add('border-transparent', 'bg-transparent');
-                    }
-                    if(document.querySelectorAll('.canvas-container .input-select:checked').length > 0) {
-                        document.querySelector('#container_btn_select').classList.remove('opacity-50');
-                        document.querySelectorAll('#container_btn_select button').forEach(function(button) {
-                            button.classList.add('btn-outline-primary');
-                            button.classList.remove('btn-outline-dark');
-                            button.removeAttribute('disabled');
-                        });
-                        document.querySelector('#container-btn-save-select').classList.remove('d-none');
-                        document.querySelector('#container-btn-save').classList.add('d-none');
-                    } else {
-                        document.querySelector('#container_btn_select').classList.add('opacity-50');
-                        document.querySelectorAll('#container_btn_select button').forEach(function(button) {
-                            button.classList.add('btn-outline-dark');
-                            button.classList.remove('btn-outline-primary');
-                            button.setAttribute('disabled', 'disabled');
-                        });
-                        document.querySelector('#container-btn-save-select').classList.add('d-none');
-                        document.querySelector('#container-btn-save').classList.remove('d-none');
-                    }
+                    toggleSelectPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
                     let container = this.parentNode;
@@ -222,15 +195,78 @@ var pageRender = async function(pageIndex) {
   });
 }
 
-var stateCheckbox = function(checkbox) {
-    let checkboxContainer = checkbox.parentNode.parentNode.parentNode;
+var toggleSelectPage = function(page) {
+    page.querySelector('input[type=checkbox].input-select').checked = !isPageSelected(page);
+    updatePageState(page);
+    updateGlobalState();
+}
 
-    if(checkbox.checked) {
-        checkboxContainer.querySelector('.canvas-pdf').style.opacity = '1'
-    } else {
-        checkboxContainer.querySelector('.canvas-pdf').style.opacity = '0.15';
+var isPageSelected = function(page) {
+
+    return page.querySelector('input[type=checkbox].input-select').checked;
+}
+
+var toggleDeletePage = function(page) {
+    page.querySelector('input[type=checkbox].checkbox-page').checked = isPageDeleted(page);
+    page.querySelector('input[type=checkbox].input-select').checked = false;
+    updatePageState(page);
+    updateGlobalState();
+}
+
+var isPageDeleted = function(page) {
+
+    return !page.querySelector('input[type=checkbox].checkbox-page').checked;
+}
+
+var updatePageState = function(page) {
+    page.classList.remove('border-primary', 'shadow-sm', 'bg-primary');
+    page.classList.add('border-transparent', 'bg-transparent');
+    page.querySelector('.canvas-pdf').style.opacity = '1'
+    page.querySelector('.btn-rotate').classList.remove('d-none');
+    page.querySelector('.btn-download').classList.remove('d-none');
+    page.querySelector('.btn-delete').classList.remove('d-none');
+    page.querySelector('.btn-select').classList.remove('d-none', 'text-primary', 'opacity-100');
+    page.querySelector('.btn-drag').classList.remove('d-none');
+    page.querySelector('.btn-restore').classList.add('d-none');
+
+    if(isPageDeleted(page)) {
+        page.querySelector('.canvas-pdf').style.opacity = '0.15';
+        page.querySelector('.btn-rotate').classList.add('d-none');
+        page.querySelector('.btn-download').classList.add('d-none');
+        page.querySelector('.btn-delete').classList.add('d-none');
+        page.querySelector('.btn-select').classList.add('d-none');
+        page.querySelector('.btn-drag').classList.add('d-none');
+        page.querySelector('.btn-restore').classList.remove('d-none');
     }
-};
+
+    if(isPageSelected(page)) {
+        page.classList.add('border-primary', 'shadow-sm', 'bg-primary');
+        page.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
+        page.querySelector('.btn-select').classList.add('text-primary', 'opacity-100');
+    }
+}
+
+var updateGlobalState = function() {
+    document.querySelector('#container_btn_select').classList.add('opacity-50');
+    document.querySelectorAll('#container_btn_select button').forEach(function(button) {
+        button.classList.add('btn-outline-dark');
+        button.classList.remove('btn-outline-primary');
+        button.setAttribute('disabled', 'disabled');
+    });
+    document.querySelector('#container-btn-save-select').classList.add('d-none');
+    document.querySelector('#container-btn-save').classList.remove('d-none');
+
+    if(isSelectionMode()) {
+        document.querySelector('#container_btn_select').classList.remove('opacity-50');
+        document.querySelectorAll('#container_btn_select button').forEach(function(button) {
+            button.classList.add('btn-outline-primary');
+            button.classList.remove('btn-outline-dark');
+            button.removeAttribute('disabled');
+        });
+        document.querySelector('#container-btn-save-select').classList.remove('d-none');
+        document.querySelector('#container-btn-save').classList.add('d-none');
+    }
+}
 
 var updateListePDF = function() {
     document.querySelector('#list_pdf').innerHTML = "";
@@ -310,9 +346,7 @@ var createEventsListener = function() {
     document.getElementById('btn_delete_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();
         for(index in pages) {
-            let checkbox = pages[index].querySelector('input[type=checkbox]');
-            checkbox.checked = !checkbox.checked;
-            stateCheckbox(checkbox);
+            toggleDeletePage(pages[index]);
         }
         document.querySelector('#btn_cancel_select').click();
     });

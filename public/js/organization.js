@@ -269,19 +269,26 @@ var updatePageState = function(page) {
 
 var updateGlobalState = function() {
     document.querySelector('#container_btn_select').classList.add('opacity-50');
+    document.querySelector('#container_btn_select').classList.remove('border-primary');
+    document.querySelector('#container_btn_select .card-header').classList.remove('bg-primary', 'text-white');
+    document.querySelector('#container_btn_select .card-header').classList.add('text-muted');
     document.querySelectorAll('#container_btn_select button').forEach(function(button) {
-        button.classList.add('btn-outline-dark');
+        button.classList.add('btn-outline-secondary');
         button.classList.remove('btn-outline-primary');
         button.setAttribute('disabled', 'disabled');
     });
     document.querySelector('#container-btn-save-select').classList.add('d-none');
     document.querySelector('#container-btn-save').classList.remove('d-none');
-
+    document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
     if(isSelectionMode()) {
+        document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
         document.querySelector('#container_btn_select').classList.remove('opacity-50');
+        document.querySelector('#container_btn_select').classList.add('border-primary');
+        document.querySelector('#container_btn_select .card-header').classList.remove('text-muted');
+        document.querySelector('#container_btn_select .card-header').classList.add('bg-primary', 'text-white');
         document.querySelectorAll('#container_btn_select button').forEach(function(button) {
             button.classList.add('btn-outline-primary');
-            button.classList.remove('btn-outline-dark');
+            button.classList.remove('btn-outline-secondary');
             button.removeAttribute('disabled');
         });
         document.querySelector('#container-btn-save-select').classList.remove('d-none');

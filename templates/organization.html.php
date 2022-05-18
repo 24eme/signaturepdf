@@ -65,10 +65,13 @@
                     <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf">
                 </div>
                 <hr />
-                <div id="container_btn_select" class="d-grid gap-2 mt-2 opacity-50">
-                    <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-dark"><i class="bi bi-arrow-clockwise"></i> Tourner les pages sélectionnées de 90°</button>
-                    <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-dark"><i class="bi bi-trash"></i> Supprimer les pages sélectionnées</button>
-                    <button id="btn_cancel_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-dark"><i class="bi bi-check-square"></i> Annuler la sélection de pages</button>
+                <div id="container_btn_select" class="opacity-50 card">
+                    <div class="card-header small text-center"><span>Aucune</span> page(s) séléctionnée(s)</div>
+                    <div class="card-body d-grid gap-2">
+                    <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Tourner de 90°</button>
+                    <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-trash"></i> Supprimer</button>
+                    <button id="btn_cancel_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-check-square"></i> Désélectionner</button>
+                    </div>
                 </div>
 
                 <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">

@@ -66,11 +66,12 @@
                 </div>
                 <hr />
                 <div id="container_btn_select" class="opacity-50 card">
-                    <div class="card-header small text-center"><span>Aucune</span> page(s) séléctionnée(s)</div>
+                    <div class="card-header small text-center p-1"><span>Aucune</span> page(s) séléctionnée(s)</div>
                     <div class="card-body d-grid gap-2">
                     <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Tourner de 90°</button>
                     <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-trash"></i> Supprimer</button>
                     <button id="btn_cancel_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-check-square"></i> Désélectionner</button>
+                    <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><i class="bi bi-download"></i> Télécharger le PDF</button>
                     </div>
                 </div>
 
@@ -78,10 +79,7 @@
                     <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
-                        <div id="container-btn-save-select" class="d-none">
-                            <button class="btn w-100 btn-outline-primary" type="submit" id="save-select"><i class="bi bi-download"></i> Télécharger les pages séléctionnées</button>
-                        </div>
-                        <div id="container-btn-save" class="d-grid gap-2 mt-2">
+                        <div class="d-grid gap-2 mt-2">
                             <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF</button>
                         </div>
                     </form>

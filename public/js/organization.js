@@ -277,8 +277,6 @@ var updateGlobalState = function() {
         button.classList.remove('btn-outline-primary');
         button.setAttribute('disabled', 'disabled');
     });
-    document.querySelector('#container-btn-save-select').classList.add('d-none');
-    document.querySelector('#container-btn-save').classList.remove('d-none');
     document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
@@ -291,8 +289,6 @@ var updateGlobalState = function() {
             button.classList.remove('btn-outline-secondary');
             button.removeAttribute('disabled');
         });
-        document.querySelector('#container-btn-save-select').classList.remove('d-none');
-        document.querySelector('#container-btn-save').classList.add('d-none');
     }
 }
 

@@ -21,14 +21,6 @@ var responsiveDisplay = function() {
 var isSelectionMode = function() {
     return document.querySelectorAll('.canvas-container .input-select:checked').length > 0;
 }
-var getPagesSelected = function() {
-    let pages = [];
-    document.querySelectorAll('.canvas-container .input-select:checked').forEach(function(item) {
-        pages[item.parentNode.id.replace('canvas-container-', '')] = item.parentNode;
-    });
-
-    return pages;
-}
 
 var nbPagePerLine = 5;
 if(is_mobile()) {
@@ -199,9 +191,71 @@ var pageRender = async function(pageIndex) {
   });
 }
 
-var toggleSelectPage = function(page) {
-    page.querySelector('input[type=checkbox].input-select').checked = !isPageSelected(page);
+var getFileIndex = function(page) {
+
+    return page.id.replace('canvas-container-', '').replace(/_.*$/, '');
+}
+
+var getFilesStats = function() {
+    let files = [];
+    document.querySelectorAll('.canvas-container').forEach(function(page) {
+        let fileIndex = getFileIndex(page);
+        if(!files[fileIndex]) {
+            files[fileIndex] = { nbPage: 0, nbPageSelected: 0, nbPageDeleted: 0};
+        }
+
+        if(isPageDeleted(page)) {
+            files[fileIndex].nbPageDeleted++;
+        } else {
+            files[fileIndex].nbPage++;
+        }
+
+        if(isPageSelected(page)) {
+            files[fileIndex].nbPageSelected++;
+        }
+    });
+
+    console.log(files);
+
+    return files;
+}
+
+var updateListePDF = function() {
+    document.querySelector('#list_pdf').innerHTML = "";
+    for (var i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
+        let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
+        const pdfFile = document.querySelector('#input_pdf').files.item(i);
+        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i> <input class="form-check-input me-1 ms-1" type="checkbox" /> <span>'+decodeURI(pdfFile.name)+'</span></li>');
+        let fileItem = document.querySelector('#file_' + pdfLetter);
+        fileItem.querySelector('input[type=checkbox]').addEventListener('change', function(e) {
+            document.querySelectorAll('.canvas-container').forEach(function(page) {
+                if(getFileIndex(page) == pdfLetter && !isPageDeleted(page)) {
+                    selectPage(page, e.target.checked);
+                }
+            });
+            updateGlobalState();
+        });
+
+    }
+    updateGlobalState();
+}
+
+var getPagesSelected = function() {
+    let pages = [];
+    document.querySelectorAll('.canvas-container .input-select:checked').forEach(function(item) {
+        pages[item.parentNode.id.replace('canvas-container-', '')] = item.parentNode;
+    });
+
+    return pages;
+}
+
+var selectPage = function(page, state) {
+    page.querySelector('input[type=checkbox].input-select').checked = state;
     updatePageState(page);
+}
+
+var toggleSelectPage = function(page) {
+    selectPage(page, !isPageSelected(page));
     updateGlobalState();
 }
 
@@ -211,10 +265,14 @@ var isPageSelected = function(page) {
 }
 
 var toggleDeletePage = function(page) {
-    page.querySelector('input[type=checkbox].checkbox-page').checked = isPageDeleted(page);
+    deletePage(page, isPageDeleted(page))
+    updateGlobalState();
+}
+
+var deletePage = function(page, state) {
+    page.querySelector('input[type=checkbox].checkbox-page').checked = state;
     page.querySelector('input[type=checkbox].input-select').checked = false;
     updatePageState(page);
-    updateGlobalState();
 }
 
 var isPageDeleted = function(page) {
@@ -267,7 +325,22 @@ var updatePageState = function(page) {
     }
 }
 
+var updateFilesState = function() {
+    let filesStats = getFilesStats();
+    for(fileIndex in filesStats) {
+        let checkbox = document.querySelector('#file_'+fileIndex+' input[type=checkbox]');
+        let fileStat = filesStats[fileIndex];
+        checkbox.checked = (fileStat.nbPageSelected > 0 && fileStat.nbPageSelected == fileStat.nbPage);
+        checkbox.indeterminate = (fileStat.nbPageSelected > 0 && fileStat.nbPageSelected < fileStat.nbPage);
+        document.querySelector('#file_'+fileIndex+' span').classList.remove('text-primary');
+        if(fileStat.nbPageSelected > 0) {
+            document.querySelector('#file_'+fileIndex+' span').classList.add('text-primary');
+        }
+    }
+}
+
 var updateGlobalState = function() {
+    updateFilesState();
     document.querySelector('#container_btn_select').classList.add('opacity-50');
     document.querySelector('#container_btn_select').classList.remove('border-primary');
     document.querySelector('#container_btn_select .card-header').classList.remove('bg-primary', 'text-white');
@@ -289,14 +362,6 @@ var updateGlobalState = function() {
             button.classList.remove('btn-outline-secondary');
             button.removeAttribute('disabled');
         });
-    }
-}
-
-var updateListePDF = function() {
-    document.querySelector('#list_pdf').innerHTML = "";
-    for (var i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
-        const pdfFile = document.querySelector('#input_pdf').files.item(i);
-        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li class="list-group-item small" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i> <input class="form-check-input me-1 ms-1" type="checkbox" /> '+decodeURI(pdfFile.name)+'</li>');
     }
 }
 
@@ -370,9 +435,9 @@ var createEventsListener = function() {
     document.getElementById('btn_delete_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();
         for(index in pages) {
-            toggleDeletePage(pages[index]);
+            deletePage(pages[index]);
         }
-        document.querySelector('#btn_cancel_select').click();
+        updateGlobalState();
     });
     document.getElementById('btn_rotate_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();

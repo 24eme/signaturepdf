@@ -66,12 +66,11 @@
                 </div>
                 <hr />
                 <div id="container_btn_select" class="opacity-50 card">
-                    <div class="card-header small text-center p-1"><span>Aucune</span> page(s) séléctionnée(s)</div>
-                    <div class="card-body d-grid gap-2">
-                    <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Tourner de 90°</button>
-                    <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-trash"></i> Supprimer</button>
-                    <button id="btn_cancel_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-check-square"></i> Désélectionner</button>
-                    <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><i class="bi bi-download"></i> Télécharger le PDF</button>
+                    <div class="card-header small text-center p-1"><span>Aucune</span> page(s) séléctionnée(s) <button id="btn_cancel_select" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
+                    <div class="card-body d-grid gap-2 p-2">
+                        <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Tourner de 90°</button>
+                        <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-trash"></i> Supprimer</button>
+                        <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><i class="bi bi-download"></i> Télécharger</button>
                     </div>
                 </div>
 

@@ -345,7 +345,7 @@ var updateGlobalState = function() {
     document.querySelector('#container_btn_select').classList.remove('border-primary');
     document.querySelector('#container_btn_select .card-header').classList.remove('bg-primary', 'text-white');
     document.querySelector('#container_btn_select .card-header').classList.add('text-muted');
-    document.querySelectorAll('#container_btn_select button').forEach(function(button) {
+    document.querySelectorAll('#container_btn_select .card-body button').forEach(function(button) {
         button.classList.add('btn-outline-secondary');
         button.classList.remove('btn-outline-primary');
         button.setAttribute('disabled', 'disabled');
@@ -357,7 +357,7 @@ var updateGlobalState = function() {
         document.querySelector('#container_btn_select').classList.add('border-primary');
         document.querySelector('#container_btn_select .card-header').classList.remove('text-muted');
         document.querySelector('#container_btn_select .card-header').classList.add('bg-primary', 'text-white');
-        document.querySelectorAll('#container_btn_select button').forEach(function(button) {
+        document.querySelectorAll('#container_btn_select .card-body button').forEach(function(button) {
             button.classList.add('btn-outline-primary');
             button.classList.remove('btn-outline-secondary');
             button.removeAttribute('disabled');

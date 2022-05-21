@@ -85,13 +85,13 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow d-md-none">
-        <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF</button>
+        <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow d-md-none">
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF</button>
+            </div>
         </div>
     </div>
+
     <span id="is_mobile" class="d-md-none"></span>
 
     <script src="/vendor/bootstrap.min.js?5.1.3"></script>

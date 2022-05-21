@@ -402,6 +402,9 @@ var createEventsListener = function() {
         });
         document.querySelector('#input_pages').value = order.join(',');
     });
+    document.getElementById('save_mobile').addEventListener('click', function(event) {
+        document.getElementById('save').click();
+    });
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
         if(this.files[0].size > maxSize) {
 

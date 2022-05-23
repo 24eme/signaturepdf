@@ -49,7 +49,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
 
     let loadingTask = pdfjsLib.getDocument(url);
-    loadingTask.promise.then(function(pdf) {
+    await loadingTask.promise.then(function(pdf) {
         for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
             pdf.getPage(pageNumber).then(function(page) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
@@ -149,6 +149,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     }, function (reason) {
         console.error(reason);
     });
+
+    return loadingTask;
 };
 
 var pageRenderAll = function() {
@@ -406,20 +408,22 @@ var createEventsListener = function() {
         document.getElementById('save').click();
     });
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
-        if(this.files[0].size > maxSize) {
+        console.log(this.files.length);
+        for (let i = 0; i < this.files.length; i++) {
+            if(this.files[i].size > maxSize) {
 
-            alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
-            this.value = "";
-            return;
+                alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
+                break;
+            }
+            const cache = await caches.open('pdf');
+            let filename = this.files[i].name;
+            let response = new Response(this.files[i], { "status" : 200, "statusText" : "OK" });
+            let urlPdf = '/pdf/'+filename;
+            await cache.put(urlPdf, response);
+            let pdfBlob = await getPDFBlobFromCache(urlPdf);
+            nbPDF++;
+            await loadPDF(pdfBlob, filename, nbPDF);
         }
-        const cache = await caches.open('pdf');
-        let filename = this.files[0].name;
-        let response = new Response(this.files[0], { "status" : 200, "statusText" : "OK" });
-        let urlPdf = '/pdf/'+filename;
-        await cache.put(urlPdf, response);
-        let pdfBlob = await getPDFBlobFromCache(urlPdf);
-        nbPDF++;
-        loadPDF(pdfBlob, filename, nbPDF);
         this.value = '';
     });
     document.getElementById('btn-zoom-decrease').addEventListener('click', function(event) {

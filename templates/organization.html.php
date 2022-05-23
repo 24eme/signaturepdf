@@ -57,12 +57,12 @@
                 <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Organisation de PDF <span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi-ui-checks-grid"></i></span></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body pt-3">
+            <div class="offcanvas-body pt-3" style="padding-bottom: 60px;">
                 <ul id="list_pdf" class="list-group">
                 </ul>
                 <div class="d-grid gap-2 mt-2">
                     <button type="button" class="btn btn-sm btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
-                    <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf">
+                    <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf" multiple="true">
                 </div>
                 <hr />
                 <div id="container_btn_select" class="opacity-50 card">

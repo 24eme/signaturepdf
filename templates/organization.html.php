@@ -44,9 +44,9 @@
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
         <div style="height: 65px;" class="d-md-none"></div>
-        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap" style="padding-bottom: 60px; overflow-y: scroll;">
+        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap" style="overflow-y: scroll;">
         </div>
-        <div class="btn-group-vertical position-absolute" style="top: 6px; right: 368px;">
+        <div id="container-btn-zoom" class="btn-group-vertical position-fixed" style="top: 6px; right: 368px;">
             <button id="btn-zoom-increase" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-in"></i></button>
             <button id="btn-zoom-decrease" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-out"></i></button>
         </div>
@@ -85,7 +85,10 @@
                 </div>
             </div>
         </div>
-        <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow d-md-none">
+        <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
+            <button type=button class="btn btn-light float-end" data-bs-toggle="offcanvas" data-bs-target="#sidebarTools" aria-controls="sidebarTools"><i class="bi bi-list"></i></button>
+        </div>
+        <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div class="d-grid gap-2">
                 <button class="btn btn-primary" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF</button>
             </div>
@@ -99,6 +102,6 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?202205211001"></script>
+    <script src="/js/organization.js?202205240042"></script>
   </body>
 </html>

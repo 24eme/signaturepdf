@@ -10,10 +10,14 @@ var responsiveDisplay = function() {
         menu.classList.remove('show');
         menuOffcanvas.hide();
         document.getElementById('container-pages').classList.remove('vh-100');
+        document.getElementById('container-btn-zoom').style.top = '62px';
+        document.getElementById('container-btn-zoom').style.right = '6px';
     } else {
         menuOffcanvas.show();
         document.getElementById('page-organization').style.paddingRight = "350px";
         document.getElementById('container-pages').classList.add('vh-100');
+        document.getElementById('container-btn-zoom').style.top = '6px';
+        document.getElementById('container-btn-zoom').style.right = '368px';
     }
     menu.classList.remove('d-md-block');
     menu.classList.remove('d-none');

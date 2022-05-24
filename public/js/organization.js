@@ -164,10 +164,14 @@ var pageRenderAll = function() {
 }
 
 var pageRender = async function(pageIndex) {
+  let scrollWidth = 12;
+  if(is_mobile()) {
+      scrollWidth = -4;
+  }
   let page = pages[pageIndex];
   let rotation = parseInt(document.querySelector('#input_rotate_'+pageIndex).value);
   let viewport = page.getViewport({scale: 1, rotation: rotation});
-  let sizeWidth = Math.floor((document.getElementById('container-pages').offsetWidth - (8*(nbPagePerLine+1)) - 12) / nbPagePerLine);
+  let sizeWidth = Math.floor((document.getElementById('container-pages').offsetWidth - (8*(nbPagePerLine+1)) - scrollWidth) / nbPagePerLine);
   let sizeHeight = sizeWidth * 1.25;
   let scaleWidth = sizeWidth / viewport.width;
   let scaleHeight = sizeHeight / viewport.height;

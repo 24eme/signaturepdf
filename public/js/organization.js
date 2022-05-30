@@ -25,6 +25,9 @@ var responsiveDisplay = function() {
 var isSelectionMode = function() {
     return document.querySelectorAll('.canvas-container .input-select:checked').length > 0;
 }
+var isDraggedMode = function() {
+    return document.querySelectorAll('.canvas-container .input-drag:checked').length > 0;
+}
 
 var nbPagePerLine = 5;
 if(is_mobile()) {
@@ -65,6 +68,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div title="Restaurer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
                     pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
+                    pageHTML += '<div title="Déplacer ici" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here bg-white shadow d-none"><i class="bi bi-hand-index"></i></div>';
+                    pageHTML += '<div title="Annuler" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-cancel text-secondary d-none"><i class="bi bi-x-lg"></i></div>';
                     pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="Télécharger cette page" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
                     pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
@@ -72,6 +77,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<input type="hidden" class="input-rotate" value="0" id="input_rotate_'+pageIndex+'" />';
                     pageHTML += '<input type="checkbox" class="input-select d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
                     pageHTML += '<input type="checkbox" class="input-hover d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
+                    pageHTML += '<input type="checkbox" class="input-drag d-none" value="'+pdfLetter+page.pageNumber+'" id="input_drag_'+pageIndex+'" />';
                 pageHTML += '</div>';
 
                 document.getElementById('container-pages').insertAdjacentHTML('beforeend', pageHTML);
@@ -106,7 +112,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 canvasContainer.addEventListener('dragend', function(e) {
                     this.querySelector('.container-resize').classList.remove('d-none');
                     this.querySelector('.canvas-pdf').classList.remove('shadow-lg');
-                    this.querySelector('.canvas-pdf').style.border = '2px solid transparent';
+                    this.querySelector('.canvas-pdf').style.removeProperty('border');
                     this.style.opacity = 1;
                     updatePageState(this);
                 });
@@ -130,6 +136,38 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 });
                 canvasContainer.querySelector('.btn-select').addEventListener('click', function(e) {
                     toggleSelectPage(this.parentNode);
+                });
+                canvasContainer.querySelector('.btn-drag').addEventListener('click', function(e) {
+                    toggleDragPage(this.parentNode);
+                });
+                canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {
+                    let pageHere = this.parentNode;
+                    let after = false;
+                    let pageHereFound = false;
+                    document.querySelectorAll('.canvas-container').forEach(function(page) {
+                        if(page.id == pageHere.id) {
+                            pageHereFound = true;
+                        }
+                        if(!after && isPageDragged(page) && !pageHereFound) {
+                            after = true;
+                        }
+                    });
+                    document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
+                        let page = item.parentNode;
+                        if(after) {
+                            pageHere.insertAdjacentElement('afterend', page);
+                        } else {
+                            pageHere.insertAdjacentElement('beforebegin', page);
+                        }
+                        page.querySelector('input[type=checkbox].input-drag').checked = false;
+                    });
+                    updateGlobalState();
+                    document.querySelectorAll('.canvas-container').forEach(function(page) {
+                        updatePageState(page);
+                    });
+                });
+                canvasContainer.querySelector('.btn-cancel').addEventListener('click', function(e) {
+                    toggleDragPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
                     let container = this.parentNode;
@@ -274,6 +312,24 @@ var isPageSelected = function(page) {
     return page.querySelector('input[type=checkbox].input-select').checked;
 }
 
+var dragPage = function(page, state) {
+    page.querySelector('input[type=checkbox].input-drag').checked = state;
+    updatePageState(page);
+}
+
+var toggleDragPage = function(page) {
+    dragPage(page, !isPageDragged(page));
+    updateGlobalState();
+    document.querySelectorAll('.canvas-container').forEach(function(page) {
+        updatePageState(page);
+    });
+}
+
+var isPageDragged = function(page) {
+
+    return page.querySelector('input[type=checkbox].input-drag').checked;
+}
+
 var toggleDeletePage = function(page) {
     deletePage(page, isPageDeleted(page))
     updateGlobalState();
@@ -298,13 +354,18 @@ var isPageHover = function(page) {
 var updatePageState = function(page) {
     page.classList.remove('border-primary', 'shadow-sm', 'bg-primary', 'border-secondary', 'bg-secondary');
     page.classList.add('border-transparent', 'bg-transparent');
-    page.querySelector('.canvas-pdf').style.opacity = '1'
+    page.querySelector('.canvas-pdf').style.opacity = '1';
+    page.querySelector('.canvas-pdf').style.zIndex = 'inherit';
+    page.querySelector('.canvas-pdf').classList.add('shadow-sm');
+    page.querySelector('.canvas-pdf').classList.remove('shadow');
     page.querySelector('.btn-rotate').classList.add('d-none');
     page.querySelector('.btn-download').classList.add('d-none');
     page.querySelector('.btn-delete').classList.add('d-none');
     page.querySelector('.btn-select').classList.add('d-none');
     page.querySelector('.btn-select').classList.remove('text-primary');
     page.querySelector('.btn-drag').classList.add('d-none');
+    page.querySelector('.btn-cancel').classList.add('d-none');
+    page.querySelector('.btn-drag-here').classList.add('d-none');
     page.querySelector('.btn-restore').classList.add('d-none');
     page.querySelector('.page-title').classList.add('d-none');
 
@@ -312,7 +373,7 @@ var updatePageState = function(page) {
         page.querySelector('.canvas-pdf').style.opacity = '0.15';
     }
 
-    if(isPageHover(page) && !isPageDeleted(page)) {
+    if(isPageHover(page) && !isPageDeleted(page) && !isPageDragged(page) && !isDraggedMode()) {
         page.querySelector('.page-title').classList.remove('d-none');
         page.classList.add('border-secondary', 'bg-secondary');
         page.classList.remove('border-transparent', 'bg-transparent');
@@ -332,6 +393,17 @@ var updatePageState = function(page) {
         page.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
         page.querySelector('.btn-select').classList.add('text-primary');
         page.querySelector('.btn-select').classList.remove('d-none')
+    }
+
+    if(isPageDragged(page)) {
+        page.querySelector('.btn-cancel').classList.remove('d-none');
+        page.querySelector('.canvas-pdf').classList.remove('shadow-sm');
+        page.querySelector('.canvas-pdf').classList.add('shadow');
+        page.querySelector('.canvas-pdf').style.zIndex = 9999;
+    }
+
+    if(!isPageDragged(page) && isDraggedMode()) {
+        page.querySelector('.btn-drag-here').classList.remove('d-none');
     }
 }
 
@@ -361,6 +433,7 @@ var updateGlobalState = function() {
         button.setAttribute('disabled', 'disabled');
     });
     document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
+    document.querySelector('#backdrop_drag_mode').classList.add('d-none');
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
         document.querySelector('#container_btn_select').classList.remove('opacity-50');
@@ -372,6 +445,15 @@ var updateGlobalState = function() {
             button.classList.remove('btn-outline-secondary');
             button.removeAttribute('disabled');
         });
+        document.querySelectorAll('.canvas-container .btn-add').forEach(function(button) {
+            button.classList.remove('d-none');
+        });
+    }
+    if(isDraggedMode()) {
+        document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('#container-pages').scrollWidth+'px';
+        console.log(document.querySelector('#container-pages'));
+        document.querySelector('#backdrop_drag_mode').style.height = document.querySelector('#container-pages').scrollHeight+'px';
+        document.querySelector('#backdrop_drag_mode').classList.remove('d-none');
     }
 }
 

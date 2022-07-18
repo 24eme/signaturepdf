@@ -15,6 +15,7 @@ Logiciel libre sous license AGPL V3
 
 ## Installation
 
+### Debian/Ubuntu
 Dépendances :
 
 - php >= 5.6 
@@ -61,6 +62,111 @@ DocumentRoot /path/to/signaturepdf/public
     php_value upload_max_filesize 24M
     php_value post_max_size 24M
 </Directory>
+```
+
+### Alpine
+
+Voici un script permettant d'installer la solution sous Linux Alpine (testé en version 3.15).
+Pensez à éditer la variable "domain" en début de script pour correspondre à l'URL avec laquelle elle sera appelée.
+
+Les composants principaux sont :
+- php 8 + php-fpm
+- Nginx
+- pdftk (installation "manuelle" nécessitant openjdk8)
+- imagick
+- potrace
+- librsvg
+
+Ce que fait le script :
+- Installation des dépendances
+- Configuration de php et php-fpm
+- Configuration d'Nginx
+- Configuration du config.ini
+- Git clone du repo
+
+```
+#!/bin/sh
+
+domain='sign.example.com'
+
+apk update 
+apk add bash nginx git php8 php8-fpm php8-session php8-gd php8-fileinfo openjdk8 imagemagick potrace librsvg
+
+cd /tmp
+wget https://gitlab.com/pdftk-java/pdftk/-/jobs/924565145/artifacts/raw/build/libs/pdftk-all.jar
+mv pdftk-all.jar pdftk.jar
+
+cat <<EOF >>pdftk
+#!/usr/bin/env bash
+/usr/bin/java -jar "\$0.jar" "\$@"
+EOF
+
+chmod 775 pdftk*
+mv pdftk* /usr/bin
+
+sed -i 's/user = nobody/user = nginx/g' /etc/php8/php-fpm.d/www.conf
+sed -i 's/;listen.owner = nginx/listen.owner = nginx/g' /etc/php8/php-fpm.d/www.conf
+
+sed -i 's/post_max_size = 8M/post_max_size = 50M/g' /etc/php8/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 50M/g' /etc/php8/php.ini
+sed -i 's/max_file_uploads = 20 /max_file_uploads = 300/g' /etc/php8/php.ini
+
+service php-fpm8 restart
+
+cd /var/www
+git clone https://github.com/24eme/signaturepdf.git
+
+cat <<EOF >>/etc/nginx/http.d/signaturepdf.conf
+server {
+
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name ${domain};
+
+        client_max_body_size 0;
+    
+        root /var/www/signaturepdf/public/;
+
+        index           index.php index.html;
+
+        location / {
+        # URLs to attempt, including pretty ones.
+        try_files   \$uri \$uri/ /index.php?\$query_string;
+        }
+
+        location ~ [^/]\.php(/|$) {
+                root /var/www/signaturepdf/public/;
+
+                fastcgi_split_path_info  ^(.+\.php)(/.+)$;
+                fastcgi_index            index.php;
+                include                  fastcgi_params;
+
+                fastcgi_buffer_size 128k;
+                fastcgi_buffers 128 128k;
+                fastcgi_param   PATH_INFO       \$fastcgi_path_info;
+                fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+                fastcgi_pass 127.0.0.1:9000;        
+
+        }
+
+}
+EOF
+
+rm /etc/nginx/http.d/default.conf
+rm -R /var/www/localhost
+
+service nginx restart
+
+rc-update add nginx
+rc-update add php-fpm8
+
+mkdir /var/www/signaturepdf/tmp
+chown nginx /var/www/signaturepdf/tmp
+
+cat <<EOF >>/var/www/signaturepdf/config/config.ini
+PDF_STORAGE_PATH=/var/www/signaturepdf/tmp
+EOF
 ```
 
 ### Mise à jour vers la dernière version

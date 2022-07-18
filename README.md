@@ -16,6 +16,7 @@ Logiciel libre sous license AGPL V3
 ## Installation
 
 ### Debian/Ubuntu
+
 Dépendances :
 
 - php >= 5.6 
@@ -24,7 +25,7 @@ Dépendances :
 - imagemagick
 - potrace
 
-Sur debian :
+Installation des dépendances :
 
 ```
 sudo aptitude install php librsvg2-bin pdftk imagemagick potrace
@@ -42,7 +43,7 @@ Pour le lancer :
 php -S localhost:8000 -t public
 ```
 
-### Configuration de PHP
+#### Configuration de PHP
 
 ```
 upload_max_filesize = 24M # Taille maximum du fichier PDF à signer
@@ -50,7 +51,7 @@ post_max_size = 24M # Taille maximum du fichier PDF à signer
 max_file_uploads = 201 # Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine
 ```
 
-### Déployer avec apache
+#### Configuration d'apache
 
 ```
 DocumentRoot /path/to/signaturepdf/public
@@ -63,6 +64,38 @@ DocumentRoot /path/to/signaturepdf/public
     php_value post_max_size 24M
 </Directory>
 ```
+
+### Déployer avec docker
+
+#### Construction de l'image
+
+```bash
+docker build -t signaturepdf .
+````
+
+#### Lancement d'un conteneur
+
+```bash
+docker run -d --name=signaturepdf -p 8080:80 signaturepdf
+````
+
+[localhost:8080](http://localhost:8080)
+
+#### Configuration
+
+Les variables suivantes permettent de configurer le déployement :
+
+|Variable|description|exemple|defaut|
+|-----|-----|-----|-----|
+|`SERVERNAME`|url de déploiement|`pdf.24eme.fr`|localhost|
+|`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48M|24M|
+|`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48M|24M|
+|`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
+|`PDF_STORAGE_PATH`|chemin vers lequel les fichiers pdf uploadés pourront être stockés|/data||
+
+```bash
+docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
+````
 
 ### Alpine
 
@@ -169,13 +202,7 @@ PDF_STORAGE_PATH=/var/www/signaturepdf/tmp
 EOF
 ```
 
-### Mise à jour vers la dernière version
-
-La dernière version stable est sur la branche `master`, pour la mise à jour il suffit de récupérer les dernières modifications :
-
-```
-git pull -r
-```
+## Configuration
 
 ### Activation et configuration du mode partage de signature à plusieurs
 
@@ -206,37 +233,13 @@ Par exemple pour apache :
 chown www-data /path/to/folder/to/store/pdf
 ```
 
-### Déployer avec docker
+## Mise à jour
 
-#### Construction de l'image
+La dernière version stable est sur la branche `master`, pour la mise à jour il suffit de récupérer les dernières modifications :
 
-```bash
-docker build -t signaturepdf .
-````
-
-#### Lancement d'un conteneur
-
-```bash
-docker run -d --name=signaturepdf -p 8080:80 signaturepdf
-````
-
-[localhost:8080](http://localhost:8080)
-
-#### Configuration
-
-Les variables suivantes permettent de configurer le déployement :
-
-|Variable|description|exemple|defaut|
-|-----|-----|-----|-----|
-|`SERVERNAME`|url de déploiement|`pdf.24eme.fr`|localhost|
-|`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48M|24M|
-|`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48M|24M|
-|`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
-|`PDF_STORAGE_PATH`|chemin vers lequel les fichiers pdf uploadés pourront être stockés|/data||
-
-```bash
-docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
-````
+```
+git pull -r
+```
 
 ## Tests
 

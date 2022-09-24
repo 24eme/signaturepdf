@@ -1,10 +1,37 @@
 var windowWidth = window.innerWidth;
+var menu = null;
+var menuOffcanvas = null;
 var is_mobile = function() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 };
+var responsiveDisplay = function() {
+    if(is_mobile()) {
+        document.getElementById('page-organization').style.paddingRight = "inherit";
+        menu.classList.remove('show');
+        menuOffcanvas.hide();
+        document.getElementById('container-pages').classList.remove('vh-100');
+        document.getElementById('container-btn-zoom').style.top = '62px';
+        document.getElementById('container-btn-zoom').style.right = '6px';
+    } else {
+        menuOffcanvas.show();
+        document.getElementById('page-organization').style.paddingRight = "350px";
+        document.getElementById('container-pages').classList.add('vh-100');
+        document.getElementById('container-btn-zoom').style.top = '6px';
+        document.getElementById('container-btn-zoom').style.right = '368px';
+    }
+    menu.classList.remove('d-md-block');
+    menu.classList.remove('d-none');
+};
+var isSelectionMode = function() {
+    return document.querySelectorAll('.canvas-container .input-select:checked').length > 0;
+}
+var isDraggedMode = function() {
+    return document.querySelectorAll('.canvas-container .input-drag:checked').length > 0;
+}
+
 var nbPagePerLine = 5;
 if(is_mobile()) {
-    nbPagePerLine = 2;
+    nbPagePerLine = 1;
 }
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
@@ -29,29 +56,52 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
 
     let loadingTask = pdfjsLib.getDocument(url);
-    loadingTask.promise.then(function(pdf) {
+    await loadingTask.promise.then(function(pdf) {
         for(var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
             pdf.getPage(pageNumber).then(function(page) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
                 pages[pageIndex] = page;
 
-                let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container shadow-sm d-flex align-items-center justify-content-center bg-white bg-opacity-50 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
-                    pageHTML += '<canvas class="canvas-pdf"></canvas>';
-                    pageHTML += '<div class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 rounded-circle btn-select"><i class="bi bi-check-square"></i></div>';
-                    pageHTML += '<div class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle btn-delete"><i class="bi bi-trash"></i></div>';
-                    pageHTML += '<div class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 rounded-circle container-rotate btn-rotate"><i class="bi bi-arrow-clockwise"></i></div>';
-                    pageHTML += '<div class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 rounded-circle btn-download"><i class="bi bi-download"></i></div>';
-                    pageHTML += '<div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4 d-none" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch d-none"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div>';
-                    pageHTML += '<div class="position-absolute text-center w-100 pt-1 container-checkbox pb-4 d-none" style="background: rgb(255,255,255,0.8); bottom: 0; cursor: pointer;"><div class="form-switch d-none"><input form="form_pdf" class="form-check-input checkbox-page" role="switch" type="checkbox" checked="checked" style="cursor: pointer;" value="'+pdfLetter+page.pageNumber+'" /></div></div>';
-                    pageHTML += '<p class="position-absolute text-center w-100 ps-2 pe-2 pb-0 mb-1 opacity-75" style="bottom: 0; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
+                let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container d-flex align-items-center justify-content-center bg-transparent bg-opacity-25 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
+                    pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
+                    pageHTML += '<div title="Séléctionner cette page" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select d-none"><i class="bi bi-check-square"></i></div>';
+                    pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
+                    pageHTML += '<div title="Restaurer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
+                    pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
+                    pageHTML += '<div title="Déplacer ici" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here bg-white shadow d-none"><i class="bi bi-hand-index"></i></div>';
+                    pageHTML += '<div title="Annuler" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-cancel d-none"><i class="bi bi-x-lg"></i></div>';
+                    pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
+                    pageHTML += '<div title="Télécharger cette page" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
+                    pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
+                    pageHTML += '<input form="form_pdf" class="checkbox-page d-none" role="switch" type="checkbox" checked="checked" value="'+pdfLetter+page.pageNumber+'" />';
                     pageHTML += '<input type="hidden" class="input-rotate" value="0" id="input_rotate_'+pageIndex+'" />';
                     pageHTML += '<input type="checkbox" class="input-select d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
+                    pageHTML += '<input type="checkbox" class="input-hover d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
+                    pageHTML += '<input type="checkbox" class="input-drag d-none" value="'+pdfLetter+page.pageNumber+'" id="input_drag_'+pageIndex+'" />';
                 pageHTML += '</div>';
 
                 document.getElementById('container-pages').insertAdjacentHTML('beforeend', pageHTML);
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
+                canvasContainer.addEventListener('click', function(e) {
+                    if(!is_mobile()) {
+                        return;
+                    }
+                    let checkbox = this.querySelector('input[type=checkbox].input-hover');
+                    checkbox.checked = !checkbox.checked;
+                    updatePageState(this);
+                });
+                canvasContainer.addEventListener('mouseenter', function(e) {
+                    if(is_mobile()) {
+                        return false;
+                    }
+                    this.querySelector('input[type=checkbox].input-hover').checked = true;
+                    updatePageState(this);
+                });
+                canvasContainer.addEventListener('mouseleave', function(e) {
+                    this.querySelector('input[type=checkbox].input-hover').checked = false;
+                    updatePageState(this);
+                });
                 canvasContainer.addEventListener('dragstart', function(e) {
                     this.querySelector('.container-resize').classList.add('d-none');
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
@@ -62,9 +112,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 canvasContainer.addEventListener('dragend', function(e) {
                     this.querySelector('.container-resize').classList.remove('d-none');
                     this.querySelector('.canvas-pdf').classList.remove('shadow-lg');
-                    this.querySelector('.canvas-pdf').style.border = '2px solid transparent';
+                    this.querySelector('.canvas-pdf').style.removeProperty('border');
                     this.style.opacity = 1;
-                    stateCheckbox(this.querySelector('input[type=checkbox]'));
+                    updatePageState(this);
                 });
                 canvasContainer.addEventListener('dragover', function(e) {
                     if (e.preventDefault) {
@@ -79,28 +129,45 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     return false;
                 });
                 canvasContainer.querySelector('.btn-delete').addEventListener('click', function(e) {
-                    let checkbox = this.parentNode.querySelector('input[type=checkbox]');
-                    checkbox.checked = !checkbox.checked;
-                    stateCheckbox(checkbox);
+                    toggleDeletePage(this.parentNode);
+                });
+                canvasContainer.querySelector('.btn-restore').addEventListener('click', function(e) {
+                    toggleDeletePage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-select').addEventListener('click', function(e) {
-                    let checkbox = this.parentNode.querySelector('input[type=checkbox].input-select');
-                    checkbox.checked = !checkbox.checked;
-                    let container = this.parentNode;
-                    if(checkbox.checked) {
-                        container.classList.add('border-primary', 'shadow', 'bg-primary');
-                        container.classList.remove('border-transparent', 'shadow-sm', 'bg-white');
-                    } else {
-                        container.classList.remove('border-primary', 'shadow', 'bg-primary');
-                        container.classList.add('border-transparent', 'shadow-sm', 'bg-white');
-                    }
-                    if(document.querySelectorAll('.canvas-container .input-select:checked').length > 0) {
-                        document.querySelector('#container-btn-save-select').classList.remove('d-none');
-                        document.querySelector('#container-btn-save').classList.add('d-none');
-                    } else {
-                        document.querySelector('#container-btn-save-select').classList.add('d-none');
-                        document.querySelector('#container-btn-save').classList.remove('d-none');
-                    }
+                    toggleSelectPage(this.parentNode);
+                });
+                canvasContainer.querySelector('.btn-drag').addEventListener('click', function(e) {
+                    toggleDragPage(this.parentNode);
+                });
+                canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {
+                    let pageHere = this.parentNode;
+                    let after = false;
+                    let pageHereFound = false;
+                    document.querySelectorAll('.canvas-container').forEach(function(page) {
+                        if(page.id == pageHere.id) {
+                            pageHereFound = true;
+                        }
+                        if(!after && isPageDragged(page) && !pageHereFound) {
+                            after = true;
+                        }
+                    });
+                    document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
+                        let page = item.parentNode;
+                        if(after) {
+                            pageHere.insertAdjacentElement('afterend', page);
+                        } else {
+                            pageHere.insertAdjacentElement('beforebegin', page);
+                        }
+                        page.querySelector('input[type=checkbox].input-drag').checked = false;
+                    });
+                    updateGlobalState();
+                    document.querySelectorAll('.canvas-container').forEach(function(page) {
+                        updatePageState(page);
+                    });
+                });
+                canvasContainer.querySelector('.btn-cancel').addEventListener('click', function(e) {
+                    toggleDragPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
                     let container = this.parentNode;
@@ -113,7 +180,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     document.querySelector('#form_pdf').submit();
                 });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
-                    let inputRotate = document.querySelector('#input_rotate_'+pageIndex);
+                    let inputRotate = this.parentNode.querySelector('.input-rotate');
                     inputRotate.value = (parseInt(inputRotate.value) + 90) % 360;
                     pageRender(pageIndex);
                 })
@@ -124,6 +191,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     }, function (reason) {
         console.error(reason);
     });
+
+    return loadingTask;
 };
 
 var pageRenderAll = function() {
@@ -133,24 +202,29 @@ var pageRenderAll = function() {
 }
 
 var pageRender = async function(pageIndex) {
+  let scrollWidth = 12;
+  if(is_mobile()) {
+      scrollWidth = -4;
+  }
   let page = pages[pageIndex];
   let rotation = parseInt(document.querySelector('#input_rotate_'+pageIndex).value);
   let viewport = page.getViewport({scale: 1, rotation: rotation});
-  let size =  Math.floor((document.getElementById('container-pages').offsetWidth - (8*(nbPagePerLine+1)) - 12) / nbPagePerLine);
-  let scaleWidth = size / viewport.width;
-  let scaleHeight = size / viewport.height;
+  let sizeWidth = Math.floor((document.getElementById('container-pages').offsetWidth - (8*(nbPagePerLine+1)) - scrollWidth) / nbPagePerLine);
+  let sizeHeight = sizeWidth * 1.25;
+  let scaleWidth = sizeWidth / viewport.width;
+  let scaleHeight = sizeHeight / viewport.height;
   let viewportWidth = page.getViewport({scale: scaleWidth, rotation: rotation});
   let viewportHeight = page.getViewport({scale: scaleHeight, rotation: rotation});
 
-  if(viewportWidth.height > size) {
+  if(viewportWidth.height > sizeWidth) {
       viewport = viewportHeight;
   } else {
       viewport = viewportWidth;
   }
 
   let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
-  canvasContainer.style.height = (size + 4) + "px";
-  canvasContainer.style.width = (size + 4) + "px";
+  canvasContainer.style.height = (sizeHeight + 4) + "px";
+  canvasContainer.style.width = (sizeWidth + 4) + "px";
   let canvasPDF = canvasContainer.querySelector('.canvas-pdf');
   let context = canvasPDF.getContext('2d');
   canvasPDF.height = viewport.height;
@@ -165,21 +239,221 @@ var pageRender = async function(pageIndex) {
   });
 }
 
-var stateCheckbox = function(checkbox) {
-    let checkboxContainer = checkbox.parentNode.parentNode.parentNode;
+var getFileIndex = function(page) {
 
-    if(checkbox.checked) {
-        checkboxContainer.style.opacity = '1'
-    } else {
-        checkboxContainer.style.opacity = '0.2';
-    }
-};
+    return page.id.replace('canvas-container-', '').replace(/_.*$/, '');
+}
+
+var getFilesStats = function() {
+    let files = [];
+    document.querySelectorAll('.canvas-container').forEach(function(page) {
+        let fileIndex = getFileIndex(page);
+        if(!files[fileIndex]) {
+            files[fileIndex] = { nbPage: 0, nbPageSelected: 0, nbPageDeleted: 0};
+        }
+
+        if(isPageDeleted(page)) {
+            files[fileIndex].nbPageDeleted++;
+        } else {
+            files[fileIndex].nbPage++;
+        }
+
+        if(isPageSelected(page)) {
+            files[fileIndex].nbPageSelected++;
+        }
+    });
+
+    console.log(files);
+
+    return files;
+}
 
 var updateListePDF = function() {
     document.querySelector('#list_pdf').innerHTML = "";
     for (var i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
+        let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
         const pdfFile = document.querySelector('#input_pdf').files.item(i);
-        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li  class="list-group-item small" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i> '+decodeURI(pdfFile.name)+'</li>');
+        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><span class="ms-2">'+decodeURI(pdfFile.name)+'</span> <input class="form-check-input float-end position-absolute" style="right: 10px;" type="checkbox" /> </li>');
+        let fileItem = document.querySelector('#file_' + pdfLetter);
+        fileItem.querySelector('input[type=checkbox]').addEventListener('change', function(e) {
+            document.querySelectorAll('.canvas-container').forEach(function(page) {
+                if(getFileIndex(page) == pdfLetter && !isPageDeleted(page)) {
+                    selectPage(page, e.target.checked);
+                }
+            });
+            updateGlobalState();
+        });
+
+    }
+    updateGlobalState();
+}
+
+var getPagesSelected = function() {
+    let pages = [];
+    document.querySelectorAll('.canvas-container .input-select:checked').forEach(function(item) {
+        pages[item.parentNode.id.replace('canvas-container-', '')] = item.parentNode;
+    });
+
+    return pages;
+}
+
+var selectPage = function(page, state) {
+    page.querySelector('input[type=checkbox].input-select').checked = state;
+    updatePageState(page);
+}
+
+var toggleSelectPage = function(page) {
+    selectPage(page, !isPageSelected(page));
+    updateGlobalState();
+}
+
+var isPageSelected = function(page) {
+
+    return page.querySelector('input[type=checkbox].input-select').checked;
+}
+
+var dragPage = function(page, state) {
+    page.querySelector('input[type=checkbox].input-drag').checked = state;
+    updatePageState(page);
+}
+
+var toggleDragPage = function(page) {
+    dragPage(page, !isPageDragged(page));
+    updateGlobalState();
+    document.querySelectorAll('.canvas-container').forEach(function(page) {
+        updatePageState(page);
+    });
+}
+
+var isPageDragged = function(page) {
+
+    return page.querySelector('input[type=checkbox].input-drag').checked;
+}
+
+var toggleDeletePage = function(page) {
+    deletePage(page, isPageDeleted(page))
+    updateGlobalState();
+}
+
+var deletePage = function(page, state) {
+    page.querySelector('input[type=checkbox].checkbox-page').checked = state;
+    page.querySelector('input[type=checkbox].input-select').checked = false;
+    updatePageState(page);
+}
+
+var isPageDeleted = function(page) {
+
+    return !page.querySelector('input[type=checkbox].checkbox-page').checked;
+}
+
+var isPageHover = function(page) {
+
+    return page.querySelector('input[type=checkbox].input-hover').checked;
+}
+
+var updatePageState = function(page) {
+    page.classList.remove('border-primary', 'shadow-sm', 'bg-primary', 'border-secondary', 'bg-secondary');
+    page.classList.add('border-transparent', 'bg-transparent');
+    page.querySelector('.canvas-pdf').style.opacity = '1';
+    page.querySelector('.canvas-pdf').style.zIndex = 'inherit';
+    page.querySelector('.canvas-pdf').classList.add('shadow-sm');
+    page.querySelector('.canvas-pdf').classList.remove('shadow');
+    page.querySelector('.btn-rotate').classList.add('d-none');
+    page.querySelector('.btn-download').classList.add('d-none');
+    page.querySelector('.btn-delete').classList.add('d-none');
+    page.querySelector('.btn-select').classList.add('d-none');
+    page.querySelector('.btn-select').classList.remove('text-primary');
+    page.querySelector('.btn-drag').classList.add('d-none');
+    page.querySelector('.btn-cancel').classList.add('d-none');
+    page.querySelector('.btn-drag-here').classList.add('d-none');
+    page.querySelector('.btn-restore').classList.add('d-none');
+    page.querySelector('.page-title').classList.add('d-none');
+
+    if(isPageDeleted(page)) {
+        page.querySelector('.canvas-pdf').style.opacity = '0.15';
+    }
+
+    if(isPageHover(page) && !isPageDeleted(page) && !isPageDragged(page) && !isDraggedMode()) {
+        page.querySelector('.page-title').classList.remove('d-none');
+        page.classList.add('border-secondary', 'bg-secondary');
+        page.classList.remove('border-transparent', 'bg-transparent');
+        page.querySelector('.btn-rotate').classList.remove('d-none');
+        page.querySelector('.btn-download').classList.remove('d-none');
+        page.querySelector('.btn-delete').classList.remove('d-none');
+        page.querySelector('.btn-select').classList.remove('d-none')
+        page.querySelector('.btn-drag').classList.remove('d-none');
+    }
+
+    if(isPageHover(page) && isPageDeleted(page)) {
+        page.querySelector('.btn-restore').classList.remove('d-none');
+    }
+
+    if(isPageSelected(page)) {
+        page.classList.add('border-primary', 'shadow-sm', 'bg-primary');
+        page.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
+        page.querySelector('.btn-select').classList.add('text-primary');
+        page.querySelector('.btn-select').classList.remove('d-none')
+    }
+
+    if(isPageDragged(page)) {
+        page.querySelector('.btn-cancel').classList.remove('d-none');
+        page.querySelector('.canvas-pdf').classList.remove('shadow-sm');
+        page.querySelector('.canvas-pdf').classList.add('shadow');
+        page.querySelector('.canvas-pdf').style.zIndex = 9999;
+    }
+
+    if(!isPageDragged(page) && isDraggedMode()) {
+        page.querySelector('.btn-drag-here').classList.remove('d-none');
+    }
+}
+
+var updateFilesState = function() {
+    let filesStats = getFilesStats();
+    for(fileIndex in filesStats) {
+        let checkbox = document.querySelector('#file_'+fileIndex+' input[type=checkbox]');
+        let fileStat = filesStats[fileIndex];
+        checkbox.checked = (fileStat.nbPageSelected > 0 && fileStat.nbPageSelected == fileStat.nbPage);
+        checkbox.indeterminate = (fileStat.nbPageSelected > 0 && fileStat.nbPageSelected < fileStat.nbPage);
+        document.querySelector('#file_'+fileIndex+' span').classList.remove('text-primary');
+        if(fileStat.nbPageSelected > 0) {
+            document.querySelector('#file_'+fileIndex+' span').classList.add('text-primary');
+        }
+    }
+}
+
+var updateGlobalState = function() {
+    updateFilesState();
+    document.querySelector('#container_btn_select').classList.add('opacity-50');
+    document.querySelector('#container_btn_select').classList.remove('border-primary');
+    document.querySelector('#container_btn_select .card-header').classList.remove('bg-primary', 'text-white');
+    document.querySelector('#container_btn_select .card-header').classList.add('text-muted');
+    document.querySelectorAll('#container_btn_select .card-body button').forEach(function(button) {
+        button.classList.add('btn-outline-secondary');
+        button.classList.remove('btn-outline-primary');
+        button.setAttribute('disabled', 'disabled');
+    });
+    document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
+    document.querySelector('#backdrop_drag_mode').classList.add('d-none');
+    if(isSelectionMode()) {
+        document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
+        document.querySelector('#container_btn_select').classList.remove('opacity-50');
+        document.querySelector('#container_btn_select').classList.add('border-primary');
+        document.querySelector('#container_btn_select .card-header').classList.remove('text-muted');
+        document.querySelector('#container_btn_select .card-header').classList.add('bg-primary', 'text-white');
+        document.querySelectorAll('#container_btn_select .card-body button').forEach(function(button) {
+            button.classList.add('btn-outline-primary');
+            button.classList.remove('btn-outline-secondary');
+            button.removeAttribute('disabled');
+        });
+        document.querySelectorAll('.canvas-container .btn-add').forEach(function(button) {
+            button.classList.remove('d-none');
+        });
+    }
+    if(isDraggedMode()) {
+        document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('#container-pages').scrollWidth+'px';
+        console.log(document.querySelector('#container-pages'));
+        document.querySelector('#backdrop_drag_mode').style.height = document.querySelector('#container-pages').scrollHeight+'px';
+        document.querySelector('#backdrop_drag_mode').classList.remove('d-none');
     }
 }
 
@@ -198,10 +472,7 @@ var createEventsListener = function() {
     document.getElementById('save').addEventListener('click', function(event) {
         let order = [];
 
-        let selectionMode = false;
-        if(document.querySelectorAll('.canvas-container .input-select:checked').length > 0) {
-            selectionMode = true;
-        }
+        let selectionMode = isSelectionMode();
 
         document.querySelectorAll('.canvas-container').forEach(function(canvasContainer) {
             let checkbox = canvasContainer.querySelector('.checkbox-page');
@@ -223,21 +494,26 @@ var createEventsListener = function() {
         });
         document.querySelector('#input_pages').value = order.join(',');
     });
+    document.getElementById('save_mobile').addEventListener('click', function(event) {
+        document.getElementById('save').click();
+    });
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
-        if(this.files[0].size > maxSize) {
+        console.log(this.files.length);
+        for (let i = 0; i < this.files.length; i++) {
+            if(this.files[i].size > maxSize) {
 
-            alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
-            this.value = "";
-            return;
+                alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
+                break;
+            }
+            const cache = await caches.open('pdf');
+            let filename = this.files[i].name;
+            let response = new Response(this.files[i], { "status" : 200, "statusText" : "OK" });
+            let urlPdf = '/pdf/'+filename;
+            await cache.put(urlPdf, response);
+            let pdfBlob = await getPDFBlobFromCache(urlPdf);
+            nbPDF++;
+            await loadPDF(pdfBlob, filename, nbPDF);
         }
-        const cache = await caches.open('pdf');
-        let filename = this.files[0].name;
-        let response = new Response(this.files[0], { "status" : 200, "statusText" : "OK" });
-        let urlPdf = '/pdf/'+filename;
-        await cache.put(urlPdf, response);
-        let pdfBlob = await getPDFBlobFromCache(urlPdf);
-        nbPDF++;
-        loadPDF(pdfBlob, filename, nbPDF);
         this.value = '';
     });
     document.getElementById('btn-zoom-decrease').addEventListener('click', function(event) {
@@ -253,7 +529,21 @@ var createEventsListener = function() {
             input.parentNode.querySelector('.btn-select').click();
         });
     });
-
+    document.getElementById('btn_delete_select').addEventListener('click', function(event) {
+        let pages = getPagesSelected();
+        for(index in pages) {
+            deletePage(pages[index]);
+        }
+        updateGlobalState();
+    });
+    document.getElementById('btn_rotate_select').addEventListener('click', function(event) {
+        let pages = getPagesSelected();
+        for(index in pages) {
+            let inputRotate = pages[index].querySelector('.input-rotate');
+            inputRotate.value = (parseInt(inputRotate.value) + 90) % 360;
+            pageRender(index);
+        }
+    });
 }
 
 async function getPDFBlobFromCache(cacheUrl) {
@@ -290,6 +580,7 @@ async function uploadFromUrl(url) {
 }
 
 var pageUpload = async function() {
+    document.querySelector('body').classList.remove('bg-light');
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-organization').classList.add('d-none');
@@ -314,14 +605,19 @@ var pageUpload = async function() {
 var pageOrganization = async function(url) {
     let filename = url.replace('/pdf/', '');
     document.title = filename + ' - ' + document.title;
+    document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-organization').classList.remove('d-none');
+    menu = document.getElementById('sidebarTools');
+    menuOffcanvas = new bootstrap.Offcanvas(menu);
+    responsiveDisplay();
 
     let pdfBlob = await getPDFBlobFromCache(url);
     if(!pdfBlob) {
         document.location = '/organization';
         return;
     }
+
     createEventsListener();
     loadPDF(pdfBlob, filename, nbPDF);
 };

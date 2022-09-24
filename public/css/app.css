@@ -50,6 +50,10 @@
     font-size: 25px;
 }
 
+.canvas-container .btn-cancel {
+    font-size: 20px;
+}
+
 .border-transparent {
     border-color: transparent !important;
 }

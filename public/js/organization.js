@@ -120,10 +120,24 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     if (e.preventDefault) {
                         e.preventDefault();
                     }
-                    if(e.layerX > e.target.clientWidth / 2) {
+                    let element = this;
+                    // vers le haut
+                    if(this.offsetTop < document.querySelector('#'+e.dataTransfer.getData('element')).offsetTop && e.layerX <= element.clientWidth / 2) {
+                        element = this.previousSibling;
+                    }
+                    // vers le bas
+                    if(this.offsetTop > document.querySelector('#'+e.dataTransfer.getData('element')).offsetTop && e.layerX > element.clientWidth / 2) {
+                        element = this.nextSibling;
+                    }
+
+                    if(!element.draggable && !this.previousSibling.draggable) {
                         this.insertAdjacentElement('beforebegin', document.querySelector('#'+e.dataTransfer.getData('element')));
+                    } else if(!element.draggable && !this.nextSibling.draggable) {
+                        this.insertAdjacentElement('beforebegin', document.querySelector('#'+e.dataTransfer.getData('element')));
+                    } else if (e.layerX > element.clientWidth / 2) {
+                        element.insertAdjacentElement('beforebegin', document.querySelector('#'+e.dataTransfer.getData('element')));
                     } else {
-                        this.insertAdjacentElement('afterend', document.querySelector('#'+e.dataTransfer.getData('element')));
+                        element.insertAdjacentElement('afterend', document.querySelector('#'+e.dataTransfer.getData('element')));
                     }
 
                     return false;

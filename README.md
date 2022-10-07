@@ -8,6 +8,7 @@ Liste des instances permettant d'utiliser ce logiciel :
 
 - [pdf.24eme.fr](https://pdf.24eme.fr)
 - [pdf.libreon.fr](https://pdf.libreon.fr)
+- [pdf.hostux.net](https://pdf.hostux.net)
 
 ## License
 

@@ -430,6 +430,10 @@ var updatePageState = function(page) {
         page.querySelector('.btn-restore').classList.remove('d-none');
     }
 
+    if(is_mobile() && isPageDeleted(page)) {
+        page.querySelector('.btn-restore').classList.remove('d-none');
+    }
+
     if(isPageSelected(page)) {
         page.classList.add('border-primary', 'shadow-sm', 'bg-primary');
         page.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');

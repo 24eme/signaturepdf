@@ -181,6 +181,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     toggleDragPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-drag-here_mobile').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     canvasContainer.querySelector('.btn-drag-here').click();
                 });
                 canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {

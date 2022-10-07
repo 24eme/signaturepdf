@@ -70,7 +70,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div title="Restaurer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
                     pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div title="Déplacer ici" class="position-absolute top-100 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
+                    pageHTML += '<div title="Déplacer ici" class="position-absolute start-0 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here bg-white shadow d-none"><i style="display: block; transform: rotate(90deg) !important;" class="bi bi-arrows-collapse"></i></div>';
+                    pageHTML += '<div title="Déplacer ici" class="position-absolute top-100 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here_mobile bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
                     pageHTML += '<div title="Annuler" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-cancel d-none"><i class="bi bi-x-lg"></i></div>';
                     pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="Télécharger cette page" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
@@ -179,7 +180,11 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     }
                     toggleDragPage(this.parentNode);
                 });
+                canvasContainer.querySelector('.btn-drag-here_mobile').addEventListener('click', function(e) {
+                    canvasContainer.querySelector('.btn-drag-here').click();
+                });
                 canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     let pageHere = this.parentNode;
                     let after = false;
                     let pageHereFound = false;
@@ -408,6 +413,7 @@ var updatePageState = function(page) {
     page.querySelector('.btn-drag').classList.add('d-none');
     page.querySelector('.btn-cancel').classList.add('d-none');
     page.querySelector('.btn-drag-here').classList.add('d-none');
+    page.querySelector('.btn-drag-here_mobile').classList.add('d-none');
     page.querySelector('.btn-restore').classList.add('d-none');
     page.querySelector('.page-title').classList.add('d-none');
 
@@ -448,8 +454,12 @@ var updatePageState = function(page) {
         page.querySelector('.canvas-pdf').style.zIndex = 9999;
     }
 
-    if(!isPageDragged(page) && isDraggedMode()) {
+    if(!is_mobile() && !isPageDragged(page) && isDraggedMode()) {
         page.querySelector('.btn-drag-here').classList.remove('d-none');
+    }
+
+    if(is_mobile() && !isPageDragged(page) && isDraggedMode()) {
+        page.querySelector('.btn-drag-here_mobile').classList.remove('d-none');
     }
 }
 
@@ -620,6 +630,16 @@ var createEventsListener = function() {
             inputRotate.value = (parseInt(inputRotate.value) + 90) % 360;
             pageRender(index);
         }
+    });
+    document.getElementById('btn_drag_select').addEventListener('click', function(event) {
+        let pages = getPagesSelected();
+        for(index in pages) {
+            toggleDragPage(pages[index]);
+        }
+    });
+    document.getElementById('btn_drag_select_mobile').addEventListener('click', function(event) {
+        document.getElementById('btn_drag_select').click();
+        this.blur();
     });
 }
 

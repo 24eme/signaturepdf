@@ -7,7 +7,7 @@
 
     <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
     <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/app.css?202210080107" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/favicon-organization.ico">
 
     <title>Organiser un PDF</title>
@@ -72,6 +72,7 @@
                     <div class="card-header small text-center p-1"><span>Aucune</span> page(s) séléctionnée(s) <button id="btn_cancel_select" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
                     <div class="card-body d-grid gap-2 p-2">
                         <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Tourner de 90°</button>
+                        <button id="btn_drag_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrows-move"></i> Déplacer</button>
                         <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-trash"></i> Supprimer</button>
                         <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><i class="bi bi-download"></i> Télécharger</button>
                     </div>
@@ -104,7 +105,7 @@
                 <div id="top_bar_action_selection_recap" class="bg-primary small text-white text-center rounded-top p-1"><span>Aucune</span> page(s) séléctionnée(s) <button id="btn_cancel_select_mobile" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
                 <div class="btn-group w-100">
                     <button id="btn_rotate_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-left-radius: 0 !important;"><i class="bi bi-arrow-clockwise"></i> Tourner</button>
-                    <button id="btn_drap_select_mobile" type="button" class="btn btn-outline-primary"><i class="bi bi-arrows-move"></i> Déplacer</button>
+                    <button id="btn_drag_select_mobile" type="button" class="btn btn-outline-primary"><i class="bi bi-arrows-move"></i> Déplacer</button>
                     <button id="btn_delete_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-right-radius: 0 !important;"><i class="bi bi-trash"></i> Supprimer</button>
                 </div>
             </div>
@@ -127,6 +128,6 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?202210080032"></script>
+    <script src="/js/organization.js?202210080107"></script>
   </body>
 </html>

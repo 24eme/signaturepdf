@@ -98,7 +98,7 @@
                         <li><a class="dropdown-item" href="#">document.pdf</a></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i>&nbsp;Ajouter&nbsp;un&nbsp;PDF</button>
+                <button type="button" class="btn btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
             </div>
             <div id="top_bar_action_selection" class="d-none">
                 <div id="top_bar_action_selection_recap" class="bg-primary small text-white text-center rounded-top p-1"><span>Aucune</span> page(s) séléctionnée(s) <button id="btn_cancel_select_mobile" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>

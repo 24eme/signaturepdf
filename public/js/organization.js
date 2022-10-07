@@ -525,6 +525,7 @@ var degreesToOrientation = function(degrees) {
 var createEventsListener = function() {
     document.getElementById('save-select_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
+        this.blur();
     });
     document.getElementById('save-select').addEventListener('click', function(event) {
         document.getElementById('save').click();
@@ -586,6 +587,7 @@ var createEventsListener = function() {
     });
     document.getElementById('btn_cancel_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_cancel_select').click();
+        this.blur();
     });
     document.getElementById('btn_cancel_select').addEventListener('click', function(event) {
         document.querySelectorAll('.input-select:checked').forEach(function(input) {
@@ -594,6 +596,7 @@ var createEventsListener = function() {
     });
     document.getElementById('btn_delete_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_delete_select').click();
+        this.blur();
     });
     document.getElementById('btn_delete_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();
@@ -604,6 +607,7 @@ var createEventsListener = function() {
     });
     document.getElementById('btn_rotate_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_rotate_select').click();
+        this.blur();
     });
     document.getElementById('btn_rotate_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();

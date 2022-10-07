@@ -84,6 +84,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('click', function(e) {
+                    if(!is_mobile() && !isPageDeleted(this) && !isPageDragged(this)) {
+                        canvasContainer.querySelector('.btn-select').click();
+                    }
                     if(!is_mobile()) {
                         return;
                     }
@@ -158,15 +161,19 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     return false;
                 });
                 canvasContainer.querySelector('.btn-delete').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     toggleDeletePage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-restore').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     toggleDeletePage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-select').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     toggleSelectPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-drag').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     toggleDragPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {
@@ -196,9 +203,11 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     });
                 });
                 canvasContainer.querySelector('.btn-cancel').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     toggleDragPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     let container = this.parentNode;
                     let pageValue = container.querySelector('.checkbox-page').value;
                     let orientation = degreesToOrientation(container.querySelector('.input-rotate').value);
@@ -209,6 +218,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     document.querySelector('#form_pdf').submit();
                 });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
+                    e.stopPropagation();
                     let inputRotate = this.parentNode.querySelector('.input-rotate');
                     inputRotate.value = (parseInt(inputRotate.value) + 90) % 360;
                     pageRender(pageIndex);

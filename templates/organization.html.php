@@ -45,8 +45,8 @@
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
         <div style="height: 65px;" class="d-md-none"></div>
+        <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
         <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll;">
-            <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
         </div>
         <div id="container-btn-zoom" class="btn-group-vertical position-fixed" style="top: 6px; right: 368px;">
             <button id="btn-zoom-increase" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-in"></i></button>
@@ -87,12 +87,34 @@
                 </div>
             </div>
         </div>
-        <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
-            <button type=button class="btn btn-light float-end" data-bs-toggle="offcanvas" data-bs-target="#sidebarTools" aria-controls="sidebarTools"><i class="bi bi-list"></i></button>
+        <div id="top_bar" class="position-fixed top-0 start-0 bg-white w-100 shadow-sm d-md-none p-2">
+            <div id="top_bar_action" class="btn-group w-100">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="width: 170px; display: inline-block; overflow: hidden; text-overflow: ellipsis">
+                        <i class="bi bi-files"></i> <span id="liste_pdf_titre_mobile"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">document.pdf</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i>&nbsp;Ajouter&nbsp;un&nbsp;PDF</button>
+            </div>
+            <div id="top_bar_action_selection" class="d-none">
+                <div id="top_bar_action_selection_recap" class="bg-primary small text-white text-center rounded-top p-1"><span>Aucune</span> page(s) séléctionnée(s) <button id="btn_cancel_select_mobile" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
+                <div class="btn-group w-100">
+                    <button id="btn_rotate_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-left-radius: 0 !important;"><i class="bi bi-arrow-clockwise"></i> Tourner</button>
+                    <button id="btn_drap_select_mobile" type="button" class="btn btn-outline-primary"><i class="bi bi-arrows-move"></i> Déplacer</button>
+                    <button id="btn_delete_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-right-radius: 0 !important;"><i class="bi bi-trash"></i> Supprimer</button>
+                </div>
+            </div>
+            <!--<button type=button class="btn btn-light float-end" data-bs-toggle="offcanvas" data-bs-target="#sidebarTools" aria-controls="sidebarTools"><i class="bi bi-list"></i></button>-->
         </div>
-        <div class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
-            <div class="d-grid gap-2">
+        <div id="bottom_bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
+            <div id="bottom_bar_action" class="d-grid gap-2">
                 <button class="btn btn-primary" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF</button>
+            </div>
+            <div id="bottom_bar_action_selection" class="d-grid gap-2 d-none">
+                <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> Télécharger la séléction</button>
             </div>
         </div>
     </div>

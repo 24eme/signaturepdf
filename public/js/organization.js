@@ -12,12 +12,14 @@ var responsiveDisplay = function() {
         document.getElementById('container-pages').classList.remove('vh-100');
         document.getElementById('container-btn-zoom').style.top = '62px';
         document.getElementById('container-btn-zoom').style.right = '6px';
+        document.getElementById('container-btn-zoom').classList.add('d-none');
     } else {
         menuOffcanvas.show();
         document.getElementById('page-organization').style.paddingRight = "350px";
         document.getElementById('container-pages').classList.add('vh-100');
         document.getElementById('container-btn-zoom').style.top = '6px';
         document.getElementById('container-btn-zoom').style.right = '368px';
+        document.getElementById('container-btn-zoom').classList.remove('d-none');
     }
     menu.classList.remove('d-md-block');
     menu.classList.remove('d-none');
@@ -68,7 +70,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div title="Restaurer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
                     pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div title="Déplacer ici" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here bg-white shadow d-none"><i class="bi bi-hand-index"></i></div>';
+                    pageHTML += '<div title="Déplacer ici" class="position-absolute top-100 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
                     pageHTML += '<div title="Annuler" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-cancel d-none"><i class="bi bi-x-lg"></i></div>';
                     pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="Télécharger cette page" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
@@ -84,15 +86,10 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('click', function(e) {
-                    if(!is_mobile() && !isPageDeleted(this) && !isPageDragged(this)) {
-                        canvasContainer.querySelector('.btn-select').click();
-                    }
-                    if(!is_mobile()) {
+                    if(isPageDeleted(this) || isPageDragged(this)) {
                         return;
                     }
-                    let checkbox = this.querySelector('input[type=checkbox].input-hover');
-                    checkbox.checked = !checkbox.checked;
-                    updatePageState(this);
+                    canvasContainer.querySelector('.btn-select').click();
                 });
                 canvasContainer.addEventListener('mouseenter', function(e) {
                     if(is_mobile()) {
@@ -174,6 +171,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 });
                 canvasContainer.querySelector('.btn-drag').addEventListener('click', function(e) {
                     e.stopPropagation();
+                    if(!is_mobile()) {
+                        return;
+                    }
                     toggleDragPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {
@@ -322,7 +322,7 @@ var updateListePDF = function() {
             });
             updateGlobalState();
         });
-
+        document.querySelector('#liste_pdf_titre_mobile').innerText = decodeURI(pdfFile.name);
     }
     updateGlobalState();
 }
@@ -473,8 +473,17 @@ var updateGlobalState = function() {
     });
     document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
     document.querySelector('#backdrop_drag_mode').classList.add('d-none');
+    document.querySelector('#top_bar_action').classList.remove('d-none');
+    document.querySelector('#top_bar_action_selection').classList.add('d-none');
+    document.querySelector('#bottom_bar_action').classList.remove('d-none');
+    document.querySelector('#bottom_bar_action_selection').classList.add('d-none');
+    if(is_mobile()) {
+        document.querySelector('#top_bar').classList.remove('d-none');
+        document.querySelector('#bottom_bar').classList.remove('d-none');
+    }
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
+        document.querySelector('#top_bar_action_selection_recap span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
         document.querySelector('#container_btn_select').classList.remove('opacity-50');
         document.querySelector('#container_btn_select').classList.add('border-primary');
         document.querySelector('#container_btn_select .card-header').classList.remove('text-muted');
@@ -487,11 +496,17 @@ var updateGlobalState = function() {
         document.querySelectorAll('.canvas-container .btn-add').forEach(function(button) {
             button.classList.remove('d-none');
         });
+        document.querySelector('#top_bar_action_selection').classList.remove('d-none');
+        document.querySelector('#top_bar_action').classList.add('d-none');
+        document.querySelector('#bottom_bar_action_selection').classList.remove('d-none');
+        document.querySelector('#bottom_bar_action').classList.add('d-none');
     }
     if(isDraggedMode()) {
-        document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('#container-pages').scrollWidth+'px';
+        document.querySelector('#top_bar').classList.add('d-none');
+        document.querySelector('#bottom_bar').classList.add('d-none');
+        document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('body').scrollWidth+'px';
         console.log(document.querySelector('#container-pages'));
-        document.querySelector('#backdrop_drag_mode').style.height = document.querySelector('#container-pages').scrollHeight+'px';
+        document.querySelector('#backdrop_drag_mode').style.height = document.querySelector('body').scrollHeight+'px';
         document.querySelector('#backdrop_drag_mode').classList.remove('d-none');
     }
 }
@@ -505,6 +520,9 @@ var degreesToOrientation = function(degrees) {
 }
 
 var createEventsListener = function() {
+    document.getElementById('save-select_mobile').addEventListener('click', function(event) {
+        document.getElementById('save').click();
+    });
     document.getElementById('save-select').addEventListener('click', function(event) {
         document.getElementById('save').click();
     });
@@ -563,10 +581,16 @@ var createEventsListener = function() {
         nbPagePerLine--;
         pageRenderAll();
     });
+    document.getElementById('btn_cancel_select_mobile').addEventListener('click', function(event) {
+        document.getElementById('btn_cancel_select').click();
+    });
     document.getElementById('btn_cancel_select').addEventListener('click', function(event) {
         document.querySelectorAll('.input-select:checked').forEach(function(input) {
             input.parentNode.querySelector('.btn-select').click();
         });
+    });
+    document.getElementById('btn_delete_select_mobile').addEventListener('click', function(event) {
+        document.getElementById('btn_delete_select').click();
     });
     document.getElementById('btn_delete_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();
@@ -574,6 +598,9 @@ var createEventsListener = function() {
             deletePage(pages[index]);
         }
         updateGlobalState();
+    });
+    document.getElementById('btn_rotate_select_mobile').addEventListener('click', function(event) {
+        document.getElementById('btn_rotate_select').click();
     });
     document.getElementById('btn_rotate_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();

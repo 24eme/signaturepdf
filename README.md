@@ -11,6 +11,8 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
 
+*N'hésitez pas à rajouter la votre via une issue ou une pull request*
+
 ## License
 
 Logiciel libre sous license AGPL V3

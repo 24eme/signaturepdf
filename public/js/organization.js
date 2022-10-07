@@ -120,24 +120,39 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     if (e.preventDefault) {
                         e.preventDefault();
                     }
-                    let element = this;
-                    // vers le haut
-                    if(this.offsetTop < document.querySelector('#'+e.dataTransfer.getData('element')).offsetTop && e.layerX <= element.clientWidth / 2) {
-                        element = this.previousSibling;
-                    }
-                    // vers le bas
-                    if(this.offsetTop > document.querySelector('#'+e.dataTransfer.getData('element')).offsetTop && e.layerX > element.clientWidth / 2) {
-                        element = this.nextSibling;
+                    let pdfOver = this;
+                    let pdfMoving = document.querySelector('#'+e.dataTransfer.getData('element'));
+
+                    if(pdfOver.id == pdfMoving.id) {
+
+                        return;
                     }
 
-                    if(!element.draggable && !this.previousSibling.draggable) {
-                        this.insertAdjacentElement('beforebegin', document.querySelector('#'+e.dataTransfer.getData('element')));
-                    } else if(!element.draggable && !this.nextSibling.draggable) {
-                        this.insertAdjacentElement('beforebegin', document.querySelector('#'+e.dataTransfer.getData('element')));
-                    } else if (e.layerX > element.clientWidth / 2) {
-                        element.insertAdjacentElement('beforebegin', document.querySelector('#'+e.dataTransfer.getData('element')));
-                    } else {
-                        element.insertAdjacentElement('afterend', document.querySelector('#'+e.dataTransfer.getData('element')));
+                    let leftRight = false;
+                    let topBottom = false;
+
+                    if(pdfOver.offsetTop < pdfMoving.offsetTop) {
+                        topBottom = 'top';
+                    }
+
+                    if(pdfOver.offsetTop > pdfMoving.offsetTop) {
+                        topBottom = 'bottom';
+                    }
+
+                    if(pdfOver.offsetLeft > pdfMoving.offsetLeft) {
+                        leftRight = 'right';
+                    }
+
+                    if(pdfOver.offsetLeft < pdfMoving.offsetLeft) {
+                        leftRight = 'left';
+                    }
+
+                    if (leftRight == 'left' || topBottom == 'top') {
+                        pdfOver.insertAdjacentElement('beforebegin', pdfMoving);
+                    }
+
+                    if (leftRight == 'right' || topBottom == 'bottom') {
+                        pdfOver.insertAdjacentElement('afterend', pdfMoving);
                     }
 
                     return false;

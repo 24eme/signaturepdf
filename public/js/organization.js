@@ -176,9 +176,6 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 });
                 canvasContainer.querySelector('.btn-drag').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    if(!is_mobile()) {
-                        return;
-                    }
                     toggleDragPage(this.parentNode);
                 });
                 canvasContainer.querySelector('.btn-drag-here_mobile').addEventListener('click', function(e) {
@@ -438,12 +435,12 @@ var updatePageState = function(page) {
         page.querySelector('.btn-restore').classList.remove('d-none');
     }
 
-    if(isPageSelected(page) != isPageDragged(page)) {
+    if(isPageSelected(page) && !isDraggedMode()) {
         page.querySelector('.page-title').classList.remove('d-none');
         page.classList.add('border-primary', 'shadow-sm', 'bg-primary');
         page.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
         page.querySelector('.btn-select').classList.add('text-primary');
-        page.querySelector('.btn-select').classList.remove('d-none')
+        page.querySelector('.btn-select').classList.remove('d-none');
     }
 
     if(isPageDragged(page)) {

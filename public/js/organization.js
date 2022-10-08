@@ -491,7 +491,9 @@ var updateGlobalState = function() {
         button.setAttribute('disabled', 'disabled');
     });
     document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
-    document.querySelector('#backdrop_drag_mode').classList.add('d-none');
+    document.querySelector('#backdrop_drag_mode').classList.add('d-none')
+    document.querySelector('#div-margin-top').classList.remove('d-none');
+    document.querySelector('#div-margin-bottom').classList.remove('d-none');;
     document.querySelector('#top_bar_action').classList.remove('d-none');
     document.querySelector('#top_bar_action_selection').classList.add('d-none');
     document.querySelector('#bottom_bar_action').classList.remove('d-none');
@@ -526,6 +528,8 @@ var updateGlobalState = function() {
         document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('#container-pages').scrollWidth+'px';
         document.querySelector('#backdrop_drag_mode').style.height = document.querySelector('#container-pages').scrollHeight+'px';
         document.querySelector('#backdrop_drag_mode').classList.remove('d-none');
+        document.querySelector('#div-margin-top').classList.add('d-none');
+        document.querySelector('#div-margin-bottom').classList.add('d-none');
     }
 }
 

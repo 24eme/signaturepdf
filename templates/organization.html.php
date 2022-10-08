@@ -45,7 +45,7 @@
         </footer>
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
-        <div style="height: 65px;" class="d-md-none"></div>
+        <div id="div-margin-top" style="height: 65px;" class="d-md-none"></div>
         <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll;">
             <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
         </div>
@@ -53,7 +53,7 @@
             <button id="btn-zoom-increase" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-in"></i></button>
             <button id="btn-zoom-decrease" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-out"></i></button>
         </div>
-        <div style="height: 55px;" class="d-md-none"></div>
+        <div id="div-margin-bottom" style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/organization"></a>
             <div class="offcanvas-header mb-0 pb-0">
@@ -127,6 +127,6 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?202210081057"></script>
+    <script src="/js/organization.js?202210081104"></script>
   </body>
 </html>

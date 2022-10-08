@@ -34,18 +34,18 @@
     max-height: 200px;
 }
 
-.canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
+.canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here-left, .canvas-container .btn-drag-here-right, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
     font-size: 30px;
     cursor: move;
     background: rgb(255,255,255,0.6);
 }
 
-.canvas-container .btn-drag-here, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
+.canvas-container .btn-drag-here-left, .canvas-container .btn-drag-here-right, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
     cursor: pointer;
     z-index: 9999;
 }
 
-.canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore {
+.canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here-left, .canvas-container .btn-drag-here-right {
     cursor: pointer;
     font-size: 25px;
 }

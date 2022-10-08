@@ -46,7 +46,7 @@
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
         <div id="div-margin-top" style="height: 65px;" class="d-md-none"></div>
-        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll;">
+        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll; overflow-x: hidden;">
             <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
         </div>
         <div id="container-btn-zoom" class="btn-group-vertical position-fixed" style="top: 6px; right: 368px;">

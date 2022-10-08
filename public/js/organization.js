@@ -70,7 +70,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div title="Restaurer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
                     pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div title="Déplacer ici" class="position-absolute start-0 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here bg-white shadow d-none"><i style="display: block; transform: rotate(90deg) !important;" class="bi bi-arrows-collapse"></i></div>';
+                    pageHTML += '<div title="Déplacer ici" class="position-absolute start-0 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-left bg-white shadow d-none" style="left: -5px !important;"><i style="display: block; transform: rotate(90deg) !important; left: -5px !important;" class="bi bi-arrows-collapse"></i></div>';
+                    pageHTML += '<div title="Déplacer ici" class="position-absolute start-100 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-right bg-white shadow d-none" style="margin-left: 3px !important;"><i style="display: block; transform: rotate(90deg) !important;" class="bi bi-arrows-collapse"></i></div>';
                     pageHTML += '<div title="Déplacer ici" class="position-absolute top-100 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here_mobile bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
                     pageHTML += '<div title="Annuler" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-cancel d-none"><i class="bi bi-x-lg"></i></div>';
                     pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
@@ -182,9 +183,13 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 });
                 canvasContainer.querySelector('.btn-drag-here_mobile').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    canvasContainer.querySelector('.btn-drag-here').click();
+                    canvasContainer.querySelector('.btn-drag-here-left').click();
                 });
-                canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {
+                canvasContainer.querySelector('.btn-drag-here-right').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    canvasContainer.querySelector('.btn-drag-here-left').click();
+                });
+                canvasContainer.querySelector('.btn-drag-here-left').addEventListener('click', function(e) {
                     e.stopPropagation();
                     let pageHere = this.parentNode;
                     let after = false;
@@ -413,7 +418,8 @@ var updatePageState = function(page) {
     page.querySelector('.btn-select').classList.remove('text-primary');
     page.querySelector('.btn-drag').classList.add('d-none');
     page.querySelector('.btn-cancel').classList.add('d-none');
-    page.querySelector('.btn-drag-here').classList.add('d-none');
+    page.querySelector('.btn-drag-here-left').classList.add('d-none');
+    page.querySelector('.btn-drag-here-right').classList.add('d-none');
     page.querySelector('.btn-drag-here_mobile').classList.add('d-none');
     page.querySelector('.btn-restore').classList.add('d-none');
     page.querySelector('.page-title').classList.add('d-none');
@@ -456,12 +462,9 @@ var updatePageState = function(page) {
         page.querySelector('.canvas-pdf').style.zIndex = 9999;
     }
 
-    if(!is_mobile() && !isPageDragged(page) && isDraggedMode()) {
-        page.querySelector('.btn-drag-here').classList.remove('d-none');
-    }
-
-    if(is_mobile() && !isPageDragged(page) && isDraggedMode()) {
-        page.querySelector('.btn-drag-here_mobile').classList.remove('d-none');
+    if(!isPageDragged(page) && isDraggedMode()) {
+        page.querySelector('.btn-drag-here-left').classList.remove('d-none');
+        page.querySelector('.btn-drag-here-right').classList.remove('d-none');
     }
 }
 
@@ -481,6 +484,9 @@ var updateFilesState = function() {
 
 var updateGlobalState = function() {
     updateFilesState();
+    if(!is_mobile()) {
+        document.querySelector('#container-btn-zoom').classList.remove('d-none');
+    }
     document.querySelector('#container_btn_select').classList.add('opacity-50');
     document.querySelector('#container_btn_select').classList.remove('border-primary');
     document.querySelector('#container_btn_select .card-header').classList.remove('bg-primary', 'text-white');
@@ -530,6 +536,7 @@ var updateGlobalState = function() {
         document.querySelector('#backdrop_drag_mode').classList.remove('d-none');
         document.querySelector('#div-margin-top').classList.add('d-none');
         document.querySelector('#div-margin-bottom').classList.add('d-none');
+        document.querySelector('#container-btn-zoom').classList.add('d-none');
     }
 }
 

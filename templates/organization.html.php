@@ -46,8 +46,8 @@
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
         <div style="height: 65px;" class="d-md-none"></div>
-        <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
         <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll;">
+            <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
         </div>
         <div id="container-btn-zoom" class="btn-group-vertical position-fixed" style="top: 6px; right: 368px;">
             <button id="btn-zoom-increase" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-in"></i></button>
@@ -109,7 +109,6 @@
                     <button id="btn_delete_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-right-radius: 0 !important;"><i class="bi bi-trash"></i> Supprimer</button>
                 </div>
             </div>
-            <!--<button type=button class="btn btn-light float-end" data-bs-toggle="offcanvas" data-bs-target="#sidebarTools" aria-controls="sidebarTools"><i class="bi bi-list"></i></button>-->
         </div>
         <div id="bottom_bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div id="bottom_bar_action" class="d-grid gap-2">
@@ -128,6 +127,6 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?202210080119"></script>
+    <script src="/js/organization.js?202210081057"></script>
   </body>
 </html>

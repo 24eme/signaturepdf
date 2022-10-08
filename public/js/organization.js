@@ -33,7 +33,7 @@ var isDraggedMode = function() {
 
 var nbPagePerLine = 5;
 if(is_mobile()) {
-    nbPagePerLine = 1;
+    nbPagePerLine = 2;
 }
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
@@ -523,9 +523,8 @@ var updateGlobalState = function() {
     if(isDraggedMode()) {
         document.querySelector('#top_bar').classList.add('d-none');
         document.querySelector('#bottom_bar').classList.add('d-none');
-        document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('body').scrollWidth+'px';
-        console.log(document.querySelector('#container-pages'));
-        document.querySelector('#backdrop_drag_mode').style.height = document.querySelector('body').scrollHeight+'px';
+        document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('#container-pages').scrollWidth+'px';
+        document.querySelector('#backdrop_drag_mode').style.height = document.querySelector('#container-pages').scrollHeight+'px';
         document.querySelector('#backdrop_drag_mode').classList.remove('d-none');
     }
 }

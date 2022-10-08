@@ -108,6 +108,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     if(is_mobile()) {
                         return false;
                     }
+                    if(isDraggedMode()) {
+                        return false;
+                    }
                     this.querySelector('.container-resize').classList.add('d-none');
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
                     this.querySelector('.canvas-pdf').style.border = '2px dashed #777';

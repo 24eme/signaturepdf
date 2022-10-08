@@ -128,6 +128,6 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?202210081104"></script>
+    <script src="/js/organization.js?202210090151"></script>
   </body>
 </html>

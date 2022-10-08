@@ -192,7 +192,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 });
                 canvasContainer.querySelector('.btn-cancel').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    toggleDragPage(this.parentNode);
+                    document.querySelector('#btn_cancel_drag_mode').click();
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -498,6 +498,8 @@ var updateGlobalState = function() {
     document.querySelector('#top_bar_action_selection').classList.add('d-none');
     document.querySelector('#bottom_bar_action').classList.remove('d-none');
     document.querySelector('#bottom_bar_action_selection').classList.add('d-none');
+    document.querySelector('#btn_cancel_drag_mode').classList.add('d-none');
+
     if(is_mobile()) {
         document.querySelector('#top_bar').classList.remove('d-none');
         document.querySelector('#bottom_bar').classList.remove('d-none');
@@ -523,6 +525,7 @@ var updateGlobalState = function() {
         document.querySelector('#bottom_bar_action').classList.add('d-none');
     }
     if(isDraggedMode()) {
+        document.querySelector('#btn_cancel_drag_mode').classList.remove('d-none');
         document.querySelector('#top_bar').classList.add('d-none');
         document.querySelector('#bottom_bar').classList.add('d-none');
         document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('#container-pages').scrollWidth+'px';
@@ -543,6 +546,17 @@ var degreesToOrientation = function(degrees) {
 }
 
 var createEventsListener = function() {
+    document.querySelector('#btn_cancel_drag_mode').addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
+            let page = item.parentNode;
+            page.querySelector('input[type=checkbox].input-drag').checked = false;
+        });
+        updateGlobalState();
+        document.querySelectorAll('.canvas-container').forEach(function(page) {
+            updatePageState(page);
+        });
+    });
     document.getElementById('save-select_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
         this.blur();

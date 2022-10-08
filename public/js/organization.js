@@ -183,38 +183,15 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 });
                 canvasContainer.querySelector('.btn-drag-here_mobile').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    canvasContainer.querySelector('.btn-drag-here-left').click();
+                    movePagesDragged(this.parentNode, 'right');
                 });
                 canvasContainer.querySelector('.btn-drag-here-right').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    canvasContainer.querySelector('.btn-drag-here-left').click();
+                    movePagesDragged(this.parentNode, 'right');
                 });
                 canvasContainer.querySelector('.btn-drag-here-left').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    let pageHere = this.parentNode;
-                    let after = false;
-                    let pageHereFound = false;
-                    document.querySelectorAll('.canvas-container').forEach(function(page) {
-                        if(page.id == pageHere.id) {
-                            pageHereFound = true;
-                        }
-                        if(!after && isPageDragged(page) && !pageHereFound) {
-                            after = true;
-                        }
-                    });
-                    document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
-                        let page = item.parentNode;
-                        if(after) {
-                            pageHere.insertAdjacentElement('afterend', page);
-                        } else {
-                            pageHere.insertAdjacentElement('beforebegin', page);
-                        }
-                        page.querySelector('input[type=checkbox].input-drag').checked = false;
-                    });
-                    updateGlobalState();
-                    document.querySelectorAll('.canvas-container').forEach(function(page) {
-                        updatePageState(page);
-                    });
+                    movePagesDragged(this.parentNode, 'left');
                 });
                 canvasContainer.querySelector('.btn-cancel').addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -379,6 +356,22 @@ var toggleDragPage = function(page) {
 var isPageDragged = function(page) {
 
     return page.querySelector('input[type=checkbox].input-drag').checked;
+}
+
+var movePagesDragged = function(pageHere, position) {
+    document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
+        let page = item.parentNode;
+        if(position == 'right') {
+            pageHere.insertAdjacentElement('afterend', page);
+        } else {
+            pageHere.insertAdjacentElement('beforebegin', page);
+        }
+        page.querySelector('input[type=checkbox].input-drag').checked = false;
+    });
+    updateGlobalState();
+    document.querySelectorAll('.canvas-container').forEach(function(page) {
+        updatePageState(page);
+    });
 }
 
 var toggleDeletePage = function(page) {

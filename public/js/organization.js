@@ -441,7 +441,8 @@ var updatePageState = function(page) {
         page.querySelector('.btn-restore').classList.remove('d-none');
     }
 
-    if(isPageSelected(page)) {
+    if(isPageSelected(page) != isPageDragged(page)) {
+        page.querySelector('.page-title').classList.remove('d-none');
         page.classList.add('border-primary', 'shadow-sm', 'bg-primary');
         page.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
         page.querySelector('.btn-select').classList.add('text-primary');

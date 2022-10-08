@@ -422,7 +422,7 @@ var updatePageState = function(page) {
         page.querySelector('.canvas-pdf').style.opacity = '0.15';
     }
 
-    if(isPageHover(page) && !isPageDeleted(page) && !isPageDragged(page) && !isDraggedMode()) {
+    if(isPageHover(page) && !isPageDeleted(page) && !isPageDragged(page) && !isPageSelected(page) && !isDraggedMode()) {
         page.querySelector('.page-title').classList.remove('d-none');
         page.classList.add('border-secondary', 'bg-secondary');
         page.classList.remove('border-transparent', 'bg-transparent');

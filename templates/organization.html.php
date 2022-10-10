@@ -28,12 +28,11 @@
           </li>
         </ul>
         <div class="px-4 py-5 text-center">
-            <h1 class="display-5 fw-bold"><i class="bi bi-ui-checks-grid"></i> Organiser des PDF</h1>
-            <p class="lead d-none d-md-block">Fusionner, trier, pivoter, supprimer et extraire des pages</p>
-            <p class="d-md-none fw-light">Fusionner, trier, pivoter, supprimer et extraire des pages</p>
+            <h1 class="display-5 fw-bold mb-0"><i class="bi bi-ui-checks-grid"></i> Organiser des PDF</h1>
+            <p class="fw-light mb-1 subtitle">Fusionner, trier, pivoter, supprimer et extraire des pages</p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
-                  <label class="form-label mt-2" for="input_pdf_upload">Choisir un PDF <small class="opacity-75" title="Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo"><i class="bi bi-info-circle"></i></small></label>
+                  <label class="form-label mt-3" for="input_pdf_upload">Choisir un PDF <small class="opacity-75" title="Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo"><i class="bi bi-info-circle"></i></small></label>
                   <input id="input_pdf_upload" placeholder="Choisir un PDF" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
                   <p class="mt-2 small text-muted opacity-75">Le PDF sera traité par le serveur sans être conservé ni stocké</p>
                   <a class="btn btn-sm btn-link opacity-75" href="#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">Tester avec un PDF de démo</a>

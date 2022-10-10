@@ -68,3 +68,9 @@
     left: 0;
     z-index: 1000;
 }
+
+@media (max-width: 480px) {
+    .subtitle {
+        font-size: .875em
+    }
+}

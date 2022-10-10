@@ -494,6 +494,7 @@ var updateGlobalState = function() {
         button.setAttribute('disabled', 'disabled');
     });
     document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
+    document.querySelector('#container_btn_select .card-footer').classList.add('d-none');
     document.querySelector('#backdrop_drag_mode').classList.add('d-none')
     document.querySelector('#div-margin-top').classList.remove('d-none');
     document.querySelector('#div-margin-bottom').classList.remove('d-none');;
@@ -519,6 +520,7 @@ var updateGlobalState = function() {
             button.classList.remove('btn-outline-secondary');
             button.removeAttribute('disabled');
         });
+        document.querySelector('#container_btn_select .card-footer').classList.remove('d-none');
         document.querySelectorAll('.canvas-container .btn-add').forEach(function(button) {
             button.classList.remove('d-none');
         });
@@ -620,6 +622,10 @@ var createEventsListener = function() {
     document.getElementById('btn-zoom-increase').addEventListener('click', function(event) {
         nbPagePerLine--;
         pageRenderAll();
+    });
+    document.getElementById('btn_cancel_select_footer').addEventListener('click', function(event) {
+        document.getElementById('btn_cancel_select').click();
+        this.blur();
     });
     document.getElementById('btn_cancel_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_cancel_select').click();

@@ -44,7 +44,7 @@
         </footer>
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
-        <div id="div-margin-top" style="height: 65px;" class="d-md-none"></div>
+        <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
         <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll; overflow-x: hidden;">
             <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
             <button id="btn_cancel_drag_mode" type="button" class="btn-close position-fixed d-none" aria-label="Close" style="z-index: 1047; right: 354px; top: 2px;"></button>
@@ -76,6 +76,7 @@
                         <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-trash"></i> Supprimer</button>
                         <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><i class="bi bi-download"></i> Télécharger</button>
                     </div>
+                    <div class="card-footer d-none small text-center p-1 border-primary bg-primary bg-opacity-25"><a id="btn_cancel_select_footer" type="button" aria-label="Close" style="text-decoration: none;" class="text-primary"><i class="bi bi-x-lg"></i> Annuler la séléction</a></div>
                 </div>
 
                 <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
@@ -102,7 +103,10 @@
                 <button type="button" class="btn btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
             </div>
             <div id="top_bar_action_selection" class="d-none">
-                <div id="top_bar_action_selection_recap" class="bg-primary small text-white text-center rounded-top p-1"><span>Aucune</span> page(s) séléctionnée(s) <button id="btn_cancel_select_mobile" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
+                <div class="text-end">
+
+                </div>
+                <div id="top_bar_action_selection_recap" class="bg-primary text-white text-center rounded-top p-1 position-relative"><span>Aucune</span> page(s)<button id="btn_cancel_select_mobile" type="button" style="text-decoration: none;right: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 me-1"><i class="bi bi-x-lg"></i>&nbsp;Annuler</button></div>
                 <div class="btn-group w-100">
                     <button id="btn_rotate_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-left-radius: 0 !important;"><i class="bi bi-arrow-clockwise"></i> Tourner</button>
                     <button id="btn_drag_select_mobile" type="button" class="btn btn-outline-primary"><i class="bi bi-arrows-move"></i> Déplacer</button>

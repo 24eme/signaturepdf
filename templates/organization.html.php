@@ -29,7 +29,7 @@
         </ul>
         <div class="px-4 py-5 text-center">
             <h1 class="display-5 fw-bold mb-0"><i class="bi bi-ui-checks-grid"></i> Organiser des PDF</h1>
-            <p class="fw-light mb-1 subtitle">Fusionner, trier, pivoter, supprimer et extraire des pages</p>
+            <p class="fw-light mb-1 subtitle text-muted">Fusionner, trier, pivoter, supprimer et extraire des pages</p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
                   <label class="form-label mt-3" for="input_pdf_upload">Choisir un PDF <small class="opacity-75" title="Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo"><i class="bi bi-info-circle"></i></small></label>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <footer class="text-center text-muted mb-2 fixed-bottom">
+        <footer class="text-center text-muted mb-2 fixed-bottom opacity-75">
             <small>Logiciel libre <span class="d-none d-md-inline">sous license AGPL-3.0 </span>: <a href="https://github.com/24eme/signaturepdf">voir le code source</a></small>
         </footer>
     </div>

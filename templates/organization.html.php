@@ -40,7 +40,7 @@
             </div>
         </div>
         <footer class="text-center text-muted mb-2 fixed-bottom">
-            <small>Logiciel libre sous license AGPL-3.0 : <a href="https://github.com/24eme/signaturepdf">voir le code source</a></small>
+            <small>Logiciel libre <span class="d-none d-md-inline">sous license AGPL-3.0 </span>: <a href="https://github.com/24eme/signaturepdf">voir le code source</a></small>
         </footer>
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">

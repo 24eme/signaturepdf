@@ -44,8 +44,8 @@
         </footer>
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
-        <div id="div-margin-top" style="height: 90px;" class="d-md-none"></div>
-        <div style="top: 64px;" class="w-100 position-absolute text-center text-muted opacity-50 d-md-none">Toucher une page pour la séléctionner</div>
+        <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
+        <div style="top: 62px;" class="w-100 position-absolute text-center text-muted opacity-50 d-md-none"><em>Toucher une page pour la séléctionner</em></div>
         <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll; overflow-x: hidden;">
             <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
             <button id="btn_cancel_drag_mode" type="button" class="btn-close position-fixed d-none" aria-label="Close" style="z-index: 1047; right: 354px; top: 2px;"></button>

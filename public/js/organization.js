@@ -4,6 +4,27 @@ var menuOffcanvas = null;
 var is_mobile = function() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 };
+var hasTouch = function() {
+    return 'ontouchstart' in document.documentElement
+     || navigator.maxTouchPoints > 0
+     || navigator.msMaxTouchPoints > 0;
+}
+var disabledHoverStyle = function() {
+    try { // prevent exception on browsers not supporting DOM styleSheets properly
+      for (var si in document.styleSheets) {
+        var styleSheet = document.styleSheets[si];
+        if (!styleSheet.rules) continue;
+
+        for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+          if (!styleSheet.rules[ri].selectorText) continue;
+
+          if (styleSheet.rules[ri].selectorText.match(':hover')) {
+            styleSheet.deleteRule(ri);
+          }
+        }
+      }
+    } catch (ex) {}
+}
 var responsiveDisplay = function() {
     if(is_mobile()) {
         document.getElementById('page-organization').style.paddingRight = "inherit";
@@ -564,7 +585,6 @@ var createEventsListener = function() {
     });
     document.getElementById('save-select_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
-        this.blur();
     });
     document.getElementById('save-select').addEventListener('click', function(event) {
         document.getElementById('save').click();
@@ -625,11 +645,9 @@ var createEventsListener = function() {
     });
     document.getElementById('btn_cancel_select_footer').addEventListener('click', function(event) {
         document.getElementById('btn_cancel_select').click();
-        this.blur();
     });
     document.getElementById('btn_cancel_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_cancel_select').click();
-        this.blur();
     });
     document.getElementById('btn_cancel_select').addEventListener('click', function(event) {
         document.querySelectorAll('.input-select:checked').forEach(function(input) {
@@ -638,7 +656,6 @@ var createEventsListener = function() {
     });
     document.getElementById('btn_delete_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_delete_select').click();
-        this.blur();
     });
     document.getElementById('btn_delete_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();
@@ -649,7 +666,6 @@ var createEventsListener = function() {
     });
     document.getElementById('btn_rotate_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_rotate_select').click();
-        this.blur();
     });
     document.getElementById('btn_rotate_select').addEventListener('click', function(event) {
         let pages = getPagesSelected();
@@ -667,7 +683,6 @@ var createEventsListener = function() {
     });
     document.getElementById('btn_drag_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_drag_select').click();
-        this.blur();
     });
 }
 
@@ -760,4 +775,8 @@ var pageOrganization = async function(url) {
     window.addEventListener('hashchange', function() {
         window.location.reload();
     })
+
+    if (hasTouch()) {
+        disabledHoverStyle();
+    }
 })();

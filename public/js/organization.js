@@ -94,7 +94,6 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div title="Déplacer ici" class="position-absolute start-0 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-left bg-white shadow d-none" style="left: -5px !important;"><i style="display: block; transform: rotate(90deg) !important; left: -5px !important;" class="bi bi-arrows-collapse"></i></div>';
                     pageHTML += '<div title="Déplacer ici" class="position-absolute start-100 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-right bg-white shadow d-none" style="margin-left: 3px !important;"><i style="display: block; transform: rotate(90deg) !important;" class="bi bi-arrows-collapse"></i></div>';
                     pageHTML += '<div title="Déplacer ici" class="position-absolute top-100 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here_mobile bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
-                    pageHTML += '<div title="Annuler" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-cancel d-none"><i class="bi bi-x-lg"></i></div>';
                     pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="Télécharger cette page" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
                     pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
@@ -213,10 +212,6 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 canvasContainer.querySelector('.btn-drag-here-left').addEventListener('click', function(e) {
                     e.stopPropagation();
                     movePagesDragged(this.parentNode, 'left');
-                });
-                canvasContainer.querySelector('.btn-cancel').addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    document.querySelector('#btn_cancel_drag_mode').click();
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -387,12 +382,8 @@ var movePagesDragged = function(pageHere, position) {
         } else {
             pageHere.insertAdjacentElement('beforebegin', page);
         }
-        page.querySelector('input[type=checkbox].input-drag').checked = false;
     });
-    updateGlobalState();
-    document.querySelectorAll('.canvas-container').forEach(function(page) {
-        updatePageState(page);
-    });
+    bootstrap.Modal.getOrCreateInstance(document.querySelector('#modalDrag')).hide();
 }
 
 var toggleDeletePage = function(page) {
@@ -429,12 +420,13 @@ var updatePageState = function(page) {
     page.querySelector('.btn-select').classList.add('d-none');
     page.querySelector('.btn-select').classList.remove('text-primary');
     page.querySelector('.btn-drag').classList.add('d-none');
-    page.querySelector('.btn-cancel').classList.add('d-none');
     page.querySelector('.btn-drag-here-left').classList.add('d-none');
     page.querySelector('.btn-drag-here-right').classList.add('d-none');
     page.querySelector('.btn-drag-here_mobile').classList.add('d-none');
     page.querySelector('.btn-restore').classList.add('d-none');
     page.querySelector('.page-title').classList.add('d-none');
+    page.querySelector('.canvas-pdf').classList.remove('opacity-50');
+    page.classList.remove('page-dragged');
 
     if(isPageDeleted(page)) {
         page.querySelector('.canvas-pdf').style.opacity = '0.15';
@@ -468,13 +460,13 @@ var updatePageState = function(page) {
     }
 
     if(isPageDragged(page)) {
-        page.querySelector('.btn-cancel').classList.remove('d-none');
+        page.classList.add('page-dragged');
         page.querySelector('.canvas-pdf').classList.remove('shadow-sm');
         page.querySelector('.canvas-pdf').classList.add('shadow');
-        page.querySelector('.canvas-pdf').style.zIndex = 9999;
     }
 
     if(!isPageDragged(page) && isDraggedMode()) {
+        page.querySelector('.canvas-pdf').classList.add('opacity-50');
         page.querySelector('.btn-drag-here-left').classList.remove('d-none');
         page.querySelector('.btn-drag-here-right').classList.remove('d-none');
     }
@@ -516,19 +508,11 @@ var updateGlobalState = function() {
     });
     document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
     document.querySelector('#container_btn_select .card-footer').classList.add('d-none');
-    document.querySelector('#backdrop_drag_mode').classList.add('d-none')
-    document.querySelector('#div-margin-top').classList.remove('d-none');
-    document.querySelector('#div-margin-bottom').classList.remove('d-none');;
     document.querySelector('#top_bar_action').classList.remove('d-none');
     document.querySelector('#top_bar_action_selection').classList.add('d-none');
     document.querySelector('#bottom_bar_action').classList.remove('d-none');
     document.querySelector('#bottom_bar_action_selection').classList.add('d-none');
-    document.querySelector('#btn_cancel_drag_mode').classList.add('d-none');
 
-    if(is_mobile()) {
-        document.querySelector('#top_bar').classList.remove('d-none');
-        document.querySelector('#bottom_bar').classList.remove('d-none');
-    }
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
         document.querySelector('#top_bar_action_selection_recap span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
@@ -551,15 +535,9 @@ var updateGlobalState = function() {
         document.querySelector('#bottom_bar_action').classList.add('d-none');
     }
     if(isDraggedMode()) {
-        document.querySelector('#btn_cancel_drag_mode').classList.remove('d-none');
-        document.querySelector('#top_bar').classList.add('d-none');
-        document.querySelector('#bottom_bar').classList.add('d-none');
-        document.querySelector('#backdrop_drag_mode').style.width = document.querySelector('#container-pages').scrollWidth+'px';
-        document.querySelector('#backdrop_drag_mode').style.height = document.querySelector('#container-pages').scrollHeight+'px';
-        document.querySelector('#backdrop_drag_mode').classList.remove('d-none');
-        document.querySelector('#div-margin-top').classList.add('d-none');
-        document.querySelector('#div-margin-bottom').classList.add('d-none');
-        document.querySelector('#container-btn-zoom').classList.add('d-none');
+        document.querySelector('#modalDrag .modal-body').insertAdjacentElement('afterbegin', document.querySelector('#container-pages'));
+        document.querySelector('#container-pages').style.overflow = 'visible';
+        bootstrap.Modal.getOrCreateInstance(document.querySelector('#modalDrag')).show();
     }
 }
 
@@ -572,17 +550,6 @@ var degreesToOrientation = function(degrees) {
 }
 
 var createEventsListener = function() {
-    document.querySelector('#btn_cancel_drag_mode').addEventListener('click', function(e) {
-        e.stopPropagation();
-        document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
-            let page = item.parentNode;
-            page.querySelector('input[type=checkbox].input-drag').checked = false;
-        });
-        updateGlobalState();
-        document.querySelectorAll('.canvas-container').forEach(function(page) {
-            updatePageState(page);
-        });
-    });
     document.getElementById('save-select_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
     });
@@ -683,6 +650,30 @@ var createEventsListener = function() {
     });
     document.getElementById('btn_drag_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_drag_select').click();
+    });
+    document.querySelector('#modalDrag').addEventListener('shown.bs.modal', event => {
+        document.querySelector('#modalDrag .modal-body').scrollTop = document.querySelector('.page-dragged').offsetTop;
+    });
+    document.querySelector('#modalDrag').addEventListener('hide.bs.modal', event => {
+        document.querySelector('#container-main').insertAdjacentElement('afterbegin', document.querySelector('#container-pages'));
+        document.querySelector('#container-pages').style.overflowY = 'scroll';
+        document.querySelector('#container-pages').style.overflowX = 'hidden';
+    });
+    document.querySelector('#modalDrag').addEventListener('hidden.bs.modal', event => {
+        if(is_mobile()) {
+            window.scrollTo(0, document.querySelector('.page-dragged').offsetTop);
+        } else {
+            document.querySelector('#container-pages').scrollTop = document.querySelector('.page-dragged').offsetTop;
+        }
+        document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
+            let page = item.parentNode;
+            page.querySelector('input[type=checkbox].input-drag').checked = false;
+        });
+        document.querySelectorAll('.canvas-container').forEach(function(page) {
+            page.querySelector('input[type=checkbox].input-hover').checked = false;
+            updatePageState(page);
+        });
+        updateGlobalState();
     });
 }
 

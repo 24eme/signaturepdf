@@ -46,9 +46,9 @@
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
         <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
         <div style="top: 62px;" class="w-100 position-absolute text-center text-muted opacity-50 d-md-none"><em>Toucher une page pour la séléctionner</em></div>
-        <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll; overflow-x: hidden;">
-            <div id="backdrop_drag_mode" class="position-absolute bg-dark opacity-25 d-none"></div>
-            <button id="btn_cancel_drag_mode" type="button" class="btn-close position-fixed d-none" aria-label="Close" style="z-index: 1047; right: 354px; top: 2px;"></button>
+        <div id="container-main">
+            <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll; overflow-x: hidden;">
+            </div>
         </div>
         <div id="container-btn-zoom" class="btn-group-vertical position-fixed" style="top: 6px; right: 368px;">
             <button id="btn-zoom-increase" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-in"></i></button>
@@ -124,6 +124,18 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalDrag" tabindex="-1">
+      <div class="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-md-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Déplacement de(s) page(s) séléctionnée(s)</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body bg-light ps-5">
+          </div>
+        </div>
+      </div>
+    </div>
 
     <span id="is_mobile" class="d-md-none"></span>
 
@@ -132,6 +144,6 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?202210110208"></script>
+    <script src="/js/organization.js?202210140020"></script>
   </body>
 </html>

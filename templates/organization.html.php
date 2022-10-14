@@ -92,21 +92,15 @@
             </div>
         </div>
         <div id="top_bar" class="position-fixed top-0 start-0 bg-white w-100 shadow-sm d-md-none p-2">
-            <div id="top_bar_action" class="btn-group w-100">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="width: 170px; display: inline-block; overflow: hidden; text-overflow: ellipsis">
+            <div id="top_bar_action">
+                <div class="d-flex" role="group">
+                    <button type="button" class="btn btn-dark flex-grow-1 me-2"  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <i class="bi bi-files"></i> <span id="liste_pdf_titre_mobile"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">document.pdf</a></li>
-                    </ul>
+                    <button type="button" class="btn btn-outline-dark position-relative" style="padding-left: 30px;"  onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><i class="bi bi-plus-circle position-absolute" style="left: 10px;"></i>Ajouter&nbsp;un&nbsp;PDF</button>
                 </div>
-                <button type="button" class="btn btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
             </div>
             <div id="top_bar_action_selection" class="d-none">
-                <div class="text-end">
-
-                </div>
                 <div id="top_bar_action_selection_recap" class="bg-primary text-white text-center rounded-top p-1 position-relative"><span>Aucune</span> page(s)<button id="btn_cancel_select_mobile" type="button" style="text-decoration: none;right: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 me-1"><i class="bi bi-x-lg"></i>&nbsp;Annuler</button></div>
                 <div class="btn-group w-100">
                     <button id="btn_rotate_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-left-radius: 0 !important;"><i class="bi bi-arrow-clockwise"></i> Tourner</button>

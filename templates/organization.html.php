@@ -62,8 +62,10 @@
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body pt-3" style="padding-bottom: 60px;">
-                <ul id="list_pdf" class="list-group">
-                </ul>
+                <div id="list_pdf_container">
+                    <ul id="list_pdf" class="list-group">
+                    </ul>
+                </div>
                 <div class="d-grid gap-2 mt-2">
                     <button type="button" class="btn btn-sm btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i> Ajouter un PDF</button>
                     <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf" multiple="true">
@@ -94,14 +96,14 @@
         <div id="top_bar" class="position-fixed top-0 start-0 bg-white w-100 shadow-sm d-md-none p-2">
             <div id="top_bar_action">
                 <div class="d-flex" role="group">
-                    <button type="button" class="btn btn-dark flex-grow-1 me-2"  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <button id="btn_liste_pdf" type="button" data-bs-toggle="modal" data-bs-target="#modalFichier" class="btn btn-dark flex-grow-1 me-2"  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <i class="bi bi-files"></i> <span id="liste_pdf_titre_mobile"></span>
                     </button>
                     <button type="button" class="btn btn-outline-dark position-relative" style="padding-left: 30px;"  onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><i class="bi bi-plus-circle position-absolute" style="left: 10px;"></i>Ajouter&nbsp;un&nbsp;PDF</button>
                 </div>
             </div>
             <div id="top_bar_action_selection" class="d-none">
-                <div id="top_bar_action_selection_recap" class="bg-primary text-white text-center rounded-top p-1 position-relative"><span>Aucune</span> page(s)<button id="btn_cancel_select_mobile" type="button" style="text-decoration: none;right: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 me-1"><i class="bi bi-x-lg"></i>&nbsp;Annuler</button></div>
+                <div id="top_bar_action_selection_recap" class="bg-primary text-white text-center rounded-top p-1 position-relative"><button id="btn_liste_pdf_bar" type="button" style="text-decoration: none;left: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 ms-1"><i class="bi bi-files"></i>&nbsp;<span></span> PDF</button><span id="top_bar_action_selection_recap_nb_pages">Aucune</span> page(s)<button id="btn_cancel_select_mobile" type="button" style="text-decoration: none;right: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 me-1"><i class="bi bi-x-lg"></i>&nbsp;Annuler</button></div>
                 <div class="btn-group w-100">
                     <button id="btn_rotate_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-left-radius: 0 !important;"><i class="bi bi-arrow-clockwise"></i> Tourner</button>
                     <button id="btn_drag_select_mobile" type="button" class="btn btn-outline-primary"><i class="bi bi-arrows-move"></i> Déplacer</button>
@@ -130,6 +132,18 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="modalFichier" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Documents PDF</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <span id="is_mobile" class="d-md-none"></span>
 
@@ -138,6 +152,6 @@
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?202210140020"></script>
+    <script src="/js/organization.js?202210170048"></script>
   </body>
 </html>

@@ -314,7 +314,8 @@ var getFilesStats = function() {
 
 var updateListePDF = function() {
     document.querySelector('#list_pdf').innerHTML = "";
-    for (var i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
+    let nbFiles = document.querySelector('#input_pdf').files.length;
+    for (var i = 0; i < nbFiles; i++) {
         let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
         const pdfFile = document.querySelector('#input_pdf').files.item(i);
         document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><span class="ms-2">'+decodeURI(pdfFile.name)+'</span> <input class="form-check-input float-end position-absolute" style="right: 10px;" type="checkbox" /> </li>');
@@ -328,6 +329,10 @@ var updateListePDF = function() {
             updateGlobalState();
         });
         document.querySelector('#liste_pdf_titre_mobile').innerText = decodeURI(pdfFile.name);
+        document.querySelector('#btn_liste_pdf_bar span').innerText = nbFiles;
+        if(nbFiles > 1) {
+            document.querySelector('#liste_pdf_titre_mobile').innerText = nbFiles + ' documents PDF';
+        }
     }
     updateGlobalState();
 }
@@ -515,7 +520,7 @@ var updateGlobalState = function() {
 
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
-        document.querySelector('#top_bar_action_selection_recap span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
+        document.querySelector('#top_bar_action_selection_recap_nb_pages').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
         document.querySelector('#container_btn_select').classList.remove('opacity-50');
         document.querySelector('#container_btn_select').classList.add('border-primary');
         document.querySelector('#container_btn_select .card-header').classList.remove('text-muted');
@@ -674,6 +679,16 @@ var createEventsListener = function() {
             updatePageState(page);
         });
         updateGlobalState();
+    });
+    document.querySelector('#btn_liste_pdf').addEventListener('click', function(event) {
+        bootstrap.Modal.getOrCreateInstance(document.querySelector('#modalFichier')).show();
+        document.querySelector('#modalFichier .modal-body').insertAdjacentElement('afterbegin', document.querySelector('#list_pdf'));
+    });
+    document.querySelector('#btn_liste_pdf_bar').addEventListener('click', function(event) {
+        document.querySelector('#btn_liste_pdf').click();
+    });
+    document.querySelector('#modalDrag').addEventListener('hidden.bs.modal', event => {
+        document.querySelector('#list_pdf_container').insertAdjacentElement('afterbegin', document.querySelector('#list_pdf'));
     });
 }
 

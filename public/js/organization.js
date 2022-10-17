@@ -131,6 +131,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     if(isDraggedMode()) {
                         return false;
                     }
+                    if(isSelectionMode()) {
+                        return false;
+                    }
                     this.querySelector('.container-resize').classList.add('d-none');
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
                     this.querySelector('.canvas-pdf').style.border = '2px dashed #777';
@@ -441,10 +444,13 @@ var updatePageState = function(page) {
         page.querySelector('.page-title').classList.remove('d-none');
         page.classList.add('border-secondary', 'bg-secondary');
         page.classList.remove('border-transparent', 'bg-transparent');
+        page.querySelector('.btn-select').classList.remove('d-none')
+    }
+
+    if(isPageHover(page) && !isPageDeleted(page) && !isPageDragged(page) && !isPageSelected(page) && !isDraggedMode() && !isSelectionMode()) {
         page.querySelector('.btn-rotate').classList.remove('d-none');
         page.querySelector('.btn-download').classList.remove('d-none');
         page.querySelector('.btn-delete').classList.remove('d-none');
-        page.querySelector('.btn-select').classList.remove('d-none')
         page.querySelector('.btn-drag').classList.remove('d-none');
     }
 

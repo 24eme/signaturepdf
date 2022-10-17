@@ -32,7 +32,7 @@
             <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;">Fusionner, trier, pivoter, supprimer, extraire des pages</p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
-                  <label class="form-label mt-3" for="input_pdf_upload">Choisir un PDF <small class="opacity-75" title="Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo"><i class="bi bi-info-circle"></i></small></label>
+                  <label class="form-label mt-3" for="input_pdf_upload">Choisir un PDF <small class="opacity-75" style="cursor: help" title="Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo"><i class="bi bi-info-circle"></i></small></label>
                   <input id="input_pdf_upload" placeholder="Choisir un PDF" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
                   <p class="mt-2 small fw-light text-dark">Le PDF sera traité par le serveur sans être conservé ni stocké</p>
                   <a class="btn btn-sm btn-link opacity-75" href="#https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf">Tester avec un PDF de démo</a>

@@ -87,7 +87,7 @@
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
                         <div class="d-grid gap-2 mt-2">
-                            <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF</button>
+                            <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF complet</button>
                         </div>
                     </form>
                 </div>
@@ -113,7 +113,7 @@
         </div>
         <div id="bottom_bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div id="bottom_bar_action" class="d-grid gap-2">
-                <button class="btn btn-primary" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF</button>
+                <button class="btn btn-primary" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF complet</button>
             </div>
             <div id="bottom_bar_action_selection" class="d-grid gap-2 d-none">
                 <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> Télécharger la sélection</button>

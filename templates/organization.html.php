@@ -45,7 +45,7 @@
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
         <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
-        <div style="top: 62px;" class="w-100 position-absolute text-center text-muted opacity-50 d-md-none"><em>Toucher une page pour la séléctionner</em></div>
+        <div style="top: 62px;" class="w-100 position-absolute text-center text-muted opacity-50 d-md-none"><em>Toucher une page pour la sélectionner</em></div>
         <div id="container-main">
             <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll; overflow-x: hidden;">
             </div>
@@ -72,14 +72,14 @@
                 </div>
                 <hr />
                 <div id="container_btn_select" class="opacity-50 card">
-                    <div class="card-header small text-center p-1"><span>Aucune</span> page(s) séléctionnée(s) <button id="btn_cancel_select" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
+                    <div class="card-header small text-center p-1"><span>Aucune</span> page(s) sélectionnée(s) <button id="btn_cancel_select" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
                     <div class="card-body d-grid gap-2 p-2">
                         <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Tourner de 90°</button>
                         <button id="btn_drag_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrows-move"></i> Déplacer</button>
                         <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-trash"></i> Supprimer</button>
                         <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><i class="bi bi-download"></i> Télécharger</button>
                     </div>
-                    <div class="card-footer d-none small text-center p-1 border-primary bg-primary bg-opacity-25"><a id="btn_cancel_select_footer" type="button" aria-label="Close" style="text-decoration: none;" class="text-primary"><i class="bi bi-x-lg"></i> Annuler la séléction</a></div>
+                    <div class="card-footer d-none small text-center p-1 border-primary bg-primary bg-opacity-25"><a id="btn_cancel_select_footer" type="button" aria-label="Close" style="text-decoration: none;" class="text-primary"><i class="bi bi-x-lg"></i> Annuler la sélection</a></div>
                 </div>
 
                 <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
@@ -116,7 +116,7 @@
                 <button class="btn btn-primary" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF</button>
             </div>
             <div id="bottom_bar_action_selection" class="d-grid gap-2 d-none">
-                <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> Télécharger la séléction</button>
+                <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> Télécharger la sélection</button>
             </div>
         </div>
     </div>

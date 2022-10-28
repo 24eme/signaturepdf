@@ -63,12 +63,6 @@
     border-color: transparent !important;
 }
 
-#backdrop_drag_mode {
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
 @media (max-width: 480px) {
     .subtitle {
         font-size: .875em

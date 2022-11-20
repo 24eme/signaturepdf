@@ -481,12 +481,6 @@ var updatePageState = function(page) {
         page.querySelector('.btn-drag-here-left').classList.remove('d-none');
         page.querySelector('.btn-drag-here-right').classList.remove('d-none');
     }
-    if(page.previousSibling && page.previousSibling.draggable && isPageDragged(page.previousSibling) && isDraggedMode()) {
-        page.querySelector('.btn-drag-here-left').classList.add('d-none');
-    }
-    if(page.nextSibling && page.nextSibling.draggable && isPageDragged(page.nextSibling) && isDraggedMode()) {
-        page.querySelector('.btn-drag-here-right').classList.add('d-none');
-    }
 }
 
 var updateFilesState = function() {

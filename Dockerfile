@@ -7,7 +7,8 @@ ENV MAX_FILE_UPLOADS=201
 ENV PDF_STORAGE_PATH=
 
 RUN apt update && \
-    apt install -y gettext-base librsvg2-bin pdftk imagemagick potrace
+    apt install -y gettext-base librsvg2-bin pdftk imagemagick potrace && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY . /usr/local/signaturepdf
 
@@ -19,5 +20,7 @@ RUN chown -R www-data:www-data /usr/local/signaturepdf && chmod 750 -R /usr/loca
          a2enmod rewrite && a2ensite signaturepdf
 
 WORKDIR /usr/local/signaturepdf
+
+USER www-data
 
 CMD /usr/local/signaturepdf/entrypoint.sh

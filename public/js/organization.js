@@ -690,6 +690,13 @@ var createEventsListener = function() {
     document.querySelector('#modalDrag').addEventListener('hidden.bs.modal', event => {
         document.querySelector('#list_pdf_container').insertAdjacentElement('afterbegin', document.querySelector('#list_pdf'));
     });
+    document.querySelector('body').addEventListener('click', function(event) {
+        if(!event.originalTarget.classList.contains('offcanvas-header') && !event.originalTarget.classList.contains('offcanvas-body') && event.originalTarget.id != 'container-pages' && event.originalTarget.id != 'sidebarToolsLabel' && event.originalTarget.id != 'btn_container') {
+            return;
+        }
+        document.getElementById('btn_cancel_select').click();
+    });
+
 }
 
 async function getPDFBlobFromCache(cacheUrl) {

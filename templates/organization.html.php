@@ -77,7 +77,7 @@
                         <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Tourner de 90°</button>
                         <button id="btn_drag_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrows-move"></i> Déplacer</button>
                         <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-trash"></i> Supprimer</button>
-                        <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><i class="bi bi-download"></i> Télécharger</button>
+                        <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><i class="bi bi-download"></i> Extraire et télécharger</button>
                     </div>
                     <div class="card-footer d-none small text-center p-1 border-primary bg-primary bg-opacity-25"><a id="btn_cancel_select_footer" type="button" aria-label="Close" style="text-decoration: none;" class="text-primary"><i class="bi bi-x-lg"></i> Annuler la sélection</a></div>
                 </div>
@@ -86,7 +86,7 @@
                     <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
-                        <div class="d-grid gap-2 mt-2">
+                        <div id="btn_container" class="d-grid gap-2 mt-2">
                             <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF complet</button>
                         </div>
                     </form>

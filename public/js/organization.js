@@ -517,6 +517,7 @@ var updateGlobalState = function() {
     document.querySelector('#top_bar_action_selection').classList.add('d-none');
     document.querySelector('#bottom_bar_action').classList.remove('d-none');
     document.querySelector('#bottom_bar_action_selection').classList.add('d-none');
+    document.querySelector('#save').removeAttribute('disabled');
 
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
@@ -538,6 +539,7 @@ var updateGlobalState = function() {
         document.querySelector('#top_bar_action').classList.add('d-none');
         document.querySelector('#bottom_bar_action_selection').classList.remove('d-none');
         document.querySelector('#bottom_bar_action').classList.add('d-none');
+        document.querySelector('#save').setAttribute('disabled', 'disabled');
     }
     if(isDraggedMode()) {
         document.querySelector('#modalDrag .modal-body').insertAdjacentElement('afterbegin', document.querySelector('#container-pages'));

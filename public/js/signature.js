@@ -17,6 +17,7 @@ var menuOffcanvas = null;
 var currentCursor = null;
 var signaturePad = null;
 var nblayers = null;
+var hasModifications = false;
 
 var loadPDF = async function(pdfBlob, filename) {
     const pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -501,6 +502,9 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
     if(document.getElementById('save')) {
         document.getElementById('save').removeAttribute('disabled');
     }
+
+    hasModifications = true;
+
     if(document.getElementById('save_mobile')) {
         document.getElementById('save_mobile').removeAttribute('disabled');
     }
@@ -789,6 +793,7 @@ var createEventsListener = function() {
                 }));
             })
             document.getElementById('input_svg').files = dataTransfer.files;
+            hasModifications = false;
         });
     }
 
@@ -803,6 +808,7 @@ var createEventsListener = function() {
                 })
             }
             document.getElementById('input_svg_share').files = dataTransfer.files;
+            hasModifications = false;
         });
     }
 
@@ -919,6 +925,15 @@ var createEventsListener = function() {
     });
     document.getElementById('btn-zoom-increase').addEventListener('click', function() {
         zoomChange(1)
+    });
+
+    window.addEventListener('beforeunload', function(event) {
+        if(!hasModifications) {
+            return;
+        }
+
+        event.preventDefault();
+        return true;
     });
 
     if(hash) {

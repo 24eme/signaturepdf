@@ -17,6 +17,7 @@
         </div>
     </noscript>
     <div id="page-upload">
+        <?php if(!$disableOrganization): ?>
         <ul class="nav justify-content-center nav-tabs mt-2">
           <li class="nav-item">
             <a class="nav-link active" href="/signature"><i class="bi bi-vector-pen"></i> Signer</a>
@@ -25,6 +26,7 @@
             <a class="nav-link" href="/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
           </li>
         </ul>
+        <?php endif; ?>
         <div class="px-4 py-4 text-center">
             <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-vector-pen"></i> Signer un PDF</h1>
             <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;">Signer, parapher, tamponner, compléter un document</p>

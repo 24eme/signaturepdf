@@ -89,17 +89,18 @@ docker run -d --name=signaturepdf -p 8080:80 signaturepdf
 
 Les variables suivantes permettent de configurer le déployement :
 
-|Variable|description|exemple|defaut|
-|-----|-----|-----|-----|
-|`SERVERNAME`|url de déploiement|`pdf.24eme.fr`|localhost|
-|`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48M|24M|
-|`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48M|24M|
-|`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
-|`PDF_STORAGE_PATH`|chemin vers lequel les fichiers pdf uploadés pourront être stockés|/data||
+| Variable               | description                                                        | exemple        | defaut    |
+| ---------------------- | ------------------------------------------------------------------ | -------------- | --------- |
+| `SERVERNAME`           | url de déploiement                                                 | `pdf.24eme.fr` | localhost |
+| `UPLOAD_MAX_FILESIZE`  | Taille maximum du fichier PDF à signer                             | 48M            | 24M       |
+| `POST_MAX_SIZE`        | Taille maximum du fichier PDF à signer                             | 48M            | 24M       |
+| `MAX_FILE_UPLOADS`     | Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine   | 401            | 201       |
+| `PDF_STORAGE_PATH`     | chemin vers lequel les fichiers pdf uploadés pourront être stockés | /data          |           |
+| `DISABLE_ORGANIZATION` | Desactiver la route Organiser                                      | true           | false     |
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
-````
+```
 
 ### Alpine
 
@@ -236,6 +237,11 @@ Par exemple pour apache :
 ```
 chown www-data /path/to/folder/to/store/pdf
 ```
+
+### Desactivation du mode Organiser
+
+Pour desactiver le mode Organiser, ajouter `DISABLE_ORGANIZATION=true` dans le fichier
+`config/config.ini`.
 
 ## Mise à jour
 

@@ -16,6 +16,11 @@ if($f3->get('PDF_STORAGE_PATH') && !preg_match('|/$|', $f3->get('PDF_STORAGE_PAT
     $f3->set('PDF_STORAGE_PATH', $f3->get('PDF_STORAGE_PATH').'/');
 }
 
+$f3->set('disableOrganization', false);
+if($f3->get('DISABLE_ORGANIZATION')) {
+    $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
+}
+
 $f3->route('GET /',
     function($f3) {
         $f3->reroute('/signature');
@@ -294,53 +299,55 @@ $f3->route('GET /cron', function($f3) {
     }
 });
 
-$f3->route('GET /organization',
-    function($f3) {
-        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+if (!$f3->get('disableOrganization')) {
+    $f3->route('GET /organization',
+        function($f3) {
+            $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
 
-        echo View::instance()->render('organization.html.php');
-    }
-);
+            echo View::instance()->render('organization.html.php');
+        }
+    );
 
-$f3->route('POST /organize',
-    function($f3) {
-        $filenames = array();
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
-        unlink($tmpfile);
-        $pages = explode(',', preg_replace('/[^A-Z0-9a-z,]+/', '', $f3->get('POST.pages')));
+    $f3->route('POST /organize',
+        function($f3) {
+            $filenames = array();
+            $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
+            unlink($tmpfile);
+            $pages = explode(',', preg_replace('/[^A-Z0-9a-z,]+/', '', $f3->get('POST.pages')));
 
-        $files = Web::instance()->receive(function($file,$formFieldName){
-            if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+            $files = Web::instance()->receive(function($file,$formFieldName){
+                if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                    $f3->error(403);
+                }
+
+                return true;
+            }, false, function($fileBaseName, $formFieldName) use ($tmpfile, &$filenames) {
+                $filenames[] = str_replace('.pdf', '', $fileBaseName);
+
+                return basename($tmpfile).uniqid().".pdf";
+            });
+
+            if(!count($files)) {
                 $f3->error(403);
             }
 
-            return true;
-        }, false, function($fileBaseName, $formFieldName) use ($tmpfile, &$filenames) {
-            $filenames[] = str_replace('.pdf', '', $fileBaseName);
+            $pdfs = array();
+            foreach(array_keys($files) as $i => $file) {
+                $pdfs[] = chr(65 + $i)."=".$file;
+            }
 
-            return basename($tmpfile).uniqid().".pdf";
-	    });
+            shell_exec(sprintf("pdftk %s cat %s output %s", implode(" ", $pdfs), implode(" ", $pages), $tmpfile.'_final.pdf'));
 
-        if(!count($files)) {
-            $f3->error(403);
+            Web::instance()->send($tmpfile."_final.pdf", null, 0, TRUE, implode('_', $filenames));
+
+            if($f3->get('DEBUG')) {
+                return;
+            }
+
+            array_map('unlink', glob($tmpfile."*"));
         }
-
-        $pdfs = array();
-        foreach(array_keys($files) as $i => $file) {
-            $pdfs[] = chr(65 + $i)."=".$file;
-        }
-
-        shell_exec(sprintf("pdftk %s cat %s output %s", implode(" ", $pdfs), implode(" ", $pages), $tmpfile.'_final.pdf'));
-
-        Web::instance()->send($tmpfile."_final.pdf", null, 0, TRUE, implode('_', $filenames));
-
-        if($f3->get('DEBUG')) {
-            return;
-        }
-
-        array_map('unlink', glob($tmpfile."*"));
-    }
-);
+    );
+}
 
 function convertPHPSizeToBytes($sSize)
 {

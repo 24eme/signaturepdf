@@ -244,6 +244,11 @@ chown www-data /path/to/folder/to/store/pdf
 Pour desactiver le mode Organiser, ajouter `DISABLE_ORGANIZATION=true` dans le fichier
 `config/config.ini`.
 
+### Cacher ou modifier le lien de PDF de démo
+
+Pour cacher le lien de pdf de démo, ajouter `PDF_DEMO_LINK=false` dans le fichier
+`config/config.ini`.
+
 ## Mise à jour
 
 La dernière version stable est sur la branche `master`, pour la mise à jour il suffit de récupérer les dernières modifications :

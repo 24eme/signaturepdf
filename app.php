@@ -16,6 +16,10 @@ if($f3->get('PDF_STORAGE_PATH') && !preg_match('|/$|', $f3->get('PDF_STORAGE_PAT
     $f3->set('PDF_STORAGE_PATH', $f3->get('PDF_STORAGE_PATH').'/');
 }
 
+if(!$f3->get('PDF_DEMO_LINK') && $f3->get('PDF_DEMO_LINK') !== false) {
+    $f3->set('PDF_DEMO_LINK', 'https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf');
+}
+
 $f3->set('disableOrganization', false);
 if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));

@@ -97,6 +97,7 @@ Les variables suivantes permettent de configurer le déployement :
 |`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
 |`PDF_STORAGE_PATH`|chemin vers lequel les fichiers pdf uploadés pourront être stockés|/data||
 |`DISABLE_ORGANIZATION`|Desactiver la route Organiser|true|false|
+|`PDF_DEMO_LINK`|Afficher, retirer ou changer le lien de PDF de démo|false, `link` or `relative path`|true|
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf

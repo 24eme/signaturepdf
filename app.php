@@ -16,6 +16,15 @@ if($f3->get('PDF_STORAGE_PATH') && !preg_match('|/$|', $f3->get('PDF_STORAGE_PAT
     $f3->set('PDF_STORAGE_PATH', $f3->get('PDF_STORAGE_PATH').'/');
 }
 
+if(!$f3->get('PDF_DEMO_LINK') && $f3->get('PDF_DEMO_LINK') !== false) {
+    $f3->set('PDF_DEMO_LINK', 'https://raw.githubusercontent.com/24eme/signaturepdf/master/tests/files/document.pdf');
+}
+
+$f3->set('disableOrganization', false);
+if($f3->get('DISABLE_ORGANIZATION')) {
+    $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
+}
+
 $f3->route('GET /',
     function($f3) {
         $f3->reroute('/signature');
@@ -294,6 +303,7 @@ $f3->route('GET /cron', function($f3) {
     }
 });
 
+if (!$f3->get('disableOrganization')) {
 $f3->route('GET /organization',
     function($f3) {
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
@@ -319,7 +329,7 @@ $f3->route('POST /organize',
             $filenames[] = str_replace('.pdf', '', $fileBaseName);
 
             return basename($tmpfile).uniqid().".pdf";
-	    });
+        });
 
         if(!count($files)) {
             $f3->error(403);
@@ -341,6 +351,7 @@ $f3->route('POST /organize',
         array_map('unlink', glob($tmpfile."*"));
     }
 );
+}
 
 function convertPHPSizeToBytes($sSize)
 {

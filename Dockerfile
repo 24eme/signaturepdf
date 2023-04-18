@@ -5,6 +5,8 @@ ENV UPLOAD_MAX_FILESIZE=24M
 ENV POST_MAX_SIZE=24M
 ENV MAX_FILE_UPLOADS=201
 ENV PDF_STORAGE_PATH=
+ENV DISABLE_ORGANIZATION=false
+ENV PDF_DEMO_LINK=true
 
 RUN apt update && \
     apt install -y gettext-base librsvg2-bin pdftk imagemagick potrace && \

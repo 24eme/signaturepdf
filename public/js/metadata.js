@@ -74,6 +74,8 @@ var addMetadata = function(key, value) {
 }
 
 const deleteMetadata = function(el) {
+    if (confirm("Souhaitez-vous supprimer ce champ ?") === false) return;
+
     const input = el.closest('.input-metadata')
     input.remove()
 }

@@ -87,17 +87,32 @@ var pageRender = async function(pageIndex) {
 
 var addMetadata = function(key, value) {
     let div = document.createElement('div');
-    div.classList.add('form-floating');
-    div.classList.add('mt-3');
+    div.classList.add('form-floating', 'mt-3', 'input-metadata');
+
     let input = document.createElement('input');
     input.value = value;
     input.classList.add('form-control');
+
     let label = document.createElement('label');
     label.innerText = key;
+
+    let deleteButton = document.createElement('div')
+    deleteButton.innerHTML = "×"
+    deleteButton.classList.add('delete-metadata')
+
     div.appendChild(input);
     div.appendChild(label);
+    div.appendChild(deleteButton);
     document.getElementById('form-metadata-container').appendChild(div);
+
     input.focus();
+}
+
+const deleteMetadata = function(el) {
+    if (confirm("Souhaitez-vous supprimer ce champ ?") === false) return;
+
+    const input = el.closest('.input-metadata')
+    input.remove()
 }
 
 var createEventsListener = function() {
@@ -106,6 +121,12 @@ var createEventsListener = function() {
         addMetadata(formData.get('metadata_key'), "");
         this.reset();
         e.preventDefault();
+    })
+
+    document.addEventListener('click', function (event) {
+        if (event.target.closest(".delete-metadata")) {
+            deleteMetadata(event.target)
+        }
     })
 }
 

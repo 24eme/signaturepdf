@@ -903,6 +903,11 @@ var createEventsListener = function() {
         zoomChange(1)
     });
 
+    window.addEventListener('beforeunload', function(event) {
+        event.preventDefault();
+        return true;
+    });
+
     if(hash) {
         updateNbLayers();
         setInterval(function() {

@@ -57,7 +57,7 @@
                     </div>
                     <form id="form_metadata_add">
                     <div class="input-group mt-3">
-                      <input name="metadata_key" type="text" class="form-control" placeholder="Ma nouvelle metadonnée" aria-label="Recipient's username">
+                      <input name="metadata_key" type="text" class="form-control" placeholder="Ma nouvelle metadonnée" required aria-label="Recipient's username">
                       <button class="btn btn-outline-secondary" type="submit">Ajouter</button>
                     </div>
                     </form>

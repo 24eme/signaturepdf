@@ -63,6 +63,20 @@
     border-color: transparent !important;
 }
 
+.delete-metadata {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 1.2rem;
+    user-select: none;
+}
+
+.input-metadata:hover > .delete-metadata {
+    display: block;
+}
+
 @media (max-width: 480px) {
     .subtitle {
         font-size: .875em

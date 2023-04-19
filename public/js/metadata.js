@@ -42,12 +42,47 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 addMetadata(metaKey, metadata.info.Custom[metaKey]);
             }
+
+            for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
+                pdf.getPage(pageNumber).then(function(page) {
+                    let pageIndex = (page.pageNumber - 1);
+                    pages[pageIndex] = page;
+                    pageRender(pageIndex);
+                });
+            }
         });
     }, function (reason) {
         console.error(reason);
     });
 
     return loadingTask;
+}
+
+var pageRender = async function(pageIndex) {
+
+  let page = pages[pageIndex];
+
+  let viewport = page.getViewport({scale: 1});
+  let sizeWidth = document.getElementById('container-pages').offsetWidth;
+  let scaleWidth = sizeWidth / viewport.width;
+  let viewportWidth = page.getViewport({scale: scaleWidth });
+
+  viewport = viewportWidth;
+
+  let canvasPDF = document.createElement('canvas');
+  canvasPDF.classList.add('shadow-sm');
+  document.getElementById('container-pages').appendChild(canvasPDF);
+  let context = canvasPDF.getContext('2d');
+  canvasPDF.height = viewport.height;
+  canvasPDF.width = viewport.width;
+
+  if(pdfRenderTasks[pageIndex]) {
+    pdfRenderTasks[pageIndex].cancel();
+  }
+  pdfRenderTasks[pageIndex] = await page.render({
+    canvasContext: context,
+    viewport: viewport,
+  });
 }
 
 var addMetadata = function(key, value) {

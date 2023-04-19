@@ -61,11 +61,17 @@ var addMetadata = function(key, value) {
     label.innerText = key;
     div.appendChild(input);
     div.appendChild(label);
-    document.getElementById('container-main').appendChild(div);
+    document.getElementById('form-metadata-container').appendChild(div);
+    input.focus();
 }
 
 var createEventsListener = function() {
-
+    document.getElementById('form_metadata_add').addEventListener('submit', function(e) {
+        let formData = new FormData(this);
+        addMetadata(formData.get('metadata_key'), "");
+        this.reset();
+        e.preventDefault();
+    })
 }
 
 async function getPDFBlobFromCache(cacheUrl) {

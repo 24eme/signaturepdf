@@ -50,7 +50,18 @@
     </div>
     <div id="page-metadata" style="padding-right: 350px;" class="d-none">
         <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
-        <div id="container-main"  class="w-50 mx-auto pb-3">
+        <div id="container-main">
+                <div id="form-metadata" class="w-50 mx-auto pt-3 pb-3">
+                    <h3>Métadonnées</h3>
+                    <div id="form-metadata-container">
+                    </div>
+                    <form id="form_metadata_add">
+                    <div class="input-group mt-3">
+                      <input name="metadata_key" type="text" class="form-control" placeholder="Ma nouvelle metadonnée" aria-label="Recipient's username">
+                      <button class="btn btn-outline-secondary" type="submit">Ajouter</button>
+                    </div>
+                    </form>
+                </div>
         </div>
         <div id="div-margin-bottom" style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">

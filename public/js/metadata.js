@@ -5,6 +5,65 @@ var is_mobile = function() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 };
 
+var responsiveDisplay = function() {
+    if(is_mobile()) {
+        menu.classList.remove('show');
+        menuOffcanvas.hide();
+    } else {
+        menuOffcanvas.show();
+    }
+    menu.classList.remove('d-md-block');
+    menu.classList.remove('d-none');
+};
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
+var nbPDF = 0;
+var pages = [];
+var pdfRenderTasks = [];
+
+var loadPDF = async function(pdfBlob, filename, pdfIndex) {
+    let url = await URL.createObjectURL(pdfBlob);
+    let loadingTask = pdfjsLib.getDocument(url);
+    document.querySelector('#text_document_name span').innerText = filename;
+    await loadingTask.promise.then(function(pdf) {
+        pdf.getMetadata().then(function(metadata) {
+            console.log(metadata);
+            for(metaKey in metadata.info) {
+                if(metaKey == "Custom" || metaKey == "PDFFormatVersion" || metaKey.match(/^Is/) || metaKey == "Trapped") {
+                    continue;
+                }
+                addMetadata(metaKey, metadata.info[metaKey]);
+            }
+            for(metaKey in metadata.info.Custom) {
+                if(metaKey == "sha256") {
+                    continue;
+                }
+
+                addMetadata(metaKey, metadata.info.Custom[metaKey]);
+            }
+        });
+    }, function (reason) {
+        console.error(reason);
+    });
+
+    return loadingTask;
+}
+
+var addMetadata = function(key, value) {
+    let div = document.createElement('div');
+    div.classList.add('form-floating');
+    div.classList.add('mt-3');
+    let input = document.createElement('input');
+    input.value = value;
+    input.classList.add('form-control');
+    let label = document.createElement('label');
+    label.innerText = key;
+    div.appendChild(input);
+    div.appendChild(label);
+    document.getElementById('container-main').appendChild(div);
+}
+
 var createEventsListener = function() {
 
 }

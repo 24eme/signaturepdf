@@ -50,8 +50,7 @@
     </div>
     <div id="page-metadata" style="padding-right: 350px;" class="d-none">
         <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
-        <div id="container-main">
-
+        <div id="container-main"  class="w-50 mx-auto pb-3">
         </div>
         <div id="div-margin-bottom" style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
@@ -60,7 +59,8 @@
                 <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Édition de métadonnées<span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi-ui-checks-grid"></i></span></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body pt-3" style="padding-bottom: 60px;">
+            <div class="offcanvas-body pt-0" style="padding-bottom: 60px;">
+                <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
                 <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                     <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />

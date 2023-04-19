@@ -119,10 +119,16 @@ var createEventsListener = function() {
     document.getElementById('form_metadata_add').addEventListener('submit', function(e) {
         let formData = new FormData(this);
         addMetadata(formData.get('metadata_key'), "");
+        this.classList.add('invisible');
+        setTimeout(function() { document.getElementById('form_metadata_add').classList.remove('invisible'); }, 400);
         this.reset();
         e.preventDefault();
-    })
-
+    });
+    document.getElementById('input_metadata_value').addEventListener('focus', function(e) {
+        if(document.getElementById('input_metadata_key').value) {
+            document.querySelector('#form_metadata_add button').click();
+        }
+    });
     document.addEventListener('click', function (event) {
         if (event.target.closest(".delete-metadata")) {
             deleteMetadata(event.target)

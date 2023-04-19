@@ -55,11 +55,17 @@
                     <h3>Liste des métadonnées du PDF</h3>
                     <div id="form-metadata-container">
                     </div>
-                    <form id="form_metadata_add">
-                    <div class="input-group mt-3">
-                      <input name="metadata_key" type="text" class="form-control" placeholder="Ma nouvelle metadonnée" required aria-label="Recipient's username">
-                      <button class="btn btn-outline-secondary" type="submit">Ajouter</button>
-                    </div>
+                    <form id="form_metadata_add" class="position-relative">
+                        <hr class="text-muted mt-4 mb-3" />
+                        <div class="mb-3">
+                            <label class="form-label text-muted" for="input_metadata_key">Ajouter une nouvelle métadonnée</label>
+                            <div class="form-floating">
+                              <input id="input_metadata_key" name="metadata_key" type="text" class="form-control" required value="" style="border-bottom-right-radius: 0;  border-bottom-left-radius: 0;">
+                              <label>Clé</label>
+                            </div>
+                            <input id="input_metadata_value" readonly="readonly" style="border-top: 0; border-top-right-radius: 0;  border-top-left-radius: 0;" name="metadata_value" type="text" class="form-control bg-light opacity-50" value="" placeholder="Valeur" style="border-bottom-right-radius: 0;  border-bottom-left-radius: 0;">
+                        </div>
+                        <button type="submit" type="button" class="btn btn-outline-secondary float-end"><i class="bi bi-plus-circle"></i> Ajouter</button>
                     </form>
                 </div>
         </div>

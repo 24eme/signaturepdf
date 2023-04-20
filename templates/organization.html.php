@@ -26,6 +26,9 @@
           <li class="nav-item">
             <a class="nav-link active" href="/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
+          </li>
         </ul>
         <div class="px-4 py-4 text-center">
             <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-ui-checks-grid"></i> Organiser des PDF</h1>

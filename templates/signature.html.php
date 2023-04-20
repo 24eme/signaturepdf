@@ -25,6 +25,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
+          </li>
         </ul>
         <?php endif; ?>
         <div class="px-4 py-4 text-center">

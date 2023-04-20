@@ -353,6 +353,12 @@ $f3->route('POST /organize',
 );
 }
 
+$f3->route('GET /metadata',
+    function($f3) {
+        echo View::instance()->render('metadata.html.php');
+    }
+);
+
 function convertPHPSizeToBytes($sSize)
 {
     $sSuffix = strtoupper(substr($sSize, -1));

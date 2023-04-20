@@ -27,11 +27,11 @@
             <a class="nav-link" href="/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/metadata"><i class="bi bi-ui-checks-grid"></i> Metadonnées</a>
+            <a class="nav-link active" href="/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
           </li>
         </ul>
         <div class="px-4 py-4 text-center">
-            <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-ui-checks-grid"></i> Metadonnées d'un PDF</h1>
+            <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-tags"></i> Metadonnées d'un PDF</h1>
             <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"></p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
@@ -73,7 +73,7 @@
         <div style="width: 40%;" class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/metadata"></a>
             <div class="offcanvas-header d-block mb-0 pb-0 border-bottom">
-                <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Édition de métadonnées<span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi-ui-checks-grid"></i></span></h5>
+                <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Édition de métadonnées<span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi bi-tags"></i></span></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 <p id="text_document_name" class="text-muted mb-2" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
             </div>

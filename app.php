@@ -355,8 +355,6 @@ $f3->route('POST /organize',
 
 $f3->route('GET /metadata',
     function($f3) {
-        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
-
         echo View::instance()->render('metadata.html.php');
     }
 );

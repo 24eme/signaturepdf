@@ -33,18 +33,23 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     await loadingTask.promise.then(function(pdf) {
         pdf.getMetadata().then(function(metadata) {
             console.log(metadata);
+            for(fieldKey in defaultFields) {
+                addMetadata(fieldKey, null, defaultFields[fieldKey]['type']);
+            }
+
             for(metaKey in metadata.info) {
                 if(metaKey == "Custom" || metaKey == "PDFFormatVersion" || metaKey.match(/^Is/) || metaKey == "Trapped") {
                     continue;
                 }
-                addMetadata(metaKey, metadata.info[metaKey]);
+                addMetadata(metaKey, metadata.info[metaKey], "text");
             }
+
             for(metaKey in metadata.info.Custom) {
                 if(metaKey == "sha256") {
                     continue;
                 }
 
-                addMetadata(metaKey, metadata.info.Custom[metaKey]);
+                addMetadata(metaKey, metadata.info.Custom[metaKey], "text");
             }
 
             for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
@@ -89,12 +94,26 @@ var pageRender = async function(pageIndex) {
   });
 }
 
-var addMetadata = function(key, value) {
+var addMetadata = function(key, value, type) {
+    let input = document.querySelector('.input-metadata input[name="'+key+'"]');
+
+    if(input && input.value === null) {
+        input.value = value;
+        return;
+    }
+
+    if(input) {
+        input.focus();
+        return;
+    }
+
     let div = document.createElement('div');
     div.classList.add('form-floating', 'mt-3', 'input-metadata');
 
-    let input = document.createElement('input');
+    input = document.createElement('input');
     input.value = value;
+    input.type = type;
+    input.name = key;
     input.classList.add('form-control');
 
     let label = document.createElement('label');

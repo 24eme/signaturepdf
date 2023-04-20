@@ -9,3 +9,6 @@ PDF_STORAGE_PATH=/path/to/folder
 
 ; Manage demo link pdf : true (by default, show), false (hide), or custom link
 ;PDF_DEMO_LINK=true
+
+; Metadata default fields
+;METADATA_DEFAULT_FIELDS[metadata_key].type = "text"

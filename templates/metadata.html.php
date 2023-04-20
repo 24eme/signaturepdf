@@ -100,7 +100,7 @@
     <script src="/vendor/pdf.js?legacy"></script>
     <script src="/vendor/pdf-lib.min.js?1.17.1"></script>
     <script>
-    var maxSize = <?php echo $maxSize ?>;
+    var defaultFields = <?php echo json_encode(isset($METADATA_DEFAULT_FIELDS) ? $METADATA_DEFAULT_FIELDS : array()); ?>;
     </script>
     <script src="/js/metadata.js?202212070154"></script>
   </body>

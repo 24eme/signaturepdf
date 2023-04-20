@@ -61,6 +61,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
             }
             if(document.querySelector('.input-metadata input')) {
                 document.querySelector('.input-metadata input').focus();
+            } else {
+                document.getElementById('input_metadata_key').focus();
             }
         });
     }, function (reason) {

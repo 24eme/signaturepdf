@@ -35,18 +35,23 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     await loadingTask.promise.then(function(pdf) {
         pdf.getMetadata().then(function(metadata) {
             console.log(metadata);
+            for(fieldKey in defaultFields) {
+                addMetadata(fieldKey, null, defaultFields[fieldKey]['type'], false);
+            }
+
             for(metaKey in metadata.info) {
                 if(metaKey == "Custom" || metaKey == "PDFFormatVersion" || metaKey.match(/^Is/) || metaKey == "Trapped") {
                     continue;
                 }
-                addMetadata(metaKey, metadata.info[metaKey]);
+                addMetadata(metaKey, metadata.info[metaKey], "text", false);
             }
+
             for(metaKey in metadata.info.Custom) {
                 if(metaKey == "sha256") {
                     continue;
                 }
 
-                addMetadata(metaKey, metadata.info.Custom[metaKey]);
+                addMetadata(metaKey, metadata.info.Custom[metaKey], "text", false);
             }
 
             for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
@@ -55,6 +60,11 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pages[pageIndex] = page;
                     pageRender(pageIndex);
                 });
+            }
+            if(document.querySelector('.input-metadata input')) {
+                document.querySelector('.input-metadata input').focus();
+            } else {
+                document.getElementById('input_metadata_key').focus();
             }
         });
     }, function (reason) {
@@ -91,12 +101,26 @@ var pageRender = async function(pageIndex) {
   });
 }
 
-var addMetadata = function(key, value) {
+var addMetadata = function(key, value, type, focus) {
+    let input = document.querySelector('.input-metadata input[name="'+key+'"]');
+
+    if(input && input.value === null) {
+        input.value = value;
+    }
+    if(input && focus) {
+        input.focus();
+    }
+    if(input) {
+        return;
+    }
+
     let div = document.createElement('div');
     div.classList.add('form-floating', 'mt-3', 'input-metadata');
 
-    let input = document.createElement('input');
+    input = document.createElement('input');
     input.value = value;
+    input.type = type;
+    input.name = key;
     input.classList.add('form-control');
 
     let label = document.createElement('label');
@@ -111,7 +135,9 @@ var addMetadata = function(key, value) {
     div.appendChild(deleteButton);
     document.getElementById('form-metadata-container').appendChild(div);
 
-    input.focus();
+    if(focus) {
+        input.focus();
+    }
 }
 
 const deleteMetadata = function(el) {
@@ -158,7 +184,7 @@ const save = async function () {
 var createEventsListener = function() {
     document.getElementById('form_metadata_add').addEventListener('submit', function(e) {
         let formData = new FormData(this);
-        addMetadata(formData.get('metadata_key'), "");
+        addMetadata(formData.get('metadata_key'), "", "text", true);
         this.classList.add('invisible');
         setTimeout(function() { document.getElementById('form_metadata_add').classList.remove('invisible'); }, 400);
         this.reset();
@@ -221,12 +247,6 @@ var pageUpload = async function() {
     document.getElementById('input_pdf_upload').focus();
     const cache = await caches.open('pdf');
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-            if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
-
-            alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
-            document.getElementById('input_pdf_upload').value = "";
-            return;
-        }
         let filename = document.getElementById('input_pdf_upload').files[0].name;
         let response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
         let urlPdf = '/pdf/'+filename;

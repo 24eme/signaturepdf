@@ -10,7 +10,7 @@
     <link href="/css/app.css?202210080134" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/favicon-organization.ico">
 
-    <title>Métadonnées d'un PDF</title>
+    <title>Édition des métadonnées d'un PDF</title>
   </head>
   <body>
     <noscript>
@@ -31,13 +31,13 @@
           </li>
         </ul>
         <div class="px-4 py-4 text-center">
-            <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-tags"></i> Metadonnées d'un PDF</h1>
-            <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"></p>
+            <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-tags"></i> Éditer les métadonnées</h1>
+            <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;">Ajouter, modifier ou supprimer les métadonnées d'un PDF</p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
                   <label class="form-label mt-3" for="input_pdf_upload">Choisir un PDF <small class="opacity-75" style="cursor: help" title="Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo"><i class="bi bi-info-circle"></i></small></label>
                   <input id="input_pdf_upload" placeholder="Choisir un PDF" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
-                  <p class="mt-2 small fw-light text-dark">Le PDF sera traité par le serveur sans être conservé ni stocké</p>
+                  <p class="mt-2 small fw-light text-dark">&nbsp;</p>
                   <?php if($PDF_DEMO_LINK): ?>
                   <a class="btn btn-sm btn-link opacity-75" href="#<?php echo $PDF_DEMO_LINK ?>">Tester avec un PDF de démo</a>
                   <?php endif; ?>
@@ -73,7 +73,7 @@
         <div style="width: 40%;" class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/metadata"></a>
             <div class="offcanvas-header d-block mb-0 pb-0 border-bottom">
-                <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Édition de métadonnées<span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi bi-tags"></i></span></h5>
+                <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Édition des métadonnées<span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi bi-tags"></i></span></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 <p id="text_document_name" class="text-muted mb-2" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
             </div>
@@ -100,7 +100,7 @@
     <script src="/vendor/pdf.js?legacy"></script>
     <script src="/vendor/pdf-lib.min.js?1.17.1"></script>
     <script>
-    var maxSize = <?php echo $maxSize ?>;
+    var defaultFields = <?php echo json_encode(isset($METADATA_DEFAULT_FIELDS) ? $METADATA_DEFAULT_FIELDS : array()); ?>;
     </script>
     <script src="/js/metadata.js?202212070154"></script>
   </body>

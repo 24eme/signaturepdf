@@ -127,10 +127,9 @@ const save = async function () {
     const arrayBuffer = await pdffile.arrayBuffer()
     const pdf = await PDFDocument.load(arrayBuffer)
 
-    console.log(pdf.getInfoDict())
     pdf.getInfoDict().set(PDFName.of('fooMetadata'), PDFHexString.fromText("test de métadonéé"))
 
-    const newPDF = new Blob([pdf.save()], {type: "application/pdf"})
+    const newPDF = new Blob([await pdf.save()], {type: "application/pdf"})
     DL = function (d,f) {
         let a = document.createElement("a"),
             u = URL.createObjectURL(d);

@@ -8,7 +8,7 @@
     <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
     <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
     <link href="/css/app.css?202210080134" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="/favicon-organization.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon-metadata.ico">
 
     <title>Édition des métadonnées d'un PDF</title>
   </head>

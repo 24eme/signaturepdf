@@ -21,9 +21,13 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 var nbPDF = 0;
 var pages = [];
 var pdfRenderTasks = [];
+let pdffile = null
 
 var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     let url = await URL.createObjectURL(pdfBlob);
+
+    pdffile = pdfBlob
+
     let loadingTask = pdfjsLib.getDocument(url);
     document.querySelector('#text_document_name span').innerText = filename;
     await loadingTask.promise.then(function(pdf) {
@@ -115,6 +119,29 @@ const deleteMetadata = function(el) {
     input.remove()
 }
 
+const save = async function () {
+    const PDFDocument = window['PDFLib'].PDFDocument
+    const PDFHexString = window['PDFLib'].PDFHexString
+    const PDFName = window['PDFLib'].PDFName
+
+    const arrayBuffer = await pdffile.arrayBuffer()
+    const pdf = await PDFDocument.load(arrayBuffer)
+
+    console.log(pdf.getInfoDict())
+    pdf.getInfoDict().set(PDFName.of('fooMetadata'), PDFHexString.fromText("test de métadonéé"))
+
+    const newPDF = new Blob([pdf.save()], {type: "application/pdf"})
+    DL = function (d,f) {
+        let a = document.createElement("a"),
+            u = URL.createObjectURL(d);
+        a.download = f,
+        a.href = u,
+        a.click(),
+        setTimeout(() => URL.revokeObjectURL(u))
+    }
+    DL(newPDF, "a.pdf")
+}
+
 var createEventsListener = function() {
     document.getElementById('form_metadata_add').addEventListener('submit', function(e) {
         let formData = new FormData(this);
@@ -133,6 +160,10 @@ var createEventsListener = function() {
         if (event.target.closest(".delete-metadata")) {
             deleteMetadata(event.target)
         }
+    })
+
+    document.getElementById('save').addEventListener('click', function (e) {
+        save()
     })
 }
 

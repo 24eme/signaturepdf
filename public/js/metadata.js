@@ -104,7 +104,7 @@ var pageRender = async function(pageIndex) {
 var addMetadata = function(key, value, type, focus) {
     let input = document.querySelector('.input-metadata input[name="'+key+'"]');
 
-    if(input && input.value === null) {
+    if(input && !input.value) {
         input.value = value;
     }
     if(input && focus) {

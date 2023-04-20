@@ -82,18 +82,14 @@
                 </div>
             </div>
             <div class="position-absolute bg-white bottom-0 pb-2 ps-2 pe-2 w-100 border-top shadow-lg">
-                <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
-                    <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
-                    <input id="input_pages" type="hidden" value="" name="pages" />
-                    <div id="btn_container" class="d-grid gap-2 mt-2">
-                        <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Enregistrer et télécharger le PDF</button>
-                    </div>
-                </form>
+                <div id="btn_container" class="d-grid gap-2 mt-2">
+                    <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> Enregistrer et télécharger le PDF</button>
+                </div>
             </div>
         </div>
         <div id="bottom_bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div id="bottom_bar_action" class="d-grid gap-2">
-                <button class="btn btn-primary" type="submit" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF</button>
+                <button class="btn btn-primary" id="save_mobile"><i class="bi bi-download"></i> Télécharger le PDF</button>
             </div>
         </div>
     </div>
@@ -102,6 +98,7 @@
 
     <script src="/vendor/bootstrap.min.js?5.1.3"></script>
     <script src="/vendor/pdf.js?legacy"></script>
+    <script src="/vendor/pdf-lib.min.js?1.17.1"></script>
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>

@@ -21,6 +21,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 var nbPDF = 0;
 var pages = [];
 var pdfRenderTasks = [];
+let filename = null
 let pdffile = null
 let deletedMetadata = [];
 
@@ -151,7 +152,7 @@ const save = async function () {
     });
 
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
-    DL(newPDF, "a.pdf")
+    DL(newPDF, filename)
 }
 
 var createEventsListener = function() {
@@ -236,7 +237,7 @@ var pageUpload = async function() {
 }
 
 var pageMetadata = async function(url) {
-    let filename = url.replace('/pdf/', '');
+    filename = url.replace('/pdf/', '');
     document.title = filename + ' - ' + document.title;
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');

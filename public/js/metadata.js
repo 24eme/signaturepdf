@@ -34,14 +34,14 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
         pdf.getMetadata().then(function(metadata) {
             console.log(metadata);
             for(fieldKey in defaultFields) {
-                addMetadata(fieldKey, null, defaultFields[fieldKey]['type']);
+                addMetadata(fieldKey, null, defaultFields[fieldKey]['type'], false);
             }
 
             for(metaKey in metadata.info) {
                 if(metaKey == "Custom" || metaKey == "PDFFormatVersion" || metaKey.match(/^Is/) || metaKey == "Trapped") {
                     continue;
                 }
-                addMetadata(metaKey, metadata.info[metaKey], "text");
+                addMetadata(metaKey, metadata.info[metaKey], "text", false);
             }
 
             for(metaKey in metadata.info.Custom) {
@@ -49,7 +49,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     continue;
                 }
 
-                addMetadata(metaKey, metadata.info.Custom[metaKey], "text");
+                addMetadata(metaKey, metadata.info.Custom[metaKey], "text", false);
             }
 
             for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
@@ -58,6 +58,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pages[pageIndex] = page;
                     pageRender(pageIndex);
                 });
+            }
+            if(document.querySelector('.input-metadata input')) {
+                document.querySelector('.input-metadata input').focus();
             }
         });
     }, function (reason) {
@@ -94,16 +97,16 @@ var pageRender = async function(pageIndex) {
   });
 }
 
-var addMetadata = function(key, value, type) {
+var addMetadata = function(key, value, type, focus) {
     let input = document.querySelector('.input-metadata input[name="'+key+'"]');
 
     if(input && input.value === null) {
         input.value = value;
-        return;
     }
-
-    if(input) {
+    if(input && focus) {
         input.focus();
+    }
+    if(input) {
         return;
     }
 
@@ -128,7 +131,9 @@ var addMetadata = function(key, value, type) {
     div.appendChild(deleteButton);
     document.getElementById('form-metadata-container').appendChild(div);
 
-    input.focus();
+    if(focus) {
+        input.focus();
+    }
 }
 
 const deleteMetadata = function(el) {
@@ -164,7 +169,7 @@ const save = async function () {
 var createEventsListener = function() {
     document.getElementById('form_metadata_add').addEventListener('submit', function(e) {
         let formData = new FormData(this);
-        addMetadata(formData.get('metadata_key'), "");
+        addMetadata(formData.get('metadata_key'), "", "text", true);
         this.classList.add('invisible');
         setTimeout(function() { document.getElementById('form_metadata_add').classList.remove('invisible'); }, 400);
         this.reset();

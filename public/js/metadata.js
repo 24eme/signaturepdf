@@ -22,6 +22,7 @@ var nbPDF = 0;
 var pages = [];
 var pdfRenderTasks = [];
 let pdffile = null
+let deletedMetadata = [];
 
 var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     let url = await URL.createObjectURL(pdfBlob);
@@ -116,6 +117,8 @@ const deleteMetadata = function(el) {
     if (confirm("Souhaitez-vous supprimer ce champ ?") === false) return;
 
     const input = el.closest('.input-metadata')
+    const label = input.querySelector('label').innerText
+    deletedMetadata.push(label)
     input.remove()
 }
 
@@ -133,12 +136,21 @@ const save = async function () {
     const PDFHexString = window['PDFLib'].PDFHexString
     const PDFName = window['PDFLib'].PDFName
 
-    const arrayBuffer = await pdffile.arrayBuffer()
-    const pdf = await PDFDocument.load(arrayBuffer)
+    const arrayBuffer = await pdffile.arrayBuffer();
+    const pdf = await PDFDocument.load(arrayBuffer);
 
-    pdf.getInfoDict().set(PDFName.of('fooMetadata'), PDFHexString.fromText("test de métadonéé"))
+    deletedMetadata.forEach(function (el) {
+        pdf.getInfoDict().delete(PDFName.of(el))
+    });
 
-    const newPDF = new Blob([await pdf.save()], {type: "application/pdf"})
+    ([...document.getElementsByClassName('input-metadata')] || []).forEach(function (el) {
+        const label = el.querySelector('label').innerText
+        const input = el.querySelector('input').value
+
+        pdf.getInfoDict().set(PDFName.of(label), PDFHexString.fromText(input));
+    });
+
+    const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
     DL(newPDF, "a.pdf")
 }
 

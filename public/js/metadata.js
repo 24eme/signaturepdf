@@ -119,6 +119,15 @@ const deleteMetadata = function(el) {
     input.remove()
 }
 
+const DL = function (d,f) {
+    let a = document.createElement("a"),
+        u = URL.createObjectURL(d);
+    a.download = f,
+    a.href = u,
+    a.click(),
+    setTimeout(() => URL.revokeObjectURL(u))
+}
+
 const save = async function () {
     const PDFDocument = window['PDFLib'].PDFDocument
     const PDFHexString = window['PDFLib'].PDFHexString
@@ -130,14 +139,6 @@ const save = async function () {
     pdf.getInfoDict().set(PDFName.of('fooMetadata'), PDFHexString.fromText("test de métadonéé"))
 
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"})
-    DL = function (d,f) {
-        let a = document.createElement("a"),
-            u = URL.createObjectURL(d);
-        a.download = f,
-        a.href = u,
-        a.click(),
-        setTimeout(() => URL.revokeObjectURL(u))
-    }
     DL(newPDF, "a.pdf")
 }
 

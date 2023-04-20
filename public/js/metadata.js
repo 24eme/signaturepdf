@@ -127,6 +127,7 @@ var addMetadata = function(key, value, type, focus) {
     label.innerText = key;
 
     let deleteButton = document.createElement('div')
+    deleteButton.title = "Supprimer cette metadonnée"
     deleteButton.innerHTML = "×"
     deleteButton.classList.add('delete-metadata')
 

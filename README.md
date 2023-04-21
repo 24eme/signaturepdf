@@ -6,12 +6,12 @@ Logiciel web libre permettant de signer un PDF.
 
 Liste des instances permettant d'utiliser ce logiciel :
 
-- [pdf.24eme.fr](https://pdf.24eme.fr)
-- [pdf.libreon.fr](https://pdf.libreon.fr)
-- [pdf.hostux.net](https://pdf.hostux.net)
-- [pdf.nebulae.co](https://pdf.nebulae.co)
+-   [pdf.24eme.fr](https://pdf.24eme.fr)
+-   [pdf.libreon.fr](https://pdf.libreon.fr)
+-   [pdf.hostux.net](https://pdf.hostux.net)
+-   [pdf.nebulae.co](https://pdf.nebulae.co)
 
-*N'hésitez pas à rajouter la votre via une issue ou une pull request*
+_N'hésitez pas à rajouter la votre via une issue ou une pull request_
 
 ## License
 
@@ -23,11 +23,11 @@ Logiciel libre sous license AGPL V3
 
 Dépendances :
 
-- php >= 5.6 
-- rsvg-convert
-- pdftk
-- imagemagick
-- potrace
+-   php >= 5.6
+-   rsvg-convert
+-   pdftk
+-   imagemagick
+-   potrace
 
 Installation des dépendances :
 
@@ -75,13 +75,13 @@ DocumentRoot /path/to/signaturepdf/public
 
 ```bash
 docker build -t signaturepdf .
-````
+```
 
 #### Lancement d'un conteneur
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 signaturepdf
-````
+```
 
 [localhost:8080](http://localhost:8080)
 
@@ -89,15 +89,15 @@ docker run -d --name=signaturepdf -p 8080:80 signaturepdf
 
 Les variables suivantes permettent de configurer le déployement :
 
-|Variable|description|exemple|defaut|
-|-----|-----|-----|-----|
-|`SERVERNAME`|url de déploiement|`pdf.24eme.fr`|localhost|
-|`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48M|24M|
-|`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48M|24M|
-|`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
-|`DISABLE_ORGANIZATION`|Desactiver la route Organiser|true|false|
-|`PDF_DEMO_LINK`|Afficher, retirer ou changer le lien de PDF de démo|false, `link` or `relative path`|true|
+| Variable               | description                                                        | exemple                          | defaut    |
+| ---------------------- | ------------------------------------------------------------------ | -------------------------------- | --------- |
+| `SERVERNAME`           | url de déploiement                                                 | `pdf.24eme.fr`                   | localhost |
+| `UPLOAD_MAX_FILESIZE`  | Taille maximum du fichier PDF à signer                             | 48M                              | 24M       |
+| `POST_MAX_SIZE`        | Taille maximum du fichier PDF à signer                             | 48M                              | 24M       |
+| `MAX_FILE_UPLOADS`     | Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine   | 401                              | 201       |
 | `PDF_STORAGE_PATH`     | chemin vers lequel les fichiers pdf uploadés pourront être stockés | /data                            | /data     |
+| `DISABLE_ORGANIZATION` | Desactiver la route Organiser                                      | true                             | false     |
+| `PDF_DEMO_LINK`        | Afficher, retirer ou changer le lien de PDF de démo                | false, `link` or `relative path` | true      |
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
@@ -109,26 +109,28 @@ Voici un script permettant d'installer la solution sous Linux Alpine (testé en 
 Pensez à éditer la variable "domain" en début de script pour correspondre à l'URL avec laquelle elle sera appelée.
 
 Les composants principaux sont :
-- php 8 + php-fpm
-- Nginx
-- pdftk (installation "manuelle" nécessitant openjdk8)
-- imagick
-- potrace
-- librsvg
+
+-   php 8 + php-fpm
+-   Nginx
+-   pdftk (installation "manuelle" nécessitant openjdk8)
+-   imagick
+-   potrace
+-   librsvg
 
 Ce que fait le script :
-- Installation des dépendances
-- Configuration de php et php-fpm
-- Configuration d'Nginx
-- Configuration du config.ini
-- Git clone du repo
+
+-   Installation des dépendances
+-   Configuration de php et php-fpm
+-   Configuration d'Nginx
+-   Configuration du config.ini
+-   Git clone du repo
 
 ```
 #!/bin/sh
 
 domain='sign.example.com'
 
-apk update 
+apk update
 apk add bash nginx git php8 php8-fpm php8-session php8-gd php8-fileinfo openjdk8 imagemagick potrace librsvg
 
 cd /tmp
@@ -164,7 +166,7 @@ server {
         server_name ${domain};
 
         client_max_body_size 0;
-    
+
         root /var/www/signaturepdf/public/;
 
         index           index.php index.html;
@@ -185,7 +187,7 @@ server {
                 fastcgi_buffers 128 128k;
                 fastcgi_param   PATH_INFO       \$fastcgi_path_info;
                 fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-                fastcgi_pass 127.0.0.1:9000;        
+                fastcgi_pass 127.0.0.1:9000;
 
         }
 
@@ -223,11 +225,13 @@ cp config/config.ini{.example,}
 ```
 
 Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `PDF_STORAGE_PATH` avec le chemin vers lequel les fichiers pdf uploadés pourront être stockés :
+
 ```
 PDF_STORAGE_PATH=/path/to/folder
 ```
 
 Créer ce dossier :
+
 ```
 mkdir /path/to/folder
 ```
@@ -235,6 +239,7 @@ mkdir /path/to/folder
 Le serveur web devra avoir les droits en écriture sur ce dossier.
 
 Par exemple pour apache :
+
 ```
 chown www-data /path/to/folder/to/store/pdf
 ```
@@ -286,33 +291,30 @@ DEBUG=1 make test
 
 ## Librairies utilisées
 
-- **Fat-Free** micro framework PHP : https://github.com/bcosca/fatfree (GPLv3)
-- **Bootstrap** framework html, css et javascript : https://getbootstrap.com/ (MIT)
-- **PDF.js** librairie de lecture de PDF dans un canvas HTML : https://github.com/mozilla/pdf.js (Apache-2.0)
-- **Fabric.js** librairie pour manipuler un canvas HTML : https://github.com/fabricjs/fabric.js (MIT)
-- **PDFtk** outils de manipulation de PDF (GPL)
-- **librsvg** outils de manipulation de SVG : https://gitlab.gnome.org/GNOME/librsvg (LGPL-2+)
-- **potrace** outils de transformation d'image bitamp en image vectorisé : http://potrace.sourceforge.net/ (GPLv2)
-- **OpenType.js** outils de transformation d'un texte et sa police en chemin : https://github.com/opentypejs/opentype.js (MIT)
-- **ImageMagick** ensemble d'outils de manipulation d'images : https://imagemagick.org/ (Apache-2.0)
-- **Caveat** police de caractères style écriture à la main : https://github.com/googlefonts/caveat (OFL-1.1)
+-   **Fat-Free** micro framework PHP : https://github.com/bcosca/fatfree (GPLv3)
+-   **Bootstrap** framework html, css et javascript : https://getbootstrap.com/ (MIT)
+-   **PDF.js** librairie de lecture de PDF dans un canvas HTML : https://github.com/mozilla/pdf.js (Apache-2.0)
+-   **Fabric.js** librairie pour manipuler un canvas HTML : https://github.com/fabricjs/fabric.js (MIT)
+-   **PDFtk** outils de manipulation de PDF (GPL)
+-   **librsvg** outils de manipulation de SVG : https://gitlab.gnome.org/GNOME/librsvg (LGPL-2+)
+-   **potrace** outils de transformation d'image bitamp en image vectorisé : http://potrace.sourceforge.net/ (GPLv2)
+-   **OpenType.js** outils de transformation d'un texte et sa police en chemin : https://github.com/opentypejs/opentype.js (MIT)
+-   **ImageMagick** ensemble d'outils de manipulation d'images : https://imagemagick.org/ (Apache-2.0)
+-   **Caveat** police de caractères style écriture à la main : https://github.com/googlefonts/caveat (OFL-1.1)
 
 Pour les tests :
 
-- **Jest** Framework de Test Javascript : https://jestjs.io/ (MIT)
-- **Puppeteer** librairie Node.js pour contrôler un navigateur : https://github.com/puppeteer/puppeteer (Apache-2.0)
+-   **Jest** Framework de Test Javascript : https://jestjs.io/ (MIT)
+-   **Puppeteer** librairie Node.js pour contrôler un navigateur : https://github.com/puppeteer/puppeteer (Apache-2.0)
 
 ## Contributeurs
 
-- Vincent LAURENT (24ème)
-- Le Metayer Jean-Baptiste (24ème)
-- Xavier Garnier (Logilab)
-- Simon Chabot (Logilab)
-- Gabriel POMA (24ème)
+-   Vincent LAURENT (24ème)
+-   Le Metayer Jean-Baptiste (24ème)
+-   Xavier Garnier (Logilab)
+-   Simon Chabot (Logilab)
+-   Gabriel POMA (24ème)
 
 Logilab a apporté une contribution financière de 1 365 € TTC à la société 24ème pour développer le mode multi signature.
 
 Le développement du logiciel a principalement été réalisé sur le temps de travail de salariés du 24ème.
-
-
-

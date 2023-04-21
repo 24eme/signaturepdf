@@ -4,7 +4,7 @@ ENV SERVERNAME=localhost
 ENV UPLOAD_MAX_FILESIZE=24M
 ENV POST_MAX_SIZE=24M
 ENV MAX_FILE_UPLOADS=201
-ENV PDF_STORAGE_PATH=
+ENV PDF_STORAGE_PATH=/data
 ENV DISABLE_ORGANIZATION=false
 ENV PDF_DEMO_LINK=true
 
@@ -14,15 +14,11 @@ RUN apt update && \
 
 COPY . /usr/local/signaturepdf
 
-RUN chown -R www-data:www-data /usr/local/signaturepdf && chmod 750 -R /usr/local/signaturepdf && \
-    chmod 775 -R /usr/local/signaturepdf/entrypoint.sh && \
-    envsubst < /usr/local/signaturepdf/config/php.ini > /usr/local/etc/php/conf.d/uploads.ini && \
+RUN envsubst < /usr/local/signaturepdf/config/php.ini > /usr/local/etc/php/conf.d/uploads.ini && \
     envsubst < /usr/local/signaturepdf/config/apache.conf > /etc/apache2/sites-available/signaturepdf.conf && \
     envsubst < /usr/local/signaturepdf/config/config.ini.tpl > /usr/local/signaturepdf/config/config.ini && \
          a2enmod rewrite && a2ensite signaturepdf
 
 WORKDIR /usr/local/signaturepdf
-
-USER www-data
 
 CMD /usr/local/signaturepdf/entrypoint.sh

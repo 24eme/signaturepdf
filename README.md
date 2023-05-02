@@ -301,6 +301,7 @@ DEBUG=1 make test
 - **OpenType.js** outils de transformation d'un texte et sa police en chemin : https://github.com/opentypejs/opentype.js (MIT)
 - **ImageMagick** ensemble d'outils de manipulation d'images : https://imagemagick.org/ (Apache-2.0)
 - **Caveat** police de caractères style écriture à la main : https://github.com/googlefonts/caveat (OFL-1.1)
+- **PDF-LIB** librairie js permettant de manipuler un PDF qui est utilisé pour écrire dans les métadonnées : https://pdf-lib.js.org/ (MIT)
 
 Pour les tests :
 

@@ -102,6 +102,6 @@
     <script>
     var defaultFields = <?php echo json_encode(isset($METADATA_DEFAULT_FIELDS) ? $METADATA_DEFAULT_FIELDS : array()); ?>;
     </script>
-    <script src="/js/metadata.js?202304201611"></script>
+    <script src="/js/metadata.js?202304030148"></script>
   </body>
 </html>

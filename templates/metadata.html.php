@@ -8,7 +8,7 @@
     <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
     <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
     <link href="/css/app.css?202210080134" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="/favicon-organization.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon-metadata.ico">
 
     <title>Édition des métadonnées d'un PDF</title>
   </head>
@@ -73,7 +73,7 @@
         <div style="width: 40%;" class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/metadata"></a>
             <div class="offcanvas-header d-block mb-0 pb-0 border-bottom">
-                <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Édition des métadonnées<span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi bi-tags"></i></span></h5>
+                <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Édition des métadonnées<span class="float-end me-2"><i class="bi bi-tags"></i></span></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 <p id="text_document_name" class="text-muted mb-2" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
             </div>
@@ -102,6 +102,6 @@
     <script>
     var defaultFields = <?php echo json_encode(isset($METADATA_DEFAULT_FIELDS) ? $METADATA_DEFAULT_FIELDS : array()); ?>;
     </script>
-    <script src="/js/metadata.js?202212070154"></script>
+    <script src="/js/metadata.js?202304201611"></script>
   </body>
 </html>

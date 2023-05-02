@@ -249,6 +249,17 @@ Pour desactiver le mode Organiser, ajouter `DISABLE_ORGANIZATION=true` dans le f
 Pour cacher le lien de pdf de démo, ajouter `PDF_DEMO_LINK=false` dans le fichier
 `config/config.ini`.
 
+### Champs chargés par défaut pour l'édition de métadonnéés
+
+Dans le fichier de configuration `config/config.ini` il est possible de rajouter autant de champs que l'on souhaite avec le type HTML de l'input (text, date, number email, etc ...) qui seront préchargées pour chaque PDF.
+
+```
+METADATA_DEFAULT_FIELDS[field1].type = "text"
+METADATA_DEFAULT_FIELDS[field2].type = "text"
+METADATA_DEFAULT_FIELDS[field3].type = "date"
+METADATA_DEFAULT_FIELDS[field4].type = "number"
+```
+
 ## Mise à jour
 
 La dernière version stable est sur la branche `master`, pour la mise à jour il suffit de récupérer les dernières modifications :

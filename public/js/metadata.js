@@ -104,7 +104,7 @@ var pageRender = async function(pageIndex) {
 var addMetadata = function(key, value, type, focus) {
     let input = document.querySelector('.input-metadata input[name="'+key+'"]');
 
-    if(input && input.value === null) {
+    if(input && !input.value) {
         input.value = value;
     }
     if(input && focus) {
@@ -127,6 +127,7 @@ var addMetadata = function(key, value, type, focus) {
     label.innerText = key;
 
     let deleteButton = document.createElement('div')
+    deleteButton.title = "Supprimer cette metadonnée"
     deleteButton.innerHTML = "×"
     deleteButton.classList.add('delete-metadata')
 

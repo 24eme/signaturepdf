@@ -740,7 +740,14 @@ var pageUpload = async function() {
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-organization').classList.add('d-none');
     document.getElementById('input_pdf_upload').focus();
-    const cache = await caches.open('pdf');
+    let cache;
+    try {
+        cache = await caches.open('pdf');
+    } catch (e) {
+        console.error(e)
+        alert("Erreur d'accès au cache. Cette application ne fonctionne pas en mode de navigation privée");
+        return;
+    }
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
             if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
 

@@ -35,7 +35,7 @@
             <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;">Ajouter, modifier ou supprimer les métadonnées d'un PDF</p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
-                  <label class="form-label mt-3" for="input_pdf_upload">Choisir un PDF <small class="opacity-75" style="cursor: help" title="Le PDF ne doit pas dépasser <?php echo round($maxSize / 1024 / 1024) ?> Mo"><i class="bi bi-info-circle"></i></small></label>
+                  <label class="form-label mt-3" for="input_pdf_upload">Choisir un PDF</label>
                   <input id="input_pdf_upload" placeholder="Choisir un PDF" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
                   <p class="mt-2 small fw-light text-dark">&nbsp;</p>
                   <?php if($PDF_DEMO_LINK): ?>

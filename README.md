@@ -11,7 +11,7 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
 
-*N'hésitez pas à rajouter la votre via une issue ou une pull request*
+_N'hésitez pas à rajouter la votre via une issue ou une pull request_
 
 ## License
 
@@ -23,7 +23,7 @@ Logiciel libre sous license AGPL V3
 
 Dépendances :
 
-- php >= 5.6 
+- php >= 5.6
 - rsvg-convert
 - pdftk
 - imagemagick
@@ -75,13 +75,13 @@ DocumentRoot /path/to/signaturepdf/public
 
 ```bash
 docker build -t signaturepdf .
-````
+```
 
 #### Lancement d'un conteneur
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 signaturepdf
-````
+```
 
 [localhost:8080](http://localhost:8080)
 
@@ -89,15 +89,15 @@ docker run -d --name=signaturepdf -p 8080:80 signaturepdf
 
 Les variables suivantes permettent de configurer le déployement :
 
-|Variable|description|exemple|defaut|
-|-----|-----|-----|-----|
-|`SERVERNAME`|url de déploiement|`pdf.24eme.fr`|localhost|
-|`UPLOAD_MAX_FILESIZE`|Taille maximum du fichier PDF à signer|48M|24M|
-|`POST_MAX_SIZE`|Taille maximum du fichier PDF à signer|48M|24M|
-|`MAX_FILE_UPLOADS`|Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine|401|201|
-|`PDF_STORAGE_PATH`|chemin vers lequel les fichiers pdf uploadés pourront être stockés|/data||
-|`DISABLE_ORGANIZATION`|Desactiver la route Organiser|true|false|
-|`PDF_DEMO_LINK`|Afficher, retirer ou changer le lien de PDF de démo|false, `link` or `relative path`|true|
+| Variable               | description                                                        | exemple                          | defaut    |
+| ---------------------- | ------------------------------------------------------------------ | -------------------------------- | --------- |
+| `SERVERNAME`           | url de déploiement                                                 | `pdf.24eme.fr`                   | localhost |
+| `UPLOAD_MAX_FILESIZE`  | Taille maximum du fichier PDF à signer                             | 48M                              | 24M       |
+| `POST_MAX_SIZE`        | Taille maximum du fichier PDF à signer                             | 48M                              | 24M       |
+| `MAX_FILE_UPLOADS`     | Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine   | 401                              | 201       |
+| `PDF_STORAGE_PATH`     | chemin vers lequel les fichiers pdf uploadés pourront être stockés | /data                            | /data     |
+| `DISABLE_ORGANIZATION` | Desactiver la route Organiser                                      | true                             | false     |
+| `PDF_DEMO_LINK`        | Afficher, retirer ou changer le lien de PDF de démo                | false, `link` or `relative path` | true      |
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
@@ -109,6 +109,7 @@ Voici un script permettant d'installer la solution sous Linux Alpine (testé en 
 Pensez à éditer la variable "domain" en début de script pour correspondre à l'URL avec laquelle elle sera appelée.
 
 Les composants principaux sont :
+
 - php 8 + php-fpm
 - Nginx
 - pdftk (installation "manuelle" nécessitant openjdk8)
@@ -117,6 +118,7 @@ Les composants principaux sont :
 - librsvg
 
 Ce que fait le script :
+
 - Installation des dépendances
 - Configuration de php et php-fpm
 - Configuration d'Nginx
@@ -128,7 +130,7 @@ Ce que fait le script :
 
 domain='sign.example.com'
 
-apk update 
+apk update
 apk add bash nginx git php8 php8-fpm php8-session php8-gd php8-fileinfo openjdk8 imagemagick potrace librsvg
 
 cd /tmp
@@ -164,7 +166,7 @@ server {
         server_name ${domain};
 
         client_max_body_size 0;
-    
+
         root /var/www/signaturepdf/public/;
 
         index           index.php index.html;
@@ -185,7 +187,7 @@ server {
                 fastcgi_buffers 128 128k;
                 fastcgi_param   PATH_INFO       \$fastcgi_path_info;
                 fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-                fastcgi_pass 127.0.0.1:9000;        
+                fastcgi_pass 127.0.0.1:9000;
 
         }
 
@@ -223,11 +225,13 @@ cp config/config.ini{.example,}
 ```
 
 Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `PDF_STORAGE_PATH` avec le chemin vers lequel les fichiers pdf uploadés pourront être stockés :
+
 ```
 PDF_STORAGE_PATH=/path/to/folder
 ```
 
 Créer ce dossier :
+
 ```
 mkdir /path/to/folder
 ```
@@ -235,6 +239,7 @@ mkdir /path/to/folder
 Le serveur web devra avoir les droits en écriture sur ce dossier.
 
 Par exemple pour apache :
+
 ```
 chown www-data /path/to/folder/to/store/pdf
 ```
@@ -313,6 +318,3 @@ Pour les tests :
 Logilab a apporté une contribution financière de 1 365 € TTC à la société 24ème pour développer le mode multi signature.
 
 Le développement du logiciel a principalement été réalisé sur le temps de travail de salariés du 24ème.
-
-
-

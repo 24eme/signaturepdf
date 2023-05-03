@@ -556,6 +556,24 @@ var degreesToOrientation = function(degrees) {
     return null;
 }
 
+var uploadAndLoadPDF = async function(input_upload) {
+    const cache = await caches.open('pdf');
+    for (let i = 0; i < input_upload.files.length; i++) {
+        if(input_upload.files[i].size > maxSize) {
+
+            alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
+            break;
+        }
+        let filename = input_upload.files[i].name;
+        let response = new Response(input_upload.files[i], { "status" : 200, "statusText" : "OK" });
+        let urlPdf = '/pdf/'+filename;
+        await cache.put(urlPdf, response);
+        let pdfBlob = await getPDFBlobFromCache(urlPdf);
+        nbPDF++;
+        await loadPDF(pdfBlob, filename, nbPDF);
+    }
+}
+
 var createEventsListener = function() {
     document.getElementById('save-select_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
@@ -592,21 +610,7 @@ var createEventsListener = function() {
         document.getElementById('save').click();
     });
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
-        for (let i = 0; i < this.files.length; i++) {
-            if(this.files[i].size > maxSize) {
-
-                alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
-                break;
-            }
-            const cache = await caches.open('pdf');
-            let filename = this.files[i].name;
-            let response = new Response(this.files[i], { "status" : 200, "statusText" : "OK" });
-            let urlPdf = '/pdf/'+filename;
-            await cache.put(urlPdf, response);
-            let pdfBlob = await getPDFBlobFromCache(urlPdf);
-            nbPDF++;
-            await loadPDF(pdfBlob, filename, nbPDF);
-        }
+        await uploadAndLoadPDF(this);
         this.value = '';
     });
     document.getElementById('btn-zoom-decrease').addEventListener('click', function(event) {
@@ -749,39 +753,19 @@ var pageUpload = async function() {
         return;
     }
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-            if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
-
-            alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
-            document.getElementById('input_pdf_upload').value = "";
-            return;
-        }
-        let filename = document.getElementById('input_pdf_upload').files[0].name;
-        let response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
-        let urlPdf = '/pdf/'+filename;
-        await cache.put(urlPdf, response);
-        history.pushState({}, '', '/organization#'+filename);
-        pageOrganization(urlPdf)
+        uploadAndLoadPDF(this);
+        pageOrganization(null);
     });
 }
 
-var pageOrganization = async function(url) {
-    let filename = url.replace('/pdf/', '');
-    document.title = filename + ' - ' + document.title;
+var pageOrganization = async function() {
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-organization').classList.remove('d-none');
     menu = document.getElementById('sidebarTools');
     menuOffcanvas = new bootstrap.Offcanvas(menu);
     responsiveDisplay();
-
-    let pdfBlob = await getPDFBlobFromCache(url);
-    if(!pdfBlob) {
-        document.location = '/organization';
-        return;
-    }
-
     createEventsListener();
-    loadPDF(pdfBlob, filename, nbPDF);
 };
 
 (function () {
@@ -789,8 +773,6 @@ var pageOrganization = async function(url) {
         let hashUrl = window.location.hash.replace(/^\#/, '');
         pageUpload();
         uploadFromUrl(hashUrl);
-    } else if(window.location.hash) {
-        pageOrganization('/pdf/'+window.location.hash.replace(/^\#/, ''));
     } else {
         pageUpload();
     }

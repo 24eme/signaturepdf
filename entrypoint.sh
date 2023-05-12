@@ -6,6 +6,7 @@ envsubst < /usr/local/signaturepdf/config/config.ini.tpl > /usr/local/signaturep
 
 if [[ ! -z $PDF_STORAGE_PATH ]] ; then
     mkdir -p $PDF_STORAGE_PATH
+    chown www-data:www-data $PDF_STORAGE_PATH
 fi
 
 apache2-foreground

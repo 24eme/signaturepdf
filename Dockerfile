@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.2-apache
 
 ENV SERVERNAME=localhost
 ENV UPLOAD_MAX_FILESIZE=24M

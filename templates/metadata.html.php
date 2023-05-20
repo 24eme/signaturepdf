@@ -7,7 +7,7 @@
 
     <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
     <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
-    <link href="/css/app.css?202210080134" rel="stylesheet">
+    <link href="/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/favicon-metadata.ico">
 
     <title>Édition des métadonnées d'un PDF</title>
@@ -45,7 +45,7 @@
             </div>
         </div>
         <footer class="text-center text-muted mb-2 fixed-bottom opacity-75">
-            <small>Logiciel libre <span class="d-none d-md-inline">sous license AGPL-3.0 </span>: <a href="https://github.com/24eme/signaturepdf">voir le code source</a></small>
+            <small>Logiciel libre <span class="d-none d-md-inline">sous license AGPL-3.0</span> : <a href="https://github.com/24eme/signaturepdf">voir le code source </a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
         </footer>
     </div>
     <div id="page-metadata" class="d-none">
@@ -102,6 +102,6 @@
     <script>
     var defaultFields = <?php echo json_encode(isset($METADATA_DEFAULT_FIELDS) ? $METADATA_DEFAULT_FIELDS : array()); ?>;
     </script>
-    <script src="/js/metadata.js?202304030148"></script>
+    <script src="/js/metadata.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/metadata.js") ?>"></script>
   </body>
 </html>

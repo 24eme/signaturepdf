@@ -7,7 +7,7 @@
     <meta name="description" content="Logiciel libre de signature de PDF en ligne">
     <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
     <link href="/vendor/bootstrap-icons.css?1.8.1" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
     <title>Signature PDF</title>
   </head>
   <body>
@@ -45,7 +45,7 @@
             </div>
         </div>
         <footer class="text-center text-muted mb-2 fixed-bottom opacity-75">
-            <small>Logiciel libre <span class="d-none d-md-inline">sous license AGPL-3.0 </span>: <a href="https://github.com/24eme/signaturepdf">voir le code source</a></small>
+            <small>Logiciel libre <span class="d-none d-md-inline">sous license AGPL-3.0</span> : <a href="https://github.com/24eme/signaturepdf">voir le code source </a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
         </footer>
     </div>
     <div id="page-signature" style="padding-right: 350px;" class="d-none">
@@ -265,6 +265,6 @@
     hash = "<?php echo $hash ?>";
     <?php endif; ?>
     </script>
-    <script src="/js/signature.js?202304030148"></script>
+    <script src="/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>
   </body>
 </html>

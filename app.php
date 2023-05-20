@@ -10,6 +10,8 @@ $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);
 $f3->set('UI', $f3->get('ROOT')."/templates/");
 $f3->set('UPLOADS', sys_get_temp_dir()."/");
+$f3->set('COMMIT', getCommit());
+
 $f3->config(__DIR__.'/config/config.ini');
 
 if($f3->get('PDF_STORAGE_PATH') && !preg_match('|/$|', $f3->get('PDF_STORAGE_PATH'))) {
@@ -358,6 +360,26 @@ $f3->route('GET /metadata',
         echo View::instance()->render('metadata.html.php');
     }
 );
+
+function getCommit() {
+    if(!file_exists(__DIR__.'/.git/HEAD')) {
+
+        return null;
+    }
+
+    $head = str_replace(["ref: ", "\n"], "", file_get_contents(__DIR__.'/.git/HEAD'));
+    $commit = null;
+
+    if(strpos($head, "refs/") !== 0) {
+        $commit = $head;
+    }
+
+    if(file_exists(__DIR__.'/.git/'.$head)) {
+        $commit = str_replace("\n", "", file_get_contents(__DIR__.'/.git/'.$head));
+    }
+
+    return substr($commit, 0, 7);
+}
 
 function convertPHPSizeToBytes($sSize)
 {

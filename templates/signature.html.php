@@ -49,6 +49,16 @@
         </footer>
     </div>
     <div id="page-signature" style="padding-right: 350px;" class="d-none">
+        <?php if(isset($hash)): ?>
+        <div id="alert-signature-help" class="position-relative d-none">
+            <div class="alert alert-primary alert-dismissible position-absolute top-0 start-50 translate-middle-x text-center mt-4 pb-2 w-50 opacity-100" style="z-index: 100;" role="alert">
+                <h4 class="alert-heading">Comment signer ?</h4>
+                <strong>En cliquant directement sur la page du document</strong> pour insérer l'élément séléctionné dans la colonne de droite <small>(signature, paraphe, texte, tampon, etc ...)</small>
+                <div class="mt-1 fs-3"><i class="bi bi-box-arrow-down"></i></div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        <?php endif; ?>
         <div style="height: 65px;" class="d-md-none"></div>
         <div id="container-pages" class="col-12 pt-1 pb-1 text-center vh-100">
         </div>

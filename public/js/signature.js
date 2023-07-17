@@ -495,6 +495,9 @@ var addObjectInCanvas = function(canvas, item) {
 };
 
 var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
+    if(document.querySelector('#alert-signature-help')) {
+        document.querySelector('#alert-signature-help').classList.add('d-none');
+    }
     if(document.getElementById('save')) {
         document.getElementById('save').removeAttribute('disabled');
     }
@@ -709,6 +712,10 @@ var createEventsListener = function() {
         }
 
         document.querySelector('#'+svg_list_id+' label:last-child').click();
+
+        if(document.querySelector('#save').disabled && document.querySelector('#alert-signature-help') && !is_mobile()) {
+            document.querySelector('#alert-signature-help').classList.remove('d-none');
+        }
     });
 
 
@@ -1055,6 +1062,10 @@ var pageSignature = async function(url) {
 
     if(localStorage.getItem('svgCollections')) {
         svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
+    }
+
+    if(svgCollections.length > 0 && document.querySelector('#alert-signature-help')) {
+        document.querySelector('#alert-signature-help').remove();
     }
 
     opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {

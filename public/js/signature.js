@@ -769,6 +769,16 @@ var createEventsListener = function() {
         event.preventDefault();
     });
 
+    document.getElementById('btn-signature-help').addEventListener('click', function(event) {
+        document.querySelector('#alert-signature-help').classList.remove('d-none');
+        event.preventDefault();
+    })
+
+    document.querySelector('#alert-signature-help .btn-close').addEventListener('click', function(event) {
+        document.querySelector('#alert-signature-help').classList.add('d-none');
+        event.preventDefault();
+    })
+
     if(document.getElementById('save')) {
         document.getElementById('save').addEventListener('click', function(event) {
             let dataTransfer = new DataTransfer();

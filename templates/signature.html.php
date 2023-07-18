@@ -52,10 +52,10 @@
         <?php if(isset($hash)): ?>
         <div id="alert-signature-help" class="position-relative d-none">
             <div class="alert alert-primary alert-dismissible position-absolute top-0 start-50 translate-middle-x text-center mt-4 pb-2 w-50 opacity-100" style="z-index: 100;" role="alert">
-                <h4 class="alert-heading">Comment signer ?</h4>
+                <h5 class="alert-heading">Comment signer ?</h5>
                 <strong>En cliquant directement sur la page du document</strong> pour insérer l'élément séléctionné dans la colonne de droite <small>(signature, paraphe, texte, tampon, etc ...)</small>
                 <div class="mt-1 fs-3"><i class="bi bi-box-arrow-down"></i></div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-sm" aria-label="Close"></button>
             </div>
         </div>
         <?php endif; ?>
@@ -114,8 +114,10 @@
                         <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
                   </form>
                 <?php elseif(!isset($noSharingMode)): ?>
-                  <div class="d-none d-sm-none d-md-block">
-                  <p id="nblayers_text" class="small d-none mb-2 opacity-75">Vous êtes <span class="badge rounded-pill border border-dark text-dark"><span class="nblayers">0</span> <i class="bi bi-people-fill"></i></span> à avoir signé ce PDF</p></div>
+                  <div class="d-none d-sm-none d-md-block position-relative">
+                      <a id="btn-signature-help" class="position-absolute top-0 end-0 text-dark" href="" style="z-index: 5;"><i class="bi bi-question-circle"></i></a>
+                      <p id="nblayers_text" class="small d-none mb-2 opacity-75">Vous êtes <span class="badge rounded-pill border border-dark text-dark"><span class="nblayers">0</span> <i class="bi bi-people-fill"></i></span> à avoir signé ce PDF</p>
+                  </div>
                   <div class="btn-group w-100">
                       <a id="btn_download" class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                       <button class="btn btn-outline-dark" type="button" id="btn_share" data-bs-toggle="modal" data-bs-target="#modal-share-informations"><i class="bi bi-share"></i></button>

@@ -713,7 +713,7 @@ var createEventsListener = function() {
 
         document.querySelector('#'+svg_list_id+' label:last-child').click();
 
-        if(document.querySelector('#save').disabled && document.querySelector('#alert-signature-help') && !is_mobile()) {
+        if(document.querySelector('#save').disabled && document.querySelector('#alert-signature-help.auto-open') && !is_mobile()) {
             document.querySelector('#alert-signature-help').classList.remove('d-none');
         }
     });
@@ -769,15 +769,16 @@ var createEventsListener = function() {
         event.preventDefault();
     });
 
-    document.getElementById('btn-signature-help').addEventListener('click', function(event) {
-        document.querySelector('#alert-signature-help').classList.remove('d-none');
-        event.preventDefault();
-    })
-
-    document.querySelector('#alert-signature-help .btn-close').addEventListener('click', function(event) {
-        document.querySelector('#alert-signature-help').classList.add('d-none');
-        event.preventDefault();
-    })
+    if(document.querySelector('#alert-signature-help')) {
+        document.getElementById('btn-signature-help').addEventListener('click', function(event) {
+            document.querySelector('#alert-signature-help').classList.remove('d-none');
+            event.preventDefault();
+        });
+        document.querySelector('#alert-signature-help .btn-close').addEventListener('click', function(event) {
+            document.querySelector('#alert-signature-help').classList.add('d-none');
+            event.preventDefault();
+        });
+    }
 
     if(document.getElementById('save')) {
         document.getElementById('save').addEventListener('click', function(event) {
@@ -1074,8 +1075,8 @@ var pageSignature = async function(url) {
         svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
     }
 
-    if(svgCollections.length > 0 && document.querySelector('#alert-signature-help')) {
-        document.querySelector('#alert-signature-help').remove();
+    if(svgCollections.length == 0 && document.querySelector('#alert-signature-help')) {
+        document.querySelector('#alert-signature-help').classList.add('auto-open');
     }
 
     opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {

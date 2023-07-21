@@ -18,6 +18,7 @@ var currentCursor = null;
 var signaturePad = null;
 var nblayers = null;
 var hasModifications = false;
+var currentTextScale = 1;
 
 var loadPDF = async function(pdfBlob, filename) {
     const pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -136,6 +137,10 @@ var loadPDF = async function(pdfBlob, filename) {
                   }
               });
               canvasEdition.on('object:scaled', function(event) {
+                  if (event.target instanceof fabric.IText) {
+                      currentTextScale = event.target.scaleX;
+                      return;
+                  }
                   var item = getSvgItem(event.target.svgOrigin);
                   if(!item) {
                       return;
@@ -533,6 +538,8 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
       addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
       textbox.keysMap[13] = "exitEditing";
       textbox.lockScalingFlip = true;
+      textbox.scaleX = currentTextScale;
+      textbox.scaleY = currentTextScale;
       textbox.enterEditing();
       textbox.selectAll();
 

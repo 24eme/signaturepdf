@@ -576,10 +576,16 @@ var uploadAndLoadPDF = async function(input_upload) {
 
 var createEventsListener = function() {
     document.getElementById('save-select_mobile').addEventListener('click', function(event) {
-        document.getElementById('save').click();
+        document.getElementById('save-select').click();
     });
     document.getElementById('save-select').addEventListener('click', function(event) {
-        document.getElementById('save').click();
+        let buttonSave = document.getElementById('save');
+        let buttonSaveDisabledState = buttonSave.disabled;
+        if(buttonSave.disabled) {
+            buttonSave.disabled = false;
+        }
+        buttonSave.click();
+        buttonSave.disabled = true;
     });
     document.getElementById('save').addEventListener('click', function(event) {
         let order = [];

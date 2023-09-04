@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
-    <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
-    <link href="/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="/favicon-organization.ico">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.ico">
 
     <title>Organiser un PDF</title>
   </head>
@@ -21,13 +21,13 @@
     <div id="page-upload">
         <ul class="nav justify-content-center nav-tabs mt-2">
           <li class="nav-item">
-            <a class="nav-link" href="/signature"><i class="bi bi-vector-pen"></i> Signer</a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"><i class="bi bi-vector-pen"></i> Signer</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
+            <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
           </li>
         </ul>
         <div class="px-4 py-4 text-center">
@@ -61,7 +61,7 @@
         </div>
         <div id="div-margin-bottom" style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
-            <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/organization"></a>
+            <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"></a>
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Organisation de PDF <span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi-ui-checks-grid"></i></span></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
-                    <form id="form_pdf" action="/organize" method="post" enctype="multipart/form-data">
+                    <form id="form_pdf" action="<?php echo $REVERSE_PROXY_URL; ?>/organize" method="post" enctype="multipart/form-data">
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
                         <div id="btn_container" class="d-grid gap-2 mt-2">
@@ -152,11 +152,11 @@
 
     <span id="is_mobile" class="d-md-none"></span>
 
-    <script src="/vendor/bootstrap.min.js?5.1.3"></script>
-    <script src="/vendor/pdf.js?legacy"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.js?5.1.3"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
     <script>
     var maxSize = <?php echo $maxSize ?>;
     </script>
-    <script src="/js/organization.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/organization.js") ?>"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/organization.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/organization.js") ?>"></script>
   </body>
 </html>

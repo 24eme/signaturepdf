@@ -29,7 +29,7 @@ if($f3->get('DISABLE_ORGANIZATION')) {
 
 $f3->route('GET /',
     function($f3) {
-        $f3->reroute('/signature');
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature');
     }
 );
 $f3->route('GET /signature',
@@ -199,7 +199,7 @@ $f3->route('POST /share',
             array_map('unlink', glob($tmpfile."*.svg"));
         }
 
-        $f3->reroute('/signature/'.$hash."#informations");
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#informations");
     }
 
 );
@@ -274,7 +274,7 @@ $f3->route('POST /signature/@hash/save',
             array_map('unlink', explode(' ', trim($svgFiles)));
         }
 
-        $f3->reroute('/signature/'.$f3->get('PARAMS.hash')."#signed");
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$f3->get('PARAMS.hash')."#signed");
     }
 );
 

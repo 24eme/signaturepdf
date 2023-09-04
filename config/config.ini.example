@@ -12,3 +12,6 @@ PDF_STORAGE_PATH=/path/to/folder
 
 ; Metadata default fields
 ;METADATA_DEFAULT_FIELDS[metadata_key].type = "text"
+
+;Declare your public domain here if you can't handle location rewriting through your reverse proxy.
+;REVERSE_PROXY_URL=http://127.0.0.1:8080

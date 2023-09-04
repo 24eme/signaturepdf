@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
-    <link href="/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
-    <link href="/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="/favicon-metadata.ico">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap-icons.css?1.5.0" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-metadata.ico">
 
     <title>Édition des métadonnées d'un PDF</title>
   </head>
@@ -21,13 +21,13 @@
     <div id="page-upload">
         <ul class="nav justify-content-center nav-tabs mt-2">
           <li class="nav-item">
-            <a class="nav-link" href="/signature"><i class="bi bi-vector-pen"></i> Signer</a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"><i class="bi bi-vector-pen"></i> Signer</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
+            <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
           </li>
         </ul>
         <div class="px-4 py-4 text-center">
@@ -96,12 +96,12 @@
 
     <span id="is_mobile" class="d-md-none"></span>
 
-    <script src="/vendor/bootstrap.min.js?5.1.3"></script>
-    <script src="/vendor/pdf.js?legacy"></script>
-    <script src="/vendor/pdf-lib.min.js?1.17.1"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.js?5.1.3"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?1.17.1"></script>
     <script>
     var defaultFields = <?php echo json_encode(isset($METADATA_DEFAULT_FIELDS) ? $METADATA_DEFAULT_FIELDS : array()); ?>;
     </script>
-    <script src="/js/metadata.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/metadata.js") ?>"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/metadata.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/metadata.js") ?>"></script>
   </body>
 </html>

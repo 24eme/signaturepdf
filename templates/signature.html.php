@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Logiciel libre de signature de PDF en ligne">
-    <link href="/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
-    <link href="/vendor/bootstrap-icons.css?1.8.1" rel="stylesheet">
-    <link href="/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap-icons.css?1.8.1" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
     <title>Signature PDF</title>
   </head>
   <body>
@@ -20,13 +20,13 @@
         <?php if(!$disableOrganization): ?>
         <ul class="nav justify-content-center nav-tabs mt-2">
           <li class="nav-item">
-            <a class="nav-link active" href="/signature"><i class="bi bi-vector-pen"></i> Signer</a>
+            <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"><i class="bi bi-vector-pen"></i> Signer</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"><i class="bi bi-ui-checks-grid"></i> Organiser</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"><i class="bi bi-tags"></i> Metadonnées</a>
           </li>
         </ul>
         <?php endif; ?>
@@ -64,7 +64,7 @@
         </div>
         <div style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
-            <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/signature"></a>
+            <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="Fermer ce PDF et retourner à l'accueil" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"></a>
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel">Signature du PDF <?php if(isset($hash)): ?><span class="float-end small me-2" title="Ce PDF est partagé avec d'autres personnes pour être signé à plusieurs"><span class="nblayers"></span> <i class="bi bi-people-fill"></i></span><?php else: ?><span class="float-end me-2" title="Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"><i class="bi bi-person-workspace"></i></span><?php endif; ?></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -108,7 +108,7 @@
                   <?php if(!isset($noSharingMode)): ?>
                     <button class="btn btn-outline-dark w-100" type="button" data-bs-toggle="modal" data-bs-target="#modal-start-share"><i class="bi bi-share"></i> Partager pour signer <i class="bi bi-people-fill"></i> à plusieurs</button>
                   <?php endif; ?>
-                  <form id="form_pdf" action="/sign" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
+                  <form id="form_pdf" action="<?php echo $REVERSE_PROXY_URL; ?>/sign" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
                         <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> Télécharger le PDF signé</button>
@@ -119,10 +119,10 @@
                       <p id="nblayers_text" class="small d-none mb-2 opacity-75">Vous êtes <span class="badge rounded-pill border border-dark text-dark"><span class="nblayers">0</span> <i class="bi bi-people-fill"></i></span> à avoir signé ce PDF</p>
                   </div>
                   <div class="btn-group w-100">
-                      <a id="btn_download" class="btn btn-outline-dark w-100" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
+                      <a id="btn_download" class="btn btn-outline-dark w-100" href="<?php echo $REVERSE_PROXY_URL; ?>/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                       <button class="btn btn-outline-dark" type="button" id="btn_share" data-bs-toggle="modal" data-bs-target="#modal-share-informations"><i class="bi bi-share"></i></button>
                   </div>
-                  <form id="form_pdf" action="/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
+                  <form id="form_pdf" action="<?php echo $REVERSE_PROXY_URL; ?>/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
                         <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-cloud-upload"></i> Transmettre ma signature</button>
                   </form>
@@ -177,7 +177,7 @@
                         <div class="text-center">
                         <img id="img-upload" class="d-none" src="" />
                         </div>
-                        <form id="form-image-upload" action="/image2svg" method="POST" enctype="multipart/form-data">
+                        <form id="form-image-upload" action="<?php echo $REVERSE_PROXY_URL; ?>/image2svg" method="POST" enctype="multipart/form-data">
                         <input id="input-image-upload" class="form-control" name="image" type="file">
                         </form>
                     </div>
@@ -206,7 +206,7 @@
                     <p class="mb-0"><i class="bi bi-hourglass-split"></i> Le PDF sera conservé <select name="duration" form="form_sharing"><option value="+1 year">un an</option><option value="+6 month">six mois</option><option value="+1 month" selected="selected">un mois</option><option value="+1 week">une semaine</option><option value="+1 day">un jour</option><option value="+1 hour">une heure</option></select> après la dernière signature.</p>
                 </div>
                 <div class="modal-footer text-center d-block">
-                    <form id="form_sharing" clas action="/share" method="post" enctype="multipart/form-data">
+                    <form id="form_sharing" clas action="<?php echo $REVERSE_PROXY_URL; ?>/share" method="post" enctype="multipart/form-data">
                           <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                           <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
                           <button  class="btn col-9 col-md-6 btn-primary" type="submit" id="save_share"><i class="bi bi-cloud-upload"></i> Démarrer le partage</button>
@@ -254,7 +254,7 @@
                     <p class="mb-1"><i class="bi bi-check-circle text-success"></i> Votre signature a bien été prise en compte&nbsp;!</p>
                 </div>
                 <div class="modal-footer text-center d-block">
-                    <a class="btn btn-outline-dark" href="/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
+                    <a class="btn btn-outline-dark" href="<?php echo $REVERSE_PROXY_URL; ?>/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> Télécharger le PDF</a>
                 </div>
             </div>
         </div>
@@ -263,11 +263,11 @@
 
     <span id="is_mobile" class="d-md-none"></span>
 
-    <script src="/vendor/bootstrap.min.js?5.1.3"></script>
-    <script src="/vendor/pdf.js?legacy"></script>
-    <script src="/vendor/fabric.min.js?4.6.0"></script>
-    <script src="/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>
-    <script src="/vendor/opentype.min.js?1.3.3"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.js?5.1.3"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?4.6.0"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/opentype.min.js?1.3.3"></script>
     <script>
     var maxSize = <?php echo $maxSize ?>;
     var maxPage = <?php echo $maxPage ?>;
@@ -277,6 +277,6 @@
     hash = "<?php echo $hash ?>";
     <?php endif; ?>
     </script>
-    <script src="/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>
   </body>
 </html>

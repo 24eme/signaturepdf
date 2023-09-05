@@ -13,6 +13,9 @@ $f3->set('UPLOADS', sys_get_temp_dir()."/");
 $f3->set('COMMIT', getCommit());
 
 $f3->config(__DIR__.'/config/config.ini');
+if (!$f3->exists('REVERSE_PROXY_URL')) {
+    $f3->set('REVERSE_PROXY_URL', '');
+}
 
 if($f3->get('PDF_STORAGE_PATH') && !preg_match('|/$|', $f3->get('PDF_STORAGE_PATH'))) {
     $f3->set('PDF_STORAGE_PATH', $f3->get('PDF_STORAGE_PATH').'/');

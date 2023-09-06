@@ -45,7 +45,7 @@
             </div>
         </div>
         <footer class="text-center text-muted mb-2 fixed-bottom opacity-75">
-            <small><?php echo _("Free software"); ?> <span class="d-none d-md-inline"><?php echo _("under the AGPL-3.0 license"); ?></span> : <a href="https://github.com/24eme/signaturepdf"><?php echo _("see the source code"); ?></a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
+            <small><?php echo _("Free open-source software"); ?> <span class="d-none d-md-inline"><?php echo _("under AGPL-3.0 license"); ?></span> : <a href="https://github.com/24eme/signaturepdf"><?php echo _("see the source code"); ?></a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
         </footer>
     </div>
     <div id="page-organization" style="padding-right: 350px;" class="d-none">
@@ -72,7 +72,7 @@
                     </ul>
                 </div>
                 <div class="d-grid gap-2 mt-2">
-                    <button type="button" class="btn btn-sm btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i><?php echo _("Add a PDF"); ?></button>
+                    <button type="button" class="btn btn-sm btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><i class="bi bi-plus-circle"></i> <?php echo _("Add a PDF"); ?></button>
                     <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf" multiple="true">
                 </div>
                 <hr />
@@ -104,7 +104,7 @@
                     <button id="btn_liste_pdf" type="button" data-bs-toggle="modal" data-bs-target="#modalFichier" class="btn btn-dark flex-grow-1 me-2"  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <i class="bi bi-files"></i> <span id="liste_pdf_titre_mobile"></span>
                     </button>
-                    <button type="button" class="btn btn-outline-dark position-relative" style="padding-left: 30px;"  onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><i class="bi bi-plus-circle position-absolute" style="left: 10px;"></i><?php echo _("Add a PDF"); ?></button>
+                    <button type="button" class="btn btn-outline-dark position-relative" style="padding-left: 30px;"  onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><i class="bi bi-plus-circle position-absolute" style="left: 10px;"></i> <?php echo _("Add a PDF"); ?></button>
                 </div>
             </div>
             <div id="top_bar_action_selection" class="d-none">

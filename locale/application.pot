@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-08 10:41+0200\n"
+"POT-Creation-Date: 2023-09-08 14:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,74 +42,72 @@ msgid "Metadata"
 msgstr ""
 
 #: templates/metadata.html.php:34
+msgid "Language"
+msgstr ""
+
+#: templates/metadata.html.php:44 templates/metadata.html.php:86
 msgid "Edit metadata"
 msgstr ""
 
-#: templates/metadata.html.php:35
+#: templates/metadata.html.php:45
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr ""
 
-#: templates/metadata.html.php:38 templates/metadata.html.php:39
+#: templates/metadata.html.php:48 templates/metadata.html.php:49
 #: templates/organization.html.php:38 templates/organization.html.php:39
 #: templates/signature.html.php:39
 msgid "Choose a PDF"
 msgstr ""
 
-#: templates/metadata.html.php:42 templates/organization.html.php:42
+#: templates/metadata.html.php:52 templates/organization.html.php:42
 #: templates/signature.html.php:42
 msgid "Test with a demo PDF"
 msgstr ""
 
-#: templates/metadata.html.php:48 templates/organization.html.php:48
+#: templates/metadata.html.php:58 templates/organization.html.php:48
 #: templates/signature.html.php:48
 msgid "Free open-source software"
 msgstr ""
 
-#: templates/metadata.html.php:48 templates/organization.html.php:48
+#: templates/metadata.html.php:58 templates/organization.html.php:48
 #: templates/signature.html.php:48
 msgid "under AGPL-3.0 license"
 msgstr ""
 
-#: templates/metadata.html.php:48 templates/organization.html.php:48
+#: templates/metadata.html.php:58 templates/organization.html.php:48
 #: templates/signature.html.php:48
 msgid "see the source code"
 msgstr ""
 
-#: templates/metadata.html.php:55
+#: templates/metadata.html.php:65
 msgid "List of PDF metadata"
 msgstr ""
 
-#: templates/metadata.html.php:61
+#: templates/metadata.html.php:71
 msgid "Add new metadata"
 msgstr ""
 
-#: templates/metadata.html.php:64
+#: templates/metadata.html.php:74
 msgid "Key"
 msgstr ""
 
-#: templates/metadata.html.php:66
+#: templates/metadata.html.php:76
 msgid "Value"
 msgstr ""
 
-#: templates/metadata.html.php:68
+#: templates/metadata.html.php:78
 msgid "Add"
 msgstr ""
 
-#: templates/metadata.html.php:74
+#: templates/metadata.html.php:84
 msgid "Close this PDF and return to the home page"
 msgstr ""
 
-#: templates/metadata.html.php:76
-msgid ""
-"Edit metadata<span class=\"float-end me-2\"><i class=\"bi bi-tags\"></i></"
-"span>"
-msgstr ""
-
-#: templates/metadata.html.php:86
+#: templates/metadata.html.php:96
 msgid "Save and download the PDF"
 msgstr ""
 
-#: templates/metadata.html.php:92 templates/signature.html.php:122
+#: templates/metadata.html.php:102 templates/signature.html.php:122
 #: templates/signature.html.php:257
 msgid "Download the PDF"
 msgstr ""
@@ -394,6 +392,10 @@ msgstr ""
 
 #: templates/signature.html.php:231
 msgid "Sharing link"
+msgstr ""
+
+#: templates/signature.html.php:233
+msgid "Copied !"
 msgstr ""
 
 #: templates/signature.html.php:233

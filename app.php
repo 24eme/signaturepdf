@@ -30,6 +30,10 @@ if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
 }
 
+bindtextdomain('myapp', $f3->get('ROOT')."/locale/");
+textdomain('myapp');
+
+
 $f3->route('GET /',
     function($f3) {
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature');

@@ -46,7 +46,7 @@ msgstr "Métadonnées"
 
 #: templates/metadata.html.php:34
 msgid "Edit metadata"
-msgstr "Editer les métadonnées"
+msgstr "Édition des métadonnées"
 
 #: templates/metadata.html.php:35
 msgid "Add, edit, or remove metadata from a PDF"
@@ -62,6 +62,10 @@ msgstr "Choisir un PDF"
 #: templates/signature.html.php:42
 msgid "Test with a demo PDF"
 msgstr "Tester avec un PDF de démo"
+
+#: templates/metadata.html.php:48
+msgid "Edit metadata"
+msgstr "Editer les métadonnées"
 
 #: templates/metadata.html.php:48 templates/organization.html.php:48
 msgid "Free open-source software"
@@ -99,13 +103,9 @@ msgstr "Ajouter"
 msgid "Close this PDF and return to the home page"
 msgstr "Fermer ce PDF et retourner à l'accueil"
 
-#: templates/metadata.html.php:76
-msgid ""
-"Edit metadata<span class=\"float-end me-2\"><i class=\"bi bi-tags\"></i></"
-"span>"
-msgstr ""
-"Edition des métadonnées<span class=\"float-end me-2\"><i class=\"bi bi-tags\""
-"></span>"
+#: templates/metadata.html.php:86
+msgid "Edit metadata"
+msgstr "Edition des métadonnées"
 
 #: templates/metadata.html.php:86
 msgid "Save and download the PDF"

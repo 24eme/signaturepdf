@@ -6,6 +6,10 @@ if(getenv("DEBUG")) {
     $f3->set('DEBUG', getenv("DEBUG"));
 }
 
+$f3->set('LANGUAGES',
+    ['fr' => 'Français',
+        'en' => 'English']);
+
 $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);
 $f3->set('UI', $f3->get('ROOT')."/templates/");
@@ -30,8 +34,8 @@ if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
 }
 
-bindtextdomain('myapp', $f3->get('ROOT')."/locale/");
-textdomain('myapp');
+bindtextdomain('application', $f3->get('ROOT')."/locale/");
+textdomain('application');
 
 
 $f3->route('GET /',

@@ -34,6 +34,7 @@ if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
 }
 
+setlocale(LC_ALL, 'fr');
 bindtextdomain('application', $f3->get('ROOT')."/locale/");
 textdomain('application');
 

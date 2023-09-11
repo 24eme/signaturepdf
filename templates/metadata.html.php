@@ -21,17 +21,27 @@
 <div id="page-upload">
     <ul class="nav justify-content-center nav-tabs mt-2">
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"><i class="bi bi-vector-pen"></i> <?php echo _("Sign"); ?></a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"> <?php echo sprintf(_("%s Sign"), '<i class="bi bi-vector-pen"></i>'); ?></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"><i class="bi bi-ui-checks-grid"></i> <?php echo _("Organize"); ?></a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"> <?php echo sprintf(_("%s Organize"), '<i class="bi bi-ui-checks-grid"></i>'); ?></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"><i class="bi bi-tags"></i> <?php echo _("Metadata"); ?></a>
+            <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"> <?php echo sprintf(_("%s Metadata"), '<i class="bi bi-tags"></i>'); ?></a>
         </li>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php echo _("Language"); ?>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
     </ul>
     <div class="px-4 py-4 text-center">
-        <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-tags"></i> <?php echo _("Edit metadata"); ?></h1>
+        <h1 class="display-5 fw-bold mb-0 mt-3"> <?php echo sprintf(_("%s Edit metadata"), '<i class="bi bi-tags"></i>'); ?></h1>
         <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Add, edit, or remove metadata from a PDF"); ?></p>
         <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
             <div class="col-12">
@@ -65,7 +75,7 @@
                     </div>
                     <input id="input_metadata_value" readonly="readonly" style="border-top: 0; border-top-right-radius: 0;  border-top-left-radius: 0;" name="metadata_value" type="text" class="form-control bg-light opacity-50" value="" placeholder="<?php echo _("Value"); ?>" style="border-bottom-right-radius: 0;  border-bottom-left-radius: 0;">
                 </div>
-                <button type="submit" type="button" class="btn btn-outline-secondary float-end"><i class="bi bi-plus-circle"></i> <?php echo _("Add"); ?></button>
+                <button type="submit" type="button" class="btn btn-outline-secondary float-end"><?php echo sprintf(_("%s Add"), '<i class="bi bi-plus-circle"></i>'); ?></button>
             </form>
         </div>
     </div>
@@ -73,7 +83,7 @@
     <div style="width: 40%;" class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
         <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="<?php echo _("Close this PDF and return to the home page"); ?>" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/metadata"></a>
         <div class="offcanvas-header d-block mb-0 pb-0 border-bottom">
-            <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><?php echo _("Edit metadata<span class=\"float-end me-2\"><i class=\"bi bi-tags\"></i></span>"); ?></h5>
+            <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><?php echo _("Edit metadata"); ?><span class=\"float-end me-2\"><i class=\"bi bi-tags\"></i></span></h5>
             <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             <p id="text_document_name" class="text-muted mb-2" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
         </div>

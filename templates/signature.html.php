@@ -20,22 +20,22 @@
     <?php if(!$disableOrganization): ?>
         <ul class="nav justify-content-center nav-tabs mt-2">
             <li class="nav-item">
-                <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"><i class="bi bi-vector-pen"></i> <?php echo _("Sign") ?></a>
+                <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"> <?php echo sprintf(_("%s Sign"), '<i class="bi bi-vector-pen"></i>'); ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"><i class="bi bi-ui-checks-grid"></i> <?php echo _("Organize") ?></a>
+                <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"> <?php echo sprintf(_("%s Organize"), '<i class="bi bi-ui-checks-grid"></i>'); ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"><i class="bi bi-tags"></i> <?php echo _("Metadata") ?></a>
+                <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"> <?php echo sprintf(_("%s Metadata"), '<i class="bi bi-tags"></i>'); ?></a>
             </li>
         </ul>
     <?php endif; ?>
     <div class="px-4 py-4 text-center">
-        <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-vector-pen"></i> <?php echo _("Sign a PDF") ?></h1>
+        <h1 class="display-5 fw-bold mb-0 mt-3"><?php echo sprintf(_("%s Sign a PDF"), '<i class="bi bi-vector-pen"></i>'); ?></h1>
         <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document") ?></p>
         <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
             <div class="col-12">
-                <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF <small class=\"opacity-75\" style=\"cursor: help\" title=\"The PDF should not exceed") . " " . round($maxSize / 1024 / 1024) . " " . _("MB and") . " " . $maxPage . _("pages\"><i class=\"bi bi-info-circle\"></i></small></label>") ?>
+                <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo _("The PDF should not exceed"); ?> <?php echo round($maxSize / 1024 / 1024) ?> <?php echo _("MB and"); ?> <?php echo $maxPage ?> <?php echo _("pages"); ?>"><i class="bi bi-info-circle"></i></small></label>
                     <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF") ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
                     <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being stored or saved") ?></p>
                     <?php if($PDF_DEMO_LINK): ?>
@@ -78,35 +78,35 @@
             <div id="svg_list_signature" class="list-item-add"></div>
             <div class="d-grid gap-2 mb-2 list-item-add">
                 <input type="radio" class="btn-check" id="radio_svg_signature_add" name="svg_2_add" autocomplete="off" value="signature">
-                <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="signature" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_signature_add" id="label_svg_signature_add"><i class="bi bi-vector-pen"></i> <?php echo _("Signature"); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
+                <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="signature" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_signature_add" id="label_svg_signature_add"><?php echo sprintf(_("%s Signature"), '<i class="bi bi-vector-pen"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
             </div>
             <div id="svg_list_initials" class="list-item-add"></div>
             <div class="d-grid gap-2 mb-2 list-item-add">
                 <input type="radio" class="btn-check" id="radio_svg_initials_add" name="svg_2_add" autocomplete="off" value="intials">
-                <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="initials" data-modalnav="#nav-type-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_initials_add" id="label_svg_initials_add"><i class="bi bi-type"></i> <?php echo _("Initial"); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
+                <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="initials" data-modalnav="#nav-type-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_initials_add" id="label_svg_initials_add"><?php echo sprintf(_("%s Initial"), '<i class="bi bi-type"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
             </div>
             <div id="svg_list_rubber_stamber" class="list-item-add"></div>
             <div class="d-grid gap-2 mb-2 list-item-add">
                 <input type="radio" class="btn-check" id="radio_svg_rubber_stamber_add" name="svg_2_add" autocomplete="off" value="rubber_stamber">
-                <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" data-modalnav="#nav-import-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add" id="label_svg_rubber_stamber_add"><i class="bi bi-card-text"></i> <?php echo _("Stamp"); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
+                <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" data-modalnav="#nav-import-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add" id="label_svg_rubber_stamber_add"><?php echo sprintf(_("%s Stamp"), '<i class="bi bi-card-text"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
             </div>
             <div class="d-grid gap-2 mb-2 list-item-add">
                   <input type="radio" class="btn-check" id="radio_svg_text" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdGV4dGFyZWEtdCIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMS41IDIuNUExLjUgMS41IDAgMCAxIDMgMWgxMGExLjUgMS41IDAgMCAxIDEuNSAxLjV2My41NjNhMiAyIDAgMCAxIDAgMy44NzRWMTMuNUExLjUgMS41IDAgMCAxIDEzIDE1SDNhMS41IDEuNSAwIDAgMS0xLjUtMS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNXptMSAzLjU2M2EyIDIgMCAwIDEgMCAzLjg3NFYxMy41YS41LjUgMCAwIDAgLjUuNWgxMGEuNS41IDAgMCAwIC41LS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNUEuNS41IDAgMCAwIDEzIDJIM2EuNS41IDAgMCAwLS41LjV2My41NjN6TTIgN2ExIDEgMCAxIDAgMCAyIDEgMSAwIDAgMCAwLTJ6bTEyIDBhMSAxIDAgMSAwIDAgMiAxIDEgMCAwIDAgMC0yeiIvPjxwYXRoIGQ9Ik0xMS40MzQgNEg0LjU2Nkw0LjUgNS45OTRoLjM4NmMuMjEtMS4yNTIuNjEyLTEuNDQ2IDIuMTczLTEuNDk1bC4zNDMtLjAxMXY2LjM0M2MwIC41MzctLjExNi42NjUtMS4wNDkuNzQ4VjEyaDMuMjk0di0uNDIxYy0uOTM4LS4wODMtMS4wNTQtLjIxLTEuMDU0LS43NDhWNC40ODhsLjM0OC4wMWMxLjU2LjA1IDEuOTYzLjI0NCAyLjE3MyAxLjQ5NmguMzg2TDExLjQzNCA0eiIvPjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="text">
-                  <label draggable="true" id="label_svg_text" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text"><i class="bi bi-textarea-t"></i> <?php echo _("Text"); ?></label>
+                  <label draggable="true" id="label_svg_text" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text"><?php echo sprintf(_("%s Text"), '<i class="bi bi-textarea-t"></i>'); ?></label>
               </div>
               <div class="d-grid gap-2 mb-2 list-item-add">
                   <input type="radio" class="btn-check" id="radio_svg_check" data-height="18" name="svg_2_add" autocomplete="off" value="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktY2hlY2stbGciIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTEyLjczNiAzLjk3YS43MzMuNzMzIDAgMCAxIDEuMDQ3IDBjLjI4Ni4yODkuMjkuNzU2LjAxIDEuMDVMNy44OCAxMi4wMWEuNzMzLjczMyAwIDAgMS0xLjA2NS4wMkwzLjIxNyA4LjM4NGEuNzU3Ljc1NyAwIDAgMSAwLTEuMDYuNzMzLjczMyAwIDAgMSAxLjA0NyAwbDMuMDUyIDMuMDkzIDUuNC02LjQyNWEuMjQ3LjI0NyAwIDAgMSAuMDItLjAyMloiLz4KPC9zdmc+Cg==">
-                  <label draggable="true" id="label_svg_check" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_check"><i class="bi bi-check-square"></i> <?php echo _("Check box"); ?></label>
+                  <label draggable="true" id="label_svg_check" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_check"><?php echo sprintf(_("%s Check box"), '<i class="bi bi-check-square"></i>'); ?></label>
               </div>
               <div id="svg_list" class="d-grid gap-2 mt-2 mb-2 list-item-add"></div>
 
               <div class="d-grid gap-2 mt-2">
-                  <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><i class="bi bi-plus-circle"></i> <?php echo _("Create an element"); ?></button>
+                  <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><?php echo sprintf(_("%s Create an element"), '<i class="bi bi-plus-circle"></i>'); ?></button>
               </div>
               <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                   <?php if(!isset($hash)): ?>
                   <?php if(!isset($noSharingMode)): ?>
-                          <button class="btn btn-outline-dark w-100" type="button" data-bs-toggle="modal" data-bs-target="#modal-start-share"><i class="bi bi-share"></i> <?php echo _("Share to sign <i class='bi bi-people-fill'></i> with multiple people"); ?></button>
+                          <button class="btn btn-outline-dark w-100" type="button" data-bs-toggle="modal" data-bs-target="#modal-start-share"><?php echo sprintf(_("%s Share to sign %s with multiple people"), '<i class="bi bi-share"></i>',"<i class='bi bi-people-fill'></i>"); ?></button>
                   <?php endif; ?>
                   <form id="form_pdf" action="<?php echo $REVERSE_PROXY_URL; ?>/sign" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
@@ -116,10 +116,10 @@
                 <?php elseif(!isset($noSharingMode)): ?>
                   <div class="d-none d-sm-none d-md-block position-relative">
                       <a id="btn-signature-help" class="position-absolute top-0 end-0 text-dark" href="" style="z-index: 5;"><i class="bi bi-question-circle"></i></a>
-                      <p id="nblayers_text" class="small d-none mb-2 opacity-75"><?php echo _("You are <span class='badge rounded-pill border border-dark text-dark'><span class='nblayers'>0</span> <i class='bi bi-people-fill'></i></span> to have signed this PDF"); ?></p>
+                      <p id="nblayers_text" class="small d-none mb-2 opacity-75"><?php echo sprintf(_("You are %s to have signed this PDF"), "<span class='badge rounded-pill border border-dark text-dark'><span class='nblayers'>0</span> <i class='bi bi-people-fill'></i></span>"); ?></p>
                   </div>
                   <div class="btn-group w-100">
-                      <a id="btn_download" class="btn btn-outline-dark w-100" href="<?php echo $REVERSE_PROXY_URL; ?>/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> <?php echo _("Download the PDF"); ?>></a>
+                      <a id="btn_download" class="btn btn-outline-dark w-100" href="<?php echo $REVERSE_PROXY_URL; ?>/signature/<?php echo $hash ?>/pdf"><?php echo sprintf(_("%s Download the PDF"), '<i class="bi bi-download"></i>'); ?></a>
                       <button class="btn btn-outline-dark" type="button" id="btn_share" data-bs-toggle="modal" data-bs-target="#modal-share-informations"><i class="bi bi-share"></i></button>
                   </div>
                   <form id="form_pdf" action="<?php echo $REVERSE_PROXY_URL; ?>/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
@@ -132,7 +132,7 @@
         </div>
         <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div class="d-grid gap-2">
-            <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#sidebarTools" aria-controls="sidebarTools"><i class="bi bi-hand-index"></i> <?php echo _("Select a signature"); ?></button>
+            <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#sidebarTools" aria-controls="sidebarTools"><?php echo sprintf(_("%s Select a signature"), '<i class="bi bi-hand-index"></i>'); ?></button>
             </div>
             <div id="svg_selected_container" class="text-center d-none position-relative">
                 <img id="svg_selected" src="" style="height: 48px;" class="img-fluid"/>
@@ -197,19 +197,19 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="bi bi-share"></i> <?php echo _("Share this PDF to sign it with several people"); ?> </h5>
+                    <h5 class="modal-title"><?php echo sprintf(_("%s Share this PDF to sign it with several people"), '<i class="bi bi-share"></i>'); ?> </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p><?php echo _("By enabling PDF sharing, you will be able to provide a link to the people of your choice so that they can sign this PDF."); ?></p>
-                    <p><i class="bi bi-hdd-network"></i> <?php echo _("This sharing requires the PDF to be transferred and stored on the server for future signers to access."); ?></p>
-                    <p class="mb-0"><i class="bi bi-hourglass-split"></i> <?php echo _("The PDF will be kept <select name='duration' form='form_sharing'><option value='+1 year'>for one year</option><option value='+6 month'>for six months</option><option value='+1 month' selected='selected'>for one month</option><option value='+1 week'>for one week</option><option value='+1 day'>for one day</option><option value='+1 hour'>for one hour</option></select> after the last signature."); ?></p>
+                    <p><?php echo sprintf(_("%s This sharing requires the PDF to be transferred and stored on the server for future signers to access."), '<i class="bi bi-hdd-network"></i>'); ?></p>
+                    <p class="mb-0"><?php echo sprintf(_("%s The PDF will be kept"), '<i class="bi bi-hourglass-split"></i>'); ?> <select name='duration' form='form_sharing'><option value='+1 year'><?php echo _("for one year"); ?></option><option value='+6 month'><?php echo _("for six months"); ?></option><option value='+1 month' selected='selected'><?php echo _("for one month"); ?></option><option value='+1 week'><?php echo _("for one week"); ?></option><option value='+1 day'><?php echo _("for one day"); ?></option><option value='+1 hour'><?php echo _("for one hour"); ?></option></select> <?php echo _("after the last signature."); ?></p>
                 </div>
                 <div class="modal-footer text-center d-block">
                     <form id="form_sharing" clas action="<?php echo $REVERSE_PROXY_URL; ?>/share" method="post" enctype="multipart/form-data">
                           <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                           <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
-                          <button  class="btn col-9 col-md-6 btn-primary" type="submit" id="save_share"><i class="bi bi-cloud-upload"></i> <?php echo _("Start sharing"); ?></button>
+                          <button  class="btn col-9 col-md-6 btn-primary" type="submit" id="save_share"><?php echo sprintf(_("%s Start sharing"), '<i class="bi bi-cloud-upload"></i>'); ?></button>
                     </form>
                 </div>
             </div>
@@ -221,7 +221,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="bi bi-people-fill"></i> <?php echo _("Sign this PDF with multiple people"); ?></h5>
+                    <h5 class="modal-title"><?php echo sprintf(_("%s Sign this PDF with multiple people"), '<i class="bi bi-people-fill"></i>'); ?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -230,7 +230,7 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text"><?php echo _("Sharing link"); ?></span>
                         <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control bg-light font-monospace" value="">
-                        <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = 'Copié !';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> <?php echo _("Copy"); ?></button>
+                        <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = 'Copié !';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> Copier</button>
                         <script>document.querySelector('#input-share-link').value = document.location.href.replace(/#.*/, '');</script>
                     </div>
                     <p class="mb-0"><?php echo _("Each of the signatories can download the latest version of the signed PDF at any time."); ?></p>

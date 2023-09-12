@@ -19,6 +19,18 @@
     </div>
 </noscript>
 <div id="page-upload">
+    <div class="dropdown float-end">
+        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo _("Language"); ?>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <?php
+            foreach ($LANGUAGES as $item => $key) {
+                echo '<li><a class="dropdown-item" href="?lang=' . htmlspecialchars($item) . '">' . htmlspecialchars($key) . '</a></li>';
+            }
+            ?>
+        </ul>
+    </div>
     <ul class="nav justify-content-center nav-tabs mt-2">
         <li class="nav-item">
             <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"> <?php echo sprintf(_("%s Sign"), '<i class="bi bi-vector-pen"></i>'); ?></a>
@@ -29,16 +41,6 @@
         <li class="nav-item">
             <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"> <?php echo sprintf(_("%s Metadata"), '<i class="bi bi-tags"></i>'); ?></a>
         </li>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php echo _("Language"); ?>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
     </ul>
     <div class="px-4 py-4 text-center">
         <h1 class="display-5 fw-bold mb-0 mt-3"> <?php echo sprintf(_("%s Edit metadata"), '<i class="bi bi-tags"></i>'); ?></h1>
@@ -105,8 +107,7 @@
 </div>
 
 <span id="is_mobile" class="d-md-none"></span>
-
-<script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.js?5.1.3"></script>
+<script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.1.3"></script>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?1.17.1"></script>
 <script>

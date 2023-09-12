@@ -8,7 +8,8 @@ if(getenv("DEBUG")) {
 
 $f3->set('LANGUAGES',
     ['fr' => 'Français',
-        'en' => 'English']);
+        'en' => 'English',
+        'de' => 'Deutsch']);
 
 $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);
@@ -34,7 +35,11 @@ if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
 }
 
-setlocale(LC_ALL, 'fr');
+if ($f3->get('GET.lang')) {
+    $lang = $f3->get('GET.lang');
+    putenv("LANGUAGE=$lang");
+    $f3->set('LANGUAGE', $lang);
+}
 bindtextdomain('application', $f3->get('ROOT')."/locale/");
 textdomain('application');
 

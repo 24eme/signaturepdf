@@ -19,6 +19,18 @@
         </div>
     </noscript>
     <div id="page-upload">
+        <div class="dropdown float-end">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php echo _("Language"); ?>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <?php
+                foreach ($LANGUAGES as $item => $key) {
+                    echo '<li><a class="dropdown-item" href="?lang=' . htmlspecialchars($item) . '">' . htmlspecialchars($key) . '</a></li>';
+                }
+                ?>
+            </ul>
+        </div>
         <ul class="nav justify-content-center nav-tabs mt-2">
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"> <?php echo sprintf(_("%s Sign"), '<i class="bi bi-vector-pen"></i>'); ?></a>
@@ -108,7 +120,7 @@
                 </div>
             </div>
             <div id="top_bar_action_selection" class="d-none">
-                <div id="top_bar_action_selection_recap" class="bg-primary text-white text-center rounded-top p-1 position-relative"><button id="btn_liste_pdf_bar" type="button" style="text-decoration: none;left: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 ms-1"><i class="bi bi-files"></i>&nbsp;<span></span> PDF</button><span id="top_bar_action_selection_recap_nb_pages"><?php echo _("No"); ?>></span> <?php echo _("page"); ?><button id="btn_cancel_select_mobile" type="button" style="text-decoration: none;right: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 me-1"><i class="bi bi-x-lg"></i>&nbsp;<?php echo _("Cancel"); ?>></button></div>
+                <div id="top_bar_action_selection_recap" class="bg-primary text-white text-center rounded-top p-1 position-relative"><button id="btn_liste_pdf_bar" type="button" style="text-decoration: none;left: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 ms-1"><i class="bi bi-files"></i>&nbsp;<span></span> PDF</button><span id="top_bar_action_selection_recap_nb_pages"><?php echo _("No"); ?>></span> <?php echo _("page"); ?><button id="btn_cancel_select_mobile" type="button" style="text-decoration: none;right: 0px; top:0px;" class="btn bg-white bg-opacity-50 text-primary position-absolute p-0 ps-1 pe-1 mt-1 me-1"><i class="bi bi-x-lg"></i>&nbsp;<?php echo _("Cancel"); ?></button></div>
                 <div class="btn-group w-100">
                     <button id="btn_rotate_select_mobile" type="button" class="btn btn-outline-primary" style="border-top-left-radius: 0 !important;"><?php echo sprintf(_("%s Turn"), '<i class="bi bi-arrow-clockwise"></i>'); ?></button>
                     <button id="btn_drag_select_mobile" type="button" class="btn btn-outline-primary"><?php echo sprintf(_("%s Move"), '<i class="bi bi-arrows-move"></i>'); ?></button>
@@ -141,7 +153,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo _("PDF documents"); ?>></h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo _("PDF documents"); ?></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -152,7 +164,7 @@
 
     <span id="is_mobile" class="d-md-none"></span>
 
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.js?5.1.3"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.1.3"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
     <script>
     var maxSize = <?php echo $maxSize ?>;

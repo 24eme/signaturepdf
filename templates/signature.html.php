@@ -18,6 +18,18 @@
 </noscript>
 <div id="page-upload">
     <?php if(!$disableOrganization): ?>
+        <div class="dropdown float-end">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php echo _("Language"); ?>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <?php
+                foreach ($LANGUAGES as $item => $key) {
+                    echo '<li><a class="dropdown-item" href="?lang=' . htmlspecialchars($item) . '">' . htmlspecialchars($key) . '</a></li>';
+                }
+                ?>
+            </ul>
+        </div>
         <ul class="nav justify-content-center nav-tabs mt-2">
             <li class="nav-item">
                 <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"> <?php echo sprintf(_("%s Sign"), '<i class="bi bi-vector-pen"></i>'); ?></a>
@@ -263,7 +275,7 @@
 
     <span id="is_mobile" class="d-md-none"></span>
 
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.js?5.1.3"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.1.3"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?4.6.0"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>

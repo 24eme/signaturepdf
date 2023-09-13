@@ -23,11 +23,7 @@
                 <?php echo _("Language"); ?>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <?php
-                foreach ($LANGUAGES as $item => $key) {
-                    echo '<li><a class="dropdown-item" href="?lang=' . htmlspecialchars($item) . '">' . htmlspecialchars($key) . '</a></li>';
-                }
-                ?>
+                <?php foreach ($LANGUAGES as $item => $key): echo '<li><a class="dropdown-item" href="?lang=' . htmlspecialchars($item) . '">' . htmlspecialchars($key) . '</a></li>'; endforeach; ?>
             </ul>
         </div>
         <ul class="nav justify-content-center nav-tabs mt-2">

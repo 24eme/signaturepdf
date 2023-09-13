@@ -2,6 +2,8 @@
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
+session_start();
+
 if(getenv("DEBUG")) {
     $f3->set('DEBUG', getenv("DEBUG"));
 }
@@ -37,8 +39,12 @@ if($f3->get('DISABLE_ORGANIZATION')) {
 
 if ($f3->get('GET.lang')) {
     $lang = $f3->get('GET.lang');
+    $_SESSION['LANGUAGE'] = $lang;
     putenv("LANGUAGE=$lang");
     $f3->set('LANGUAGE', $lang);
+} elseif (isset($_SESSION['LANGUAGE'])) {
+    $lang = $_SESSION['LANGUAGE'];
+    putenv("LANGUAGE=$lang");
 }
 bindtextdomain('application', $f3->get('ROOT')."/locale/");
 textdomain('application');

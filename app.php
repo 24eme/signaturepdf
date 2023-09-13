@@ -39,16 +39,21 @@ if($f3->get('DISABLE_ORGANIZATION')) {
 
 if ($f3->get('GET.lang')) {
     $lang = $f3->get('GET.lang');
-    $_SESSION['LANGUAGE'] = $lang;
-    putenv("LANGUAGE=$lang");
-    $f3->set('LANGUAGE', $lang);
+    changeLanguage($lang, $f3);
 } elseif (isset($_SESSION['LANGUAGE'])) {
-    $lang = $_SESSION['LANGUAGE'];
-    putenv("LANGUAGE=$lang");
+    changeLanguage($_SESSION['LANGUAGE'], $f3);
+} elseif (isset($_COOKIE['LANGUAGE'])) {
+    changeLanguage($_COOKIE['LANGUAGE'], $f3);
 }
 bindtextdomain('application', $f3->get('ROOT')."/locale/");
 textdomain('application');
 
+function changeLanguage($lang, $f3) {
+    $_SESSION['LANGUAGE'] = $lang;
+    setcookie("LANGUAGE", $lang, strtotime('+1 year'));
+    putenv("LANGUAGE=$lang");
+    $f3->set('LANGUAGE', $lang);
+}
 
 $f3->route('GET /',
     function($f3) {

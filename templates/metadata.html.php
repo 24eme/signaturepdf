@@ -19,12 +19,14 @@
     </div>
 </noscript>
 <div id="page-upload">
-    <div class="dropdown float-end">
+    <div class="dropdown position-absolute top-0 end-0 mt-2 me-2">
         <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo _("Language"); ?>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <?php foreach ($LANGUAGES as $item => $key): echo '<li><a class="dropdown-item" href="?lang=' . htmlspecialchars($item) . '">' . htmlspecialchars($key) . '</a></li>'; endforeach; ?>
+            <?php foreach ($LANGUAGES as $key => $langue):?>
+                <li><a class="dropdown-item" href="?lang=<?php echo $key ?>"><?php echo $langue ?></a></li>
+            <?php endforeach; ?>
         </ul>
     </div>
     <ul class="nav justify-content-center nav-tabs mt-2">

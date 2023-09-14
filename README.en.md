@@ -4,7 +4,7 @@ Free web software for signing PDFs.
 
 
 ## README Version
-- [French](README.md)
+- [Français](README.md)
 - **English**
 
 ## Instances

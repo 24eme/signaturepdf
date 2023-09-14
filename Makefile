@@ -2,7 +2,7 @@
 
 .DEFAULT_GOAL := all
 
-all: update
+all: update_trad
 
 node_modules/jest/bin/jest.js:
 	npm install jest
@@ -13,7 +13,7 @@ node_modules/puppeteer:
 test: node_modules/jest/bin/jest.js node_modules/puppeteer
 	./node_modules/jest/bin/jest.js
 
-update:
+update_trad:
 	# Extraction des phrases traductibles...
 	@xgettext --from-code=utf-8 --output=./locale/application.pot templates/*.php
 

@@ -1,9 +1,11 @@
-# Version du README
-- [English](README.en.md)
-
 # Signature de PDF
 
 Logiciel web libre permettant de signer un PDF.
+
+
+## Version du README
+- **Français**
+- [English](README.en.md)
 
 ## Instances
 

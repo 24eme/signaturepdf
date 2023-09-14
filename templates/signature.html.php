@@ -19,8 +19,9 @@
 <div id="page-upload">
     <?php if(!$disableOrganization): ?>
         <div class="dropdown position-absolute top-0 end-0 mt-2 me-2">
-            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <?php echo _("Language"); ?>
+            <button class="btn btn-outline-secondary btn-sm  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="d-none d-md-inline"><?php echo _("Language"); ?></span>
+                <span class="d-md-none"><i class="bi bi-translate"></i></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <?php foreach ($LANGUAGES as $key => $langue):?>

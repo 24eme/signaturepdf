@@ -1,3 +1,6 @@
+# Version du README
+- [English](README.en.md)
+
 # Signature de PDF
 
 Logiciel web libre permettant de signer un PDF.
@@ -311,7 +314,7 @@ Pour les tests :
 ## Contributeurs
 
 - Vincent LAURENT (24ème)
-- Le Metayer Jean-Baptiste (24ème)
+- Jean-Baptiste Le Metayer (24ème)
 - Xavier Garnier (Logilab)
 - Simon Chabot (Logilab)
 - Gabriel POMA (24ème)

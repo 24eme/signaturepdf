@@ -87,15 +87,15 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container d-flex align-items-center justify-content-center bg-transparent bg-opacity-25 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
                     pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
-                    pageHTML += '<div title="Séléctionner cette page" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select d-none"><i class="bi bi-check-square"></i></div>';
-                    pageHTML += '<div title="Supprimer cette page" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
-                    pageHTML += '<div title="Restaurer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
-                    pageHTML += '<div title="Déplacer cette page" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div title="Déplacer ici" class="position-absolute start-0 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-left bg-white shadow d-none" style="left: -5px !important;"><i class="bi bi-arrow-up-square"></i></div>';
-                    pageHTML += '<div title="Déplacer ici" class="position-absolute start-100 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-right bg-white shadow d-none" style="margin-left: 3px !important;"><i class="bi bi-arrow-up-square"></i></div>';
-                    pageHTML += '<div title="Déplacer ici" class="position-absolute top-100 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here_mobile bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
-                    pageHTML += '<div title="Tourner cette page" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
-                    pageHTML += '<div title="Télécharger cette page" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
+                    pageHTML += '<div title="' + trad['Select this page'] + '" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select d-none"><i class="bi bi-check-square"></i></div>';
+                    pageHTML += '<div title="' + trad['Delete this page'] + '" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
+                    pageHTML += '<div title="' + trad['Restore this page'] + '" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
+                    pageHTML += '<div title="' + trad['Move this page'] + '" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
+                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute start-0 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-left bg-white shadow d-none" style="left: -5px !important;"><i class="bi bi-arrow-up-square"></i></div>';
+                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute start-100 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-right bg-white shadow d-none" style="margin-left: 3px !important;"><i class="bi bi-arrow-up-square"></i></div>';
+                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute top-100 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here_mobile bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
+                    pageHTML += '<div title="' + trad['Turn this page'] + '" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
+                    pageHTML += '<div title="' + trad['Download this page'] + '" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
                     pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
                     pageHTML += '<input form="form_pdf" class="checkbox-page d-none" role="switch" type="checkbox" checked="checked" value="'+pdfLetter+page.pageNumber+'" />';
                     pageHTML += '<input type="hidden" class="input-rotate" value="0" id="input_rotate_'+pageIndex+'" />';
@@ -511,7 +511,7 @@ var updateGlobalState = function() {
         button.classList.remove('btn-outline-primary');
         button.setAttribute('disabled', 'disabled');
     });
-    document.querySelector('#container_btn_select .card-header span').innerText = "Aucune";
+    document.querySelector('#container_btn_select .card-header span').innerText = "0";
     document.querySelector('#container_btn_select .card-footer').classList.add('d-none');
     document.querySelector('#top_bar_action').classList.remove('d-none');
     document.querySelector('#top_bar_action_selection').classList.add('d-none');

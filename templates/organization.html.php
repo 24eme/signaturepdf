@@ -88,7 +88,7 @@
                 </div>
                 <hr />
                 <div id="container_btn_select" class="opacity-50 card">
-                    <div class="card-header small text-center p-1"><span><?php echo _("No"); ?></span> <?php echo _("page selected") ?> <button id="btn_cancel_select" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
+                    <div class="card-header small text-center p-1"><?php echo sprintf(_("%s page(s) selected"), '<span>0</span>'); ?> <button id="btn_cancel_select" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
                     <div class="card-body d-grid gap-2 p-2">
                         <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><?php echo sprintf(_("%s Rotate 90°"), '<i class="bi bi-arrow-clockwise"></i>'); ?></button>
                         <button id="btn_drag_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><?php echo sprintf(_("%s Move"), '<i class="bi bi-arrows-move"></i>'); ?></button>
@@ -167,6 +167,15 @@
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
     <script>
     var maxSize = <?php echo $maxSize ?>;
+    var trad = <?php echo json_encode([
+        'Select this page' => _('Select this page'),
+        'Delete this page' => _('Delete this page'),
+        'Restore this page' => _('Restore this page'),
+        'Move this page' => _('Move this page'),
+        'Move here' => _('Move here'),
+        'Turn this page' => _('Turn this page'),
+        'Download this page' => _('Download this page')
+    ]); ?>;
     </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/organization.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/organization.js") ?>"></script>
   </body>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 12:38+0200\n"
+"POT-Creation-Date: 2023-09-18 17:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,12 +168,9 @@ msgstr ""
 msgid "%s Add a PDF"
 msgstr ""
 
-#: templates/organization.html.php:91 templates/organization.html.php:122
-msgid "No"
-msgstr ""
-
 #: templates/organization.html.php:91
-msgid "page selected"
+#, php-format
+msgid "%s page(s) selected"
 msgstr ""
 
 #: templates/organization.html.php:93
@@ -207,6 +204,10 @@ msgid "%s Download the full PDF"
 msgstr ""
 
 #: templates/organization.html.php:122
+msgid "No"
+msgstr ""
+
+#: templates/organization.html.php:122
 msgid "page"
 msgstr ""
 
@@ -226,6 +227,34 @@ msgstr ""
 
 #: templates/organization.html.php:155
 msgid "PDF documents"
+msgstr ""
+
+#: templates/organization.html.php:171
+msgid "Select this page"
+msgstr ""
+
+#: templates/organization.html.php:172
+msgid "Delete this page"
+msgstr ""
+
+#: templates/organization.html.php:173
+msgid "Restore this page"
+msgstr ""
+
+#: templates/organization.html.php:174
+msgid "Move this page"
+msgstr ""
+
+#: templates/organization.html.php:175
+msgid "Move here"
+msgstr ""
+
+#: templates/organization.html.php:176
+msgid "Turn this page"
+msgstr ""
+
+#: templates/organization.html.php:177
+msgid "Download this page"
 msgstr ""
 
 #: templates/signature.html.php:45

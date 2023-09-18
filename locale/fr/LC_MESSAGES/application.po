@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 12:15+0200\n"
+"POT-Creation-Date: 2023-09-18 17:56+0200\n"
 "PO-Revision-Date: 2023-09-07 13:19+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -172,13 +172,10 @@ msgstr ""
 msgid "%s Add a PDF"
 msgstr "%s Ajouter un PDF"
 
-#: templates/organization.html.php:91 templates/organization.html.php:122
-msgid "No"
-msgstr "Aucune"
-
 #: templates/organization.html.php:91
-msgid "page selected"
-msgstr "page sélectionnée"
+#, php-format
+msgid "%s page(s) selected"
+msgstr "%s page(s) sélectionnée(s)"
 
 #: templates/organization.html.php:93
 #, php-format
@@ -211,6 +208,10 @@ msgid "%s Download the full PDF"
 msgstr "%s Télécharger le PDF complet"
 
 #: templates/organization.html.php:122
+msgid "No"
+msgstr "Aucune"
+
+#: templates/organization.html.php:122
 msgid "page"
 msgstr "page"
 
@@ -231,6 +232,34 @@ msgstr "Télécharger la sélection"
 #: templates/organization.html.php:155
 msgid "PDF documents"
 msgstr "Documents PDF"
+
+#: templates/organization.html.php:171
+msgid "Select this page"
+msgstr "Sélectionner cette page"
+
+#: templates/organization.html.php:172
+msgid "Delete this page"
+msgstr "Supprimer cette page"
+
+#: templates/organization.html.php:173
+msgid "Restore this page"
+msgstr "Restorer cette page"
+
+#: templates/organization.html.php:174
+msgid "Move this page"
+msgstr "Déplacer cette page"
+
+#: templates/organization.html.php:175
+msgid "Move here"
+msgstr "Déplacer ici"
+
+#: templates/organization.html.php:176
+msgid "Turn this page"
+msgstr "Tourner cette page"
+
+#: templates/organization.html.php:177
+msgid "Download this page"
+msgstr "Télécharger cette page"
 
 #: templates/signature.html.php:45
 #, php-format
@@ -483,6 +512,19 @@ msgstr "PDF signé"
 #: templates/signature.html.php:265
 msgid "Your signature has been successfully recorded!"
 msgstr "Votre signature a bien été prise en compte !"
+
+#, php-format
+#~ msgid "%s page selected"
+#~ msgid_plural "%s pages selected"
+#~ msgstr[0] "%s page sélectionnée"
+#~ msgstr[1] "%s pages sélectionnées"
+
+#~ msgid "page selected"
+#~ msgstr "page sélectionnée"
+
+#, php-format
+#~ msgid "%s pages selected"
+#~ msgstr "%s pages sélectionnées"
 
 #~ msgid "Sign"
 #~ msgstr "Signer"

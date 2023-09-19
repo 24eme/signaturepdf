@@ -2,9 +2,15 @@
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
+session_start();
+
 if(getenv("DEBUG")) {
     $f3->set('DEBUG', getenv("DEBUG"));
 }
+
+$f3->set('LANGUAGES',
+    ['fr' => 'Français',
+        'en' => 'English']);
 
 $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);
@@ -28,6 +34,24 @@ if($f3->get('PDF_DEMO_LINK') === null || $f3->get('PDF_DEMO_LINK') === true) {
 $f3->set('disableOrganization', false);
 if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
+}
+
+if ($f3->get('GET.lang')) {
+    $lang = $f3->get('GET.lang');
+    changeLanguage($lang, $f3);
+} elseif (isset($_SESSION['LANGUAGE'])) {
+    changeLanguage($_SESSION['LANGUAGE'], $f3);
+} elseif (isset($_COOKIE['LANGUAGE'])) {
+    changeLanguage($_COOKIE['LANGUAGE'], $f3);
+}
+bindtextdomain('application', $f3->get('ROOT')."/locale/");
+textdomain('application');
+
+function changeLanguage($lang, $f3) {
+    $_SESSION['LANGUAGE'] = $lang;
+    setcookie("LANGUAGE", $lang, strtotime('+1 year'));
+    putenv("LANGUAGE=$lang");
+    $f3->set('LANGUAGE', $lang);
 }
 
 $f3->route('GET /',

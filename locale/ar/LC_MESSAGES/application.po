@@ -1,0 +1,471 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-11 19:01+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/signature.html.php:16 templates/organization.html.php:18
+#: templates/metadata.html.php:18
+msgid "Site not functional without JavaScript enabled"
+msgstr ""
+
+#: templates/signature.html.php:23 templates/organization.html.php:24
+#: templates/metadata.html.php:24
+#, php-format
+msgid "%s Sign"
+msgstr ""
+
+#: templates/signature.html.php:26 templates/organization.html.php:27
+#: templates/metadata.html.php:27
+#, php-format
+msgid "%s Organize"
+msgstr ""
+
+#: templates/signature.html.php:29 templates/organization.html.php:30
+#: templates/metadata.html.php:30
+#, php-format
+msgid "%s Metadata"
+msgstr ""
+
+#: templates/signature.html.php:34
+#, php-format
+msgid "%s Sign a PDF"
+msgstr ""
+
+#: templates/signature.html.php:35
+msgid "Sign, initial, stamp, complete a document"
+msgstr ""
+
+#: templates/signature.html.php:38 templates/signature.html.php:39
+#: templates/organization.html.php:38 templates/organization.html.php:39
+#: templates/metadata.html.php:48 templates/metadata.html.php:49
+msgid "Choose a PDF"
+msgstr ""
+
+#: templates/signature.html.php:38
+msgid "The PDF should not exceed"
+msgstr ""
+
+#: templates/signature.html.php:38
+msgid "MB and"
+msgstr ""
+
+#: templates/signature.html.php:38
+msgid "pages"
+msgstr ""
+
+#: templates/signature.html.php:40
+msgid "The PDF will be processed by the server without being stored or saved"
+msgstr ""
+
+#: templates/signature.html.php:42 templates/organization.html.php:42
+#: templates/metadata.html.php:52
+msgid "Test with a demo PDF"
+msgstr ""
+
+#: templates/signature.html.php:48 templates/organization.html.php:48
+#: templates/metadata.html.php:58
+msgid "Free open-source software"
+msgstr ""
+
+#: templates/signature.html.php:48 templates/organization.html.php:48
+#: templates/metadata.html.php:58
+msgid "under AGPL-3.0 license"
+msgstr ""
+
+#: templates/signature.html.php:48 templates/organization.html.php:48
+#: templates/metadata.html.php:58
+msgid "see the source code"
+msgstr ""
+
+#: templates/signature.html.php:55
+msgid "How to sign?"
+msgstr ""
+
+#: templates/signature.html.php:56
+msgid "By clicking directly on the document page"
+msgstr ""
+
+#: templates/signature.html.php:56
+msgid "to insert the selected item in the right column"
+msgstr ""
+
+#: templates/signature.html.php:56
+msgid "signature, initial, text, stamp, etc ..."
+msgstr ""
+
+#: templates/signature.html.php:67
+msgid "Close this PDF and return to the homepage"
+msgstr ""
+
+#: templates/signature.html.php:69
+msgid "PDF Signature"
+msgstr ""
+
+#: templates/signature.html.php:69
+msgid "This PDF is shared with others to be signed by multiple people"
+msgstr ""
+
+#: templates/signature.html.php:69 templates/organization.html.php:66
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr ""
+
+#: templates/signature.html.php:76
+msgid "Keep the selection active"
+msgstr ""
+
+#: templates/signature.html.php:81
+#, php-format
+msgid "%s Signature"
+msgstr ""
+
+#: templates/signature.html.php:81 templates/signature.html.php:86
+#: templates/signature.html.php:91 templates/signature.html.php:189
+msgid "Create"
+msgstr ""
+
+#: templates/signature.html.php:86
+#, php-format
+msgid "%s Initial"
+msgstr ""
+
+#: templates/signature.html.php:91
+#, php-format
+msgid "%s Stamp"
+msgstr ""
+
+#: templates/signature.html.php:95
+#, php-format
+msgid "%s Text"
+msgstr ""
+
+#: templates/signature.html.php:99
+#, php-format
+msgid "%s Check box"
+msgstr ""
+
+#: templates/signature.html.php:104
+#, php-format
+msgid "%s Create an element"
+msgstr ""
+
+#: templates/signature.html.php:109
+#, php-format
+msgid "%s Share to sign %s with multiple people"
+msgstr ""
+
+#: templates/signature.html.php:114 templates/signature.html.php:154
+msgid "Download the signed PDF"
+msgstr ""
+
+#: templates/signature.html.php:119
+#, php-format
+msgid "You are %s to have signed this PDF"
+msgstr ""
+
+#: templates/signature.html.php:122
+#, php-format
+msgid "%s Download the PDF"
+msgstr ""
+
+#: templates/signature.html.php:127 templates/signature.html.php:152
+msgid "Transmit my signature"
+msgstr ""
+
+#: templates/signature.html.php:135
+#, php-format
+msgid "%s Select a signature"
+msgstr ""
+
+#: templates/signature.html.php:164
+msgid "Draw"
+msgstr ""
+
+#: templates/signature.html.php:164
+msgid "freehand"
+msgstr ""
+
+#: templates/signature.html.php:165
+msgid "Enter"
+msgstr ""
+
+#: templates/signature.html.php:165
+msgid "text"
+msgstr ""
+
+#: templates/signature.html.php:166
+msgid "Import"
+msgstr ""
+
+#: templates/signature.html.php:166
+msgid "an image"
+msgstr ""
+
+#: templates/signature.html.php:170
+msgid "Clear signature"
+msgstr ""
+
+#: templates/signature.html.php:174
+msgid "My signature"
+msgstr ""
+
+#: templates/signature.html.php:188 templates/organization.html.php:111
+msgid "Cancel"
+msgstr ""
+
+#: templates/signature.html.php:200
+#, php-format
+msgid "%s Share this PDF to sign it with several people"
+msgstr ""
+
+#: templates/signature.html.php:204
+msgid ""
+"By enabling PDF sharing, you will be able to provide a link to the people of "
+"your choice so that they can sign this PDF."
+msgstr ""
+
+#: templates/signature.html.php:205
+#, php-format
+msgid ""
+"%s This sharing requires the PDF to be transferred and stored on the server "
+"for future signers to access."
+msgstr ""
+
+#: templates/signature.html.php:206
+#, php-format
+msgid "%s The PDF will be kept"
+msgstr ""
+
+#: templates/signature.html.php:206
+msgid "for one year"
+msgstr ""
+
+#: templates/signature.html.php:206
+msgid "for six months"
+msgstr ""
+
+#: templates/signature.html.php:206
+msgid "for one month"
+msgstr ""
+
+#: templates/signature.html.php:206
+msgid "for one week"
+msgstr ""
+
+#: templates/signature.html.php:206
+msgid "for one day"
+msgstr ""
+
+#: templates/signature.html.php:206
+msgid "for one hour"
+msgstr ""
+
+#: templates/signature.html.php:206
+msgid "after the last signature."
+msgstr ""
+
+#: templates/signature.html.php:212
+#, php-format
+msgid "%s Start sharing"
+msgstr ""
+
+#: templates/signature.html.php:224
+#, php-format
+msgid "%s Sign this PDF with multiple people"
+msgstr ""
+
+#: templates/signature.html.php:228
+msgid "Multiple people can sign this PDF simultaneously."
+msgstr ""
+
+#: templates/signature.html.php:229
+msgid ""
+"To do so, simply share the link to this page with the people of your choice:"
+msgstr ""
+
+#: templates/signature.html.php:231
+msgid "Sharing link"
+msgstr ""
+
+#: templates/signature.html.php:236
+msgid ""
+"Each of the signatories can download the latest version of the signed PDF at "
+"any time."
+msgstr ""
+
+#: templates/signature.html.php:239
+msgid "Close"
+msgstr ""
+
+#: templates/signature.html.php:250
+msgid "Signed PDF"
+msgstr ""
+
+#: templates/signature.html.php:254
+msgid "Your signature has been successfully recorded!"
+msgstr ""
+
+#: templates/signature.html.php:257 templates/metadata.html.php:102
+msgid "Download the PDF"
+msgstr ""
+
+#: templates/organization.html.php:13
+msgid "Organize PDF"
+msgstr ""
+
+#: templates/organization.html.php:34
+#, php-format
+msgid "%s Organize PDF"
+msgstr ""
+
+#: templates/organization.html.php:35
+msgid "Merge, sort, rotate, delete, extract pages"
+msgstr ""
+
+#: templates/organization.html.php:38
+msgid "The PDF must not exceed "
+msgstr ""
+
+#: templates/organization.html.php:38
+msgid "Mb"
+msgstr ""
+
+#: templates/organization.html.php:40
+msgid ""
+"The PDF will be processed by the server without being retained or stored"
+msgstr ""
+
+#: templates/organization.html.php:53
+msgid "Touch a page to select it"
+msgstr ""
+
+#: templates/organization.html.php:64
+msgid "Close this PDF and return to home"
+msgstr ""
+
+#: templates/organization.html.php:66
+msgid "PDF organization"
+msgstr ""
+
+#: templates/organization.html.php:75 templates/organization.html.php:107
+#, php-format
+msgid "%s Add a PDF"
+msgstr ""
+
+#: templates/organization.html.php:80 templates/organization.html.php:111
+msgid "No"
+msgstr ""
+
+#: templates/organization.html.php:80
+msgid "page selected"
+msgstr ""
+
+#: templates/organization.html.php:82
+#, php-format
+msgid "%s Rotate 90°"
+msgstr ""
+
+#: templates/organization.html.php:83 templates/organization.html.php:114
+#, php-format
+msgid "%s Move"
+msgstr ""
+
+#: templates/organization.html.php:84 templates/organization.html.php:115
+#, php-format
+msgid "%s Delete"
+msgstr ""
+
+#: templates/organization.html.php:85
+#, php-format
+msgid "%s Extract and download"
+msgstr ""
+
+#: templates/organization.html.php:87
+#, php-format
+msgid "%s Cancel selection"
+msgstr ""
+
+#: templates/organization.html.php:95 templates/organization.html.php:121
+#, php-format
+msgid "%s Download the full PDF"
+msgstr ""
+
+#: templates/organization.html.php:111
+msgid "page"
+msgstr ""
+
+#: templates/organization.html.php:113
+#, php-format
+msgid "%s Turn"
+msgstr ""
+
+#: templates/organization.html.php:124
+#, php-format
+msgid "Download the selection"
+msgstr ""
+
+#: templates/organization.html.php:144
+msgid "PDF documents"
+msgstr ""
+
+#: templates/metadata.html.php:13
+msgid "Editing PDF metadata"
+msgstr ""
+
+#: templates/metadata.html.php:34
+msgid "Language"
+msgstr ""
+
+#: templates/metadata.html.php:44
+#, php-format
+msgid "%s Edit metadata"
+msgstr ""
+
+#: templates/metadata.html.php:45
+msgid "Add, edit, or remove metadata from a PDF"
+msgstr ""
+
+#: templates/metadata.html.php:65
+msgid "List of PDF metadata"
+msgstr ""
+
+#: templates/metadata.html.php:71
+msgid "Add new metadata"
+msgstr ""
+
+#: templates/metadata.html.php:74
+msgid "Key"
+msgstr ""
+
+#: templates/metadata.html.php:76
+msgid "Value"
+msgstr ""
+
+#: templates/metadata.html.php:78
+#, php-format
+msgid "%s Add"
+msgstr ""
+
+#: templates/metadata.html.php:84
+msgid "Close this PDF and return to the home page"
+msgstr ""
+
+#: templates/metadata.html.php:86
+msgid "Edit metadata"
+msgstr ""
+
+#: templates/metadata.html.php:96
+msgid "Save and download the PDF"
+msgstr ""

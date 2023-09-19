@@ -1,11 +1,8 @@
+<sup>[Français](README.md) | **[English](README.en.md)**</sup>
+
 # PDF Signature
 
 Free web software for signing PDFs.
-
-
-## README Version
-- [Français](README.md)
-- **English**
 
 ## Instances
 List of instances where you can use this software:

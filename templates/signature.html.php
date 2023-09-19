@@ -39,6 +39,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"> <?php echo sprintf(_("%s Metadata"), '<i class="bi bi-tags"></i>'); ?></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/compress"> <?php echo sprintf(_("%s Compress"), '<i class="bi bi-chevron-bar-contract"></i>'); ?></a>
+            </li>
         </ul>
     <?php endif; ?>
     <div class="px-4 py-4 text-center">

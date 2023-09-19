@@ -388,6 +388,14 @@ $f3->route('GET /metadata',
     }
 );
 
+$f3->route('GET /compress',
+    function($f3) {
+        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+
+        echo View::instance()->render('compress.html.php');
+    }
+);
+
 function getCommit() {
     if(!file_exists(__DIR__.'/.git/HEAD')) {
 

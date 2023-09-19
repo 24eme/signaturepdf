@@ -313,14 +313,27 @@ Pour les tests :
 - **Jest** Framework de Test Javascript : https://jestjs.io/ (MIT)
 - **Puppeteer** librairie Node.js pour contrôler un navigateur : https://github.com/puppeteer/puppeteer (Apache-2.0)
 
-## Contributeurs
+## Contributions
 
-- Vincent LAURENT (24ème)
-- Jean-Baptiste Le Metayer (24ème)
-- Xavier Garnier (Logilab)
-- Simon Chabot (Logilab)
-- Gabriel POMA (24ème)
+### Traductions
 
-Logilab a apporté une contribution financière de 1 365 € TTC à la société 24ème pour développer le mode multi signature.
+Pour mettre à jour la traduction, exécutez simplement `make` qui mettra a jour le fichier `.pot`,
+qui fera un merge avec les fichiers `.po` qui permetteront de recréer les fichiers `.mo` mis a jour.
 
-Le développement du logiciel a principalement été réalisé sur le temps de travail de salariés du 24ème.
+Des traductions peuvent etre ajoutées sur Weblate : https://hosted.weblate.org/projects/signature-pdf/application/
+
+### Contributeurs
+
+Ces personnes sont auteurices du code de ce logiciel :
+
+Vincent LAURENT (24ème), Jean-Baptiste Le Metayer (24ème), Xavier Garnier (Logilab), Simon Chabot (Logilab), Tangui Morlier (24ème), Gabriel POMA (24ème), Tanguy Le Faucheur (24ème), Étienne Deparis, battosai30
+
+### Financements
+
+- 1 365 € HT de la société Logilab pour le développement du mode signature partagé à plusieurs
+- 1 950 € HT de la société Logilab pour le développement de l'édition des métadonnées
+- 100 € HT de don de la société Spirkop
+- 100 € HT de don de la société PDG IT
+- 1 040 € HT de la fondation NLNet pour l'internationalisation du logiciel
+
+Les modules signature et organiser ont été réalisés sur le temps de travail de salariés du 24ème.

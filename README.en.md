@@ -305,14 +305,28 @@ For testing:
 - **Jest** JavaScript Testing Framework: https://jestjs.io/ (MIT)
 - **Puppeteer** Node.js library for controlling a web browser: https://github.com/puppeteer/puppeteer (Apache-2.0)
 
-## Contributors
+## Contributions
 
-- Vincent LAURENT (24ème)
-- Jean-Baptiste Le Metayer (24ème)
-- Xavier Garnier (Logilab)
-- Simon Chabot (Logilab)
-- Gabriel POMA (24ème)
+### Translation
 
-Logilab provided a financial contribution of €1,365 including tax to the company 24ème to develop the multi-signature mode.
+To update the translation, simply execute `make` that will update the `.pot` file,
+which will merge the `.po` files which then will allow to create updated `.mo` files.
+
+Translations might be added on Weblate : https://hosted.weblate.org/projects/signature-pdf/application/
+
+
+### Contributors
+
+These people are the authors of the code of this software :
+
+Vincent LAURENT (24ème), Jean-Baptiste Le Metayer (24ème), Xavier Garnier (Logilab), Simon Chabot (Logilab), Tangui Morlier (24ème), Gabriel POMA (24ème), Tanguy Le Faucheur (24ème), Étienne Deparis, battosai30
+
+### Fundings
+
+- 1 365 € excl. taxes from the company Logilab for the development of the shared signature feature
+- 1 950 € excl. taxes from the company Logilab for the development of the metadata editing feature
+- 100 € excl. taxes donations from the company Spirkop
+- 100 € excl. taxes donations from the company PDG IT
+- 1 040 € excl. taxes from the foundation NLNet pour software internationalization
 
 The development of the software was primarily done during the working hours of 24ème employees.

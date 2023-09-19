@@ -10,8 +10,7 @@ if(getenv("DEBUG")) {
 
 $f3->set('LANGUAGES',
     ['fr' => 'Français',
-        'en' => 'English',
-        'de' => 'Deutsch']);
+        'en' => 'English']);
 
 $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);

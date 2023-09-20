@@ -44,20 +44,20 @@
             <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/compress"> <?php echo sprintf(_("%s Compress"), '<i class="bi bi-chevron-bar-contract"></i>'); ?></a>
         </li>
     </ul>
-    <form method="post" action="<?php echo $REVERSE_PROXY_URL; ?>/compress" enctype="multipart/form-data">
-        <div class="px-4 py-4 text-center">
+    <div class="px-4 py-4 text-center">
+        <form method="post" action="<?php echo $REVERSE_PROXY_URL; ?>/compress" enctype="multipart/form-data">
             <h1 class="display-5 fw-bold mb-0 mt-3"> <?php echo sprintf(_("%s Compress a PDF"), '<i class="bi bi-chevron-bar-contract"></i>'); ?></h1>
             <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Reduce the size of a PDF"); ?></p>
-            <div class="col-12">
-                <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?></label>
-                <input name="input_pdf_upload" id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
-                <p class="mt-2 small fw-light text-dark">&nbsp;</p>
+            <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
+                <div class="col-12">
+                    <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?></label>
+                    <input name="input_pdf_upload" id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
+                    <p class="mt-2 small fw-light text-dark">&nbsp;</p>
+                    <button type="submit" id="compressBtn" class="btn btn-primary"><?php echo _("Compress"); ?></button>
+                </div>
             </div>
-        </div>
-        <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
-            <button type="submit" id="compressBtn" class="btn btn-primary"><?php echo _("Compress"); ?></button>
-        </div>
-    </form>
+        </form>
+    </div>
     <footer class="text-center text-muted mb-2 fixed-bottom opacity-75">
         <small><?php echo _("Free open-source software"); ?> <span class="d-none d-md-inline"><?php echo _("under AGPL-3.0 license"); ?></span> : <a href="https://github.com/24eme/signaturepdf"><?php echo _("see the source code"); ?></a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
     </footer>

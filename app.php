@@ -390,10 +390,37 @@ $f3->route('GET /metadata',
 
 $f3->route('GET /compress',
     function($f3) {
-        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
-
         echo View::instance()->render('compress.html.php');
     }
+);
+
+$f3->route ('POST /compress',
+    function($f3) {
+        $filename = null;
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign');
+        unlink($tmpfile);
+
+        $files = Web::instance()->receive(function($file,$formFieldName) {
+            if ($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+        });
+
+        $arrayPath = array_keys($files);
+        $filePath = reset($arrayPath);
+        $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
+
+        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -dQUIET -o %s %s", $outputFileName, $filePath));
+
+        if ($returnCode !== false) {
+                header('Content-Type: application/pdf');
+                header("Content-Disposition: attachment; filename=$outputFileName");
+                readfile($outputFileName);
+                unlink($outputFileName);
+            } else {
+                echo "PDF compression failed. Please try again.";
+            }
+        }
 );
 
 function getCommit() {

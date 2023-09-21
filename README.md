@@ -1,67 +1,57 @@
-<sup>**[Français](README.md)** | [English](README.en.md)</sup>
+# PDF Signature
 
-# Signature de PDF 
-
-Logiciel web libre permettant de signer un PDF.
+Free web software for signing PDFs.
 
 ## Instances
-
-Liste des instances permettant d'utiliser ce logiciel :
-
+List of instances where you can use this software:
 - [pdf.24eme.fr](https://pdf.24eme.fr)
 - [pdf.libreon.fr](https://pdf.libreon.fr)
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
 
-_N'hésitez pas à rajouter la votre via une issue ou une pull request_
+_Feel free to add yours through an issue or a pull request._
 
 ## License
-
-Logiciel libre sous license AGPL V3
+Open-source software under the AGPL V3 license.
 
 ## Installation
-
 ### Debian/Ubuntu
-
-Dépendances :
-
+Dependencies:
 - php >= 5.6
 - rsvg-convert
 - pdftk
 - imagemagick
 - potrace
 
-Installation des dépendances :
-
+Installing dependencies:
 ```
 sudo aptitude install php librsvg2-bin pdftk imagemagick potrace
 ```
 
-Récupération des sources :
+Getting the source code:
 
 ```
 git clone https://github.com/24eme/signaturepdf.git
 ```
 
-Pour le lancer :
+To run it:
 
 ```
 php -S localhost:8000 -t public
 ```
 
-#### Configuration de PHP
+#### PHP Configuration
 
 ```
-upload_max_filesize = 24M # Taille maximum du fichier PDF à signer
-post_max_size = 24M # Taille maximum du fichier PDF à signer
-max_file_uploads = 201 # Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine
+upload_max_filesize = 24M # Maximum size of the PDF file to sign
+post_max_size = 24M # Maximum size of the PDF file to sign
+max_file_uploads = 201 # Maximum number of pages in the PDF, here 200 pages + the original PDF
 ```
 
-#### Configuration d'apache
+#### Apache Configuration
 
 ```
 DocumentRoot /path/to/signaturepdf/public
-
 <Directory /path/to/signaturepdf/public>
     Require all granted
     FallbackResource /index.php
@@ -71,15 +61,15 @@ DocumentRoot /path/to/signaturepdf/public
 </Directory>
 ```
 
-### Déployer avec docker
+### Deploy with Docker
 
-#### Construction de l'image
+#### Building the image
 
 ```bash
 docker build -t signaturepdf .
 ```
 
-#### Lancement d'un conteneur
+#### Running a container
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 signaturepdf
@@ -89,17 +79,17 @@ docker run -d --name=signaturepdf -p 8080:80 signaturepdf
 
 #### Configuration
 
-Les variables suivantes permettent de configurer le déployement :
+The following variables can be used to configure the deployment:
 
-| Variable               | description                                                        | exemple                          | defaut    |
-| ---------------------- | ------------------------------------------------------------------ | -------------------------------- | --------- |
-| `SERVERNAME`           | url de déploiement                                                 | `pdf.24eme.fr`                   | localhost |
-| `UPLOAD_MAX_FILESIZE`  | Taille maximum du fichier PDF à signer                             | 48M                              | 24M       |
-| `POST_MAX_SIZE`        | Taille maximum du fichier PDF à signer                             | 48M                              | 24M       |
-| `MAX_FILE_UPLOADS`     | Nombre de pages maximum du PDF, ici 200 pages + le PDF d'origine   | 401                              | 201       |
-| `PDF_STORAGE_PATH`     | chemin vers lequel les fichiers pdf uploadés pourront être stockés | /data                            | /data     |
-| `DISABLE_ORGANIZATION` | Desactiver la route Organiser                                      | true                             | false     |
-| `PDF_DEMO_LINK`        | Afficher, retirer ou changer le lien de PDF de démo                | false, `link` or `relative path` | true      |
+| Variable               | description                                                           | exemple                          | defaut    |
+| ---------------------- |-----------------------------------------------------------------------| -------------------------------- | --------- |
+| `SERVERNAME`           | Deployment URL                                                        | `pdf.24eme.fr`                   | localhost |
+| `UPLOAD_MAX_FILESIZE`  | Maximum size of the PDF file to sign                                  | 48M                              | 24M       |
+| `POST_MAX_SIZE`        | Maximum size of the PDF file to sign                                  | 48M                              | 24M       |
+| `MAX_FILE_UPLOADS`     | Maximum number of pages in the PDF, here 200 pages + the original PDF | 401                              | 201       |
+| `PDF_STORAGE_PATH`     | Path where uploaded PDF files can be stored                           | /data                            | /data     |
+| `DISABLE_ORGANIZATION` | Disable the Organize route                                            | true                             | false     |
+| `PDF_DEMO_LINK`        | Show, hide, or change the demo PDF link                               | false, `link` or `relative path` | true      |
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
@@ -107,25 +97,25 @@ docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UP
 
 ### Alpine
 
-Voici un script permettant d'installer la solution sous Linux Alpine (testé en version 3.15).
-Pensez à éditer la variable "domain" en début de script pour correspondre à l'URL avec laquelle elle sera appelée.
+Here is a script to install the solution on Linux Alpine (tested with version 3.15).
+Remember to edit the "domain" variable at the beginning of the script to match the URL it will be called with.
 
-Les composants principaux sont :
+The main components are:
 
 - php 8 + php-fpm
 - Nginx
-- pdftk (installation "manuelle" nécessitant openjdk8)
+- pdftk ("manual" installation requiring openjdk8)
 - imagick
 - potrace
 - librsvg
 
-Ce que fait le script :
+What the script does:
 
-- Installation des dépendances
-- Configuration de php et php-fpm
-- Configuration d'Nginx
-- Configuration du config.ini
-- Git clone du repo
+- Installs dependencies
+- Configures php and php-fpm
+- Configures Nginx
+- Configures the config.ini
+- Clones the repo
 
 ```
 #!/bin/sh
@@ -214,51 +204,51 @@ EOF
 
 ## Configuration
 
-### Activation et configuration du mode partage de signature à plusieurs
+### Enabling and Configuring Multi-Signature Mode
 
-Ce mode permet de proposer la signature d'un pdf à plusieurs personnes mais il nécessite que les PDF soient stockés sur le serveur, il convient donc de définir un dossier qui contiendra ces PDF.
+This mode allows multiple people to sign a PDF, but it requires that the PDFs be stored on the server.
 
-Il n'est pas obligatoire d'activer ce mode pour que l'application fonctionne c'est une option.
+It is not mandatory to enable this mode for the application to work; it is an option.
 
-Créer le fichier `config/config.ini`
+Create the `config/config.ini` file
 
 ```
 cp config/config.ini{.example,}
 ```
 
-Dans ce fichier `config/config.ini`, il suffit ce configurer la variable `PDF_STORAGE_PATH` avec le chemin vers lequel les fichiers pdf uploadés pourront être stockés :
+In the `config/config.ini` file, configure the `PDF_STORAGE_PATH` variable with the path where uploaded PDF files can be stored:
 
 ```
 PDF_STORAGE_PATH=/path/to/folder
 ```
 
-Créer ce dossier :
+Create this folder:
 
 ```
 mkdir /path/to/folder
 ```
 
-Le serveur web devra avoir les droits en écriture sur ce dossier.
+The web server should have write permissions on this folder.
 
-Par exemple pour apache :
+For example, for Apache:
 
 ```
 chown www-data /path/to/folder/to/store/pdf
 ```
 
-### Desactivation du mode Organiser
+### Disabling the Organize Mode
 
-Pour desactiver le mode Organiser, ajouter `DISABLE_ORGANIZATION=true` dans le fichier
-`config/config.ini`.
+To disable the Organize mode, add `DISABLE_ORGANIZATION=true` to the 
+`config/config.ini` file.
 
-### Cacher ou modifier le lien de PDF de démo
+### Hiding or Modifying the Demo PDF Link
 
-Pour cacher le lien de pdf de démo, ajouter `PDF_DEMO_LINK=false` dans le fichier
-`config/config.ini`.
+To hide the demo PDF link, add `PDF_DEMO_LINK=false` to the 
+`config/config.ini` file.
 
-### Champs chargés par défaut pour l'édition de métadonnéés
+### Default Fields for Metadata Editing
 
-Dans le fichier de configuration `config/config.ini` il est possible de rajouter autant de champs que l'on souhaite avec le type HTML de l'input (text, date, number email, etc ...) qui seront préchargées pour chaque PDF.
+In the `config/config.ini` file, you can add as many fields as you want with the HTML input type (text, date, number, email, etc.) that will be preloaded for each PDF.
 
 ```
 METADATA_DEFAULT_FIELDS[field1].type = "text"
@@ -267,9 +257,9 @@ METADATA_DEFAULT_FIELDS[field3].type = "date"
 METADATA_DEFAULT_FIELDS[field4].type = "number"
 ```
 
-## Mise à jour
+## Update
 
-La dernière version stable est sur la branche `master`, pour la mise à jour il suffit de récupérer les dernières modifications :
+The latest stable version is on the `master` branch. To update, simply fetch the latest changes:
 
 ```
 git pull -r
@@ -277,60 +267,61 @@ git pull -r
 
 ## Tests
 
-Pour exécuter les tests fonctionnels :
+To run functional tests:
 
 ```
 make test
 ```
 
-Les tests sont réalisés avec `puppeteer` et `jest`.
+The tests are performed using `puppeteer` and `jest`.
 
-Pour lancer les tests et voir le navigateur (en mode debug) :
+To run the tests and view the browser (in debug mode):
 
 ```
 DEBUG=1 make test
 ```
 
-## Librairies utilisées
+## Libraries Used
 
-- **Fat-Free** micro framework PHP : https://github.com/bcosca/fatfree (GPLv3)
-- **Bootstrap** framework html, css et javascript : https://getbootstrap.com/ (MIT)
-- **PDF.js** librairie de lecture de PDF dans un canvas HTML : https://github.com/mozilla/pdf.js (Apache-2.0)
-- **Fabric.js** librairie pour manipuler un canvas HTML : https://github.com/fabricjs/fabric.js (MIT)
-- **PDFtk** outils de manipulation de PDF (GPL)
-- **librsvg** outils de manipulation de SVG : https://gitlab.gnome.org/GNOME/librsvg (LGPL-2+)
-- **potrace** outils de transformation d'image bitamp en image vectorisé : http://potrace.sourceforge.net/ (GPLv2)
-- **OpenType.js** outils de transformation d'un texte et sa police en chemin : https://github.com/opentypejs/opentype.js (MIT)
-- **ImageMagick** ensemble d'outils de manipulation d'images : https://imagemagick.org/ (Apache-2.0)
-- **Caveat** police de caractères style écriture à la main : https://github.com/googlefonts/caveat (OFL-1.1)
-- **PDF-LIB** librairie js permettant de manipuler un PDF qui est utilisé pour écrire dans les métadonnées : https://pdf-lib.js.org/ (MIT)
+- **Fat-Free** PHP micro framework: https://github.com/bcosca/fatfree (GPLv3)
+- **Bootstrap** HTML, CSS, and JavaScript framework: https://getbootstrap.com/ (MIT)
+- **PDF.js** JavaScript library for rendering PDFs in an HTML canvas: https://github.com/mozilla/pdf.js (Apache-2.0)
+- **Fabric.js** JavaScript library for manipulating an HTML canvas: https://github.com/fabricjs/fabric.js (MIT)
+- **PDFtk** PDF manipulation tools (GPL)
+- **librsvg** SVG manipulation tools: https://gitlab.gnome.org/GNOME/librsvg (LGPL-2+)
+- **potrace** Bitmap to vector image conversion tools: http://potrace.sourceforge.net/ (GPLv2)
+- **OpenType.js** Tools for converting text and its font into paths: https://github.com/opentypejs/opentype.js (MIT)
+- **ImageMagick** Image manipulation toolset: https://imagemagick.org/ (Apache-2.0)
+- **Caveat** Handwriting-style font: https://github.com/googlefonts/caveat (OFL-1.1)
+- **PDF-LIB** JavaScript library for PDF manipulation used for writing metadata: https://pdf-lib.js.org/ (MIT)
 
-Pour les tests :
+For testing:
 
-- **Jest** Framework de Test Javascript : https://jestjs.io/ (MIT)
-- **Puppeteer** librairie Node.js pour contrôler un navigateur : https://github.com/puppeteer/puppeteer (Apache-2.0)
+- **Jest** JavaScript Testing Framework: https://jestjs.io/ (MIT)
+- **Puppeteer** Node.js library for controlling a web browser: https://github.com/puppeteer/puppeteer (Apache-2.0)
 
 ## Contributions
 
-### Traductions
+### Translation
 
-Pour mettre à jour la traduction, exécutez simplement `make` qui mettra a jour le fichier `.pot`,
-qui fera un merge avec les fichiers `.po` qui permetteront de recréer les fichiers `.mo` mis a jour.
+To update the translation, simply execute `make` that will update the `.pot` file,
+which will merge the `.po` files which then will allow to create updated `.mo` files.
 
-Des traductions peuvent etre ajoutées sur Weblate : https://hosted.weblate.org/projects/signature-pdf/application/
+Translations might be added on Weblate : https://hosted.weblate.org/projects/signature-pdf/application/
 
-### Contributeurs
 
-Ces personnes sont auteurices du code de ce logiciel :
+### Contributors
+
+These people are the authors of the code of this software :
 
 Vincent LAURENT (24ème), Jean-Baptiste Le Metayer (24ème), Xavier Garnier (Logilab), Simon Chabot (Logilab), Tangui Morlier (24ème), Gabriel POMA (24ème), Tanguy Le Faucheur (24ème), Étienne Deparis, battosai30
 
-### Financements
+### Fundings
 
-- 1 365 € HT de la société Logilab pour le développement du mode signature partagé à plusieurs
-- 1 950 € HT de la société Logilab pour le développement de l'édition des métadonnées
-- 100 € HT de don de la société Spirkop
-- 100 € HT de don de la société PDG IT
-- 1 040 € HT de la fondation NLNet pour l'internationalisation du logiciel
+- 1 365 € excl. taxes from the company Logilab for the development of the shared signature feature
+- 1 950 € excl. taxes from the company Logilab for the development of the metadata editing feature
+- 100 € excl. taxes donations from the company Spirkop
+- 100 € excl. taxes donations from the company PDG IT
+- 1 040 € excl. taxes from the foundation NLNet pour software internationalization
 
-Les modules signature et organiser ont été réalisés sur le temps de travail de salariés du 24ème.
+The development of the software was primarily done during the working hours of 24ème employees.

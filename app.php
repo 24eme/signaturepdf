@@ -406,11 +406,20 @@ $f3->route ('POST /compress',
             }
         });
 
+        $compressionType = $f3->get('POST.compressionType');
+        if ($compressionType === 'medium') {
+            $compressionType = '/ebook';
+        } elseif ($compressionType === 'low') {
+            $compressionType = '/printer';
+        } elseif ($compressionType === 'high') {
+            $compressionType = '/screen';
+        }
+
         $arrayPath = array_keys($files);
         $filePath = reset($arrayPath);
         $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
 
-        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -dQUIET -o %s %s", $outputFileName, $filePath));
+        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dQUIET -o %s %s", $compressionType, $outputFileName, $filePath));
 
         if ($returnCode !== false) {
                 header('Content-Type: application/pdf');

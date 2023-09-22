@@ -27,7 +27,7 @@ var disabledHoverStyle = function() {
 }
 var responsiveDisplay = function() {
     if(is_mobile()) {
-        document.getElementById('page-organization').style.paddingRight = "inherit";
+        document.getElementById('page-organization').classList.remove('decalage-pdf-div');
         menu.classList.remove('show');
         menuOffcanvas.hide();
         document.getElementById('container-pages').classList.remove('vh-100');
@@ -36,7 +36,7 @@ var responsiveDisplay = function() {
         document.getElementById('container-btn-zoom').classList.add('d-none');
     } else {
         menuOffcanvas.show();
-        document.getElementById('page-organization').style.paddingRight = "350px";
+        document.getElementById('page-organization').classList.add('decalage-pdf-div');
         document.getElementById('container-pages').classList.add('vh-100');
         document.getElementById('container-btn-zoom').style.top = '6px';
         document.getElementById('container-btn-zoom').style.right = '368px';

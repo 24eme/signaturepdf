@@ -42,7 +42,7 @@
             <small><?php echo _("Free open-source software"); ?> <span class="d-none d-md-inline"><?php echo _("under AGPL-3.0 license"); ?></span> : <a href="https://github.com/24eme/signaturepdf"><?php echo _("see the source code"); ?></a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
         </footer>
     </div>
-    <div id="page-organization" style="padding-right: 350px;" class="d-none">
+    <div id="page-organization" class="d-none decalage-pdf-div">
         <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
         <div style="top: 62px;" class="w-100 position-absolute text-center text-muted opacity-50 d-md-none"><em><?php echo _("Touch a page to select it"); ?></em></div>
         <div id="container-main">

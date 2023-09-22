@@ -40,7 +40,7 @@
         <small><?php echo _("Free open-source software"); ?> <span class="d-none d-md-inline"><?php echo _("under AGPL-3.0 license"); ?></span> : <a href="https://github.com/24eme/signaturepdf"><?php echo _("see the source code"); ?></a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
     </footer>
 </div>
-<div id="page-signature" style="padding-right: 350px;" class="d-none">
+<div id="page-signature" class="d-none decalage-pdf-div">
     <?php if(isset($hash)): ?>
         <div id="alert-signature-help" class="position-relative d-none">
             <div class="alert alert-primary alert-dismissible position-absolute top-0 start-50 translate-middle-x text-center mt-4 pb-2 w-50 opacity-100" style="z-index: 100;" role="alert">

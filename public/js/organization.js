@@ -31,15 +31,11 @@ var responsiveDisplay = function() {
         menu.classList.remove('show');
         menuOffcanvas.hide();
         document.getElementById('container-pages').classList.remove('vh-100');
-        document.getElementById('container-btn-zoom').style.top = '62px';
-        document.getElementById('container-btn-zoom').style.right = '6px';
         document.getElementById('container-btn-zoom').classList.add('d-none');
     } else {
         menuOffcanvas.show();
         document.getElementById('page-organization').classList.add('decalage-pdf-div');
         document.getElementById('container-pages').classList.add('vh-100');
-        document.getElementById('container-btn-zoom').style.top = '6px';
-        document.getElementById('container-btn-zoom').style.right = '368px';
         document.getElementById('container-btn-zoom').classList.remove('d-none');
     }
     menu.classList.remove('d-md-block');

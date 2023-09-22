@@ -90,3 +90,15 @@
 .decalage-pdf-div:dir(rtl) {
     padding-left: 350px;
 }
+
+#container-btn-zoom {
+    top: 6px;
+}
+
+#container-btn-zoom:dir(ltr) {
+    right: 368px;
+}
+
+#container-btn-zoom:dir(rtl) {
+    left: 368px;
+}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 17:48+0200\n"
+"POT-Creation-Date: 2023-09-22 18:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,497 +21,500 @@ msgstr ""
 msgid "en"
 msgstr ""
 
-#: templates/compress.html.php:13
+#: templates/compress.html.php:17
 msgid "Compress PDF"
 msgstr ""
 
-#: templates/compress.html.php:18 templates/metadata.html.php:18
-#: templates/organization.html.php:18 templates/signature.html.php:16
+#: templates/compress.html.php:22 templates/metadata.html.php:22
+#: templates/organization.html.php:22 templates/signature.html.php:20
 msgid "Site not functional without JavaScript enabled"
 msgstr ""
 
-#: templates/compress.html.php:25
+#: templates/compress.html.php:29
 #, php-format
 msgid "%s Compress a PDF"
 msgstr ""
 
-#: templates/compress.html.php:26
+#: templates/compress.html.php:30
 msgid "Reduce the size of a PDF"
 msgstr ""
 
-#: templates/compress.html.php:29 templates/compress.html.php:30
-#: templates/metadata.html.php:28 templates/metadata.html.php:29
-#: templates/organization.html.php:28 templates/organization.html.php:29
-#: templates/signature.html.php:26 templates/signature.html.php:27
+#: templates/compress.html.php:33 templates/compress.html.php:34
+#: templates/metadata.html.php:32 templates/metadata.html.php:33
+#: templates/organization.html.php:32 templates/organization.html.php:33
+#: templates/signature.html.php:30 templates/signature.html.php:31
 msgid "Choose a PDF"
 msgstr ""
 
-#: templates/compress.html.php:31 templates/signature.html.php:28
+#: templates/compress.html.php:35 templates/signature.html.php:32
 msgid "The PDF will be processed by the server without being stored or saved"
 msgstr ""
 
-#: templates/compress.html.php:33
-#, php-format
-msgid "%s Compress"
+#: templates/compress.html.php:37 templates/components/navtab.html.php:24
+msgid "Compress"
 msgstr ""
 
-#: templates/compress.html.php:38
+#: templates/compress.html.php:42
 msgid "Low compression (highest quality)"
 msgstr ""
 
-#: templates/compress.html.php:39
+#: templates/compress.html.php:43
 #, php-format
 msgid "%s Medium compression %s (default)"
 msgstr ""
 
-#: templates/compress.html.php:40
+#: templates/compress.html.php:44
 msgid "High compression (lowest quality)"
 msgstr ""
 
-#: templates/compress.html.php:48 templates/metadata.html.php:38
-#: templates/organization.html.php:38 templates/signature.html.php:36
+#: templates/compress.html.php:52 templates/metadata.html.php:42
+#: templates/organization.html.php:42 templates/signature.html.php:40
 msgid "Free open-source software"
 msgstr ""
 
-#: templates/compress.html.php:48 templates/metadata.html.php:38
-#: templates/organization.html.php:38 templates/signature.html.php:36
+#: templates/compress.html.php:52 templates/metadata.html.php:42
+#: templates/organization.html.php:42 templates/signature.html.php:40
 msgid "under AGPL-3.0 license"
 msgstr ""
 
-#: templates/compress.html.php:48 templates/metadata.html.php:38
-#: templates/organization.html.php:38 templates/signature.html.php:36
+#: templates/compress.html.php:52 templates/metadata.html.php:42
+#: templates/organization.html.php:42 templates/signature.html.php:40
 msgid "see the source code"
 msgstr ""
 
-#: templates/metadata.html.php:13
+#: templates/metadata.html.php:17
 msgid "Editing PDF metadata"
 msgstr ""
 
-#: templates/metadata.html.php:24
+#: templates/metadata.html.php:28
 #, php-format
 msgid "%s Edit metadata"
 msgstr ""
 
-#: templates/metadata.html.php:25
+#: templates/metadata.html.php:29
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr ""
 
-#: templates/metadata.html.php:32 templates/organization.html.php:32
-#: templates/signature.html.php:30
+#: templates/metadata.html.php:36 templates/organization.html.php:36
+#: templates/signature.html.php:34
 msgid "Test with a demo PDF"
 msgstr ""
 
-#: templates/metadata.html.php:45
+#: templates/metadata.html.php:49
 msgid "List of PDF metadata"
 msgstr ""
 
-#: templates/metadata.html.php:51
+#: templates/metadata.html.php:55
 msgid "Add new metadata"
 msgstr ""
 
-#: templates/metadata.html.php:54
+#: templates/metadata.html.php:58
 msgid "Key"
 msgstr ""
 
-#: templates/metadata.html.php:56
+#: templates/metadata.html.php:60
 msgid "Value"
 msgstr ""
 
-#: templates/metadata.html.php:58
+#: templates/metadata.html.php:62
 #, php-format
 msgid "%s Add"
 msgstr ""
 
-#: templates/metadata.html.php:64
+#: templates/metadata.html.php:68
 msgid "Close this PDF and return to the home page"
 msgstr ""
 
-#: templates/metadata.html.php:66
+#: templates/metadata.html.php:70
 msgid "Edit metadata"
 msgstr ""
 
-#: templates/metadata.html.php:76
+#: templates/metadata.html.php:80
 msgid "Save and download the PDF"
 msgstr ""
 
-#: templates/metadata.html.php:82 templates/signature.html.php:245
+#: templates/metadata.html.php:86 templates/signature.html.php:249
 msgid "Download the PDF"
 msgstr ""
 
-#: templates/organization.html.php:13
+#: templates/organization.html.php:17
 msgid "Organize PDF"
 msgstr ""
 
-#: templates/organization.html.php:24
+#: templates/organization.html.php:28
 #, php-format
 msgid "%s Organize PDF"
 msgstr ""
 
-#: templates/organization.html.php:25
+#: templates/organization.html.php:29
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr ""
 
-#: templates/organization.html.php:28
+#: templates/organization.html.php:32
 msgid "The PDF must not exceed "
 msgstr ""
 
-#: templates/organization.html.php:28
+#: templates/organization.html.php:32
 msgid "Mb"
 msgstr ""
 
-#: templates/organization.html.php:30
+#: templates/organization.html.php:34
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr ""
 
-#: templates/organization.html.php:43
+#: templates/organization.html.php:47
 msgid "Touch a page to select it"
 msgstr ""
 
-#: templates/organization.html.php:54
+#: templates/organization.html.php:58
 msgid "Close this PDF and return to home"
 msgstr ""
 
-#: templates/organization.html.php:56
+#: templates/organization.html.php:60
 msgid "PDF organization"
 msgstr ""
 
-#: templates/organization.html.php:56 templates/signature.html.php:57
+#: templates/organization.html.php:60 templates/signature.html.php:61
 msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
 
-#: templates/organization.html.php:65 templates/organization.html.php:97
+#: templates/organization.html.php:69 templates/organization.html.php:101
 #, php-format
 msgid "%s Add a PDF"
 msgstr ""
 
-#: templates/organization.html.php:70
+#: templates/organization.html.php:74
 #, php-format
 msgid "%s page(s) selected"
 msgstr ""
 
-#: templates/organization.html.php:72
+#: templates/organization.html.php:76
 #, php-format
 msgid "%s Rotate 90°"
 msgstr ""
 
-#: templates/organization.html.php:73 templates/organization.html.php:104
+#: templates/organization.html.php:77 templates/organization.html.php:108
 #, php-format
 msgid "%s Move"
 msgstr ""
 
-#: templates/organization.html.php:74 templates/organization.html.php:105
+#: templates/organization.html.php:78 templates/organization.html.php:109
 #, php-format
 msgid "%s Delete"
 msgstr ""
 
-#: templates/organization.html.php:75
+#: templates/organization.html.php:79
 #, php-format
 msgid "%s Extract and download"
 msgstr ""
 
-#: templates/organization.html.php:77
+#: templates/organization.html.php:81
 #, php-format
 msgid "%s Cancel selection"
 msgstr ""
 
-#: templates/organization.html.php:85 templates/organization.html.php:111
+#: templates/organization.html.php:89 templates/organization.html.php:115
 #, php-format
 msgid "%s Download the full PDF"
 msgstr ""
 
-#: templates/organization.html.php:101
+#: templates/organization.html.php:105
 msgid "No"
 msgstr ""
 
-#: templates/organization.html.php:101
+#: templates/organization.html.php:105
 msgid "page"
 msgstr ""
 
-#: templates/organization.html.php:101 templates/signature.html.php:176
+#: templates/organization.html.php:105 templates/signature.html.php:180
 msgid "Cancel"
 msgstr ""
 
-#: templates/organization.html.php:103
+#: templates/organization.html.php:107
 #, php-format
 msgid "%s Turn"
 msgstr ""
 
-#: templates/organization.html.php:114
+#: templates/organization.html.php:118
 #, php-format
 msgid "Download the selection"
 msgstr ""
 
-#: templates/organization.html.php:134
+#: templates/organization.html.php:138
 msgid "PDF documents"
 msgstr ""
 
-#: templates/organization.html.php:150
+#: templates/organization.html.php:154
 msgid "Select this page"
 msgstr ""
 
-#: templates/organization.html.php:151
+#: templates/organization.html.php:155
 msgid "Delete this page"
 msgstr ""
 
-#: templates/organization.html.php:152
+#: templates/organization.html.php:156
 msgid "Restore this page"
 msgstr ""
 
-#: templates/organization.html.php:153
+#: templates/organization.html.php:157
 msgid "Move this page"
 msgstr ""
 
-#: templates/organization.html.php:154
+#: templates/organization.html.php:158
 msgid "Move here"
 msgstr ""
 
-#: templates/organization.html.php:155
+#: templates/organization.html.php:159
 msgid "Turn this page"
 msgstr ""
 
-#: templates/organization.html.php:156
+#: templates/organization.html.php:160
 msgid "Download this page"
 msgstr ""
 
-#: templates/signature.html.php:22
+#: templates/signature.html.php:26
 #, php-format
 msgid "%s Sign a PDF"
 msgstr ""
 
-#: templates/signature.html.php:23
+#: templates/signature.html.php:27
 msgid "Sign, initial, stamp, complete a document"
 msgstr ""
 
-#: templates/signature.html.php:26
+#: templates/signature.html.php:30
 msgid "The PDF should not exceed"
 msgstr ""
 
-#: templates/signature.html.php:26
+#: templates/signature.html.php:30
 msgid "MB and"
 msgstr ""
 
-#: templates/signature.html.php:26
+#: templates/signature.html.php:30
 msgid "pages"
 msgstr ""
 
-#: templates/signature.html.php:43
+#: templates/signature.html.php:47
 msgid "How to sign?"
 msgstr ""
 
-#: templates/signature.html.php:44
+#: templates/signature.html.php:48
 msgid "By clicking directly on the document page"
 msgstr ""
 
-#: templates/signature.html.php:44
+#: templates/signature.html.php:48
 msgid "to insert the selected item in the right column"
 msgstr ""
 
-#: templates/signature.html.php:44
+#: templates/signature.html.php:48
 msgid "signature, initial, text, stamp, etc ..."
 msgstr ""
 
-#: templates/signature.html.php:55
+#: templates/signature.html.php:59
 msgid "Close this PDF and return to the homepage"
 msgstr ""
 
-#: templates/signature.html.php:57
+#: templates/signature.html.php:61
 msgid "PDF Signature"
 msgstr ""
 
-#: templates/signature.html.php:57
+#: templates/signature.html.php:61
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
 
-#: templates/signature.html.php:64
+#: templates/signature.html.php:68
 msgid "Keep the selection active"
 msgstr ""
 
-#: templates/signature.html.php:69
+#: templates/signature.html.php:73
 #, php-format
 msgid "%s Signature"
 msgstr ""
 
-#: templates/signature.html.php:69 templates/signature.html.php:74
-#: templates/signature.html.php:79 templates/signature.html.php:177
+#: templates/signature.html.php:73 templates/signature.html.php:78
+#: templates/signature.html.php:83 templates/signature.html.php:181
 msgid "Create"
 msgstr ""
 
-#: templates/signature.html.php:74
+#: templates/signature.html.php:78
 #, php-format
 msgid "%s Initial"
 msgstr ""
 
-#: templates/signature.html.php:79
+#: templates/signature.html.php:83
 #, php-format
 msgid "%s Stamp"
 msgstr ""
 
-#: templates/signature.html.php:83
+#: templates/signature.html.php:87
 #, php-format
 msgid "%s Text"
 msgstr ""
 
-#: templates/signature.html.php:87
+#: templates/signature.html.php:91
 #, php-format
 msgid "%s Check box"
 msgstr ""
 
-#: templates/signature.html.php:92
+#: templates/signature.html.php:96
 #, php-format
 msgid "%s Create an element"
 msgstr ""
 
-#: templates/signature.html.php:97
+#: templates/signature.html.php:101
 #, php-format
 msgid "%s Share to sign %s with multiple people"
 msgstr ""
 
-#: templates/signature.html.php:102 templates/signature.html.php:142
+#: templates/signature.html.php:106 templates/signature.html.php:146
 msgid "Download the signed PDF"
 msgstr ""
 
-#: templates/signature.html.php:107
+#: templates/signature.html.php:111
 #, php-format
 msgid "You are %s to have signed this PDF"
 msgstr ""
 
-#: templates/signature.html.php:110
+#: templates/signature.html.php:114
 #, php-format
 msgid "%s Download the PDF"
 msgstr ""
 
-#: templates/signature.html.php:115 templates/signature.html.php:140
+#: templates/signature.html.php:119 templates/signature.html.php:144
 msgid "Transmit my signature"
 msgstr ""
 
-#: templates/signature.html.php:123
+#: templates/signature.html.php:127
 #, php-format
 msgid "%s Select a signature"
 msgstr ""
 
-#: templates/signature.html.php:152
+#: templates/signature.html.php:156
 msgid "Draw"
 msgstr ""
 
-#: templates/signature.html.php:152
+#: templates/signature.html.php:156
 msgid "freehand"
 msgstr ""
 
-#: templates/signature.html.php:153
+#: templates/signature.html.php:157
 msgid "Enter"
 msgstr ""
 
-#: templates/signature.html.php:153
+#: templates/signature.html.php:157
 msgid "text"
 msgstr ""
 
-#: templates/signature.html.php:154
+#: templates/signature.html.php:158
 msgid "Import"
 msgstr ""
 
-#: templates/signature.html.php:154
+#: templates/signature.html.php:158
 msgid "an image"
 msgstr ""
 
-#: templates/signature.html.php:158
+#: templates/signature.html.php:162
 msgid "Clear signature"
 msgstr ""
 
-#: templates/signature.html.php:162
+#: templates/signature.html.php:166
 msgid "My signature"
 msgstr ""
 
-#: templates/signature.html.php:188
+#: templates/signature.html.php:192
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
 msgstr ""
 
-#: templates/signature.html.php:192
+#: templates/signature.html.php:196
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
 
-#: templates/signature.html.php:193
+#: templates/signature.html.php:197
 #, php-format
 msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
 
-#: templates/signature.html.php:194
+#: templates/signature.html.php:198
 #, php-format
 msgid "%s The PDF will be kept"
 msgstr ""
 
-#: templates/signature.html.php:194
+#: templates/signature.html.php:198
 msgid "for one year"
 msgstr ""
 
-#: templates/signature.html.php:194
+#: templates/signature.html.php:198
 msgid "for six months"
 msgstr ""
 
-#: templates/signature.html.php:194
+#: templates/signature.html.php:198
 msgid "for one month"
 msgstr ""
 
-#: templates/signature.html.php:194
+#: templates/signature.html.php:198
 msgid "for one week"
 msgstr ""
 
-#: templates/signature.html.php:194
+#: templates/signature.html.php:198
 msgid "for one day"
 msgstr ""
 
-#: templates/signature.html.php:194
+#: templates/signature.html.php:198
 msgid "for one hour"
 msgstr ""
 
-#: templates/signature.html.php:194
+#: templates/signature.html.php:198
 msgid "after the last signature."
 msgstr ""
 
-#: templates/signature.html.php:200
+#: templates/signature.html.php:204
 #, php-format
 msgid "%s Start sharing"
 msgstr ""
 
-#: templates/signature.html.php:212
+#: templates/signature.html.php:216
 #, php-format
 msgid "%s Sign this PDF with multiple people"
 msgstr ""
 
-#: templates/signature.html.php:216
+#: templates/signature.html.php:220
 msgid "Multiple people can sign this PDF simultaneously."
 msgstr ""
 
-#: templates/signature.html.php:217
+#: templates/signature.html.php:221
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
 
-#: templates/signature.html.php:219
+#: templates/signature.html.php:223
 msgid "Sharing link"
 msgstr ""
 
-#: templates/signature.html.php:224
+#: templates/signature.html.php:228
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr ""
 
-#: templates/signature.html.php:227
+#: templates/signature.html.php:231
 msgid "Close"
 msgstr ""
 
-#: templates/signature.html.php:238
+#: templates/signature.html.php:242
 msgid "Signed PDF"
 msgstr ""
 
-#: templates/signature.html.php:242
+#: templates/signature.html.php:246
 msgid "Your signature has been successfully recorded!"
+msgstr ""
+
+#: templates/signature.html.php:273
+msgid "Text to modify"
 msgstr ""
 
 #: templates/components/navtab.html.php:4
@@ -528,8 +531,4 @@ msgstr ""
 
 #: templates/components/navtab.html.php:21
 msgid "Metadata"
-msgstr ""
-
-#: templates/components/navtab.html.php:24
-msgid "Compress"
 msgstr ""

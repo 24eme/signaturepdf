@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 18:25+0200\n"
+"POT-Creation-Date: 2023-09-22 18:55+0200\n"
 "PO-Revision-Date: 2023-09-20 16:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -58,7 +58,7 @@ msgid "Compress"
 msgstr ""
 
 #: templates/compress.html.php:42
-msgid "Low compression (highest quality)"
+msgid "Low compression (maximum quality)"
 msgstr ""
 
 #: templates/compress.html.php:43
@@ -67,7 +67,7 @@ msgid "%s Medium compression %s (default)"
 msgstr ""
 
 #: templates/compress.html.php:44
-msgid "High compression (lowest quality)"
+msgid "High compression (minimum quality)"
 msgstr ""
 
 #: templates/compress.html.php:52 templates/metadata.html.php:42

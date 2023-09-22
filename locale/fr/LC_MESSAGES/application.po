@@ -58,8 +58,8 @@ msgid "Compress"
 msgstr "Compresser"
 
 #: templates/compress.html.php:42
-msgid "Low compression (highest quality)"
-msgstr "Basse compression (meilleure qualité)"
+msgid "Low compression (maximum quality)"
+msgstr "Basse compression (qualité maximum)"
 
 #: templates/compress.html.php:43
 #, php-format
@@ -67,8 +67,8 @@ msgid "%s Medium compression %s (default)"
 msgstr "%s Moyenne compression %s (défaut)"
 
 #: templates/compress.html.php:44
-msgid "High compression (lowest quality)"
-msgstr "Haute compression (moins bonne qualité)"
+msgid "High compression (minimum quality)"
+msgstr "Haute compression (qualité minimale)"
 
 #: templates/compress.html.php:52 templates/metadata.html.php:42
 #: templates/organization.html.php:42 templates/signature.html.php:40

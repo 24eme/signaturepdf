@@ -186,13 +186,13 @@ var is_mobile = function() {
 
 var responsiveDisplay = function() {
     if(is_mobile()) {
-        document.getElementById('page-signature').style.paddingRight = "inherit";
+        document.getElementById('page-signature').classList.remove('decalage-pdf-div');
         menu.classList.remove('show');
         menuOffcanvas.hide();
         document.getElementById('container-pages').classList.remove('vh-100');
     } else {
         menuOffcanvas.show();
-        document.getElementById('page-signature').style.paddingRight = "350px";
+        document.getElementById('page-signature').classList.add('decalage-pdf-div');
         document.getElementById('container-pages').classList.add('vh-100');
     }
     menu.classList.remove('d-md-block');

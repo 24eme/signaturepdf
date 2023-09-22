@@ -52,10 +52,11 @@ textdomain('application');
 function changeLanguage($lang, $f3) {
     $_SESSION['LANGUAGE'] = $lang;
     setcookie("LANGUAGE", $lang, strtotime('+1 year'));
-    getenv("LANGUAGE=$lang");
+    putenv("LANGUAGE=$lang");
+    $f3->set('LANGUAGE', $lang);
 }
 
-$f3->set('LANGUAGE', _("en"));
+$f3->set('TRANSLATION_LANGUAGE',  _("en"));
 
 $f3->route('GET /',
     function($f3) {

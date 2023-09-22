@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 17:16+0200\n"
+"POT-Creation-Date: 2023-09-22 17:42+0200\n"
 "PO-Revision-Date: 2023-09-07 13:19+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -527,9 +527,8 @@ msgid "Your signature has been successfully recorded!"
 msgstr "Votre signature a bien été prise en compte !"
 
 #: templates/components/navtab.html.php:4
-#, php-format
-msgid "%s Language"
-msgstr "%s Langue"
+msgid "Language"
+msgstr "Langue"
 
 #: templates/components/navtab.html.php:15
 msgid "Sign"
@@ -548,6 +547,10 @@ msgid "Compress"
 msgstr "Compresser"
 
 #, php-format
+#~ msgid "%s Language"
+#~ msgstr "%s Langue"
+
+#, php-format
 #~ msgid "%s Sign"
 #~ msgstr "%s Signer"
 
@@ -558,9 +561,6 @@ msgstr "Compresser"
 #, php-format
 #~ msgid "%s Metadata"
 #~ msgstr "%s Metadonnées"
-
-#~ msgid "Language"
-#~ msgstr "Langue"
 
 #, php-format
 #~ msgid "%s page selected"

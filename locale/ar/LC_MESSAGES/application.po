@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 17:16+0200\n"
+"POT-Creation-Date: 2023-09-22 17:42+0200\n"
 "PO-Revision-Date: 2023-09-20 16:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -520,21 +520,20 @@ msgid "Your signature has been successfully recorded!"
 msgstr "تم تسجيل توقيعك بنجاح!"
 
 #: templates/components/navtab.html.php:4
-#, php-format
-msgid "%s Language"
-msgstr ""
+msgid "Language"
+msgstr "اللغة"
 
 #: templates/components/navtab.html.php:15
 msgid "Sign"
-msgstr ""
+msgstr "وقِّع"
 
 #: templates/components/navtab.html.php:18
 msgid "Organize"
-msgstr ""
+msgstr "نظِّم"
 
 #: templates/components/navtab.html.php:21
 msgid "Metadata"
-msgstr ""
+msgstr "البيانات الوصفية"
 
 #: templates/components/navtab.html.php:24
 msgid "Compress"
@@ -554,6 +553,3 @@ msgstr ""
 
 #~ msgid "page selected"
 #~ msgstr "صفحة محددة"
-
-#~ msgid "Language"
-#~ msgstr "اللغة"

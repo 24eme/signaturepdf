@@ -86,6 +86,7 @@ $f3->route('GET /signature/@hash',
             $f3->error(404);
         }
 
+        $f3->set('activeTab', 'sign');
         echo View::instance()->render('signature.html.php');
     }
 );
@@ -238,6 +239,7 @@ $f3->route('POST /share',
 
 $f3->route('GET /signature/@hash/pdf',
     function($f3) {
+        $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
         $files = scandir($sharingFolder);
@@ -312,6 +314,7 @@ $f3->route('POST /signature/@hash/save',
 
 $f3->route('GET /signature/@hash/nblayers',
     function($f3) {
+        $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $files = scandir($f3->get('PDF_STORAGE_PATH').$hash);
         $nbLayers = 0;

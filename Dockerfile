@@ -10,6 +10,7 @@ ENV PDF_DEMO_LINK=true
 
 RUN apt update && \
     apt install -y gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript && \
+    docker-php-ext-install gettext && \
     rm -rf /var/lib/apt/lists/*
 
 COPY . /usr/local/signaturepdf

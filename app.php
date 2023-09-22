@@ -57,6 +57,11 @@ function changeLanguage($lang, $f3) {
 }
 
 $f3->set('TRANSLATION_LANGUAGE', _("en"));
+$f3->set('DIRECTION_LANGUAGE', 'ltr');
+if($f3->get('TRANSLATION_LANGUAGE') == "ar") {
+    $f3->set('DIRECTION_LANGUAGE', 'rtl');
+}
+
 
 $f3->route('GET /',
     function($f3) {

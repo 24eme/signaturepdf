@@ -42,7 +42,7 @@
         <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
         <div style="top: 62px;" class="w-100 position-absolute text-center text-muted opacity-50 d-md-none"><em><?php echo _("Touch a page to select it"); ?></em></div>
         <div id="container-main">
-            <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll; overflow-x: hidden;">
+            <div id="container-pages" class="col-12 pt-1 vh-100 d-flex align-content-start flex-wrap position-relative" style="overflow-y: scroll; overflow-x: hidden;" dir="auto">
             </div>
         </div>
         <div id="container-btn-zoom" class="btn-group-vertical position-fixed" style="top: 6px; right: 368px;">

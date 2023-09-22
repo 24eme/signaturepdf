@@ -56,7 +56,7 @@ function changeLanguage($lang, $f3) {
     $f3->set('LANGUAGE', $lang);
 }
 
-$f3->set('TRANSLATION_LANGUAGE',  _("en"));
+$f3->set('TRANSLATION_LANGUAGE', _("en"));
 
 $f3->route('GET /',
     function($f3) {

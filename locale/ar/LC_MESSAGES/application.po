@@ -525,15 +525,15 @@ msgstr "اللغة"
 
 #: templates/components/navtab.html.php:15
 msgid "Sign"
-msgstr ""
+msgstr "وقِّع"
 
 #: templates/components/navtab.html.php:18
 msgid "Organize"
-msgstr ""
+msgstr "نظِّم"
 
 #: templates/components/navtab.html.php:21
 msgid "Metadata"
-msgstr ""
+msgstr "البيانات الوصفية"
 
 #: templates/components/navtab.html.php:24
 msgid "Compress"

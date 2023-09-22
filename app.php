@@ -67,6 +67,7 @@ $f3->route('GET /signature',
         if(!$f3->get('PDF_STORAGE_PATH')) {
             $f3->set('noSharingMode', true);
         }
+        $f3->set('activeTab', 'sign');
         echo View::instance()->render('signature.html.php');
     }
 );
@@ -337,6 +338,7 @@ $f3->route('GET /organization',
     function($f3) {
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
 
+        $f3->set('activeTab', 'organize');
         echo View::instance()->render('organization.html.php');
     }
 );
@@ -384,12 +386,14 @@ $f3->route('POST /organize',
 
 $f3->route('GET /metadata',
     function($f3) {
+        $f3->set('activeTab','metadata');
         echo View::instance()->render('metadata.html.php');
     }
 );
 
 $f3->route('GET /compress',
     function($f3) {
+        $f3->set('activeTab', 'compress');
         echo View::instance()->render('compress.html.php');
     }
 );

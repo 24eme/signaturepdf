@@ -265,6 +265,7 @@
     var maxPage = <?php echo $maxPage ?>;
     var sharingMode = <?php echo intval(!isset($noSharingMode)) ?>;
     var hash = null;
+    var direction = '<?php if ($TRANSLATION_LANGUAGE == 'ar'): ?>rtl<?php else: ?>ltr<?php endif ?>';
     <?php if(isset($hash)): ?>
     hash = "<?php echo $hash ?>";
     <?php endif; ?>

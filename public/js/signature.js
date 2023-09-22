@@ -532,6 +532,7 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
         left: x,
         top: y - 20,
         fontSize: 20,
+        direction: direction,
         fontFamily: 'Monospace'
       });
 

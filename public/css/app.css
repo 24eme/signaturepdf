@@ -102,3 +102,11 @@
 #container-btn-zoom:dir(rtl) {
     left: 357px;
 }
+
+.file-list-checkbox:dir(ltr) {
+    right: 10px;
+}
+
+.file-list-checkbox:dir(rtl) {
+    left: 10px;
+}

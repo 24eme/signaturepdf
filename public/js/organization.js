@@ -317,7 +317,7 @@ var updateListePDF = function() {
     for (var i = 0; i < nbFiles; i++) {
         let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
         const pdfFile = document.querySelector('#input_pdf').files.item(i);
-        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><span class="ms-2">'+decodeURI(pdfFile.name)+'</span> <input class="form-check-input float-end position-absolute" style="right: 10px;" type="checkbox" /> </li>');
+        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><span class="ms-2">'+decodeURI(pdfFile.name)+'</span> <input class="form-check-input float-end position-absolute file-list-checkbox" type="checkbox" /> </li>');
         let fileItem = document.querySelector('#file_' + pdfLetter);
         fileItem.querySelector('input[type=checkbox]').addEventListener('change', function(e) {
             document.querySelectorAll('.canvas-container').forEach(function(page) {

@@ -44,15 +44,17 @@ if ($f3->get('GET.lang')) {
 } elseif (isset($_COOKIE['LANGUAGE'])) {
     changeLanguage($_COOKIE['LANGUAGE'], $f3);
 }
+
 bindtextdomain('application', $f3->get('ROOT')."/locale/");
 textdomain('application');
 
 function changeLanguage($lang, $f3) {
     $_SESSION['LANGUAGE'] = $lang;
     setcookie("LANGUAGE", $lang, strtotime('+1 year'));
-    putenv("LANGUAGE=$lang");
-    $f3->set('LANGUAGE', $lang);
+    getenv("LANGUAGE=$lang");
 }
+
+$f3->set('LANGUAGE', _("en"));
 
 $f3->route('GET /',
     function($f3) {

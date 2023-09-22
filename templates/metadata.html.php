@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr_FR">
+<html lang="<?php echo $LANGUAGE ?>"<?php if($LANGUAGE == 'ar'): ?> dir="ltr" style="direction: ltr;"<?php endif;?>>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">

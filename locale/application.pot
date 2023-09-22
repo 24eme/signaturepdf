@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 18:27+0200\n"
+"POT-Creation-Date: 2023-09-22 18:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgid "Compress"
 msgstr ""
 
 #: templates/compress.html.php:42
-msgid "Low compression (highest quality)"
+msgid "Low compression (maximum quality)"
 msgstr ""
 
 #: templates/compress.html.php:43
@@ -64,7 +64,7 @@ msgid "%s Medium compression %s (default)"
 msgstr ""
 
 #: templates/compress.html.php:44
-msgid "High compression (lowest quality)"
+msgid "High compression (minimum quality)"
 msgstr ""
 
 #: templates/compress.html.php:52 templates/metadata.html.php:42

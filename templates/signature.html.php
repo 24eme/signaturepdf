@@ -268,6 +268,10 @@
     <?php if(isset($hash)): ?>
     hash = "<?php echo $hash ?>";
     <?php endif; ?>
+
+    var trad = <?php echo json_encode([
+        'Text to modify' => _('Text to modify')
+    ]); ?>;
     </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>
   </body>

@@ -157,7 +157,8 @@
         'Move this page' => _('Move this page'),
         'Move here' => _('Move here'),
         'Turn this page' => _('Turn this page'),
-        'Download this page' => _('Download this page')
+        'Download this page' => _('Download this page'),
+
     ]); ?>;
     </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/organization.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/organization.js") ?>"></script>

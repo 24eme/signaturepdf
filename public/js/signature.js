@@ -528,7 +528,7 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
     }
 
     if(item == 'text') {
-        let textbox = new fabric.Textbox('Texte à modifier', {
+        let textbox = new fabric.Textbox(trad['Text to modify'], {
         left: x,
         top: y - 20,
         fontSize: 20,

@@ -32,16 +32,16 @@
     </div>
     <ul class="nav justify-content-center nav-tabs mt-2">
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"> <?php echo sprintf(_("%s Sign"), '<i class="bi bi-vector-pen"></i>'); ?></a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"><i class="bi bi-vector-pen"></i> <span class="d-none d-sm-inline-block"><?php echo _("Sign"); ?></span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"> <?php echo sprintf(_("%s Organize"), '<i class="bi bi-ui-checks-grid"></i>'); ?></a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"><i class="bi bi-ui-checks-grid"></i> <span class="d-none d-sm-inline-block"><?php echo _("Organize"); ?></span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"> <?php echo sprintf(_("%s Metadata"), '<i class="bi bi-tags"></i>'); ?></a>
+            <a class="nav-link" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata"><i class="bi bi-tags"></i> <span class="d-none d-sm-inline-block"><?php echo _("Metadata"); ?></span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/compress"> <?php echo sprintf(_("%s Compress"), '<i class="bi bi-chevron-bar-contract"></i>'); ?></a>
+            <a class="nav-link active" href="<?php echo $REVERSE_PROXY_URL; ?>/compress"><i class="bi bi-chevron-bar-contract"></i> <span class="d-none d-sm-inline-block"><?php echo _("Compress"); ?></span></a>
         </li>
     </ul>
     <div class="px-4 py-4 text-center">
@@ -52,7 +52,7 @@
                 <div class="col-12">
                     <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?></label>
                     <input name="input_pdf_upload" id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" onchange="handleFileChange()" />
-                    <p class="mt-2 small fw-light text-dark">&nbsp;</p>
+                    <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being stored or saved") ?></p>
                     <div class="btn-group">
                         <button type="submit" name="compressionType" value="medium" id="compressBtn" class="btn btn-primary" disabled><?php echo sprintf(_("%s Compress"), '<i class="bi bi-download"></i>'); ?></button>
                         <button type="button" id="dropdownMenuReference" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent" disabled>

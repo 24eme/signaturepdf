@@ -426,10 +426,10 @@ $f3->route ('POST /compress',
                 header("Content-Disposition: attachment; filename=$outputFileName");
                 readfile($outputFileName);
                 unlink($outputFileName);
-            } else {
-                echo "PDF compression failed. Please try again.";
-            }
+        } else {
+                echo "PDF compression failed.";
         }
+    }
 );
 
 function getCommit() {

@@ -108,6 +108,7 @@ The main components are:
 - imagick
 - potrace
 - librsvg
+- ghostscript
 
 What the script does:
 

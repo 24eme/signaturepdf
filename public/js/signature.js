@@ -323,7 +323,7 @@ var getHtmlSvg = function(svg, i) {
     if(svg.type) {
         document.querySelector('.btn-add-svg-type[data-type="'+svg.type+'"]').classList.add('d-none');
     }
-    svgButton.innerHTML += '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute" style="right: 6px; top: 2px;"><i class="bi bi-trash"></i></a>';
+    svgButton.innerHTML += '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute"><i class="bi bi-trash"></i></a>';
     svgButton.draggable = true;
     svgButton.addEventListener('dragstart', function(event) {
         svgDragStart(this, event);

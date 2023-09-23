@@ -38,6 +38,18 @@
     max-height: 200px;
 }
 
+.btn-svg-list-suppression {
+    top: 2px;
+}
+
+.btn-svg-list-suppression:dir(ltr) {
+    right: 6px;
+}
+
+.btn-svg-list-suppression:dir(rtl) {
+    left: 6px;
+}
+
 .canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
     font-size: 30px;
     cursor: move;

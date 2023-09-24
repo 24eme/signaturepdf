@@ -87,8 +87,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div title="' + trad['Delete this page'] + '" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div title="' + trad['Restore this page'] + '" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
                     pageHTML += '<div title="' + trad['Move this page'] + '" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute start-50 top-50 translate-middle p-2 ps-3 pe-3 container-resize btn-drag-here d-none"><i class="bi bi-arrow-up-square"></i></div>';
-                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute top-50 start-50 translate-middle  rounded-circle container-resize btn-drag-here_mobile bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
+                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute start-50 top-50 translate-middle p-2 ps-4 pe-4 container-resize btn-drag-here d-none"><i class="bi bi-arrows-expand-vertical"></i></div>';
                     pageHTML += '<div title="' + trad['Turn this page'] + '" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="' + trad['Download this page'] + '" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
                     pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
@@ -103,9 +102,6 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('click', function(e) {
-                    if(isPageDeleted(this) || isPageDragged(this) || isDraggedMode()) {
-                        return;
-                    }
                     canvasContainer.querySelector('.btn-select').click();
                 });
                 canvasContainer.addEventListener('mouseenter', function(e) {
@@ -197,13 +193,17 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     toggleSelectPage(this.parentNode);
                     document.getElementById('btn_drag_select').click();
                 });
-                canvasContainer.querySelector('.btn-drag-here_mobile').addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    movePagesDragged(this.parentNode, 'right');
-                });
                 canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    movePagesDragged(this.parentNode, 'right');
+                    let btn = e.target;
+                    if(!e.target.classList.contains('btn-drag-here')) {
+                        btn = e.target.parentElement;
+                    }
+                    if(e.layerX <= btn.offsetWidth / 2) {
+                        movePagesDragged(this.parentNode, 'left');
+                    } else {
+                        movePagesDragged(this.parentNode, 'right');
+                    }
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -344,6 +344,9 @@ var selectPage = function(page, state) {
 }
 
 var toggleSelectPage = function(page) {
+    if(isPageDeleted(page) || isPageDragged(page) || isDraggedMode()) {
+        return;
+    }
     selectPage(page, !isPageSelected(page));
     updateGlobalState();
 }
@@ -418,7 +421,6 @@ var updatePageState = function(page) {
     page.querySelector('.btn-select').classList.remove('text-primary');
     page.querySelector('.btn-drag').classList.add('d-none');
     page.querySelector('.btn-drag-here').classList.add('d-none');
-    page.querySelector('.btn-drag-here_mobile').classList.add('d-none');
     page.querySelector('.btn-restore').classList.add('d-none');
     page.querySelector('.page-title').classList.add('d-none');
     page.querySelector('.canvas-pdf').classList.remove('opacity-50');

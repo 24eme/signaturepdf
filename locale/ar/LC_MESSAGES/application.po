@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 12:26+0200\n"
+"POT-Creation-Date: 2023-09-25 15:39+0200\n"
 "PO-Revision-Date: 2023-09-25 08:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -20,7 +20,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 5.1-dev\n"
 
-#: app.php:59
+#: app.php:60
 msgid "en"
 msgstr "ar"
 
@@ -48,6 +48,14 @@ msgstr "تخفيف حجم ملف PDF"
 #: templates/signature.html.php:26 templates/signature.html.php:27
 msgid "Choose a PDF"
 msgstr "إختر ملف PDF"
+
+#: templates/compress.html.php:29 templates/organization.html.php:28
+msgid "The PDF must not exceed "
+msgstr "لا يجب أن يتجاوز حجم ملف الـ PDF "
+
+#: templates/compress.html.php:29 templates/organization.html.php:28
+msgid "Mb"
+msgstr "ميغابايت"
 
 #: templates/compress.html.php:31 templates/signature.html.php:28
 msgid "The PDF will be processed by the server without being stored or saved"
@@ -152,14 +160,6 @@ msgstr "%s تنظيم الـ PDF"
 #: templates/organization.html.php:25
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "دمج، فرز، تدوير، حذف، استخراج الصفحات"
-
-#: templates/organization.html.php:28
-msgid "The PDF must not exceed "
-msgstr "لا يجب أن يتجاوز حجم ملف الـ PDF "
-
-#: templates/organization.html.php:28
-msgid "Mb"
-msgstr "ميغابايت"
 
 #: templates/organization.html.php:30
 msgid ""
@@ -275,6 +275,10 @@ msgstr "تدوير هذه الصفحة"
 #: templates/organization.html.php:144
 msgid "Download this page"
 msgstr "تنزيل هذه الصفحة"
+
+#: templates/organization.html.php:145
+msgid "Page"
+msgstr ""
 
 #: templates/signature.html.php:22
 #, php-format

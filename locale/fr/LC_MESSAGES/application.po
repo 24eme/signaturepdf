@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 12:26+0200\n"
+"POT-Creation-Date: 2023-09-25 15:39+0200\n"
 "PO-Revision-Date: 2023-09-07 13:19+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.0.1-dev\n"
 
-#: app.php:59
+#: app.php:60
 msgid "en"
 msgstr "fr"
 
@@ -48,6 +48,14 @@ msgstr "Réduire la taille d'un PDF"
 #: templates/signature.html.php:26 templates/signature.html.php:27
 msgid "Choose a PDF"
 msgstr "Choisir un PDF"
+
+#: templates/compress.html.php:29 templates/organization.html.php:28
+msgid "The PDF must not exceed "
+msgstr "Le PDF ne doit pas dépasser "
+
+#: templates/compress.html.php:29 templates/organization.html.php:28
+msgid "Mb"
+msgstr "Mo"
 
 #: templates/compress.html.php:31 templates/signature.html.php:28
 msgid "The PDF will be processed by the server without being stored or saved"
@@ -152,14 +160,6 @@ msgstr "%s Organiser des PDF"
 #: templates/organization.html.php:25
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Fusionner, trier, pivoter, supprimer, extraire des pages"
-
-#: templates/organization.html.php:28
-msgid "The PDF must not exceed "
-msgstr "Le PDF ne doit pas dépasser "
-
-#: templates/organization.html.php:28
-msgid "Mb"
-msgstr "Mo"
 
 #: templates/organization.html.php:30
 msgid ""
@@ -276,6 +276,10 @@ msgstr "Tourner cette page"
 #: templates/organization.html.php:144
 msgid "Download this page"
 msgstr "Télécharger cette page"
+
+#: templates/organization.html.php:145
+msgid "Page"
+msgstr "Page"
 
 #: templates/signature.html.php:22
 #, php-format

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 12:26+0200\n"
+"POT-Creation-Date: 2023-09-25 15:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: app.php:59
+#: app.php:60
 msgid "en"
 msgstr ""
 
@@ -44,6 +44,14 @@ msgstr ""
 #: templates/organization.html.php:28 templates/organization.html.php:29
 #: templates/signature.html.php:26 templates/signature.html.php:27
 msgid "Choose a PDF"
+msgstr ""
+
+#: templates/compress.html.php:29 templates/organization.html.php:28
+msgid "The PDF must not exceed "
+msgstr ""
+
+#: templates/compress.html.php:29 templates/organization.html.php:28
+msgid "Mb"
 msgstr ""
 
 #: templates/compress.html.php:31 templates/signature.html.php:28
@@ -148,14 +156,6 @@ msgstr ""
 
 #: templates/organization.html.php:25
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
-
-#: templates/organization.html.php:28
-msgid "The PDF must not exceed "
-msgstr ""
-
-#: templates/organization.html.php:28
-msgid "Mb"
 msgstr ""
 
 #: templates/organization.html.php:30
@@ -271,6 +271,10 @@ msgstr ""
 
 #: templates/organization.html.php:144
 msgid "Download this page"
+msgstr ""
+
+#: templates/organization.html.php:145
+msgid "Page"
 msgstr ""
 
 #: templates/signature.html.php:22

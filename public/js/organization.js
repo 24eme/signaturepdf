@@ -31,15 +31,11 @@ var responsiveDisplay = function() {
         menu.classList.remove('show');
         menuOffcanvas.hide();
         document.getElementById('container-pages').classList.remove('vh-100');
-        document.getElementById('container-btn-zoom').style.top = '62px';
-        document.getElementById('container-btn-zoom').style.right = '6px';
         document.getElementById('container-btn-zoom').classList.add('d-none');
     } else {
         menuOffcanvas.show();
         document.getElementById('page-organization').classList.add('decalage-pdf-div');
         document.getElementById('container-pages').classList.add('vh-100');
-        document.getElementById('container-btn-zoom').style.top = '6px';
-        document.getElementById('container-btn-zoom').style.right = '368px';
         document.getElementById('container-btn-zoom').classList.remove('d-none');
     }
     menu.classList.remove('d-md-block');
@@ -91,9 +87,7 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div title="' + trad['Delete this page'] + '" class="position-absolute top-50 start-0 translate-middle-y p-2 ps-3 pe-3 ms-2 rounded-circle btn-delete d-none"><i class="bi bi-trash"></i></div>';
                     pageHTML += '<div title="' + trad['Restore this page'] + '" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-restore d-none"><i class="bi bi-recycle"></i></div>';
                     pageHTML += '<div title="' + trad['Move this page'] + '" class="position-absolute top-50 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag d-none"><i class="bi bi-arrows-move"></i></div>';
-                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute start-0 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-left bg-white shadow d-none" style="left: -5px !important;"><i class="bi bi-arrow-up-square"></i></div>';
-                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute start-100 top-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here-right bg-white shadow d-none" style="margin-left: 3px !important;"><i class="bi bi-arrow-up-square"></i></div>';
-                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute top-100 start-50 translate-middle p-2 ps-3 pe-3 rounded-circle container-resize btn-drag-here_mobile bg-white shadow d-none"><i class="bi bi-arrows-collapse"></i></div>';
+                    pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute start-50 top-50 translate-middle p-2 ps-4 pe-4 container-resize btn-drag-here d-none"><i class="bi bi-arrows-expand-vertical"></i></div>';
                     pageHTML += '<div title="' + trad['Turn this page'] + '" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="' + trad['Download this page'] + '" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
                     pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Page '+page.pageNumber+' - '+filename+'</p>';
@@ -108,9 +102,6 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.addEventListener('click', function(e) {
-                    if(isPageDeleted(this) || isPageDragged(this)) {
-                        return;
-                    }
                     canvasContainer.querySelector('.btn-select').click();
                 });
                 canvasContainer.addEventListener('mouseenter', function(e) {
@@ -129,9 +120,6 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                         return false;
                     }
                     if(isDraggedMode()) {
-                        return false;
-                    }
-                    if(isSelectionMode()) {
                         return false;
                     }
                     this.querySelector('.container-resize').classList.add('d-none');
@@ -202,19 +190,20 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                 });
                 canvasContainer.querySelector('.btn-drag').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    toggleDragPage(this.parentNode);
+                    toggleSelectPage(this.parentNode);
+                    document.getElementById('btn_drag_select').click();
                 });
-                canvasContainer.querySelector('.btn-drag-here_mobile').addEventListener('click', function(e) {
+                canvasContainer.querySelector('.btn-drag-here').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    movePagesDragged(this.parentNode, 'right');
-                });
-                canvasContainer.querySelector('.btn-drag-here-right').addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    movePagesDragged(this.parentNode, 'right');
-                });
-                canvasContainer.querySelector('.btn-drag-here-left').addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    movePagesDragged(this.parentNode, 'left');
+                    let btn = e.target;
+                    if(!e.target.classList.contains('btn-drag-here')) {
+                        btn = e.target.parentElement;
+                    }
+                    if(e.layerX <= btn.offsetWidth / 2) {
+                        movePagesDragged(this.parentNode, 'left');
+                    } else {
+                        movePagesDragged(this.parentNode, 'right');
+                    }
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -321,7 +310,7 @@ var updateListePDF = function() {
     for (var i = 0; i < nbFiles; i++) {
         let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
         const pdfFile = document.querySelector('#input_pdf').files.item(i);
-        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><span class="ms-2">'+decodeURI(pdfFile.name)+'</span> <input class="form-check-input float-end position-absolute" style="right: 10px;" type="checkbox" /> </li>');
+        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><span class="ms-2">'+decodeURI(pdfFile.name)+'</span> <input class="form-check-input float-end position-absolute file-list-checkbox" type="checkbox" /> </li>');
         let fileItem = document.querySelector('#file_' + pdfLetter);
         fileItem.querySelector('input[type=checkbox]').addEventListener('change', function(e) {
             document.querySelectorAll('.canvas-container').forEach(function(page) {
@@ -355,6 +344,9 @@ var selectPage = function(page, state) {
 }
 
 var toggleSelectPage = function(page) {
+    if(isPageDeleted(page) || isPageDragged(page) || isDraggedMode()) {
+        return;
+    }
     selectPage(page, !isPageSelected(page));
     updateGlobalState();
 }
@@ -391,7 +383,7 @@ var movePagesDragged = function(pageHere, position) {
             pageHere.insertAdjacentElement('beforebegin', page);
         }
     });
-    bootstrap.Modal.getOrCreateInstance(document.querySelector('#modalDrag')).hide();
+    document.getElementById('btn_drag_select').click();
 }
 
 var toggleDeletePage = function(page) {
@@ -428,13 +420,16 @@ var updatePageState = function(page) {
     page.querySelector('.btn-select').classList.add('d-none');
     page.querySelector('.btn-select').classList.remove('text-primary');
     page.querySelector('.btn-drag').classList.add('d-none');
-    page.querySelector('.btn-drag-here-left').classList.add('d-none');
-    page.querySelector('.btn-drag-here-right').classList.add('d-none');
-    page.querySelector('.btn-drag-here_mobile').classList.add('d-none');
+    page.querySelector('.btn-drag-here').classList.add('d-none');
     page.querySelector('.btn-restore').classList.add('d-none');
     page.querySelector('.page-title').classList.add('d-none');
     page.querySelector('.canvas-pdf').classList.remove('opacity-50');
     page.classList.remove('page-dragged');
+    page.draggable = true;
+
+    if(isSelectionMode()) {
+        page.draggable = false;
+    }
 
     if(isPageDeleted(page)) {
         page.querySelector('.canvas-pdf').style.opacity = '0.15';
@@ -462,7 +457,7 @@ var updatePageState = function(page) {
         page.querySelector('.btn-restore').classList.remove('d-none');
     }
 
-    if(isPageSelected(page) && !isDraggedMode()) {
+    if(isPageSelected(page)) {
         page.querySelector('.page-title').classList.remove('d-none');
         page.classList.add('border-primary', 'shadow-sm', 'bg-primary');
         page.classList.remove('border-transparent', 'bg-transparent', 'border-secondary', 'bg-secondary');
@@ -478,8 +473,7 @@ var updatePageState = function(page) {
 
     if(!isPageDragged(page) && isDraggedMode()) {
         page.querySelector('.canvas-pdf').classList.add('opacity-50');
-        page.querySelector('.btn-drag-here-left').classList.remove('d-none');
-        page.querySelector('.btn-drag-here-right').classList.remove('d-none');
+        page.querySelector('.btn-drag-here').classList.remove('d-none');
     }
 }
 
@@ -540,11 +534,6 @@ var updateGlobalState = function() {
         document.querySelector('#bottom_bar_action_selection').classList.remove('d-none');
         document.querySelector('#bottom_bar_action').classList.add('d-none');
         document.querySelector('#save').setAttribute('disabled', 'disabled');
-    }
-    if(isDraggedMode()) {
-        document.querySelector('#modalDrag .modal-body').insertAdjacentElement('afterbegin', document.querySelector('#container-pages'));
-        document.querySelector('#container-pages').style.overflow = 'visible';
-        bootstrap.Modal.getOrCreateInstance(document.querySelector('#modalDrag')).show();
     }
 }
 
@@ -634,6 +623,9 @@ var createEventsListener = function() {
         document.getElementById('btn_cancel_select').click();
     });
     document.getElementById('btn_cancel_select').addEventListener('click', function(event) {
+        if(isDraggedMode()) {
+            document.getElementById('btn_drag_select').click();
+        }
         document.querySelectorAll('.input-select:checked').forEach(function(input) {
             input.parentNode.querySelector('.btn-select').click();
         });
@@ -642,6 +634,9 @@ var createEventsListener = function() {
         document.getElementById('btn_delete_select').click();
     });
     document.getElementById('btn_delete_select').addEventListener('click', function(event) {
+        if(isDraggedMode()) {
+            document.getElementById('btn_drag_select').click();
+        }
         let pages = getPagesSelected();
         for(index in pages) {
             deletePage(pages[index]);
@@ -664,33 +659,11 @@ var createEventsListener = function() {
         for(index in pages) {
             toggleDragPage(pages[index]);
         }
+        this.classList.toggle('active');
+        document.getElementById('btn_drag_select_mobile').classList.toggle('active');
     });
     document.getElementById('btn_drag_select_mobile').addEventListener('click', function(event) {
         document.getElementById('btn_drag_select').click();
-    });
-    document.querySelector('#modalDrag').addEventListener('shown.bs.modal', event => {
-        document.querySelector('#modalDrag .modal-body').scrollTop = document.querySelector('.page-dragged').offsetTop;
-    });
-    document.querySelector('#modalDrag').addEventListener('hide.bs.modal', event => {
-        document.querySelector('#container-main').insertAdjacentElement('afterbegin', document.querySelector('#container-pages'));
-        document.querySelector('#container-pages').style.overflowY = 'scroll';
-        document.querySelector('#container-pages').style.overflowX = 'hidden';
-    });
-    document.querySelector('#modalDrag').addEventListener('hidden.bs.modal', event => {
-        if(is_mobile()) {
-            window.scrollTo(0, document.querySelector('.page-dragged').offsetTop);
-        } else {
-            document.querySelector('#container-pages').scrollTop = document.querySelector('.page-dragged').offsetTop;
-        }
-        document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
-            let page = item.parentNode;
-            page.querySelector('input[type=checkbox].input-drag').checked = false;
-        });
-        document.querySelectorAll('.canvas-container').forEach(function(page) {
-            page.querySelector('input[type=checkbox].input-hover').checked = false;
-            updatePageState(page);
-        });
-        updateGlobalState();
     });
     document.querySelector('#btn_liste_pdf').addEventListener('click', function(event) {
         bootstrap.Modal.getOrCreateInstance(document.querySelector('#modalFichier')).show();
@@ -698,9 +671,6 @@ var createEventsListener = function() {
     });
     document.querySelector('#btn_liste_pdf_bar').addEventListener('click', function(event) {
         document.querySelector('#btn_liste_pdf').click();
-    });
-    document.querySelector('#modalDrag').addEventListener('hidden.bs.modal', event => {
-        document.querySelector('#list_pdf_container').insertAdjacentElement('afterbegin', document.querySelector('#list_pdf'));
     });
     document.querySelector('body').addEventListener('click', function(event) {
         if(!event.originalTarget.classList.contains('offcanvas-header') && !event.originalTarget.classList.contains('offcanvas-body') && event.originalTarget.id != 'container-pages' && event.originalTarget.id != 'sidebarToolsLabel' && event.originalTarget.id != 'btn_container') {

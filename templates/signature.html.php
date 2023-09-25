@@ -1,16 +1,12 @@
 <!doctype html>
-<html lang="<?php echo $TRANSLATION_LANGUAGE ?>"<?php if($TRANSLATION_LANGUAGE == 'ar'): ?> dir="rtl" style="direction: rtl;"<?php endif;?>>
+<html lang="<?php echo $TRANSLATION_LANGUAGE ?>" dir="<?php echo $DIRECTION_LANGUAGE ?>" style="direction: <?php echo $DIRECTION_LANGUAGE ?>;">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Logiciel libre de signature de PDF en ligne">
-      <?php if ($TRANSLATION_LANGUAGE == 'ar'): ?>
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
-      <?php else: ?>
-          <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.min.css?5.1.1" rel="stylesheet">
-      <?php endif ?>
-    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap-icons.css?1.8.1" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.<?php echo $DIRECTION_LANGUAGE ?>.min.css?5.1.1" rel="stylesheet">
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap-icons.css?1.11.1" rel="stylesheet">
     <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
     <title>Signature PDF</title>
 </head>
@@ -265,6 +261,7 @@
     var maxPage = <?php echo $maxPage ?>;
     var sharingMode = <?php echo intval(!isset($noSharingMode)) ?>;
     var hash = null;
+    var direction = '<?php echo $DIRECTION_LANGUAGE ?>';
     <?php if(isset($hash)): ?>
     hash = "<?php echo $hash ?>";
     <?php endif; ?>

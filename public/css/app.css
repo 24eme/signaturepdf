@@ -24,6 +24,10 @@
     box-shadow: 0 .25rem .5rem rgba(0,0,0,.075) !important;
 }
 
+#top_bar {
+    z-index: 10000;
+}
+
 #input-text-signature {
     font-family: Caveat;
     font-size: 48px;
@@ -34,18 +38,30 @@
     max-height: 200px;
 }
 
-.canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here-left, .canvas-container .btn-drag-here-right, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
+.btn-svg-list-suppression {
+    top: 2px;
+}
+
+.btn-svg-list-suppression:dir(ltr) {
+    right: 6px;
+}
+
+.btn-svg-list-suppression:dir(rtl) {
+    left: 6px;
+}
+
+.canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
     font-size: 30px;
     cursor: move;
     background: rgb(255,255,255,0.6);
 }
 
-.canvas-container .btn-drag-here-left, .canvas-container .btn-drag-here-right, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
+.canvas-container .btn-drag-here, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
     cursor: pointer;
     z-index: 9999;
 }
 
-.canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here-left, .canvas-container .btn-drag-here-right {
+.canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here {
     cursor: pointer;
     font-size: 25px;
 }
@@ -89,4 +105,24 @@
 
 .decalage-pdf-div:dir(rtl) {
     padding-left: 350px;
+}
+
+#container-btn-zoom {
+    top: 6px;
+}
+
+#container-btn-zoom:dir(ltr) {
+    right: 368px;
+}
+
+#container-btn-zoom:dir(rtl) {
+    left: 357px;
+}
+
+.file-list-checkbox:dir(ltr) {
+    right: 10px;
+}
+
+.file-list-checkbox:dir(rtl) {
+    left: 10px;
 }

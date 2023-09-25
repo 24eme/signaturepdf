@@ -278,7 +278,7 @@ msgstr "تنزيل هذه الصفحة"
 
 #: templates/organization.html.php:145
 msgid "Page"
-msgstr ""
+msgstr "صفحة"
 
 #: templates/signature.html.php:22
 #, php-format

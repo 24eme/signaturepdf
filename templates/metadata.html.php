@@ -72,7 +72,7 @@
             <p id="text_document_name" class="text-muted mb-2" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
         </div>
         <div class="offcanvas-body bg-light" style="padding-bottom: 60px;">
-            <div id="container-pages">
+            <div id="container-pages" dir="auto">
             </div>
         </div>
         <div class="position-absolute bg-white bottom-0 pb-2 ps-2 pe-2 w-100 border-top shadow-lg">

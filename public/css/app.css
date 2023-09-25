@@ -82,3 +82,11 @@
         font-size: .875em
     }
 }
+
+.decalage-pdf-div:dir(ltr) {
+    padding-right: 350px;
+}
+
+.decalage-pdf-div:dir(rtl) {
+    padding-left: 350px;
+}

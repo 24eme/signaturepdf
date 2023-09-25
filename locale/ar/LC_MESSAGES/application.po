@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-22 18:25+0200\n"
-"PO-Revision-Date: 2023-09-20 16:01+0000\n"
+"PO-Revision-Date: 2023-09-25 08:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
 "application/ar/>\n"
@@ -26,7 +26,7 @@ msgstr "ar"
 
 #: templates/compress.html.php:17
 msgid "Compress PDF"
-msgstr ""
+msgstr "ضغط PDF"
 
 #: templates/compress.html.php:22 templates/metadata.html.php:22
 #: templates/organization.html.php:22 templates/signature.html.php:20
@@ -36,11 +36,11 @@ msgstr "لا يمكن تشغيل المَوقِع من دون تمكين الج�
 #: templates/compress.html.php:29
 #, php-format
 msgid "%s Compress a PDF"
-msgstr ""
+msgstr "%s ضغط ملف PDF"
 
 #: templates/compress.html.php:30
 msgid "Reduce the size of a PDF"
-msgstr ""
+msgstr "تخفيف حجم ملف PDF"
 
 #: templates/compress.html.php:33 templates/compress.html.php:34
 #: templates/metadata.html.php:32 templates/metadata.html.php:33
@@ -51,24 +51,24 @@ msgstr "إختر ملف PDF"
 
 #: templates/compress.html.php:35 templates/signature.html.php:32
 msgid "The PDF will be processed by the server without being stored or saved"
-msgstr "سيتم معالجة ملف PDF على الخادم دون الاحتفاظ به أو تخزينه"
+msgstr "سيتم معالجة ملف الـ PDF على الخادم دون الاحتفاظ به أو تخزينه"
 
 #: templates/compress.html.php:37 templates/components/navtab.html.php:24
 msgid "Compress"
-msgstr ""
+msgstr "ضغط"
 
 #: templates/compress.html.php:42
 msgid "Low compression (highest quality)"
-msgstr ""
+msgstr "ضغط منخفض (أعلى جودة)"
 
 #: templates/compress.html.php:43
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s ضغط متوسط %s (مبدئي)"
 
 #: templates/compress.html.php:44
 msgid "High compression (lowest quality)"
-msgstr ""
+msgstr "ضغط عالي (أقل جودة)"
 
 #: templates/compress.html.php:52 templates/metadata.html.php:42
 #: templates/organization.html.php:42 templates/signature.html.php:40
@@ -151,7 +151,7 @@ msgstr "%s تنظيم الـ PDF"
 
 #: templates/organization.html.php:29
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
+msgstr "دمج، فرز، تدوير، حذف، استخراج الصفحات"
 
 #: templates/organization.html.php:32
 msgid "The PDF must not exceed "
@@ -172,7 +172,7 @@ msgstr "اضغط على صفحة لتحديدها"
 
 #: templates/organization.html.php:58
 msgid "Close this PDF and return to home"
-msgstr "إغلاق هذا PDF والعودة إلى الصفحة الرئيسية"
+msgstr "إغلاق هذا PDF والعودة إلى الرئيسية"
 
 #: templates/organization.html.php:60
 msgid "PDF organization"
@@ -190,7 +190,7 @@ msgstr "%s إضافة PDF"
 #: templates/organization.html.php:74
 #, php-format
 msgid "%s page(s) selected"
-msgstr ""
+msgstr "%s صفحات تم اختيارها"
 
 #: templates/organization.html.php:76
 #, php-format
@@ -250,31 +250,31 @@ msgstr "مستندات PDF"
 
 #: templates/organization.html.php:154
 msgid "Select this page"
-msgstr ""
+msgstr "اختر هذه الصفحة"
 
 #: templates/organization.html.php:155
 msgid "Delete this page"
-msgstr ""
+msgstr "احذف هذه الصفحة"
 
 #: templates/organization.html.php:156
 msgid "Restore this page"
-msgstr ""
+msgstr "استرجِع هذه الصفحة"
 
 #: templates/organization.html.php:157
 msgid "Move this page"
-msgstr ""
+msgstr "انقُل هذه الصفحة"
 
 #: templates/organization.html.php:158
 msgid "Move here"
-msgstr ""
+msgstr "انقُلها إلى هنا"
 
 #: templates/organization.html.php:159
 msgid "Turn this page"
-msgstr ""
+msgstr "تدوير هذه الصفحة"
 
 #: templates/organization.html.php:160
 msgid "Download this page"
-msgstr ""
+msgstr "تنزيل هذه الصفحة"
 
 #: templates/signature.html.php:26
 #, php-format
@@ -311,7 +311,7 @@ msgstr "لإدراج العنصر المُختار في العمود الأيم�
 
 #: templates/signature.html.php:48
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "إمضاء، توقيع بالحروف الأولى، نص، ختم، إلخ…"
 
 #: templates/signature.html.php:59
 msgid "Close this PDF and return to the homepage"
@@ -323,7 +323,7 @@ msgstr "توقيع الـ PDF"
 
 #: templates/signature.html.php:61
 msgid "This PDF is shared with others to be signed by multiple people"
-msgstr "ملف PDF هذا مشارَك مع أشخاص آخرين للتوقيع من قِبل عدة أشخاص"
+msgstr "ملف PDF هذا مشارَك مع أشخاص آخرين لإمضائه من قِبل عدة أشخاص"
 
 #: templates/signature.html.php:68
 msgid "Keep the selection active"
@@ -332,7 +332,7 @@ msgstr "الاحتفاظ بالتحديد نشطًا"
 #: templates/signature.html.php:73
 #, php-format
 msgid "%s Signature"
-msgstr "%s توقيع"
+msgstr "%s إمضاء"
 
 #: templates/signature.html.php:73 templates/signature.html.php:78
 #: templates/signature.html.php:83 templates/signature.html.php:181
@@ -342,7 +342,7 @@ msgstr "إنشاء"
 #: templates/signature.html.php:78
 #, php-format
 msgid "%s Initial"
-msgstr "%s توقيع جانبي"
+msgstr "%s توقيع بالحروف الأولى"
 
 #: templates/signature.html.php:83
 #, php-format
@@ -435,7 +435,7 @@ msgid ""
 "your choice so that they can sign this PDF."
 msgstr ""
 "من خلال تفعيل مشاركة هذا الملف بتنسيق PDF، ستتمكن من تقديم رابط للأشخاص "
-"الذين تختارهم حتى يمكنهم توقيع ملف PDF هذا."
+"الذين تختارهم حتى يُمكنهم إمضاء ملف PDF هذا."
 
 #: templates/signature.html.php:197
 #, php-format
@@ -443,6 +443,8 @@ msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s تتطلَّب هذه المُشارَكَة نقل وتخزين ملف PDF على الخادم ليصبح متاحًا "
+"للموقّعِين المستقبَليِّين."
 
 #: templates/signature.html.php:198
 #, php-format
@@ -485,7 +487,7 @@ msgstr "%s ابدأ المشارَكة"
 #: templates/signature.html.php:216
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr "%s توقيع ملف الـ PDF هذا مِن طرف عدة أشخاص"
+msgstr "%s إمضاء ملف الـ PDF هذا مِن طرف عدة أشخاص"
 
 #: templates/signature.html.php:220
 msgid "Multiple people can sign this PDF simultaneously."
@@ -520,7 +522,7 @@ msgstr "تم تسجيل توقيعك بنجاح!"
 
 #: templates/signature.html.php:273
 msgid "Text to modify"
-msgstr ""
+msgstr "النص الذي تودّ تعديله"
 
 #: templates/components/navtab.html.php:4
 msgid "Language"

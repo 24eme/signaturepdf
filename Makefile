@@ -21,11 +21,27 @@ update_trad:
 	@for lang in $$(find locale -mindepth 1 -maxdepth 1 -type d); do \
     	po_file="$$lang/LC_MESSAGES/application.po"; \
 		msgmerge --update -N "$$po_file" ./locale/application.pot; \
+		git add ./locale/application.pot; \
 	done
 
 	# Creation des fichiers .mo...
 	@for lang in $$(find locale -mindepth 1 -maxdepth 1 -type d); do \
-            po_file="$$lang/LC_MESSAGES/application.po"; \
-            rm -f "$$lang/LC_MESSAGES/application.mo"; \
-            msgfmt "$$po_file" --output-file="$$lang/LC_MESSAGES/application.mo"; \
-        done
+        po_file="$$lang/LC_MESSAGES/application.po"; \
+        rm -f "$$lang/LC_MESSAGES/application.mo"; \
+        msgfmt "$$po_file" --output-file="$$lang/LC_MESSAGES/application.mo"; \
+		git add "$$lang/LC_MESSAGES/application.mo"; \
+    done
+
+	# Génération des empreintes de .mo..
+
+	@for lang in $$(find locale -mindepth 1 -maxdepth 1 -type d); do \
+		checksum="$$(md5sum locale/*/LC_MESSAGES/application.mo | md5sum | cut -d " " -f 1)"; \
+		rm $$lang/LC_MESSAGES/application_*.mo; \
+		git rm $$lang/LC_MESSAGES/application_*.mo; \
+		rm locale/application_*.pot; \
+		git rm locale/application_*.pot; \
+		ln -s "application.mo" "$$lang/LC_MESSAGES/application_$$checksum.mo"; \
+		ln -s "application.pot" "locale/application_$$checksum.pot"; \
+		git add "$$lang/LC_MESSAGES/application_$$checksum.mo"; \
+		git add "locale/application_$$checksum.pot"; \
+	done

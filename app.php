@@ -46,7 +46,8 @@ if ($f3->get('GET.lang')) {
     changeLanguage($_COOKIE['LANGUAGE'], $f3);
 }
 
-bindtextdomain('application', $f3->get('ROOT')."/locale/");
+bindtextdomain('application', $f3->get('ROOT')."/locale/nocache");
+bindtextdomain('application', $f3->get('ROOT')."/locale");
 textdomain('application');
 
 function changeLanguage($lang, $f3) {

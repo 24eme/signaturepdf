@@ -21,7 +21,6 @@ update_trad:
 	@for lang in $$(find locale -mindepth 1 -maxdepth 1 -type d); do \
     	po_file="$$lang/LC_MESSAGES/application.po"; \
 		msgmerge --update -N "$$po_file" ./locale/application.pot; \
-		git add ./locale/application.pot; \
 	done
 
 	# Creation des fichiers .mo...

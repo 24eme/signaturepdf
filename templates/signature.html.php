@@ -269,6 +269,12 @@
     var trad = <?php echo json_encode([
         'Text to modify' => _('Text to modify')
     ]); ?>;
+
+    <?php if ($TRANSLATION_LANGUAGE == 'ar'): ?>
+    url_font = <?php echo json_encode('/vendor/fonts/IBMPlexSansArabic-Regular.ttf') ?>
+    <?php else: ?>
+    url_font = <?php echo json_encode('/vendor/fonts/Caveat-Regular.ttf') ?>
+    <?php endif; ?>
     </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>
   </body>

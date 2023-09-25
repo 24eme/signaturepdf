@@ -1102,7 +1102,7 @@ var pageSignature = async function(url) {
         document.querySelector('#alert-signature-help').classList.add('auto-open');
     }
 
-    opentype.load('/vendor/fonts/Caveat-Regular.ttf', function(err, font) {
+    opentype.load(url_font, function(err, font) {
         fontCaveat = font;
     });
 

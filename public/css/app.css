@@ -5,6 +5,13 @@
     src: url(/vendor/fonts/Caveat-Regular.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'IBMPlexSansArabic';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/vendor/fonts/IBMPlexSansArabic-Regular.ttf) format('truetype');
+}
+
 #container-pages {
     overflow: auto;
 }

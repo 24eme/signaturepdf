@@ -6,10 +6,10 @@
 }
 
 @font-face {
-    font-family: 'IBMPlexSansArabic';
+    font-family: 'Tajawal';
     font-style: normal;
     font-weight: 400;
-    src: url(/vendor/fonts/IBMPlexSansArabic-Regular.ttf) format('truetype');
+    src: url(/vendor/fonts/Tajawal-Medium.ttf) format('truetype');
 }
 
 #container-pages {
@@ -35,8 +35,13 @@
     z-index: 10000;
 }
 
-#input-text-signature {
+#input-text-signature:dir(ltr) {
     font-family: Caveat;
+    font-size: 48px;
+}
+
+#input-text-signature:dir(rtl) {
+    font-family: Tajawal;
     font-size: 48px;
 }
 

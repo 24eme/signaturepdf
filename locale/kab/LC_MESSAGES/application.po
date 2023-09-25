@@ -8,42 +8,45 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-22 18:27+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-09-26 08:48+0000\n"
+"Last-Translator: R_SACI <rgebbid@gmail.com>\n"
+"Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
+"application/kab/>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: app.php:59
 msgid "en"
-msgstr ""
+msgstr "kab"
 
 #: templates/compress.html.php:17
 msgid "Compress PDF"
-msgstr ""
+msgstr "Ssed PDF"
 
 #: templates/compress.html.php:22 templates/metadata.html.php:22
 #: templates/organization.html.php:22 templates/signature.html.php:20
 msgid "Site not functional without JavaScript enabled"
-msgstr ""
+msgstr "Asmel ur iteddu ara ma yella ur yermid ara JavaScript"
 
 #: templates/compress.html.php:29
 #, php-format
 msgid "%s Compress a PDF"
-msgstr ""
+msgstr "%s n tussda n PDF"
 
 #: templates/compress.html.php:30
 msgid "Reduce the size of a PDF"
-msgstr ""
+msgstr "Senqes teɣzi n PDF"
 
 #: templates/compress.html.php:33 templates/compress.html.php:34
 #: templates/metadata.html.php:32 templates/metadata.html.php:33
 #: templates/organization.html.php:32 templates/organization.html.php:33
 #: templates/signature.html.php:30 templates/signature.html.php:31
 msgid "Choose a PDF"
-msgstr ""
+msgstr "Fren PDF"
 
 #: templates/compress.html.php:35 templates/signature.html.php:32
 msgid "The PDF will be processed by the server without being stored or saved"
@@ -69,30 +72,30 @@ msgstr ""
 #: templates/compress.html.php:52 templates/metadata.html.php:42
 #: templates/organization.html.php:42 templates/signature.html.php:40
 msgid "Free open-source software"
-msgstr ""
+msgstr "D adeɣẓan ilelli n uɣbalu yeldin"
 
 #: templates/compress.html.php:52 templates/metadata.html.php:42
 #: templates/organization.html.php:42 templates/signature.html.php:40
 msgid "under AGPL-3.0 license"
-msgstr ""
+msgstr "s turagt AGPL-3.0"
 
 #: templates/compress.html.php:52 templates/metadata.html.php:42
 #: templates/organization.html.php:42 templates/signature.html.php:40
 msgid "see the source code"
-msgstr ""
+msgstr "wali tangalt taɣbalut"
 
 #: templates/metadata.html.php:17
 msgid "Editing PDF metadata"
-msgstr ""
+msgstr "Aẓrag n yiɣefisefka n PDF"
 
 #: templates/metadata.html.php:28
 #, php-format
 msgid "%s Edit metadata"
-msgstr ""
+msgstr "%s n uẓrag n yiɣefisefka"
 
 #: templates/metadata.html.php:29
 msgid "Add, edit, or remove metadata from a PDF"
-msgstr ""
+msgstr "Rnu, ẓreg, neɣ kkes iɣefisefka seg PDF"
 
 #: templates/metadata.html.php:36 templates/organization.html.php:36
 #: templates/signature.html.php:34
@@ -109,16 +112,16 @@ msgstr ""
 
 #: templates/metadata.html.php:58
 msgid "Key"
-msgstr ""
+msgstr "Tasarut"
 
 #: templates/metadata.html.php:60
 msgid "Value"
-msgstr ""
+msgstr "Azal"
 
 #: templates/metadata.html.php:62
 #, php-format
 msgid "%s Add"
-msgstr ""
+msgstr "%s yettwarna"
 
 #: templates/metadata.html.php:68
 msgid "Close this PDF and return to the home page"
@@ -130,20 +133,20 @@ msgstr ""
 
 #: templates/metadata.html.php:80
 msgid "Save and download the PDF"
-msgstr ""
+msgstr "Sekles syen sader PDF"
 
 #: templates/metadata.html.php:86 templates/signature.html.php:249
 msgid "Download the PDF"
-msgstr ""
+msgstr "Sader PDF"
 
 #: templates/organization.html.php:17
 msgid "Organize PDF"
-msgstr ""
+msgstr "Asuddes n PDF"
 
 #: templates/organization.html.php:28
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s n usuddes n PDF"
 
 #: templates/organization.html.php:29
 msgid "Merge, sort, rotate, delete, extract pages"
@@ -196,12 +199,12 @@ msgstr ""
 #: templates/organization.html.php:77 templates/organization.html.php:108
 #, php-format
 msgid "%s Move"
-msgstr ""
+msgstr "%s usenkez"
 
 #: templates/organization.html.php:78 templates/organization.html.php:109
 #, php-format
 msgid "%s Delete"
-msgstr ""
+msgstr "%s tukksa"
 
 #: templates/organization.html.php:79
 #, php-format
@@ -220,62 +223,62 @@ msgstr ""
 
 #: templates/organization.html.php:105
 msgid "No"
-msgstr ""
+msgstr "Uhu"
 
 #: templates/organization.html.php:105
 msgid "page"
-msgstr ""
+msgstr "asebter"
 
 #: templates/organization.html.php:105 templates/signature.html.php:180
 msgid "Cancel"
-msgstr ""
+msgstr "Sefsex"
 
 #: templates/organization.html.php:107
 #, php-format
 msgid "%s Turn"
-msgstr ""
+msgstr "%s n udewweṛ"
 
 #: templates/organization.html.php:118
 #, php-format
 msgid "Download the selection"
-msgstr ""
+msgstr "Sader tafrant"
 
 #: templates/organization.html.php:138
 msgid "PDF documents"
-msgstr ""
+msgstr "Isemliyen n PDF"
 
 #: templates/organization.html.php:154
 msgid "Select this page"
-msgstr ""
+msgstr "Fren adebter-a"
 
 #: templates/organization.html.php:155
 msgid "Delete this page"
-msgstr ""
+msgstr "Kkes asebter-a"
 
 #: templates/organization.html.php:156
 msgid "Restore this page"
-msgstr ""
+msgstr "Err-d asebter-a"
 
 #: templates/organization.html.php:157
 msgid "Move this page"
-msgstr ""
+msgstr "Senkez asebter-a"
 
 #: templates/organization.html.php:158
 msgid "Move here"
-msgstr ""
+msgstr "Senkez ɣer da"
 
 #: templates/organization.html.php:159
 msgid "Turn this page"
-msgstr ""
+msgstr "Dewweṛ asebter-a"
 
 #: templates/organization.html.php:160
 msgid "Download this page"
-msgstr ""
+msgstr "Sader asebter-a"
 
 #: templates/signature.html.php:26
 #, php-format
 msgid "%s Sign a PDF"
-msgstr ""
+msgstr "%s n usezmel n PDF"
 
 #: templates/signature.html.php:27
 msgid "Sign, initial, stamp, complete a document"
@@ -283,27 +286,27 @@ msgstr ""
 
 #: templates/signature.html.php:30
 msgid "The PDF should not exceed"
-msgstr ""
+msgstr "PDF ur ilaq ara ad iɛeddi"
 
 #: templates/signature.html.php:30
 msgid "MB and"
-msgstr ""
+msgstr "MB d"
 
 #: templates/signature.html.php:30
 msgid "pages"
-msgstr ""
+msgstr "isebtar"
 
 #: templates/signature.html.php:47
 msgid "How to sign?"
-msgstr ""
+msgstr "Amek ara tzemleḍ?"
 
 #: templates/signature.html.php:48
 msgid "By clicking directly on the document page"
-msgstr ""
+msgstr "S usiti srid ɣef usebter n yisemli"
 
 #: templates/signature.html.php:48
 msgid "to insert the selected item in the right column"
-msgstr ""
+msgstr "i tririt n uferdis i yettwzfernen deg ufeggag ayeffus"
 
 #: templates/signature.html.php:48
 msgid "signature, initial, text, stamp, etc ..."
@@ -333,7 +336,7 @@ msgstr ""
 #: templates/signature.html.php:73 templates/signature.html.php:78
 #: templates/signature.html.php:83 templates/signature.html.php:181
 msgid "Create"
-msgstr ""
+msgstr "Rnu"
 
 #: templates/signature.html.php:78
 #, php-format
@@ -390,35 +393,35 @@ msgstr ""
 
 #: templates/signature.html.php:156
 msgid "Draw"
-msgstr ""
+msgstr "Suneɣ"
 
 #: templates/signature.html.php:156
 msgid "freehand"
-msgstr ""
+msgstr "s ufus"
 
 #: templates/signature.html.php:157
 msgid "Enter"
-msgstr ""
+msgstr "Sekcem"
 
 #: templates/signature.html.php:157
 msgid "text"
-msgstr ""
+msgstr "aḍris"
 
 #: templates/signature.html.php:158
 msgid "Import"
-msgstr ""
+msgstr "Kter"
 
 #: templates/signature.html.php:158
 msgid "an image"
-msgstr ""
+msgstr "tugna"
 
 #: templates/signature.html.php:162
 msgid "Clear signature"
-msgstr ""
+msgstr "Sfeḍ azmul"
 
 #: templates/signature.html.php:166
 msgid "My signature"
-msgstr ""
+msgstr "Azmul-iw"
 
 #: templates/signature.html.php:192
 #, php-format
@@ -461,15 +464,15 @@ msgstr ""
 
 #: templates/signature.html.php:198
 msgid "for one day"
-msgstr ""
+msgstr "i yiwen wass"
 
 #: templates/signature.html.php:198
 msgid "for one hour"
-msgstr ""
+msgstr "azal n usrag"
 
 #: templates/signature.html.php:198
 msgid "after the last signature."
-msgstr ""
+msgstr "seld azamul aneggaru."
 
 #: templates/signature.html.php:204
 #, php-format
@@ -492,7 +495,7 @@ msgstr ""
 
 #: templates/signature.html.php:223
 msgid "Sharing link"
-msgstr ""
+msgstr "Beṭṭu n useɣwen"
 
 #: templates/signature.html.php:228
 msgid ""
@@ -510,24 +513,24 @@ msgstr ""
 
 #: templates/signature.html.php:246
 msgid "Your signature has been successfully recorded!"
-msgstr ""
+msgstr "Azmul-ik yettwasekles akken iwata!"
 
 #: templates/signature.html.php:273
 msgid "Text to modify"
-msgstr ""
+msgstr "Aḍris ara yettuṣeggmen"
 
 #: templates/components/navtab.html.php:4
 msgid "Language"
-msgstr ""
+msgstr "Tutlayt"
 
 #: templates/components/navtab.html.php:15
 msgid "Sign"
-msgstr ""
+msgstr "Zmel"
 
 #: templates/components/navtab.html.php:18
 msgid "Organize"
-msgstr ""
+msgstr "Suddes"
 
 #: templates/components/navtab.html.php:21
 msgid "Metadata"
-msgstr ""
+msgstr "Iɣefisefka"

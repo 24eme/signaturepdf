@@ -9,9 +9,15 @@ ENV DISABLE_ORGANIZATION=false
 ENV PDF_DEMO_LINK=true
 
 RUN apt update && \
-    apt install -y gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript && \
+    apt install -y locales gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript && \
     docker-php-ext-install gettext && \
     rm -rf /var/lib/apt/lists/*
+
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 COPY . /usr/local/signaturepdf
 

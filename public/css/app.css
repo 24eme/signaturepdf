@@ -111,11 +111,11 @@
     }
 }
 
-.decalage-pdf-div:dir(ltr) {
+html.ltr .decalage-pdf-div {
     padding-right: 350px;
 }
 
-.decalage-pdf-div:dir(rtl) {
+html.rtl .decalage-pdf-div {
     padding-left: 350px;
 }
 
@@ -123,18 +123,18 @@
     top: 6px;
 }
 
-#container-btn-zoom:dir(ltr) {
+html.ltr #container-btn-zoom {
     right: 368px;
 }
 
-#container-btn-zoom:dir(rtl) {
+html.rtl #container-btn-zoom {
     left: 357px;
 }
 
-.file-list-checkbox:dir(ltr) {
+html.ltr .file-list-checkbox {
     right: 10px;
 }
 
-.file-list-checkbox:dir(rtl) {
+html.rtl .file-list-checkbox {
     left: 10px;
 }

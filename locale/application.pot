@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 17:19+0200\n"
+"POT-Creation-Date: 2023-09-27 12:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: app.php:61
+#: app.php:54
 msgid "en"
 msgstr ""
 
@@ -54,8 +54,10 @@ msgstr ""
 msgid "Mb"
 msgstr ""
 
-#: templates/compress.html.php:31 templates/signature.html.php:28
-msgid "The PDF will be processed by the server without being stored or saved"
+#: templates/compress.html.php:31 templates/organization.html.php:30
+#: templates/signature.html.php:28
+msgid ""
+"The PDF will be processed by the server without being retained or stored"
 msgstr ""
 
 #: templates/compress.html.php:33 templates/components/navtab.html.php:24
@@ -156,11 +158,6 @@ msgstr ""
 
 #: templates/organization.html.php:25
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
-
-#: templates/organization.html.php:30
-msgid ""
-"The PDF will be processed by the server without being retained or stored"
 msgstr ""
 
 #: templates/organization.html.php:43

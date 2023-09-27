@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 17:17+0200\n"
+"POT-Creation-Date: 2023-09-27 12:03+0200\n"
 "PO-Revision-Date: 2023-09-07 13:19+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.0.1-dev\n"
 
-#: app.php:61
+#: app.php:54
 msgid "en"
 msgstr "fr"
 
@@ -57,9 +57,11 @@ msgstr "Le PDF ne doit pas dépasser "
 msgid "Mb"
 msgstr "Mo"
 
-#: templates/compress.html.php:31 templates/signature.html.php:28
-msgid "The PDF will be processed by the server without being stored or saved"
-msgstr "Le PDF sera traité par le serveur sans être conservé no stocké"
+#: templates/compress.html.php:31 templates/organization.html.php:30
+#: templates/signature.html.php:28
+msgid ""
+"The PDF will be processed by the server without being retained or stored"
+msgstr "Le PDF sera traité par le serveur sans être conservé ni stocké"
 
 #: templates/compress.html.php:33 templates/components/navtab.html.php:24
 msgid "Compress"
@@ -160,11 +162,6 @@ msgstr "%s Organiser des PDF"
 #: templates/organization.html.php:25
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Fusionner, trier, pivoter, supprimer, extraire des pages"
-
-#: templates/organization.html.php:30
-msgid ""
-"The PDF will be processed by the server without being retained or stored"
-msgstr "Le PDF sera traité par le serveur sans être conservé ni stocké"
 
 #: templates/organization.html.php:43
 msgid "Touch a page to select it"

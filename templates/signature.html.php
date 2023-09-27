@@ -25,7 +25,7 @@
             <div class="col-12">
                 <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo _("The PDF should not exceed"); ?> <?php echo round($maxSize / 1024 / 1024) ?> <?php echo _("MB and"); ?> <?php echo $maxPage ?> <?php echo _("pages"); ?>"><i class="bi bi-info-circle"></i></small></label>
                     <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF") ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
-                    <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being stored or saved") ?></p>
+                    <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being retained or stored") ?></p>
                     <?php if($PDF_DEMO_LINK): ?>
                         <a class="btn btn-sm btn-link opacity-75" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF") ?></a>
                     <?php endif; ?>

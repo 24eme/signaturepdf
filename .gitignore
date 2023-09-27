@@ -4,3 +4,4 @@ node_modules
 tests/downloads/
 config/config.ini
 *~
+.idea/

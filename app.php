@@ -483,7 +483,8 @@ function selectLanguage($lang, $f3, $putCookie = false) {
         return null;
     }
     if($putCookie) {
-        setcookie("LANGUAGE", $langSupported, strtotime('+1 year'));
+        $cookieDate = strtotime('+1 year');
+        setcookie("LANGUAGE", $langSupported, ['expires' => $cookieDate, 'samesite' => 'Strict']);
     }
     putenv("LANGUAGE=$langSupported");
 }

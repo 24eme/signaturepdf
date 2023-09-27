@@ -1,6 +1,11 @@
 <?php
 
+setlocale(LC_ALL, "");
+
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
+
+$f3->set('FALLBACK', null);
+$f3->language($f3->get('HEADERS')['Accept-Language']);
 
 session_start();
 
@@ -8,7 +13,7 @@ if(getenv("DEBUG")) {
     $f3->set('DEBUG', getenv("DEBUG"));
 }
 
-$f3->set('LANGUAGES',
+$f3->set('SUPPORTED_LANGUAGES',
     ['fr' => 'Français',
         'en' => 'English',
         'ar' => 'العربية']);
@@ -34,25 +39,17 @@ if($f3->get('DISABLE_ORGANIZATION')) {
 }
 
 if ($f3->get('GET.lang')) {
-    $lang = $f3->get('GET.lang');
-    changeLanguage($lang, $f3);
-} elseif (isset($_SESSION['LANGUAGE'])) {
-    changeLanguage($_SESSION['LANGUAGE'], $f3);
+    selectLanguage($f3->get('GET.lang'), $f3, true);
 } elseif (isset($_COOKIE['LANGUAGE'])) {
-    changeLanguage($_COOKIE['LANGUAGE'], $f3);
+    selectLanguage($_COOKIE['LANGUAGE'], $f3, true);
+} else {
+    selectLanguage($f3->get('LANGUAGE'), $f3);
 }
 
 $domain = basename(glob($f3->get('ROOT')."/locale/application_*.pot")[0], '.pot');
 
 bindtextdomain($domain, $f3->get('ROOT')."/locale");
 textdomain($domain);
-
-function changeLanguage($lang, $f3) {
-    $_SESSION['LANGUAGE'] = $lang;
-    setcookie("LANGUAGE", $lang, strtotime('+1 year'));
-    putenv("LANGUAGE=$lang");
-    $f3->set('LANGUAGE', $lang);
-}
 
 $f3->set('TRANSLATION_LANGUAGE', _("en"));
 $f3->set('DIRECTION_LANGUAGE', 'ltr');
@@ -472,6 +469,23 @@ function getCommit() {
     }
 
     return substr($commit, 0, 7);
+}
+
+function selectLanguage($lang, $f3, $putCookie = false) {
+    $langSupported = null;
+    foreach(explode(',', $lang) as $l) {
+        if(array_key_exists($l, $f3->get('SUPPORTED_LANGUAGES'))) {
+            $langSupported = $l;
+            break;
+        }
+    }
+    if(!$langSupported) {
+        return null;
+    }
+    if($putCookie) {
+        setcookie("LANGUAGE", $langSupported, strtotime('+1 year'));
+    }
+    putenv("LANGUAGE=$langSupported");
 }
 
 function convertPHPSizeToBytes($sSize)

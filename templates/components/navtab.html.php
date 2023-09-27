@@ -5,7 +5,7 @@
             <span class="d-md-none"><i class="bi bi-translate"></i></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <?php foreach ($LANGUAGES as $key => $langue):?>
+            <?php foreach ($SUPPORTED_LANGUAGES as $key => $langue):?>
                 <li><a class="dropdown-item" href="?lang=<?php echo $key ?>"><?php echo $langue ?></a></li>
             <?php endforeach; ?>
         </ul>

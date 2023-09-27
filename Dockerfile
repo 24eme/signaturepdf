@@ -6,18 +6,18 @@ ENV POST_MAX_SIZE=24M
 ENV MAX_FILE_UPLOADS=201
 ENV PDF_STORAGE_PATH=/data
 ENV DISABLE_ORGANIZATION=false
-ENV PDF_DEMO_LINK=true
+ENV DEFAULT_LANGUAGE=fr_FR.UTF-8
 
 RUN apt update && \
     apt install -y vim locales gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript && \
     docker-php-ext-install gettext && \
     rm -rf /var/lib/apt/lists/*
 
-RUN sed -i '/fr_FR.UTF-8/s/^# //g' /etc/locale.gen && \
+RUN sed -i "/$DEFAULT_LANGUAGE/s/^# //g" /etc/locale.gen && \
     locale-gen
-ENV LANG fr_FR.UTF-8
-ENV LANGUAGE fr_FR:en
-ENV LC_ALL fr_FR.UTF-8
+ENV LANG $DEFAULT_LANGUAGE
+ENV LANGUAGE $DEFAULT_LANGUAGE
+ENV LC_ALL $DEFAULT_LANGUAGE
 
 COPY . /usr/local/signaturepdf
 

@@ -272,6 +272,8 @@
 
     <?php if ($TRANSLATION_LANGUAGE == 'ar'): ?>
     url_font = <?php echo json_encode('/vendor/fonts/Tajawal-Medium.ttf') ?>
+    <?php elseif ($TRANSLATION_LANGUAGE == 'kab'): ?>
+    url_font = <?php echo json_encode('/vendor/fonts/FiraSans-MediumItalic.ttf') ?>
     <?php else: ?>
     url_font = <?php echo json_encode('/vendor/fonts/Caveat-Regular.ttf') ?>
     <?php endif; ?>

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-22 18:27+0200\n"
-"PO-Revision-Date: 2023-09-28 15:24+0000\n"
+"PO-Revision-Date: 2023-09-28 16:23+0000\n"
 "Last-Translator: R_SACI <rgebbid@gmail.com>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -54,7 +54,7 @@ msgstr "Ad yettusesfer ufaylu PDF s uqeddac war aḥraz neɣ asekles"
 
 #: templates/compress.html.php:37 templates/components/navtab.html.php:24
 msgid "Compress"
-msgstr ""
+msgstr "Ssed"
 
 #: templates/compress.html.php:42
 msgid "Low compression (highest quality)"
@@ -63,7 +63,7 @@ msgstr ""
 #: templates/compress.html.php:43
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s n tussda tqlemmast %s (tamezwert)"
 
 #: templates/compress.html.php:44
 msgid "High compression (lowest quality)"
@@ -163,7 +163,7 @@ msgstr "Mb"
 #: templates/organization.html.php:34
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
-msgstr ""
+msgstr "Aufaylu PDF ad yettusesfer s uqeddac war ma yettwaḥraz neɣ yettwasekles"
 
 #: templates/organization.html.php:47
 msgid "Touch a page to select it"
@@ -209,17 +209,17 @@ msgstr "%s tukksa"
 #: templates/organization.html.php:79
 #, php-format
 msgid "%s Extract and download"
-msgstr ""
+msgstr "%s Ssef, tsadfeḍ"
 
 #: templates/organization.html.php:81
 #, php-format
 msgid "%s Cancel selection"
-msgstr ""
+msgstr "%s Sefsex tafrant"
 
 #: templates/organization.html.php:89 templates/organization.html.php:115
 #, php-format
 msgid "%s Download the full PDF"
-msgstr ""
+msgstr "%s Sader PDF ummid"
 
 #: templates/organization.html.php:105
 msgid "No"
@@ -282,7 +282,7 @@ msgstr "%s n usezmel n PDF"
 
 #: templates/signature.html.php:27
 msgid "Sign, initial, stamp, complete a document"
-msgstr ""
+msgstr "Zmek, zmel deg yidis, err iziwel neɣ smed isemli"
 
 #: templates/signature.html.php:30
 msgid "The PDF should not exceed"
@@ -310,28 +310,30 @@ msgstr "i tririt n uferdis i yettwzfernen deg ufeggag ayeffus"
 
 #: templates/signature.html.php:48
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "azmul, qzmul deg yidis, aḍris, iziwel, tgr..."
 
 #: templates/signature.html.php:59
 msgid "Close this PDF and return to the homepage"
-msgstr ""
+msgstr "Mdel afaylu-a PDF syen uɣal ɣer usebter agejdan"
 
 #: templates/signature.html.php:61
 msgid "PDF Signature"
-msgstr ""
+msgstr "Asezmel n PDF"
 
 #: templates/signature.html.php:61
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
+"Afaylu-a PDF yettwabḍa d yimdanen niḍen i wakken ad yetgusezmel sɣur waṭas n "
+"yimdanen"
 
 #: templates/signature.html.php:68
 msgid "Keep the selection active"
-msgstr ""
+msgstr "Eǧǧ tafrant d turmidt"
 
 #: templates/signature.html.php:73
 #, php-format
 msgid "%s Signature"
-msgstr ""
+msgstr "%s Uzmul"
 
 #: templates/signature.html.php:73 templates/signature.html.php:78
 #: templates/signature.html.php:83 templates/signature.html.php:181
@@ -341,55 +343,55 @@ msgstr "Rnu"
 #: templates/signature.html.php:78
 #, php-format
 msgid "%s Initial"
-msgstr ""
+msgstr "%s Azmul s yisekkilen imezwura"
 
 #: templates/signature.html.php:83
 #, php-format
 msgid "%s Stamp"
-msgstr ""
+msgstr "%s Iziwel"
 
 #: templates/signature.html.php:87
 #, php-format
 msgid "%s Text"
-msgstr ""
+msgstr "%s Aḍris"
 
 #: templates/signature.html.php:91
 #, php-format
 msgid "%s Check box"
-msgstr ""
+msgstr "%s Tabewwaḍt n uṛcam"
 
 #: templates/signature.html.php:96
 #, php-format
 msgid "%s Create an element"
-msgstr ""
+msgstr "%s Rnu aferdis"
 
 #: templates/signature.html.php:101
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr ""
+msgstr "%s Bḍu-t i wakken ad t-yezmel %s aṭas n yimdanen"
 
 #: templates/signature.html.php:106 templates/signature.html.php:146
 msgid "Download the signed PDF"
-msgstr ""
+msgstr "Sader afaylu n PDF yettwazemlen"
 
 #: templates/signature.html.php:111
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr ""
+msgstr "Aql-aken deg %s tzemlem afaylu-a PDF"
 
 #: templates/signature.html.php:114
 #, php-format
 msgid "%s Download the PDF"
-msgstr ""
+msgstr "%s Sader PDF"
 
 #: templates/signature.html.php:119 templates/signature.html.php:144
 msgid "Transmit my signature"
-msgstr ""
+msgstr "Azen azmul-iw"
 
 #: templates/signature.html.php:127
 #, php-format
 msgid "%s Select a signature"
-msgstr ""
+msgstr "%s Fren azmul"
 
 #: templates/signature.html.php:156
 msgid "Draw"
@@ -426,13 +428,15 @@ msgstr "Azmul-iw"
 #: templates/signature.html.php:192
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr ""
+msgstr "%s Bḍu afaylu-a PDF i wakken ad tzemlen aṭas n yimdanen"
 
 #: templates/signature.html.php:196
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
+"S urmad n beṭṭu n PDF, ad tizmireḍ ad tmuddeḍ aseɣwen i yimdanen tebɣiḍ i "
+"wakken ad izmiren ad zemlen afaylu-a PDF."
 
 #: templates/signature.html.php:197
 #, php-format
@@ -440,27 +444,29 @@ msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s Beṭṭu-a yesra ad yettuwelleh daɣen ad yettwaḥraz ufaylu PDF ɣef uqeddac i "
+"wakken ad t-afen wid ara tzemlen sya ɣer zdat."
 
 #: templates/signature.html.php:198
 #, php-format
 msgid "%s The PDF will be kept"
-msgstr ""
+msgstr "%s PDF ad yettwaḥraz"
 
 #: templates/signature.html.php:198
 msgid "for one year"
-msgstr ""
+msgstr "i yiwen useggas"
 
 #: templates/signature.html.php:198
 msgid "for six months"
-msgstr ""
+msgstr "i seddis n wayyuren"
 
 #: templates/signature.html.php:198
 msgid "for one month"
-msgstr ""
+msgstr "i yiwen wayyur"
 
 #: templates/signature.html.php:198
 msgid "for one week"
-msgstr ""
+msgstr "i yiwen umalas"
 
 #: templates/signature.html.php:198
 msgid "for one day"
@@ -477,21 +483,21 @@ msgstr "seld azamul aneggaru."
 #: templates/signature.html.php:204
 #, php-format
 msgid "%s Start sharing"
-msgstr ""
+msgstr "%s Bdu beṭṭu"
 
 #: templates/signature.html.php:216
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr ""
+msgstr "%s Zmel afaylu-a n PDF d yimdanen niḍen"
 
 #: templates/signature.html.php:220
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr ""
+msgstr "Aṭas n yimdanen i izemren ad zemlen afaylu-a PDF ɣef tikkelt."
 
 #: templates/signature.html.php:221
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
-msgstr ""
+msgstr "I waya, hewxid ad tebduḍ aseɣwen ɣer usebter-a akked yimdanen i tebɣiḍ:"
 
 #: templates/signature.html.php:223
 msgid "Sharing link"
@@ -501,11 +507,11 @@ msgstr "Beṭṭu n useɣwen"
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
-msgstr ""
+msgstr "Yal win izemlen afaylu ad d-isader lqem aneggaru n PDF melmi i yebɣa."
 
 #: templates/signature.html.php:231
 msgid "Close"
-msgstr ""
+msgstr "Mdel"
 
 #: templates/signature.html.php:242
 msgid "Signed PDF"

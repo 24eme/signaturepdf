@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-22 18:27+0200\n"
-"PO-Revision-Date: 2023-09-26 08:48+0000\n"
+"PO-Revision-Date: 2023-09-28 15:24+0000\n"
 "Last-Translator: R_SACI <rgebbid@gmail.com>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -50,7 +50,7 @@ msgstr "Fren PDF"
 
 #: templates/compress.html.php:35 templates/signature.html.php:32
 msgid "The PDF will be processed by the server without being stored or saved"
-msgstr ""
+msgstr "Ad yettusesfer ufaylu PDF s uqeddac war aḥraz neɣ asekles"
 
 #: templates/compress.html.php:37 templates/components/navtab.html.php:24
 msgid "Compress"
@@ -100,15 +100,15 @@ msgstr "Rnu, ẓreg, neɣ kkes iɣefisefka seg PDF"
 #: templates/metadata.html.php:36 templates/organization.html.php:36
 #: templates/signature.html.php:34
 msgid "Test with a demo PDF"
-msgstr ""
+msgstr "Sekyed s ufaylu PDF n uskan"
 
 #: templates/metadata.html.php:49
 msgid "List of PDF metadata"
-msgstr ""
+msgstr "Tabdart n yiɣefisefka n PDF"
 
 #: templates/metadata.html.php:55
 msgid "Add new metadata"
-msgstr ""
+msgstr "Rnu iɣefisefka imaynuten"
 
 #: templates/metadata.html.php:58
 msgid "Key"
@@ -125,11 +125,11 @@ msgstr "%s yettwarna"
 
 #: templates/metadata.html.php:68
 msgid "Close this PDF and return to the home page"
-msgstr ""
+msgstr "Mdel afaylu-a n PDF syen uɣal ɣer usebter agejdan"
 
 #: templates/metadata.html.php:70
 msgid "Edit metadata"
-msgstr ""
+msgstr "Ẓreg iɣefisefka"
 
 #: templates/metadata.html.php:80
 msgid "Save and download the PDF"
@@ -150,15 +150,15 @@ msgstr "%s n usuddes n PDF"
 
 #: templates/organization.html.php:29
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
+msgstr "Smezdi, smizwer, sezzi, kkes, tsuffeɣ-d isebtar"
 
 #: templates/organization.html.php:32
 msgid "The PDF must not exceed "
-msgstr ""
+msgstr "Afaylu PDF ur ilaq ara ad iɛeddi "
 
 #: templates/organization.html.php:32
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #: templates/organization.html.php:34
 msgid ""
@@ -167,39 +167,39 @@ msgstr ""
 
 #: templates/organization.html.php:47
 msgid "Touch a page to select it"
-msgstr ""
+msgstr "Sit ɣef usebter i wakken ad t-tferneḍ"
 
 #: templates/organization.html.php:58
 msgid "Close this PDF and return to home"
-msgstr ""
+msgstr "Mdel afaylu-a n PDF syen uɣal ɣer usebter"
 
 #: templates/organization.html.php:60
 msgid "PDF organization"
-msgstr ""
+msgstr "Asuddes n yifuyla PDF"
 
 #: templates/organization.html.php:60 templates/signature.html.php:61
 msgid "This PDF is stored on your computer to be signed by you only"
-msgstr ""
+msgstr "Afaylu-a PDF yettwaḥraz deg uselkim-ik i wakken ad t-tzemleḍ kan kečč"
 
 #: templates/organization.html.php:69 templates/organization.html.php:101
 #, php-format
 msgid "%s Add a PDF"
-msgstr ""
+msgstr "%s n tmerna n PDF"
 
 #: templates/organization.html.php:74
 #, php-format
 msgid "%s page(s) selected"
-msgstr ""
+msgstr "%s usebter(yisebtar) i yettwafernen"
 
 #: templates/organization.html.php:76
 #, php-format
 msgid "%s Rotate 90°"
-msgstr ""
+msgstr "%s n tuzzya s 90°"
 
 #: templates/organization.html.php:77 templates/organization.html.php:108
 #, php-format
 msgid "%s Move"
-msgstr "%s usenkez"
+msgstr "%s yettwasenkez"
 
 #: templates/organization.html.php:78 templates/organization.html.php:109
 #, php-format
@@ -509,7 +509,7 @@ msgstr ""
 
 #: templates/signature.html.php:242
 msgid "Signed PDF"
-msgstr ""
+msgstr "Afaylu PDF yettwasezel"
 
 #: templates/signature.html.php:246
 msgid "Your signature has been successfully recorded!"

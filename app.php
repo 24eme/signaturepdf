@@ -16,7 +16,8 @@ if(getenv("DEBUG")) {
 $f3->set('SUPPORTED_LANGUAGES',
     ['fr' => 'Français',
         'en' => 'English',
-        'ar' => 'العربية']);
+        'ar' => 'العربية',
+        'kab' => 'Taqbaylit']);
 
 $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);

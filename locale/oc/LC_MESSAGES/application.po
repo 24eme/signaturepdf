@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-25 16:29+0200\n"
-"PO-Revision-Date: 2023-09-28 17:44+0000\n"
+"PO-Revision-Date: 2023-09-29 08:55+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -286,7 +286,7 @@ msgstr "%s Signar un PDF"
 
 #: templates/signature.html.php:23
 msgid "Sign, initial, stamp, complete a document"
-msgstr ""
+msgstr "Signar, parafar, sagelar, completar un document"
 
 #: templates/signature.html.php:26
 msgid "The PDF should not exceed"
@@ -439,6 +439,8 @@ msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
+"En activant lo partiment d’aqueste PDF poiretz prepausar un ligam a las "
+"personas que volètz per que pòscan signar aqueste PDF."
 
 #: templates/signature.html.php:193
 #, php-format
@@ -446,6 +448,8 @@ msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s Aqueste partiment requerís que lo PDF siá transferit e gardat sul "
+"servidor per èsser accessible als futurs signataris."
 
 #: templates/signature.html.php:194
 #, php-format
@@ -492,12 +496,14 @@ msgstr "%s Signar aqueste PDF a mantuna persona"
 
 #: templates/signature.html.php:216
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr ""
+msgstr "Mai d’una persona pòdon signar aqueste PDF simultanèament."
 
 #: templates/signature.html.php:217
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
+"Per aquò far vos cal pas que partejar lo ligam cap a aquesta pagina al monde "
+"que volètz :"
 
 #: templates/signature.html.php:219
 msgid "Sharing link"
@@ -508,6 +514,8 @@ msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr ""
+"Cada signatari poirà a tot moment telecargar la darrièra version del PDF "
+"signat."
 
 #: templates/signature.html.php:227
 msgid "Close"

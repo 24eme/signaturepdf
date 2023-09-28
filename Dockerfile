@@ -13,12 +13,6 @@ RUN apt update && \
     docker-php-ext-install gettext && \
     rm -rf /var/lib/apt/lists/*
 
-RUN sed -i "/$DEFAULT_LANGUAGE/s/^# //g" /etc/locale.gen && \
-    locale-gen
-ENV LANG $DEFAULT_LANGUAGE
-ENV LANGUAGE $DEFAULT_LANGUAGE
-ENV LC_ALL $DEFAULT_LANGUAGE
-
 COPY . /usr/local/signaturepdf
 
 RUN envsubst < /usr/local/signaturepdf/config/php.ini > /usr/local/etc/php/conf.d/uploads.ini && \

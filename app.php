@@ -5,7 +5,7 @@ setlocale(LC_ALL, "");
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
 $f3->set('FALLBACK', null);
-$f3->language($f3->get('HEADERS')['Accept-Language']);
+$f3->language(isset($f3->get('HEADERS')['Accept-Language']) ? $f3->get('HEADERS')['Accept-Language'] : '');
 
 session_start();
 

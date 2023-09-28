@@ -81,15 +81,16 @@ docker run -d --name=signaturepdf -p 8080:80 signaturepdf
 
 The following variables can be used to configure the deployment:
 
-| Variable               | description                                                           | exemple                          | defaut    |
-| ---------------------- |-----------------------------------------------------------------------| -------------------------------- | --------- |
-| `SERVERNAME`           | Deployment URL                                                        | `pdf.24eme.fr`                   | localhost |
-| `UPLOAD_MAX_FILESIZE`  | Maximum size of the PDF file to sign                                  | 48M                              | 24M       |
-| `POST_MAX_SIZE`        | Maximum size of the PDF file to sign                                  | 48M                              | 24M       |
-| `MAX_FILE_UPLOADS`     | Maximum number of pages in the PDF, here 200 pages + the original PDF | 401                              | 201       |
-| `PDF_STORAGE_PATH`     | Path where uploaded PDF files can be stored                           | /data                            | /data     |
-| `DISABLE_ORGANIZATION` | Disable the Organize route                                            | true                             | false     |
-| `PDF_DEMO_LINK`        | Show, hide, or change the demo PDF link                               | false, `link` or `relative path` | true      |
+| Variable               | description                                                           | exemple                          | defaut      |
+|------------------------|-----------------------------------------------------------------------|----------------------------------|-------------|
+| `SERVERNAME`           | Deployment URL                                                        | `pdf.24eme.fr`                   | localhost   |
+| `UPLOAD_MAX_FILESIZE`  | Maximum size of the PDF file to sign                                  | 48M                              | 24M         |
+| `POST_MAX_SIZE`        | Maximum size of the PDF file to sign                                  | 48M                              | 24M         |
+| `MAX_FILE_UPLOADS`     | Maximum number of pages in the PDF, here 200 pages + the original PDF | 401                              | 201         |
+| `PDF_STORAGE_PATH`     | Path where uploaded PDF files can be stored                           | /data                            | /data       |
+| `DISABLE_ORGANIZATION` | Disable the Organize route                                            | true                             | false       |
+| `PDF_DEMO_LINK`        | Show, hide, or change the demo PDF link                               | false, `link` or `relative path` | true        |
+| `DEFAULT_LANGUAGE`     | Default language for the application                                  | en_US.UTF-8                      | fr_FR.UTF-8 |
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf

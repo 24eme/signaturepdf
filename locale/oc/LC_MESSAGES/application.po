@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-25 16:29+0200\n"
-"PO-Revision-Date: 2023-09-28 16:23+0000\n"
+"PO-Revision-Date: 2023-09-28 17:44+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -133,15 +133,15 @@ msgstr "%s Apondre"
 
 #: templates/metadata.html.php:64
 msgid "Close this PDF and return to the home page"
-msgstr ""
+msgstr "Tampar aqueste PDF e tornar a l’acuèlh"
 
 #: templates/metadata.html.php:66
 msgid "Edit metadata"
-msgstr ""
+msgstr "Modificar las metadonadas"
 
 #: templates/metadata.html.php:76
 msgid "Save and download the PDF"
-msgstr ""
+msgstr "Enregistrar e telecargar lo PDF"
 
 #: templates/metadata.html.php:82 templates/signature.html.php:245
 msgid "Download the PDF"
@@ -154,72 +154,72 @@ msgstr "Organizar un PDF"
 #: templates/organization.html.php:24
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s Organizar de PDF"
 
 #: templates/organization.html.php:25
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
+msgstr "Fusionar, triar, pivotar, suprimir, extraire de paginas"
 
 #: templates/organization.html.php:30
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
-msgstr ""
+msgstr "Lo servidor tractarà lo PDF sens lo servar o gardar"
 
 #: templates/organization.html.php:43
 msgid "Touch a page to select it"
-msgstr ""
+msgstr "Tocar una pagina per la seleccionar"
 
 #: templates/organization.html.php:54
 msgid "Close this PDF and return to home"
-msgstr ""
+msgstr "Tampar aqueste PDF e tornar a l’acuèlh"
 
 #: templates/organization.html.php:56
 msgid "PDF organization"
-msgstr ""
+msgstr "Organizacion de PDF"
 
 #: templates/organization.html.php:56 templates/signature.html.php:57
 msgid "This PDF is stored on your computer to be signed by you only"
-msgstr ""
+msgstr "Aqueste PDF es servat sus vòstre ordenador sonque per que lo signetz"
 
 #: templates/organization.html.php:65 templates/organization.html.php:97
 #, php-format
 msgid "%s Add a PDF"
-msgstr ""
+msgstr "%s Apondre un PDF"
 
 #: templates/organization.html.php:70
 #, php-format
 msgid "%s page(s) selected"
-msgstr ""
+msgstr "%s pagina(s) seleccionada(s)"
 
 #: templates/organization.html.php:72
 #, php-format
 msgid "%s Rotate 90°"
-msgstr ""
+msgstr "%s Virar de 90°"
 
 #: templates/organization.html.php:73 templates/organization.html.php:104
 #, php-format
 msgid "%s Move"
-msgstr ""
+msgstr "%s Desplaçar"
 
 #: templates/organization.html.php:74 templates/organization.html.php:105
 #, php-format
 msgid "%s Delete"
-msgstr ""
+msgstr "%s Suprimir"
 
 #: templates/organization.html.php:75
 #, php-format
 msgid "%s Extract and download"
-msgstr ""
+msgstr "%s Extraire e telecargar"
 
 #: templates/organization.html.php:77
 #, php-format
 msgid "%s Cancel selection"
-msgstr ""
+msgstr "%s Anullar la seleccion"
 
 #: templates/organization.html.php:85 templates/organization.html.php:111
 #, php-format
 msgid "%s Download the full PDF"
-msgstr ""
+msgstr "%s Telecargar lo PDF complèt"
 
 #: templates/organization.html.php:101
 msgid "No"
@@ -306,19 +306,19 @@ msgstr "Cossí signar ?"
 
 #: templates/signature.html.php:44
 msgid "By clicking directly on the document page"
-msgstr ""
+msgstr "En clicant dirèctament per la pagina del document"
 
 #: templates/signature.html.php:44
 msgid "to insert the selected item in the right column"
-msgstr ""
+msgstr "per inserir l’element seleccionat dins la colomna a man drecha"
 
 #: templates/signature.html.php:44
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "signatura, parafa, tèxt, sagèl, etc..."
 
 #: templates/signature.html.php:55
 msgid "Close this PDF and return to the homepage"
-msgstr ""
+msgstr "Tampar aqueste PDF e tornar a l’acuèlh"
 
 #: templates/signature.html.php:57
 msgid "PDF Signature"
@@ -327,10 +327,12 @@ msgstr "Signatura PDF"
 #: templates/signature.html.php:57
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
+"Aqueste PDF es partejat amb d’autras personas per èsser signat per mantuna "
+"persona"
 
 #: templates/signature.html.php:64
 msgid "Keep the selection active"
-msgstr ""
+msgstr "Gardar la seleccion activa"
 
 #: templates/signature.html.php:69
 #, php-format
@@ -345,12 +347,12 @@ msgstr "Crear"
 #: templates/signature.html.php:74
 #, php-format
 msgid "%s Initial"
-msgstr ""
+msgstr "%s Parafa"
 
 #: templates/signature.html.php:79
 #, php-format
 msgid "%s Stamp"
-msgstr ""
+msgstr "%s Sagèl"
 
 #: templates/signature.html.php:83
 #, php-format
@@ -360,17 +362,17 @@ msgstr "%s Tèxt"
 #: templates/signature.html.php:87
 #, php-format
 msgid "%s Check box"
-msgstr ""
+msgstr "%s Cassa de marcar"
 
 #: templates/signature.html.php:92
 #, php-format
 msgid "%s Create an element"
-msgstr ""
+msgstr "%s Crear un element"
 
 #: templates/signature.html.php:97
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr ""
+msgstr "%s Partejar per signar %s amb mantuna persona"
 
 #: templates/signature.html.php:102 templates/signature.html.php:142
 msgid "Download the signed PDF"
@@ -388,7 +390,7 @@ msgstr "%s Telecargar lo PDF"
 
 #: templates/signature.html.php:115 templates/signature.html.php:140
 msgid "Transmit my signature"
-msgstr ""
+msgstr "Transmetre ma signatura"
 
 #: templates/signature.html.php:123
 #, php-format
@@ -430,7 +432,7 @@ msgstr "Ma signatura"
 #: templates/signature.html.php:188
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr ""
+msgstr "%s Partejar aqueste signar a mantuna persona"
 
 #: templates/signature.html.php:192
 msgid ""
@@ -481,12 +483,12 @@ msgstr "fins a la darrièra signatura."
 #: templates/signature.html.php:200
 #, php-format
 msgid "%s Start sharing"
-msgstr ""
+msgstr "%s Aviar lo partiment"
 
 #: templates/signature.html.php:212
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr ""
+msgstr "%s Signar aqueste PDF a mantuna persona"
 
 #: templates/signature.html.php:216
 msgid "Multiple people can sign this PDF simultaneously."

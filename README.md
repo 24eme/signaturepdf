@@ -16,16 +16,19 @@ Open-source software under the AGPL V3 license.
 
 ## Installation
 ### Debian/Ubuntu
+
 Dependencies:
+
 - php >= 5.6
 - rsvg-convert
 - pdftk
 - imagemagick
 - potrace
+- ghostcript
 
 Installing dependencies:
 ```
-sudo aptitude install php librsvg2-bin pdftk imagemagick potrace
+sudo aptitude install php librsvg2-bin pdftk imagemagick potrace ghostscript locales
 ```
 
 Getting the source code:
@@ -296,6 +299,8 @@ DEBUG=1 make test
 - **ImageMagick** Image manipulation toolset: https://imagemagick.org/ (Apache-2.0)
 - **Caveat** Handwriting-style font: https://github.com/googlefonts/caveat (OFL-1.1)
 - **PDF-LIB** JavaScript library for PDF manipulation used for writing metadata: https://pdf-lib.js.org/ (MIT)
+- **PDF-LIB** JavaScript library for PDF manipulation used for writing metadata: https://pdf-lib.js.org/ (MIT)
+- **Ghostscript** GPL Ghostscript is a software suite for processing PostScript and PDF file formats (GPLv3)
 
 For testing:
 

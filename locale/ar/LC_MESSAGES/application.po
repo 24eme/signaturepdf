@@ -69,7 +69,7 @@ msgstr "ضغط"
 
 #: templates/compress.html.php:38
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "ضغط منخفض (جودة عالية)"
 
 #: templates/compress.html.php:39
 #, php-format
@@ -78,7 +78,7 @@ msgstr "%s ضغط متوسط %s (مبدئي)"
 
 #: templates/compress.html.php:40
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "ضغط عالي (جودة دنيا)"
 
 #: templates/compress.html.php:48 templates/metadata.html.php:38
 #: templates/organization.html.php:38 templates/signature.html.php:36

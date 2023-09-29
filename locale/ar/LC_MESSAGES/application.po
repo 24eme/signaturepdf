@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-27 12:03+0200\n"
-"PO-Revision-Date: 2023-09-25 08:01+0000\n"
+"PO-Revision-Date: 2023-09-29 08:55+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
 "application/ar/>\n"
@@ -505,11 +505,11 @@ msgstr "رابط المشارَكة"
 
 #: templates/signature.html.php:221
 msgid "Copied !"
-msgstr ""
+msgstr "تم نسخه!"
 
 #: templates/signature.html.php:221
 msgid "Copy"
-msgstr ""
+msgstr "نسخ"
 
 #: templates/signature.html.php:224
 msgid ""

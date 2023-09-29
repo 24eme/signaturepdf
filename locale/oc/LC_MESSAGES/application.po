@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 16:29+0200\n"
+"POT-Creation-Date: 2023-09-29 11:06+0200\n"
 "PO-Revision-Date: 2023-09-29 08:55+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.1-dev\n"
 
-#: app.php:60
+#: app.php:56
 msgid "en"
 msgstr "oc"
 
@@ -56,9 +56,11 @@ msgstr "Lo PDF deu pas despassar "
 msgid "Mb"
 msgstr "Mo"
 
-#: templates/compress.html.php:31 templates/signature.html.php:28
-msgid "The PDF will be processed by the server without being stored or saved"
-msgstr "Lo servidor tractarà lo PDF sens lo gardar o enregistrar"
+#: templates/compress.html.php:31 templates/organization.html.php:30
+#: templates/signature.html.php:28
+msgid ""
+"The PDF will be processed by the server without being retained or stored"
+msgstr "Lo servidor tractarà lo PDF sens lo servar o gardar"
 
 #: templates/compress.html.php:33 templates/components/navtab.html.php:24
 msgid "Compress"
@@ -159,11 +161,6 @@ msgstr "%s Organizar de PDF"
 #: templates/organization.html.php:25
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Fusionar, triar, pivotar, suprimir, extraire de paginas"
-
-#: templates/organization.html.php:30
-msgid ""
-"The PDF will be processed by the server without being retained or stored"
-msgstr "Lo servidor tractarà lo PDF sens lo servar o gardar"
 
 #: templates/organization.html.php:43
 msgid "Touch a page to select it"
@@ -509,6 +506,14 @@ msgstr ""
 msgid "Sharing link"
 msgstr "Ligam de partatge"
 
+#: templates/signature.html.php:221
+msgid "Copied !"
+msgstr ""
+
+#: templates/signature.html.php:221
+msgid "Copy"
+msgstr ""
+
 #: templates/signature.html.php:224
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
@@ -548,3 +553,7 @@ msgstr "Organizar"
 #: templates/components/navtab.html.php:21
 msgid "Metadata"
 msgstr "Metadonadas"
+
+#~ msgid ""
+#~ "The PDF will be processed by the server without being stored or saved"
+#~ msgstr "Lo servidor tractarà lo PDF sens lo gardar o enregistrar"

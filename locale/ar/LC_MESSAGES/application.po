@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 12:03+0200\n"
+"POT-Creation-Date: 2023-09-29 11:06+0200\n"
 "PO-Revision-Date: 2023-09-29 08:55+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -20,7 +20,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 5.1-dev\n"
 
-#: app.php:54
+#: app.php:56
 msgid "en"
 msgstr "ar"
 

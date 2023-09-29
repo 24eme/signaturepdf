@@ -15,7 +15,7 @@ test: node_modules/jest/bin/jest.js node_modules/puppeteer
 
 update_trad:
 	# Extraction des phrases traductibles...
-	@xgettext --from-code=utf-8 --output=./locale/application.pot *.php templates/*.php templates/components/*.php
+	@xgettext --from-code=utf-8 --no-location --output=./locale/application.pot *.php templates/*.php templates/components/*.php
 
 	# Mise a jour des fichiers .po...
 	@for lang in $$(find locale -mindepth 1 -maxdepth 1 -type d); do \

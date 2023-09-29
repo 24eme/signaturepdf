@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-29 11:28+0200\n"
 "PO-Revision-Date: 2023-09-30 00:00+0000\n"
-"Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
+"Last-Translator: R_SACI <rgebbid@gmail.com>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
 "Language: kab\n"
@@ -52,14 +52,14 @@ msgid "Compress"
 msgstr "Ssed"
 
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "Tussda tafessast (taɣara tafellayt)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
 msgstr "%s Tussda talemmast %s (tamezwert)"
 
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "Tussda ɛlayen (taɣara taddayt)"
 
 msgid "Free open-source software"
 msgstr "D aseɣẓan ilelli n uɣbalu yeldin"

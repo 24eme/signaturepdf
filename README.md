@@ -8,6 +8,7 @@ List of instances where you can use this software:
 - [pdf.libreon.fr](https://pdf.libreon.fr)
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
+- [pdf.kaosx.cf](https://pdf.kaosx.cf)
 
 _Feel free to add yours through an issue or a pull request._
 

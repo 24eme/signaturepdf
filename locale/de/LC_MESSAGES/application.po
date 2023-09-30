@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-29 11:28+0200\n"
 "PO-Revision-Date: 2023-10-01 00:59+0000\n"
-"Last-Translator: TobiGr <tobigr@mail.de>\n"
+"Last-Translator: mondstern <mondstern@monocles.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
 "application/de/>\n"
 "Language: de\n"
@@ -61,6 +61,8 @@ msgstr ""
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr ""
+"Die PDF-Datei wird vom Server verarbeitet, ohne dass sie aufbewahrt oder "
+"gespeichert wird"
 
 #: templates/compress.html.php:33 templates/components/navtab.html.php:24
 msgid "Compress"
@@ -68,7 +70,7 @@ msgstr ""
 
 #: templates/compress.html.php:38
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "Niedrige Komprimierung (maximale Qualität)"
 
 #: templates/compress.html.php:39
 #, php-format
@@ -77,17 +79,17 @@ msgstr ""
 
 #: templates/compress.html.php:40
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "Hohe Komprimierung (minimale Qualität)"
 
 #: templates/compress.html.php:48 templates/metadata.html.php:38
 #: templates/organization.html.php:38 templates/signature.html.php:36
 msgid "Free open-source software"
-msgstr ""
+msgstr "Freie Open-Source-Software"
 
 #: templates/compress.html.php:48 templates/metadata.html.php:38
 #: templates/organization.html.php:38 templates/signature.html.php:36
 msgid "under AGPL-3.0 license"
-msgstr ""
+msgstr "unter AGPL-3.0-Lizenz"
 
 #: templates/compress.html.php:48 templates/metadata.html.php:38
 #: templates/organization.html.php:38 templates/signature.html.php:36
@@ -105,7 +107,7 @@ msgstr ""
 
 #: templates/metadata.html.php:25
 msgid "Add, edit, or remove metadata from a PDF"
-msgstr ""
+msgstr "Hinzufügen, Bearbeiten oder Entfernen von Metadaten aus einer PDF-Datei"
 
 #: templates/metadata.html.php:32 templates/organization.html.php:32
 #: templates/signature.html.php:30
@@ -177,6 +179,8 @@ msgstr ""
 #: templates/organization.html.php:56 templates/signature.html.php:57
 msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
+"Diese PDF-Datei wird auf Ihrem Computer gespeichert und kann nur von Ihnen "
+"unterzeichnet werden"
 
 #: templates/organization.html.php:65 templates/organization.html.php:97
 #, php-format
@@ -324,6 +328,8 @@ msgstr ""
 #: templates/signature.html.php:57
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
+"Diese PDF-Datei wird an andere weitergegeben, damit sie von mehreren "
+"Personen unterzeichnet werden kann"
 
 #: templates/signature.html.php:64
 msgid "Keep the selection active"
@@ -434,6 +440,9 @@ msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
+"Wenn Sie die PDF-Freigabe aktivieren, können Sie den Personen Ihrer Wahl "
+"einen Link zur Verfügung stellen, damit diese die PDF-Datei unterschreiben "
+"können."
 
 #: templates/signature.html.php:193
 #, php-format
@@ -493,6 +502,8 @@ msgstr ""
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
+"Geben Sie dazu einfach den Link zu dieser Seite an die Personen Ihrer Wahl "
+"weiter:"
 
 #: templates/signature.html.php:219
 msgid "Sharing link"
@@ -511,6 +522,8 @@ msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr ""
+"Jeder der Unterzeichner kann jederzeit die neueste Version der "
+"unterzeichneten PDF-Datei herunterladen."
 
 #: templates/signature.html.php:227
 msgid "Close"

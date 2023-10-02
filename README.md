@@ -1,6 +1,7 @@
-# PDF Signature
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0) [![État de la traduction](https://hosted.weblate.org/widget/signature-pdf/application/svg-badge.svg)](https://hosted.weblate.org/engage/signature-pdf/)
+# PDF Signature                                                                                                                
 
-Free web software for signing PDFs.
+Free web software for signing, organizing, editing metadatas or compressing PDFs.
 
 ## Instances
 List of instances where you can use this software:
@@ -15,13 +16,31 @@ _Feel free to add yours through an issue or a pull request._
 ## License
 Open-source software under the AGPL V3 license.
 
+## Table of Contents
+
+- [Installation](#installation)
+    - [Debian/Ubuntu](#debianubuntu)
+    - [Docker](#docker)
+    - [Linux Alpine](#linux-alpine)
+- [Configuration](#configuration)
+    - [Enabling and Configuring Multi-Signature Mode](#enabling-and-configuring-multi-signature-mode)
+    - [Disabling the Organize Mode](#disabling-the-organize-mode)
+    - [Hiding or Modifying the Demo PDF Link](#hiding-or-modifying-the-demo-pdf-link)
+    - [Default Fields for Metadata Editing](#default-fields-for-metadata-editing)
+- [Update](#update)
+- [Tests](#tests)
+- [Libraries Used](#libraries-used)
+- [Contributions](#contributions)
+    - [Translation](#translation)
+    - [Contributors](#contributors)
+    - [Fundings](#fundings)
+
+
 ## Installation
 
 - [Debian/Ubuntu](installation.md#debian)
 - [Docker](installation.md#docker)
 - [Linux Alpine](installation.md#alpine)
-
-
 
 ## Configuration
 
@@ -130,8 +149,7 @@ For testing:
 To update the translation, simply execute `make` that will update the `.pot` file,
 which will merge the `.po` files which then will allow to create updated `.mo` files.
 
-Translations might be added on Weblate : https://hosted.weblate.org/projects/signature-pdf/application/
-
+[![État de la traduction](https://hosted.weblate.org/widget/signature-pdf/application/multi-green.svg)](https://hosted.weblate.org/engage/signature-pdf/)
 
 ### Contributors
 

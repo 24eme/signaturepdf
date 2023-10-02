@@ -19,9 +19,6 @@ Open-source software under the AGPL V3 license.
 ## Table of Contents
 
 - [Installation](#installation)
-    - [Debian/Ubuntu](#debianubuntu)
-    - [Docker](#docker)
-    - [Linux Alpine](#linux-alpine)
 - [Configuration](#configuration)
     - [Enabling and Configuring Multi-Signature Mode](#enabling-and-configuring-multi-signature-mode)
     - [Disabling the Organize Mode](#disabling-the-organize-mode)

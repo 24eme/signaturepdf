@@ -1,6 +1,6 @@
 # Installation
 
-## Debian/Ubuntu
+## [Debian/Ubuntu](#debian-ubuntu)
 
 Dependencies:
 
@@ -50,7 +50,7 @@ DocumentRoot /path/to/signaturepdf/public
 ```
 
 
-## Deploy with Docker
+## [Deploy with Docker](#docker)
 
 ### Building the image
 
@@ -86,7 +86,7 @@ docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UP
 ```
 
 
-## Alpine
+## [Alpine](#alpine)
 
 Here is a script to install the solution on Linux Alpine (tested with version 3.15).
 Remember to edit the "domain" variable at the beginning of the script to match the URL it will be called with.

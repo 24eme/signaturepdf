@@ -17,9 +17,9 @@ Open-source software under the AGPL V3 license.
 
 ## Installation
 
-- [Debian/Ubuntu](https://github.com/24eme/signaturepdf/edit/master/installation.md#Debian/Ubuntu)
-- [Docker](https://github.com/24eme/signaturepdf/edit/master/installation.md#Deploy-with-Docker)
-- [Linux Alpine](https://github.com/24eme/signaturepdf/edit/master/installation.md#Alpine)
+- [Debian/Ubuntu](https://github.com/24eme/signaturepdf/edit/master/installation.md##Debian/Ubuntu)
+- [Docker](https://github.com/24eme/signaturepdf/edit/master/installation.md##Deploy-with-Docker)
+- [Linux Alpine](https://github.com/24eme/signaturepdf/edit/master/installation.md##Alpine)
 
 
 

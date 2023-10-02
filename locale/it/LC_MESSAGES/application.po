@@ -8,295 +8,298 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-29 11:28+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-10-02 20:59+0000\n"
+"Last-Translator: Paolo Mauri <paolo@paolomauri.it>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
+"application/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: app.php:56
 msgid "en"
-msgstr ""
+msgstr "it"
 
 #: templates/compress.html.php:13
 msgid "Compress PDF"
-msgstr ""
+msgstr "Comprimere un PDF"
 
 #: templates/compress.html.php:18 templates/metadata.html.php:18
 #: templates/organization.html.php:18 templates/signature.html.php:16
 msgid "Site not functional without JavaScript enabled"
-msgstr ""
+msgstr "Il sito non funziona senza JavaScript abilitato"
 
 #: templates/compress.html.php:25
 #, php-format
 msgid "%s Compress a PDF"
-msgstr ""
+msgstr "%s Compressione in PDF"
 
 #: templates/compress.html.php:26
 msgid "Reduce the size of a PDF"
-msgstr ""
+msgstr "Riduci la dimensione di un PDF"
 
 #: templates/compress.html.php:29 templates/compress.html.php:30
 #: templates/metadata.html.php:28 templates/metadata.html.php:29
 #: templates/organization.html.php:28 templates/organization.html.php:29
 #: templates/signature.html.php:26 templates/signature.html.php:27
 msgid "Choose a PDF"
-msgstr ""
+msgstr "Scegli un PDF"
 
 #: templates/compress.html.php:29 templates/organization.html.php:28
 msgid "The PDF must not exceed "
-msgstr ""
+msgstr "Il PDF non deve superare "
 
 #: templates/compress.html.php:29 templates/organization.html.php:28
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #: templates/compress.html.php:31 templates/organization.html.php:30
 #: templates/signature.html.php:28
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
-msgstr ""
+msgstr "Il PDF sarà processato dal server senza essere memorizzato o salvato"
 
 #: templates/compress.html.php:33 templates/components/navtab.html.php:24
 msgid "Compress"
-msgstr ""
+msgstr "Comprimere"
 
 #: templates/compress.html.php:38
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "Bassa compressione (massima qualità)"
 
 #: templates/compress.html.php:39
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s Compressione media %s (default)"
 
 #: templates/compress.html.php:40
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "Alta compressione (minima qualità)"
 
 #: templates/compress.html.php:48 templates/metadata.html.php:38
 #: templates/organization.html.php:38 templates/signature.html.php:36
 msgid "Free open-source software"
-msgstr ""
+msgstr "Software libero"
 
 #: templates/compress.html.php:48 templates/metadata.html.php:38
 #: templates/organization.html.php:38 templates/signature.html.php:36
 msgid "under AGPL-3.0 license"
-msgstr ""
+msgstr "sotto licenza AGPL-3.0"
 
 #: templates/compress.html.php:48 templates/metadata.html.php:38
 #: templates/organization.html.php:38 templates/signature.html.php:36
 msgid "see the source code"
-msgstr ""
+msgstr "vedi il codice sorgente"
 
 #: templates/metadata.html.php:13
 msgid "Editing PDF metadata"
-msgstr ""
+msgstr "Modifica i metadata si un PDF"
 
 #: templates/metadata.html.php:24
 #, php-format
 msgid "%s Edit metadata"
-msgstr ""
+msgstr "%s Modificare i metadata"
 
 #: templates/metadata.html.php:25
 msgid "Add, edit, or remove metadata from a PDF"
-msgstr ""
+msgstr "Aggiungi, modifica o rimuovi i metadata da un PDF"
 
 #: templates/metadata.html.php:32 templates/organization.html.php:32
 #: templates/signature.html.php:30
 msgid "Test with a demo PDF"
-msgstr ""
+msgstr "Test con un PDF demo"
 
 #: templates/metadata.html.php:45
 msgid "List of PDF metadata"
-msgstr ""
+msgstr "Elenco dei metadata del PDF"
 
 #: templates/metadata.html.php:51
 msgid "Add new metadata"
-msgstr ""
+msgstr "Aggiungi un nuovo metadata"
 
 #: templates/metadata.html.php:54
 msgid "Key"
-msgstr ""
+msgstr "Chiave"
 
 #: templates/metadata.html.php:56
 msgid "Value"
-msgstr ""
+msgstr "Valore"
 
 #: templates/metadata.html.php:58
 #, php-format
 msgid "%s Add"
-msgstr ""
+msgstr "%s Aggiunto"
 
 #: templates/metadata.html.php:64
 msgid "Close this PDF and return to the home page"
-msgstr ""
+msgstr "Chiudi questo PDF e torna alla home page"
 
 #: templates/metadata.html.php:66
 msgid "Edit metadata"
-msgstr ""
+msgstr "Modifica i metadata"
 
 #: templates/metadata.html.php:76
 msgid "Save and download the PDF"
-msgstr ""
+msgstr "Salva e scarica il PDF"
 
 #: templates/metadata.html.php:82 templates/signature.html.php:245
 msgid "Download the PDF"
-msgstr ""
+msgstr "Scarica il PDF"
 
 #: templates/organization.html.php:13
 msgid "Organize PDF"
-msgstr ""
+msgstr "Organizza un PDF"
 
 #: templates/organization.html.php:24
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s Organizzato di PDF"
 
 #: templates/organization.html.php:25
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
+msgstr "Unisci, ordina, ruota, elimina, estrai pagine"
 
 #: templates/organization.html.php:43
 msgid "Touch a page to select it"
-msgstr ""
+msgstr "Clicca sulla pagina per selezionarla"
 
 #: templates/organization.html.php:54
 msgid "Close this PDF and return to home"
-msgstr ""
+msgstr "Chiudi questo PDF e ritorna alla home"
 
 #: templates/organization.html.php:56
 msgid "PDF organization"
-msgstr ""
+msgstr "Organizzazione del PDF"
 
 #: templates/organization.html.php:56 templates/signature.html.php:57
 msgid "This PDF is stored on your computer to be signed by you only"
-msgstr ""
+msgstr "Questo PDF è salvato sul tuo computer per essere firmato solo da te"
 
 #: templates/organization.html.php:65 templates/organization.html.php:97
 #, php-format
 msgid "%s Add a PDF"
-msgstr ""
+msgstr "%s Aggiunto al PDF"
 
 #: templates/organization.html.php:70
 #, php-format
 msgid "%s page(s) selected"
-msgstr ""
+msgstr "%s pagine selezionate"
 
 #: templates/organization.html.php:72
 #, php-format
 msgid "%s Rotate 90°"
-msgstr ""
+msgstr "%s Ruota di 90°"
 
 #: templates/organization.html.php:73 templates/organization.html.php:104
 #, php-format
 msgid "%s Move"
-msgstr ""
+msgstr "%s Spostato"
 
 #: templates/organization.html.php:74 templates/organization.html.php:105
 #, php-format
 msgid "%s Delete"
-msgstr ""
+msgstr "%s Eliminato"
 
 #: templates/organization.html.php:75
 #, php-format
 msgid "%s Extract and download"
-msgstr ""
+msgstr "%s Estratto e scaricato"
 
 #: templates/organization.html.php:77
 #, php-format
 msgid "%s Cancel selection"
-msgstr ""
+msgstr "%s Selezione annullata"
 
 #: templates/organization.html.php:85 templates/organization.html.php:111
 #, php-format
 msgid "%s Download the full PDF"
-msgstr ""
+msgstr "%s Scaricato il PDF completo"
 
 #: templates/organization.html.php:101
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: templates/organization.html.php:101
 msgid "page"
-msgstr ""
+msgstr "pagina"
 
 #: templates/organization.html.php:101 templates/signature.html.php:176
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: templates/organization.html.php:103
 #, php-format
 msgid "%s Turn"
-msgstr ""
+msgstr "%s Ruotato"
 
 #: templates/organization.html.php:114
 #, php-format
 msgid "Download the selection"
-msgstr ""
+msgstr "Scarica la selezione"
 
 #: templates/organization.html.php:122
 msgid "PDF documents"
-msgstr ""
+msgstr "Documenti PDF"
 
 #: templates/organization.html.php:138
 msgid "Select this page"
-msgstr ""
+msgstr "Seleziona questa pagina"
 
 #: templates/organization.html.php:139
 msgid "Delete this page"
-msgstr ""
+msgstr "Elimina questa pagina"
 
 #: templates/organization.html.php:140
 msgid "Restore this page"
-msgstr ""
+msgstr "Ripristina questa pagina"
 
 #: templates/organization.html.php:141
 msgid "Move this page"
-msgstr ""
+msgstr "Sposta questa pagina"
 
 #: templates/organization.html.php:142
 msgid "Move here"
-msgstr ""
+msgstr "Sposta qui"
 
 #: templates/organization.html.php:143
 msgid "Turn this page"
-msgstr ""
+msgstr "Ruota questa pagina"
 
 #: templates/organization.html.php:144
 msgid "Download this page"
-msgstr ""
+msgstr "Scarica questa pagina"
 
 #: templates/organization.html.php:145
 msgid "Page"
-msgstr ""
+msgstr "Pagina"
 
 #: templates/signature.html.php:22
 #, php-format
 msgid "%s Sign a PDF"
-msgstr ""
+msgstr "%s Firma un PDF"
 
 #: templates/signature.html.php:23
 msgid "Sign, initial, stamp, complete a document"
-msgstr ""
+msgstr "Firma, annota, timbra, completa un documento"
 
 #: templates/signature.html.php:26
 msgid "The PDF should not exceed"
-msgstr ""
+msgstr "Il PDF non può superare"
 
 #: templates/signature.html.php:26
 msgid "MB and"
-msgstr ""
+msgstr "MB e"
 
 #: templates/signature.html.php:26
 msgid "pages"
-msgstr ""
+msgstr "pagine"
 
 #: templates/signature.html.php:43
 msgid "How to sign?"
-msgstr ""
+msgstr "Come firmare?"
 
 #: templates/signature.html.php:44
 msgid "By clicking directly on the document page"

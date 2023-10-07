@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-29 11:28+0200\n"
-"PO-Revision-Date: 2023-10-02 20:59+0000\n"
+"PO-Revision-Date: 2023-10-07 13:11+0000\n"
 "Last-Translator: Paolo Mauri <paolo@paolomauri.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
@@ -303,137 +303,139 @@ msgstr "Come firmare?"
 
 #: templates/signature.html.php:44
 msgid "By clicking directly on the document page"
-msgstr ""
+msgstr "Cliccando direttamente sulla pagina del documento"
 
 #: templates/signature.html.php:44
 msgid "to insert the selected item in the right column"
-msgstr ""
+msgstr "per inserire l'elemento selezionato nella colonna destra"
 
 #: templates/signature.html.php:44
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "firma, iniziali, testo, timbro, ecc..."
 
 #: templates/signature.html.php:55
 msgid "Close this PDF and return to the homepage"
-msgstr ""
+msgstr "Chiudi questo PDF e torna in homepage"
 
 #: templates/signature.html.php:57
 msgid "PDF Signature"
-msgstr ""
+msgstr "Firma del PDF"
 
 #: templates/signature.html.php:57
 msgid "This PDF is shared with others to be signed by multiple people"
-msgstr ""
+msgstr "Questo PDF è condiviso con altri per essere firmato da più persone"
 
 #: templates/signature.html.php:64
 msgid "Keep the selection active"
-msgstr ""
+msgstr "Tieni attiva la selezione"
 
 #: templates/signature.html.php:69
 #, php-format
 msgid "%s Signature"
-msgstr ""
+msgstr "%s Firma"
 
 #: templates/signature.html.php:69 templates/signature.html.php:74
 #: templates/signature.html.php:79 templates/signature.html.php:177
 msgid "Create"
-msgstr ""
+msgstr "Crea"
 
 #: templates/signature.html.php:74
 #, php-format
 msgid "%s Initial"
-msgstr ""
+msgstr "%s Iniziali"
 
 #: templates/signature.html.php:79
 #, php-format
 msgid "%s Stamp"
-msgstr ""
+msgstr "%s Timbro"
 
 #: templates/signature.html.php:83
 #, php-format
 msgid "%s Text"
-msgstr ""
+msgstr "%s Testo"
 
 #: templates/signature.html.php:87
 #, php-format
 msgid "%s Check box"
-msgstr ""
+msgstr "%s Check box"
 
 #: templates/signature.html.php:92
 #, php-format
 msgid "%s Create an element"
-msgstr ""
+msgstr "%s Crea un elemento"
 
 #: templates/signature.html.php:97
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr ""
+msgstr "%s Condividi per la firma %s con più persone"
 
 #: templates/signature.html.php:102 templates/signature.html.php:142
 msgid "Download the signed PDF"
-msgstr ""
+msgstr "Scarica il PDF firmato"
 
 #: templates/signature.html.php:107
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr ""
+msgstr "Sei %s che ha firmato questo PDF"
 
 #: templates/signature.html.php:110
 #, php-format
 msgid "%s Download the PDF"
-msgstr ""
+msgstr "%s Scarica il PDF"
 
 #: templates/signature.html.php:115 templates/signature.html.php:140
 msgid "Transmit my signature"
-msgstr ""
+msgstr "Invia la mia firma"
 
 #: templates/signature.html.php:123
 #, php-format
 msgid "%s Select a signature"
-msgstr ""
+msgstr "%s Seleziona una firma"
 
 #: templates/signature.html.php:152
 msgid "Draw"
-msgstr ""
+msgstr "Disegna"
 
 #: templates/signature.html.php:152
 msgid "freehand"
-msgstr ""
+msgstr "a mano libera"
 
 #: templates/signature.html.php:153
 msgid "Enter"
-msgstr ""
+msgstr "Conferma"
 
 #: templates/signature.html.php:153
 msgid "text"
-msgstr ""
+msgstr "testo"
 
 #: templates/signature.html.php:154
 msgid "Import"
-msgstr ""
+msgstr "Importa"
 
 #: templates/signature.html.php:154
 msgid "an image"
-msgstr ""
+msgstr "un'immagine"
 
 #: templates/signature.html.php:158
 msgid "Clear signature"
-msgstr ""
+msgstr "Elimina la firma"
 
 #: templates/signature.html.php:162
 msgid "My signature"
-msgstr ""
+msgstr "La mia firma"
 
 #: templates/signature.html.php:188
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr ""
+msgstr "%s Condividi questo PDF per essere firmato da più persone"
 
 #: templates/signature.html.php:192
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
+"Per abilitare la condivisione del PDF, devi poter inviare un link alle "
+"persone scelte perchè possano firmare il PDF."
 
 #: templates/signature.html.php:193
 #, php-format
@@ -441,105 +443,110 @@ msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s Questa condivisione richiede che il PDF sia trasferito e memorizzato nel "
+"server per il successivo accesso dei firmatari."
 
 #: templates/signature.html.php:194
 #, php-format
 msgid "%s The PDF will be kept"
-msgstr ""
+msgstr "%s Il PDF verrà salvato"
 
 #: templates/signature.html.php:194
 msgid "for one year"
-msgstr ""
+msgstr "per un anno"
 
 #: templates/signature.html.php:194
 msgid "for six months"
-msgstr ""
+msgstr "per sei mesi"
 
 #: templates/signature.html.php:194
 msgid "for one month"
-msgstr ""
+msgstr "per un mese"
 
 #: templates/signature.html.php:194
 msgid "for one week"
-msgstr ""
+msgstr "per una settimana"
 
 #: templates/signature.html.php:194
 msgid "for one day"
-msgstr ""
+msgstr "per un giorno"
 
 #: templates/signature.html.php:194
 msgid "for one hour"
-msgstr ""
+msgstr "per un'ora"
 
 #: templates/signature.html.php:194
 msgid "after the last signature."
-msgstr ""
+msgstr "dopo l'ultima firma."
 
 #: templates/signature.html.php:200
 #, php-format
 msgid "%s Start sharing"
-msgstr ""
+msgstr "%s Inizia la condivisione"
 
 #: templates/signature.html.php:212
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr ""
+msgstr "%s Firma questo PDF con più persone"
 
 #: templates/signature.html.php:216
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr ""
+msgstr "Più persone possono firmare questo PDF contemporaneamente."
 
 #: templates/signature.html.php:217
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
+"Per farlo condividi il link a questa pagina con le persone che hai scelto:"
 
 #: templates/signature.html.php:219
 msgid "Sharing link"
-msgstr ""
+msgstr "Link di condivisione"
 
 #: templates/signature.html.php:221
 msgid "Copied !"
-msgstr ""
+msgstr "Copiato!"
 
 #: templates/signature.html.php:221
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: templates/signature.html.php:224
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr ""
+"Ogni firmatario può scaricare l'ultima versione del PDF firmato in qualsiasi "
+"momento."
 
 #: templates/signature.html.php:227
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: templates/signature.html.php:238
 msgid "Signed PDF"
-msgstr ""
+msgstr "PDF firmato"
 
 #: templates/signature.html.php:242
 msgid "Your signature has been successfully recorded!"
-msgstr ""
+msgstr "La tua firma è stata correttamente salvata!"
 
 #: templates/signature.html.php:270
 msgid "Text to modify"
-msgstr ""
+msgstr "Testo da modificare"
 
 #: templates/components/navtab.html.php:4
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 #: templates/components/navtab.html.php:15
 msgid "Sign"
-msgstr ""
+msgstr "Firma"
 
 #: templates/components/navtab.html.php:18
 msgid "Organize"
-msgstr ""
+msgstr "Organizza"
 
 #: templates/components/navtab.html.php:21
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"

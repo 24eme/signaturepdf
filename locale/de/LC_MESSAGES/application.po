@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-29 11:28+0200\n"
-"PO-Revision-Date: 2023-10-01 00:59+0000\n"
-"Last-Translator: mondstern <mondstern@monocles.de>\n"
+"PO-Revision-Date: 2023-10-17 05:03+0000\n"
+"Last-Translator: Arthur Dubar <arthur.dubar.98@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
 "application/de/>\n"
 "Language: de\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.1\n"
 
 #: app.php:56
 msgid "en"
-msgstr ""
+msgstr "de"
 
 #: templates/compress.html.php:13
 msgid "Compress PDF"
@@ -30,7 +30,7 @@ msgstr "PDF komprimieren"
 #: templates/compress.html.php:18 templates/metadata.html.php:18
 #: templates/organization.html.php:18 templates/signature.html.php:16
 msgid "Site not functional without JavaScript enabled"
-msgstr ""
+msgstr "Diese Website funktioniert nicht ohne aktiviertes JavaScript"
 
 #: templates/compress.html.php:25
 #, php-format

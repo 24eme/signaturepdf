@@ -409,8 +409,12 @@ $f3->route('GET /metadata',
 
 $f3->route('GET /compress',
     function($f3) {
+        $f3->set('error_message', "none");
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('activeTab', 'compress');
+        if (isset($_GET['err'])) {
+            $f3->set('error_message', "PDF optimized");
+        }
         echo View::instance()->render('compress.html.php');
     }
 );
@@ -438,17 +442,23 @@ $f3->route ('POST /compress',
 
         $arrayPath = array_keys($files);
         $filePath = reset($arrayPath);
+
         $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
 
         $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dQUIET -o %s %s", $compressionType, $outputFileName, $filePath));
 
         if ($returnCode !== false) {
+            if (filesize($filePath) <= filesize($outputFileName)) {
+                $error = "pdfalreadyoptimized";
+                header('location: /compress?err=' . $error);
+            } else {
                 header('Content-Type: application/pdf');
                 header("Content-Disposition: attachment; filename=$outputFileName");
                 readfile($outputFileName);
                 unlink($outputFileName);
+            }
         } else {
-                echo "PDF compression failed.";
+            echo "PDF compression failed.";
         }
     }
 );

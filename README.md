@@ -31,6 +31,7 @@ Open-source software under the AGPL V3 license.
     - [Translation](#translation)
     - [Contributors](#contributors)
     - [Fundings](#fundings)
+- [Screenshots](#screenshots)
 
 
 ## Installation

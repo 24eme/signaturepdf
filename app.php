@@ -18,7 +18,8 @@ $f3->set('SUPPORTED_LANGUAGES',
         'en' => 'English',
         'ar' => 'العربية',
         'kab' => 'Taqbaylit',
-        'oc' => 'Occitan']);
+        'oc' => 'Occitan',
+        'it' => 'Italiano']);
 
 $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);

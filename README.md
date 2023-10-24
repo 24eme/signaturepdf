@@ -32,6 +32,13 @@ Open-source software under the AGPL V3 license.
     - [Contributors](#contributors)
     - [Fundings](#fundings)
 - [Screenshots](#screenshots)
+<<<<<<< HEAD
+=======
+    - [Signature feature](#signature-feature)
+    - [Organizing feature](#organizing-feature)
+    - [Metadata feature](#metadata-feature)
+    - [Compression feature](#compression-feature)
+>>>>>>> 6f677d88b834018412ab55101942c97b3213743b
 
 
 ## Installation
@@ -76,12 +83,12 @@ chown www-data /path/to/folder/to/store/pdf
 
 ### Disabling the Organize Mode
 
-To disable the Organize mode, add `DISABLE_ORGANIZATION=true` to the 
+To disable the Organize mode, add `DISABLE_ORGANIZATION=true` to the
 `config/config.ini` file.
 
 ### Hiding or Modifying the Demo PDF Link
 
-To hide the demo PDF link, add `PDF_DEMO_LINK=false` to the 
+To hide the demo PDF link, add `PDF_DEMO_LINK=false` to the
 `config/config.ini` file.
 
 ### Default Fields for Metadata Editing
@@ -163,4 +170,32 @@ Vincent LAURENT (24ème), Jean-Baptiste Le Metayer (24ème), Xavier Garnier (Log
 - 100 € excl. taxes donations from the company PDG IT
 - 1 040 € excl. taxes from the foundation NLNet pour software internationalization
 
+<<<<<<< HEAD
 The development of the software was primarily done during the working hours of 24ème employees.
+=======
+The development of the software was primarily done during the working hours of 24ème employees.
+
+## Screenshots
+
+### Signature feature
+
+![image](https://github.com/24eme/signaturepdf/assets/71143205/c3e8b8d2-3f94-45a3-a8fd-143077443337)
+![image](https://github.com/24eme/signaturepdf/assets/71143205/4deeb6fb-caa9-4365-895e-d22177a6ec3b)
+
+
+### Organizing feature
+
+![image](https://github.com/24eme/signaturepdf/assets/71143205/800c45a4-4c4c-42d5-b09b-c81cfcc0e6e0)
+![image](https://github.com/24eme/signaturepdf/assets/71143205/a008d765-3a74-4ab4-b2bc-4af6c81575fe)
+
+
+### Metadata feature
+
+![image](https://github.com/24eme/signaturepdf/assets/71143205/f543d665-0ab0-4d2b-8be1-39238879bd6c)
+![image](https://github.com/24eme/signaturepdf/assets/71143205/1f195bae-4af3-4d7b-9e31-3acd7552c2eb)
+
+
+### Compression feature
+
+![image](https://github.com/24eme/signaturepdf/assets/71143205/7d0e93a3-5567-4545-9c43-033b9028b036)
+>>>>>>> 6f677d88b834018412ab55101942c97b3213743b

@@ -32,13 +32,10 @@ Open-source software under the AGPL V3 license.
     - [Contributors](#contributors)
     - [Fundings](#fundings)
 - [Screenshots](#screenshots)
-<<<<<<< HEAD
-=======
     - [Signature feature](#signature-feature)
     - [Organizing feature](#organizing-feature)
     - [Metadata feature](#metadata-feature)
     - [Compression feature](#compression-feature)
->>>>>>> 6f677d88b834018412ab55101942c97b3213743b
 
 
 ## Installation

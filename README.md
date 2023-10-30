@@ -170,9 +170,6 @@ Vincent LAURENT (24ème), Jean-Baptiste Le Metayer (24ème), Xavier Garnier (Log
 - 100 € excl. taxes donations from the company PDG IT
 - 1 040 € excl. taxes from the foundation NLNet pour software internationalization
 
-<<<<<<< HEAD
-The development of the software was primarily done during the working hours of 24ème employees.
-=======
 The development of the software was primarily done during the working hours of 24ème employees.
 
 ## Screenshots
@@ -198,4 +195,3 @@ The development of the software was primarily done during the working hours of 2
 ### Compression feature
 
 ![image](https://github.com/24eme/signaturepdf/assets/71143205/7d0e93a3-5567-4545-9c43-033b9028b036)
->>>>>>> 6f677d88b834018412ab55101942c97b3213743b

@@ -181,7 +181,6 @@ $f3->route('POST /sign',
 
         shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
         shell_exec(sprintf("pdftk %s multistamp %s output %s", $tmpfile.".pdf", $tmpfile.'.svg.pdf', $tmpfile.'_signe.pdf'));
-
         Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
 
         if($f3->get('DEBUG')) {
@@ -209,7 +208,6 @@ $f3->route('POST /share',
         $filename = "original.pdf";
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));
         $svgFiles = "";
-
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);
@@ -233,15 +231,23 @@ $f3->route('POST /share',
         if(!count($files)) {
             $f3->error(403);
         }
-
         if($svgFiles) {
             shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
         }
-
         if(!$f3->get('DEBUG')) {
             array_map('unlink', glob($tmpfile."*.svg"));
         }
-
+        $key = "test";
+        foreach (glob("/tmp/".$hash.'/*.pdf') as $file) {
+            $outputFile = $file.".gpg";
+            $command = "echo '$key' | gpg --batch --passphrase-fd 0 --symmetric --cipher-algo AES256 -o $outputFile $file";
+            $result = shell_exec($command);
+            if ($result === false) {
+                echo "Cypher failure.";
+                exit;
+            }
+            unlink($file);
+        }
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#informations");
     }
 
@@ -252,6 +258,19 @@ $f3->route('GET /signature/@hash/pdf',
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
+
+        $key = "test";
+        foreach (glob("/tmp/".$hash.'/*.gpg') as $file) {
+            $outputFile = str_replace(".gpg", "", $file);
+            $command = "echo '$key' | gpg --batch --passphrase-fd 0 --decrypt -o $outputFile $file";
+            $result = shell_exec($command);
+            if ($result === false) {
+                echo "Decypher failure.";
+                exit;
+            }
+            unlink($file);
+        }
+
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
         $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').uniqid().'.pdf';
@@ -276,6 +295,17 @@ $f3->route('GET /signature/@hash/pdf',
             rename($bufferFile, $finalFile);
         }
         Web::instance()->send($finalFile, null, 0, TRUE, $filename);
+
+        foreach (glob("/tmp/".$hash.'/*.pdf') as $file) {
+            $outputFile = $file.".gpg";
+            $command = "echo '$key' | gpg --batch --passphrase-fd 0 --symmetric --cipher-algo AES256 -o $outputFile $file";
+            $result = shell_exec($command);
+            if ($result === false) {
+                echo "Cypher failure.";
+                exit;
+            }
+            unlink($file);
+        }
 
         if($f3->get('DEBUG')) {
             return;

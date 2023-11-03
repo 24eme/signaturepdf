@@ -197,6 +197,7 @@
                     <form id="form_sharing" clas action="<?php echo $REVERSE_PROXY_URL; ?>/share" method="post" enctype="multipart/form-data">
                           <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                           <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
+                          <input id="symmetric_key" name="key" type="hidden" value="test" />
                           <button  class="btn col-9 col-md-6 btn-primary" type="submit" id="save_share"><?php echo sprintf(_("%s Start sharing"), '<i class="bi bi-cloud-upload"></i>'); ?></button>
                     </form>
                 </div>

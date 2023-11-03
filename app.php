@@ -256,6 +256,7 @@ $f3->route('GET /signature/@hash/pdf',
         $cryptor = new CryptographyClass();
         $cryptor->decrypt($hash);
 
+
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
         $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').uniqid().'.pdf';

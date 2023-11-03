@@ -190,6 +190,8 @@ $f3->route('POST /sign',
     }
 );
 
+require_once 'lib/cryptography.class.php';
+
 $f3->route('POST /share',
     function($f3) {
         $hash = substr(hash('sha512', uniqid().rand()), 0, 20);
@@ -237,17 +239,9 @@ $f3->route('POST /share',
         if(!$f3->get('DEBUG')) {
             array_map('unlink', glob($tmpfile."*.svg"));
         }
-        $key = "test";
-        foreach (glob("/tmp/".$hash.'/*.pdf') as $file) {
-            $outputFile = $file.".gpg";
-            $command = "echo '$key' | gpg --batch --passphrase-fd 0 --symmetric --cipher-algo AES256 -o $outputFile $file";
-            $result = shell_exec($command);
-            if ($result === false) {
-                echo "Cypher failure.";
-                exit;
-            }
-            unlink($file);
-        }
+
+        $encryptor = new CryptographyClass();
+        $encryptor->encrypt($hash);
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#informations");
     }
 
@@ -259,17 +253,8 @@ $f3->route('GET /signature/@hash/pdf',
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
 
-        $key = "test";
-        foreach (glob("/tmp/".$hash.'/*.gpg') as $file) {
-            $outputFile = str_replace(".gpg", "", $file);
-            $command = "echo '$key' | gpg --batch --passphrase-fd 0 --decrypt -o $outputFile $file";
-            $result = shell_exec($command);
-            if ($result === false) {
-                echo "Decypher failure.";
-                exit;
-            }
-            unlink($file);
-        }
+        $cryptor = new CryptographyClass();
+        $cryptor->decrypt($hash);
 
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
@@ -296,16 +281,7 @@ $f3->route('GET /signature/@hash/pdf',
         }
         Web::instance()->send($finalFile, null, 0, TRUE, $filename);
 
-        foreach (glob("/tmp/".$hash.'/*.pdf') as $file) {
-            $outputFile = $file.".gpg";
-            $command = "echo '$key' | gpg --batch --passphrase-fd 0 --symmetric --cipher-algo AES256 -o $outputFile $file";
-            $result = shell_exec($command);
-            if ($result === false) {
-                echo "Cypher failure.";
-                exit;
-            }
-            unlink($file);
-        }
+        $cryptor->encrypt($hash);
 
         if($f3->get('DEBUG')) {
             return;

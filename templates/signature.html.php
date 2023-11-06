@@ -262,10 +262,10 @@
     var maxSize = <?php echo $maxSize ?>;
     var maxPage = <?php echo $maxPage ?>;
     var sharingMode = <?php echo intval(!isset($noSharingMode)) ?>;
-    var hash = null;
+    var pdfHash = null;
     var direction = '<?php echo $DIRECTION_LANGUAGE ?>';
     <?php if(isset($hash)): ?>
-    hash = "<?php echo $hash ?>";
+    pdfHash = "<?php echo $hash ?>";
     <?php endif; ?>
 
     var trad = <?php echo json_encode([

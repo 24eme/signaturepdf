@@ -82,6 +82,7 @@ $f3->route('GET /signature',
             $f3->set('noSharingMode', true);
         }
         $f3->set('activeTab', 'sign');
+
         echo View::instance()->render('signature.html.php');
     }
 );
@@ -241,11 +242,12 @@ $f3->route('POST /share',
         }
         if (!isset($_COOKIE[$hash])) {
             $symmetric_key = createSymmetricKey();
-            setcookie($hash, $symmetric_key, ['expires' => 0, 'samesite' => 'Strict', 'path' => "/"]);
+            $keyCookieDate = strtotime('+1 year');
+            setcookie($hash, $symmetric_key, ['expires' => $keyCookieDate, 'samesite' => 'Strict', 'path' => "/"]);
         }
         $encryptor = new CryptographyClass($symmetric_key);
         $encryptor->encrypt($hash);
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#informations");
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#sk:".$symmetric_key);
     }
 
 );
@@ -256,7 +258,11 @@ $f3->route('GET /signature/@hash/pdf',
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
 
-        $cryptor = new CryptographyClass($_COOKIE[$hash]);
+        if (substr($_COOKIE[$hash], 0, 4) !== '#sk:') {
+            echo "Error: Invalid prefix.";
+            exit;
+        }
+        $cryptor = new CryptographyClass(substr($_COOKIE[$hash], 4, 15));
         $cryptor->decrypt($hash);
 
         $files = scandir($sharingFolder);

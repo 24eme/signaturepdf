@@ -2,15 +2,18 @@
 
 class CryptographyClass
 {
-    const KEY_SIZE = 4;
+    private $symmetric_key = null;
+
+    function __construct($key) {
+            $this->setSymmetricKey($key);
+    }
 
     public function encrypt($hash) {
         foreach (glob("/tmp/".$hash.'/*.pdf') as $file) {
             $outputFile = $file.".gpg";
-            $keyPath = $this->getKeyPath();
-            $command = "gpg --batch --passphrase-file $keyPath --symmetric --cipher-algo AES256 -o $outputFile $file";
+            $key = $this->getSymmetricKey();
+            $command = "gpg --batch --passphrase $key --symmetric --cipher-algo AES256 -o $outputFile $file";
             $result = shell_exec($command);
-            $this->freeKeyFile($keyPath);
             if ($result === false) {
                 echo "Cypher failure";
                 exit;
@@ -22,38 +25,25 @@ class CryptographyClass
     public function decrypt($hash) {
         foreach (glob("/tmp/".$hash.'/*.gpg') as $file) {
             $outputFile = str_replace(".gpg", "", $file);
-            $keyPath = $this->getKeyPath();
-            $command = "gpg --batch --passphrase-file $keyPath --decrypt -o $outputFile $file";
+            $key = $this->getSymmetricKey();
+            $command = "gpg --batch --passphrase $key --decrypt -o $outputFile $file";
             $result = shell_exec($command);
-            $this->freeKeyFile($keyPath);
             if ($result === false) {
                 echo "Decypher failure";
                 exit;
             }
             unlink($file);
         }
+        return true;
     }
 
-    private function getKeyPath() {
-        $path = "../key.txt";
-        if (file_put_contents($path, 'test') === false)
-        {
-            echo "passphrase generation failure";
-            exit;
-        }
-        return $path;
+    private function getSymmetricKey() {
+        return $this->symmetric_key;
     }
 
-    private function freeKeyFile($keyPath) {
-        $passphrase_overwrite = str_repeat("0", self::KEY_SIZE);
-        if (file_put_contents($keyPath, $passphrase_overwrite) === false)
-        {
-            echo "passphrase generation failure";
-            exit;
-        }
+    private function setSymmetricKey($key) {
+        $this->symmetric_key = $key;
     }
-
-
 
 }
 ?>

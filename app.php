@@ -239,8 +239,11 @@ $f3->route('POST /share',
         if(!$f3->get('DEBUG')) {
             array_map('unlink', glob($tmpfile."*.svg"));
         }
-
-        $encryptor = new CryptographyClass();
+        if (!isset($_COOKIE[$hash])) {
+            $symmetric_key = createSymmetricKey();
+            setcookie($hash, $symmetric_key, ['expires' => 0, 'samesite' => 'Strict', 'path' => "/"]);
+        }
+        $encryptor = new CryptographyClass($symmetric_key);
         $encryptor->encrypt($hash);
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#informations");
     }
@@ -253,9 +256,8 @@ $f3->route('GET /signature/@hash/pdf',
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
 
-        $cryptor = new CryptographyClass();
+        $cryptor = new CryptographyClass($_COOKIE[$hash]);
         $cryptor->decrypt($hash);
-
 
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
@@ -525,5 +527,16 @@ function convertPHPSizeToBytes($sSize)
     }
     return (int)$iValue;
 }
+
+function createSymmetricKey() {
+        $length = 15;
+        $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $pieces = [];
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $length; ++$i) {
+            $pieces []= $keyspace[random_int(0, $max)];
+        }
+        return implode('', $pieces);
+    }
 
 return $f3;

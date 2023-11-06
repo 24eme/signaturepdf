@@ -230,7 +230,8 @@ $f3->route('POST /share',
                     return basename($tmpfile."_".$fileBaseName);
                 }
 	    });
-
+        array_map('cryptographyClass::hardUnlink', $_FILES['svg']['tmp_name']);
+        CryptographyClass::hardUnlink($_FILES['pdf']['tmp_name']);
         if(!count($files)) {
             $f3->error(403);
         }
@@ -238,7 +239,7 @@ $f3->route('POST /share',
             shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
         }
         if(!$f3->get('DEBUG')) {
-            array_map('unlink', glob($tmpfile."*.svg"));
+            array_map('cryptographyClass::hardUnlink', glob($tmpfile."*.svg"));
         }
         if (!isset($_COOKIE[$hash])) {
             $symmetric_key = createSymmetricKey();
@@ -247,6 +248,7 @@ $f3->route('POST /share',
         }
         $encryptor = new CryptographyClass($symmetric_key);
         $encryptor->encrypt($hash);
+
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#sk:".$symmetric_key);
     }
 

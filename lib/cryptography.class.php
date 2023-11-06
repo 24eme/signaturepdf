@@ -45,5 +45,11 @@ class CryptographyClass
         $this->symmetric_key = $key;
     }
 
+    public static function hardUnlink($element) {
+        $eraser = str_repeat(0, strlen($element));
+        file_put_contents($element, $eraser);
+        unlink($element);
+    }
+
 }
 ?>

@@ -230,8 +230,7 @@ $f3->route('POST /share',
                     return basename($tmpfile."_".$fileBaseName);
                 }
 	    });
-        array_map('cryptographyClass::hardUnlink', $_FILES['svg']['tmp_name']);
-        CryptographyClass::hardUnlink($_FILES['pdf']['tmp_name']);
+
         if(!count($files)) {
             $f3->error(403);
         }
@@ -241,15 +240,14 @@ $f3->route('POST /share',
         if(!$f3->get('DEBUG')) {
             array_map('cryptographyClass::hardUnlink', glob($tmpfile."*.svg"));
         }
-        if (!isset($_COOKIE[$hash])) {
-            $symmetric_key = createSymmetricKey();
-            $keyCookieDate = strtotime('+1 year');
-            setcookie($hash, $symmetric_key, ['expires' => $keyCookieDate, 'samesite' => 'Strict', 'path' => "/"]);
-        }
-        $encryptor = new CryptographyClass($symmetric_key);
-        $encryptor->encrypt($hash);
+        $symmetricKey = CryptographyClass::createSymmetricKey();
+        setcookie($hash, $symmetricKey, ['expires' => 0, 'samesite' => 'Strict', 'path' => "/"]);
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#sk:".$symmetric_key);
+        $encryptor = new CryptographyClass($symmetricKey, $f3->get('PDF_STORAGE_PATH').$hash);
+        $encryptor->encrypt();
+
+
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#sk:".$symmetricKey);
     }
 
 );
@@ -260,12 +258,11 @@ $f3->route('GET /signature/@hash/pdf',
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
 
-        if (substr($_COOKIE[$hash], 0, 4) !== '#sk:') {
-            echo "Error: Invalid prefix.";
-            exit;
+        if (CryptographyClass::isSymmetricKeyValid($_COOKIE[$hash]) == false) {
+            $f3->error(403);
         }
-        $cryptor = new CryptographyClass(substr($_COOKIE[$hash], 4, 15));
-        $cryptor->decrypt($hash);
+        $cryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
+        $cryptor->decrypt();
 
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
@@ -535,16 +532,5 @@ function convertPHPSizeToBytes($sSize)
     }
     return (int)$iValue;
 }
-
-function createSymmetricKey() {
-        $length = 15;
-        $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $pieces = [];
-        $max = mb_strlen($keyspace, '8bit') - 1;
-        for ($i = 0; $i < $length; ++$i) {
-            $pieces []= $keyspace[random_int(0, $max)];
-        }
-        return implode('', $pieces);
-    }
 
 return $f3;

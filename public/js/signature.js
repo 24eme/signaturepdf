@@ -1166,5 +1166,12 @@ var pageSignature = async function(url) {
 })();
 
 function storeSymmetricKeyCookie() {
-    document.cookie = pdfHash + "=" + window.location.hash + "; SameSite=Strict";
+    let symmetricKey = window.location.hash;
+    if (symmetricKey.length != 19) {
+        console.error("Erreur taille cle symmetrique.");
+        return;
+    } else if (symmetricKey.substr(0, 4) != "#sk:") {
+        console.error("Erreur format cle symmetrique");
+    }
+    document.cookie = pdfHash + "=" + symmetricKey.substr(4, 15) + "; SameSite=Strict";
 }

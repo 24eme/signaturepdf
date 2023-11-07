@@ -2,54 +2,77 @@
 
 class CryptographyClass
 {
-    private $symmetric_key = null;
+    private $symmetricKey = null;
+    private $pathHash = null;
 
-    function __construct($key) {
-            $this->setSymmetricKey($key);
+    function __construct($key, $pathHash) {
+            $this->symmetricKey = $key;
+            $this->pathHash = $pathHash;
     }
 
-    public function encrypt($hash) {
-        foreach (glob("/tmp/".$hash.'/*.pdf') as $file) {
+    private function getFiles($isGpg) {
+        $suffix = "";
+        if ($isGpg) {
+            $suffix = ".gpg";
+        }
+        $filesTab = glob($this->pathHash.'/*.pdf'.$suffix);
+        $filesTab[] = $this->pathHash."/filename.txt".$suffix;
+
+        return $filesTab;
+    }
+
+    public function encrypt() {
+
+        foreach ($this->getFiles(false) as $file) {
             $outputFile = $file.".gpg";
-            $key = $this->getSymmetricKey();
-            $command = "gpg --batch --passphrase $key --symmetric --cipher-algo AES256 -o $outputFile $file";
+            $command = "gpg --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file";
             $result = shell_exec($command);
             if ($result === false) {
                 echo "Cypher failure";
                 exit;
             }
-            unlink($file);
+            $this->hardUnlink($file);
         }
     }
 
-    public function decrypt($hash) {
-        foreach (glob("/tmp/".$hash.'/*.gpg') as $file) {
+    public function decrypt() {
+        foreach ($this->getFiles(true) as $file) {
             $outputFile = str_replace(".gpg", "", $file);
-            $key = $this->getSymmetricKey();
-            $command = "gpg --batch --passphrase $key --decrypt -o $outputFile $file";
+            $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file";
             $result = shell_exec($command);
             if ($result === false) {
                 echo "Decypher failure";
                 exit;
             }
-            unlink($file);
+            $this->hardUnlink($file);
         }
         return true;
     }
 
-    private function getSymmetricKey() {
-        return $this->symmetric_key;
-    }
-
-    private function setSymmetricKey($key) {
-        $this->symmetric_key = $key;
-    }
-
     public static function hardUnlink($element) {
-        $eraser = str_repeat(0, strlen($element));
+        if (!$element) {
+            return;
+        }
+        print_r(['hu', $element]);
+        $eraser = str_repeat(0, strlen(file_get_contents($element)));
         file_put_contents($element, $eraser);
         unlink($element);
     }
 
+    public static function isSymmetricKeyValid($key) {
+        return (bool)preg_match('/^[0-9a-zA-Z]{15}$/', $key);
+    }
+
+    public static function createSymmetricKey() {
+            $length = 15;
+            $keySpace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $pieces = [];
+            $max = mb_strlen($keySpace, '8bit') - 1;
+            for ($i = 0; $i < $length; ++$i) {
+                $pieces []= $keySpace[random_int(0, $max)];
+            }
+
+            return implode('', $pieces);
+        }
 }
 ?>

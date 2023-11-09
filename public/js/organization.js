@@ -209,12 +209,12 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                     e.stopPropagation();
                     let container = this.parentNode;
                     let pageValue = container.querySelector('.checkbox-page').value;
-                    let orientation = degreesToOrientation(container.querySelector('.input-rotate').value);
+                    let orientation = container.querySelector('.input-rotate').value;
                     if(orientation) {
                         pageValue = pageValue + "-" + orientation;
                     }
                     document.querySelector('#input_pages').value = pageValue;
-                    document.querySelector('#form_pdf').submit();
+                    save();
                 });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -304,11 +304,16 @@ var getFilesStats = function() {
     return files;
 }
 
+const getLetter = function(i) {
+
+    return String.fromCharCode(96 + i+1).toUpperCase();
+}
+
 var updateListePDF = function() {
     document.querySelector('#list_pdf').innerHTML = "";
     let nbFiles = document.querySelector('#input_pdf').files.length;
     for (var i = 0; i < nbFiles; i++) {
-        let pdfLetter = String.fromCharCode(96 + i+1).toUpperCase();
+        let pdfLetter = getLetter(i);
         const pdfFile = document.querySelector('#input_pdf').files.item(i);
         document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><span class="ms-2">'+decodeURI(pdfFile.name)+'</span> <input class="form-check-input float-end position-absolute file-list-checkbox" type="checkbox" /> </li>');
         let fileItem = document.querySelector('#file_' + pdfLetter);
@@ -537,22 +542,9 @@ var updateGlobalState = function() {
     }
 }
 
-var degreesToOrientation = function(degrees) {
-    if(degrees == 90) { return "east"; }
-    if(degrees == 180) { return "south"; }
-    if(degrees == 270) { return "west"; }
-
-    return null;
-}
-
 var uploadAndLoadPDF = async function(input_upload) {
     const cache = await caches.open('pdf');
     for (let i = 0; i < input_upload.files.length; i++) {
-        if(input_upload.files[i].size > maxSize) {
-
-            alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
-            break;
-        }
         let filename = input_upload.files[i].name;
         let response = new Response(input_upload.files[i], { "status" : 200, "statusText" : "OK" });
         let urlPdf = '/pdf/'+filename;
@@ -563,9 +555,51 @@ var uploadAndLoadPDF = async function(input_upload) {
     }
 }
 
+const DL = function (d,f) {
+    let a = document.createElement("a"),
+        u = URL.createObjectURL(d);
+    a.download = f,
+    a.href = u,
+    a.click(),
+    setTimeout(() => URL.revokeObjectURL(u))
+}
+
+const save = async function () {
+    const PDFDocument = window['PDFLib'].PDFDocument
+    const Rotation = window['PDFLib'].Rotation
+
+    const pdf = await PDFDocument.create();
+    let filename = "";
+    let pdfFiles = [];
+    for (let i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
+        if(filename) {
+            filename += '_';
+        }
+        filename += document.querySelector('#input_pdf').files.item(i).name.replace(/\.pdf$/, '');
+        pdfFiles[getLetter(i)] = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer());
+    }
+
+    const pages = document.querySelector('#input_pages').value.split(',');
+    console.log(pages);
+    for(let i in pages) {
+        const page = pages[i].split('-')[0];
+        const rotation = pages[i].split('-')[1];
+        let pdfFile = pdfFiles[page.substr(0,1)];
+        const [pdfPage] = await pdf.copyPages(pdfFile, [parseInt(page.substr(1)) - 1]);
+        if(rotation) {
+            pdfPage.setRotation(window['PDFLib'].degrees(parseInt(rotation)));
+        }
+        pdf.addPage(pdfPage);
+    }
+
+    const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
+    DL(newPDF, filename+".pdf");
+}
+
 var createEventsListener = function() {
     document.getElementById('save-select_mobile').addEventListener('click', function(event) {
         document.getElementById('save-select').click();
+        event.preventDefault();
     });
     document.getElementById('save-select').addEventListener('click', function(event) {
         let buttonSave = document.getElementById('save');
@@ -574,6 +608,7 @@ var createEventsListener = function() {
             buttonSave.disabled = false;
         }
         buttonSave.click();
+        event.preventDefault();
         buttonSave.disabled = true;
     });
     document.getElementById('save').addEventListener('click', function(event) {
@@ -591,7 +626,7 @@ var createEventsListener = function() {
             if(checkbox.checked) {
                 pageValue = checkbox.value;
             }
-            let orientation = degreesToOrientation(inputRotate.value);
+            let orientation = inputRotate.value;
             if(pageValue && orientation) {
                 pageValue = pageValue + "-" + orientation;
             }
@@ -600,9 +635,12 @@ var createEventsListener = function() {
             }
         });
         document.querySelector('#input_pages').value = order.join(',');
+        save();
+        event.preventDefault();
     });
     document.getElementById('save_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
+        event.preventDefault();
     });
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
         await uploadAndLoadPDF(this);

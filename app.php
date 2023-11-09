@@ -195,7 +195,7 @@ require_once 'lib/cryptography.class.php';
 
 $f3->route('POST /share',
     function($f3) {
-        $hash = substr(hash('sha512', uniqid().rand()), 0, 20);
+        $hash = Web::instance()->slug($_POST['hash']);
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
         $f3->set('UPLOADS', $sharingFolder."/");
         if (!is_dir($f3->get('PDF_STORAGE_PATH'))) {
@@ -240,10 +240,9 @@ $f3->route('POST /share',
         if(!$f3->get('DEBUG')) {
             array_map('cryptographyClass::hardUnlink', glob($tmpfile."*.svg"));
         }
-        $symmetricKey = CryptographyClass::createSymmetricKey();
-        setcookie($hash, $symmetricKey, ['expires' => 0, 'samesite' => 'Strict', 'path' => "/"]);
 
-        $encryptor = new CryptographyClass($symmetricKey, $f3->get('PDF_STORAGE_PATH').$hash);
+        $symmetricKey = $_COOKIE[$hash];
+        $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
         $encryptor->encrypt();
 
 
@@ -258,11 +257,10 @@ $f3->route('GET /signature/@hash/pdf',
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
 
-        if (CryptographyClass::isSymmetricKeyValid($_COOKIE[$hash]) == false) {
+        $cryptor = new CryptographyClass(CryptographyClass::protectSymmetricKey($_COOKIE[$hash]), $f3->get('PDF_STORAGE_PATH').$hash);
+        if ($cryptor->decrypt() == false) {
             $f3->error(403);
         }
-        $cryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
-        $cryptor->decrypt();
 
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';

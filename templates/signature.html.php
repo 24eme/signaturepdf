@@ -112,7 +112,7 @@
                   </div>
                   <form id="form_pdf" action="<?php echo $REVERSE_PROXY_URL; ?>/signature/<?php echo $hash ?>/save" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
-                        <!-- <input id="symmetric_key" name="key" type="hidden" value="test" /> -->
+
                         <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-cloud-upload"></i> <?php echo _("Transmit my signature"); ?></button>
                   </form>
                   <?php endif; ?>
@@ -198,7 +198,8 @@
                     <form id="form_sharing" clas action="<?php echo $REVERSE_PROXY_URL; ?>/share" method="post" enctype="multipart/form-data">
                           <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                           <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
-                          <!-- <input id="symmetric_key" name="key" type="hidden" value="test" /> -->
+                          <input id="input_pdf_hash" name="hash" type="hidden" value="" />
+                          <input id="input_symmetric_key" name="key" type="hidden" value="" />
                           <button  class="btn col-9 col-md-6 btn-primary" type="submit" id="save_share"><?php echo sprintf(_("%s Start sharing"), '<i class="bi bi-cloud-upload"></i>'); ?></button>
                     </form>
                 </div>

@@ -818,6 +818,10 @@ var createEventsListener = function() {
             }
             document.getElementById('input_svg_share').files = dataTransfer.files;
             hasModifications = false;
+
+            document.getElementById('input_pdf_hash').value = generatePdfHash();
+            document.getElementById('input_symmetric_key').value = generateSymmetricKey();
+            storeSymmetricKeyCookie(document.getElementById('input_pdf_hash').value, document.getElementById('input_symmetric_key').value);
         });
     }
 
@@ -1111,7 +1115,6 @@ var pageSignature = async function(url) {
     let filename = url.replace('/pdf/', '');
 
     if(pdfHash) {
-        storeSymmetricKeyCookie();
         let response = await fetch(url);
         if(response.status != 200) {
             return;
@@ -1165,13 +1168,36 @@ var pageSignature = async function(url) {
     })
 })();
 
-function storeSymmetricKeyCookie() {
-    let symmetricKey = window.location.hash;
-    if (symmetricKey.length != 19) {
+function storeSymmetricKeyCookie(hash, symmetricKey) {
+    if (symmetricKey.length != 15) {
         console.error("Erreur taille cle symmetrique.");
         return;
-    } else if (symmetricKey.substr(0, 4) != "#sk:") {
-        console.error("Erreur format cle symmetrique");
     }
-    document.cookie = pdfHash + "=" + symmetricKey.substr(4, 15) + "; SameSite=Strict";
+    document.cookie = hash + "=" + symmetricKey + "; SameSite=Strict";
+}
+
+function generateSymmetricKey() {
+    const length = 15;
+    const keySpace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let key = '';
+
+    for (let i = 0; i < length; ++i) {
+        const randomIndex = Math.floor(Math.random() * keySpace.length);
+        key += keySpace.charAt(randomIndex);
+    }
+
+    return key;
+}
+
+function generatePdfHash() {
+    const length = 20;
+    const keySpace = '0123456789abcdefghijklmnopqrstuvwxyz';
+    let key = '';
+
+    for (let i = 0; i < length; ++i) {
+        const randomIndex = Math.floor(Math.random() * keySpace.length);
+        key += keySpace.charAt(randomIndex);
+    }
+
+    return key;
 }

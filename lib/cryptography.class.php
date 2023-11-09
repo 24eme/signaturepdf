@@ -42,7 +42,7 @@ class CryptographyClass
             $result = shell_exec($command);
             if ($result === false) {
                 echo "Decypher failure";
-                exit;
+                return $result;
             }
             $this->hardUnlink($file);
         }
@@ -53,14 +53,13 @@ class CryptographyClass
         if (!$element) {
             return;
         }
-        print_r(['hu', $element]);
         $eraser = str_repeat(0, strlen(file_get_contents($element)));
         file_put_contents($element, $eraser);
         unlink($element);
     }
 
-    public static function isSymmetricKeyValid($key) {
-        return (bool)preg_match('/^[0-9a-zA-Z]{15}$/', $key);
+    public static function protectSymmetricKey($key) {
+        return preg_replace('/[^0-9a-zA-Z]*/', '', $key);
     }
 
     public static function createSymmetricKey() {

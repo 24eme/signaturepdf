@@ -82,7 +82,7 @@
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
                         <div id="btn_container" class="d-grid gap-2 mt-2">
-                            <button class="btn btn-primary" type="submit" id="save"><span class="spinner-grow spinner-grow-sm d-none"></span><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
+                            <button class="btn btn-primary" type="submit" id="save"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
                         </div>
                     </form>
                 </div>
@@ -111,7 +111,7 @@
                 <button class="btn btn-primary" type="submit" id="save_mobile"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
             </div>
             <div id="bottom_bar_action_selection" class="d-grid gap-2 d-none">
-                <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><?php echo sprintf(_("Download the selection"), '<i class="bi bi-download"></i>'); ?></button>
+                <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
             </div>
         </div>
     </div>

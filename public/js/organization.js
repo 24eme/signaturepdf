@@ -205,8 +205,9 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                         movePagesDragged(this.parentNode, 'right');
                     }
                 });
-                canvasContainer.querySelector('.btn-download').addEventListener('click', function(e) {
+                canvasContainer.querySelector('.btn-download').addEventListener('click', async function(e) {
                     e.stopPropagation();
+                    startProcessingMode(canvasContainer.querySelector('.btn-download'));
                     let container = this.parentNode;
                     let pageValue = container.querySelector('.checkbox-page').value;
                     let orientation = container.querySelector('.input-rotate').value;
@@ -214,7 +215,8 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
                         pageValue = pageValue + "-" + orientation;
                     }
                     document.querySelector('#input_pages').value = pageValue;
-                    save();
+                    await save(pageValue);
+                    endProcessingMode(canvasContainer.querySelector('.btn-download'));
                 });
                 canvasContainer.querySelector('.btn-rotate').addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -564,7 +566,35 @@ const DL = function (d,f) {
     setTimeout(() => URL.revokeObjectURL(u))
 }
 
-let save = async function () {
+let saveAll = async function () {
+    let order = [];
+    let selectionMode = isSelectionMode();
+
+    document.querySelectorAll('.canvas-container').forEach(function(canvasContainer) {
+        let checkbox = canvasContainer.querySelector('.checkbox-page');
+        if(selectionMode) {
+            checkbox = canvasContainer.querySelector('.input-select');
+        }
+        let inputRotate = canvasContainer.querySelector('.input-rotate');
+        let pageValue = "";
+        if(checkbox.checked) {
+            pageValue = checkbox.value;
+        }
+        let orientation = inputRotate.value;
+        if(pageValue && orientation) {
+            pageValue = pageValue + "-" + orientation;
+        }
+        if(pageValue) {
+            order.push(pageValue);
+        }
+    });
+
+    document.querySelector('#input_pages').value = order.join(',');
+
+    await save(order.join(','));
+}
+
+let save = async function (order) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
 
@@ -585,11 +615,10 @@ let save = async function () {
         }
     }
 
-    const pagesOrganize = document.querySelector('#input_pages').value.split(',');
+    const pagesOrganize = order.split(',');
 
     for(let i in pagesOrganize) {
         const pageOrganize = pagesOrganize[i].split('-')[0];
-        console.log(pageOrganize);
         const rotation = pagesOrganize[i].split('-')[1];
         const pdfPage = pages[pageOrganize];
         if(rotation) {
@@ -602,59 +631,30 @@ let save = async function () {
 }
 
 var createEventsListener = function() {
-    document.getElementById('save-select_mobile').addEventListener('click', function(event) {
-        document.getElementById('save-select').click();
+    document.getElementById('save-select_mobile').addEventListener('click', async function(event) {
         event.preventDefault();
+        startProcessingMode(document.getElementById('save-select_mobile'));
+        await saveAll();
+        endProcessingMode(document.getElementById('save-select_mobile'));
     });
-    document.getElementById('save-select').addEventListener('click', function(event) {
-        let buttonSave = document.getElementById('save');
-        let buttonSaveDisabledState = buttonSave.disabled;
-        if(buttonSave.disabled) {
-            buttonSave.disabled = false;
-        }
-        buttonSave.click();
+    document.getElementById('save-select').addEventListener('click', async function(event) {
         event.preventDefault();
-        buttonSave.disabled = true;
+        startProcessingMode(document.getElementById('save-select'));
+        await saveAll();
+        endProcessingMode(document.getElementById('save-select'));
     });
     document.getElementById('save').addEventListener('click', async function(e) {
         e.preventDefault();
 
-        let btn = document.getElementById('save');
-        btn.disabled = true;
-        btn.querySelector('.spinner-grow').classList.remove('d-none');
-        btn.querySelector('.bi').classList.add('d-none');
-
-        let order = [];
-        let selectionMode = isSelectionMode();
-
-        document.querySelectorAll('.canvas-container').forEach(function(canvasContainer) {
-            let checkbox = canvasContainer.querySelector('.checkbox-page');
-            if(selectionMode) {
-                checkbox = canvasContainer.querySelector('.input-select');
-            }
-            let inputRotate = canvasContainer.querySelector('.input-rotate');
-            let pageValue = "";
-            if(checkbox.checked) {
-                pageValue = checkbox.value;
-            }
-            let orientation = inputRotate.value;
-            if(pageValue && orientation) {
-                pageValue = pageValue + "-" + orientation;
-            }
-            if(pageValue) {
-                order.push(pageValue);
-            }
-        });
-        document.querySelector('#input_pages').value = order.join(',');
-        await save();
-
-        btn.querySelector('.spinner-grow').classList.add('d-none');
-        btn.querySelector('.bi').classList.remove('d-none');
-        btn.disabled = false;
+        startProcessingMode(document.getElementById('save'));
+        await saveAll();
+        endProcessingMode(document.getElementById('save'));
     });
-    document.getElementById('save_mobile').addEventListener('click', function(event) {
-        document.getElementById('save').click();
+    document.getElementById('save_mobile').addEventListener('click', async function(event) {
         event.preventDefault();
+        startProcessingMode(document.getElementById('save_mobile'));
+        await saveAll();
+        endProcessingMode(document.getElementById('save_mobile'));
     });
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
         await uploadAndLoadPDF(this);
@@ -731,6 +731,18 @@ var createEventsListener = function() {
         document.getElementById('btn_cancel_select').click();
     });
 
+}
+
+function startProcessingMode(btn) {
+    btn.disabled = true;
+    btn.querySelector('.bi').classList.add('position-relative');
+    btn.querySelector('.bi').insertAdjacentHTML('afterbegin', '<span class="spinner-grow spinner-grow-sm position-absolute top-50 start-50 translate-middle"></span>');
+}
+
+function endProcessingMode(btn) {
+    btn.querySelector('.spinner-grow').remove();
+    btn.querySelector('.bi').classList.remove('position-relative');
+    btn.disabled = false;
 }
 
 async function getPDFBlobFromCache(cacheUrl) {

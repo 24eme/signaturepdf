@@ -564,36 +564,41 @@ const DL = function (d,f) {
     setTimeout(() => URL.revokeObjectURL(u))
 }
 
-const save = async function () {
+let save = async function () {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
 
     const pdf = await PDFDocument.create();
     let filename = "";
-    let pdfFiles = [];
+    let pages = [];
     for (let i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
         if(filename) {
             filename += '_';
         }
         filename += document.querySelector('#input_pdf').files.item(i).name.replace(/\.pdf$/, '');
-        pdfFiles[getLetter(i)] = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer());
+        pdfFile = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer());
+
+        const pdfPages = await pdf.copyPages(pdfFile, pdfFile.getPageIndices());
+        for(j in pdfPages) {
+            const numPage = parseInt(j) + 1;
+            pages[getLetter(i)+numPage.toString()] = pdfPages[j];
+        }
     }
 
-    const pages = document.querySelector('#input_pages').value.split(',');
-    console.log(pages);
-    for(let i in pages) {
-        const page = pages[i].split('-')[0];
-        const rotation = pages[i].split('-')[1];
-        let pdfFile = pdfFiles[page.substr(0,1)];
-        const [pdfPage] = await pdf.copyPages(pdfFile, [parseInt(page.substr(1)) - 1]);
+    const pagesOrganize = document.querySelector('#input_pages').value.split(',');
+
+    for(let i in pagesOrganize) {
+        const pageOrganize = pagesOrganize[i].split('-')[0];
+        console.log(pageOrganize);
+        const rotation = pagesOrganize[i].split('-')[1];
+        const pdfPage = pages[pageOrganize];
         if(rotation) {
             pdfPage.setRotation(window['PDFLib'].degrees(parseInt(rotation)));
         }
         pdf.addPage(pdfPage);
     }
-
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
-    DL(newPDF, filename+".pdf");
+    await DL(newPDF, filename+".pdf");
 }
 
 var createEventsListener = function() {
@@ -611,9 +616,15 @@ var createEventsListener = function() {
         event.preventDefault();
         buttonSave.disabled = true;
     });
-    document.getElementById('save').addEventListener('click', function(event) {
-        let order = [];
+    document.getElementById('save').addEventListener('click', async function(e) {
+        e.preventDefault();
 
+        let btn = document.getElementById('save');
+        btn.disabled = true;
+        btn.querySelector('.spinner-grow').classList.remove('d-none');
+        btn.querySelector('.bi').classList.add('d-none');
+
+        let order = [];
         let selectionMode = isSelectionMode();
 
         document.querySelectorAll('.canvas-container').forEach(function(canvasContainer) {
@@ -635,8 +646,11 @@ var createEventsListener = function() {
             }
         });
         document.querySelector('#input_pages').value = order.join(',');
-        save();
-        event.preventDefault();
+        await save();
+
+        btn.querySelector('.spinner-grow').classList.add('d-none');
+        btn.querySelector('.bi').classList.remove('d-none');
+        btn.disabled = false;
     });
     document.getElementById('save_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();

@@ -82,7 +82,7 @@
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
                         <div id="btn_container" class="d-grid gap-2 mt-2">
-                            <button class="btn btn-primary" type="submit" id="save"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
+                            <button class="btn btn-primary" type="submit" id="save"><span class="spinner-grow spinner-grow-sm d-none"></span><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
                         </div>
                     </form>
                 </div>

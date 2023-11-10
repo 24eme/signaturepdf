@@ -91,7 +91,7 @@
         <div id="top_bar" class="position-fixed top-0 start-0 bg-white w-100 shadow-sm d-md-none p-2">
             <div id="top_bar_action">
                 <div class="d-flex" role="group">
-                    <button id="btn_liste_pdf" type="button" data-bs-toggle="modal" data-bs-target="#modalFichier" class="btn btn-dark flex-grow-1 me-2"  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <button id="btn_liste_pdf" type="button" data-bs-toggle="modal" data-bs-target="#modalFichier" class="btn btn-outline-dark flex-grow-1 me-2"  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <i class="bi bi-files"></i> <span id="liste_pdf_titre_mobile"></span>
                     </button>
                     <button type="button" class="btn btn-outline-dark position-relative" style="padding-left: 30px;"  onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><?php echo sprintf(_("%s Add a PDF"), '<i class="bi bi-plus-circle position-absolute" style="left: 10px;"></i>'); ?></button>

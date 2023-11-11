@@ -12,6 +12,7 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [pdf.libreon.fr](https://pdf.libreon.fr)
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
+- [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr)
 
 _N'hésitez pas à rajouter la votre via une issue ou une pull request_
 

@@ -10,6 +10,7 @@ List of instances where you can use this software:
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
 - [pdf.kaosx.cf](https://pdf.kaosx.cf)
+- [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr)
 
 _Feel free to add yours through an issue or a pull request._
 

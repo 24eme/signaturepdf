@@ -20,7 +20,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 5.2\n"
 
-#: app.php:56 app.php:59
+#: app.php:56 app.php:59 app.php:60 app.php:54
 msgid "en"
 msgstr "ar"
 
@@ -79,6 +79,7 @@ msgstr "ملف PDF الخاص بك بالفعل أمثل"
 msgid "Compress"
 msgstr "ضغط"
 
+#: templates/compress.html.php:38
 msgid "Low compression (maximum quality)"
 msgstr "ضغط منخفض (جودة عالية)"
 
@@ -87,6 +88,7 @@ msgstr "ضغط منخفض (جودة عالية)"
 msgid "%s Medium compression %s (default)"
 msgstr "%s ضغط متوسط %s (مبدئي)"
 
+#: templates/compress.html.php:40
 msgid "High compression (minimum quality)"
 msgstr "ضغط عالي (جودة دنيا)"
 
@@ -578,6 +580,7 @@ msgid "Metadata"
 msgstr "البيانات الوصفية"
 
 #: templates/compress.html.php:35 templates/signature.html.php:32
+#: templates/compress.html.php:31 templates/signature.html.php:28
 msgid "The PDF will be processed by the server without being stored or saved"
 msgstr "سيتم معالجة ملف الـ PDF على الخادم دون الاحتفاظ به أو تخزينه"
 

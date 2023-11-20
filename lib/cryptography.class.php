@@ -29,9 +29,10 @@ class CryptographyClass
             $result = shell_exec($command);
             if ($result === false) {
                 echo "Cypher failure";
-                exit;
+                return $result;
             }
             $this->hardUnlink($file);
+            return $result;
         }
     }
 
@@ -46,7 +47,7 @@ class CryptographyClass
             }
             $this->hardUnlink($file);
         }
-        return true;
+        return $result;
     }
 
     public static function hardUnlink($element) {

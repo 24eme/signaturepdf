@@ -243,7 +243,9 @@ $f3->route('POST /share',
 
         $symmetricKey = $_COOKIE[$hash];
         $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
-        $encryptor->encrypt();
+        if (!$encryptor->encrypt()) {
+            $f3->error(403);
+        };
 
 
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#sk:".$symmetricKey);

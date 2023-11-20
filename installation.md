@@ -13,7 +13,7 @@ Dependencies:
 
 Installing dependencies:
 ```
-sudo aptitude install php librsvg2-bin pdftk imagemagick potrace ghostscript locales
+sudo apt-get install php librsvg2-bin pdftk imagemagick potrace ghostscript locales
 ```
 
 Getting the source code:

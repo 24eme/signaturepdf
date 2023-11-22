@@ -81,6 +81,11 @@ $f3->route('GET /signature',
         if(!$f3->get('PDF_STORAGE_PATH')) {
             $f3->set('noSharingMode', true);
         }
+
+        if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
+            $f3->set('PDF_STORAGE_ENCRYPTION', '');
+        }
+
         $f3->set('activeTab', 'sign');
 
         echo View::instance()->render('signature.html.php');

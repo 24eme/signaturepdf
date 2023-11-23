@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-24 17:21+0200\n"
+"POT-Creation-Date: 2023-11-23 12:52+0100\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -182,7 +182,6 @@ msgstr "إلغاء"
 msgid "%s Turn"
 msgstr "%s دوران"
 
-#, php-format
 msgid "Download the selection"
 msgstr "تنزيل المُحدَّدة"
 

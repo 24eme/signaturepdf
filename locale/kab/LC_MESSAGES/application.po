@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-24 17:21+0200\n"
+"POT-Creation-Date: 2023-11-23 12:52+0100\n"
 "PO-Revision-Date: 2023-09-30 00:00+0000\n"
 "Last-Translator: R_SACI <rgebbid@gmail.com>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -181,7 +181,6 @@ msgstr "Sefsex"
 msgid "%s Turn"
 msgstr "%s Dewweṛ"
 
-#, php-format
 msgid "Download the selection"
 msgstr "Sader tafrant"
 

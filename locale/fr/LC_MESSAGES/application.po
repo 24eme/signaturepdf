@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-24 17:21+0200\n"
+"POT-Creation-Date: 2023-11-23 12:52+0100\n"
 "PO-Revision-Date: 2023-09-30 12:59+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -183,7 +183,6 @@ msgstr "Annuler"
 msgid "%s Turn"
 msgstr "%s Tourner"
 
-#, php-format
 msgid "Download the selection"
 msgstr "Télécharger la sélection"
 

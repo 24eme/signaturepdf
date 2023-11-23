@@ -83,7 +83,11 @@ $f3->route('GET /signature',
         }
 
         if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
-            $f3->set('PDF_STORAGE_ENCRYPTION', '');
+            if (CryptographyClass::isGpgInstalled() == true) {
+                $f3->set('PDF_STORAGE_ENCRYPTION', 'true');
+            } else {
+                $f3->set('PDF_STORAGE_ENCRYPTION', '');
+            }
         }
 
         $f3->set('activeTab', 'sign');

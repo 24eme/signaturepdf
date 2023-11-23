@@ -74,5 +74,17 @@ class CryptographyClass
 
             return implode('', $pieces);
         }
+
+    public static function isGpgInstalled() {
+        $output = null;
+        $returnCode = null;
+
+        exec('gpg --version', $output, $returnCode);
+
+        if ($returnCode == 0) {
+            return true;
+        }
+        return false;
+    }
 }
 ?>

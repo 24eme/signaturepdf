@@ -69,7 +69,7 @@ msgid "Free open-source software"
 msgstr "Logiciel libre"
 
 msgid "under AGPL-3.0 license"
-msgstr "sous license AGPL-3.0"
+msgstr "sous licence AGPL-3.0"
 
 msgid "see the source code"
 msgstr "voir le code source"
@@ -197,7 +197,7 @@ msgid "Delete this page"
 msgstr "Supprimer cette page"
 
 msgid "Restore this page"
-msgstr "Restorer cette page"
+msgstr "Restaurer cette page"
 
 msgid "Move this page"
 msgstr "Déplacer cette page"

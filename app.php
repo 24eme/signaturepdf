@@ -19,7 +19,8 @@ $f3->set('SUPPORTED_LANGUAGES',
         'ar' => 'العربية',
         'kab' => 'Taqbaylit',
         'oc' => 'Occitan',
-        'it' => 'Italiano']);
+        'it' => 'Italiano',
+        'de' => 'Deutsch']);
 
 $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);

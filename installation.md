@@ -193,4 +193,3 @@ cat <<EOF >>/var/www/signaturepdf/config/config.ini
 PDF_STORAGE_PATH=/var/www/signaturepdf/tmp
 EOF
 ```
-

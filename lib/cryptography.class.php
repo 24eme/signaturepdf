@@ -22,32 +22,43 @@ class CryptographyClass
     }
 
     public function encrypt() {
-
         foreach ($this->getFiles(false) as $file) {
             $outputFile = $file.".gpg";
             $command = "gpg --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file";
             $result = shell_exec($command);
-            if ($result === false) {
+            if ($result) {
                 echo "Cypher failure";
                 return $result;
             }
             $this->hardUnlink($file);
-            return $result;
+
         }
+        return true;
     }
 
     public function decrypt() {
+        if (!$this->isEncrypted()) {
+            return true;
+        }
+        if (!$this->symmetricKey) {
+            return false;
+        }
         foreach ($this->getFiles(true) as $file) {
             $outputFile = str_replace(".gpg", "", $file);
             $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file";
             $result = shell_exec($command);
-            if ($result === false) {
+            if ($result) {
                 echo "Decypher failure";
                 return $result;
             }
+
             $this->hardUnlink($file);
         }
-        return $result;
+        return true;
+    }
+
+    public function isEncrypted() {
+        return file_exists($this->pathHash."/filename.txt.gpg");
     }
 
     public static function hardUnlink($element) {

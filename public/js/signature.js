@@ -819,9 +819,13 @@ var createEventsListener = function() {
             document.getElementById('input_svg_share').files = dataTransfer.files;
             hasModifications = false;
 
+
             document.getElementById('input_pdf_hash').value = generatePdfHash();
-            document.getElementById('input_symmetric_key').value = generateSymmetricKey();
-            storeSymmetricKeyCookie(document.getElementById('input_pdf_hash').value, document.getElementById('input_symmetric_key').value);
+
+            if (document.getElementById('checkbox_encryption').checked) {
+                storeSymmetricKeyCookie(document.getElementById('input_pdf_hash').value, generateSymmetricKey());
+            }
+
         });
     }
 
@@ -1173,7 +1177,7 @@ function storeSymmetricKeyCookie(hash, symmetricKey) {
         console.error("Erreur taille cle symmetrique.");
         return;
     }
-    document.cookie = hash + "=" + symmetricKey + "; SameSite=Strict";
+    document.cookie = hash + "=" + symmetricKey + "; SameSite=Lax;";
 }
 
 function generateSymmetricKey() {

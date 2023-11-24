@@ -49,6 +49,10 @@ if ($f3->get('GET.lang')) {
     selectLanguage($f3->get('LANGUAGE'), $f3);
 }
 
+if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
+    $f3->set('PDF_STORAGE_ENCRYPTION', CryptographyClass::isGpgInstalled());
+}
+
 $domain = basename(glob($f3->get('ROOT')."/locale/application_*.pot")[0], '.pot');
 
 bindtextdomain($domain, $f3->get('ROOT')."/locale");
@@ -80,14 +84,6 @@ $f3->route('GET /signature',
 
         if(!$f3->get('PDF_STORAGE_PATH')) {
             $f3->set('noSharingMode', true);
-        }
-
-        if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
-            if (CryptographyClass::isGpgInstalled() == true) {
-                $f3->set('PDF_STORAGE_ENCRYPTION', 'true');
-            } else {
-                $f3->set('PDF_STORAGE_ENCRYPTION', '');
-            }
         }
 
         $f3->set('activeTab', 'sign');
@@ -250,14 +246,17 @@ $f3->route('POST /share',
             array_map('cryptographyClass::hardUnlink', glob($tmpfile."*.svg"));
         }
 
-        $symmetricKey = $_COOKIE[$hash];
-        $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
-        if (!$encryptor->encrypt()) {
-            $f3->error(403);
-        };
+        $symmetricKey = "";
+        if (isset($_COOKIE[$hash])) {
+            $symmetricKey = "#sk:" . $_COOKIE[$hash];
+            $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
+            if (!$encryptor->encrypt()) {
+                shell_exec("rm -rf $sharingFolder");
+                $f3->error(500);
+            }
+        }
 
-
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#sk:".$symmetricKey);
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.$symmetricKey);
     }
 
 );
@@ -267,10 +266,13 @@ $f3->route('GET /signature/@hash/pdf',
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
-
-        $cryptor = new CryptographyClass(CryptographyClass::protectSymmetricKey($_COOKIE[$hash]), $f3->get('PDF_STORAGE_PATH').$hash);
+        $symmetricKey = null;
+        if (isset($_COOKIE[$hash])) {
+            $symmetricKey = CryptographyClass::protectSymmetricKey($_COOKIE[$hash]);
+        }
+        $cryptor = new CryptographyClass($symmetricKey, $f3->get('PDF_STORAGE_PATH').$hash);
         if ($cryptor->decrypt() == false) {
-            $f3->error(403);
+            $f3->error(500);
         }
 
         $files = scandir($sharingFolder);
@@ -296,13 +298,14 @@ $f3->route('GET /signature/@hash/pdf',
             shell_exec(sprintf("pdftk %s multistamp %s output %s", $finalFile, $layerFile, $bufferFile));
             rename($bufferFile, $finalFile);
         }
-        Web::instance()->send($finalFile, null, 0, TRUE, $filename);
 
-        $cryptor->encrypt($hash);
-
+        if ($symmetricKey) {
+            $cryptor->encrypt($hash);
+        }
         if($f3->get('DEBUG')) {
             return;
         }
+
         array_map('unlink', glob($finalFile."*"));
     }
 );

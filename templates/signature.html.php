@@ -224,7 +224,7 @@
                         <span class="input-group-text"><?php echo _("Sharing link"); ?></span>
                         <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control bg-light font-monospace" value="">
                         <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = '<?php echo _('Copied !'); ?>';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> <?php echo _('Copy'); ?></button>
-                        <script>document.querySelector('#input-share-link').value = document.location.href.replace(/#.*/, '');</script>
+                        <script>document.querySelector('#input-share-link').value = document.location.href;</script>
                     </div>
                     <p class="mb-0"><?php echo _("Each of the signatories can download the latest version of the signed PDF at any time."); ?></p>
                 </div>

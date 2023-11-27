@@ -248,7 +248,7 @@ $f3->route('POST /share',
 
         $symmetricKey = "";
         if (isset($_COOKIE[$hash])) {
-            $symmetricKey = "#sk:" . $_COOKIE[$hash];
+            $symmetricKey = "#k:" . $_COOKIE[$hash];
             $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
             if (!$encryptor->encrypt()) {
                 shell_exec("rm -rf $sharingFolder");

@@ -8,146 +8,150 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-23 12:52+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-12-06 04:03+0000\n"
+"Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
+"application/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 msgid "en"
-msgstr ""
+msgstr "tr"
 
 msgid "Compress PDF"
-msgstr ""
+msgstr "PDF Sıkıştır"
 
 msgid "Site not functional without JavaScript enabled"
-msgstr ""
+msgstr "JavaScript etkinleştirilmeden site çalışmıyor"
 
 #, php-format
 msgid "%s Compress a PDF"
-msgstr ""
+msgstr "%s Sıkıştırıldı"
 
 msgid "Reduce the size of a PDF"
-msgstr ""
+msgstr "PDF'nin boyutunu küçültme"
 
 msgid "Choose a PDF"
-msgstr ""
+msgstr "Bir PDF Seç"
 
 msgid "The PDF must not exceed "
-msgstr ""
+msgstr "PDF, aşmamalıdır "
 
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
-msgstr ""
+msgstr "PDF, saklanmadan veya depolanmadan sunucu tarafından işlenecektir"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "Pdf'iniz zaten optimize edilmiş"
 
 msgid "Compress"
-msgstr ""
+msgstr "Sıkıştır"
 
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "Düşük sıkıştırma (maksimum kalite)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s Orta sıkıştırma %s (varsayılan)"
 
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "Yüksek sıkıştırma (minimum kalite)"
 
 msgid "Free open-source software"
-msgstr ""
+msgstr "Ücretsiz açık kaynaklı yazılım"
 
 msgid "under AGPL-3.0 license"
-msgstr ""
+msgstr "AGPL-3.0 lisansı altında"
 
 msgid "see the source code"
-msgstr ""
+msgstr "kaynak koda bakın"
 
 msgid "Editing PDF metadata"
-msgstr ""
+msgstr "PDF meta verilerini düzenleme"
 
 #, php-format
 msgid "%s Edit metadata"
-msgstr ""
+msgstr "%s Meta verileri düzenleme"
 
 msgid "Add, edit, or remove metadata from a PDF"
-msgstr ""
+msgstr "PDF'ye meta veri ekleme, düzenleme veya PDF'den meta veri kaldırma"
 
 msgid "Test with a demo PDF"
-msgstr ""
+msgstr "Demo PDF ile test edin"
 
 msgid "List of PDF metadata"
-msgstr ""
+msgstr "PDF meta verilerinin listesi"
 
 msgid "Add new metadata"
-msgstr ""
+msgstr "Yeni meta veri ekleyin"
 
 msgid "Key"
-msgstr ""
+msgstr "Anahtar"
 
 msgid "Value"
-msgstr ""
+msgstr "Değer"
 
 #, php-format
 msgid "%s Add"
-msgstr ""
+msgstr "%s Ekle"
 
 msgid "Close this PDF and return to the home page"
-msgstr ""
+msgstr "Bu PDF'yi kapatın ve ana sayfaya dönün"
 
 msgid "Edit metadata"
-msgstr ""
+msgstr "Meta verileri düzenleme"
 
 msgid "Save and download the PDF"
-msgstr ""
+msgstr "PDF'i kaydedin ve indirin"
 
 msgid "Download the PDF"
-msgstr ""
+msgstr "PDF dosyasını indirin"
 
 msgid "Organize PDF"
-msgstr ""
+msgstr "PDF Düzenle"
 
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s PDF Düzenle"
 
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
+msgstr "Birleştirme, sıralama, döndürme, silme, sayfa çıkarma"
 
 msgid "Touch a page to select it"
-msgstr ""
+msgstr "Seçmek için bir sayfaya dokunun"
 
 msgid "Close this PDF and return to home"
-msgstr ""
+msgstr "Bu PDF'yi kapatın ve eve dön"
 
 msgid "PDF organization"
-msgstr ""
+msgstr "PDF organizasyonu"
 
 msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
+"Bu PDF, yalnızca sizin tarafınızda imzalanmak için bilgisayarınızda depolanır"
 
 #, php-format
 msgid "%s Add a PDF"
-msgstr ""
+msgstr "%s PDF Ekle"
 
 #, php-format
 msgid "%s page(s) selected"
-msgstr ""
+msgstr "%s sayfa seçildi"
 
 #, php-format
 msgid "%s Rotate 90°"
-msgstr ""
+msgstr "%s 90° döndür"
 
 #, php-format
 msgid "%s Move"
-msgstr ""
+msgstr "%s Taşı"
 
 #, php-format
 msgid "%s Delete"

@@ -1,0 +1,430 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-23 12:52+0100\n"
+"PO-Revision-Date: 2023-12-06 14:10+0000\n"
+"Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
+"application/tr/>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.3-dev\n"
+
+msgid "en"
+msgstr "tr"
+
+msgid "Compress PDF"
+msgstr "PDF Sıkıştır"
+
+msgid "Site not functional without JavaScript enabled"
+msgstr "JavaScript etkinleştirilmeden site çalışmıyor"
+
+#, php-format
+msgid "%s Compress a PDF"
+msgstr "%s Sıkıştırıldı"
+
+msgid "Reduce the size of a PDF"
+msgstr "PDF'nin boyutunu küçültme"
+
+msgid "Choose a PDF"
+msgstr "Bir PDF Seç"
+
+msgid "The PDF must not exceed "
+msgstr "PDF, aşmamalıdır "
+
+msgid "Mb"
+msgstr "Mb"
+
+msgid ""
+"The PDF will be processed by the server without being retained or stored"
+msgstr "PDF, saklanmadan veya depolanmadan sunucu tarafından işlenecektir"
+
+msgid "Your pdf is already optimized"
+msgstr "Pdf'iniz zaten optimize edilmiş"
+
+msgid "Compress"
+msgstr "Sıkıştır"
+
+msgid "Low compression (maximum quality)"
+msgstr "Düşük sıkıştırma (maksimum kalite)"
+
+#, php-format
+msgid "%s Medium compression %s (default)"
+msgstr "%s Orta sıkıştırma %s (varsayılan)"
+
+msgid "High compression (minimum quality)"
+msgstr "Yüksek sıkıştırma (minimum kalite)"
+
+msgid "Free open-source software"
+msgstr "Ücretsiz açık kaynaklı yazılım"
+
+msgid "under AGPL-3.0 license"
+msgstr "AGPL-3.0 lisansı altında"
+
+msgid "see the source code"
+msgstr "kaynak koda bakın"
+
+msgid "Editing PDF metadata"
+msgstr "PDF meta verilerini düzenleme"
+
+#, php-format
+msgid "%s Edit metadata"
+msgstr "%s Meta verileri düzenleme"
+
+msgid "Add, edit, or remove metadata from a PDF"
+msgstr "PDF'ye meta veri ekleme, düzenleme veya PDF'den meta veri kaldırma"
+
+msgid "Test with a demo PDF"
+msgstr "Demo PDF ile test edin"
+
+msgid "List of PDF metadata"
+msgstr "PDF meta verilerinin listesi"
+
+msgid "Add new metadata"
+msgstr "Yeni meta veri ekleyin"
+
+msgid "Key"
+msgstr "Anahtar"
+
+msgid "Value"
+msgstr "Değer"
+
+#, php-format
+msgid "%s Add"
+msgstr "%s Ekle"
+
+msgid "Close this PDF and return to the home page"
+msgstr "Bu PDF'yi kapatın ve ana sayfaya dönün"
+
+msgid "Edit metadata"
+msgstr "Meta verileri düzenleme"
+
+msgid "Save and download the PDF"
+msgstr "PDF'i kaydedin ve indirin"
+
+msgid "Download the PDF"
+msgstr "PDF dosyasını indirin"
+
+msgid "Organize PDF"
+msgstr "PDF Düzenle"
+
+#, php-format
+msgid "%s Organize PDF"
+msgstr "%s PDF Düzenle"
+
+msgid "Merge, sort, rotate, delete, extract pages"
+msgstr "Birleştirme, sıralama, döndürme, silme, sayfa çıkarma"
+
+msgid "Touch a page to select it"
+msgstr "Seçmek için bir sayfaya dokunun"
+
+msgid "Close this PDF and return to home"
+msgstr "Bu PDF'i kapat ve anasayfaya dön"
+
+msgid "PDF organization"
+msgstr "PDF organizasyonu"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr ""
+"Bu PDF, yalnızca sizin tarafınızda imzalanmak için bilgisayarınızda depolanır"
+
+#, php-format
+msgid "%s Add a PDF"
+msgstr "%s PDF Ekle"
+
+#, php-format
+msgid "%s page(s) selected"
+msgstr "%s sayfa seçildi"
+
+#, php-format
+msgid "%s Rotate 90°"
+msgstr "%s 90° döndür"
+
+#, php-format
+msgid "%s Move"
+msgstr "%s Taşı"
+
+#, php-format
+msgid "%s Delete"
+msgstr "%s Sil"
+
+#, php-format
+msgid "%s Extract and download"
+msgstr "%s Ayıklayın ve indirin"
+
+#, php-format
+msgid "%s Cancel selection"
+msgstr "%s Seçimi iptal et"
+
+#, php-format
+msgid "%s Download the full PDF"
+msgstr "%s PDF'in tamamını indirin"
+
+msgid "No"
+msgstr "Hayır"
+
+msgid "page"
+msgstr "sayfa"
+
+msgid "Cancel"
+msgstr "İptal"
+
+#, php-format
+msgid "%s Turn"
+msgstr "%s Çevir"
+
+msgid "Download the selection"
+msgstr "Seçileni indirin"
+
+msgid "PDF documents"
+msgstr "PDF dökümanları"
+
+msgid "Select this page"
+msgstr "Bu sayfayı seç"
+
+msgid "Delete this page"
+msgstr "Bu sayfayı sil"
+
+msgid "Restore this page"
+msgstr "Bu sayfayı geri yükle"
+
+msgid "Move this page"
+msgstr "Bu sayfayı taşı"
+
+msgid "Move here"
+msgstr "Buraya taşı"
+
+msgid "Turn this page"
+msgstr "Bu sayfayı döndür"
+
+msgid "Download this page"
+msgstr "Bu sayfayı indir"
+
+msgid "Page"
+msgstr "Sayfa"
+
+#, php-format
+msgid "%s Sign a PDF"
+msgstr "%s PDF imzala"
+
+msgid "Sign, initial, stamp, complete a document"
+msgstr "Belgeyi imzalamak, paraflamak, damgalamak, tamamlamak"
+
+msgid "The PDF should not exceed"
+msgstr "PDF aşmamalıdır"
+
+msgid "MB and"
+msgstr "MB ve"
+
+msgid "pages"
+msgstr "sayfalar"
+
+msgid "How to sign?"
+msgstr "Nasıl imzalanır?"
+
+msgid "By clicking directly on the document page"
+msgstr "Doğrudan belge sayfasına tıklayarak"
+
+msgid "to insert the selected item in the right column"
+msgstr "Seçilen öğeyi sağ sütuna eklemek için"
+
+msgid "signature, initial, text, stamp, etc ..."
+msgstr "imza, baş harf, metin, damga, vb."
+
+msgid "Close this PDF and return to the homepage"
+msgstr "Bu PDF'yi kapatın ve ana sayfaya dönün"
+
+msgid "PDF Signature"
+msgstr "PDF İmzala"
+
+msgid "This PDF is shared with others to be signed by multiple people"
+msgstr ""
+"Bu PDF birden fazla kişi tarafından imzalanmak üzere başkalarıyla paylaşılır"
+
+msgid "Keep the selection active"
+msgstr "Seçimi etkin tutun"
+
+#, php-format
+msgid "%s Signature"
+msgstr "%s İmza"
+
+msgid "Create"
+msgstr "Oluştur"
+
+#, php-format
+msgid "%s Initial"
+msgstr "%s Paraf"
+
+#, php-format
+msgid "%s Stamp"
+msgstr "%s Mühür"
+
+#, php-format
+msgid "%s Text"
+msgstr "%s Yazı"
+
+#, php-format
+msgid "%s Check box"
+msgstr "%s Onay Kutusu Doldurma"
+
+#, php-format
+msgid "%s Create an element"
+msgstr "%s Bir eleman oluştur"
+
+#, php-format
+msgid "%s Share to sign %s with multiple people"
+msgstr "%s Birden fazla kişiyle %s imzalamak için paylaşın"
+
+msgid "Download the signed PDF"
+msgstr "İmzalı PDF'i indirin"
+
+#, php-format
+msgid "You are %s to have signed this PDF"
+msgstr "%s PDF'inin imzaladınız"
+
+#, php-format
+msgid "%s Download the PDF"
+msgstr "%s PDF indir"
+
+msgid "Transmit my signature"
+msgstr "İmzamı iletin"
+
+#, php-format
+msgid "%s Select a signature"
+msgstr "%s Bir imza seçin"
+
+msgid "Draw"
+msgstr "Çiz"
+
+#, fuzzy
+msgid "freehand"
+msgstr "serbest çizim"
+
+msgid "Enter"
+msgstr "Giriş"
+
+msgid "text"
+msgstr "metin"
+
+msgid "Import"
+msgstr "İçeri aktar"
+
+msgid "an image"
+msgstr "resim"
+
+msgid "Clear signature"
+msgstr "İmzayı sil"
+
+msgid "My signature"
+msgstr "İmzam"
+
+#, php-format
+msgid "%s Share this PDF to sign it with several people"
+msgstr "%s Birkaç kişiyle imzalamak için bu PDF'yi paylaşın"
+
+msgid ""
+"By enabling PDF sharing, you will be able to provide a link to the people of "
+"your choice so that they can sign this PDF."
+msgstr ""
+"PDF paylaşımını etkinleştirerek, seçtiğiniz kişilere bu PDF'yi "
+"imzalayabilmeleri için bir bağlantı sağlayabileceksiniz."
+
+#, php-format
+msgid ""
+"%s This sharing requires the PDF to be transferred and stored on the server "
+"for future signers to access."
+msgstr ""
+"%s PDF paylaşımını etkinleştirerek, seçtiğiniz kişilere bu PDF'yi "
+"imzalayabilmeleri için bir bağlantı sağlayabileceksiniz."
+
+#, php-format
+msgid "%s The PDF will be kept"
+msgstr "%s PDF saklanacak"
+
+msgid "for one year"
+msgstr "bir yıl"
+
+msgid "for six months"
+msgstr "altı ay"
+
+msgid "for one month"
+msgstr "bir ay"
+
+msgid "for one week"
+msgstr "bir hafta"
+
+msgid "for one day"
+msgstr "bir gün"
+
+msgid "for one hour"
+msgstr "bir saat"
+
+msgid "after the last signature."
+msgstr "son imza işlemi yapılana kadar."
+
+#, php-format
+msgid "%s Start sharing"
+msgstr "%s Paylaşmaya başla"
+
+#, php-format
+msgid "%s Sign this PDF with multiple people"
+msgstr "%s Bu PDF'i birden fazla kişiyle imzalayın"
+
+msgid "Multiple people can sign this PDF simultaneously."
+msgstr "Bu PDF'i aynı anda birden fazla kişi imzalayabilir."
+
+msgid ""
+"To do so, simply share the link to this page with the people of your choice:"
+msgstr ""
+"Bunu yapmak için, bu sayfanın bağlantısını seçtiğiniz kişilerle paylaşmanız "
+"yeterlidir:"
+
+msgid "Sharing link"
+msgstr "Paylaşım bağlantısı"
+
+msgid "Copied !"
+msgstr "Kopyalandı !"
+
+msgid "Copy"
+msgstr "Kopya"
+
+msgid ""
+"Each of the signatories can download the latest version of the signed PDF at "
+"any time."
+msgstr ""
+"İmzacıların her biri, imzalanan PDF'nin en son sürümünü istediği zaman "
+"indirebilir."
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Signed PDF"
+msgstr "PDF imzala"
+
+msgid "Your signature has been successfully recorded!"
+msgstr "İmzanız başarıyla kaydedildi!"
+
+msgid "Text to modify"
+msgstr "Değiştirilecek metin"
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "Sign"
+msgstr "İmzala"
+
+msgid "Organize"
+msgstr "Organize et"
+
+#, fuzzy
+msgid "Metadata"
+msgstr "Metadata"

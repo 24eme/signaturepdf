@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-23 12:52+0100\n"
-"PO-Revision-Date: 2023-12-06 04:03+0000\n"
+"PO-Revision-Date: 2023-12-06 14:10+0000\n"
 "Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
 "application/tr/>\n"
@@ -128,7 +128,7 @@ msgid "Touch a page to select it"
 msgstr "Seçmek için bir sayfaya dokunun"
 
 msgid "Close this PDF and return to home"
-msgstr "Bu PDF'yi kapatın ve eve dön"
+msgstr "Bu PDF'i kapat ve anasayfaya dön"
 
 msgid "PDF organization"
 msgstr "PDF organizasyonu"
@@ -155,265 +155,276 @@ msgstr "%s Taşı"
 
 #, php-format
 msgid "%s Delete"
-msgstr ""
+msgstr "%s Sil"
 
 #, php-format
 msgid "%s Extract and download"
-msgstr ""
+msgstr "%s Ayıklayın ve indirin"
 
 #, php-format
 msgid "%s Cancel selection"
-msgstr ""
+msgstr "%s Seçimi iptal et"
 
 #, php-format
 msgid "%s Download the full PDF"
-msgstr ""
+msgstr "%s PDF'in tamamını indirin"
 
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 msgid "page"
-msgstr ""
+msgstr "sayfa"
 
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #, php-format
 msgid "%s Turn"
-msgstr ""
+msgstr "%s Çevir"
 
 msgid "Download the selection"
-msgstr ""
+msgstr "Seçileni indirin"
 
 msgid "PDF documents"
-msgstr ""
+msgstr "PDF dökümanları"
 
 msgid "Select this page"
-msgstr ""
+msgstr "Bu sayfayı seç"
 
 msgid "Delete this page"
-msgstr ""
+msgstr "Bu sayfayı sil"
 
 msgid "Restore this page"
-msgstr ""
+msgstr "Bu sayfayı geri yükle"
 
 msgid "Move this page"
-msgstr ""
+msgstr "Bu sayfayı taşı"
 
 msgid "Move here"
-msgstr ""
+msgstr "Buraya taşı"
 
 msgid "Turn this page"
-msgstr ""
+msgstr "Bu sayfayı döndür"
 
 msgid "Download this page"
-msgstr ""
+msgstr "Bu sayfayı indir"
 
 msgid "Page"
-msgstr ""
+msgstr "Sayfa"
 
 #, php-format
 msgid "%s Sign a PDF"
-msgstr ""
+msgstr "%s PDF imzala"
 
 msgid "Sign, initial, stamp, complete a document"
-msgstr ""
+msgstr "Belgeyi imzalamak, paraflamak, damgalamak, tamamlamak"
 
 msgid "The PDF should not exceed"
-msgstr ""
+msgstr "PDF aşmamalıdır"
 
 msgid "MB and"
-msgstr ""
+msgstr "MB ve"
 
 msgid "pages"
-msgstr ""
+msgstr "sayfalar"
 
 msgid "How to sign?"
-msgstr ""
+msgstr "Nasıl imzalanır?"
 
 msgid "By clicking directly on the document page"
-msgstr ""
+msgstr "Doğrudan belge sayfasına tıklayarak"
 
 msgid "to insert the selected item in the right column"
-msgstr ""
+msgstr "Seçilen öğeyi sağ sütuna eklemek için"
 
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "imza, baş harf, metin, damga, vb."
 
 msgid "Close this PDF and return to the homepage"
-msgstr ""
+msgstr "Bu PDF'yi kapatın ve ana sayfaya dönün"
 
 msgid "PDF Signature"
-msgstr ""
+msgstr "PDF İmzala"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
+"Bu PDF birden fazla kişi tarafından imzalanmak üzere başkalarıyla paylaşılır"
 
 msgid "Keep the selection active"
-msgstr ""
+msgstr "Seçimi etkin tutun"
 
 #, php-format
 msgid "%s Signature"
-msgstr ""
+msgstr "%s İmza"
 
 msgid "Create"
-msgstr ""
+msgstr "Oluştur"
 
 #, php-format
 msgid "%s Initial"
-msgstr ""
+msgstr "%s Paraf"
 
 #, php-format
 msgid "%s Stamp"
-msgstr ""
+msgstr "%s Mühür"
 
 #, php-format
 msgid "%s Text"
-msgstr ""
+msgstr "%s Yazı"
 
 #, php-format
 msgid "%s Check box"
-msgstr ""
+msgstr "%s Onay Kutusu Doldurma"
 
 #, php-format
 msgid "%s Create an element"
-msgstr ""
+msgstr "%s Bir eleman oluştur"
 
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr ""
+msgstr "%s Birden fazla kişiyle %s imzalamak için paylaşın"
 
 msgid "Download the signed PDF"
-msgstr ""
+msgstr "İmzalı PDF'i indirin"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr ""
+msgstr "%s PDF'inin imzaladınız"
 
 #, php-format
 msgid "%s Download the PDF"
-msgstr ""
+msgstr "%s PDF indir"
 
 msgid "Transmit my signature"
-msgstr ""
+msgstr "İmzamı iletin"
 
 #, php-format
 msgid "%s Select a signature"
-msgstr ""
+msgstr "%s Bir imza seçin"
 
 msgid "Draw"
-msgstr ""
+msgstr "Çiz"
 
+#, fuzzy
 msgid "freehand"
-msgstr ""
+msgstr "serbest çizim"
 
 msgid "Enter"
-msgstr ""
+msgstr "Giriş"
 
 msgid "text"
-msgstr ""
+msgstr "metin"
 
 msgid "Import"
-msgstr ""
+msgstr "İçeri aktar"
 
 msgid "an image"
-msgstr ""
+msgstr "resim"
 
 msgid "Clear signature"
-msgstr ""
+msgstr "İmzayı sil"
 
 msgid "My signature"
-msgstr ""
+msgstr "İmzam"
 
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr ""
+msgstr "%s Birkaç kişiyle imzalamak için bu PDF'yi paylaşın"
 
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
+"PDF paylaşımını etkinleştirerek, seçtiğiniz kişilere bu PDF'yi "
+"imzalayabilmeleri için bir bağlantı sağlayabileceksiniz."
 
 #, php-format
 msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s PDF paylaşımını etkinleştirerek, seçtiğiniz kişilere bu PDF'yi "
+"imzalayabilmeleri için bir bağlantı sağlayabileceksiniz."
 
 #, php-format
 msgid "%s The PDF will be kept"
-msgstr ""
+msgstr "%s PDF saklanacak"
 
 msgid "for one year"
-msgstr ""
+msgstr "bir yıl"
 
 msgid "for six months"
-msgstr ""
+msgstr "altı ay"
 
 msgid "for one month"
-msgstr ""
+msgstr "bir ay"
 
 msgid "for one week"
-msgstr ""
+msgstr "bir hafta"
 
 msgid "for one day"
-msgstr ""
+msgstr "bir gün"
 
 msgid "for one hour"
-msgstr ""
+msgstr "bir saat"
 
 msgid "after the last signature."
-msgstr ""
+msgstr "son imza işlemi yapılana kadar."
 
 #, php-format
 msgid "%s Start sharing"
-msgstr ""
+msgstr "%s Paylaşmaya başla"
 
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr ""
+msgstr "%s Bu PDF'i birden fazla kişiyle imzalayın"
 
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr ""
+msgstr "Bu PDF'i aynı anda birden fazla kişi imzalayabilir."
 
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
+"Bunu yapmak için, bu sayfanın bağlantısını seçtiğiniz kişilerle paylaşmanız "
+"yeterlidir:"
 
 msgid "Sharing link"
-msgstr ""
+msgstr "Paylaşım bağlantısı"
 
 msgid "Copied !"
-msgstr ""
+msgstr "Kopyalandı !"
 
 msgid "Copy"
-msgstr ""
+msgstr "Kopya"
 
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr ""
+"İmzacıların her biri, imzalanan PDF'nin en son sürümünü istediği zaman "
+"indirebilir."
 
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
 
 msgid "Signed PDF"
-msgstr ""
+msgstr "PDF imzala"
 
 msgid "Your signature has been successfully recorded!"
-msgstr ""
+msgstr "İmzanız başarıyla kaydedildi!"
 
 msgid "Text to modify"
-msgstr ""
+msgstr "Değiştirilecek metin"
 
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 msgid "Sign"
-msgstr ""
+msgstr "İmzala"
 
 msgid "Organize"
-msgstr ""
+msgstr "Organize et"
 
+#, fuzzy
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"

@@ -138,7 +138,6 @@ DEBUG=1 make test
 - **ImageMagick** Image manipulation toolset: https://imagemagick.org/ (Apache-2.0)
 - **Caveat** Handwriting-style font: https://github.com/googlefonts/caveat (OFL-1.1)
 - **PDF-LIB** JavaScript library for PDF manipulation used for writing metadata: https://pdf-lib.js.org/ (MIT)
-- **PDF-LIB** JavaScript library for PDF manipulation used for writing metadata: https://pdf-lib.js.org/ (MIT)
 - **Ghostscript** GPL Ghostscript is a software suite for processing PostScript and PDF file formats (GPLv3)
 
 For testing:

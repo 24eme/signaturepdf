@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-23 12:52+0100\n"
-"PO-Revision-Date: 2023-10-07 13:11+0000\n"
+"PO-Revision-Date: 2023-12-11 19:05+0000\n"
 "Last-Translator: Paolo Mauri <paolo@paolomauri.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 msgid "en"
 msgstr "it"
 
 msgid "Compress PDF"
-msgstr "Comprimere un PDF"
+msgstr "Comprimi un PDF"
 
 msgid "Site not functional without JavaScript enabled"
 msgstr "Il sito non funziona senza JavaScript abilitato"
@@ -49,10 +49,10 @@ msgid ""
 msgstr "Il PDF sarà processato dal server senza essere memorizzato o salvato"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "Il tuo PDF è già ottimizzato"
 
 msgid "Compress"
-msgstr "Comprimere"
+msgstr "Comprimi"
 
 msgid "Low compression (maximum quality)"
 msgstr "Bassa compressione (massima qualità)"
@@ -74,11 +74,11 @@ msgid "see the source code"
 msgstr "vedi il codice sorgente"
 
 msgid "Editing PDF metadata"
-msgstr "Modifica i metadata si un PDF"
+msgstr "Modifica i metadata di un PDF"
 
 #, php-format
 msgid "%s Edit metadata"
-msgstr "%s Modificare i metadata"
+msgstr "%s Modifica i metadata"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Aggiungi, modifica o rimuovi i metadata da un PDF"
@@ -407,7 +407,7 @@ msgid "Signed PDF"
 msgstr "PDF firmato"
 
 msgid "Your signature has been successfully recorded!"
-msgstr "La tua firma è stata correttamente salvata!"
+msgstr "La tua firma è stata salvata correttamente!"
 
 msgid "Text to modify"
 msgstr "Testo da modificare"

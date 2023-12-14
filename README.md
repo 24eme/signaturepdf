@@ -12,6 +12,7 @@ List of instances where you can use this software:
 - [pdf.kaosx.cf](https://pdf.kaosx.cf)
 - [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr)
 - [pdf.cemea.org](https://pdf.cemea.org)
+- [pdf.spirio.fr](https://pdf.spirio.fr)
 
 _Feel free to add yours through an issue or a pull request._
 

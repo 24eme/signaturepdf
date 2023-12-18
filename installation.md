@@ -52,7 +52,7 @@ DocumentRoot /path/to/signaturepdf/public
 
 #### The translation is not done
 
-The translation is not done, the language remains in English in the interface.
+The language remains in English in the interface.
 
 Check that your locales are properly installed:
 

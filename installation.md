@@ -13,7 +13,7 @@ Dependencies:
 
 Installing dependencies:
 ```
-sudo aptitude install php librsvg2-bin pdftk imagemagick potrace ghostscript locales
+sudo apt-get install php librsvg2-bin pdftk imagemagick potrace ghostscript locales
 ```
 
 Getting the source code:
@@ -28,7 +28,7 @@ To run it:
 php -S localhost:8000 -t public
 ```
 
-#### PHP Configuration
+### PHP Configuration
 
 ```
 upload_max_filesize = 24M # Maximum size of the PDF file to sign
@@ -36,7 +36,7 @@ post_max_size = 24M # Maximum size of the PDF file to sign
 max_file_uploads = 201 # Maximum number of pages in the PDF, here 200 pages + the original PDF
 ```
 
-#### Apache Configuration
+### Apache Configuration
 
 ```
 DocumentRoot /path/to/signaturepdf/public
@@ -48,7 +48,24 @@ DocumentRoot /path/to/signaturepdf/public
     php_value post_max_size 24M
 </Directory>
 ```
+### Troubleshooting
 
+#### The translation is not done
+
+The language remains in English in the interface.
+
+Check that your locales are properly installed:
+
+```
+sudo apt-get install locales
+sudo dpkg-reconfigure locales
+```
+
+Then if you use apache, you have to restart it:
+
+```
+sudo service apache2 restart
+```
 
 ## [Deploy with Docker](#docker)
 
@@ -84,7 +101,6 @@ The following variables can be used to configure the deployment:
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
 ```
-
 
 ## [Alpine](#alpine)
 

@@ -22,6 +22,7 @@ $f3->set('SUPPORTED_LANGUAGES',
         'it' => 'Italiano',
         'kab' => 'Taqbaylit',
         'oc' => 'Occitan',
+        'ro' => 'Română',
         'tr' => 'Türkçe'
     ]);
 

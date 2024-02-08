@@ -273,7 +273,7 @@ msgid "%s Text"
 msgstr "%s Texte"
 
 msgid "Strikethrough"
-msgstr ""
+msgstr "Rayer"
 
 #, php-format
 msgid "%s Check box"

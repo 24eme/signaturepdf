@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 12:52+0100\n"
+"POT-Creation-Date: 2024-02-08 23:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -265,6 +265,9 @@ msgstr ""
 
 #, php-format
 msgid "%s Text"
+msgstr ""
+
+msgid "Strikethrough"
 msgstr ""
 
 #, php-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 12:52+0100\n"
+"POT-Creation-Date: 2024-02-08 23:02+0100\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -270,6 +270,9 @@ msgstr "%s خاتَم"
 #, php-format
 msgid "%s Text"
 msgstr "%s نص"
+
+msgid "Strikethrough"
+msgstr ""
 
 #, php-format
 msgid "%s Check box"

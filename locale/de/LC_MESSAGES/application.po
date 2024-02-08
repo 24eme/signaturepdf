@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-23 12:52+0100\n"
-"PO-Revision-Date: 2024-01-14 12:31+0000\n"
+"PO-Revision-Date: 2024-02-07 02:01+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
 "application/de/>\n"
@@ -51,7 +51,7 @@ msgstr ""
 "gespeichert wird"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "Ihr PDF ist bereits optimiert"
 
 msgid "Compress"
 msgstr "Komprimieren"
@@ -61,7 +61,7 @@ msgstr "Niedrige Komprimierung (maximale Qualität)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s Mittlere Kompression %s (Standard)"
 
 msgid "High compression (minimum quality)"
 msgstr "Hohe Komprimierung (minimale Qualität)"
@@ -73,30 +73,30 @@ msgid "under AGPL-3.0 license"
 msgstr "unter AGPL-3.0-Lizenz"
 
 msgid "see the source code"
-msgstr ""
+msgstr "siehe den Quellcode"
 
 msgid "Editing PDF metadata"
 msgstr "PDF-Metadaten bearbeiten"
 
 #, php-format
 msgid "%s Edit metadata"
-msgstr ""
+msgstr "%s Metadaten bearbeiten"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr ""
 "Hinzufügen, Bearbeiten oder Entfernen von Metadaten aus einer PDF-Datei"
 
 msgid "Test with a demo PDF"
-msgstr ""
+msgstr "Mit Demo-PDF testen"
 
 msgid "List of PDF metadata"
 msgstr "Liste der PDF-Metadaten"
 
 msgid "Add new metadata"
-msgstr ""
+msgstr "Neue Metadaten hinzufügen"
 
 msgid "Key"
-msgstr ""
+msgstr "Schlüssel"
 
 msgid "Value"
 msgstr "Wert"
@@ -112,20 +112,20 @@ msgid "Edit metadata"
 msgstr "Metadaten bearbeiten"
 
 msgid "Save and download the PDF"
-msgstr ""
+msgstr "PDF speichern und herunterladen"
 
 msgid "Download the PDF"
-msgstr ""
+msgstr "PDF herunterladen"
 
 msgid "Organize PDF"
-msgstr ""
+msgstr "PDF organisieren"
 
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s PDF organisieren"
 
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
+msgstr "Seiten zusammenführen, sortieren, drehen, löschen, extrahieren"
 
 msgid "Touch a page to select it"
 msgstr ""
@@ -143,11 +143,11 @@ msgstr ""
 
 #, php-format
 msgid "%s Add a PDF"
-msgstr ""
+msgstr "%s PDF hinzufügen"
 
 #, php-format
 msgid "%s page(s) selected"
-msgstr ""
+msgstr "%s Seite(n) ausgewählt"
 
 #, php-format
 msgid "%s Rotate 90°"
@@ -155,7 +155,7 @@ msgstr "%s Drehe um 90°"
 
 #, php-format
 msgid "%s Move"
-msgstr ""
+msgstr "%s Verschieben"
 
 #, php-format
 msgid "%s Delete"
@@ -163,7 +163,7 @@ msgstr "%s Läschen"
 
 #, php-format
 msgid "%s Extract and download"
-msgstr ""
+msgstr "%s Extrahieren und herunterladen"
 
 #, php-format
 msgid "%s Cancel selection"
@@ -171,10 +171,10 @@ msgstr "%s Auswahl aufheben"
 
 #, php-format
 msgid "%s Download the full PDF"
-msgstr ""
+msgstr "%s Vollständiges PDF herunterladen"
 
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 msgid "page"
 msgstr "Seite"
@@ -184,10 +184,10 @@ msgstr "Abbrechen"
 
 #, php-format
 msgid "%s Turn"
-msgstr ""
+msgstr "%s Drehen"
 
 msgid "Download the selection"
-msgstr ""
+msgstr "Auswahl herunterladen"
 
 msgid "PDF documents"
 msgstr "PDF-Dokumente"
@@ -208,17 +208,17 @@ msgid "Move here"
 msgstr "Hierher verschieben"
 
 msgid "Turn this page"
-msgstr ""
+msgstr "Diese Seite drehen"
 
 msgid "Download this page"
-msgstr ""
+msgstr "Diese Seite herunterladen"
 
 msgid "Page"
 msgstr "Seite"
 
 #, php-format
 msgid "%s Sign a PDF"
-msgstr ""
+msgstr "%s PDF signieren"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr ""
@@ -227,7 +227,7 @@ msgid "The PDF should not exceed"
 msgstr ""
 
 msgid "MB and"
-msgstr ""
+msgstr "MB und"
 
 msgid "pages"
 msgstr "Seiten"
@@ -248,7 +248,7 @@ msgid "Close this PDF and return to the homepage"
 msgstr ""
 
 msgid "PDF Signature"
-msgstr ""
+msgstr "PDF-Signatur"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
@@ -290,7 +290,7 @@ msgid "%s Share to sign %s with multiple people"
 msgstr ""
 
 msgid "Download the signed PDF"
-msgstr ""
+msgstr "Signierte PDF herunterladen"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
@@ -298,7 +298,7 @@ msgstr ""
 
 #, php-format
 msgid "%s Download the PDF"
-msgstr ""
+msgstr "%s PDF herunterladen"
 
 msgid "Transmit my signature"
 msgstr "Meine Unterschrift übermitteln"
@@ -354,22 +354,22 @@ msgid "%s The PDF will be kept"
 msgstr ""
 
 msgid "for one year"
-msgstr ""
+msgstr "für ein Jahr"
 
 msgid "for six months"
-msgstr ""
+msgstr "für sechs Monate"
 
 msgid "for one month"
-msgstr ""
+msgstr "für einen Monat"
 
 msgid "for one week"
-msgstr ""
+msgstr "für eine Woche"
 
 msgid "for one day"
-msgstr ""
+msgstr "für einen Tag"
 
 msgid "for one hour"
-msgstr ""
+msgstr "für eine Stunde"
 
 msgid "after the last signature."
 msgstr ""
@@ -395,7 +395,7 @@ msgid "Sharing link"
 msgstr ""
 
 msgid "Copied !"
-msgstr ""
+msgstr "Kopiert!"
 
 msgid "Copy"
 msgstr "Kopieren"
@@ -423,10 +423,10 @@ msgid "Language"
 msgstr "Sprache"
 
 msgid "Sign"
-msgstr ""
+msgstr "Signieren"
 
 msgid "Organize"
-msgstr ""
+msgstr "Organisieren"
 
 msgid "Metadata"
 msgstr "Metadaten"

@@ -9,7 +9,7 @@ List of instances where you can use this software:
 - [pdf.libreon.fr](https://pdf.libreon.fr)
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
-- [pdf.kaosx.cf](https://pdf.kaosx.cf)
+- [pdf.kaosx.ovh](https://pdf.kaosx.ovh)
 - [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr)
 - [pdf.cemea.org](https://pdf.cemea.org)
 - [pdf.spirio.fr](https://pdf.spirio.fr)

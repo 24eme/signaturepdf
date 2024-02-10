@@ -12,6 +12,7 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [pdf.libreon.fr](https://pdf.libreon.fr)
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
+- [pdf.kaosx.ovh](https://pdf.kaosx.ovh)
 - [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr)
 - [pdf.cemea.org](https://pdf.cemea.org)
 

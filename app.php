@@ -401,6 +401,8 @@ $f3->route ('POST /compress',
             $compressionType = '/printer';
         } elseif ($compressionType === 'high') {
             $compressionType = '/screen';
+        } else {
+            $compressionType = '/screen';
         }
 
         $arrayPath = array_keys($files);

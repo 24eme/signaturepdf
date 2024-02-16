@@ -35,6 +35,10 @@
     z-index: 10000;
 }
 
+#modalFichier {
+    z-index: 10001;
+}
+
 #input-text-signature:dir(ltr) {
     font-family: Caveat;
     font-size: 48px;

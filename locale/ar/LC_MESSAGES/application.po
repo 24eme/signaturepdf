@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-24 17:21+0200\n"
-"PO-Revision-Date: 2023-09-29 08:55+0000\n"
+"POT-Creation-Date: 2024-02-08 23:02+0100\n"
+"PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
 "application/ar/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.2\n"
 
 msgid "en"
 msgstr "ar"
@@ -50,7 +50,7 @@ msgid ""
 msgstr "سيتم معالجة ملف PDF على الخادم دون الاحتفاظ به أو تخزينه"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "ملف PDF الخاص بك بالفعل أمثل"
 
 msgid "Compress"
 msgstr "ضغط"
@@ -182,7 +182,6 @@ msgstr "إلغاء"
 msgid "%s Turn"
 msgstr "%s دوران"
 
-#, php-format
 msgid "Download the selection"
 msgstr "تنزيل المُحدَّدة"
 
@@ -271,6 +270,9 @@ msgstr "%s خاتَم"
 #, php-format
 msgid "%s Text"
 msgstr "%s نص"
+
+msgid "Strikethrough"
+msgstr ""
 
 #, php-format
 msgid "%s Check box"

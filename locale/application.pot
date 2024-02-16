@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-24 17:35+0200\n"
+"POT-Creation-Date: 2024-02-08 23:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,7 +179,6 @@ msgstr ""
 msgid "%s Turn"
 msgstr ""
 
-#, php-format
 msgid "Download the selection"
 msgstr ""
 
@@ -267,6 +266,9 @@ msgstr ""
 
 #, php-format
 msgid "%s Text"
+msgstr ""
+
+msgid "Strikethrough"
 msgstr ""
 
 #, php-format

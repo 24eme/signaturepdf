@@ -129,6 +129,9 @@ var loadPDF = async function(pdfBlob, filename) {
                   input_selected.dispatchEvent(new Event("change"));
               });
               canvasEdition.on('object:scaling', function(event) {
+                  if (event.target instanceof fabric.Line) {
+                      return;
+                  }
                   if(event.transform.action == "scaleX") {
                       event.target.scaleY = event.target.scaleX;
                   }
@@ -269,7 +272,7 @@ var svgChange = function(input, event) {
 
     let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
-    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text") {
+    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "strikethrough") {
         input_selected = null;
     }
 
@@ -547,6 +550,21 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
 
 
       return;
+    }
+
+    if(item == 'strikethrough') {
+        let line = new fabric.Line([x, y, x + 250, y], {
+          fill: 'black',
+          stroke: 'black',
+          lockScalingFlip: true,
+          strokeWidth: 2,
+          padding: 10,
+        });
+        line.setControlsVisibility({ bl: false, br: false, mt: false, mb: false, tl: false, tr: false})
+
+        addObjectInCanvas(canvas, line).setActiveObject(line);
+
+        return;
     }
 
     fabric.loadSVGFromURL(item, function(objects, options) {

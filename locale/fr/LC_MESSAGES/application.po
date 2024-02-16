@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-24 17:21+0200\n"
+"POT-Creation-Date: 2024-02-08 23:02+0100\n"
 "PO-Revision-Date: 2023-09-30 12:59+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -69,7 +69,7 @@ msgid "Free open-source software"
 msgstr "Logiciel libre"
 
 msgid "under AGPL-3.0 license"
-msgstr "sous license AGPL-3.0"
+msgstr "sous licence AGPL-3.0"
 
 msgid "see the source code"
 msgstr "voir le code source"
@@ -183,7 +183,6 @@ msgstr "Annuler"
 msgid "%s Turn"
 msgstr "%s Tourner"
 
-#, php-format
 msgid "Download the selection"
 msgstr "Télécharger la sélection"
 
@@ -197,7 +196,7 @@ msgid "Delete this page"
 msgstr "Supprimer cette page"
 
 msgid "Restore this page"
-msgstr "Restorer cette page"
+msgstr "Restaurer cette page"
 
 msgid "Move this page"
 msgstr "Déplacer cette page"
@@ -272,6 +271,9 @@ msgstr "%s Tampon"
 #, php-format
 msgid "%s Text"
 msgstr "%s Texte"
+
+msgid "Strikethrough"
+msgstr "Rayer"
 
 #, php-format
 msgid "%s Check box"

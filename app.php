@@ -14,12 +14,17 @@ if(getenv("DEBUG")) {
 }
 
 $f3->set('SUPPORTED_LANGUAGES',
-    ['fr' => 'Français',
-        'en' => 'English',
+    [
         'ar' => 'العربية',
+        'de' => 'Deutsch',
+        'en' => 'English',
+        'fr' => 'Français',
+        'it' => 'Italiano',
         'kab' => 'Taqbaylit',
         'oc' => 'Occitan',
-        'it' => 'Italiano']);
+        'ro' => 'Română',
+        'tr' => 'Türkçe'
+    ]);
 
 $f3->set('XFRAME', null); // Allow use in an iframe
 $f3->set('ROOT', __DIR__);
@@ -365,54 +370,11 @@ $f3->route('GET /cron', function($f3) {
 if (!$f3->get('disableOrganization')) {
 $f3->route('GET /organization',
     function($f3) {
-        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
-
         $f3->set('activeTab', 'organize');
         echo View::instance()->render('organization.html.php');
     }
 );
-
-$f3->route('POST /organize',
-    function($f3) {
-        $filenames = array();
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_organize');
-        unlink($tmpfile);
-        $pages = explode(',', preg_replace('/[^A-Z0-9a-z,]+/', '', $f3->get('POST.pages')));
-
-        $files = Web::instance()->receive(function($file,$formFieldName){
-            if(strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
-                $f3->error(403);
-            }
-
-            return true;
-        }, false, function($fileBaseName, $formFieldName) use ($tmpfile, &$filenames) {
-            $filenames[] = str_replace('.pdf', '', $fileBaseName);
-
-            return basename($tmpfile).uniqid().".pdf";
-        });
-
-        if(!count($files)) {
-            $f3->error(403);
-        }
-
-        $pdfs = array();
-        foreach(array_keys($files) as $i => $file) {
-            $pdfs[] = chr(65 + $i)."=".$file;
-        }
-
-        shell_exec(sprintf("pdftk %s cat %s output %s", implode(" ", $pdfs), implode(" ", $pages), $tmpfile.'_final.pdf'));
-
-        Web::instance()->send($tmpfile."_final.pdf", null, 0, TRUE, implode('_', $filenames));
-
-        if($f3->get('DEBUG')) {
-            return;
-        }
-
-        array_map('unlink', glob($tmpfile."*"));
-    }
-);
 }
-
 $f3->route('GET /metadata',
     function($f3) {
         $f3->set('activeTab','metadata');

@@ -9,7 +9,10 @@ List of instances where you can use this software:
 - [pdf.libreon.fr](https://pdf.libreon.fr)
 - [pdf.hostux.net](https://pdf.hostux.net)
 - [pdf.nebulae.co](https://pdf.nebulae.co)
-- [pdf.kaosx.cf](https://pdf.kaosx.cf)
+- [pdf.kaosx.ovh](https://pdf.kaosx.ovh)
+- [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr)
+- [pdf.cemea.org](https://pdf.cemea.org)
+- [pdf.spirio.fr](https://pdf.spirio.fr)
 
 _Feel free to add yours through an issue or a pull request._
 
@@ -32,13 +35,10 @@ Open-source software under the AGPL V3 license.
     - [Contributors](#contributors)
     - [Fundings](#fundings)
 - [Screenshots](#screenshots)
-<<<<<<< HEAD
-=======
     - [Signature feature](#signature-feature)
     - [Organizing feature](#organizing-feature)
     - [Metadata feature](#metadata-feature)
     - [Compression feature](#compression-feature)
->>>>>>> 6f677d88b834018412ab55101942c97b3213743b
 
 
 ## Installation
@@ -139,7 +139,6 @@ DEBUG=1 make test
 - **ImageMagick** Image manipulation toolset: https://imagemagick.org/ (Apache-2.0)
 - **Caveat** Handwriting-style font: https://github.com/googlefonts/caveat (OFL-1.1)
 - **PDF-LIB** JavaScript library for PDF manipulation used for writing metadata: https://pdf-lib.js.org/ (MIT)
-- **PDF-LIB** JavaScript library for PDF manipulation used for writing metadata: https://pdf-lib.js.org/ (MIT)
 - **Ghostscript** GPL Ghostscript is a software suite for processing PostScript and PDF file formats (GPLv3)
 
 For testing:
@@ -170,9 +169,6 @@ Vincent LAURENT (24ème), Jean-Baptiste Le Metayer (24ème), Xavier Garnier (Log
 - 100 € excl. taxes donations from the company PDG IT
 - 1 040 € excl. taxes from the foundation NLNet pour software internationalization
 
-<<<<<<< HEAD
-The development of the software was primarily done during the working hours of 24ème employees.
-=======
 The development of the software was primarily done during the working hours of 24ème employees.
 
 ## Screenshots
@@ -198,4 +194,3 @@ The development of the software was primarily done during the working hours of 2
 ### Compression feature
 
 ![image](https://github.com/24eme/signaturepdf/assets/71143205/7d0e93a3-5567-4545-9c43-033b9028b036)
->>>>>>> 6f677d88b834018412ab55101942c97b3213743b

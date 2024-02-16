@@ -25,10 +25,10 @@
             <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Merge, sort, rotate, delete, extract pages"); ?></p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
-                  <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo _("The PDF must not exceed "); ?> <?php echo round($maxSize / 1024 / 1024) ?> <?php echo _("Mb"); ?>"><i class="bi bi-info-circle"></i></small></label>
+                  <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?></label>
                   <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" multiple="true" />
-                  <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being retained or stored"); ?></p>
                   <?php if($PDF_DEMO_LINK): ?>
+                  <p class="mt-2 small fw-light text-dark">&nbsp;</p>
                   <a class="btn btn-sm btn-link opacity-75" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF"); ?></a>
                   <?php endif; ?>
                 </div>
@@ -91,7 +91,7 @@
         <div id="top_bar" class="position-fixed top-0 start-0 bg-white w-100 shadow-sm d-md-none p-2">
             <div id="top_bar_action">
                 <div class="d-flex" role="group">
-                    <button id="btn_liste_pdf" type="button" data-bs-toggle="modal" data-bs-target="#modalFichier" class="btn btn-dark flex-grow-1 me-2"  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <button id="btn_liste_pdf" type="button" data-bs-toggle="modal" data-bs-target="#modalFichier" class="btn btn-outline-dark flex-grow-1 me-2"  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         <i class="bi bi-files"></i> <span id="liste_pdf_titre_mobile"></span>
                     </button>
                     <button type="button" class="btn btn-outline-dark position-relative" style="padding-left: 30px;"  onclick="document.getElementById('input_pdf_upload_2').click(); this.blur();"><?php echo sprintf(_("%s Add a PDF"), '<i class="bi bi-plus-circle position-absolute" style="left: 10px;"></i>'); ?></button>
@@ -111,7 +111,7 @@
                 <button class="btn btn-primary" type="submit" id="save_mobile"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
             </div>
             <div id="bottom_bar_action_selection" class="d-grid gap-2 d-none">
-                <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><?php echo sprintf(_("Download the selection"), '<i class="bi bi-download"></i>'); ?></button>
+                <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
             </div>
         </div>
     </div>
@@ -133,7 +133,6 @@
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.1.3"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
     <script>
-    var maxSize = <?php echo $maxSize ?>;
     var trad = <?php echo json_encode([
         'Select this page' => _('Select this page'),
         'Delete this page' => _('Delete this page'),
@@ -146,5 +145,6 @@
     ]); ?>;
     </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/organization.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/organization.js") ?>"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?1.17.1"></script>
   </body>
 </html>

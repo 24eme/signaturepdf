@@ -1,0 +1,432 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-08 23:02+0100\n"
+"PO-Revision-Date: 2024-01-02 19:08+0000\n"
+"Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
+"application/ro/>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 5.4-dev\n"
+
+msgid "en"
+msgstr "ro"
+
+msgid "Compress PDF"
+msgstr "Comprimați un PDF"
+
+msgid "Site not functional without JavaScript enabled"
+msgstr "Site-ul nu funcționează fără JavaScript activat"
+
+#, php-format
+msgid "%s Compress a PDF"
+msgstr "%s Comprimați un PDF"
+
+msgid "Reduce the size of a PDF"
+msgstr "Reduceți dimensiunea unui PDF"
+
+msgid "Choose a PDF"
+msgstr "Alegeți un PDF"
+
+msgid "The PDF must not exceed "
+msgstr "PDF-ul nu trebuie să depășească "
+
+msgid "Mb"
+msgstr "Mb"
+
+msgid ""
+"The PDF will be processed by the server without being retained or stored"
+msgstr "PDF-ul va fi procesat de server fără a fi reținut sau stocat"
+
+msgid "Your pdf is already optimized"
+msgstr "PDF-ul dvs. este deja optimizat"
+
+msgid "Compress"
+msgstr "Comprimă"
+
+msgid "Low compression (maximum quality)"
+msgstr "Compresie scăzută (calitate maximă)"
+
+#, php-format
+msgid "%s Medium compression %s (default)"
+msgstr "%s compresie medie %s (implicit)"
+
+msgid "High compression (minimum quality)"
+msgstr "Compresie ridicată (calitate minimă)"
+
+msgid "Free open-source software"
+msgstr "Software gratuit cu sursă deschisă"
+
+msgid "under AGPL-3.0 license"
+msgstr "sub licență AGPL-3.0"
+
+msgid "see the source code"
+msgstr "vezi codul sursă"
+
+msgid "Editing PDF metadata"
+msgstr "Editarea metadatelor PDF"
+
+#, php-format
+msgid "%s Edit metadata"
+msgstr "%s Editați metadatele"
+
+msgid "Add, edit, or remove metadata from a PDF"
+msgstr "Adăugați, editați sau eliminați metadate dintr-un PDF"
+
+msgid "Test with a demo PDF"
+msgstr "Testați cu un PDF demonstrativ"
+
+msgid "List of PDF metadata"
+msgstr "Lista de metadate PDF"
+
+msgid "Add new metadata"
+msgstr "Adăugați metadate noi"
+
+msgid "Key"
+msgstr "Cheie"
+
+msgid "Value"
+msgstr "Valoare"
+
+#, php-format
+msgid "%s Add"
+msgstr "%s Adăugați"
+
+msgid "Close this PDF and return to the home page"
+msgstr "Închideți acest PDF și reveniți la pagina de pornire"
+
+msgid "Edit metadata"
+msgstr "Editați metadatele"
+
+msgid "Save and download the PDF"
+msgstr "Salvați și descărcați PDF-ul"
+
+msgid "Download the PDF"
+msgstr "Descărcați PDF-ul"
+
+msgid "Organize PDF"
+msgstr "Organizați un PDF"
+
+#, php-format
+msgid "%s Organize PDF"
+msgstr "%s Organizați PDF-uri"
+
+msgid "Merge, sort, rotate, delete, extract pages"
+msgstr "Îmbinați, sortați, rotiți, ștergeți, extrageți pagini"
+
+msgid "Touch a page to select it"
+msgstr "Atingeți o pagină pentru a o selecta"
+
+msgid "Close this PDF and return to home"
+msgstr "Închideți acest PDF și reveniți acasă"
+
+msgid "PDF organization"
+msgstr "Organizare PDF-uri"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "Acest PDF este stocat pe computer pentru a fi semnat numai de dvs"
+
+#, php-format
+msgid "%s Add a PDF"
+msgstr "%s Adăugați un PDF"
+
+#, php-format
+msgid "%s page(s) selected"
+msgstr "%s pagini selectate"
+
+#, php-format
+msgid "%s Rotate 90°"
+msgstr "%s Rotire 90°"
+
+#, php-format
+msgid "%s Move"
+msgstr "%s Mutare"
+
+#, php-format
+msgid "%s Delete"
+msgstr "%s Ștergeți"
+
+#, php-format
+msgid "%s Extract and download"
+msgstr "%s Extrageți și descărcați"
+
+#, php-format
+msgid "%s Cancel selection"
+msgstr "%s Anulează selecția"
+
+#, php-format
+msgid "%s Download the full PDF"
+msgstr "%s Descărcați PDF-ul complet"
+
+msgid "No"
+msgstr "Nu"
+
+msgid "page"
+msgstr "pagină"
+
+msgid "Cancel"
+msgstr "Anulare"
+
+#, php-format
+msgid "%s Turn"
+msgstr "%s Întoarce"
+
+msgid "Download the selection"
+msgstr "Descărcați selecția"
+
+msgid "PDF documents"
+msgstr "Documente PDF"
+
+msgid "Select this page"
+msgstr "Selectați această pagină"
+
+msgid "Delete this page"
+msgstr "Ștergeți această pagină"
+
+msgid "Restore this page"
+msgstr "Restaurați această pagină"
+
+msgid "Move this page"
+msgstr "Mutați această pagină"
+
+msgid "Move here"
+msgstr "Mută aici"
+
+msgid "Turn this page"
+msgstr "Întoarce această pagină"
+
+msgid "Download this page"
+msgstr "Descărcați această pagină"
+
+msgid "Page"
+msgstr "Pagină"
+
+#, php-format
+msgid "%s Sign a PDF"
+msgstr "%s Semnează un PDF"
+
+msgid "Sign, initial, stamp, complete a document"
+msgstr "Semnează, inițială, ștampilă, completează un document"
+
+msgid "The PDF should not exceed"
+msgstr "PDF-ul nu trebuie să depășească"
+
+msgid "MB and"
+msgstr "MB și"
+
+msgid "pages"
+msgstr "pagini"
+
+msgid "How to sign?"
+msgstr "Cum să semnez?"
+
+msgid "By clicking directly on the document page"
+msgstr "Făcând clic direct pe pagina documentului"
+
+msgid "to insert the selected item in the right column"
+msgstr "pentru a insera elementul selectat în coloana din dreapta"
+
+msgid "signature, initial, text, stamp, etc ..."
+msgstr "semnătură, inițiale, text, ștampilă etc..."
+
+msgid "Close this PDF and return to the homepage"
+msgstr "Închideți acest PDF și reveniți la pagina de pornire"
+
+msgid "PDF Signature"
+msgstr "Semnătura PDF-ului"
+
+msgid "This PDF is shared with others to be signed by multiple people"
+msgstr ""
+"Acest PDF este partajat altor persoane pentru a fi semnat de mai multe "
+"persoane"
+
+msgid "Keep the selection active"
+msgstr "Păstrați selecția activă"
+
+#, php-format
+msgid "%s Signature"
+msgstr "Semnătura %s"
+
+msgid "Create"
+msgstr "Creare"
+
+#, php-format
+msgid "%s Initial"
+msgstr "%s inițial"
+
+#, php-format
+msgid "%s Stamp"
+msgstr "Ștampila %s"
+
+#, php-format
+msgid "%s Text"
+msgstr "%s Text"
+
+msgid "Strikethrough"
+msgstr ""
+
+#, php-format
+msgid "%s Check box"
+msgstr "Caseta de selectare %s"
+
+#, php-format
+msgid "%s Create an element"
+msgstr "%s Creați un element"
+
+#, php-format
+msgid "%s Share to sign %s with multiple people"
+msgstr "%s Distribuie pentru a semna %s cu mai multe persoane"
+
+msgid "Download the signed PDF"
+msgstr "Descărcați PDF-ul semnat"
+
+#, php-format
+msgid "You are %s to have signed this PDF"
+msgstr "Sunteți %s care ați semnat acest PDF"
+
+#, php-format
+msgid "%s Download the PDF"
+msgstr "%s Descărcați PDF-ul"
+
+msgid "Transmit my signature"
+msgstr "Transmite semnătura mea"
+
+#, php-format
+msgid "%s Select a signature"
+msgstr "%s Selectați o semnătură"
+
+msgid "Draw"
+msgstr "Desenează"
+
+msgid "freehand"
+msgstr "mână liberă"
+
+msgid "Enter"
+msgstr "Confirmă"
+
+msgid "text"
+msgstr "text"
+
+msgid "Import"
+msgstr "Importă"
+
+msgid "an image"
+msgstr "o imagine"
+
+msgid "Clear signature"
+msgstr "Ștergeți semnătura"
+
+msgid "My signature"
+msgstr "Semnătura mea"
+
+#, php-format
+msgid "%s Share this PDF to sign it with several people"
+msgstr "%s Partajați acest PDF pentru a-l semna cu mai multe persoane"
+
+msgid ""
+"By enabling PDF sharing, you will be able to provide a link to the people of "
+"your choice so that they can sign this PDF."
+msgstr ""
+"Prin activarea partajării PDF, veți putea oferi un link către persoanele "
+"alese de dvs., astfel încât acestea să poată semna acest PDF."
+
+#, php-format
+msgid ""
+"%s This sharing requires the PDF to be transferred and stored on the server "
+"for future signers to access."
+msgstr ""
+"%s Această partajare necesită ca PDF-ul să fie transferat și stocat pe "
+"server pentru ca viitorii semnatari să îl acceseze."
+
+#, php-format
+msgid "%s The PDF will be kept"
+msgstr "%s PDF-ul va fi păstrat"
+
+msgid "for one year"
+msgstr "pentru un an"
+
+msgid "for six months"
+msgstr "pentru șase luni"
+
+msgid "for one month"
+msgstr "pentru o lună"
+
+msgid "for one week"
+msgstr "pentru o saptămână"
+
+msgid "for one day"
+msgstr "pentru o zi"
+
+msgid "for one hour"
+msgstr "pentru o oră"
+
+msgid "after the last signature."
+msgstr "după ultima semnătură."
+
+#, php-format
+msgid "%s Start sharing"
+msgstr "%s Începeți distribuirea"
+
+#, php-format
+msgid "%s Sign this PDF with multiple people"
+msgstr "%s Semnează acest PDF cu mai multe persoane"
+
+msgid "Multiple people can sign this PDF simultaneously."
+msgstr "Mai multe persoane pot semna acest PDF simultan."
+
+msgid ""
+"To do so, simply share the link to this page with the people of your choice:"
+msgstr ""
+"Pentru a face acest lucru, pur și simplu partajați linkul către această "
+"pagină persoanelor alese de dvs.:"
+
+msgid "Sharing link"
+msgstr "Link de partajare"
+
+msgid "Copied !"
+msgstr "Copiat!"
+
+msgid "Copy"
+msgstr "Copiază"
+
+msgid ""
+"Each of the signatories can download the latest version of the signed PDF at "
+"any time."
+msgstr ""
+"Fiecare dintre semnatari poate descărca oricând cea mai recentă versiune a "
+"PDF-ului semnat."
+
+msgid "Close"
+msgstr "Închide"
+
+msgid "Signed PDF"
+msgstr "PDF semnat"
+
+msgid "Your signature has been successfully recorded!"
+msgstr "Semnătura ta a fost înregistrată cu succes!"
+
+msgid "Text to modify"
+msgstr "Text de modificat"
+
+msgid "Language"
+msgstr "Limba"
+
+msgid "Sign"
+msgstr "Semnează"
+
+msgid "Organize"
+msgstr "Organizează"
+
+msgid "Metadata"
+msgstr "Metadate"

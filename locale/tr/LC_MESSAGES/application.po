@@ -8,425 +8,426 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-08 23:02+0100\n"
-"PO-Revision-Date: 2023-09-30 00:00+0000\n"
-"Last-Translator: R_SACI <rgebbid@gmail.com>\n"
-"Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
-"application/kab/>\n"
-"Language: kab\n"
+"PO-Revision-Date: 2023-12-06 14:10+0000\n"
+"Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
+"application/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 msgid "en"
-msgstr "kab"
+msgstr "tr"
 
 msgid "Compress PDF"
-msgstr "Ssed PDF"
+msgstr "PDF Sıkıştır"
 
 msgid "Site not functional without JavaScript enabled"
-msgstr "Asmel ur iteddu ara ma yella ur yermid ara JavaScript"
+msgstr "JavaScript etkinleştirilmeden site çalışmıyor"
 
 #, php-format
 msgid "%s Compress a PDF"
-msgstr "%s Tussda n PDF"
+msgstr "%s Sıkıştırıldı"
 
 msgid "Reduce the size of a PDF"
-msgstr "Senqes teɣzi n PDF"
+msgstr "PDF'nin boyutunu küçültme"
 
 msgid "Choose a PDF"
-msgstr "Fren PDF"
+msgstr "Bir PDF Seç"
 
 msgid "The PDF must not exceed "
-msgstr "Afaylu PDF ur ilaq ara ad iɛeddi "
+msgstr "PDF, aşmamalıdır "
 
 msgid "Mb"
 msgstr "Mb"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
-msgstr "Afaylu PDF ad yettusesfer s uqeddac war ma yettwaḥraz neɣ yettwasekles"
+msgstr "PDF, saklanmadan veya depolanmadan sunucu tarafından işlenecektir"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "Pdf'iniz zaten optimize edilmiş"
 
 msgid "Compress"
-msgstr "Ssed"
+msgstr "Sıkıştır"
 
 msgid "Low compression (maximum quality)"
-msgstr "Tussda tafessast (taɣara tafellayt)"
+msgstr "Düşük sıkıştırma (maksimum kalite)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr "%s Tussda talemmast %s (tamezwert)"
+msgstr "%s Orta sıkıştırma %s (varsayılan)"
 
 msgid "High compression (minimum quality)"
-msgstr "Tussda ɛlayen (taɣara taddayt)"
+msgstr "Yüksek sıkıştırma (minimum kalite)"
 
 msgid "Free open-source software"
-msgstr "D aseɣẓan ilelli n uɣbalu yeldin"
+msgstr "Ücretsiz açık kaynaklı yazılım"
 
 msgid "under AGPL-3.0 license"
-msgstr "s turagt AGPL-3.0"
+msgstr "AGPL-3.0 lisansı altında"
 
 msgid "see the source code"
-msgstr "wali tangalt taɣbalut"
+msgstr "kaynak koda bakın"
 
 msgid "Editing PDF metadata"
-msgstr "Aẓrag n yiɣefisefka n PDF"
+msgstr "PDF meta verilerini düzenleme"
 
 #, php-format
 msgid "%s Edit metadata"
-msgstr "%s Aẓrag n yiɣefisefka"
+msgstr "%s Meta verileri düzenleme"
 
 msgid "Add, edit, or remove metadata from a PDF"
-msgstr "Rnu, ẓreg, neɣ kkes iɣefisefka seg PDF"
+msgstr "PDF'ye meta veri ekleme, düzenleme veya PDF'den meta veri kaldırma"
 
 msgid "Test with a demo PDF"
-msgstr "Sekyed s ufaylu PDF n uskan"
+msgstr "Demo PDF ile test edin"
 
 msgid "List of PDF metadata"
-msgstr "Tabdart n yiɣefisefka n PDF"
+msgstr "PDF meta verilerinin listesi"
 
 msgid "Add new metadata"
-msgstr "Rnu iɣefisefka imaynuten"
+msgstr "Yeni meta veri ekleyin"
 
 msgid "Key"
-msgstr "Tasarut"
+msgstr "Anahtar"
 
 msgid "Value"
-msgstr "Azal"
+msgstr "Değer"
 
 #, php-format
 msgid "%s Add"
-msgstr "%s Rnu"
+msgstr "%s Ekle"
 
 msgid "Close this PDF and return to the home page"
-msgstr "Mdel afaylu-a n PDF syen uɣal ɣer usebter agejdan"
+msgstr "Bu PDF'yi kapatın ve ana sayfaya dönün"
 
 msgid "Edit metadata"
-msgstr "Ẓreg iɣefisefka"
+msgstr "Meta verileri düzenleme"
 
 msgid "Save and download the PDF"
-msgstr "Sekles syen sader PDF"
+msgstr "PDF'i kaydedin ve indirin"
 
 msgid "Download the PDF"
-msgstr "Sader PDF"
+msgstr "PDF dosyasını indirin"
 
 msgid "Organize PDF"
-msgstr "Asuddes n PDF"
+msgstr "PDF Düzenle"
 
 #, php-format
 msgid "%s Organize PDF"
-msgstr "%s Asuddes n PDF"
+msgstr "%s PDF Düzenle"
 
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr "Smezdi, smizwer, sezzi, kkes, tsuffeɣ-d isebtar"
+msgstr "Birleştirme, sıralama, döndürme, silme, sayfa çıkarma"
 
 msgid "Touch a page to select it"
-msgstr "Sit ɣef usebter i wakken ad t-tferneḍ"
+msgstr "Seçmek için bir sayfaya dokunun"
 
 msgid "Close this PDF and return to home"
-msgstr "Mdel afaylu-a n PDF syen uɣal ɣer usebter"
+msgstr "Bu PDF'i kapat ve anasayfaya dön"
 
 msgid "PDF organization"
-msgstr "Asuddes n yifuyla PDF"
+msgstr "PDF organizasyonu"
 
 msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "Afaylu-a PDF yettwaḥraz deg uselkim-ik i wakken ad t-tzemleḍ kan kečč"
+msgstr ""
+"Bu PDF, yalnızca sizin tarafınızda imzalanmak için bilgisayarınızda depolanır"
 
 #, php-format
 msgid "%s Add a PDF"
-msgstr "%s Rnu yiwen PDF"
+msgstr "%s PDF Ekle"
 
 #, php-format
 msgid "%s page(s) selected"
-msgstr "%s asebter(isebtar) i yettwafernen"
+msgstr "%s sayfa seçildi"
 
 #, php-format
 msgid "%s Rotate 90°"
-msgstr "%s Zzi s 90°"
+msgstr "%s 90° döndür"
 
 #, php-format
 msgid "%s Move"
-msgstr "%s Senkez"
+msgstr "%s Taşı"
 
 #, php-format
 msgid "%s Delete"
-msgstr "%s Kkes"
+msgstr "%s Sil"
 
 #, php-format
 msgid "%s Extract and download"
-msgstr "%s Ssef, tsadreḍ"
+msgstr "%s Ayıklayın ve indirin"
 
 #, php-format
 msgid "%s Cancel selection"
-msgstr "%s Sefsex tafrant"
+msgstr "%s Seçimi iptal et"
 
 #, php-format
 msgid "%s Download the full PDF"
-msgstr "%s Sader PDF ummid"
+msgstr "%s PDF'in tamamını indirin"
 
 msgid "No"
-msgstr "Uhu"
+msgstr "Hayır"
 
 msgid "page"
-msgstr "asebter"
+msgstr "sayfa"
 
 msgid "Cancel"
-msgstr "Sefsex"
+msgstr "İptal"
 
 #, php-format
 msgid "%s Turn"
-msgstr "%s Dewweṛ"
+msgstr "%s Çevir"
 
 msgid "Download the selection"
-msgstr "Sader tafrant"
+msgstr "Seçileni indirin"
 
 msgid "PDF documents"
-msgstr "Isemliyen n PDF"
+msgstr "PDF dökümanları"
 
 msgid "Select this page"
-msgstr "Fren asebter-a"
+msgstr "Bu sayfayı seç"
 
 msgid "Delete this page"
-msgstr "Kkes asebter-a"
+msgstr "Bu sayfayı sil"
 
 msgid "Restore this page"
-msgstr "Err-d asebter-a"
+msgstr "Bu sayfayı geri yükle"
 
 msgid "Move this page"
-msgstr "Senkez asebter-a"
+msgstr "Bu sayfayı taşı"
 
 msgid "Move here"
-msgstr "Senkez ɣer da"
+msgstr "Buraya taşı"
 
 msgid "Turn this page"
-msgstr "Dewweṛ asebter-a"
+msgstr "Bu sayfayı döndür"
 
 msgid "Download this page"
-msgstr "Sader asebter-a"
+msgstr "Bu sayfayı indir"
 
 msgid "Page"
-msgstr "Asebter"
+msgstr "Sayfa"
 
 #, php-format
 msgid "%s Sign a PDF"
-msgstr "%s Asezmel n PDF"
+msgstr "%s PDF imzala"
 
 msgid "Sign, initial, stamp, complete a document"
-msgstr "Zmel, zmel deg yidis, err iziwel neɣ smed isemli"
+msgstr "Belgeyi imzalamak, paraflamak, damgalamak, tamamlamak"
 
 msgid "The PDF should not exceed"
-msgstr "PDF ur ilaq ara ad iɛeddi"
+msgstr "PDF aşmamalıdır"
 
 msgid "MB and"
-msgstr "MB akked"
+msgstr "MB ve"
 
 msgid "pages"
-msgstr "isebtar"
+msgstr "sayfalar"
 
 msgid "How to sign?"
-msgstr "Amek ara tzemleḍ?"
+msgstr "Nasıl imzalanır?"
 
 msgid "By clicking directly on the document page"
-msgstr "S usiti srid ɣef usebter n yisemli"
+msgstr "Doğrudan belge sayfasına tıklayarak"
 
 msgid "to insert the selected item in the right column"
-msgstr "i tririt n uferdis i yettwzfernen deg ufeggag ayeffus"
+msgstr "Seçilen öğeyi sağ sütuna eklemek için"
 
 msgid "signature, initial, text, stamp, etc ..."
-msgstr "azmul, azmul deg yidis, aḍris, iziwel, tgr..."
+msgstr "imza, baş harf, metin, damga, vb."
 
 msgid "Close this PDF and return to the homepage"
-msgstr "Mdel afaylu-a PDF syen uɣal ɣer usebter agejdan"
+msgstr "Bu PDF'yi kapatın ve ana sayfaya dönün"
 
 msgid "PDF Signature"
-msgstr "Asezmel n PDF"
+msgstr "PDF İmzala"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
-"Afaylu-a PDF yettwabḍa d yimdanen niḍen i wakken ad yetgusezmel sɣur waṭas n "
-"yimdanen"
+"Bu PDF birden fazla kişi tarafından imzalanmak üzere başkalarıyla paylaşılır"
 
 msgid "Keep the selection active"
-msgstr "Eǧǧ tafrant d turmidt"
+msgstr "Seçimi etkin tutun"
 
 #, php-format
 msgid "%s Signature"
-msgstr "%s Azmul"
+msgstr "%s İmza"
 
 msgid "Create"
-msgstr "Snulfu-d"
+msgstr "Oluştur"
 
 #, php-format
 msgid "%s Initial"
-msgstr "%s Azmul s yisekkilen imezwura"
+msgstr "%s Paraf"
 
 #, php-format
 msgid "%s Stamp"
-msgstr "%s Iziwel"
+msgstr "%s Mühür"
 
 #, php-format
 msgid "%s Text"
-msgstr "%s Aḍris"
+msgstr "%s Yazı"
 
 msgid "Strikethrough"
 msgstr ""
 
 #, php-format
 msgid "%s Check box"
-msgstr "%s Tabewwaḍt n uṛcam"
+msgstr "%s Onay Kutusu Doldurma"
 
 #, php-format
 msgid "%s Create an element"
-msgstr "%s Rnu aferdis"
+msgstr "%s Bir eleman oluştur"
 
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr "%s Bḍu-t i wakken ad t-yezmel %s aṭas n yimdanen"
+msgstr "%s Birden fazla kişiyle %s imzalamak için paylaşın"
 
 msgid "Download the signed PDF"
-msgstr "Sader afaylu n PDF yettwazemlen"
+msgstr "İmzalı PDF'i indirin"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr "Aql-aken deg %s tzemlem afaylu-a PDF"
+msgstr "%s PDF'inin imzaladınız"
 
 #, php-format
 msgid "%s Download the PDF"
-msgstr "%s Sader PDF"
+msgstr "%s PDF indir"
 
 msgid "Transmit my signature"
-msgstr "Azen azmul-iw"
+msgstr "İmzamı iletin"
 
 #, php-format
 msgid "%s Select a signature"
-msgstr "%s Fren azmul"
+msgstr "%s Bir imza seçin"
 
 msgid "Draw"
-msgstr "Suneɣ"
+msgstr "Çiz"
 
+#, fuzzy
 msgid "freehand"
-msgstr "s ufus"
+msgstr "serbest çizim"
 
 msgid "Enter"
-msgstr "Sekcem"
+msgstr "Giriş"
 
 msgid "text"
-msgstr "aḍris"
+msgstr "metin"
 
 msgid "Import"
-msgstr "Kter"
+msgstr "İçeri aktar"
 
 msgid "an image"
-msgstr "tugna"
+msgstr "resim"
 
 msgid "Clear signature"
-msgstr "Sfeḍ azmul"
+msgstr "İmzayı sil"
 
 msgid "My signature"
-msgstr "Azmul-iw"
+msgstr "İmzam"
 
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr "%s Bḍu afaylu-a PDF i wakken ad tzemlen aṭas n yimdanen"
+msgstr "%s Birkaç kişiyle imzalamak için bu PDF'yi paylaşın"
 
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
-"S urmad n beṭṭu n PDF, ad tizmireḍ ad tmuddeḍ aseɣwen i yimdanen tebɣiḍ i "
-"wakken ad izmiren ad zemlen afaylu-a PDF."
+"PDF paylaşımını etkinleştirerek, seçtiğiniz kişilere bu PDF'yi "
+"imzalayabilmeleri için bir bağlantı sağlayabileceksiniz."
 
 #, php-format
 msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
-"%s Beṭṭu-a yesra ad yettuwelleh daɣen ad yettwaḥraz ufaylu PDF ɣef uqeddac i "
-"wakken ad t-afen wid ara tzemlen sya ɣer zdat."
+"%s PDF paylaşımını etkinleştirerek, seçtiğiniz kişilere bu PDF'yi "
+"imzalayabilmeleri için bir bağlantı sağlayabileceksiniz."
 
 #, php-format
 msgid "%s The PDF will be kept"
-msgstr "%s PDF ad yettwaḥraz"
+msgstr "%s PDF saklanacak"
 
 msgid "for one year"
-msgstr "i yiwen useggas"
+msgstr "bir yıl"
 
 msgid "for six months"
-msgstr "i seddis n wayyuren"
+msgstr "altı ay"
 
 msgid "for one month"
-msgstr "i yiwen wayyur"
+msgstr "bir ay"
 
 msgid "for one week"
-msgstr "i yiwen umalas"
+msgstr "bir hafta"
 
 msgid "for one day"
-msgstr "i yiwen wass"
+msgstr "bir gün"
 
 msgid "for one hour"
-msgstr "azal n usrag"
+msgstr "bir saat"
 
 msgid "after the last signature."
-msgstr "seld azmul aneggaru."
+msgstr "son imza işlemi yapılana kadar."
 
 #, php-format
 msgid "%s Start sharing"
-msgstr "%s Bdu beṭṭu"
+msgstr "%s Paylaşmaya başla"
 
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr "%s Zmel afaylu-a n PDF d yimdanen niḍen"
+msgstr "%s Bu PDF'i birden fazla kişiyle imzalayın"
 
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr "Aṭas n yimdanen i izemren ad zemlen afaylu-a PDF ɣef tikkelt."
+msgstr "Bu PDF'i aynı anda birden fazla kişi imzalayabilir."
 
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
-"I waya, tzemreḍ ad tebduḍ aseɣwen ɣer usebter-a akked yimdanen i tebɣiḍ:"
+"Bunu yapmak için, bu sayfanın bağlantısını seçtiğiniz kişilerle paylaşmanız "
+"yeterlidir:"
 
 msgid "Sharing link"
-msgstr "Aseɣwen i beṭṭu"
+msgstr "Paylaşım bağlantısı"
 
 msgid "Copied !"
-msgstr "Yettwanɣel !"
+msgstr "Kopyalandı !"
 
 msgid "Copy"
-msgstr "Nɣel"
+msgstr "Kopya"
 
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
-msgstr "Yal win izemlen afaylu ad d-isader lqem aneggaru n PDF melmi i yebɣa."
+msgstr ""
+"İmzacıların her biri, imzalanan PDF'nin en son sürümünü istediği zaman "
+"indirebilir."
 
 msgid "Close"
-msgstr "Mdel"
+msgstr "Kapat"
 
 msgid "Signed PDF"
-msgstr "Afaylu PDF yettwasezmel"
+msgstr "PDF imzala"
 
 msgid "Your signature has been successfully recorded!"
-msgstr "Azmul-ik yettwasekles akken iwata!"
+msgstr "İmzanız başarıyla kaydedildi!"
 
 msgid "Text to modify"
-msgstr "Aḍris ara yettuṣeggmen"
+msgstr "Değiştirilecek metin"
 
 msgid "Language"
-msgstr "Tutlayt"
+msgstr "Dil"
 
 msgid "Sign"
-msgstr "Zmel"
+msgstr "İmzala"
 
 msgid "Organize"
-msgstr "Suddes"
+msgstr "Organize et"
 
+#, fuzzy
 msgid "Metadata"
-msgstr "Iɣefisefka"
-
-#~ msgid ""
-#~ "The PDF will be processed by the server without being stored or saved"
-#~ msgstr "Ad yettusesfer ufaylu PDF s uqeddac war aḥraz neɣ asekles"
+msgstr "Metadata"

@@ -30,7 +30,7 @@ msgstr "Il sito non funziona senza JavaScript abilitato"
 
 #, php-format
 msgid "%s Compress a PDF"
-msgstr "%s Compressione in PDF"
+msgstr "%s Comprimi un PDF"
 
 msgid "Reduce the size of a PDF"
 msgstr "Riduci la dimensione di un PDF"
@@ -55,14 +55,14 @@ msgid "Compress"
 msgstr "Comprimi"
 
 msgid "Low compression (maximum quality)"
-msgstr "Bassa compressione (massima qualità)"
+msgstr "Compressione bassa (massima qualità)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
 msgstr "%s Compressione media %s (default)"
 
 msgid "High compression (minimum quality)"
-msgstr "Alta compressione (minima qualità)"
+msgstr "Compressione alta (minima qualità)"
 
 msgid "Free open-source software"
 msgstr "Software libero"
@@ -100,7 +100,7 @@ msgstr "Valore"
 
 #, php-format
 msgid "%s Add"
-msgstr "%s Aggiunto"
+msgstr "%s Aggiungi"
 
 msgid "Close this PDF and return to the home page"
 msgstr "Chiudi questo PDF e torna alla home page"
@@ -119,7 +119,7 @@ msgstr "Organizza un PDF"
 
 #, php-format
 msgid "%s Organize PDF"
-msgstr "%s Organizzato di PDF"
+msgstr "%s Organizza PDF"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Unisci, ordina, ruota, elimina, estrai pagine"
@@ -138,7 +138,7 @@ msgstr "Questo PDF è salvato sul tuo computer per essere firmato solo da te"
 
 #, php-format
 msgid "%s Add a PDF"
-msgstr "%s Aggiunto al PDF"
+msgstr "%s Aggiungi un PDF"
 
 #, php-format
 msgid "%s page(s) selected"
@@ -150,19 +150,19 @@ msgstr "%s Ruota di 90°"
 
 #, php-format
 msgid "%s Move"
-msgstr "%s Spostato"
+msgstr "%s Sposta"
 
 #, php-format
 msgid "%s Delete"
-msgstr "%s Eliminato"
+msgstr "%s Elimina"
 
 #, php-format
 msgid "%s Extract and download"
-msgstr "%s Estratto e scaricato"
+msgstr "%s Estrai e scarica"
 
 #, php-format
 msgid "%s Cancel selection"
-msgstr "%s Selezione annullata"
+msgstr "%s Annulla selezione"
 
 #, php-format
 msgid "%s Download the full PDF"
@@ -179,7 +179,7 @@ msgstr "Annulla"
 
 #, php-format
 msgid "%s Turn"
-msgstr "%s Ruotato"
+msgstr "%s Ruota"
 
 msgid "Download the selection"
 msgstr "Scarica la selezione"
@@ -271,7 +271,7 @@ msgid "%s Text"
 msgstr "%s Testo"
 
 msgid "Strikethrough"
-msgstr ""
+msgstr "Barrato"
 
 #, php-format
 msgid "%s Check box"
@@ -283,7 +283,7 @@ msgstr "%s Crea un elemento"
 
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr "%s Condividi per la firma %s con più persone"
+msgstr "%s Condividi per firmare %s con più persone"
 
 msgid "Download the signed PDF"
 msgstr "Scarica il PDF firmato"
@@ -335,8 +335,8 @@ msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
-"Per abilitare la condivisione del PDF, devi poter inviare un link alle "
-"persone scelte perchè possano firmare il PDF."
+"Abilitando la condivisione del PDF, potrai inviare un link alle persone "
+"scelte perchè possano firmare il PDF."
 
 #, php-format
 msgid ""
@@ -391,7 +391,7 @@ msgid "Sharing link"
 msgstr "Link di condivisione"
 
 msgid "Copied !"
-msgstr "Copiato!"
+msgstr "Copiato !"
 
 msgid "Copy"
 msgstr "Copia"

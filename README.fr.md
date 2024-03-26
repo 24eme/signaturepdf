@@ -15,6 +15,9 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [pdf.kaosx.ovh](https://pdf.kaosx.ovh)
 - [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr)
 - [pdf.cemea.org](https://pdf.cemea.org)
+- [pdf.spirio.fr](https://pdf.spirio.fr)
+- [pdf.sequanux.org](https://pdf.sequanux.org)
+- [pdf.deblan.org](https://pdf.deblan.org)
 
 _N'hésitez pas à rajouter la votre via une issue ou une pull request_
 

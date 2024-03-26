@@ -134,7 +134,7 @@ msgid "Close this PDF and return to home"
 msgstr ""
 
 msgid "PDF organization"
-msgstr ""
+msgstr "PDF-Organisation"
 
 msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
@@ -233,10 +233,10 @@ msgid "pages"
 msgstr "Seiten"
 
 msgid "How to sign?"
-msgstr ""
+msgstr "Wie signiert man?"
 
 msgid "By clicking directly on the document page"
-msgstr ""
+msgstr "Durch direktes Anklicken der Dokumentenseite"
 
 msgid "to insert the selected item in the right column"
 msgstr ""

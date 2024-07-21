@@ -16,6 +16,7 @@ List of instances where you can use this software:
 - [pdf.sequanux.org](https://pdf.sequanux.org)
 - [pdf.deblan.org](https://pdf.deblan.org)
 - [pdf.ouvaton.coop](https://pdf.ouvaton.coop)
+- [saypdf.com](https://saypdf.com)
 
 _Feel free to add yours through an issue or a pull request._
 

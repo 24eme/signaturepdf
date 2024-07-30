@@ -16,7 +16,7 @@ jobs:
         DEB_BUILD_OPTIONS: noautodbgsym
       with:
         source-dir: .debian
-        artifact-dir: .debian/artifacts
+        artifacts-dir: .debian/artifacts
 
     - name: Upload package
       uses: actions/upload-artifact@v3

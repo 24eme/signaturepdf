@@ -1170,6 +1170,9 @@ var pageSignature = async function(url) {
         setTimeout(function() { runCron() }, 2000);
     }
     if(pdfHash) {
+        if (window.location.hash && window.location.hash.match(/^\#k:/)) {
+            storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#k:/, ''));
+        }
         pageSignature('/signature/'+pdfHash+'/pdf');
         window.addEventListener('hashchange', function() {
             window.location.reload();
@@ -1193,7 +1196,7 @@ var pageSignature = async function(url) {
 
 function storeSymmetricKeyCookie(hash, symmetricKey) {
     if (symmetricKey.length != 15) {
-        console.error("Erreur taille cle symmetrique.");
+        console.error("Erreur taille cle symétrique.");
         return;
     }
     document.cookie = hash + "=" + symmetricKey + "; SameSite=Lax;";

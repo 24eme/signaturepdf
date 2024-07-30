@@ -1,8 +1,10 @@
 <?php
 
 setlocale(LC_ALL, "");
+require(__DIR__.'/lib/cryptography.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
+
 
 $f3->set('FALLBACK', null);
 $f3->language(isset($f3->get('HEADERS')['Accept-Language']) ? $f3->get('HEADERS')['Accept-Language'] : '');
@@ -200,8 +202,6 @@ $f3->route('POST /sign',
         array_map('unlink', glob($tmpfile."*"));
     }
 );
-
-require_once 'lib/cryptography.class.php';
 
 $f3->route('POST /share',
     function($f3) {

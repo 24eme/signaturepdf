@@ -298,6 +298,7 @@ $f3->route('GET /signature/@hash/pdf',
             shell_exec(sprintf("pdftk %s multistamp %s output %s", $finalFile, $layerFile, $bufferFile));
             rename($bufferFile, $finalFile);
         }
+        Web::instance()->send($finalFile, null, 0, TRUE, $filename);
 
         if ($symmetricKey) {
             $cryptor->encrypt($hash);

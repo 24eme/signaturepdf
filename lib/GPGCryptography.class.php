@@ -113,4 +113,3 @@ class GPGCryptography
         return false;
     }
 }
-?>

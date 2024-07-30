@@ -311,8 +311,11 @@ $f3->route('GET /signature/@hash/pdf',
         if($f3->get('DEBUG')) {
             return;
         }
-
-        array_map('unlink', glob($finalFile."*"));
+        if ($f3->get('PDF_STORAGE_PATH') != $sharingFolder && $cryptor->isEncrypted()) {
+            CryptographyClass::hardUnlink($sharingFolder);
+        } else {
+            array_map('unlink', glob($finalFile."*"));
+        }
     }
 );
 

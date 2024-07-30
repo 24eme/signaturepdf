@@ -30,7 +30,7 @@ class CryptographyClass
             $command = "gpg --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file";
             $result = shell_exec($command);
             if ($result) {
-                echo "Cypher failure";
+                echo "Cipher failure";
                 return $result;
             }
             $this->hardUnlink($file);
@@ -46,7 +46,7 @@ class CryptographyClass
         if (!$this->symmetricKey) {
             return false;
         }
-        $decryptFolder = sys_get_temp_dir()."/".uniqid('pdfsignature.'.getmypid(), true);
+        $decryptFolder = sys_get_temp_dir()."/".uniqid('pdfsignature.decrypted.'.getmypid(), true);
         echo $decryptFolder."\n";
         mkdir($decryptFolder);
         foreach ($this->getFiles(true) as $file) {
@@ -54,7 +54,7 @@ class CryptographyClass
             $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file";
             $result = shell_exec($command);
             if ($result) {
-                throw new Exception("Decypher failure");
+                throw new Exception("Decipher failure");
             }
         }
         return $decryptFolder;
@@ -66,6 +66,13 @@ class CryptographyClass
 
     public static function hardUnlink($element) {
         if (!$element) {
+            return;
+        }
+        if (is_dir($element)) {
+            foreach (glob($element.'/*') as $file) {
+                self::hardUnlink($file);
+            }
+            rmdir($element);
             return;
         }
         $eraser = str_repeat(0, strlen(file_get_contents($element)));

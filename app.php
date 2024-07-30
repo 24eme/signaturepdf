@@ -1,8 +1,10 @@
 <?php
 
 setlocale(LC_ALL, "");
+require(__DIR__.'/lib/cryptography.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
+
 
 $f3->set('FALLBACK', null);
 $f3->language(isset($f3->get('HEADERS')['Accept-Language']) ? $f3->get('HEADERS')['Accept-Language'] : '');
@@ -54,6 +56,10 @@ if ($f3->get('GET.lang')) {
     selectLanguage($f3->get('LANGUAGE'), $f3);
 }
 
+if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
+    $f3->set('PDF_STORAGE_ENCRYPTION', CryptographyClass::isGpgInstalled());
+}
+
 $domain = basename(glob($f3->get('ROOT')."/locale/application_*.pot")[0], '.pot');
 
 bindtextdomain($domain, $f3->get('ROOT')."/locale");
@@ -86,6 +92,7 @@ $f3->route('GET /signature',
         if(!$f3->get('PDF_STORAGE_PATH')) {
             $f3->set('noSharingMode', true);
         }
+
         $f3->set('activeTab', 'sign');
 
         echo View::instance()->render('signature.html.php');
@@ -196,8 +203,6 @@ $f3->route('POST /sign',
     }
 );
 
-require_once 'lib/cryptography.class.php';
-
 $f3->route('POST /share',
     function($f3) {
         $hash = Web::instance()->slug($_POST['hash']);
@@ -246,12 +251,19 @@ $f3->route('POST /share',
             array_map('cryptographyClass::hardUnlink', glob($tmpfile."*.svg"));
         }
 
-        $symmetricKey = $_COOKIE[$hash];
-        $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
-        $encryptor->encrypt();
+        $symmetricKey = "";
+        if (isset($_COOKIE[$hash])) {
+            $symmetricKey = "#" . $_COOKIE[$hash];
+            $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
+            if (!$encryptor->encrypt()) {
+                shell_exec("rm -rf $sharingFolder");
+                $f3->error(500);
+            }
+        }
 
+        \Flash::instance()->setKey('openModal', 'shareinformations');
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#sk:".$symmetricKey);
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.$symmetricKey);
     }
 
 );
@@ -260,11 +272,15 @@ $f3->route('GET /signature/@hash/pdf',
     function($f3) {
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
-        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
+        $symmetricKey = null;
+        if (isset($_COOKIE[$hash])) {
+            $symmetricKey = CryptographyClass::protectSymmetricKey($_COOKIE[$hash]);
+        }
 
-        $cryptor = new CryptographyClass(CryptographyClass::protectSymmetricKey($_COOKIE[$hash]), $f3->get('PDF_STORAGE_PATH').$hash);
-        if ($cryptor->decrypt() == false) {
-            $f3->error(403);
+        $cryptor = new CryptographyClass($symmetricKey, $f3->get('PDF_STORAGE_PATH').$hash);
+        $sharingFolder = $cryptor->decrypt();
+        if ($sharingFolder == false) {
+            $f3->error(500, "PDF file could not be decrypted. Cookie encryption key might be missing.");
         }
 
         $files = scandir($sharingFolder);
@@ -292,12 +308,14 @@ $f3->route('GET /signature/@hash/pdf',
         }
         Web::instance()->send($finalFile, null, 0, TRUE, $filename);
 
-        $cryptor->encrypt($hash);
-
         if($f3->get('DEBUG')) {
             return;
         }
-        array_map('unlink', glob($finalFile."*"));
+        if ($f3->get('PDF_STORAGE_PATH') != $sharingFolder && $cryptor->isEncrypted()) {
+            CryptographyClass::hardUnlink($sharingFolder);
+        } else {
+            array_map('unlink', glob($finalFile."*"));
+        }
     }
 );
 
@@ -335,7 +353,16 @@ $f3->route('POST /signature/@hash/save',
             array_map('unlink', explode(' ', trim($svgFiles)));
         }
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$f3->get('PARAMS.hash')."#signed");
+        $symmetricKey = "";
+        if (isset($_COOKIE[$hash])) {
+            $symmetricKey = "#" . $_COOKIE[$hash];
+            $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
+            $encryptor->encrypt();
+        }
+
+        \Flash::instance()->setKey('openModal', 'signed');
+
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.$symmetricKey);
     }
 );
 

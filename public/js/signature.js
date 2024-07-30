@@ -837,9 +837,13 @@ var createEventsListener = function() {
             document.getElementById('input_svg_share').files = dataTransfer.files;
             hasModifications = false;
 
+
             document.getElementById('input_pdf_hash').value = generatePdfHash();
-            document.getElementById('input_symmetric_key').value = generateSymmetricKey();
-            storeSymmetricKeyCookie(document.getElementById('input_pdf_hash').value, document.getElementById('input_symmetric_key').value);
+
+            if (document.getElementById('checkbox_encryption').checked) {
+                storeSymmetricKeyCookie(document.getElementById('input_pdf_hash').value, generateSymmetricKey());
+            }
+
         });
     }
 
@@ -1025,7 +1029,7 @@ async function uploadFromUrl(url) {
 }
 
 var modalSharing = function() {
-    if(window.location.hash == '#informations') {
+    if(openModal == "shareinformations") {
         let modalInformationsEl = document.getElementById('modal-share-informations');
         let modalInformations = bootstrap.Modal.getOrCreateInstance(modalInformationsEl);
         modalInformations.show();
@@ -1036,7 +1040,7 @@ var modalSharing = function() {
         })
     }
 
-    if(window.location.hash == '#signed') {
+    if(openModal == 'signed') {
         let modalSignedEl = document.getElementById('modal-signed');
         let modalSigned = bootstrap.Modal.getOrCreateInstance(modalSignedEl);
         modalSigned.show();
@@ -1135,6 +1139,7 @@ var pageSignature = async function(url) {
     if(pdfHash) {
         let response = await fetch(url);
         if(response.status != 200) {
+            document.location = url;
             return;
         }
         pdfBlob = await response.blob();
@@ -1165,6 +1170,11 @@ var pageSignature = async function(url) {
         setTimeout(function() { runCron() }, 2000);
     }
     if(pdfHash) {
+        if (window.location.hash && window.location.hash.match(/^\#/)) {
+            storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#/, ''));
+        } else if (getSymmetricKey(pdfHash)) {
+            window.location.hash = getSymmetricKey(pdfHash);
+        }
         pageSignature('/signature/'+pdfHash+'/pdf');
         window.addEventListener('hashchange', function() {
             window.location.reload();
@@ -1188,10 +1198,18 @@ var pageSignature = async function(url) {
 
 function storeSymmetricKeyCookie(hash, symmetricKey) {
     if (symmetricKey.length != 15) {
-        console.error("Erreur taille cle symmetrique.");
+        console.error("Erreur taille cle symétrique.");
         return;
     }
-    document.cookie = hash + "=" + symmetricKey + "; SameSite=Strict";
+    document.cookie = hash + "=" + symmetricKey + "; SameSite=Lax; Path=/;";
+}
+
+function getSymmetricKey(hash) {
+    return getCookieValue(hash);
+}
+
+function getCookieValue (name) {
+    return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 }
 
 function generateSymmetricKey() {

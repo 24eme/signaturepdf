@@ -196,14 +196,18 @@
                 <div class="modal-body">
                     <p><?php echo _("By enabling PDF sharing, you will be able to provide a link to the people of your choice so that they can sign this PDF."); ?></p>
                     <p><?php echo sprintf(_("%s This sharing requires the PDF to be transferred and stored on the server for future signers to access."), '<i class="bi bi-hdd-network"></i>'); ?></p>
-                    <p class="mb-0"><?php echo sprintf(_("%s The PDF will be kept"), '<i class="bi bi-hourglass-split"></i>'); ?> <select name='duration' form='form_sharing'><option value='+1 year'><?php echo _("for one year"); ?></option><option value='+6 month'><?php echo _("for six months"); ?></option><option value='+1 month' selected='selected'><?php echo _("for one month"); ?></option><option value='+1 week'><?php echo _("for one week"); ?></option><option value='+1 day'><?php echo _("for one day"); ?></option><option value='+1 hour'><?php echo _("for one hour"); ?></option></select> <?php echo _("after the last signature."); ?></p>
+                    <p><?php echo sprintf(_("%s The PDF will be kept"), '<i class="bi bi-hourglass-split"></i>'); ?> <select name='duration' form='form_sharing'><option value='+1 year'><?php echo _("for one year"); ?></option><option value='+6 month'><?php echo _("for six months"); ?></option><option value='+1 month' selected='selected'><?php echo _("for one month"); ?></option><option value='+1 week'><?php echo _("for one week"); ?></option><option value='+1 day'><?php echo _("for one day"); ?></option><option value='+1 hour'><?php echo _("for one hour"); ?></option></select> <?php echo _("after the last signature."); ?></p>
+                    <?php if ($PDF_STORAGE_ENCRYPTION): ?>
+                        <p><i class="bi bi-lock-fill"></i> <input type="checkbox" id="checkbox_encryption" name="encryption" value="true" form='form_sharing'/>
+                                <label for="checkbox_encryption"><?php echo _("The PDF will be stored encrypted on the server"); ?></label>
+                            </p>
+                    <?php endif; ?>
                 </div>
                 <div class="modal-footer text-center d-block">
                     <form id="form_sharing" clas action="<?php echo $REVERSE_PROXY_URL; ?>/share" method="post" enctype="multipart/form-data">
                           <input id="input_pdf_share" name="pdf" type="file" class="d-none" />
                           <input id="input_svg_share" name="svg[]" type="file" class="d-none" />
                           <input id="input_pdf_hash" name="hash" type="hidden" value="" />
-                          <input id="input_symmetric_key" name="key" type="hidden" value="" />
                           <button  class="btn col-9 col-md-6 btn-primary" type="submit" id="save_share"><?php echo sprintf(_("%s Start sharing"), '<i class="bi bi-cloud-upload"></i>'); ?></button>
                     </form>
                 </div>
@@ -226,7 +230,7 @@
                         <span class="input-group-text"><?php echo _("Sharing link"); ?></span>
                         <input id="input-share-link" type="text" onclick="this.select();  this.setSelectionRange(0, 99999);" readonly="readonly" class="form-control bg-light font-monospace" value="">
                         <button onclick="navigator.clipboard.writeText(document.getElementById('input-share-link').value); this.innerText = '<?php echo _('Copied !'); ?>';" autofocus="autofocus" class="btn btn-primary" type="button" id="btn-copy-share-link"><i class="bi bi-clipboard"></i> <?php echo _('Copy'); ?></button>
-                        <script>document.querySelector('#input-share-link').value = document.location.href.replace(/#.*/, '');</script>
+                        <script>document.querySelector('#input-share-link').value = document.location.href;</script>
                     </div>
                     <p class="mb-0"><?php echo _("Each of the signatories can download the latest version of the signed PDF at any time."); ?></p>
                 </div>
@@ -268,6 +272,10 @@
     var maxPage = <?php echo $maxPage ?>;
     var sharingMode = <?php echo intval(!isset($noSharingMode)) ?>;
     var pdfHash = null;
+    var openModal = null;
+    <?php if(Flash::instance()->hasKey('openModal')): ?>
+        openModal = "<?php echo Flash::instance()->getKey("openModal"); ?>";
+    <?php endif; ?>
     var direction = '<?php echo $DIRECTION_LANGUAGE ?>';
     <?php if(isset($hash)): ?>
     pdfHash = "<?php echo $hash ?>";

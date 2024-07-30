@@ -16,41 +16,63 @@ class CryptographyClass
             $suffix = ".gpg";
         }
         $filesTab = glob($this->pathHash.'/*.pdf'.$suffix);
-        $filesTab[] = $this->pathHash."/filename.txt".$suffix;
+
+        if(file_exists($this->pathHash."/filename.txt".$suffix)) {
+            $filesTab[] = $this->pathHash."/filename.txt".$suffix;
+        }
 
         return $filesTab;
     }
 
     public function encrypt() {
-
         foreach ($this->getFiles(false) as $file) {
             $outputFile = $file.".gpg";
             $command = "gpg --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file";
             $result = shell_exec($command);
-            if ($result === false) {
-                echo "Cypher failure";
-                exit;
-            }
-            $this->hardUnlink($file);
-        }
-    }
-
-    public function decrypt() {
-        foreach ($this->getFiles(true) as $file) {
-            $outputFile = str_replace(".gpg", "", $file);
-            $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file";
-            $result = shell_exec($command);
-            if ($result === false) {
-                echo "Decypher failure";
+            if ($result) {
+                echo "Cipher failure";
                 return $result;
             }
             $this->hardUnlink($file);
+
         }
         return true;
     }
 
+    public function decrypt() {
+        if (!$this->isEncrypted()) {
+            return $this->pathHash;
+        }
+        if (!$this->symmetricKey) {
+            return false;
+        }
+        $decryptFolder = sys_get_temp_dir()."/".uniqid('pdfsignature.decrypted.'.getmypid(), true);
+        echo $decryptFolder."\n";
+        mkdir($decryptFolder);
+        foreach ($this->getFiles(true) as $file) {
+            $outputFile = $decryptFolder."/".str_replace(".gpg", "", basename($file));
+            $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file";
+            $result = shell_exec($command);
+            if ($result) {
+                throw new Exception("Decipher failure");
+            }
+        }
+        return $decryptFolder;
+    }
+
+    public function isEncrypted() {
+        return file_exists($this->pathHash."/filename.txt.gpg");
+    }
+
     public static function hardUnlink($element) {
         if (!$element) {
+            return;
+        }
+        if (is_dir($element)) {
+            foreach (glob($element.'/*') as $file) {
+                self::hardUnlink($file);
+            }
+            rmdir($element);
             return;
         }
         $eraser = str_repeat(0, strlen(file_get_contents($element)));
@@ -73,5 +95,17 @@ class CryptographyClass
 
             return implode('', $pieces);
         }
+
+    public static function isGpgInstalled() {
+        $output = null;
+        $returnCode = null;
+
+        exec('gpg --version', $output, $returnCode);
+
+        if ($returnCode == 0) {
+            return true;
+        }
+        return false;
+    }
 }
 ?>

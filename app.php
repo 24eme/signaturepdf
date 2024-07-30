@@ -261,6 +261,8 @@ $f3->route('POST /share',
             }
         }
 
+        \Flash::instance()->setKey('shareinformations', true);
+
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.$symmetricKey);
     }
 

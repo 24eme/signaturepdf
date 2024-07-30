@@ -77,6 +77,9 @@ class CryptographyClass
             foreach (glob($element.'/*') as $file) {
                 self::hardUnlink($file);
             }
+            foreach (glob($element.'/.*') as $file) {
+                self::hardUnlink($file);
+            }
             rmdir($element);
             return;
         }

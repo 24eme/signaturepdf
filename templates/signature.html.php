@@ -272,8 +272,9 @@
     var maxPage = <?php echo $maxPage ?>;
     var sharingMode = <?php echo intval(!isset($noSharingMode)) ?>;
     var pdfHash = null;
-    <?php if(Flash::instance()->getKey('shareinformations')): ?>
-        alert('showinfos');
+    var openModal = null;
+    <?php if(Flash::instance()->hasKey('openModal')): ?>
+        openModal = "<?php echo Flash::instance()->getKey("openModal"); ?>";
     <?php endif; ?>
     var direction = '<?php echo $DIRECTION_LANGUAGE ?>';
     <?php if(isset($hash)): ?>

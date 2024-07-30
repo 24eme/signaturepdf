@@ -1029,7 +1029,7 @@ async function uploadFromUrl(url) {
 }
 
 var modalSharing = function() {
-    if(window.location.hash == '#informations') {
+    if(openModal == "shareinformations") {
         let modalInformationsEl = document.getElementById('modal-share-informations');
         let modalInformations = bootstrap.Modal.getOrCreateInstance(modalInformationsEl);
         modalInformations.show();

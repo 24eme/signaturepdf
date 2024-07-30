@@ -353,9 +353,16 @@ $f3->route('POST /signature/@hash/save',
             array_map('unlink', explode(' ', trim($svgFiles)));
         }
 
+        $symmetricKey = "";
+        if (isset($_COOKIE[$hash])) {
+            $symmetricKey = "#k:" . $_COOKIE[$hash];
+            $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
+            $encryptor->encrypt();
+        }
+
         \Flash::instance()->setKey('openModal', 'signed');
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$f3->get('PARAMS.hash'));
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.$symmetricKey);
     }
 );
 

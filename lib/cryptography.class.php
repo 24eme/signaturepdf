@@ -16,7 +16,10 @@ class CryptographyClass
             $suffix = ".gpg";
         }
         $filesTab = glob($this->pathHash.'/*.pdf'.$suffix);
-        $filesTab[] = $this->pathHash."/filename.txt".$suffix;
+
+        if(file_exists($this->pathHash."/filename.txt".$suffix)) {
+            $filesTab[] = $this->pathHash."/filename.txt".$suffix;
+        }
 
         return $filesTab;
     }

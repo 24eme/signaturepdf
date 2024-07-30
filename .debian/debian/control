@@ -1,4 +1,5 @@
 Package: signaturepdf
+Version: 1.0.0
 Section: php
 Priority: optional
 Maintainer: 24ème <equipe@24eme.fr>

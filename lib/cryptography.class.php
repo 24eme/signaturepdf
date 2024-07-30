@@ -48,7 +48,7 @@ class CryptographyClass
             return false;
         }
         $decryptFolder = sys_get_temp_dir()."/".uniqid('pdfsignature.decrypted.'.getmypid(), true);
-        putenv('HOME='.$decryptFolder);
+        putenv('HOME='.sys_get_temp_dir());
         mkdir($decryptFolder);
         foreach ($this->getFiles(true) as $file) {
             $outputFile = $decryptFolder."/".str_replace(".gpg", "", basename($file));
@@ -75,9 +75,6 @@ class CryptographyClass
         }
         if (is_dir($element)) {
             foreach (glob($element.'/*') as $file) {
-                self::hardUnlink($file);
-            }
-            foreach (glob($element.'/.*') as $file) {
                 self::hardUnlink($file);
             }
             rmdir($element);

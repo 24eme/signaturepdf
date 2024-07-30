@@ -28,7 +28,7 @@ class CryptographyClass
         putenv('HOME='.sys_get_temp_dir());
         foreach ($this->getFiles(false) as $file) {
             $outputFile = $file.".gpg";
-            $command = "gpg --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file";
+            $command = "gpg --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file > /dev/null";
             $result = shell_exec($command);
             if ($result) {
                 echo "Cipher failure";
@@ -52,7 +52,7 @@ class CryptographyClass
         mkdir($decryptFolder);
         foreach ($this->getFiles(true) as $file) {
             $outputFile = $decryptFolder."/".str_replace(".gpg", "", basename($file));
-            $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file";
+            $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file > /dev/null";
             $result = shell_exec($command);
             if ($result) {
                 throw new Exception("Decipher failure");

@@ -15,3 +15,6 @@ PDF_STORAGE_PATH=/path/to/folder
 
 ;Declare your public domain here if you can't handle location rewriting through your reverse proxy.
 ;REVERSE_PROXY_URL=http://127.0.0.1:8080
+
+; Encryption activation (default activation if GPG is installed)
+;PDF_STORAGE_ENCRYPTION=true

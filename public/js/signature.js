@@ -414,6 +414,7 @@ var displaysSVG = function() {
     });
 };
 
+
 function dataURLtoBlob(dataurl) {
     let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
@@ -835,6 +836,14 @@ var createEventsListener = function() {
             }
             document.getElementById('input_svg_share').files = dataTransfer.files;
             hasModifications = false;
+
+
+            document.getElementById('input_pdf_hash').value = generatePdfHash();
+
+            if (document.getElementById('checkbox_encryption').checked) {
+                storeSymmetricKeyCookie(document.getElementById('input_pdf_hash').value, generateSymmetricKey());
+            }
+
         });
     }
 
@@ -962,7 +971,7 @@ var createEventsListener = function() {
         return true;
     });
 
-    if(hash) {
+    if(pdfHash) {
         updateNbLayers();
         setInterval(function() {
             updateNbLayers();
@@ -1081,12 +1090,12 @@ var pageUpload = async function() {
 
 var updateNbLayers = function() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/signature/'+hash+'/nblayers', true);
+    xhr.open('GET', '/signature/'+pdfHash+'/nblayers', true);
     xhr.onload = function() {
       if (xhr.status == 200) {
           let newNblayers = xhr.response;
           if(nblayers !== null && nblayers != newNblayers) {
-              reloadPDF('/signature/'+hash+'/pdf');
+              reloadPDF('/signature/'+pdfHash+'/pdf');
           }
           nblayers = newNblayers;
           document.querySelectorAll('.nblayers').forEach(function(item) {
@@ -1127,7 +1136,7 @@ var pageSignature = async function(url) {
     let pdfBlob = null;
     let filename = url.replace('/pdf/', '');
 
-    if(hash) {
+    if(pdfHash) {
         let response = await fetch(url);
         if(response.status != 200) {
             return;
@@ -1159,8 +1168,8 @@ var pageSignature = async function(url) {
     if(sharingMode) {
         setTimeout(function() { runCron() }, 2000);
     }
-    if(hash) {
-        pageSignature('/signature/'+hash+'/pdf');
+    if(pdfHash) {
+        pageSignature('/signature/'+pdfHash+'/pdf');
         window.addEventListener('hashchange', function() {
             window.location.reload();
         })
@@ -1180,3 +1189,37 @@ var pageSignature = async function(url) {
         window.location.reload();
     })
 })();
+
+function storeSymmetricKeyCookie(hash, symmetricKey) {
+    if (symmetricKey.length != 15) {
+        console.error("Erreur taille cle symmetrique.");
+        return;
+    }
+    document.cookie = hash + "=" + symmetricKey + "; SameSite=Lax;";
+}
+
+function generateSymmetricKey() {
+    const length = 15;
+    const keySpace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let key = '';
+
+    for (let i = 0; i < length; ++i) {
+        const randomIndex = Math.floor(Math.random() * keySpace.length);
+        key += keySpace.charAt(randomIndex);
+    }
+
+    return key;
+}
+
+function generatePdfHash() {
+    const length = 20;
+    const keySpace = '0123456789abcdefghijklmnopqrstuvwxyz';
+    let key = '';
+
+    for (let i = 0; i < length; ++i) {
+        const randomIndex = Math.floor(Math.random() * keySpace.length);
+        key += keySpace.charAt(randomIndex);
+    }
+
+    return key;
+}

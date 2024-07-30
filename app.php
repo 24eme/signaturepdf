@@ -54,6 +54,10 @@ if ($f3->get('GET.lang')) {
     selectLanguage($f3->get('LANGUAGE'), $f3);
 }
 
+if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
+    $f3->set('PDF_STORAGE_ENCRYPTION', CryptographyClass::isGpgInstalled());
+}
+
 $domain = basename(glob($f3->get('ROOT')."/locale/application_*.pot")[0], '.pot');
 
 bindtextdomain($domain, $f3->get('ROOT')."/locale");
@@ -86,7 +90,9 @@ $f3->route('GET /signature',
         if(!$f3->get('PDF_STORAGE_PATH')) {
             $f3->set('noSharingMode', true);
         }
+
         $f3->set('activeTab', 'sign');
+
         echo View::instance()->render('signature.html.php');
     }
 );
@@ -186,7 +192,6 @@ $f3->route('POST /sign',
 
         shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
         shell_exec(sprintf("pdftk %s multistamp %s output %s", $tmpfile.".pdf", $tmpfile.'.svg.pdf', $tmpfile.'_signe.pdf'));
-
         Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
 
         if($f3->get('DEBUG')) {
@@ -196,9 +201,11 @@ $f3->route('POST /sign',
     }
 );
 
+require_once 'lib/cryptography.class.php';
+
 $f3->route('POST /share',
     function($f3) {
-        $hash = substr(hash('sha512', uniqid().rand()), 0, 20);
+        $hash = Web::instance()->slug($_POST['hash']);
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
         $f3->set('UPLOADS', $sharingFolder."/");
         if (!is_dir($f3->get('PDF_STORAGE_PATH'))) {
@@ -214,7 +221,6 @@ $f3->route('POST /share',
         $filename = "original.pdf";
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));
         $svgFiles = "";
-
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);
@@ -238,16 +244,24 @@ $f3->route('POST /share',
         if(!count($files)) {
             $f3->error(403);
         }
-
         if($svgFiles) {
             shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
         }
-
         if(!$f3->get('DEBUG')) {
-            array_map('unlink', glob($tmpfile."*.svg"));
+            array_map('cryptographyClass::hardUnlink', glob($tmpfile."*.svg"));
         }
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#informations");
+        $symmetricKey = "";
+        if (isset($_COOKIE[$hash])) {
+            $symmetricKey = "#k:" . $_COOKIE[$hash];
+            $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
+            if (!$encryptor->encrypt()) {
+                shell_exec("rm -rf $sharingFolder");
+                $f3->error(500);
+            }
+        }
+
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.$symmetricKey);
     }
 
 );
@@ -257,6 +271,15 @@ $f3->route('GET /signature/@hash/pdf',
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
+        $symmetricKey = null;
+        if (isset($_COOKIE[$hash])) {
+            $symmetricKey = CryptographyClass::protectSymmetricKey($_COOKIE[$hash]);
+        }
+        $cryptor = new CryptographyClass($symmetricKey, $f3->get('PDF_STORAGE_PATH').$hash);
+        if ($cryptor->decrypt() == false) {
+            $f3->error(500);
+        }
+
         $files = scandir($sharingFolder);
         $originalFile = $sharingFolder.'/original.pdf';
         $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').uniqid().'.pdf';
@@ -282,9 +305,13 @@ $f3->route('GET /signature/@hash/pdf',
         }
         Web::instance()->send($finalFile, null, 0, TRUE, $filename);
 
+        if ($symmetricKey) {
+            $cryptor->encrypt($hash);
+        }
         if($f3->get('DEBUG')) {
             return;
         }
+
         array_map('unlink', glob($finalFile."*"));
     }
 );

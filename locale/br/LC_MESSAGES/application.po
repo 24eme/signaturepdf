@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 23:02+0100\n"
+"POT-Creation-Date: 2024-07-30 18:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -245,6 +245,9 @@ msgstr ""
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
 
+msgid "This PDF is stored encrypted on the server."
+msgstr ""
+
 msgid "Keep the selection active"
 msgstr ""
 
@@ -362,6 +365,9 @@ msgid "for one hour"
 msgstr ""
 
 msgid "after the last signature."
+msgstr ""
+
+msgid "The PDF will be stored encrypted on the server"
 msgstr ""
 
 #, php-format

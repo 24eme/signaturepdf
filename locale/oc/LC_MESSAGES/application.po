@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 23:02+0100\n"
+"POT-Creation-Date: 2024-07-30 18:44+0200\n"
 "PO-Revision-Date: 2024-03-10 05:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
@@ -250,6 +250,9 @@ msgstr ""
 "Aqueste PDF es partejat amb d’autras personas per èsser signat per mantuna "
 "persona"
 
+msgid "This PDF is stored encrypted on the server."
+msgstr ""
+
 msgid "Keep the selection active"
 msgstr "Gardar la seleccion activa"
 
@@ -372,6 +375,9 @@ msgstr "pendent una ora"
 
 msgid "after the last signature."
 msgstr "fins a la darrièra signatura."
+
+msgid "The PDF will be stored encrypted on the server"
+msgstr ""
 
 #, php-format
 msgid "%s Start sharing"

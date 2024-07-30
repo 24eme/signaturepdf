@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 23:02+0100\n"
+"POT-Creation-Date: 2024-07-30 18:44+0200\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -251,6 +251,9 @@ msgstr ""
 "Acest PDF este partajat altor persoane pentru a fi semnat de mai multe "
 "persoane"
 
+msgid "This PDF is stored encrypted on the server."
+msgstr ""
+
 msgid "Keep the selection active"
 msgstr "Păstrați selecția activă"
 
@@ -373,6 +376,9 @@ msgstr "pentru o oră"
 
 msgid "after the last signature."
 msgstr "după ultima semnătură."
+
+msgid "The PDF will be stored encrypted on the server"
+msgstr ""
 
 #, php-format
 msgid "%s Start sharing"

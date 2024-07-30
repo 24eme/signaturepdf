@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 23:02+0100\n"
+"POT-Creation-Date: 2024-07-30 18:44+0200\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -249,6 +249,9 @@ msgstr "توقيع الـ PDF"
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "ملف PDF هذا مشارَك مع أشخاص آخرين لإمضائه من قِبل عدة أشخاص"
 
+msgid "This PDF is stored encrypted on the server."
+msgstr ""
+
 msgid "Keep the selection active"
 msgstr "الاحتفاظ بالتحديد نشطًا"
 
@@ -371,6 +374,9 @@ msgstr "ساعة واحدة"
 
 msgid "after the last signature."
 msgstr "بعد آخِر توقيع."
+
+msgid "The PDF will be stored encrypted on the server"
+msgstr ""
 
 #, php-format
 msgid "%s Start sharing"

@@ -1,6 +1,6 @@
 <?php
 
-class CryptographyClass
+class GPGCryptography
 {
     private $symmetricKey = null;
     private $pathHash = null;
@@ -113,4 +113,3 @@ class CryptographyClass
         return false;
     }
 }
-?>

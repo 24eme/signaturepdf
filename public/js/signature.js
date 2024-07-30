@@ -1170,10 +1170,10 @@ var pageSignature = async function(url) {
         setTimeout(function() { runCron() }, 2000);
     }
     if(pdfHash) {
-        if (window.location.hash && window.location.hash.match(/^\#k:/)) {
-            storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#k:/, ''));
+        if (window.location.hash && window.location.hash.match(/^\#/)) {
+            storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#/, ''));
         } else if (getSymmetricKey(pdfHash)) {
-            window.location.hash = 'k:' + getSymmetricKey(pdfHash);
+            window.location.hash = getSymmetricKey(pdfHash);
         }
         pageSignature('/signature/'+pdfHash+'/pdf');
         window.addEventListener('hashchange', function() {

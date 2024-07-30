@@ -1,7 +1,7 @@
 <?php
 
 setlocale(LC_ALL, "");
-require(__DIR__.'/lib/cryptography.class.php');
+require(__DIR__.'/lib/GPGCryptography.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 

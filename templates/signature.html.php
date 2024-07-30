@@ -198,7 +198,7 @@
                     <p><?php echo sprintf(_("%s This sharing requires the PDF to be transferred and stored on the server for future signers to access."), '<i class="bi bi-hdd-network"></i>'); ?></p>
                     <p><?php echo sprintf(_("%s The PDF will be kept"), '<i class="bi bi-hourglass-split"></i>'); ?> <select name='duration' form='form_sharing'><option value='+1 year'><?php echo _("for one year"); ?></option><option value='+6 month'><?php echo _("for six months"); ?></option><option value='+1 month' selected='selected'><?php echo _("for one month"); ?></option><option value='+1 week'><?php echo _("for one week"); ?></option><option value='+1 day'><?php echo _("for one day"); ?></option><option value='+1 hour'><?php echo _("for one hour"); ?></option></select> <?php echo _("after the last signature."); ?></p>
                     <?php if ($PDF_STORAGE_ENCRYPTION): ?>
-                        <p><i class="bi bi-lock-fill"></i> <input type="checkbox" id="checkbox_encryption" name="encryption" value="true" form='form_sharing' checked/>
+                        <p><i class="bi bi-lock-fill"></i> <input type="checkbox" id="checkbox_encryption" name="encryption" value="true" form='form_sharing'/>
                                 <label for="checkbox_encryption"><?php echo _("The PDF will be stored encrypted on the server"); ?></label>
                             </p>
                     <?php endif; ?>

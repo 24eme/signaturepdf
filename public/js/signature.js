@@ -1172,6 +1172,8 @@ var pageSignature = async function(url) {
     if(pdfHash) {
         if (window.location.hash && window.location.hash.match(/^\#k:/)) {
             storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#k:/, ''));
+        } else if (getSymmetricKey(pdfHash)) {
+            window.location.hash = 'k:' + getSymmetricKey(pdfHash);
         }
         pageSignature('/signature/'+pdfHash+'/pdf');
         window.addEventListener('hashchange', function() {
@@ -1200,6 +1202,14 @@ function storeSymmetricKeyCookie(hash, symmetricKey) {
         return;
     }
     document.cookie = hash + "=" + symmetricKey + "; SameSite=Lax;";
+}
+
+function getSymmetricKey(hash) {
+    return getCookieValue(hash);
+}
+
+function getCookieValue (name) {
+    return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
 }
 
 function generateSymmetricKey() {

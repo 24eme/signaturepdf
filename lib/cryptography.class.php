@@ -61,7 +61,11 @@ class CryptographyClass
     }
 
     public function isEncrypted() {
-        return file_exists($this->pathHash."/filename.txt.gpg");
+        return self::isPathEncrypted($this->pathHash);
+    }
+
+    public static function isPathEncrypted($pathHash) {
+        return file_exists($pathHash."/filename.txt.gpg");
     }
 
     public static function hardUnlink($element) {

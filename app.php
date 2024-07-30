@@ -108,7 +108,7 @@ $f3->route('GET /signature/@hash',
         if(!is_dir($f3->get('PDF_STORAGE_PATH').$f3->get('hash'))) {
             $f3->error(404);
         }
-
+        $f3->set('isPdfEncrypted', CryptographyClass::isPathEncrypted($f3->get('PDF_STORAGE_PATH').$f3->get('hash')));
         $f3->set('activeTab', 'sign');
         echo View::instance()->render('signature.html.php');
     }

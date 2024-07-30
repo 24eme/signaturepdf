@@ -1201,7 +1201,7 @@ function storeSymmetricKeyCookie(hash, symmetricKey) {
         console.error("Erreur taille cle symétrique.");
         return;
     }
-    document.cookie = hash + "=" + symmetricKey + "; SameSite=Lax;";
+    document.cookie = hash + "=" + symmetricKey + "; SameSite=Lax; Path=/;";
 }
 
 function getSymmetricKey(hash) {

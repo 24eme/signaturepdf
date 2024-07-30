@@ -1,0 +1,26 @@
+name: Build debian package (.deb)
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: build-deb-action
+      uses: jtdor/build-deb-action@v1
+      env:
+        DEB_BUILD_OPTIONS: noautodbgsym
+      with:
+        source-dir: .debian
+        artifact-dir: .debian/artifacts
+
+    - name: Upload package
+      uses: actions/upload-artifact@v3
+      with:
+        name: signaturepdf
+        path: .debian/artifacts/*.deb
+

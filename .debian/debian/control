@@ -1,0 +1,7 @@
+Package: signaturepdf
+Section: php
+Priority: optional
+Maintainer: 24ème <equipe@24eme.fr>
+Depends: php pdftk librsvg2-bin imagemagick potrace ghostscript locales
+Architecture: any
+Description: Outils de signature de pdf en ligne

@@ -1040,7 +1040,7 @@ var modalSharing = function() {
         })
     }
 
-    if(window.location.hash == '#signed') {
+    if(openModal == 'signed') {
         let modalSignedEl = document.getElementById('modal-signed');
         let modalSigned = bootstrap.Modal.getOrCreateInstance(modalSignedEl);
         modalSigned.show();

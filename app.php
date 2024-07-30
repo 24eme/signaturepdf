@@ -353,7 +353,9 @@ $f3->route('POST /signature/@hash/save',
             array_map('unlink', explode(' ', trim($svgFiles)));
         }
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$f3->get('PARAMS.hash')."#signed");
+        \Flash::instance()->setKey('openModal', 'signed');
+
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$f3->get('PARAMS.hash'));
     }
 );
 

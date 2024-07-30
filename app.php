@@ -275,9 +275,10 @@ $f3->route('GET /signature/@hash/pdf',
         if (isset($_COOKIE[$hash])) {
             $symmetricKey = CryptographyClass::protectSymmetricKey($_COOKIE[$hash]);
         }
+
         $cryptor = new CryptographyClass($symmetricKey, $f3->get('PDF_STORAGE_PATH').$hash);
         if ($cryptor->decrypt() == false) {
-            $f3->error(500);
+            $f3->error(500, "PDF file could not be decrypted. Cookie encryption key might be missing.");
         }
 
         $files = scandir($sharingFolder);

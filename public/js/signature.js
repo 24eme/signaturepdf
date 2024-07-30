@@ -1139,6 +1139,7 @@ var pageSignature = async function(url) {
     if(pdfHash) {
         let response = await fetch(url);
         if(response.status != 200) {
+            document.location = url;
             return;
         }
         pdfBlob = await response.blob();

@@ -41,23 +41,23 @@ class CryptographyClass
 
     public function decrypt() {
         if (!$this->isEncrypted()) {
-            return true;
+            return $this->pathHash;
         }
         if (!$this->symmetricKey) {
             return false;
         }
+        $decryptFolder = sys_get_temp_dir()."/".uniqid('pdfsignature.'.getmypid(), true);
+        echo $decryptFolder."\n";
+        mkdir($decryptFolder);
         foreach ($this->getFiles(true) as $file) {
-            $outputFile = str_replace(".gpg", "", $file);
+            $outputFile = $decryptFolder."/".str_replace(".gpg", "", basename($file));
             $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file";
             $result = shell_exec($command);
             if ($result) {
-                echo "Decypher failure";
-                return $result;
+                throw new Exception("Decypher failure");
             }
-
-            $this->hardUnlink($file);
         }
-        return true;
+        return $decryptFolder;
     }
 
     public function isEncrypted() {

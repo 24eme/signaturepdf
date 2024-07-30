@@ -272,14 +272,14 @@ $f3->route('GET /signature/@hash/pdf',
     function($f3) {
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
-        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
         $symmetricKey = null;
         if (isset($_COOKIE[$hash])) {
             $symmetricKey = CryptographyClass::protectSymmetricKey($_COOKIE[$hash]);
         }
 
         $cryptor = new CryptographyClass($symmetricKey, $f3->get('PDF_STORAGE_PATH').$hash);
-        if ($cryptor->decrypt() == false) {
+        $sharingFolder = $cryptor->decrypt();
+        if ($sharingFolder == false) {
             $f3->error(500, "PDF file could not be decrypted. Cookie encryption key might be missing.");
         }
 
@@ -308,9 +308,6 @@ $f3->route('GET /signature/@hash/pdf',
         }
         Web::instance()->send($finalFile, null, 0, TRUE, $filename);
 
-        if ($symmetricKey) {
-            $cryptor->encrypt($hash);
-        }
         if($f3->get('DEBUG')) {
             return;
         }

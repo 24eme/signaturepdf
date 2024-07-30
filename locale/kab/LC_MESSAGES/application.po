@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 23:02+0100\n"
+"POT-Creation-Date: 2024-07-30 18:44+0200\n"
 "PO-Revision-Date: 2023-09-30 00:00+0000\n"
 "Last-Translator: R_SACI <rgebbid@gmail.com>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -250,6 +250,9 @@ msgstr ""
 "Afaylu-a PDF yettwabḍa d yimdanen niḍen i wakken ad yetgusezmel sɣur waṭas n "
 "yimdanen"
 
+msgid "This PDF is stored encrypted on the server."
+msgstr ""
+
 msgid "Keep the selection active"
 msgstr "Eǧǧ tafrant d turmidt"
 
@@ -372,6 +375,9 @@ msgstr "azal n usrag"
 
 msgid "after the last signature."
 msgstr "seld azmul aneggaru."
+
+msgid "The PDF will be stored encrypted on the server"
+msgstr ""
 
 #, php-format
 msgid "%s Start sharing"

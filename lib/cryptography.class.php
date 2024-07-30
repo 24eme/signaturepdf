@@ -25,6 +25,7 @@ class CryptographyClass
     }
 
     public function encrypt() {
+        putenv('HOME='.sys_get_temp_dir());
         foreach ($this->getFiles(false) as $file) {
             $outputFile = $file.".gpg";
             $command = "gpg --no-options --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file";
@@ -47,7 +48,7 @@ class CryptographyClass
             return false;
         }
         $decryptFolder = sys_get_temp_dir()."/".uniqid('pdfsignature.decrypted.'.getmypid(), true);
-        echo $decryptFolder."\n";
+        putenv('HOME='.$decryptFolder);
         mkdir($decryptFolder);
         foreach ($this->getFiles(true) as $file) {
             $outputFile = $decryptFolder."/".str_replace(".gpg", "", basename($file));

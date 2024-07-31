@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: install git
-      run: apt install git
+      run: sudo apt install git
 
     - name: Copie des fichiers dans le dossier debian
       run: |

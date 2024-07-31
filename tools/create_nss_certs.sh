@@ -6,17 +6,17 @@ nss_nick=$3
 signaturepdf_url=$4
 
 if ! test "$signaturepdf_url"; then
-    echo "Usage:"
-    echo "\t$0 <nss_dir> <nss_pass> <nss_nick> <signaturepdf_url>";
-    exit 1:
+    echo "Usage:" 1>&2 ;
+    echo "    $0 <nss_dir> <nss_pass> <nss_nick> <signaturepdf_url>"  1>&2 ;
+    exit 1;
 fi
 
 if ! test -d "$nss_dir"; then
-    echo "ERROR: nss_dir \"$nss_dir\" should exist";
+    echo "ERROR: nss_dir \"$nss_dir\" should exist"  1>&2 ;
     exit 2;
 fi
 if echo "$nss_nick" | grep '\.' > /dev/null ; then
-    echo "ERROR: $nss_nick should not contain . ";
+    echo "ERROR: $nss_nick should not contain . " 1>&2 ;
     exit 3;
 fi
 

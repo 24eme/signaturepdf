@@ -58,7 +58,7 @@
             <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body pt-0">
-            <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
+            <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><?php if (isset($isPdfEncrypted) && $isPdfEncrypted): ?><i class="bi bi-lock-fill" title="<?php echo _("This PDF is stored encrypted on the server."); ?>"></i><?php endif;?><i class="bi bi-files"></i> <span></span></p>
             <div class="form-check form-switch mb-2 small d-none">
                 <input class="form-check-input" type="checkbox" id="add-lock-checkbox" disabled="disabled">
                 <label style="cursor: pointer;" class="form-check-label" for="add-lock-checkbox"> <?php echo _("Keep the selection active"); ?></label>

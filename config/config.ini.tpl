@@ -9,3 +9,6 @@ DISABLE_ORGANIZATION=${DISABLE_ORGANIZATION}
 
 ; Manage demo link pdf : true (by default, show), false (hide), or custom link
 PDF_DEMO_LINK=${PDF_DEMO_LINK}
+
+; Encryption activation (default activation if GPG is installed)
+PDF_STORAGE_ENCRYPTION=${PDF_STORAGE_ENCRYPTION}

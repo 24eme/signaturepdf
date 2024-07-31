@@ -1033,22 +1033,12 @@ var modalSharing = function() {
         let modalInformationsEl = document.getElementById('modal-share-informations');
         let modalInformations = bootstrap.Modal.getOrCreateInstance(modalInformationsEl);
         modalInformations.show();
-        modalInformationsEl.addEventListener('hidden.bs.modal', function (event) {
-            if(window.location.hash) {
-                history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
-            }
-        })
     }
 
     if(openModal == 'signed') {
         let modalSignedEl = document.getElementById('modal-signed');
         let modalSigned = bootstrap.Modal.getOrCreateInstance(modalSignedEl);
         modalSigned.show();
-        modalSignedEl.addEventListener('hidden.bs.modal', function (event) {
-            if(window.location.hash) {
-                history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
-            }
-        })
     }
 }
 

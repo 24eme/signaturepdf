@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 23:02+0100\n"
+"POT-Creation-Date: 2024-07-30 18:44+0200\n"
 "PO-Revision-Date: 2023-12-11 19:05+0000\n"
 "Last-Translator: Paolo Mauri <paolo@paolomauri.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -248,6 +248,9 @@ msgstr "Firma del PDF"
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "Questo PDF è condiviso con altri per essere firmato da più persone"
 
+msgid "This PDF is stored encrypted on the server."
+msgstr ""
+
 msgid "Keep the selection active"
 msgstr "Tieni attiva la selezione"
 
@@ -370,6 +373,9 @@ msgstr "per un'ora"
 
 msgid "after the last signature."
 msgstr "dopo l'ultima firma."
+
+msgid "The PDF will be stored encrypted on the server"
+msgstr ""
 
 #, php-format
 msgid "%s Start sharing"

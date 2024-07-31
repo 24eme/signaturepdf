@@ -24,7 +24,7 @@ jobs:
         package: signaturepdf
         package_root: .debian
         maintainer: 24ème <equipe@24eme.fr>
-        version: 1.0.0
+        version: ${{ github.ref_name }}
         depends: php, pdftk, librsvg2-bin, imagemagick, potrace, ghostscript, locales
         arch: any
         desc: Outils de signature PDF en ligne libre et open-source
@@ -32,6 +32,6 @@ jobs:
     - name: Upload package
       uses: actions/upload-artifact@v4
       with:
-        name: signaturepdf
+        name: signaturepdf-${{ github.ref_name }}.deb
         path: ./*.deb
 

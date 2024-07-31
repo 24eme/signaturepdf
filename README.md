@@ -83,6 +83,25 @@ For example, for Apache:
 ```
 chown www-data /path/to/folder/to/store/pdf
 ```
+### Enabling digital signature
+
+The digital signature depends on `pdfsig` from the poppler project (poppler-utils debian package) and `certutil` from libnss3 project (libnss3-tools debian package).
+
+On debian :
+
+```
+sudo apt-get install poppler-utils libnss3-tool
+```
+
+To enable digital signature, create certificates in a NSS database. The shell script `create_nss_certs.sh` in `tools` helps to do it :
+
+     bash tools/create_nss_certs.sh NSS_DIRECORY/ MY_NSS_PASSWORD MY_CERT_NICK MY_SIGNATUREPDF_URL
+
+Once created, set the following directives in the `config/config.ini` file.
+
+    NSS3_DIRECTORY=NSS_DIRECORY/
+    NSS3_PASSWORD="MY_NSS_PASSWORD"
+    NSS3_NICK="MY_CERT_NICK"
 
 ### Disabling the Organize Mode
 

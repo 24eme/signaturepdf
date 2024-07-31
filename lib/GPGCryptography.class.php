@@ -107,9 +107,9 @@ class GPGCryptography
 
         exec('gpg --version', $output, $returnCode);
 
-        if ($returnCode == 0) {
-            return true;
+        if (!$output) {
+            return array(false);
         }
-        return false;
+        return $output;
     }
 }

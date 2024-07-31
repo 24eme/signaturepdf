@@ -254,7 +254,7 @@ $f3->route('POST /share',
         $pdfSignature->saveShare();
 
         if(count($svgFiles)) {
-            $pdfSignature->addSignature($svgFiles, $tmpfile."svg.pdf");
+            $pdfSignature->addSignature($svgFiles, $tmpfile.".svg.pdf");
         }
 
         if(!$f3->get('DEBUG')) {
@@ -311,7 +311,7 @@ $f3->route('POST /signature/@hash/save',
         }
 
         $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
-        $pdfSignature->addSignature($svgFiles, $tmpfile."svg.pdf");
+        $pdfSignature->addSignature($svgFiles, $tmpfile.".svg.pdf");
 
         if(!$f3->get('DEBUG')) {
             $pdfSignature->clean();
@@ -330,7 +330,7 @@ $f3->route('GET /signature/@hash/nblayers',
         $files = scandir($f3->get('PDF_STORAGE_PATH').$hash);
         $nbLayers = 0;
         foreach($files as $file) {
-            if(strpos($file, 'svg.pdf') !== false) {
+            if(strpos($file, '.svg.pdf') !== false) {
                 $nbLayers++;
             }
         }

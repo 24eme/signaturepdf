@@ -17,6 +17,7 @@ jobs:
       run: |
         mkdir -p .debian/usr/share/signaturepdf
         git clone . .debian/usr/share/signaturepdf
+        rm -rf .debian/usr/share/signaturepdf/.git
 
     - name: Set date / time
       run: |

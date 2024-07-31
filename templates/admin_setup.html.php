@@ -14,8 +14,8 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <h1 class="px-4 py-4 display-5 fw-bold mb-0 mt-3 text-center">Configuration</h1>
-            <h2 class="my-4">Installation serveur</h2>
+            <h1 class="px-4 py-4 display-5 fw-bold mb-0 mt-3 text-center"><i class="bi bi-wrench-adjustable"></i> <?php echo _("Configuration"); ?></h1>
+            <h2 class="my-4"><?php echo _("Server installation"); ?></h2>
 
             <table class="table">
                 <tbody>
@@ -27,7 +27,7 @@
                                 <i class="bi bi-check-square text-success" title="<?php echo _("Minimal version required : 5.6.0"); ?>"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i>(Minimal version required : 5.6.0)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (Minimal version required : 5.6.0)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -41,7 +41,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i>(<?php echo _("Package librsvg2-bin required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package librsvg2-bin required"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -55,7 +55,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i>(<?php echo _("Package pdftk required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package pdftk required"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -69,7 +69,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i>(<?php echo _("Package imagemagick required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package imagemagick required"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -83,7 +83,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i>(<?php echo _("Package potrace required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package potrace required"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -91,13 +91,13 @@
                     <tr>
                         <th class="align-top">ghostscript</th>
                         <?php $ghostscript = implode(Compression::isgsInstalled()); ?>
-                        <td class="text-muted"><?php echo 'Ghostscript version ' . $ghostscript ?></td>
+                        <td class="text-muted"><?php if ($ghostscript) { echo 'Ghostscript version ' . $ghostscript; } ?></td>
                         <td>
                             <?php if ($ghostscript): ?>
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i>(<?php echo _("Package ghostscript required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package ghostscript required"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -110,8 +110,8 @@
                             <?php if ($gpg): ?>
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
-                                <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i>(<?php echo _("Package gpg required"); ?>)
+                                <span class="text-warning">
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package gpg missing"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -121,6 +121,12 @@
 
                 </tbody>
             </table>
+            <h5 class="py-2"><?php echo _("List of authorized IP for debugging purposes : "); ?></h4>
+            <p>
+                <?php foreach ($AUTHORIZED_IP as $ip): ?>
+                    <?php echo $ip . ' '; ?>
+                <?php endforeach; ?>
+            </p>
 
         </div>
     </div>

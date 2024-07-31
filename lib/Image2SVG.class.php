@@ -8,6 +8,9 @@ class Image2SVG
 
         exec('convert --version', $output, $returnCode);
 
+        if (!$output) {
+            return array(false);
+        }
         return $output;
     }
 
@@ -17,6 +20,9 @@ class Image2SVG
 
         exec('potrace --version', $output, $returnCode);
 
+        if (!$output) {
+            return array(false);
+        }
         return $output;
     }
 }

@@ -51,6 +51,11 @@ if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
 }
 
+if ($f3->get('APP_DEBUG_AUTHORIZED_IP')) {
+    $ips = explode(' ', $f3->get('APP_DEBUG_AUTHORIZED_IP'));
+    $f3->set('AUTHORIZED_IP', $ips);
+}
+
 if ($f3->get('GET.lang')) {
     selectLanguage($f3->get('GET.lang'), $f3, true);
 } elseif (isset($_COOKIE['LANGUAGE'])) {
@@ -372,6 +377,9 @@ $f3->route('GET /metadata',
 
 $f3->route ('GET /administration',
     function ($f3) {
+        if (!in_array(@$_SERVER["REMOTE_ADDR"], array("127.0.0.1", "::1")) ) {
+            die('You ('.$_SERVER['REMOTE_ADDR'].') are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
+        }
         $f3->set('activeTab','admin');
         echo View::instance()->render('admin_setup.html.php');
 });

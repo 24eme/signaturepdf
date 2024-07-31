@@ -8,6 +8,9 @@ class Compression
 
         exec('gs --version', $output, $returnCode);
 
+        if (!$output) {
+            return array(false);
+        }
         return $output;
     }
 }

@@ -79,6 +79,9 @@ class PDFSignature
 
         exec('rsvg-convert --version', $output, $returnCode);
 
+        if (!$output) {
+            return array(false);
+        }
         return $output;
     }
 
@@ -88,6 +91,9 @@ class PDFSignature
 
         exec('pdftk --version', $output, $returnCode);
 
+        if (!$output) {
+            return array(false);
+        }
         return $output;
     }
 

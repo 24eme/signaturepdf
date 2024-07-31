@@ -28,7 +28,7 @@ jobs:
         package: signaturepdf
         package_root: .debian
         maintainer: 24ème <equipe@24eme.fr>
-        version: "$RELEASE_DATE:${{ github.ref_name }}"
+        version: $RELEASE_DATE:${{ github.ref_name }}
         depends: php, pdftk, librsvg2-bin, imagemagick, potrace, ghostscript, locales
         arch: any
         desc: Outils de signature PDF en ligne libre et open-source

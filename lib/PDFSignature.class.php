@@ -58,7 +58,7 @@ class PDFSignature
         copy($originalFile, $finalFile);
         $bufferFile =  $finalFile.".tmp";
         foreach($layers as $layerFile) {
-            shell_exec(sprintf("pdftk %s multistamp %s output %s", $finalFile, $layerFile, $bufferFile));
+            self::addSvgToPDF($finalFile, $layerFile, $bufferFile);
             rename($bufferFile, $finalFile);
         }
 
@@ -73,12 +73,20 @@ class PDFSignature
         $expireFile = $this->pathHash.".expire";
         touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
 
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $outputPdfFile, implode(" ", $svgFiles)));
+        self::createPDFFromSvg($svgFiles, $outputPdfFile);
 
         if($this->gpg->isEncrypted()) {
             $this->gpg->encrypt();
         }
         $this->toClean = array_merge($this->toClean, $svgFiles);
+    }
+
+    public static function createPDFFromSvg(array $svgFiles, $outputPdfFile) {
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $outputPdfFile, implode(" ", $svgFiles)));
+    }
+
+    public static function addSvgToPDF($pdfOrigin, $pdfSvg, $pdfOutput) {
+        shell_exec(sprintf("pdftk %s multistamp %s output %s", $pdfOrigin, $pdfSvg, $pdfOutput));
     }
 
     public function clean() {

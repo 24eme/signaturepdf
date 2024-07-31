@@ -160,7 +160,7 @@ $f3->route('POST /sign',
         $filename = null;
         $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign');
         unlink($tmpfile);
-        $svgFiles = "";
+        $svgFiles = [];
 
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
@@ -179,7 +179,7 @@ $f3->route('POST /sign',
             }
 
             if($formFieldName == "svg") {
-                $svgFiles .= " ".$tmpfile."_".$fileBaseName;
+                $svgFiles[] = $tmpfile."_".$fileBaseName;
 
                 return basename($tmpfile."_".$fileBaseName);
             }
@@ -189,12 +189,13 @@ $f3->route('POST /sign',
             $f3->error(403);
         }
 
-        if(!$svgFiles) {
+        if(!count($svgFiles)) {
             $f3->error(403);
         }
 
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
-        shell_exec(sprintf("pdftk %s multistamp %s output %s", $tmpfile.".pdf", $tmpfile.'.svg.pdf', $tmpfile.'_signe.pdf'));
+        PDFSignature::createPDFFromSvg($svgFiles, $tmpfile.'.svg.pdf');
+        PDFSignature::addSvgToPDF($tmpfile.'.pdf', $tmpfile.'.svg.pdf', $tmpfile.'_signe.pdf');
+
         Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
 
         if($f3->get('DEBUG')) {

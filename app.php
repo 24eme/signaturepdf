@@ -221,6 +221,7 @@ $f3->route('POST /share',
         touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
         $filename = "original.pdf";
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));
+        unlink($tmpfile);
         $svgFiles = "";
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
@@ -290,15 +291,12 @@ $f3->route('GET /signature/@hash/pdf',
 $f3->route('POST /signature/@hash/save',
     function($f3) {
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
-        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
-        $f3->set('UPLOADS', $sharingFolder.'/');
-        $tmpfile = tempnam($sharingFolder, date('YmdHis'));
+        $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
+
+        $f3->set('UPLOADS', $f3->get('PDF_STORAGE_PATH').$hash."/");
+        $tmpfile = tempnam($f3->get('PDF_STORAGE_PATH').$hash, date('YmdHis'));
         unlink($tmpfile);
-        $svgFiles = "";
-
-        $expireFile = $sharingFolder.".expire";
-        touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
-
+        $svgFiles = [];
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "svg" && strpos(Web::instance()->mime($file['tmp_name'], true), 'image/svg+xml') !== 0) {
                 $f3->error(403);
@@ -306,31 +304,24 @@ $f3->route('POST /signature/@hash/save',
             return true;
         }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$svgFiles) {
             if($formFieldName == "svg") {
-                $svgFiles .= " ".$tmpfile."_".$fileBaseName;
+                $svgFiles[] = $tmpfile."_".$fileBaseName;
                 return basename($tmpfile."_".$fileBaseName);
             }
 	    });
-
-        if(!$svgFiles) {
+        if(!count($svgFiles)) {
             $f3->error(403);
         }
 
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
+        $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
+        $pdfSignature->addSignature($svgFiles, $tmpfile."svg.pdf");
 
         if(!$f3->get('DEBUG')) {
-            array_map('unlink', explode(' ', trim($svgFiles)));
-        }
-
-        $symmetricKey = "";
-        if (isset($_COOKIE[$hash])) {
-            $symmetricKey = "#" . $_COOKIE[$hash];
-            $encryptor = new GPGCryptography($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
-            $encryptor->encrypt();
+            $pdfSignature->clean();
         }
 
         \Flash::instance()->setKey('openModal', 'signed');
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.$symmetricKey);
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#".$symmetricKey);
     }
 );
 

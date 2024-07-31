@@ -55,6 +55,18 @@ class PDFSignature
         return [$finalFile, $filename];
     }
 
+    public function addSignature(array $svgFiles, $outputPdfFile) {
+        $expireFile = $this->pathHash.".expire";
+        touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
+
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $outputPdfFile, implode(" ", $svgFiles)));
+
+        if($this->gpg->isEncrypted()) {
+            $this->gpg->encrypt();
+        }
+        $this->toClean = array_merge($this->toClean, $svgFiles);
+    }
+
     public function clean() {
         foreach($this->toClean as $path) {
             GPGCryptography::hardUnlink($path);

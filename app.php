@@ -3,6 +3,8 @@
 setlocale(LC_ALL, "");
 require(__DIR__.'/lib/GPGCryptography.class.php');
 require(__DIR__.'/lib/PDFSignature.class.php');
+require(__DIR__.'/lib/Image2SVG.class.php');
+require(__DIR__.'/lib/Compression.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
@@ -367,6 +369,12 @@ $f3->route('GET /metadata',
         echo View::instance()->render('metadata.html.php');
     }
 );
+
+$f3->route ('GET /administration',
+    function ($f3) {
+        $f3->set('activeTab','admin');
+        echo View::instance()->render('admin_setup.html.php');
+});
 
 $f3->route('GET /compress',
     function($f3) {

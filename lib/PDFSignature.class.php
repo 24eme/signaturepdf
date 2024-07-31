@@ -73,4 +73,22 @@ class PDFSignature
         }
     }
 
+    public static function isrsvgConvertInstalled() {
+        $output = null;
+        $returnCode = null;
+
+        exec('rsvg-convert --version', $output, $returnCode);
+
+        return $output;
+    }
+
+    public static function ispdftkInstalled() {
+        $output = null;
+        $returnCode = null;
+
+        exec('pdftk --version', $output, $returnCode);
+
+        return $output;
+    }
+
 }

@@ -19,8 +19,8 @@ jobs:
         git clone . .debian/usr/share/signaturepdf
         rm -rf .debian/usr/share/signaturepdf/.git
 
-        mkdir -p /etc/signaturepdf
-        cp .debian/apache.conf /etc/signaturepdf
+        mkdir -p .debian/etc/signaturepdf
+        cp .debian/apache.conf .debian/etc/signaturepdf
 
     - name: Set date / time
       run: |

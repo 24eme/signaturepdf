@@ -19,6 +19,9 @@ jobs:
         git clone . .debian/usr/share/signaturepdf
         rm -rf .debian/usr/share/signaturepdf/.git
 
+        mkdir -p /etc/signaturepdf
+        cp .debian/apache.conf /etc/signaturepdf
+
     - name: Set date / time
       run: |
         echo "RELEASE_DATE=$(date +%Y%m%d-%H%M)" >> $GITHUB_ENV

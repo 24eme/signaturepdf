@@ -18,3 +18,8 @@ PDF_STORAGE_PATH=/path/to/folder
 
 ; Encryption activation (default activation if GPG is installed)
 ;PDF_STORAGE_ENCRYPTION=true
+
+;NSS3 configuration (used to sign pdf with pdfsig)
+;NSS3_DIRECTORY=/path/to/nss3
+;NSS3_PASSWORD="my secret password"
+;NSS3_NICK="certificate nick"

@@ -10,17 +10,25 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: |
+        mkdir -p .debian/usr/share/signaturepdf
+        cp -pr . .debian/usr/share/signaturepdf
+        # potentiellement `git clone . .debian/usr/share/signaturepdf` (pour n'avoir que les fichiers suivis)
+
     - name: build-deb-action
-      uses: jtdor/build-deb-action@v1
-      env:
-        DEB_BUILD_OPTIONS: noautodbgsym
+      uses: jiro4989/build-deb-action@v3
       with:
-        source-dir: .debian
-        artifacts-dir: .debian/artifacts
+        package: signaturepdf
+        package_root: .debian
+        maintainer: 24ème <equipe@24eme.fr>
+        version: 1.0.0
+        depends: php, pdftk, librsvg2-bin, imagemagick, potrace, ghostscript, locales
+        arch: any
+        desc: Outils de signature PDF en ligne libre et open-source
 
     - name: Upload package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: signaturepdf
-        path: .debian/artifacts/*.deb
+        path: ./*.deb
 

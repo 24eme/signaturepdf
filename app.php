@@ -321,7 +321,7 @@ $f3->route('POST /signature/@hash/save',
 
         \Flash::instance()->setKey('openModal', 'signed');
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash."#".$symmetricKey);
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.(($symmetricKey) ? '#'.$symmetricKey : null));
     }
 );
 

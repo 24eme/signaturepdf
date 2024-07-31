@@ -143,6 +143,7 @@ DEBUG=1 make test
 - **Caveat** Handwriting-style font: https://github.com/googlefonts/caveat (OFL-1.1)
 - **PDF-LIB** JavaScript library for PDF manipulation used for writing metadata: https://pdf-lib.js.org/ (MIT)
 - **Ghostscript** GPL Ghostscript is a software suite for processing PostScript and PDF file formats (GPLv3)
+- **GPG** GnuPG allows you to encrypt and sign your data and communications (GPLv3)
 
 For testing:
 

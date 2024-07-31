@@ -1,7 +1,8 @@
 <?php
 
 setlocale(LC_ALL, "");
-require(__DIR__.'/lib/cryptography.class.php');
+require(__DIR__.'/lib/GPGCryptography.class.php');
+require(__DIR__.'/lib/PDFSignature.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
@@ -57,7 +58,7 @@ if ($f3->get('GET.lang')) {
 }
 
 if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
-    $f3->set('PDF_STORAGE_ENCRYPTION', CryptographyClass::isGpgInstalled());
+    $f3->set('PDF_STORAGE_ENCRYPTION', GPGCryptography::isGpgInstalled());
 }
 
 $domain = basename(glob($f3->get('ROOT')."/locale/application_*.pot")[0], '.pot');
@@ -108,7 +109,7 @@ $f3->route('GET /signature/@hash',
         if(!is_dir($f3->get('PDF_STORAGE_PATH').$f3->get('hash'))) {
             $f3->error(404);
         }
-
+        $f3->set('isPdfEncrypted', GPGCryptography::isPathEncrypted($f3->get('PDF_STORAGE_PATH').$f3->get('hash')));
         $f3->set('activeTab', 'sign');
         echo View::instance()->render('signature.html.php');
     }
@@ -248,15 +249,15 @@ $f3->route('POST /share',
             shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
         }
         if(!$f3->get('DEBUG')) {
-            array_map('cryptographyClass::hardUnlink', glob($tmpfile."*.svg"));
+            array_map('GPGCryptography::hardUnlink', glob($tmpfile."*.svg"));
         }
 
         $symmetricKey = "";
         if (isset($_COOKIE[$hash])) {
             $symmetricKey = "#" . $_COOKIE[$hash];
-            $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
+            $encryptor = new GPGCryptography($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
             if (!$encryptor->encrypt()) {
-                shell_exec("rm -rf $sharingFolder");
+                GPGCryptography::hardUnlink($sharingFolder);
                 $f3->error(500);
             }
         }
@@ -272,50 +273,17 @@ $f3->route('GET /signature/@hash/pdf',
     function($f3) {
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
-        $symmetricKey = null;
-        if (isset($_COOKIE[$hash])) {
-            $symmetricKey = CryptographyClass::protectSymmetricKey($_COOKIE[$hash]);
-        }
+        $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
 
-        $cryptor = new CryptographyClass($symmetricKey, $f3->get('PDF_STORAGE_PATH').$hash);
-        $sharingFolder = $cryptor->decrypt();
-        if ($sharingFolder == false) {
-            $f3->error(500, "PDF file could not be decrypted. Cookie encryption key might be missing.");
-        }
-
-        $files = scandir($sharingFolder);
-        $originalFile = $sharingFolder.'/original.pdf';
-        $finalFile = $sharingFolder.'/'.$f3->get('PARAMS.hash').uniqid().'.pdf';
-        $filename = $f3->get('PARAMS.hash').'.pdf';
-        if(file_exists($sharingFolder."/filename.txt")) {
-            $filename = file_get_contents($sharingFolder."/filename.txt");
-        }
-        $layers = [];
-        foreach($files as $file) {
-            if(strpos($file, 'svg.pdf') !== false) {
-                $layers[] = $sharingFolder.'/'.$file;
-            }
-        }
-        if (!$layers) {
-            Web::instance()->send($originalFile, null, 0, TRUE, $filename);
-        }
-        $filename = str_replace('.pdf', '_signe-'.count($layers).'x.pdf', $filename);
-        copy($originalFile, $finalFile);
-        $bufferFile =  $finalFile.".tmp";
-        foreach($layers as $layerFile) {
-            shell_exec(sprintf("pdftk %s multistamp %s output %s", $finalFile, $layerFile, $bufferFile));
-            rename($bufferFile, $finalFile);
-        }
-        Web::instance()->send($finalFile, null, 0, TRUE, $filename);
+        $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
+        $pdf = $pdfSignature->getPDF();
+        Web::instance()->send($pdf[0], null, 0, TRUE, $pdf[1]);
 
         if($f3->get('DEBUG')) {
             return;
         }
-        if ($f3->get('PDF_STORAGE_PATH') != $sharingFolder && $cryptor->isEncrypted()) {
-            CryptographyClass::hardUnlink($sharingFolder);
-        } else {
-            array_map('unlink', glob($finalFile."*"));
-        }
+
+        $pdfSignature->clean();
     }
 );
 
@@ -356,7 +324,7 @@ $f3->route('POST /signature/@hash/save',
         $symmetricKey = "";
         if (isset($_COOKIE[$hash])) {
             $symmetricKey = "#" . $_COOKIE[$hash];
-            $encryptor = new CryptographyClass($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
+            $encryptor = new GPGCryptography($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
             $encryptor->encrypt();
         }
 

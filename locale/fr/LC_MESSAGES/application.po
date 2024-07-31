@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-08 23:02+0100\n"
-"PO-Revision-Date: 2023-09-30 12:59+0000\n"
-"Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2024-07-30 18:44+0200\n"
+"PO-Revision-Date: 2024-07-30 16:51+0000\n"
+"Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
 "application/fr/>\n"
 "Language: fr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "en"
 msgstr "fr"
@@ -250,6 +250,9 @@ msgstr "Signature du PDF"
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "Ce PDF est partagé avec d'autres personnes pour être signé à plusieurs"
 
+msgid "This PDF is stored encrypted on the server."
+msgstr "Le PDF est stocké chiffré sur le serveur."
+
 msgid "Keep the selection active"
 msgstr "Garder la sélection active"
 
@@ -372,6 +375,9 @@ msgstr "pendant une heure"
 
 msgid "after the last signature."
 msgstr "après la dernière signature."
+
+msgid "The PDF will be stored encrypted on the server"
+msgstr "Le PDF sera stocké chiffré sur le serveur"
 
 #, php-format
 msgid "%s Start sharing"

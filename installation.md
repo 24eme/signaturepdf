@@ -5,15 +5,16 @@
 Dependencies:
 
 - php >= 5.6
-- rsvg-convert
+- librsvg2-bin (rsvg-convert)
 - pdftk
 - imagemagick
 - potrace
 - ghostcript
+- gpg
 
 Installing dependencies:
 ```
-sudo apt-get install php librsvg2-bin pdftk imagemagick potrace ghostscript locales
+sudo apt-get install php librsvg2-bin pdftk imagemagick potrace ghostscript locales gpg
 ```
 
 Getting the source code:
@@ -97,6 +98,7 @@ The following variables can be used to configure the deployment:
 | `DISABLE_ORGANIZATION` | Disable the Organize route                                            | true                             | false       |
 | `PDF_DEMO_LINK`        | Show, hide, or change the demo PDF link                               | false, `link` or `relative path` | true        |
 | `DEFAULT_LANGUAGE`     | Default language for the application                                  | en_US.UTF-8                      | fr_FR.UTF-8 |
+| `PDF_STORAGE_ENCRYPTION`     | Activate PDF storage encryption option (default activation if GPG is installed)   | false                      | true |
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
@@ -116,6 +118,7 @@ The main components are:
 - potrace
 - librsvg
 - ghostscript
+- gpg
 
 What the script does:
 
@@ -131,7 +134,7 @@ What the script does:
 domain='sign.example.com'
 
 apk update
-apk add bash nginx git php8 php8-fpm php8-session php8-gd php8-fileinfo openjdk8 imagemagick potrace librsvg
+apk add bash nginx git php8 php8-fpm php8-session php8-gd php8-fileinfo openjdk8 imagemagick potrace librsvg locales gpg ghostcript
 
 cd /tmp
 wget https://gitlab.com/pdftk-java/pdftk/-/jobs/924565145/artifacts/raw/build/libs/pdftk-all.jar

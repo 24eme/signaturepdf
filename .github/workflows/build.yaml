@@ -10,11 +10,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: install git
+      run: apt install git
+
     - name: Copie des fichiers dans le dossier debian
       run: |
         mkdir -p .debian/usr/share/signaturepdf
-        cp -pr . .debian/usr/share/signaturepdf
-        # potentiellement `git clone . .debian/usr/share/signaturepdf` (pour n'avoir que les fichiers suivis)
+        git clone . .debian/usr/share/signaturepdf
 
     - name: build-deb-action
       uses: jiro4989/build-deb-action@v3

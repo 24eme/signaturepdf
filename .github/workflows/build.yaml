@@ -10,7 +10,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: |
+    - name: Copie des fichiers dans le dossier debian
+      run: |
         mkdir -p .debian/usr/share/signaturepdf
         cp -pr . .debian/usr/share/signaturepdf
         # potentiellement `git clone . .debian/usr/share/signaturepdf` (pour n'avoir que les fichiers suivis)

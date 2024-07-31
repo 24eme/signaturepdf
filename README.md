@@ -83,7 +83,7 @@ For example, for Apache:
 ```
 chown www-data /path/to/folder/to/store/pdf
 ```
-## Enabling digital signature
+### Enabling digital signature
 
 The digital signature depends on `pdfsig` from the poppler project (poppler-utils debian package) and `certutil` from libnss3 project (libnss3-tools debian package).
 

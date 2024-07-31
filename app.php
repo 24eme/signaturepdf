@@ -2,6 +2,7 @@
 
 setlocale(LC_ALL, "");
 require(__DIR__.'/lib/GPGCryptography.class.php');
+require(__DIR__.'/lib/NSSCryptography.class.php');
 require(__DIR__.'/lib/PDFSignature.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
@@ -60,6 +61,11 @@ if ($f3->get('GET.lang')) {
 if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
     $f3->set('PDF_STORAGE_ENCRYPTION', GPGCryptography::isGpgInstalled());
 }
+
+if ($f3->exists('NSS3_DIRECTORY') && $f3->exists('NSS3_PASSWORD') && $f3->exists('NSS3_NICK')) {
+    NSSCryptography::getInstance($f3->get('NSS3_DIRECTORY'), $f3->get('NSS3_PASSWORD'), $f3->get('NSS3_NICK'));
+}
+
 
 $domain = basename(glob($f3->get('ROOT')."/locale/application_*.pot")[0], '.pot');
 

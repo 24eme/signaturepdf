@@ -208,21 +208,24 @@ $f3->route('POST /share',
     function($f3) {
         $hash = Web::instance()->slug($_POST['hash']);
         $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
-        $f3->set('UPLOADS', $sharingFolder."/");
+        $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
+
         if (!is_dir($f3->get('PDF_STORAGE_PATH'))) {
             $f3->error(500, 'Sharing folder doesn\'t exist');
         }
         if (!is_writable($f3->get('PDF_STORAGE_PATH'))) {
             $f3->error(500, 'Sharing folder is not writable');
         }
-        mkdir($sharingFolder);
-        $expireFile = $sharingFolder.".expire";
-        file_put_contents($expireFile, $f3->get('POST.duration'));
-        touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
+
+        $pdfSignature = new PDFSignature($sharingFolder, $symmetricKey);
+        $pdfSignature->createShare($f3->get('POST.duration'));
+
+        $f3->set('UPLOADS', $sharingFolder."/");
+
         $filename = "original.pdf";
         $tmpfile = tempnam($sharingFolder, date('YmdHis'));
         unlink($tmpfile);
-        $svgFiles = "";
+        $svgFiles = [];
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);
@@ -238,7 +241,7 @@ $f3->route('POST /share',
                     return $filename;
                 }
                 if($formFieldName == "svg") {
-                    $svgFiles .= " ".$tmpfile."_".$fileBaseName;
+                    $svgFiles[] = $tmpfile."_".$fileBaseName;
                     return basename($tmpfile."_".$fileBaseName);
                 }
 	    });
@@ -246,26 +249,20 @@ $f3->route('POST /share',
         if(!count($files)) {
             $f3->error(403);
         }
-        if($svgFiles) {
-            shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $tmpfile.'.svg.pdf', $svgFiles));
-        }
-        if(!$f3->get('DEBUG')) {
-            array_map('GPGCryptography::hardUnlink', glob($tmpfile."*.svg"));
+
+        $pdfSignature->saveShare();
+
+        if(count($svgFiles)) {
+            $pdfSignature->addSignature($svgFiles, $tmpfile."svg.pdf");
         }
 
-        $symmetricKey = "";
-        if (isset($_COOKIE[$hash])) {
-            $symmetricKey = "#" . $_COOKIE[$hash];
-            $encryptor = new GPGCryptography($_COOKIE[$hash], $f3->get('PDF_STORAGE_PATH').$hash);
-            if (!$encryptor->encrypt()) {
-                GPGCryptography::hardUnlink($sharingFolder);
-                $f3->error(500);
-            }
+        if(!$f3->get('DEBUG')) {
+            $pdfSignature->clean();
         }
 
         \Flash::instance()->setKey('openModal', 'shareinformations');
 
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.$symmetricKey);
+        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.(($symmetricKey) ? '#'.$symmetricKey : null));
     }
 
 );

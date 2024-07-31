@@ -15,10 +15,24 @@ class PDFSignature
         $this->gpg = new GPGCryptography($symmetricKey, $pathHash);
     }
 
+
+    public function createShare($duration) {
+        mkdir($this->pathHash);
+        $expireFile = $this->pathHash.".expire";
+        file_put_contents($expireFile, $duration);
+        touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
+    }
+
+    public function saveShare() {
+        if($this->symmetricKey) {
+            $this->gpg->encrypt();
+        }
+    }
+
     public function getPDF() {
         $sharingFolder = $this->gpg->decrypt();
         if ($sharingFolder == false) {
-            throw new Exception( "PDF file could not be decrypted. Cookie encryption key might be missing.");
+            throw new Exception("PDF file could not be decrypted. Cookie encryption key might be missing.");
         }
         if ($this->pathHash != $sharingFolder && $this->gpg->isEncrypted()) {
             $this->toClean[] = $sharingFolder;

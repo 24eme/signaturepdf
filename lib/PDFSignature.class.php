@@ -58,7 +58,7 @@ class PDFSignature
         copy($originalFile, $finalFile);
         $bufferFile =  $finalFile.".tmp";
         foreach($layers as $layerFile) {
-            self::addSvgToPDF($finalFile, $layerFile, $bufferFile);
+            self::addSvgToPDF($finalFile, $layerFile, $bufferFile, false);
             rename($bufferFile, $finalFile);
         }
 
@@ -85,9 +85,9 @@ class PDFSignature
         shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $outputPdfFile, implode(" ", $svgFiles)));
     }
 
-    public static function addSvgToPDF($pdfOrigin, $pdfSvg, $pdfOutput) {
+    public static function addSvgToPDF($pdfOrigin, $pdfSvg, $pdfOutput, $digitalSignature = true) {
         shell_exec(sprintf("pdftk %s multistamp %s output %s", $pdfOrigin, $pdfSvg, $pdfOutput));
-        if (NSSCryptography::getInstance()->isEnabled()) {
+        if (NSSCryptography::getInstance()->isEnabled() && $digitalSignature) {
             NSSCryptography::getInstance()->addSignature($pdfOutput, 'Signed with SignaturePDF');
         }
     }

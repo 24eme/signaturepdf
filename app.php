@@ -171,7 +171,7 @@ $f3->route('POST /image2svg',
 $f3->route('POST /sign',
     function($f3) {
         $filename = null;
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign');
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign_'.uniqid(null, true));
         unlink($tmpfile);
         $svgFiles = [];
 
@@ -220,10 +220,6 @@ $f3->route('POST /sign',
 
 $f3->route('POST /share',
     function($f3) {
-        $hash = Web::instance()->slug($_POST['hash']);
-        $sharingFolder = $f3->get('PDF_STORAGE_PATH').$hash;
-        $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
-
         if (!is_dir($f3->get('PDF_STORAGE_PATH'))) {
             $f3->error(500, 'Sharing folder doesn\'t exist');
         }
@@ -231,15 +227,15 @@ $f3->route('POST /share',
             $f3->error(500, 'Sharing folder is not writable');
         }
 
-        $pdfSignature = new PDFSignature($sharingFolder, $symmetricKey);
-        $pdfSignature->createShare($f3->get('POST.duration'));
+        $hash = Web::instance()->slug($_POST['hash']);
+        $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
 
-        $f3->set('UPLOADS', $sharingFolder."/");
-
-        $filename = "original.pdf";
-        $tmpfile = tempnam($sharingFolder, date('YmdHis'));
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_share_'.uniqid($hash, true));
         unlink($tmpfile);
+
         $svgFiles = [];
+        $originalFile = $tmpfile."_original.pdf";
+        $originalFileBaseName = null;
         $files = Web::instance()->receive(function($file,$formFieldName){
             if($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);
@@ -249,10 +245,10 @@ $f3->route('POST /share',
             }
 
             return true;
-        }, false, function($fileBaseName, $formFieldName) use ($tmpfile, $filename, $sharingFolder, &$svgFiles) {
+        }, false, function($fileBaseName, $formFieldName) use ($tmpfile, $originalFile, &$svgFiles, &$originalFileBaseName) {
                 if($formFieldName == "pdf") {
-                    file_put_contents($sharingFolder."/filename.txt", $fileBaseName);
-                    return $filename;
+                    $originalFileBaseName = $fileBaseName;
+                    return basename($originalFile);
                 }
                 if($formFieldName == "svg") {
                     $svgFiles[] = $tmpfile."_".$fileBaseName;
@@ -264,10 +260,10 @@ $f3->route('POST /share',
             $f3->error(403);
         }
 
-        $pdfSignature->saveShare();
-
+        $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
+        $pdfSignature->createShare($originalFile, $originalFileBaseName, $f3->get('POST.duration'));
         if(count($svgFiles)) {
-            $pdfSignature->addSignature($svgFiles, $tmpfile.".svg.pdf");
+            $pdfSignature->addSignature($svgFiles);
         }
 
         if(!$f3->get('DEBUG')) {
@@ -302,9 +298,7 @@ $f3->route('POST /signature/@hash/save',
     function($f3) {
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
-
-        $f3->set('UPLOADS', $f3->get('PDF_STORAGE_PATH').$hash."/");
-        $tmpfile = tempnam($f3->get('PDF_STORAGE_PATH').$hash, date('YmdHis'));
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_save_'.uniqid($hash, true));
         unlink($tmpfile);
         $svgFiles = [];
         $files = Web::instance()->receive(function($file,$formFieldName){
@@ -323,7 +317,7 @@ $f3->route('POST /signature/@hash/save',
         }
 
         $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
-        $pdfSignature->addSignature($svgFiles, $tmpfile.".svg.pdf");
+        $pdfSignature->addSignature($svgFiles);
 
         if(!$f3->get('DEBUG')) {
             $pdfSignature->clean();
@@ -402,7 +396,7 @@ $f3->route('GET /compress',
 $f3->route ('POST /compress',
     function($f3) {
         $filename = null;
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign');
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_compress_'.uniqid());
         unlink($tmpfile);
 
         $files = Web::instance()->receive(function($file,$formFieldName) {

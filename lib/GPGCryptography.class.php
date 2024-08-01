@@ -28,6 +28,9 @@ class GPGCryptography
         putenv('HOME='.sys_get_temp_dir());
         foreach ($this->getFiles(false) as $file) {
             $outputFile = $file.".gpg";
+            if(file_exists($outputFile)) {
+                unlink($outputFile);
+            }
             $command = "gpg --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file > /dev/null";
             $result = shell_exec($command);
             if ($result) {
@@ -40,6 +43,20 @@ class GPGCryptography
         return true;
     }
 
+    public function decryptFile($file) {
+        if (!file_exists($file.'.gpg')) {
+            return $file;
+        }
+        if (!$this->symmetricKey) {
+            return false;
+        }
+        $decryptTmpFile = sys_get_temp_dir()."/".uniqid('pdfsignature.decrypted.'.getmypid().md5($file), true).'_'.basename($file);
+
+        $this->runDecryptFile($file.'.gpg', $decryptTmpFile);
+
+        return $decryptTmpFile;
+    }
+
     public function decrypt() {
         if (!$this->isEncrypted()) {
             return $this->pathHash;
@@ -48,17 +65,16 @@ class GPGCryptography
             return false;
         }
         $decryptFolder = sys_get_temp_dir()."/".uniqid('pdfsignature.decrypted.'.getmypid(), true);
-        putenv('HOME='.sys_get_temp_dir());
         mkdir($decryptFolder);
         foreach ($this->getFiles(true) as $file) {
-            $outputFile = $decryptFolder."/".str_replace(".gpg", "", basename($file));
-            $command = "gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file > /dev/null";
-            $result = shell_exec($command);
-            if ($result) {
-                throw new Exception("Decipher failure");
-            }
+            $this->runDecryptFile($file, $decryptFolder."/".str_replace(".gpg", "", basename($file)));
         }
         return $decryptFolder;
+    }
+
+    public function runDecryptFile($file, $outputFile) {
+        putenv('HOME='.sys_get_temp_dir());
+        shell_exec("gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file > /dev/null");
     }
 
     public function isEncrypted() {

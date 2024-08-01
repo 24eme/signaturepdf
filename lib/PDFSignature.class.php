@@ -7,62 +7,131 @@ class PDFSignature
     protected $hash = null;
     protected $gpg = null;
     protected $toClean = [];
+    protected $lockFile = null;
 
     public function __construct($pathHash, $symmetricKey = null) {
         $this->symmetricKey = $symmetricKey;
         $this->pathHash = $pathHash;
         $this->hash = basename($this->pathHash);
         $this->gpg = new GPGCryptography($symmetricKey, $pathHash);
-    }
+        $this->lockFile = $this->pathHash.'/.lock';
+}
 
-    public function createShare($duration) {
+    public function createShare($originalFile, $originFileBaseName, $duration) {
         mkdir($this->pathHash);
         $expireFile = $this->pathHash.".expire";
         file_put_contents($expireFile, $duration);
         touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
-    }
-
-    public function saveShare() {
+        rename($originalFile, $this->pathHash.'/original.pdf');
+        file_put_contents($this->pathHash.'/filename.txt', $originFileBaseName);
         if($this->symmetricKey) {
             $this->gpg->encrypt();
         }
     }
 
+    public function isEncrypted() {
+        return $this->isEncrypted();
+    }
+
+    public function getDecryptFile($file) {
+        if($this->isEncrypted()) {
+            $file = $this->gpg->decryptFile($file);
+            $this->toClean[] = $file;
+        }
+
+        return $file;
+    }
+
     public function getPDF() {
-        $originalPathHash = $this->pathHash;
-        $this->pathHash = $this->gpg->decrypt();
-        if ($this->pathHash == false) {
+        $this->compile();
+
+        return $this->getDecryptFile($this->pathHash.'/final.pdf');
+    }
+
+    public function needToCompile() {
+        $needToCompile = false;
+        foreach($this->getLayers() as $layerFile) {
+            if(!file_exists(str_replace('.svg.pdf', '.sign.pdf', $layerFile))) {
+                $needToCompile = true;
+            }
+        }
+        if(!$this->isEncrypted() && !file_exists($this->pathHash.'/final.pdf')) {
+            $needToCompile = true;
+        }
+        if($this->isEncrypted() && !file_exists($this->pathHash.'/final.pdf.gpg')) {
+            $needToCompile = true;
+        }
+
+        return $needToCompile;
+    }
+
+    protected function isCompileLock() {
+        if(file_exists(touch($this->lockFile)) && filemtime($this->lockFile) > time() + 30) {
+            unlink($this->lockFile);
+        }
+
+        return file_exists(touch($this->lockFile));
+    }
+
+    protected function lockCompile() {
+        touch($this->lockFile);
+    }
+
+    protected function unlockCompile() {
+        unlink($this->lockFile);
+    }
+
+    public function compile() {
+        if(!$this->needToCompile()) {
+            return;
+        }
+
+        if($this->isCompileLock()) {
+            sleep(5);
+            $this->compile();
+        }
+
+        $this->lockCompile();
+
+        $pathHashDecrypted = $this->gpg->decrypt();
+
+        if ($pathHashDecrypted == false) {
             throw new Exception("PDF file could not be decrypted. Cookie encryption key might be missing.");
         }
-        if ($this->pathHash != $originalPathHash && $this->gpg->isEncrypted()) {
-            $this->toClean[] = $this->pathHash;
+        if ($this->pathHash != $pathHashDecrypted && $this->isEncrypted()) {
+            $this->toClean[] = $pathHashDecrypted;
         }
 
-        $originalFile = $this->pathHash.'/original.pdf';
-        $finalFile = $this->pathHash.'/'.$this->hash.uniqid().'.pdf';
-        $layers = $this->getLayers();
-        if(!count($layers)) {
-            return $originalFile;
-        }
-
-        copy($originalFile, $finalFile);
-        $bufferFile =  $finalFile.".tmp";
+        $layers = $this->getLayers($pathHashDecrypted);
+        $currentSignedFile = $pathHashDecrypted.'/original.pdf';
+        $signedFileToCopy = [];
         foreach($layers as $layerFile) {
-            self::addSvgToPDF($finalFile, $layerFile, $bufferFile, false);
-            rename($bufferFile, $finalFile);
+            $signedFile = str_replace('.svg.pdf', '.sign.pdf', $layerFile);
+            if(!file_exists($signedFile)) {
+                self::addSvgToPDF($currentSignedFile, $layerFile, $signedFile, false);
+                if ($this->pathHash != $pathHashDecrypted && $this->isEncrypted()) {
+                    copy($signedFile, str_replace($pathHashDecrypted ,$this->pathHash, $signedFile));
+                }
+            }
+            $currentSignedFile = $signedFile;
         }
 
-        if ($this->pathHash == $originalPathHash && !$this->gpg->isEncrypted()) {
-            $this->toClean[] = $finalFile;
+        copy($currentSignedFile, $this->pathHash.'/final.pdf');
+
+        if($this->isEncrypted()) {
+            $this->gpg->encrypt();
         }
 
-        return $finalFile;
+        $this->unlockCompile();
     }
 
     public function getPublicFilename() {
         $filename = $this->hash.'.pdf';
-        if(file_exists($this->pathHash."/filename.txt")) {
-            $filename = file_get_contents($this->pathHash."/filename.txt");
+
+        $file = $this->getDecryptFile($this->pathHash."/filename.txt");
+
+        if(file_exists($file)) {
+            $filename = file_get_contents($file);
         }
 
         $filename = str_replace('.pdf', '_signe-'.count($this->getLayers()).'x.pdf', $filename);
@@ -70,27 +139,36 @@ class PDFSignature
         return $filename;
     }
 
-    protected function getLayers() {
-        $files = scandir($this->pathHash);
+    protected function getLayers($pathHash = null) {
+        if(is_null($pathHash)) {
+            $pathHash = $this->pathHash;
+        }
+        $files = scandir($pathHash);
         $layers = [];
         foreach($files as $file) {
             if(strpos($file, '.svg.pdf') !== false) {
-                $layers[] = $this->pathHash.'/'.$file;
+                $layers[] = $pathHash.'/'.$file;
             }
         }
         return $layers;
     }
 
-    public function addSignature(array $svgFiles, $outputPdfFile) {
+    public function addSignature(array $svgFiles) {
         $expireFile = $this->pathHash.".expire";
         touch($expireFile, date_format(date_modify(date_create(), file_get_contents($expireFile)), 'U'));
 
-        self::createPDFFromSvg($svgFiles, $outputPdfFile);
+        do {
+            if(isset($svgPDFFile)) { usleep(1); }
+            $svgPDFFile = $this->pathHash."/".(new DateTime())->format('YmdHisu').'.svg.pdf';
+        } while (file_exists($svgPDFFile));
 
-        if($this->gpg->isEncrypted()) {
+        self::createPDFFromSvg($svgFiles, $svgPDFFile);
+
+        if($this->isEncrypted()) {
             $this->gpg->encrypt();
         }
         $this->toClean = array_merge($this->toClean, $svgFiles);
+        $this->compile();
     }
 
     public static function createPDFFromSvg(array $svgFiles, $outputPdfFile) {
@@ -106,6 +184,9 @@ class PDFSignature
 
     public function clean() {
         foreach($this->toClean as $path) {
+            if(strpos($path, $this->pathHash) !== false) {
+                continue;
+            }
             GPGCryptography::hardUnlink($path);
         }
     }

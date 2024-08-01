@@ -171,7 +171,7 @@ $f3->route('POST /image2svg',
 $f3->route('POST /sign',
     function($f3) {
         $filename = null;
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign_'.uniqid(null, true));
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign_'.uniqid("", true));
         unlink($tmpfile);
         $svgFiles = [];
 
@@ -403,7 +403,7 @@ $f3->route('GET /compress',
 $f3->route ('POST /compress',
     function($f3) {
         $filename = null;
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_compress_'.uniqid());
+        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_compress_'.uniqid("", true));
         unlink($tmpfile);
 
         $files = Web::instance()->receive(function($file,$formFieldName) {

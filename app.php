@@ -52,7 +52,7 @@ if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
 }
 
-$f3->set('ADMIN_AUTHORIZED_IP', array_merge(["localhost", "127.0.0.1", "::1"], $f3->get('ADMIN_AUTHORIZED_IP')));
+$f3->set('ADMIN_AUTHORIZED_IP', array_merge(["localhost", "127.0.0.1", "::1"], explode(' ', $f3->get('ADMIN_AUTHORIZED_IP') . '')));
 $f3->set('IS_ADMIN', in_array(@$_SERVER["REMOTE_ADDR"], $f3->get('ADMIN_AUTHORIZED_IP')));
 
 

@@ -116,6 +116,34 @@
                             <?php endif; ?>
                         </td>
                     </tr>
+                    <tr>
+                        <th class="align-top">CertUtil</th>
+                        <?php $certUtil = NSSCryptography::isCertUtilInstalled(); ?>
+                        <td class="text-muted"><?php if ($certUtil) { echo $certUtil; } ?></td>
+                        <td>
+                            <?php if ($certUtil): ?>
+                                <i class="bi bi-check-square text-success"></i>
+                            <?php else: ?>
+                                <span class="text-warning">
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package libnss3-tools missing"); ?>)
+                                </span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-top">Pdfsig</th>
+                        <?php $pdfsig = NSSCryptography::isPDFSigInstalled(); ?>
+                        <td class="text-muted"><?php if ($pdfsig) { echo $pdfsig; } ?></td>
+                        <td>
+                            <?php if ($pdfsig): ?>
+                                <i class="bi bi-check-square text-success"></i>
+                            <?php else: ?>
+                                <span class="text-warning">
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package poppler-utils missing"); ?>)
+                                </span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
 
 
 

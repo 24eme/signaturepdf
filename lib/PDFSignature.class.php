@@ -15,7 +15,6 @@ class PDFSignature
         $this->gpg = new GPGCryptography($symmetricKey, $pathHash);
     }
 
-
     public function createShare($duration) {
         mkdir($this->pathHash);
         $expireFile = $this->pathHash.".expire";
@@ -30,31 +29,22 @@ class PDFSignature
     }
 
     public function getPDF() {
-        $sharingFolder = $this->gpg->decrypt();
-        if ($sharingFolder == false) {
+        $originalPathHash = $this->pathHash;
+        $this->pathHash = $this->gpg->decrypt();
+        if ($this->pathHash == false) {
             throw new Exception("PDF file could not be decrypted. Cookie encryption key might be missing.");
         }
-        if ($this->pathHash != $sharingFolder && $this->gpg->isEncrypted()) {
-            $this->toClean[] = $sharingFolder;
-        }
-        $files = scandir($sharingFolder);
-        $originalFile = $sharingFolder.'/original.pdf';
-        $finalFile = $sharingFolder.'/'.$this->hash.uniqid().'.pdf';
-        $filename = $this->hash.'.pdf';
-        if(file_exists($sharingFolder."/filename.txt")) {
-            $filename = file_get_contents($sharingFolder."/filename.txt");
-        }
-        $layers = [];
-        foreach($files as $file) {
-            if(strpos($file, 'svg.pdf') !== false) {
-                $layers[] = $sharingFolder.'/'.$file;
-            }
-        }
-        if(!count($layers)) {
-            return [$originalFile, $filename];
+        if ($this->pathHash != $originalPathHash && $this->gpg->isEncrypted()) {
+            $this->toClean[] = $this->pathHash;
         }
 
-        $filename = str_replace('.pdf', '_signe-'.count($layers).'x.pdf', $filename);
+        $originalFile = $this->pathHash.'/original.pdf';
+        $finalFile = $this->pathHash.'/'.$this->hash.uniqid().'.pdf';
+        $layers = $this->getLayers();
+        if(!count($layers)) {
+            return $originalFile;
+        }
+
         copy($originalFile, $finalFile);
         $bufferFile =  $finalFile.".tmp";
         foreach($layers as $layerFile) {
@@ -62,11 +52,33 @@ class PDFSignature
             rename($bufferFile, $finalFile);
         }
 
-        if ($this->pathHash == $sharingFolder && !$this->gpg->isEncrypted()) {
+        if ($this->pathHash == $originalPathHash && !$this->gpg->isEncrypted()) {
             $this->toClean[] = $finalFile;
         }
 
-        return [$finalFile, $filename];
+        return $finalFile;
+    }
+
+    public function getPublicFilename() {
+        $filename = $this->hash.'.pdf';
+        if(file_exists($this->pathHash."/filename.txt")) {
+            $filename = file_get_contents($this->pathHash."/filename.txt");
+        }
+
+        $filename = str_replace('.pdf', '_signe-'.count($this->getLayers()).'x.pdf', $filename);
+
+        return $filename;
+    }
+
+    protected function getLayers() {
+        $files = scandir($this->pathHash);
+        $layers = [];
+        foreach($files as $file) {
+            if(strpos($file, '.svg.pdf') !== false) {
+                $layers[] = $this->pathHash.'/'.$file;
+            }
+        }
+        return $layers;
     }
 
     public function addSignature(array $svgFiles, $outputPdfFile) {

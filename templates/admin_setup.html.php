@@ -149,10 +149,10 @@
 
                 </tbody>
             </table>
-            <h5 class="py-2"><?php echo _("List of authorized IP for debugging purposes : "); ?></h4>
+            <h5 class="py-2"><?php echo _("List of authorized IP : "); ?></h4>
             <p>
                 <?php foreach ($ADMIN_AUTHORIZED_IP as $ip): ?>
-                    <?php echo $ip . ','; ?>
+                    <?php echo $ip; ?>
                 <?php endforeach; ?>
             </p>
 

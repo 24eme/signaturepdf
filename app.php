@@ -66,7 +66,11 @@ if ($f3->get('GET.lang')) {
 }
 
 if (!$f3->exists('PDF_STORAGE_ENCRYPTION')) {
-    $f3->set('PDF_STORAGE_ENCRYPTION', GPGCryptography::isGpgInstalled());
+    $f3->set('PDF_STORAGE_ENCRYPTION', false);
+}
+
+if($f3->get('PDF_STORAGE_ENCRYPTION') && !GPGCryptography::isGpgInstalled()) {
+    $f3->set('PDF_STORAGE_ENCRYPTION', false);
 }
 
 if ($f3->exists('NSS3_DIRECTORY') && $f3->exists('NSS3_PASSWORD') && $f3->exists('NSS3_NICK')) {

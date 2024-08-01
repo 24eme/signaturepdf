@@ -340,14 +340,9 @@ $f3->route('GET /signature/@hash/nblayers',
     function($f3) {
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
-        $files = scandir($f3->get('PDF_STORAGE_PATH').$hash);
-        $nbLayers = 0;
-        foreach($files as $file) {
-            if(strpos($file, '.svg.pdf') !== false) {
-                $nbLayers++;
-            }
-        }
-        echo $nbLayers;
+        $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
+        $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
+        echo count($pdfSignature->getLayers());
     }
 );
 

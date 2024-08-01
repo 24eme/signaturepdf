@@ -155,7 +155,7 @@ class PDFSignature
         return $filename;
     }
 
-    protected function getLayers($pathHash = null) {
+    public function getLayers($pathHash = null) {
         if(is_null($pathHash)) {
             $pathHash = $this->pathHash;
         }

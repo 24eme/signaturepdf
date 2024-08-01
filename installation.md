@@ -98,7 +98,7 @@ The following variables can be used to configure the deployment:
 | `DISABLE_ORGANIZATION` | Disable the Organize route                                            | true                             | false       |
 | `PDF_DEMO_LINK`        | Show, hide, or change the demo PDF link                               | false, `link` or `relative path` | true        |
 | `DEFAULT_LANGUAGE`     | Default language for the application                                  | en_US.UTF-8                      | fr_FR.UTF-8 |
-| `PDF_STORAGE_ENCRYPTION`     | Activate PDF storage encryption option (default activation if GPG is installed)   | false                      | true |
+| `PDF_STORAGE_ENCRYPTION`     | Activate PDF storage encryption option (GPG needs to be installed)   | true                      | false |
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf

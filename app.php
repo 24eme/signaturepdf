@@ -288,8 +288,7 @@ $f3->route('GET /signature/@hash/pdf',
         $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
 
         $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
-        $pdf = $pdfSignature->getPDF();
-        Web::instance()->send($pdf[0], null, 0, TRUE, $pdf[1]);
+        Web::instance()->send($pdfSignature->getPDF(), null, 0, TRUE, $pdfSignature->getPublicFilename());
 
         if($f3->get('DEBUG')) {
             return;

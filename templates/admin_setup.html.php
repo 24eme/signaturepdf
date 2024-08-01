@@ -123,8 +123,8 @@
             </table>
             <h5 class="py-2"><?php echo _("List of authorized IP for debugging purposes : "); ?></h4>
             <p>
-                <?php foreach ($AUTHORIZED_IP as $ip): ?>
-                    <?php echo $ip . ' '; ?>
+                <?php foreach ($ADMIN_AUTHORIZED_IP as $ip): ?>
+                    <?php echo $ip . ','; ?>
                 <?php endforeach; ?>
             </p>
 

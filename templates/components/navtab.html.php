@@ -1,5 +1,5 @@
 <?php if(!$disableOrganization): ?>
-    <?php if (in_array(@$_SERVER["REMOTE_ADDR"], array_merge($AUTHORIZED_IP, array("127.0.0.1", "::1"))) ): ?>
+    <?php if ($IS_ADMIN): ?>
         <div class="position-absolute top-0 start-0 mt-2 ms-2">
             <a class="btn btn-outline-secondary btn-sm <?php if($activeTab === 'admin'): ?>active<?php endif; ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/administration"><i class="bi bi-wrench-adjustable"></i> <span class="d-none d-sm-inline-block"><?php echo _("Administration panel"); ?></span></a>
         </div>

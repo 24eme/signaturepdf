@@ -124,7 +124,7 @@ class PDFSignature
         foreach($layers as $layerFile) {
             $signedFile = str_replace('.svg.pdf', '.sign.pdf', $layerFile);
             if(!file_exists($signedFile)) {
-                self::addSvgToPDF($currentSignedFile, $layerFile, $signedFile);
+                self::addSvgToPDF($currentSignedFile, $layerFile, $signedFile, false);
                 if ($this->pathHash != $pathHashDecrypted && $this->isEncrypted()) {
                     copy($signedFile, str_replace($pathHashDecrypted ,$this->pathHash, $signedFile));
                 }

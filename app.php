@@ -282,8 +282,11 @@ $f3->route('GET /signature/@hash/pdf',
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
-
         $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
+        if(!$pdfSignature->verifyEncryption()) {
+            $f3->error(403, 'Unable to decrypt pdf because of wrong symmetric key');
+        }
+
         Web::instance()->send($pdfSignature->getPDF(), null, 0, TRUE, $pdfSignature->getPublicFilename());
 
         if($f3->get('DEBUG')) {
@@ -298,6 +301,11 @@ $f3->route('POST /signature/@hash/save',
     function($f3) {
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
+        $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
+        if(!$pdfSignature->verifyEncryption()) {
+            $f3->error(403, 'Unable to decrypt pdf because of wrong symmetric key');
+        }
+
         $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_save_'.uniqid($hash, true));
         unlink($tmpfile);
         $svgFiles = [];
@@ -316,7 +324,6 @@ $f3->route('POST /signature/@hash/save',
             $f3->error(403);
         }
 
-        $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hash, $symmetricKey);
         $pdfSignature->addSignature($svgFiles);
 
         if(!$f3->get('DEBUG')) {

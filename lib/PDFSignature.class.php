@@ -8,6 +8,7 @@ class PDFSignature
     protected $gpg = null;
     protected $toClean = [];
     protected $lockFile = null;
+    protected $cacheDecryptFiles = [];
 
     public function __construct($pathHash, $symmetricKey = null) {
         $this->symmetricKey = $symmetricKey;
@@ -29,22 +30,37 @@ class PDFSignature
         }
     }
 
+    public function verifyEncryption() {
+        if(!$this->isEncrypted()) {
+
+            return true;
+        }
+
+        return file_exists($this->getDecryptFile($this->pathHash."/filename.txt"));
+    }
+
     public function isEncrypted() {
-        return $this->isEncrypted();
+        return $this->gpg->isEncrypted();
     }
 
     public function getDecryptFile($file) {
-        if($this->isEncrypted()) {
-            $file = $this->gpg->decryptFile($file);
-            $this->toClean[] = $file;
+        if(!$this->isEncrypted()) {
+            return $file;
         }
 
-        return $file;
+        if(array_key_exists($file, $this->cacheDecryptFiles)) {
+            return $this->cacheDecryptFiles[$file];
+        }
+
+        $decryptFile = $this->gpg->decryptFile($file);
+        $this->toClean[] = $decryptFile;
+        $this->cacheDecryptFiles[$file] = $decryptFile;
+
+        return $decryptFile;
     }
 
     public function getPDF() {
         $this->compile();
-
         return $this->getDecryptFile($this->pathHash.'/final.pdf');
     }
 

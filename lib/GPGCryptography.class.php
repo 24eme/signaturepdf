@@ -74,7 +74,7 @@ class GPGCryptography
 
     public function runDecryptFile($file, $outputFile) {
         putenv('HOME='.sys_get_temp_dir());
-        shell_exec("gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file > /dev/null");
+        return shell_exec("gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file > /dev/null");
     }
 
     public function isEncrypted() {

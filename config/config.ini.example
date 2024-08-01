@@ -23,3 +23,6 @@ PDF_STORAGE_PATH=/path/to/folder
 ;NSS3_DIRECTORY=/path/to/nss3
 ;NSS3_PASSWORD="my secret password"
 ;NSS3_NICK="certificate nick"
+
+; Authorize these IP to use debug mode (separate IP adresses with ',')
+;ADMIN_AUTHORIZED_IP=

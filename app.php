@@ -4,6 +4,8 @@ setlocale(LC_ALL, "");
 require(__DIR__.'/lib/GPGCryptography.class.php');
 require(__DIR__.'/lib/NSSCryptography.class.php');
 require(__DIR__.'/lib/PDFSignature.class.php');
+require(__DIR__.'/lib/Image2SVG.class.php');
+require(__DIR__.'/lib/Compression.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
@@ -48,6 +50,11 @@ if($f3->get('PDF_STORAGE_PATH') && !preg_match('|/$|', $f3->get('PDF_STORAGE_PAT
 $f3->set('disableOrganization', false);
 if($f3->get('DISABLE_ORGANIZATION')) {
     $f3->set('disableOrganization', $f3->get('DISABLE_ORGANIZATION'));
+}
+
+if ($f3->get('APP_DEBUG_AUTHORIZED_IP')) {
+    $ips = explode(' ', $f3->get('APP_DEBUG_AUTHORIZED_IP'));
+    $f3->set('AUTHORIZED_IP', $ips);
 }
 
 if ($f3->get('GET.lang')) {
@@ -370,6 +377,15 @@ $f3->route('GET /metadata',
         echo View::instance()->render('metadata.html.php');
     }
 );
+
+$f3->route ('GET /administration',
+    function ($f3) {
+        if (!in_array(@$_SERVER["REMOTE_ADDR"], array("127.0.0.1", "::1")) ) {
+            die('You ('.$_SERVER['REMOTE_ADDR'].') are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
+        }
+        $f3->set('activeTab','admin');
+        echo View::instance()->render('admin_setup.html.php');
+});
 
 $f3->route('GET /compress',
     function($f3) {

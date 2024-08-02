@@ -90,7 +90,7 @@ The digital signature depends on `pdfsig` from the poppler project (poppler-util
 On debian :
 
 ```
-sudo apt-get install poppler-utils libnss3-tool
+sudo apt-get install poppler-utils libnss3-tools
 ```
 
 To enable digital signature, create certificates in a NSS database. The shell script `create_nss_certs.sh` in `tools` helps to do it :

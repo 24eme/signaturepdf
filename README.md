@@ -103,6 +103,14 @@ Once created, set the following directives in the `config/config.ini` file.
     NSS3_PASSWORD="MY_NSS_PASSWORD"
     NSS3_NICK="MY_CERT_NICK"
 
+You must then set the rights on the nss folder and its contents so that the web server has read access to it.
+
+For example with apache on debian :
+
+```
+chown www-data:www-data -R NSS_DIRECORY
+```
+
 ### Disabling the Organize Mode
 
 To disable the Organize mode, add `DISABLE_ORGANIZATION=true` to the

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-30 18:44+0200\n"
-"PO-Revision-Date: 2024-08-12 07:26+0000\n"
+"PO-Revision-Date: 2024-08-12 14:09+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
 "application/eu/>\n"
@@ -47,50 +47,51 @@ msgstr "Mb"
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr ""
+"PDFa zerbitzariak prozesatuko du, baina ez du mantenduko edo biltegiratuko"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "PDFa lehendik optimizatuta dago"
 
 msgid "Compress"
-msgstr ""
+msgstr "Konprimatu"
 
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "Konpresio baxua (kalitate handiena)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s Konpresio ertaina %s (lehenetsia)"
 
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "Konpresio altua (kalitate txikiena)"
 
 msgid "Free open-source software"
-msgstr ""
+msgstr "Kode irekiko software librea"
 
 msgid "under AGPL-3.0 license"
-msgstr ""
+msgstr "AGPL-3.0 lizentziapean"
 
 msgid "see the source code"
-msgstr ""
+msgstr "ikusi iturburu kodea"
 
 msgid "Editing PDF metadata"
-msgstr ""
+msgstr "PDFaren metadatuak editatzen"
 
 #, php-format
 msgid "%s Edit metadata"
-msgstr ""
+msgstr "%s Editatu metadatuak"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Gehitu, editatu, edo kendu PDF baten metadatuak"
 
 msgid "Test with a demo PDF"
-msgstr ""
+msgstr "Probatu demozko PDF batekin"
 
 msgid "List of PDF metadata"
 msgstr "PDFaren metadatuen zerrenda"
 
 msgid "Add new metadata"
-msgstr "Gehitu metadatu berria"
+msgstr "Gehitu metadatu berriak"
 
 msgid "Key"
 msgstr "Gakoa"
@@ -100,7 +101,7 @@ msgstr "Balioa"
 
 #, php-format
 msgid "%s Add"
-msgstr "Gehitu %s"
+msgstr "%s Gehitu"
 
 msgid "Close this PDF and return to the home page"
 msgstr "Itxi PDFa eta itzuli hasierako orrira"
@@ -119,10 +120,10 @@ msgstr "Antolatu PDFa"
 
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s Antolatu PDFa"
 
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr "Elkartu, sailkatu, biratu, ezabatu, atera orriak"
+msgstr "Bateratu, sailkatu, biratu, ezabatu, erauzi orriak"
 
 msgid "Touch a page to select it"
 msgstr "Ukitu orria hautatzeko"
@@ -131,10 +132,10 @@ msgid "Close this PDF and return to home"
 msgstr "Itxi PDFa eta itzuli hasierara"
 
 msgid "PDF organization"
-msgstr "PDF antolaketa"
+msgstr "PDFaren antolaketa"
 
 msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "PDFa ordenagailuan gordeta dago zeuk bakarrik sinatu ahal izateko"
+msgstr "PDFa ordenagailuan gordeta dago zuk bakarrik sinatu ahal izateko"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -215,12 +216,11 @@ msgstr "Orri"
 msgid "%s Sign a PDF"
 msgstr "%s Sinatu PDFa"
 
-#, fuzzy
 msgid "Sign, initial, stamp, complete a document"
-msgstr "Sinadura, hasierakoa, zigilua, dokumentu bat osatu"
+msgstr "Sinatu, idatzi inizialak, zigilatu, osatu dokumentua"
 
 msgid "The PDF should not exceed"
-msgstr "PDFak ezin ditu izan"
+msgstr "PDFak ezin ditu gainditu"
 
 msgid "MB and"
 msgstr "MB eta"
@@ -232,13 +232,13 @@ msgid "How to sign?"
 msgstr "Nola sinatu?"
 
 msgid "By clicking directly on the document page"
-msgstr "Zuzenean klik eginez dokumentuko orrialdean"
+msgstr "Dokumentuko orrialdean zuzenean klik eginez"
 
 msgid "to insert the selected item in the right column"
 msgstr "hautatutako elementua eskuineko zutabean sartzeko"
 
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "sinadura, inizialak, testua, zigilua, etab..."
 
 msgid "Close this PDF and return to the homepage"
 msgstr "Itxi PDFa eta itzuli hasierako orrira"
@@ -247,10 +247,10 @@ msgid "PDF Signature"
 msgstr "PDFaren sinadura"
 
 msgid "This PDF is shared with others to be signed by multiple people"
-msgstr "PDF hau partekatua da pertsona batek baino gehiagok sinatzeko"
+msgstr "PDF hau partekatua da, pertsona batek baino gehiagok sinatzeko"
 
 msgid "This PDF is stored encrypted on the server."
-msgstr "PDFa zerbitzarian gordeta eta zifratuta dago."
+msgstr "PDFa enkriptatuta gordeko da zerbitzarian."
 
 msgid "Keep the selection active"
 msgstr "Mantendu hautaketa aktibo"
@@ -275,7 +275,7 @@ msgid "%s Text"
 msgstr "%s Testua"
 
 msgid "Strikethrough"
-msgstr "Marratu"
+msgstr "Zirrimarra(tu)"
 
 #, php-format
 msgid "%s Check box"
@@ -294,14 +294,14 @@ msgstr "Deskargatu sinatutako PDFa"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr ""
+msgstr "PDFa %s pertsonek sinatu duzue"
 
 #, php-format
 msgid "%s Download the PDF"
 msgstr "%s Deskargatu PDFa"
 
 msgid "Transmit my signature"
-msgstr ""
+msgstr "Transmititu nire sinadura"
 
 #, php-format
 msgid "%s Select a signature"
@@ -333,7 +333,7 @@ msgstr "Nire sinadura"
 
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr "%s Partekatu PDFa pertsona batek baino gehiago sinatzeko"
+msgstr "%s Partekatu PDFa pertsona batek baino gehiagok sinatzeko"
 
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
@@ -376,7 +376,7 @@ msgid "after the last signature."
 msgstr "azken sinadura eta gero."
 
 msgid "The PDF will be stored encrypted on the server"
-msgstr "PDFa zerbitzarian gordeko eta zifratuko da"
+msgstr "PDFa enkriptatuta gordeko da zerbitzarian"
 
 #, php-format
 msgid "%s Start sharing"
@@ -387,11 +387,12 @@ msgid "%s Sign this PDF with multiple people"
 msgstr "%s Sinatu PDFa jende gehiagorekin"
 
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr "Pertsona batek baino gehiagok sinatu dezakete PDF aldi berean."
+msgstr "Pertsona batek baino gehiagok sinatu dezake PDFa aldi berean."
 
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
-msgstr "Egin ahal izateko, partekatu orri honen esteka nahi duzun pertsonekin:"
+msgstr ""
+"Egin ahal izateko, partekatu orri honen esteka nahi duzun pertson(ar)ekin:"
 
 msgid "Sharing link"
 msgstr "Esteka partekatzen"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-30 18:44+0200\n"
-"PO-Revision-Date: 2024-08-18 22:09+0000\n"
+"PO-Revision-Date: 2024-08-20 03:09+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/signature-pdf/"
 "application/es/>\n"
@@ -166,138 +166,138 @@ msgstr "%s cancelar selección"
 
 #, php-format
 msgid "%s Download the full PDF"
-msgstr ""
+msgstr "%s Descargar el PDF completo"
 
 msgid "No"
-msgstr ""
+msgstr "No"
 
 msgid "page"
-msgstr ""
+msgstr "página"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #, php-format
 msgid "%s Turn"
-msgstr ""
+msgstr "%s Girar"
 
 msgid "Download the selection"
-msgstr ""
+msgstr "Descargar la selección"
 
 msgid "PDF documents"
-msgstr ""
+msgstr "Documentos PDF"
 
 msgid "Select this page"
-msgstr ""
+msgstr "Selecciona esta página"
 
 msgid "Delete this page"
-msgstr ""
+msgstr "Borrar esta página"
 
 msgid "Restore this page"
-msgstr ""
+msgstr "Restaurar esta página"
 
 msgid "Move this page"
-msgstr ""
+msgstr "Mover esta página"
 
 msgid "Move here"
-msgstr ""
+msgstr "Mover aquí"
 
 msgid "Turn this page"
-msgstr ""
+msgstr "Girar esta página"
 
 msgid "Download this page"
-msgstr ""
+msgstr "Descargar esta página"
 
 msgid "Page"
-msgstr ""
+msgstr "Página"
 
 #, php-format
 msgid "%s Sign a PDF"
-msgstr ""
+msgstr "%s Firmar un PDF"
 
 msgid "Sign, initial, stamp, complete a document"
-msgstr ""
+msgstr "Firmar, rubricar, sellar, cumplimentar un documento"
 
 msgid "The PDF should not exceed"
-msgstr ""
+msgstr "El PDF no debe sobrepasar"
 
 msgid "MB and"
-msgstr ""
+msgstr "MB y"
 
 msgid "pages"
-msgstr ""
+msgstr "páginas"
 
 msgid "How to sign?"
-msgstr ""
+msgstr "¿Cómo firmar?"
 
 msgid "By clicking directly on the document page"
-msgstr ""
+msgstr "Al hacer clic directamente en la página del documento"
 
 msgid "to insert the selected item in the right column"
-msgstr ""
+msgstr "para insertar el elemento seleccionado en la columna derecha"
 
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "firma, inicial, texto, sello, etc ..."
 
 msgid "Close this PDF and return to the homepage"
-msgstr ""
+msgstr "Cerrar este PDF y volver a la página de inicio"
 
 msgid "PDF Signature"
 msgstr ""
 
 msgid "This PDF is shared with others to be signed by multiple people"
-msgstr ""
+msgstr "Este PDF se comparte con otros para que lo firmen varias personas"
 
 msgid "This PDF is stored encrypted on the server."
-msgstr ""
+msgstr "Este PDF se almacena cifrado en el servidor."
 
 msgid "Keep the selection active"
-msgstr ""
+msgstr "Mantener activa la selección"
 
 #, php-format
 msgid "%s Signature"
-msgstr ""
+msgstr "%s Firma"
 
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 #, php-format
 msgid "%s Initial"
-msgstr ""
+msgstr "%s Iniciales"
 
 #, php-format
 msgid "%s Stamp"
-msgstr ""
+msgstr "%s Sello"
 
 #, php-format
 msgid "%s Text"
-msgstr ""
+msgstr "%s Texto"
 
 msgid "Strikethrough"
-msgstr ""
+msgstr "Tachar"
 
 #, php-format
 msgid "%s Check box"
-msgstr ""
+msgstr "%s Casilla de verificación"
 
 #, php-format
 msgid "%s Create an element"
-msgstr ""
+msgstr "%s Crear un elemento"
 
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr ""
+msgstr "%s Compartir para firmar %s con varias personas"
 
 msgid "Download the signed PDF"
-msgstr ""
+msgstr "Descargar el PDF firmado"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr ""
+msgstr "Eres %s por haber firmado este PDF"
 
 #, php-format
 msgid "%s Download the PDF"
-msgstr ""
+msgstr "%s Descargar el PDF"
 
 msgid "Transmit my signature"
 msgstr ""

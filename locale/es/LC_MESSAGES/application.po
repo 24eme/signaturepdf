@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-30 18:44+0200\n"
-"PO-Revision-Date: 2024-08-20 03:09+0000\n"
+"PO-Revision-Date: 2024-08-21 19:09+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/signature-pdf/"
 "application/es/>\n"
@@ -300,128 +300,136 @@ msgid "%s Download the PDF"
 msgstr "%s Descargar el PDF"
 
 msgid "Transmit my signature"
-msgstr ""
+msgstr "Enviar mi firma"
 
 #, php-format
 msgid "%s Select a signature"
-msgstr ""
+msgstr "%s Seleccionar una firma"
 
 msgid "Draw"
-msgstr ""
+msgstr "Dibujar"
 
 msgid "freehand"
-msgstr ""
+msgstr "a mano alzada"
 
 msgid "Enter"
-msgstr ""
+msgstr "Ingresar"
 
 msgid "text"
-msgstr ""
+msgstr "texto"
 
 msgid "Import"
-msgstr ""
+msgstr "Importar"
 
 msgid "an image"
-msgstr ""
+msgstr "una imagen"
 
 msgid "Clear signature"
-msgstr ""
+msgstr "Elimina la firma"
 
 msgid "My signature"
-msgstr ""
+msgstr "Mi firma"
 
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr ""
+msgstr "%s Compartir este PDF para firmarlo con varias personas"
 
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
+"Al activar el uso compartido del PDF, podrás proporcionar un enlace a las "
+"personas que desees para que puedan firmar este PDF."
 
 #, php-format
 msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s Para compartir es necesario que el PDF se transfiera y se almacene en el "
+"servidor para que futuros firmantes puedan acceder a él."
 
 #, php-format
 msgid "%s The PDF will be kept"
-msgstr ""
+msgstr "%s El PDF se guardará"
 
 msgid "for one year"
-msgstr ""
+msgstr "durante un año"
 
 msgid "for six months"
-msgstr ""
+msgstr "durante seis meses"
 
 msgid "for one month"
-msgstr ""
+msgstr "durante un mes"
 
 msgid "for one week"
-msgstr ""
+msgstr "durante una semana"
 
 msgid "for one day"
-msgstr ""
+msgstr "durante un día"
 
 msgid "for one hour"
-msgstr ""
+msgstr "durante una hora"
 
 msgid "after the last signature."
-msgstr ""
+msgstr "después de la última firma."
 
 msgid "The PDF will be stored encrypted on the server"
-msgstr ""
+msgstr "El PDF se almacenará cifrado en el servidor"
 
 #, php-format
 msgid "%s Start sharing"
-msgstr ""
+msgstr "%s Empezar a compartir"
 
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr ""
+msgstr "%s Firmar este PDF con varias personas"
 
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr ""
+msgstr "Varias personas pueden firmar este PDF simultáneamente."
 
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
+"Para ello, solo tienes que compartir el enlace a esta página con las "
+"personas que desees:"
 
 msgid "Sharing link"
-msgstr ""
+msgstr "Compartiendo el enlace"
 
 msgid "Copied !"
-msgstr ""
+msgstr "¡ Copiado !"
 
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr ""
+"Cada uno de los firmantes puede descargar la última versión del PDF firmado "
+"en cualquier momento."
 
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 msgid "Signed PDF"
-msgstr ""
+msgstr "PDF firmado"
 
 msgid "Your signature has been successfully recorded!"
-msgstr ""
+msgstr "¡Tu firma se ha registrado correctamente!"
 
 msgid "Text to modify"
-msgstr ""
+msgstr "Texto a modificar"
 
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 msgid "Sign"
-msgstr ""
+msgstr "Firmar"
 
 msgid "Organize"
-msgstr ""
+msgstr "Organizar"
 
 msgid "Metadata"
-msgstr ""
+msgstr "Metadatos"

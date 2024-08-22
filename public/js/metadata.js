@@ -179,6 +179,15 @@ const save = async function () {
     });
 
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
+
+    if(window.location.hash && window.location.hash.match(/^\#local/)) {
+        let apiUrl = window.location.origin + "/api/file/save?path=" + window.location.hash.replace(/^\#local:/, '');
+        fetch(apiUrl, {
+          method: 'PUT',
+          body: newPDF,
+        });
+        return ;
+    }
     DL(newPDF, filename)
 }
 
@@ -220,7 +229,7 @@ async function getPDFBlobFromCache(cacheUrl) {
     return pdfBlob;
 }
 
-async function uploadFromUrl(url) {
+async function uploadFromUrl(url, local = null) {
     history.replaceState({}, '', '/metadata');
     var response = await fetch(url);
     if(response.status != 200) {
@@ -232,8 +241,11 @@ async function uploadFromUrl(url) {
         return;
     }
     let dataTransfer = new DataTransfer();
-    let filename = url.replace(/^.*\//, '');
-    dataTransfer.items.add(new File([pdfBlob], filename, {
+    let file_id = url.replace(/^.*\//, '');
+    if (local) {
+        file_id = local;
+    }
+    dataTransfer.items.add(new File([pdfBlob], file_id, {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
@@ -289,6 +301,10 @@ var pageMetadata = async function(url) {
         let hashUrl = window.location.hash.replace(/^\#/, '');
         pageUpload();
         uploadFromUrl(hashUrl);
+    } else if(window.location.hash && window.location.hash.match(/^\#local/)) {
+        let hashUrl = window.location.origin + "/api/file/get?path=" + window.location.hash.replace(/^\#local:/, '');
+        pageUpload();
+        uploadFromUrl(hashUrl, window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash) {
         pageMetadata('/pdf/'+window.location.hash.replace(/^\#/, ''));
     } else {

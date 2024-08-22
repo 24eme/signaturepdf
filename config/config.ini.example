@@ -26,3 +26,6 @@ PDF_STORAGE_PATH=/path/to/folder
 
 ; Authorize these IP to use debug mode (separate IP adresses with space ' ')
 ;ADMIN_AUTHORIZED_IP=
+
+; Enable the edition of local server pdf metadata
+; PDF_LOCAL_PATH=/path/to/pdf/metadata/edition

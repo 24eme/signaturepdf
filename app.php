@@ -443,6 +443,43 @@ $f3->route ('POST /compress',
     }
 );
 
+$f3->route('GET /api/file/get', function($f3) {
+    $localRootFolder = $f3->get('PDF_LOCAL_PATH');
+    if (!$localRootFolder) {
+        $f3->error(403);
+    }
+    $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
+    $pdf_filename = basename($pdf_path);
+    if (!preg_match('/.pdf$/', $pdf_path)) {
+        $f3->error(403);
+    }
+    if (!file_exists($pdf_path)) {
+        $f3->error(403);
+    }
+    header('Content-type: application/pdf');
+    header("Content-Disposition: attachment; filename=$pdf_filename");
+    echo file_get_contents($pdf_path);
+});
+
+$f3->route('PUT /api/file/save', function($f3) {
+    $localRootFolder = $f3->get('PDF_LOCAL_PATH');
+    if (!$localRootFolder) {
+        $f3->error(403);
+    }
+    $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
+    $pdf_filename = basename($pdf_path);
+    if (!preg_match('/.pdf$/', $pdf_path)) {
+        $f3->error(403);
+    }
+    if (!file_exists($pdf_path)) {
+        $f3->error(403);
+    }
+    file_put_contents($pdf_path, $f3->get('BODY'));
+
+});
+
+
+
 function getCommit() {
     if(!file_exists(__DIR__.'/.git/HEAD')) {
 

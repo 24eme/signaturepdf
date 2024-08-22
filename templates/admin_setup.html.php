@@ -20,9 +20,9 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <th class="align-top">PHP</th>
-                        <td class="text-muted"><?php echo 'PHP version ' . phpversion(); ?></td>
-                        <td>
+                        <th class="align-top col-3">PHP</th>
+                        <td class="text-muted col-3"><?php echo 'PHP version ' . phpversion(); ?></td>
+                        <td class="col-6">
                             <?php if (version_compare(phpversion(), "5.6.0", ">=")): ?>
                                 <i class="bi bi-check-square text-success" title="<?php echo _("Minimal version required : 5.6.0"); ?>"></i>
                             <?php else: ?>
@@ -75,7 +75,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="align-top">potrace</th>
+                        <th class="align-top">potrace (bitmap to svg)</th>
                         <?php $potrace = implode(Image2SVG::ispotraceInstalled()); ?>
                         <td class="text-muted"><?php if ($potrace) { echo substr($potrace, 0, 12); } ?></td>
                         <td>
@@ -144,12 +144,43 @@
                             <?php endif; ?>
                         </td>
                     </tr>
-
-
-
                 </tbody>
             </table>
-            <h5 class="py-2"><?php echo _("List of authorized IP : "); ?></h4>
+
+            <h2 class="my-4"><?php echo _("File Configuration"); ?></h2>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th class="align-top col-3">PDF_STORAGE_PATH</th>
+                        <?php $storage_path_exists = $PDF_STORAGE_PATH && is_dir($PDF_STORAGE_PATH);?>
+                        <td class="text-muted col-3"><?php if ($PDF_STORAGE_PATH) { echo $PDF_STORAGE_PATH; } ?></td>
+                        <td class="col-6">
+                            <?php if ($storage_path_exists): ?>
+                                <i class="bi bi-check-square text-success"></i>
+                            <?php else: ?>
+                                <span class="text-danger">
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("the directory PDF_STORAGE_PATH should exist and be writeable"); ?>)
+                                </span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-top">UPLOADS</th>
+                        <?php $uploads_path_exists = $UPLOADS && is_dir($UPLOADS);?>
+                        <td class="text-muted"><?php if ($UPLOADS) { echo $UPLOADS; } ?></td>
+                        <td>
+                            <?php if ($uploads_path_exists): ?>
+                                <i class="bi bi-check-square text-success"></i>
+                            <?php else: ?>
+                                <span class="text-danger">
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("the directory UPLOADS should exist and be writeable"); ?>)
+                                </span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5 class="py-2"><?php echo _("List of authorized IP : "); ?></h5>
             <p>
                 <?php foreach ($ADMIN_AUTHORIZED_IP as $ip): ?>
                     <?php echo $ip; ?>

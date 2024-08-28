@@ -4,8 +4,9 @@
 
 VENDOR=24eme
 PROJECT=signaturepdf
-VERSION=$(shell cat VERSION)
-RELEASE=$(shell cat RELEASE)
+MAINTAINER=Équipe 24ème <equipe@24eme.fr>
+VERSION=$(shell git describe --abbrev=0)
+RELEASE=$(shell git describe | cut -d- -f2)
 PKGNAME=php-${PROJECT}
 DATADIR=usr/share
 LIBPATH=$(DATADIR)/$(PKGNAME)/
@@ -61,14 +62,16 @@ update_trad:
 # Build a DEB package for Debian-like Linux distributions
 .PHONY: deb
 deb:
-	rm -rf $(PATHDEBPKG)
+	rm -rf $(TARGETDIR)
 	git clone . $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(LIBPATH)
-	rm -rf $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(LIBPATH)/.git
+	rm -rf $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(LIBPATH).git
+	rm -rf $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(LIBPATH).debian
 	tar -zcvf $(PATHDEBPKG)/$(PKGNAME)_$(VERSION).orig.tar.gz -C $(PATHDEBPKG)/ $(PKGNAME)-$(VERSION)
-	cp -rf ./.debian $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian
+	rsync -av --exclude=*~ ./.debian/ $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian
 	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#DATE#~/`date -R`/" {} \;
 	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#VENDOR#~/$(VENDOR)/" {} \;
 	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#PROJECT#~/$(PROJECT)/" {} \;
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#MAINTAINER#~/$(MAINTAINER)/" {} \;
 	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#PKGNAME#~/$(PKGNAME)/" {} \;
 	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#VERSION#~/$(VERSION)/" {} \;
 	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#RELEASE#~/$(RELEASE)/" {} \;

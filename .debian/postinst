@@ -4,15 +4,15 @@
 set -e
 
 # Droits sur les fichiers
-chgrp -R www-data /usr/share/signaturepdf/data
-chgrp -R www-data /usr/share/signaturepdf/pdf
+chgrp -R www-data /~#LIBPATH#~data
+chgrp -R www-data /~#LIBPATH#~pdf
 
-chmod -R g+rwx /usr/share/signaturepdf/data
-chmod -R g+rwx /usr/share/signaturepdf/pdf
+chmod -R g+rwx /~#LIBPATH#~data
+chmod -R g+rwx /~#LIBPATH#~pdf
 
 # Activation de la conf apache2
 mkdir -p /etc/apache2/conf-available
-ln -sf ../../signaturepdf/apache.conf /etc/apache2/conf-available/signaturepdf.conf
+ln -sf ../../~#PKGNAME#~/apache.conf /etc/apache2/conf-available/signaturepdf.conf
 
 a2enconf signaturepdf
 systemctl reload apache2

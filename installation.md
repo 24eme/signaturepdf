@@ -212,3 +212,13 @@ cat <<EOF >>/var/www/signaturepdf/config/config.ini
 PDF_STORAGE_PATH=/var/www/signaturepdf/tmp
 EOF
 ```
+
+## [Package](#package)
+
+You can also build a Debian (or Debian-like) package (`.deb`) by issuing the following command :
+```
+make deb
+```
+
+Make sure you have the `devscripts` package installed. The file will be in the newly created `target` directory.  
+You can also customize some parameters in the [Makefile](./Makefile)

@@ -2,6 +2,20 @@
 
 .DEFAULT_GOAL := all
 
+VENDOR=24eme
+PROJECT=signaturepdf
+MAINTAINER=Équipe 24ème <equipe@24eme.fr>
+VERSION=$(shell git describe --abbrev=0)
+RELEASE=$(shell git describe | cut -d- -f2)
+PKGNAME=php-${PROJECT}
+DATADIR=usr/share
+LIBPATH=$(DATADIR)/$(PKGNAME)/
+CONFIGPATH=etc/$(PKGNAME)/
+
+CURRENTDIR=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+TARGETDIR=$(CURRENTDIR)target
+PATHDEBPKG=$(TARGETDIR)/DEB
+
 all: update_trad
 
 node_modules/jest/bin/jest.js:
@@ -44,3 +58,30 @@ update_trad:
 		git add "$$lang/LC_MESSAGES/application_$$checksum.mo"; \
 		git add "locale/application_$$checksum.pot"; \
 	done
+
+# Build a DEB package for Debian-like Linux distributions
+.PHONY: deb
+deb:
+	rm -rf $(TARGETDIR)
+	git clone . $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(LIBPATH)
+	rm -rf $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(LIBPATH).git
+	rm -rf $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(LIBPATH).debian
+	tar -zcvf $(PATHDEBPKG)/$(PKGNAME)_$(VERSION).orig.tar.gz -C $(PATHDEBPKG)/ $(PKGNAME)-$(VERSION)
+	rsync -av --exclude=*~ ./.debian/ $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian
+	mkdir -p $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(CONFIGPATH)
+	mv $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/apache.conf $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/$(CONFIGPATH)
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#DATE#~/`date -R`/" {} \;
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#VENDOR#~/$(VENDOR)/" {} \;
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#PROJECT#~/$(PROJECT)/" {} \;
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#MAINTAINER#~/$(MAINTAINER)/" {} \;
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/ -type f -exec sed -i "s/~#PKGNAME#~/$(PKGNAME)/" {} \;
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#VERSION#~/$(VERSION)/" {} \;
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/ -type f -exec sed -i "s/~#RELEASE#~/$(RELEASE)/" {} \;
+	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/ -type f -exec sed -i "s|~#LIBPATH#~|$(LIBPATH)|" {} \;
+	echo $(LIBPATH) > $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/$(PKGNAME).dirs
+	echo "$(LIBPATH)* $(LIBPATH)" > $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/install
+ifneq ($(strip $(CONFIGPATH)),)
+	echo $(CONFIGPATH) >> $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/$(PKGNAME).dirs
+	echo "$(CONFIGPATH)* $(CONFIGPATH)" >> $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/install
+endif
+	cd $(PATHDEBPKG)/$(PKGNAME)-$(VERSION) && debuild -us -uc

@@ -427,19 +427,24 @@ $f3->route ('POST /compress',
 
         $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dQUIET -o %s %s", $compressionType, $outputFileName, $filePath));
 
-        if ($returnCode !== false) {
-            if (filesize($filePath) <= filesize($outputFileName)) {
-                $error = "pdfalreadyoptimized";
-                header('location: /compress?err=' . $error);
-            } else {
-                header('Content-Type: application/pdf');
-                header("Content-Disposition: attachment; filename=$outputFileName");
-                readfile($outputFileName);
-                unlink($outputFileName);
-            }
-        } else {
+        if ($returnCode === false) {
             echo "PDF compression failed.";
+            unlink($outputFileName);
+            return;
         }
+
+        if (filesize($filePath) <= filesize($outputFileName)) {
+            $error = "pdfalreadyoptimized";
+            unlink($outputFileName);
+            header('location: /compress?err=' . $error);
+            return;
+        }
+
+        header('Content-Type: application/pdf');
+        header("Content-Disposition: attachment; filename=$outputFileName");
+        readfile($outputFileName);
+
+        unlink($outputFileName);
     }
 );
 

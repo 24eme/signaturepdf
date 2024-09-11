@@ -429,22 +429,17 @@ $f3->route ('POST /compress',
 
         if ($returnCode === false) {
             echo "PDF compression failed.";
-            unlink($outputFileName);
-            return;
-        }
-
-        if (filesize($filePath) <= filesize($outputFileName)) {
+        } elseif (filesize($filePath) <= filesize($outputFileName)) {
             $error = "pdfalreadyoptimized";
-            unlink($outputFileName);
             header('location: /compress?err=' . $error);
-            return;
+        } else {
+            header('Content-Type: application/pdf');
+            header("Content-Disposition: attachment; filename=$outputFileName");
+            readfile($outputFileName);
         }
-
-        header('Content-Type: application/pdf');
-        header("Content-Disposition: attachment; filename=$outputFileName");
-        readfile($outputFileName);
 
         unlink($outputFileName);
+        unlink($filePath);
     }
 );
 

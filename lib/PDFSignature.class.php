@@ -82,11 +82,11 @@ class PDFSignature
     }
 
     protected function isCompileLock() {
-        if(file_exists(touch($this->lockFile)) && filemtime($this->lockFile) > time() + 30) {
+        if(file_exists($this->lockFile) && filemtime($this->lockFile) > time() + 30) {
             unlink($this->lockFile);
         }
 
-        return file_exists(touch($this->lockFile));
+        return file_exists($this->lockFile);
     }
 
     protected function lockCompile() {

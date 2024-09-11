@@ -103,8 +103,8 @@ class PDFSignature
         }
 
         if($this->isCompileLock()) {
-            sleep(5);
-            $this->compile();
+            sleep(1);
+            return $this->compile();
         }
 
         $this->lockCompile();

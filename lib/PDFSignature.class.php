@@ -194,7 +194,11 @@ class PDFSignature
     public static function addSvgToPDF($pdfOrigin, $pdfSvg, $pdfOutput, $digitalSignature = true) {
         shell_exec(sprintf("pdftk %s multistamp %s output %s", $pdfOrigin, $pdfSvg, $pdfOutput));
         if (NSSCryptography::getInstance()->isEnabled() && $digitalSignature) {
-            NSSCryptography::getInstance()->addSignature($pdfOutput, 'Signed with SignaturePDF');
+            try {
+                NSSCryptography::getInstance()->addSignature($pdfOutput, 'Signed with SignaturePDF');
+            } catch(Exception $e) {
+                error_log($e->getMessage());
+            }
         }
     }
 

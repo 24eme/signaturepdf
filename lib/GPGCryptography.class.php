@@ -57,21 +57,6 @@ class GPGCryptography
         return $decryptTmpFile;
     }
 
-    public function decrypt() {
-        if (!$this->isEncrypted()) {
-            return $this->pathHash;
-        }
-        if (!$this->symmetricKey) {
-            return false;
-        }
-        $decryptFolder = sys_get_temp_dir()."/".uniqid('pdfsignature.decrypted.'.getmypid(), true);
-        mkdir($decryptFolder);
-        foreach ($this->getFiles(true) as $file) {
-            $this->runDecryptFile($file, $decryptFolder."/".str_replace(".gpg", "", basename($file)));
-        }
-        return $decryptFolder;
-    }
-
     public function runDecryptFile($file, $outputFile) {
         putenv('HOME='.sys_get_temp_dir());
         return shell_exec("gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file > /dev/null");

@@ -45,13 +45,17 @@ class PDFSignature
 
     public function getDecryptFile($file) {
         if(!$this->isEncrypted()) {
+
+            return $file;
+        }
+        $file = preg_replace("/\.gpg$/", "", $file);
+        if(file_exists($file)) {
             return $file;
         }
 
         if(array_key_exists($file, $this->cacheDecryptFiles)) {
             return $this->cacheDecryptFiles[$file];
         }
-
         $decryptFile = $this->gpg->decryptFile($file);
         $this->toClean[] = $decryptFile;
         $this->cacheDecryptFiles[$file] = $decryptFile;
@@ -103,35 +107,22 @@ class PDFSignature
         }
 
         if($this->isCompileLock()) {
-            usleep(10000);
             return $this->compile();
         }
 
         $this->lockCompile();
 
-        $pathHashDecrypted = $this->gpg->decrypt();
-
-        if ($pathHashDecrypted == false) {
-            throw new Exception("PDF file could not be decrypted. Cookie encryption key might be missing.");
-        }
-        if ($this->pathHash != $pathHashDecrypted && $this->isEncrypted()) {
-            $this->toClean[] = $pathHashDecrypted;
-        }
-
-        $layers = $this->getLayers($pathHashDecrypted);
-        $currentSignedFile = $pathHashDecrypted.'/original.pdf';
+        $layers = $this->getLayers($this->pathHash);
+        $currentSignedFile = $this->pathHash.'/original.pdf';
         $signedFileToCopy = [];
         foreach($layers as $layerFile) {
             $signedFile = str_replace('.svg.pdf', '.sign.pdf', $layerFile);
             if(!file_exists($signedFile)) {
-                self::addSvgToPDF($currentSignedFile, $layerFile, $signedFile, false);
-                if ($this->pathHash != $pathHashDecrypted && $this->isEncrypted()) {
-                    copy($signedFile, str_replace($pathHashDecrypted ,$this->pathHash, $signedFile));
-                }
+                $signedFile = preg_replace("/\.gpg$/", '', $signedFile);
+                self::addSvgToPDF($this->getDecryptFile($currentSignedFile), $this->getDecryptFile($layerFile), $signedFile, false);
             }
             $currentSignedFile = $signedFile;
         }
-
         copy($currentSignedFile, $this->pathHash.'/final.pdf');
 
         if($this->isEncrypted()) {
@@ -158,6 +149,9 @@ class PDFSignature
     public function getLayers($pathHash = null) {
         if(is_null($pathHash)) {
             $pathHash = $this->pathHash;
+        }
+        if(!file_exists($pathHash)) {
+            return [];
         }
         $files = scandir($pathHash);
         $layers = [];

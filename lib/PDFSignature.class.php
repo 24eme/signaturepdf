@@ -123,7 +123,7 @@ class PDFSignature
             }
             $currentSignedFile = $signedFile;
         }
-        copy($currentSignedFile, $this->pathHash.'/final.pdf');
+        copy($this->getDecryptFile($currentSignedFile), $this->pathHash.'/final.pdf');
 
         if($this->isEncrypted()) {
             $this->gpg->encrypt();

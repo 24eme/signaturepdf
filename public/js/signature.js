@@ -21,9 +21,6 @@ var hasModifications = false;
 var currentTextScale = 1;
 
 var loadPDF = async function(pdfBlob, filename) {
-    const pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
-
     let url = await URL.createObjectURL(pdfBlob);
 
     let text_document_name = document.querySelector('#text_document_name');

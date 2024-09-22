@@ -52,8 +52,7 @@ var nbPagePerLine = 5;
 if(is_mobile()) {
     nbPagePerLine = 2;
 }
-var pdfjsLib = window['pdfjs-dist/build/pdf'];
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
+
 var nbPDF = 0;
 var pages = [];
 var pdfRenderTasks = [];

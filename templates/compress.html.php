@@ -56,8 +56,6 @@
 
 <span id="is_mobile" class="d-md-none"></span>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.1.3"></script>
-<script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
-<script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?1.17.1"></script>
 <script>
     var defaultFields = <?php echo json_encode(isset($METADATA_DEFAULT_FIELDS) ? $METADATA_DEFAULT_FIELDS : array()); ?>;
 </script>

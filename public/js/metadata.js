@@ -16,8 +16,6 @@ var responsiveDisplay = function() {
     menu.classList.remove('d-none');
 };
 
-var pdfjsLib = window['pdfjs-dist/build/pdf'];
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 var nbPDF = 0;
 var pages = [];
 var pdfRenderTasks = [];

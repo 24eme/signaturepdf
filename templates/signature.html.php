@@ -263,7 +263,11 @@
     <span id="is_mobile" class="d-md-none"></span>
 
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.1.3"></script>
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.js?legacy"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.mjs?4.6.82-legacy" type="module"></script>
+    <script type="module">
+        var { pdfjsLib } = globalThis;
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.worker.mjs?4.6.82-legacy';
+    </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?4.6.0"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/opentype.min.js?1.3.3"></script>

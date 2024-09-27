@@ -980,15 +980,15 @@ var createSignaturePad = function() {
     signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         penColor: 'rgb(0, 0, 0)',
         minWidth: 1,
-        maxWidth: 2,
-        onEnd: function() {
-            const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
-                type: 'image/png'
-            });
-            let data = new FormData();
-            data.append('file', file);
-            uploadSVG(data);
-        }
+        maxWidth: 2
+    });
+    signaturePad.addEventListener('endStroke', function(){
+        const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
+            type: 'image/png'
+        });
+        let data = new FormData();
+        data.append('file', file);
+        uploadSVG(data);
     });
 };
 

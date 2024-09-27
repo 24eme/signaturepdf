@@ -270,7 +270,7 @@
     </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?5.4.0"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?5.0.3"></script>
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/opentype.min.js?1.3.3"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/opentype.min.js?1.3.4"></script>
     <script>
     var maxSize = <?php echo $maxSize ?>;
     var maxPage = <?php echo $maxPage ?>;

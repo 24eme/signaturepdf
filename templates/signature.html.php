@@ -268,7 +268,7 @@
         var { pdfjsLib } = globalThis;
         pdfjsLib.GlobalWorkerOptions.workerSrc = '<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.worker.mjs?4.6.82-legacy';
     </script>
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?4.6.0"></script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?5.4.0"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?3.0.0-beta.3"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/opentype.min.js?1.3.3"></script>
     <script>

@@ -16,6 +16,15 @@ var responsiveDisplay = function() {
     menu.classList.remove('d-none');
 };
 
+var canUseCache = async function() {
+    try {
+        cache = await caches.open('pdf');
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
 var nbPDF = 0;
 var pages = [];
 var pdfRenderTasks = [];
@@ -23,7 +32,7 @@ let filename = null
 let pdffile = null
 let deletedMetadata = [];
 
-var loadPDF = async function(pdfBlob, filename, pdfIndex) {
+var loadPDF = async function(pdfBlob, filename) {
     let url = await URL.createObjectURL(pdfBlob);
 
     pdffile = pdfBlob
@@ -32,7 +41,6 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     document.querySelector('#text_document_name span').innerText = filename;
     await loadingTask.promise.then(function(pdf) {
         pdf.getMetadata().then(function(metadata) {
-            console.log(metadata);
             for(fieldKey in defaultFields) {
                 addMetadata(fieldKey, null, defaultFields[fieldKey]['type'], false);
             }
@@ -214,20 +222,45 @@ var createEventsListener = function() {
     })
 }
 
-async function getPDFBlobFromCache(cacheUrl) {
+async function loadFileFromCache(cacheUrl) {
+    if(!await canUseCache()) {
+        document.location = '/metadata';
+        return false;
+    }
     const cache = await caches.open('pdf');
     let responsePdf = await cache.match(cacheUrl);
 
     if(!responsePdf) {
-        return null;
+        document.location = '/metadata';
+        return false;
     }
+
+    let filename = cacheUrl.replace('/pdf/', '');
 
     let pdfBlob = await responsePdf.blob();
 
-    return pdfBlob;
+    let dataTransfer = new DataTransfer();
+    dataTransfer.items.add(new File([pdfBlob], filename, {
+        type: 'application/pdf'
+    }));
+    document.getElementById('input_pdf_upload').files = dataTransfer.files;
+    document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
+
+    return true;
 }
 
-async function uploadFromUrl(url, local = null) {
+async function storeFileInCache() {
+    if(!await canUseCache()) {
+        return;
+    }
+    let cache = await caches.open('pdf');
+    let filename = document.getElementById('input_pdf_upload').files[0].name;
+    let response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
+    await cache.put('/pdf/'+filename, response);
+    history.pushState({}, '', '/metadata#'+filename);
+}
+
+async function loadFileFromUrl(url, local = null) {
     history.replaceState({}, '', '/metadata');
     var response = await fetch(url);
     if(response.status != 200) {
@@ -256,26 +289,14 @@ var pageUpload = async function() {
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-metadata').classList.add('d-none');
     document.getElementById('input_pdf_upload').focus();
-    let cache;
-    try {
-        cache = await caches.open('pdf');
-    } catch (e) {
-        console.error(e)
-        alert("Erreur d'accès au cache. Cette application ne fonctionne pas en mode de navigation privée");
-        return;
-    }
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-        let filename = document.getElementById('input_pdf_upload').files[0].name;
-        let response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
-        let urlPdf = '/pdf/'+filename;
-        await cache.put(urlPdf, response);
-        history.pushState({}, '', '/metadata#'+filename);
-        pageMetadata(urlPdf)
+        storeFileInCache();
+        pageMetadata();
     });
 }
 
-var pageMetadata = async function(url) {
-    filename = url.replace('/pdf/', '');
+var pageMetadata = async function() {
+    filename = document.getElementById('input_pdf_upload').files[0].name;
     document.title = filename + ' - ' + document.title;
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
@@ -283,30 +304,19 @@ var pageMetadata = async function(url) {
     menu = document.getElementById('sidebarTools');
     menuOffcanvas = new bootstrap.Offcanvas(menu);
     responsiveDisplay();
-
-    let pdfBlob = await getPDFBlobFromCache(url);
-    if(!pdfBlob) {
-        document.location = '/metadata';
-        return;
-    }
-
     createEventsListener();
-    loadPDF(pdfBlob, filename, nbPDF);
+    loadPDF(document.getElementById('input_pdf_upload').files[0], filename);
 };
 
 (function () {
+    pageUpload();
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
-        let hashUrl = window.location.hash.replace(/^\#/, '');
-        pageUpload();
-        uploadFromUrl(hashUrl);
+        loadFileFromUrl(window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash && window.location.hash.match(/^\#local/)) {
         let hashUrl = window.location.origin + "/api/file/get?path=" + window.location.hash.replace(/^\#local:/, '');
-        pageUpload();
-        uploadFromUrl(hashUrl, window.location.hash.replace(/^\#/, ''));
+        loadFileFromUrl(hashUrl, window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash) {
-        pageMetadata('/pdf/'+window.location.hash.replace(/^\#/, ''));
-    } else {
-        pageUpload();
+        loadFileFromCache('/pdf/'+window.location.hash.replace(/^\#/, ''));
     }
     window.addEventListener('hashchange', function() {
         window.location.reload();

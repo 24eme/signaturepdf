@@ -1,28 +1,30 @@
-var canvasEditions = [];
-var fontCaveat = null;
-var copiedObject = null;
-var forceAddLock = true;
-var addLock = true;
-var activeCanvas = null;
-var activeCanvasPointer = null;
-var pdfRenderTasks = [];
-var pdfPages = [];
-var svgCollections = [];
-var resizeTimeout;
-var pdfHistory = {};
-var currentScale = 1.5;
-var windowWidth = window.innerWidth;
-var menu = null;
-var menuOffcanvas = null;
-var currentCursor = null;
-var signaturePad = null;
-var nblayers = null;
-var hasModifications = false;
-var currentTextScale = 1;
+let canvasEditions = [];
+let fontCaveat = null;
+let copiedObject = null;
+let forceAddLock = true;
+let addLock = true;
+let activeCanvas = null;
+let activeCanvasPointer = null;
+let pdfRenderTasks = [];
+let pdfPages = [];
+let svgCollections = [];
+let resizeTimeout;
+let pdfHistory = {};
+let currentScale = 1.5;
+let windowWidth = window.innerWidth;
+let menu = null;
+let menuOffcanvas = null;
+let currentCursor = null;
+let signaturePad = null;
+let nblayers = null;
+let hasModifications = false;
+let currentTextScale = 1;
 
-var loadPDF = async function(pdfBlob, filename) {
+async function loadPDF(pdfBlob) {
+    let filename = pdfBlob.name;
     let url = await URL.createObjectURL(pdfBlob);
 
+    document.title = filename + ' - ' + document.title;
     let text_document_name = document.querySelector('#text_document_name');
     text_document_name.querySelector('span').innerText = filename;
     text_document_name.setAttribute('title', filename);
@@ -163,7 +165,7 @@ var loadPDF = async function(pdfBlob, filename) {
     });
 };
 
-var reloadPDF = async function(url) {
+async function reloadPDF(url) {
     const pdfjsLib = window['pdfjs-dist/build/pdf'];
     pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
 
@@ -180,11 +182,7 @@ var reloadPDF = async function(url) {
     });
 }
 
-var is_mobile = function() {
-    return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
-};
-
-var responsiveDisplay = function() {
+function responsiveDisplay() {
     if(is_mobile()) {
         document.getElementById('page-signature').classList.remove('decalage-pdf-div');
         menu.classList.remove('show');
@@ -199,11 +197,11 @@ var responsiveDisplay = function() {
     menu.classList.remove('d-none');
 };
 
-var storeCollections = function () {
+function storeCollections() {
     localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
 };
 
-var getSvgItem = function(svg) {
+function getSvgItem(svg) {
     for (index in svgCollections) {
         let svgItem = svgCollections[index];
         if(svgItem.svg == svg) {
@@ -215,7 +213,7 @@ var getSvgItem = function(svg) {
     return null;
 };
 
-var svgClick = function(label, event) {
+function svgClick(label, event) {
     if(event.detail == 1) {
         label.dataset.lock = parseInt(addLock*1);
     }
@@ -236,19 +234,19 @@ var svgClick = function(label, event) {
     event.preventDefault();
 };
 
-var svgDblClick = function(label, event) {
+function svgDblClick(label, event) {
     if(parseInt(label.dataset.lock*1) == 1) {
         return;
     }
     stateAddLock(true);
 };
 
-var svgDragStart = function(label, event) {
+function svgDragStart(label, event) {
     document.getElementById(label.htmlFor).checked = true;
     document.getElementById(label.htmlFor).dispatchEvent(new Event("change"));
 };
 
-var svgChange = function(input, event) {
+function svgChange(input, event) {
     if(input.checked) {
         document.getElementById('btn_svn_select').classList.add('d-none');
         document.getElementById('svg_object_actions').classList.add('d-none');
@@ -293,7 +291,7 @@ var svgChange = function(input, event) {
     }
 };
 
-var getHtmlSvg = function(svg, i) {
+function getHtmlSvg(svg, i) {
     let inputRadio = document.createElement('input');
     inputRadio.type = "radio";
     inputRadio.classList.add("btn-check");
@@ -351,7 +349,7 @@ var getHtmlSvg = function(svg, i) {
     return svgContainer;
 };
 
-var stateAddLock = function(state) {
+function stateAddLock(state) {
     if(forceAddLock) {
         state = true;
     }
@@ -376,7 +374,7 @@ var stateAddLock = function(state) {
     checkbox.checked = false;
 };
 
-var displaysSVG = function() {
+function displaysSVG() {
     document.getElementById('svg_list').innerHTML = "";
     document.getElementById('svg_list_signature').innerHTML = "";
     document.getElementById('svg_list_initials').innerHTML = "";
@@ -411,44 +409,7 @@ var displaysSVG = function() {
     });
 };
 
-
-function dataURLtoBlob(dataurl) {
-    let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new Blob([u8arr], {type:mime});
-};
-
-function svgToDataUrl(svg) {
-
-    return "data:image/svg+xml;base64,"+btoa(svg);
-};
-
-function trimSvgWhitespace(svgContent) {
-    if(!svgContent) {
-
-        return null;
-    }
-    let svgContainer = document.createElement("div")
-    svgContainer.classList.add('invisible');
-    svgContainer.classList.add('position-absolute');
-    svgContainer.classList.add('top-0');
-    svgContainer.classList.add('start-0');
-    svgContainer.style = "z-index: -1;";
-    svgContainer.innerHTML = svgContent;
-    document.body.appendChild(svgContainer);
-    let svg = svgContainer.querySelector('svg');
-    let box = svg.getBBox();
-    svg.setAttribute("viewBox", [box.x, box.y, box.width, box.height].join(" "));
-    svgContent = svgContainer.innerHTML;
-    document.body.removeChild(svgContainer)
-
-    return svgContent = svgContainer.innerHTML;
-};
-
-var uploadSVG = function(formData) {
+function uploadSVG(formData) {
     document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
     document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
     document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
@@ -468,7 +429,7 @@ var uploadSVG = function(formData) {
     xhr.send( formData );
 };
 
-var deleteActiveObject = function() {
+function deleteActiveObject() {
     canvasEditions.forEach(function(canvasEdition, index) {
         canvasEdition.getActiveObjects().forEach(function(activeObject) {
             canvasEdition.remove(activeObject);
@@ -476,7 +437,7 @@ var deleteActiveObject = function() {
     })
 };
 
-var addObjectInCanvas = function(canvas, item) {
+function addObjectInCanvas(canvas, item) {
     item.on('selected', function(event) {
         if(!is_mobile()) {
             return;
@@ -501,7 +462,7 @@ var addObjectInCanvas = function(canvas, item) {
     return canvas.add(item);
 };
 
-var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
+function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
     if(document.querySelector('#alert-signature-help')) {
         document.querySelector('#alert-signature-help').classList.add('d-none');
     }
@@ -583,12 +544,12 @@ var createAndAddSvgInCanvas = function(canvas, item, x, y, height = null) {
     });
 };
 
-var autoZoom = function() {
+function autoZoom() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizePDF, 100);
 };
 
-var zoomChange = function (inOrOut) {
+function zoomChange(inOrOut) {
     if(resizeTimeout) {
         return;
     }
@@ -608,7 +569,7 @@ var zoomChange = function (inOrOut) {
     resizeTimeout = setTimeout(resizePDF(currentScale), 50);
 };
 
-var resizePDF = function (scale = 'auto') {
+function resizePDF(scale = 'auto') {
     renderComplete = true;
     pdfRenderTasks.forEach(function(renderTask) {
         if(!renderTask) {
@@ -673,7 +634,7 @@ var resizePDF = function (scale = 'auto') {
     });
 };
 
-var createEventsListener = function() {
+function createEventsListener() {
 
     document.getElementById('add-lock-checkbox').addEventListener('change', function() {
         stateAddLock(this.checked);
@@ -976,7 +937,7 @@ var createEventsListener = function() {
     }
 };
 
-var createSignaturePad = function() {
+function createSignaturePad() {
     signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
         penColor: 'rgb(0, 0, 0)',
         minWidth: 1,
@@ -1039,13 +1000,13 @@ var modalSharing = function() {
     }
 }
 
-var runCron = function() {
+function runCron() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '/cron');
     xhr.send();
 }
 
-var pageUpload = async function() {
+async function pageUpload() {
     document.querySelector('body').classList.remove('bg-light');
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
@@ -1075,7 +1036,7 @@ var pageUpload = async function() {
     });
 }
 
-var updateNbLayers = function() {
+function updateNbLayers() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '/signature/'+pdfHash+'/nblayers', true);
     xhr.onload = function() {
@@ -1097,7 +1058,8 @@ var updateNbLayers = function() {
     xhr.send();
 };
 
-var pageSignature = async function(url) {
+async function pageSignature(url) {
+
     document.querySelector('body').classList.add('bg-light');
     modalSharing();
     document.getElementById('page-upload').classList.add('d-none');

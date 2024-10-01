@@ -1,11 +1,12 @@
-var windowWidth = window.innerWidth;
-var menu = null;
-var menuOffcanvas = null;
-var is_mobile = function() {
-    return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
-};
+let pages = [];
+let pdfRenderTasks = [];
+let pdffile = null
+let deletedMetadata = [];
 
-var responsiveDisplay = function() {
+function responsiveDisplay() {
+    let menu = document.getElementById('sidebarTools');
+    let menuOffcanvas = new bootstrap.Offcanvas(menu);
+
     if(is_mobile()) {
         menu.classList.remove('show');
         menuOffcanvas.hide();
@@ -16,27 +17,12 @@ var responsiveDisplay = function() {
     menu.classList.remove('d-none');
 };
 
-var canUseCache = async function() {
-    try {
-        cache = await caches.open('pdf');
-        return true;
-    } catch (e) {
-        return false;
-    }
-};
-
-var nbPDF = 0;
-var pages = [];
-var pdfRenderTasks = [];
-let filename = null
-let pdffile = null
-let deletedMetadata = [];
-
-var loadPDF = async function(pdfBlob, filename) {
+async function loadPDF(pdfBlob) {
+    let filename = pdfBlob.name;
     let url = await URL.createObjectURL(pdfBlob);
+    document.title = filename + ' - ' + document.title;
 
     pdffile = pdfBlob
-
     let loadingTask = pdfjsLib.getDocument(url);
     document.querySelector('#text_document_name span').innerText = filename;
     await loadingTask.promise.then(function(pdf) {
@@ -80,7 +66,7 @@ var loadPDF = async function(pdfBlob, filename) {
     return loadingTask;
 }
 
-var pageRender = async function(pageIndex) {
+async function pageRender(pageIndex) {
 
   let page = pages[pageIndex];
 
@@ -107,7 +93,7 @@ var pageRender = async function(pageIndex) {
   });
 }
 
-var addMetadata = function(key, value, type, focus) {
+function addMetadata(key, value, type, focus) {
     let input = document.querySelector('.input-metadata input[name="'+key+'"]');
 
     if(input && !input.value) {
@@ -147,7 +133,7 @@ var addMetadata = function(key, value, type, focus) {
     }
 }
 
-const deleteMetadata = function(el) {
+function deleteMetadata(el) {
     if (confirm("Souhaitez-vous supprimer ce champ ?") === false) return;
 
     const input = el.closest('.input-metadata')
@@ -156,16 +142,16 @@ const deleteMetadata = function(el) {
     input.remove()
 }
 
-const DL = function (d,f) {
+function download(blob, filename) {
     let a = document.createElement("a"),
-        u = URL.createObjectURL(d);
-    a.download = f,
+        u = URL.createObjectURL(blob);
+    a.download = filename,
     a.href = u,
     a.click(),
     setTimeout(() => URL.revokeObjectURL(u))
 }
 
-const save = async function () {
+async function save() {
     const PDFDocument = window['PDFLib'].PDFDocument
     const PDFHexString = window['PDFLib'].PDFHexString
     const PDFName = window['PDFLib'].PDFName
@@ -194,10 +180,10 @@ const save = async function () {
         });
         return ;
     }
-    DL(newPDF, filename)
+    download(newPDF, document.getElementById('input_pdf_upload').files[0].name)
 }
 
-var createEventsListener = function() {
+function createEventsListener() {
     document.getElementById('form_metadata_add').addEventListener('submit', function(e) {
         let formData = new FormData(this);
         addMetadata(formData.get('metadata_key'), "", "text", true);

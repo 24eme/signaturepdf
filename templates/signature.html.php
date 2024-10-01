@@ -297,6 +297,7 @@
     url_font = <?php echo json_encode('/vendor/fonts/Caveat-Regular.ttf') ?>
     <?php endif; ?>
     </script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>
   </body>
 </html>

@@ -208,102 +208,56 @@ function createEventsListener() {
     })
 }
 
-async function loadFileFromCache(cacheUrl) {
-    if(!await canUseCache()) {
-        document.location = '/metadata';
-        return false;
-    }
-    const cache = await caches.open('pdf');
-    let responsePdf = await cache.match(cacheUrl);
-
-    if(!responsePdf) {
-        document.location = '/metadata';
-        return false;
-    }
-
-    let filename = cacheUrl.replace('/pdf/', '');
-
-    let pdfBlob = await responsePdf.blob();
-
-    let dataTransfer = new DataTransfer();
-    dataTransfer.items.add(new File([pdfBlob], filename, {
-        type: 'application/pdf'
-    }));
-    document.getElementById('input_pdf_upload').files = dataTransfer.files;
-    document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
-
-    return true;
-}
-
-async function storeFileInCache() {
-    if(!await canUseCache()) {
-        return;
-    }
-    let cache = await caches.open('pdf');
-    let filename = document.getElementById('input_pdf_upload').files[0].name;
-    let response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
-    await cache.put('/pdf/'+filename, response);
-    history.pushState({}, '', '/metadata#'+filename);
-}
-
-async function loadFileFromUrl(url, local = null) {
-    history.replaceState({}, '', '/metadata');
-    var response = await fetch(url);
-    if(response.status != 200) {
-        return;
-    }
-    var pdfBlob = await response.blob();
-
-    if(pdfBlob.type != 'application/pdf' && pdfBlob.type != 'application/octet-stream') {
-        return;
-    }
-    let dataTransfer = new DataTransfer();
-    let file_id = url.replace(/^.*\//, '');
-    if (local) {
-        file_id = local;
-    }
-    dataTransfer.items.add(new File([pdfBlob], file_id, {
-        type: 'application/pdf'
-    }));
-    document.getElementById('input_pdf_upload').files = dataTransfer.files;
-    document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
-}
-
-var pageUpload = async function() {
+async function pageUpload() {
     document.querySelector('body').classList.remove('bg-light');
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-metadata').classList.add('d-none');
     document.getElementById('input_pdf_upload').focus();
+    window.addEventListener('hashchange', function() {
+        window.location.reload();
+    })
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-        storeFileInCache();
-        pageMetadata();
+        if(await canUseCache()) {
+            storeFileInCache();
+            history.pushState({}, '', '/metadata#'+document.getElementById('input_pdf_upload').files[0].name);
+        }
+        pageMetadata(null);
     });
 }
 
-var pageMetadata = async function() {
-    filename = document.getElementById('input_pdf_upload').files[0].name;
-    document.title = filename + ' - ' + document.title;
+async function pageMetadata(url) {
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-metadata').classList.remove('d-none');
-    menu = document.getElementById('sidebarTools');
-    menuOffcanvas = new bootstrap.Offcanvas(menu);
+    if(url && url.match(/^cache:\/\//)) {
+        await loadFileFromCache(url.replace(/^cache:\/\//, ''));
+    } else if (url) {
+        await loadFileFromUrl(url);
+    }
+
+    if(!document.getElementById('input_pdf_upload').files.length) {
+        alert("Chargement du PDF impossible");
+        document.location = '/metadata';
+        return;
+    }
+
     responsiveDisplay();
     createEventsListener();
-    loadPDF(document.getElementById('input_pdf_upload').files[0], filename);
+    loadPDF(document.getElementById('input_pdf_upload').files[0]);
 };
 
 (function () {
-    pageUpload();
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
-        loadFileFromUrl(window.location.hash.replace(/^\#/, ''));
+        pageMetadata(window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash && window.location.hash.match(/^\#local/)) {
-        let hashUrl = window.location.origin + "/api/file/get?path=" + window.location.hash.replace(/^\#local:/, '');
-        loadFileFromUrl(hashUrl, window.location.hash.replace(/^\#/, ''));
+        pageMetadata(window.location.origin + "/api/file/get?path=" + window.location.hash.replace(/^\#local:/, ''), '/metadata', window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash) {
-        loadFileFromCache('/pdf/'+window.location.hash.replace(/^\#/, ''));
+        pageMetadata('cache:///pdf/'+window.location.hash.replace(/^\#/, ''));
+    } else {
+        pageUpload();
     }
+
     window.addEventListener('hashchange', function() {
         window.location.reload();
     })

@@ -966,27 +966,7 @@ async function getPDFBlobFromCache(cacheUrl) {
     return pdfBlob;
 }
 
-async function uploadFromUrl(url) {
-    history.replaceState({}, '', '/signature');
-    let response = await fetch(url);
-    if(response.status != 200) {
-        return;
-    }
-    let pdfBlob = await response.blob();
-
-    if(pdfBlob.type != 'application/pdf' && pdfBlob.type != 'application/octet-stream') {
-        return;
-    }
-    let dataTransfer = new DataTransfer();
-    let filename = url.replace(/^.*\//, '');
-    dataTransfer.items.add(new File([pdfBlob], filename, {
-        type: 'application/pdf'
-    }));
-    document.getElementById('input_pdf_upload').files = dataTransfer.files;
-    document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
-}
-
-var modalSharing = function() {
+function modalSharing() {
     if(openModal == "shareinformations") {
         let modalInformationsEl = document.getElementById('modal-share-informations');
         let modalInformations = bootstrap.Modal.getOrCreateInstance(modalInformationsEl);
@@ -1012,27 +992,12 @@ async function pageUpload() {
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-signature').classList.add('d-none');
     document.getElementById('input_pdf_upload').focus();
-    let cache;
-    try {
-        cache = await caches.open('pdf');
-    } catch (e) {
-        console.error(e)
-        alert("Erreur d'accès au cache. Cette application ne fonctionne pas en mode de navigation privée");
-        return;
-    }
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-        if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
-
-            alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");s
-            document.getElementById('input_pdf_upload').value = "";
-            return;
+        if(await canUseCache()) {
+            storeFileInCache();
+            history.pushState({}, '', '/signature#'+document.getElementById('input_pdf_upload').files[0].name);
         }
-        let filename = document.getElementById('input_pdf_upload').files[0].name;
-        let response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
-        let urlPdf = '/pdf/'+filename;
-        await cache.put(urlPdf, response);
-        history.pushState({}, '', '/signature#'+filename);
-        pageSignature(urlPdf)
+        pageSignature(null);
     });
 }
 
@@ -1082,27 +1047,22 @@ async function pageSignature(url) {
         fontCaveat = font;
     });
 
-    let pdfBlob = null;
-    let filename = url.replace('/pdf/', '');
-
-    if(pdfHash) {
-        let response = await fetch(url);
-        if(response.status != 200) {
-            document.location = url;
-            return;
-        }
-        pdfBlob = await response.blob();
-        if(response.headers.get('Content-Disposition').match(/attachment; filename="/)) {
-            filename = response.headers.get('Content-Disposition').replace(/^[^"]*"/, "").replace(/"[^"]*$/, "").replace(/_signe-[0-9]+\x.pdf/, '.pdf');
-        }
-    } else {
-        pdfBlob = await getPDFBlobFromCache(url);
+    if(url && url.match(/^cache:\/\//)) {
+        await loadFileFromCache(url.replace(/^cache:\/\//, ''));
+    } else if (url) {
+        await loadFileFromUrl(url);
     }
 
-    document.title = filename + ' - ' + document.title;
-
-    if(!pdfBlob) {
+    if(!document.getElementById('input_pdf_upload').files.length) {
+        alert("Chargement du PDF impossible");
         document.location = '/signature';
+        return;
+    }
+
+    if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
+
+        alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
+        document.getElementById('input_pdf_upload').value = "";
         return;
     }
 
@@ -1111,13 +1071,14 @@ async function pageSignature(url) {
     displaysSVG();
     stateAddLock();
     createEventsListener();
-    loadPDF(pdfBlob, filename);
+    loadPDF(document.getElementById('input_pdf_upload').files[0]);
 };
 
 (function () {
     if(sharingMode) {
         setTimeout(function() { runCron() }, 2000);
     }
+
     if(pdfHash) {
         if (window.location.hash && window.location.hash.match(/^\#/)) {
             storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#/, ''));
@@ -1125,64 +1086,15 @@ async function pageSignature(url) {
             window.location.hash = getSymmetricKey(pdfHash);
         }
         pageSignature('/signature/'+pdfHash+'/pdf');
-        window.addEventListener('hashchange', function() {
-            window.location.reload();
-        })
-        return;
-    }
-
-    if(window.location.hash && window.location.hash.match(/^\#http/)) {
-        let hashUrl = window.location.hash.replace(/^\#/, '');
-        pageUpload();
-        uploadFromUrl(hashUrl);
+    } else if(window.location.hash && window.location.hash.match(/^\#http/)) {
+        pageSignature(window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash) {
-        pageSignature('/pdf/'+window.location.hash.replace(/^\#/, ''));
+        pageSignature('cache:///pdf/'+window.location.hash.replace(/^\#/, ''));
     } else {
         pageUpload();
     }
+
     window.addEventListener('hashchange', function() {
         window.location.reload();
     })
 })();
-
-function storeSymmetricKeyCookie(hash, symmetricKey) {
-    if (symmetricKey.length != 15) {
-        console.error("Erreur taille cle symétrique.");
-        return;
-    }
-    document.cookie = hash + "=" + symmetricKey + "; SameSite=Lax; Path=/;";
-}
-
-function getSymmetricKey(hash) {
-    return getCookieValue(hash);
-}
-
-function getCookieValue (name) {
-    return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
-}
-
-function generateSymmetricKey() {
-    const length = 15;
-    const keySpace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let key = '';
-
-    for (let i = 0; i < length; ++i) {
-        const randomIndex = Math.floor(Math.random() * keySpace.length);
-        key += keySpace.charAt(randomIndex);
-    }
-
-    return key;
-}
-
-function generatePdfHash() {
-    const length = 20;
-    const keySpace = '0123456789abcdefghijklmnopqrstuvwxyz';
-    let key = '';
-
-    for (let i = 0; i < length; ++i) {
-        const randomIndex = Math.floor(Math.random() * keySpace.length);
-        key += keySpace.charAt(randomIndex);
-    }
-
-    return key;
-}

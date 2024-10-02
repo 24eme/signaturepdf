@@ -741,7 +741,7 @@ async function pageOrganization() {
     createEventsListener();
 };
 
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         let hashUrl = window.location.hash.replace(/^\#/, '');
         pageUpload();
@@ -756,4 +756,4 @@ async function pageOrganization() {
     if (hasTouch()) {
         disabledHoverStyle();
     }
-})();
+});

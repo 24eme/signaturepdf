@@ -16,7 +16,7 @@ function handleFileChange() {
     });
 }
 
-var uploadAndLoadPDF = async function(input_upload) {
+async function uploadAndLoadPDF(input_upload) {
     const cache = await caches.open('pdf');
     for (let i = 0; i < input_upload.files.length; i++) {
         if(input_upload.files[i].size > maxSize) {

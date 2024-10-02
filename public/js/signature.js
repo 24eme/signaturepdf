@@ -1074,7 +1074,7 @@ async function pageSignature(url) {
     loadPDF(document.getElementById('input_pdf_upload').files[0]);
 };
 
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
     if(sharingMode) {
         setTimeout(function() { runCron() }, 2000);
     }
@@ -1097,4 +1097,4 @@ async function pageSignature(url) {
     window.addEventListener('hashchange', function() {
         window.location.reload();
     })
-})();
+});

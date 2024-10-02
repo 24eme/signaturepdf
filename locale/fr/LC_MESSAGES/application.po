@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-30 18:44+0200\n"
+"POT-Creation-Date: 2024-10-02 16:38+0200\n"
 "PO-Revision-Date: 2024-07-30 16:51+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -22,6 +22,34 @@ msgstr ""
 
 msgid "en"
 msgstr "fr"
+
+msgid "Administration panel"
+msgstr ""
+
+msgid "Configuration"
+msgstr ""
+
+msgid "Server installation"
+msgstr ""
+
+#, php-format
+msgid "Minimal version required : %s"
+msgstr ""
+
+#, php-format
+msgid "Package %s required"
+msgstr ""
+
+#, php-format
+msgid "Package %s missing"
+msgstr ""
+
+msgid "File Configuration"
+msgstr ""
+
+#, php-format
+msgid "The directory %s should exist and be writeable"
+msgstr ""
 
 msgid "Compress PDF"
 msgstr "Compresser un PDF"

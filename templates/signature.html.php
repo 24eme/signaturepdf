@@ -4,11 +4,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php echo _("Signature PDF is a free open source online software that allows you to sign, initial, stamp, and complete a PDF alone or with several people.") ?>">
+    <meta name="description" content="Signature PDF est un logiciel libre en ligne qui permet de signer, parapher, tamponner, compléter un pdf seul ou à plusieurs.">
     <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.<?php echo $DIRECTION_LANGUAGE ?>.min.css?5.3.3" rel="stylesheet">
     <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap-icons.min.css?1.11.3" rel="stylesheet">
     <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
-    <title><?php echo _("Signature PDF - Sign PDF online") ?></title>
+    <title>Signature PDF - Signer un PDF en ligne</title>
 </head>
 <body>
 <noscript>
@@ -20,7 +20,7 @@
     <?php include('components/navtab.html.php'); ?>
     <div class="px-4 py-4 text-center">
         <h1 class="display-5 fw-bold mb-0 mt-3"><?php echo sprintf(_("%s Sign a PDF"), '<i class="bi bi-vector-pen"></i>'); ?></h1>
-        <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document alone or with several people") ?></p>
+        <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document") ?></p>
         <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
             <div class="col-12">
                 <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo _("The PDF should not exceed"); ?> <?php echo round($maxSize / 1024 / 1024) ?> <?php echo _("MB and"); ?> <?php echo $maxPage ?> <?php echo _("pages"); ?>"><i class="bi bi-info-circle"></i></small></label>

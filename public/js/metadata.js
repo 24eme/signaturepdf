@@ -238,7 +238,8 @@ async function pageMetadata(url) {
     loadPDF(document.getElementById('input_pdf_upload').files[0]);
 };
 
-(function () {
+
+document.addEventListener('DOMContentLoaded', function () {
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         pageMetadata(window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash && window.location.hash.match(/^\#local/)) {
@@ -252,4 +253,4 @@ async function pageMetadata(url) {
     window.addEventListener('hashchange', function() {
         window.location.reload();
     })
-})();
+});

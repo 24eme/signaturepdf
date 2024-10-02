@@ -2,6 +2,29 @@ function is_mobile() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 };
 
+function hasTouch() {
+    return 'ontouchstart' in document.documentElement
+     || navigator.maxTouchPoints > 0
+     || navigator.msMaxTouchPoints > 0;
+}
+
+function disabledHoverStyle() {
+    try { // prevent exception on browsers not supporting DOM styleSheets properly
+      for (var si in document.styleSheets) {
+        var styleSheet = document.styleSheets[si];
+        if (!styleSheet.rules) continue;
+
+        for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+          if (!styleSheet.rules[ri].selectorText) continue;
+
+          if (styleSheet.rules[ri].selectorText.match(':hover')) {
+            styleSheet.deleteRule(ri);
+          }
+        }
+      }
+    } catch (ex) {}
+}
+
 async function canUseCache() {
     try {
         cache = await caches.open('pdf');
@@ -65,6 +88,15 @@ async function loadFileFromUrl(url, pageUrl, local = null) {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
+}
+
+function download(blob, filename) {
+    let a = document.createElement("a"),
+        u = URL.createObjectURL(blob);
+    a.download = filename,
+    a.href = u,
+    a.click(),
+    setTimeout(() => URL.revokeObjectURL(u))
 }
 
 function storeSymmetricKeyCookie(hash, symmetricKey) {
@@ -143,4 +175,8 @@ function trimSvgWhitespace(svgContent) {
     document.body.removeChild(svgContainer)
 
     return svgContent = svgContainer.innerHTML;
+}
+
+function getLetter(i) {
+    return String.fromCharCode(96 + i+1).toUpperCase();
 }

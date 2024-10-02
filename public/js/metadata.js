@@ -142,15 +142,6 @@ function deleteMetadata(el) {
     input.remove()
 }
 
-function download(blob, filename) {
-    let a = document.createElement("a"),
-        u = URL.createObjectURL(blob);
-    a.download = filename,
-    a.href = u,
-    a.click(),
-    setTimeout(() => URL.revokeObjectURL(u))
-}
-
 async function save() {
     const PDFDocument = window['PDFLib'].PDFDocument
     const PDFHexString = window['PDFLib'].PDFHexString

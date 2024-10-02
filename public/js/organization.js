@@ -1,31 +1,8 @@
-var windowWidth = window.innerWidth;
-var menu = null;
-var menuOffcanvas = null;
-var is_mobile = function() {
-    return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
-};
-var hasTouch = function() {
-    return 'ontouchstart' in document.documentElement
-     || navigator.maxTouchPoints > 0
-     || navigator.msMaxTouchPoints > 0;
-}
-var disabledHoverStyle = function() {
-    try { // prevent exception on browsers not supporting DOM styleSheets properly
-      for (var si in document.styleSheets) {
-        var styleSheet = document.styleSheets[si];
-        if (!styleSheet.rules) continue;
+let windowWidth = window.innerWidth;
+let menu = null;
+let menuOffcanvas = null;
 
-        for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
-          if (!styleSheet.rules[ri].selectorText) continue;
-
-          if (styleSheet.rules[ri].selectorText.match(':hover')) {
-            styleSheet.deleteRule(ri);
-          }
-        }
-      }
-    } catch (ex) {}
-}
-var responsiveDisplay = function() {
+function responsiveDisplay() {
     if(is_mobile()) {
         document.getElementById('page-organization').classList.remove('decalage-pdf-div');
         menu.classList.remove('show');
@@ -41,23 +18,23 @@ var responsiveDisplay = function() {
     menu.classList.remove('d-md-block');
     menu.classList.remove('d-none');
 };
-var isSelectionMode = function() {
+function isSelectionMode() {
     return document.querySelectorAll('.canvas-container .input-select:checked').length > 0;
 }
-var isDraggedMode = function() {
+function isDraggedMode() {
     return document.querySelectorAll('.canvas-container .input-drag:checked').length > 0;
 }
 
-var nbPagePerLine = 5;
+let nbPagePerLine = 5;
 if(is_mobile()) {
     nbPagePerLine = 2;
 }
 
-var nbPDF = 0;
-var pages = [];
-var pdfRenderTasks = [];
+let nbPDF = 0;
+let pages = [];
+let pdfRenderTasks = [];
 
-var loadPDF = async function(pdfBlob, filename, pdfIndex) {
+async function loadPDF(pdfBlob, filename, pdfIndex) {
     let url = await URL.createObjectURL(pdfBlob);
 
     let dataTransfer = new DataTransfer();
@@ -234,13 +211,13 @@ var loadPDF = async function(pdfBlob, filename, pdfIndex) {
     return loadingTask;
 };
 
-var pageRenderAll = function() {
+function pageRenderAll() {
     for(pageIndex in pages) {
         pageRender(pageIndex);
     }
 }
 
-var pageRender = async function(pageIndex) {
+async function pageRender(pageIndex) {
   let scrollWidth = 12;
   if(is_mobile()) {
       scrollWidth = -4;
@@ -278,12 +255,12 @@ var pageRender = async function(pageIndex) {
   });
 }
 
-var getFileIndex = function(page) {
+function getFileIndex(page) {
 
     return page.id.replace('canvas-container-', '').replace(/_.*$/, '');
 }
 
-var getFilesStats = function() {
+function getFilesStats() {
     let files = [];
     document.querySelectorAll('.canvas-container').forEach(function(page) {
         let fileIndex = getFileIndex(page);
@@ -305,12 +282,7 @@ var getFilesStats = function() {
     return files;
 }
 
-const getLetter = function(i) {
-
-    return String.fromCharCode(96 + i+1).toUpperCase();
-}
-
-var updateListePDF = function() {
+function updateListePDF() {
     document.querySelector('#list_pdf').innerHTML = "";
     let nbFiles = document.querySelector('#input_pdf').files.length;
     for (var i = 0; i < nbFiles; i++) {
@@ -335,7 +307,7 @@ var updateListePDF = function() {
     updateGlobalState();
 }
 
-var getPagesSelected = function() {
+function getPagesSelected() {
     let pages = [];
     document.querySelectorAll('.canvas-container .input-select:checked').forEach(function(item) {
         pages[item.parentNode.id.replace('canvas-container-', '')] = item.parentNode;
@@ -344,12 +316,12 @@ var getPagesSelected = function() {
     return pages;
 }
 
-var selectPage = function(page, state) {
+function selectPage(page, state) {
     page.querySelector('input[type=checkbox].input-select').checked = state;
     updatePageState(page);
 }
 
-var toggleSelectPage = function(page) {
+function toggleSelectPage(page) {
     if(isPageDeleted(page) || isPageDragged(page) || isDraggedMode()) {
         return;
     }
@@ -357,17 +329,17 @@ var toggleSelectPage = function(page) {
     updateGlobalState();
 }
 
-var isPageSelected = function(page) {
+function isPageSelected(page) {
 
     return page.querySelector('input[type=checkbox].input-select').checked;
 }
 
-var dragPage = function(page, state) {
+function dragPage(page, state) {
     page.querySelector('input[type=checkbox].input-drag').checked = state;
     updatePageState(page);
 }
 
-var toggleDragPage = function(page) {
+function toggleDragPage(page) {
     dragPage(page, !isPageDragged(page));
     updateGlobalState();
     document.querySelectorAll('.canvas-container').forEach(function(page) {
@@ -375,12 +347,12 @@ var toggleDragPage = function(page) {
     });
 }
 
-var isPageDragged = function(page) {
+function isPageDragged(page) {
 
     return page.querySelector('input[type=checkbox].input-drag').checked;
 }
 
-var movePagesDragged = function(pageHere, position) {
+function movePagesDragged(pageHere, position) {
     document.querySelectorAll('.canvas-container .input-drag:checked').forEach(function(item) {
         let page = item.parentNode;
         if(position == 'right') {
@@ -392,28 +364,26 @@ var movePagesDragged = function(pageHere, position) {
     document.getElementById('btn_drag_select').click();
 }
 
-var toggleDeletePage = function(page) {
+function toggleDeletePage(page) {
     deletePage(page, isPageDeleted(page))
     updateGlobalState();
 }
 
-var deletePage = function(page, state) {
+function deletePage(page, state) {
     page.querySelector('input[type=checkbox].checkbox-page').checked = state;
     page.querySelector('input[type=checkbox].input-select').checked = false;
     updatePageState(page);
 }
 
-var isPageDeleted = function(page) {
-
+function isPageDeleted(page) {
     return !page.querySelector('input[type=checkbox].checkbox-page').checked;
 }
 
-var isPageHover = function(page) {
-
+function isPageHover(page) {
     return page.querySelector('input[type=checkbox].input-hover').checked;
 }
 
-var updatePageState = function(page) {
+function updatePageState(page) {
     page.classList.remove('border-primary', 'shadow-sm', 'bg-primary', 'border-secondary', 'bg-secondary');
     page.classList.add('border-transparent', 'bg-transparent');
     page.querySelector('.canvas-pdf').style.opacity = '1';
@@ -483,7 +453,7 @@ var updatePageState = function(page) {
     }
 }
 
-var updateFilesState = function() {
+function updateFilesState() {
     let filesStats = getFilesStats();
     for(fileIndex in filesStats) {
         let checkbox = document.querySelector('#file_'+fileIndex+' input[type=checkbox]');
@@ -497,7 +467,7 @@ var updateFilesState = function() {
     }
 }
 
-var updateGlobalState = function() {
+function updateGlobalState() {
     updateFilesState();
     if(!is_mobile()) {
         document.querySelector('#container-btn-zoom').classList.remove('d-none');
@@ -543,29 +513,14 @@ var updateGlobalState = function() {
     }
 }
 
-var uploadAndLoadPDF = async function(input_upload) {
-    const cache = await caches.open('pdf');
+async function uploadAndLoadPDF(input_upload) {
     for (let i = 0; i < input_upload.files.length; i++) {
-        let filename = input_upload.files[i].name;
-        let response = new Response(input_upload.files[i], { "status" : 200, "statusText" : "OK" });
-        let urlPdf = '/pdf/'+filename;
-        await cache.put(urlPdf, response);
-        let pdfBlob = await getPDFBlobFromCache(urlPdf);
         nbPDF++;
-        await loadPDF(pdfBlob, filename, nbPDF);
+        await loadPDF(input_upload.files[i], input_upload.files[i].name, nbPDF);
     }
 }
 
-const DL = function (d,f) {
-    let a = document.createElement("a"),
-        u = URL.createObjectURL(d);
-    a.download = f,
-    a.href = u,
-    a.click(),
-    setTimeout(() => URL.revokeObjectURL(u))
-}
-
-let saveAll = async function () {
+async function saveAll() {
     let order = [];
     let selectionMode = isSelectionMode();
 
@@ -593,7 +548,7 @@ let saveAll = async function () {
     await save(order.join(','));
 }
 
-let save = async function (order) {
+async function save(order) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
 
@@ -626,10 +581,10 @@ let save = async function (order) {
         pdf.addPage(pdfPage);
     }
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
-    await DL(newPDF, filename+".pdf");
+    await download(newPDF, filename+".pdf");
 }
 
-var createEventsListener = function() {
+function createEventsListener() {
     document.getElementById('save-select_mobile').addEventListener('click', async function(event) {
         event.preventDefault();
         startProcessingMode(document.getElementById('save-select_mobile'));
@@ -764,7 +719,7 @@ async function uploadFromUrl(url) {
     document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
 }
 
-var pageUpload = async function() {
+async function pageUpload() {
     document.querySelector('body').classList.remove('bg-light');
     document.getElementById('input_pdf_upload').value = '';
     document.getElementById('page-upload').classList.remove('d-none');
@@ -776,7 +731,7 @@ var pageUpload = async function() {
     });
 }
 
-var pageOrganization = async function() {
+async function pageOrganization() {
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-organization').classList.remove('d-none');

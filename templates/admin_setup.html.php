@@ -24,10 +24,10 @@
                         <td class="text-muted col-3"><?php echo 'PHP version ' . phpversion(); ?></td>
                         <td class="col-6">
                             <?php if (version_compare(phpversion(), "5.6.0", ">=")): ?>
-                                <i class="bi bi-check-square text-success" title="<?php echo _("Minimal version required : 5.6.0"); ?>"></i>
+                                <i class="bi bi-check-square text-success" title="<?php echo sprintf(_("Minimal version required : %s"), "5.6.0"); ?>"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (Minimal version required : 5.6.0)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> <?php echo sprintf(_("Minimal version required : %s"), "5.6.0"); ?>
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -41,7 +41,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package librsvg2-bin required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("Package %s required"), "librsvg2-bin"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -55,7 +55,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package pdftk required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("Package %s required"), "pdftk"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -69,7 +69,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package imagemagick required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("Package %s required"), "imagemagick"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -83,7 +83,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package potrace required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("Package %s required"), "potrace"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -97,7 +97,8 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package ghostscript required"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i>
+                                    (<?php echo sprintf(_("Package %s required", "ghostscript")); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -111,8 +112,8 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-warning">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package gpg missing"); ?>)
-                                </span>
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("Package %s missing"), "gpg"); ?>)
+                                /span>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -125,7 +126,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-warning">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package libnss3-tools missing"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("Package %s missing"), "libnss3-tools"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -139,7 +140,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-warning">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("Package poppler-utils missing"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("Package %s missing"), "poppler-utils"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -159,7 +160,7 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("the directory PDF_STORAGE_PATH should exist and be writeable"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("The directory %s should exist and be writeable"), "PDF_STORAGE_PATH"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -173,14 +174,14 @@
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
                                 <span class="text-danger">
-                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo _("the directory UPLOADS should exist and be writeable"); ?>)
+                                    <i class="bi bi-exclamation-octagon-fill"></i> (<?php echo sprintf(_("The directory %s should exist and be writeable"), "UPLOADS"); ?>)
                                 </span>
                             <?php endif; ?>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <h5 class="py-2"><?php echo _("List of authorized IP : "); ?></h5>
+            <h5 class="py-2">List of authorized IP :</h5>
             <p>
                 <?php foreach ($ADMIN_AUTHORIZED_IP as $ip): ?>
                     <?php echo $ip; ?>

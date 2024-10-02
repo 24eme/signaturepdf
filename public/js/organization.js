@@ -744,19 +744,6 @@ function endProcessingMode(btn) {
     btn.disabled = false;
 }
 
-async function getPDFBlobFromCache(cacheUrl) {
-    const cache = await caches.open('pdf');
-    let responsePdf = await cache.match(cacheUrl);
-
-    if(!responsePdf) {
-        return null;
-    }
-
-    let pdfBlob = await responsePdf.blob();
-
-    return pdfBlob;
-}
-
 async function uploadFromUrl(url) {
     history.replaceState({}, '', '/organization');
     var response = await fetch(url);
@@ -783,14 +770,6 @@ var pageUpload = async function() {
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-organization').classList.add('d-none');
     document.getElementById('input_pdf_upload').focus();
-    let cache;
-    try {
-        cache = await caches.open('pdf');
-    } catch (e) {
-        console.error(e)
-        alert("Erreur d'accès au cache. Cette application ne fonctionne pas en mode de navigation privée");
-        return;
-    }
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
         uploadAndLoadPDF(this);
         pageOrganization(null);

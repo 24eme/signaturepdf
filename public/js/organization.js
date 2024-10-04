@@ -1,8 +1,6 @@
-let windowWidth = window.innerWidth;
-let menu = null;
-let menuOffcanvas = null;
-
 function responsiveDisplay() {
+    let menu = document.getElementById('sidebarTools');
+    let menuOffcanvas = new bootstrap.Offcanvas(menu);
     if(is_mobile()) {
         document.getElementById('page-organization').classList.remove('decalage-pdf-div');
         menu.classList.remove('show');
@@ -738,7 +736,7 @@ async function pageUpload() {
     document.getElementById('input_pdf_upload').focus();
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
         uploadAndLoadPDF(this);
-        pageOrganization(null);
+        pageOrganization();
     });
 }
 
@@ -746,8 +744,6 @@ async function pageOrganization() {
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-organization').classList.remove('d-none');
-    menu = document.getElementById('sidebarTools');
-    menuOffcanvas = new bootstrap.Offcanvas(menu);
     responsiveDisplay();
     createEventsListener();
 };

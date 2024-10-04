@@ -322,10 +322,21 @@ function selectPage(page, state) {
 }
 
 function toggleSelectPage(page) {
-    if(isPageDeleted(page) || isPageDragged(page) || isDraggedMode()) {
+    if(isPageDeleted(page)) {
         return;
     }
+
+    if(!isPageDragged(page) && isDraggedMode()) {
+        return;
+    }
+
+    if(isPageDragged(page)) {
+        document.getElementById('btn_drag_select').click();
+        return;
+    }
+
     selectPage(page, !isPageSelected(page));
+
     updateGlobalState();
 }
 

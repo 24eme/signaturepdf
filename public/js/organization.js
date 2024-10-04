@@ -434,11 +434,11 @@ function updatePageState(page) {
         page.querySelector('.btn-drag').classList.remove('d-none');
     }
 
-    if(isPageHover(page) && isPageDeleted(page)) {
+    if(isPageHover(page) && isPageDeleted(page) && !isDraggedMode()) {
         page.querySelector('.btn-restore').classList.remove('d-none');
     }
 
-    if(is_mobile() && isPageDeleted(page)) {
+    if(is_mobile() && isPageDeleted(page) && !isDraggedMode()) {
         page.querySelector('.btn-restore').classList.remove('d-none');
     }
 
@@ -456,7 +456,7 @@ function updatePageState(page) {
         page.querySelector('.canvas-pdf').classList.add('shadow');
     }
 
-    if(!isPageDragged(page) && isDraggedMode()) {
+    if(!isPageDragged(page) && !isPageDeleted(page) && isDraggedMode()) {
         page.querySelector('.canvas-pdf').classList.add('opacity-50');
         page.querySelector('.btn-drag-here').classList.remove('d-none');
     }

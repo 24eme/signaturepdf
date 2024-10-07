@@ -41,7 +41,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
                             <button type="submit" name="compressionType" value="low" id="lowCompressBtn" class="dropdown-item"><?php echo _("Low compression (maximum quality)"); ?></button>
-                            <button type="submit" name="compressionType" value="medium" id="mediumCompressBtn" class="dropdown-item"><?php echo sprintf(_("%s Medium compression %s (default)"), "<strong>", "</strong>"); ?></strong></button>
+                            <button type="submit" name="compressionType" value="medium" id="mediumCompressBtn" class="dropdown-item"><?php echo sprintf(_("%s Medium compression %s (default)"), "<strong>", "</strong>"); ?></button>
                             <button type="submit" name="compressionType" value="high" id="highCompressBtn" class="dropdown-item"><?php echo _("High compression (minimum quality)"); ?></button>
                         </div>
                     </div>
@@ -49,9 +49,7 @@
             </div>
         </form>
     </div>
-    <footer class="text-center text-muted mb-2 fixed-bottom opacity-75">
-        <small><?php echo _("Free open-source software"); ?> <span class="d-none d-md-inline"><?php echo _("under AGPL-3.0 license"); ?></span> : <a href="https://github.com/24eme/signaturepdf"><?php echo _("see the source code"); ?></a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
-    </footer>
+    <?php include('components/footer.html.php'); ?>
 </div>
 
 <span id="is_mobile" class="d-md-none"></span>

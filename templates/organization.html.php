@@ -34,9 +34,7 @@
                 </div>
             </div>
         </div>
-        <footer class="text-center text-muted mb-2 fixed-bottom opacity-75">
-            <small><?php echo _("Free open-source software"); ?> <span class="d-none d-md-inline"><?php echo _("under AGPL-3.0 license"); ?></span> : <a href="https://github.com/24eme/signaturepdf"><?php echo _("see the source code"); ?></a><?php if($COMMIT): ?> <span class="d-none d-md-inline small">[<a href="https://github.com/24eme/signaturepdf/tree/<?php echo $COMMIT ?>"><?php echo $COMMIT ?></a>]</span><?php endif; ?></small>
-        </footer>
+        <?php include('components/footer.html.php'); ?>
     </div>
     <div id="page-organization" class="d-none decalage-pdf-div">
         <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>

@@ -1,5 +1,5 @@
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0) [![État de la traduction](https://hosted.weblate.org/widget/signature-pdf/application/svg-badge.svg)](https://hosted.weblate.org/engage/signature-pdf/)
-# PDF Signature                                                                                                                
+# Signature PDF Libre                                                                                                                
 
 Free web software for signing, organizing, editing metadatas or compressing PDFs.
 

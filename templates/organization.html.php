@@ -22,7 +22,7 @@
         <?php include('components/navtab.html.php'); ?>
         <div class="px-4 py-4 text-center">
             <h1 class="display-5 fw-bold mb-0 mt-3"><?php echo sprintf(_("%s Organize PDF"), '<i class="bi bi-ui-checks-grid"></i>'); ?></h1>
-            <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Merge, sort, rotate, delete, extract pages"); ?></p>
+            <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Merge, sort, rotate, delete, extract pages"); ?></p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
                   <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?></label>

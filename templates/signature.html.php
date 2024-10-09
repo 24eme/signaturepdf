@@ -19,7 +19,7 @@
     <?php include('components/navtab.html.php'); ?>
     <div class="px-4 py-4 text-center">
         <h1 class="display-5 fw-bold mb-0 mt-3"><?php echo sprintf(_("%s Sign a PDF"), '<i class="bi bi-vector-pen"></i>'); ?></h1>
-        <p class="fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document") ?></p>
+        <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document") ?></p>
         <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
             <div class="col-12">
                 <label class="form-label mt-3" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo _("The PDF should not exceed"); ?> <?php echo round($maxSize / 1024 / 1024) ?> <?php echo _("MB and"); ?> <?php echo $maxPage ?> <?php echo _("pages"); ?>"><i class="bi bi-info-circle"></i></small></label>

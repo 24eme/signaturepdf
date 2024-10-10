@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-02 16:38+0200\n"
-"PO-Revision-Date: 2024-08-12 14:09+0000\n"
+"PO-Revision-Date: 2024-10-10 10:15+0000\n"
 "Last-Translator: \"josé m.\" <correoxm@disroot.org>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/signature-pdf/"
 "application/gl/>\n"
@@ -17,38 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 msgid "en"
 msgstr "gl"
 
 msgid "Administration panel"
-msgstr ""
+msgstr "Taboleiro de administración"
 
 msgid "Configuration"
-msgstr ""
+msgstr "Configuración"
 
 msgid "Server installation"
-msgstr ""
+msgstr "Instalación do servidor"
 
 #, php-format
 msgid "Minimal version required : %s"
-msgstr ""
+msgstr "Versión mínima requerida: %s"
 
 #, php-format
 msgid "Package %s required"
-msgstr ""
+msgstr "Require o paquete %s"
 
 #, php-format
 msgid "Package %s missing"
-msgstr ""
+msgstr "Falta o paquete %s"
 
 msgid "File Configuration"
-msgstr ""
+msgstr "Configuración do ficheiro"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
-msgstr ""
+msgstr "Ten que existir o directorio %s e poder escribir nel"
 
 msgid "Compress PDF"
 msgstr "Comprimir PDF"

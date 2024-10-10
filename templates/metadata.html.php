@@ -37,7 +37,6 @@
     <?php include('components/footer.html.php'); ?>
 </div>
 <div id="page-metadata" class="d-none">
-    <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
     <div style="overflow: auto;" class="vh-100" id="container-main">
         <div id="form-metadata" class="mx-auto w-75 pt-3 pb-5">
             <h3><?php echo _("List of PDF metadata"); ?></h3>
@@ -77,7 +76,7 @@
     </div>
     <div id="bottom_bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
         <div id="bottom_bar_action" class="d-grid gap-2">
-            <button class="btn btn-primary" id="save_mobile"><i class="bi bi-download"></i> <?php echo _("Download the PDF"); ?></button>
+            <button class="btn btn-primary" id="save_mobile"><i class="bi bi-download"></i> <?php echo _("Save and download the PDF"); ?></button>
         </div>
     </div>
 </div>

@@ -197,6 +197,9 @@ function createEventsListener() {
     document.getElementById('save').addEventListener('click', function (e) {
         save()
     })
+    document.getElementById('save_mobile').addEventListener('click', function (e) {
+        save()
+    })
 }
 
 async function pageUpload() {

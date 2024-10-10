@@ -117,12 +117,26 @@
     width: 45%;
 }
 
-@media (max-width: 1399.98px) {
+#page-metadata #bottom_bar {
+    z-index: 3;
+}
+
+@media (max-width: 1500px) {
     #page-metadata #container-main {
         width: 50%;
     }
     #page-metadata #sidebarTools {
         width: 50%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    #page-metadata #container-main {
+        width: 100%;
+    }
+    #page-metadata #sidebarTools {
+        display:none;
+        width: 100%;
     }
 }
 @media (max-width: 480px) {

@@ -109,6 +109,22 @@
     display: block;
 }
 
+#page-metadata #container-main {
+    width: 55%;
+}
+
+#page-metadata #sidebarTools {
+    width: 45%;
+}
+
+@media (max-width: 1399.98px) {
+    #page-metadata #container-main {
+        width: 50%;
+    }
+    #page-metadata #sidebarTools {
+        width: 50%;
+    }
+}
 @media (max-width: 480px) {
     .subtitle {
         font-size: .875em

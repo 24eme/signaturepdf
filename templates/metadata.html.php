@@ -38,7 +38,7 @@
 </div>
 <div id="page-metadata" class="d-none">
     <div id="div-margin-top" style="height: 88px;" class="d-md-none"></div>
-    <div style="width: 60%; overflow: auto;" class="vh-100" id="container-main">
+    <div style="overflow: auto;" class="vh-100" id="container-main">
         <div id="form-metadata" class="mx-auto w-75 pt-3 pb-5">
             <h3><?php echo _("List of PDF metadata"); ?></h3>
             <div id="form-metadata-container">
@@ -58,7 +58,7 @@
         </div>
     </div>
     <div id="div-margin-bottom" style="height: 55px;" class="d-md-none"></div>
-    <div style="width: 40%;" class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
+    <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
         <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="<?php echo _("Close this PDF and return to the home page"); ?>" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="/metadata"></a>
         <div class="offcanvas-header d-block mb-0 pb-0 border-bottom">
             <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><?php echo _("Edit metadata"); ?><span class=\"float-end me-2\"><i class=\"bi bi-tags\"></i></span></h5>

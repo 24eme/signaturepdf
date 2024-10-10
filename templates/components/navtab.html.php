@@ -1,7 +1,7 @@
 <?php if(!$disableOrganization): ?>
     <?php if ($IS_ADMIN): ?>
         <div class="position-absolute top-0 start-0 mt-2 ms-2">
-            <a class="btn btn-outline-secondary btn-sm <?php if($activeTab === 'admin'): ?>active<?php endif; ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/administration"><i class="bi bi-wrench-adjustable"></i> <span class="d-none d-sm-inline-block"><?php echo _("Administration panel"); ?></span></a>
+            <a title="Button visible just for ip authorized" class="btn btn-outline-danger opacity-25 btn-sm <?php if($activeTab === 'admin'): ?>active<?php endif; ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/administration"><i class="bi bi-wrench-adjustable"></i> <span class="d-none d-sm-inline-block"><?php echo _("Administration panel"); ?></span></a>
         </div>
     <?php endif; ?>
     <div class="dropdown position-absolute top-0 end-0 mt-2 me-2">

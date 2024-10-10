@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 16:38+0200\n"
+"POT-Creation-Date: 2024-10-10 12:57+0200\n"
 "PO-Revision-Date: 2024-10-10 10:15+0000\n"
 "Last-Translator: \"josé m.\" <correoxm@disroot.org>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/signature-pdf/"
@@ -91,15 +91,6 @@ msgstr "%s Compresión media %s (por defecto)"
 
 msgid "High compression (minimum quality)"
 msgstr "Compresión alta (calidade inferior)"
-
-msgid "Free open-source software"
-msgstr "Software gratuíto e de código aberto"
-
-msgid "under AGPL-3.0 license"
-msgstr "baixo licenza AGPL-3.0"
-
-msgid "see the source code"
-msgstr "ver o código fonte"
 
 msgid "Editing PDF metadata"
 msgstr "A editar os metadatos do PDF"
@@ -449,6 +440,15 @@ msgstr "A túa sinatura foi gravada correctamente!"
 
 msgid "Text to modify"
 msgstr "Texto a modificar"
+
+msgid "Free open-source software"
+msgstr "Software gratuíto e de código aberto"
+
+msgid "under AGPL-3.0 license"
+msgstr "baixo licenza AGPL-3.0"
+
+msgid "see the source code"
+msgstr "ver o código fonte"
 
 msgid "Language"
 msgstr "Idioma"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 16:38+0200\n"
+"POT-Creation-Date: 2024-10-10 12:57+0200\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -92,15 +92,6 @@ msgstr "%s ضغط متوسط %s (مبدئي)"
 
 msgid "High compression (minimum quality)"
 msgstr "ضغط عالي (جودة دنيا)"
-
-msgid "Free open-source software"
-msgstr "برنامج حُرّ ومفتوح المصدر"
-
-msgid "under AGPL-3.0 license"
-msgstr "تحت رخصة AGPL-3.0"
-
-msgid "see the source code"
-msgstr "الإطلاع على الشفرة المصدرية"
 
 msgid "Editing PDF metadata"
 msgstr "تحرير البيانات الوصفية لـ PDF"
@@ -446,6 +437,15 @@ msgstr "تم تسجيل توقيعك بنجاح!"
 
 msgid "Text to modify"
 msgstr "النص الذي تودّ تعديله"
+
+msgid "Free open-source software"
+msgstr "برنامج حُرّ ومفتوح المصدر"
+
+msgid "under AGPL-3.0 license"
+msgstr "تحت رخصة AGPL-3.0"
+
+msgid "see the source code"
+msgstr "الإطلاع على الشفرة المصدرية"
 
 msgid "Language"
 msgstr "اللغة"

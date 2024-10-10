@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 16:38+0200\n"
+"POT-Creation-Date: 2024-10-10 12:57+0200\n"
 "PO-Revision-Date: 2024-08-11 13:12+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -91,15 +91,6 @@ msgstr "%s Tussda talemmast %s (tamezwert)"
 
 msgid "High compression (minimum quality)"
 msgstr "Tussda ɛlayen (taɣara taddayt)"
-
-msgid "Free open-source software"
-msgstr "D aseɣẓan ilelli n uɣbalu yeldin"
-
-msgid "under AGPL-3.0 license"
-msgstr "s turagt AGPL-3.0"
-
-msgid "see the source code"
-msgstr "wali tangalt taɣbalut"
 
 msgid "Editing PDF metadata"
 msgstr "Aẓrag n yiɣefisefka n PDF"
@@ -448,6 +439,15 @@ msgstr "Azmul-ik yettwasekles akken iwata!"
 
 msgid "Text to modify"
 msgstr "Aḍris ara yettuṣeggmen"
+
+msgid "Free open-source software"
+msgstr "D aseɣẓan ilelli n uɣbalu yeldin"
+
+msgid "under AGPL-3.0 license"
+msgstr "s turagt AGPL-3.0"
+
+msgid "see the source code"
+msgstr "wali tangalt taɣbalut"
 
 msgid "Language"
 msgstr "Tutlayt"

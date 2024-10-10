@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 16:38+0200\n"
+"POT-Creation-Date: 2024-10-10 12:57+0200\n"
 "PO-Revision-Date: 2024-02-07 02:01+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
@@ -93,15 +93,6 @@ msgstr "%s Mittlere Kompression %s (Standard)"
 
 msgid "High compression (minimum quality)"
 msgstr "Hohe Komprimierung (minimale Qualität)"
-
-msgid "Free open-source software"
-msgstr "Freie Open-Source-Software"
-
-msgid "under AGPL-3.0 license"
-msgstr "unter AGPL-3.0-Lizenz"
-
-msgid "see the source code"
-msgstr "siehe den Quellcode"
 
 msgid "Editing PDF metadata"
 msgstr "PDF-Metadaten bearbeiten"
@@ -455,6 +446,15 @@ msgstr ""
 
 msgid "Text to modify"
 msgstr ""
+
+msgid "Free open-source software"
+msgstr "Freie Open-Source-Software"
+
+msgid "under AGPL-3.0 license"
+msgstr "unter AGPL-3.0-Lizenz"
+
+msgid "see the source code"
+msgstr "siehe den Quellcode"
 
 msgid "Language"
 msgstr "Sprache"

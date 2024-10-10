@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 16:38+0200\n"
+"POT-Creation-Date: 2024-10-10 12:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -87,15 +87,6 @@ msgid "%s Medium compression %s (default)"
 msgstr ""
 
 msgid "High compression (minimum quality)"
-msgstr ""
-
-msgid "Free open-source software"
-msgstr ""
-
-msgid "under AGPL-3.0 license"
-msgstr ""
-
-msgid "see the source code"
 msgstr ""
 
 msgid "Editing PDF metadata"
@@ -437,6 +428,15 @@ msgid "Your signature has been successfully recorded!"
 msgstr ""
 
 msgid "Text to modify"
+msgstr ""
+
+msgid "Free open-source software"
+msgstr ""
+
+msgid "under AGPL-3.0 license"
+msgstr ""
+
+msgid "see the source code"
 msgstr ""
 
 msgid "Language"

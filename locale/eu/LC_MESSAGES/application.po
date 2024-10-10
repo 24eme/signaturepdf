@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 16:38+0200\n"
+"POT-Creation-Date: 2024-10-10 12:57+0200\n"
 "PO-Revision-Date: 2024-08-12 14:09+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
@@ -92,15 +92,6 @@ msgstr "%s Konpresio ertaina %s (lehenetsia)"
 
 msgid "High compression (minimum quality)"
 msgstr "Konpresio altua (kalitate txikiena)"
-
-msgid "Free open-source software"
-msgstr "Kode irekiko software librea"
-
-msgid "under AGPL-3.0 license"
-msgstr "AGPL-3.0 lizentziapean"
-
-msgid "see the source code"
-msgstr "ikusi iturburu kodea"
 
 msgid "Editing PDF metadata"
 msgstr "PDFaren metadatuak editatzen"
@@ -449,6 +440,15 @@ msgstr "Zure sinadura ondo grabatu da!"
 
 msgid "Text to modify"
 msgstr "Moldatzeko testua"
+
+msgid "Free open-source software"
+msgstr "Kode irekiko software librea"
+
+msgid "under AGPL-3.0 license"
+msgstr "AGPL-3.0 lizentziapean"
+
+msgid "see the source code"
+msgstr "ikusi iturburu kodea"
 
 msgid "Language"
 msgstr "Hizkuntza"

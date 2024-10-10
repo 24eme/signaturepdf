@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 16:38+0200\n"
+"POT-Creation-Date: 2024-10-10 12:57+0200\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -92,15 +92,6 @@ msgstr "%s compresie medie %s (implicit)"
 
 msgid "High compression (minimum quality)"
 msgstr "Compresie ridicată (calitate minimă)"
-
-msgid "Free open-source software"
-msgstr "Software gratuit cu sursă deschisă"
-
-msgid "under AGPL-3.0 license"
-msgstr "sub licență AGPL-3.0"
-
-msgid "see the source code"
-msgstr "vezi codul sursă"
 
 msgid "Editing PDF metadata"
 msgstr "Editarea metadatelor PDF"
@@ -452,6 +443,15 @@ msgstr "Semnătura ta a fost înregistrată cu succes!"
 
 msgid "Text to modify"
 msgstr "Text de modificat"
+
+msgid "Free open-source software"
+msgstr "Software gratuit cu sursă deschisă"
+
+msgid "under AGPL-3.0 license"
+msgstr "sub licență AGPL-3.0"
+
+msgid "see the source code"
+msgstr "vezi codul sursă"
 
 msgid "Language"
 msgstr "Limba"

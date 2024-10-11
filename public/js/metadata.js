@@ -194,11 +194,16 @@ function createEventsListener() {
         }
     })
 
-    document.getElementById('save').addEventListener('click', function (e) {
-        save()
+    document.getElementById('save').addEventListener('click', async function (e) {
+        startProcessingMode(this);
+        await save()
+        setTimeout(function() {endProcessingMode(document.getElementById('save'))}, 500);
+
     })
-    document.getElementById('save_mobile').addEventListener('click', function (e) {
-        save()
+    document.getElementById('save_mobile').addEventListener('click', async function (e) {
+        startProcessingMode(this);
+        await save()
+        setTimeout(function() {endProcessingMode(document.getElementById('save_mobile'))}, 500);
     })
 }
 

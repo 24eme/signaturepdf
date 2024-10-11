@@ -608,16 +608,15 @@ function createEventsListener() {
     });
     document.getElementById('save').addEventListener('click', async function(e) {
         e.preventDefault();
-
-        startProcessingMode(document.getElementById('save'));
+        startProcessingMode(this);
         await saveAll();
-        endProcessingMode(document.getElementById('save'));
+        endProcessingMode(this);
     });
     document.getElementById('save_mobile').addEventListener('click', async function(event) {
         event.preventDefault();
-        startProcessingMode(document.getElementById('save_mobile'));
+        startProcessingMode(this);
         await saveAll();
-        endProcessingMode(document.getElementById('save_mobile'));
+        endProcessingMode(this);
     });
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
         await uploadAndLoadPDF(this);
@@ -694,18 +693,6 @@ function createEventsListener() {
         document.getElementById('btn_cancel_select').click();
     });
 
-}
-
-function startProcessingMode(btn) {
-    btn.disabled = true;
-    btn.querySelector('.bi').classList.add('position-relative');
-    btn.querySelector('.bi').insertAdjacentHTML('afterbegin', '<span class="spinner-grow spinner-grow-sm position-absolute top-50 start-50 translate-middle"></span>');
-}
-
-function endProcessingMode(btn) {
-    btn.querySelector('.spinner-grow').remove();
-    btn.querySelector('.bi').classList.remove('position-relative');
-    btn.disabled = false;
 }
 
 async function uploadFromUrl(url) {

@@ -90,6 +90,18 @@ async function loadFileFromUrl(url, pageUrl, local = null) {
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
 }
 
+function startProcessingMode(btn) {
+    btn.disabled = true;
+    btn.querySelector('.bi').classList.add('position-relative');
+    btn.querySelector('.bi').insertAdjacentHTML('afterbegin', '<span class="spinner-grow spinner-grow-sm position-absolute top-50 start-50 translate-middle"></span>');
+}
+
+function endProcessingMode(btn) {
+    btn.querySelector('.spinner-grow').remove();
+    btn.querySelector('.bi').classList.remove('position-relative');
+    btn.disabled = false;
+}
+
 function download(blob, filename) {
     let a = document.createElement("a"),
         u = URL.createObjectURL(blob);

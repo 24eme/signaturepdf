@@ -2,6 +2,8 @@ let pages = [];
 let pdfRenderTasks = [];
 let pdffile = null
 let deletedMetadata = [];
+let isLocalPath = false;
+let hasModifications = false;
 
 function responsiveDisplay() {
     let menu = document.getElementById('sidebarTools');
@@ -142,6 +144,17 @@ function deleteMetadata(el) {
     input.remove()
 }
 
+function setIsChanged(changed) {
+    hasModifications = changed;
+    if(changed) {
+        document.getElementById('save_local').disabled = false;
+        document.getElementById('save_mobile_local').disabled = false;
+    } else {
+        document.getElementById('save_local').disabled = true;
+        document.getElementById('save_mobile_local').disabled = true;
+    }
+}
+
 async function save() {
     const PDFDocument = window['PDFLib'].PDFDocument
     const PDFHexString = window['PDFLib'].PDFHexString
@@ -175,9 +188,20 @@ async function save() {
 }
 
 function createEventsListener() {
+    document.getElementById('form-metadata').addEventListener('keypress', function(e) {
+        if(e.target.tagName == "INPUT") {
+            setIsChanged(true);
+        }
+    })
+    document.getElementById('form-metadata').addEventListener('change', function(e) {
+        if(e.target.tagName == "INPUT") {
+            setIsChanged(true);
+        }
+    })
     document.getElementById('form_metadata_add').addEventListener('submit', function(e) {
         let formData = new FormData(this);
         addMetadata(formData.get('metadata_key'), "", "text", true);
+        setIsChanged(true);
         this.classList.add('invisible');
         setTimeout(function() { document.getElementById('form_metadata_add').classList.remove('invisible'); }, 400);
         this.reset();
@@ -191,6 +215,7 @@ function createEventsListener() {
     document.addEventListener('click', function (event) {
         if (event.target.closest(".delete-metadata")) {
             deleteMetadata(event.target)
+            setIsChanged(true)
         }
     })
 
@@ -198,12 +223,21 @@ function createEventsListener() {
         startProcessingMode(this);
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save'))}, 500);
-
     })
     document.getElementById('save_mobile').addEventListener('click', async function (e) {
         startProcessingMode(this);
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save_mobile'))}, 500);
+    })
+    document.getElementById('save_local').addEventListener('click', async function (e) {
+        startProcessingMode(this);
+        await save()
+        setTimeout(function() {endProcessingMode(document.getElementById('save_local')); setIsChanged(false);}, 500);
+    })
+    document.getElementById('save_mobile_local').addEventListener('click', async function (e) {
+        startProcessingMode(this);
+        await save()
+        setTimeout(function() {endProcessingMode(document.getElementById('save_mobile_local')); setIsChanged(false);}, 500);
     })
 }
 
@@ -229,6 +263,13 @@ async function pageMetadata(url) {
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-metadata').classList.remove('d-none');
+    if(isLocalPath) {
+        document.getElementById('save').classList.add('d-none');
+        document.getElementById('save_mobile').classList.add('d-none');
+        document.getElementById('save_local').classList.remove('d-none');
+        document.getElementById('save_mobile_local').classList.remove('d-none');
+    }
+
     if(url && url.match(/^cache:\/\//)) {
         await loadFileFromCache(url.replace(/^cache:\/\//, ''));
     } else if (url) {
@@ -251,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         pageMetadata(window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash && window.location.hash.match(/^\#local/)) {
+        isLocalPath = true;
         pageMetadata(window.location.origin + "/api/file/get?path=" + window.location.hash.replace(/^\#local:/, ''), '/metadata', window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash) {
         pageMetadata('cache:///pdf/'+window.location.hash.replace(/^\#/, ''));

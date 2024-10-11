@@ -70,13 +70,15 @@
         </div>
         <div class="position-absolute bg-white bottom-0 pb-2 ps-2 pe-2 w-100 border-top shadow-lg">
             <div id="btn_container" class="d-grid gap-2 mt-2">
-                <button class="btn btn-primary" type="submit" id="save"><i class="bi bi-download"></i> <?php echo _("Save and download the PDF"); ?></button>
+                <button class="btn btn-primary" type="button" id="save"><i class="bi bi-download"></i> <?php echo _("Save and download the PDF"); ?></button>
+                <button class="btn btn-primary d-none" type="button" id="save_local" disabled="disabled"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
             </div>
         </div>
     </div>
     <div id="bottom_bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
         <div id="bottom_bar_action" class="d-grid gap-2">
             <button class="btn btn-primary" id="save_mobile"><i class="bi bi-download"></i> <?php echo _("Save and download the PDF"); ?></button>
+            <button class="btn btn-primary d-none" type="button" id="save_mobile_local" disabled="disabled"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
         </div>
     </div>
 </div>

@@ -273,7 +273,10 @@ async function pageMetadata(url) {
     if(url && url.match(/^cache:\/\//)) {
         await loadFileFromCache(url.replace(/^cache:\/\//, ''));
     } else if (url) {
+        const modalLoading = new bootstrap.Modal('#modalLoading')
+        modalLoading.show();
         await loadFileFromUrl(url);
+        modalLoading.hide();
     }
 
     if(!document.getElementById('input_pdf_upload').files.length) {

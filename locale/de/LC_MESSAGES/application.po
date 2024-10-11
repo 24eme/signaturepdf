@@ -26,29 +26,29 @@ msgid "Administration panel"
 msgstr ""
 
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguration"
 
 msgid "Server installation"
-msgstr ""
+msgstr "Server-Installation"
 
 #, php-format
 msgid "Minimal version required : %s"
-msgstr ""
+msgstr "Erforderliche Minimalversion : %s"
 
 #, php-format
 msgid "Package %s required"
-msgstr ""
+msgstr "Paket %s erforderlich"
 
 #, php-format
 msgid "Package %s missing"
-msgstr ""
+msgstr "Paket %s fehlt"
 
 msgid "File Configuration"
-msgstr ""
+msgstr "Dateikonfiguration"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
-msgstr ""
+msgstr "Das Verzeichnis %s sollte existieren und beschreibbar sein"
 
 msgid "Compress PDF"
 msgstr "PDF komprimieren"
@@ -275,10 +275,10 @@ msgstr ""
 "Personen unterzeichnet werden kann"
 
 msgid "This PDF is stored encrypted on the server."
-msgstr ""
+msgstr "Dieses PDF wird verschlüsselt auf dem Server gespeichert."
 
 msgid "Keep the selection active"
-msgstr ""
+msgstr "Auswahl aktiv halten"
 
 #, php-format
 msgid "%s Signature"
@@ -300,11 +300,11 @@ msgid "%s Text"
 msgstr "%s Text"
 
 msgid "Strikethrough"
-msgstr ""
+msgstr "Durchstreichen"
 
 #, php-format
 msgid "%s Check box"
-msgstr ""
+msgstr "%s Kontrollkästchen"
 
 #, php-format
 msgid "%s Create an element"
@@ -342,7 +342,7 @@ msgid "Enter"
 msgstr ""
 
 msgid "text"
-msgstr ""
+msgstr "Text"
 
 msgid "Import"
 msgstr "Importieren"
@@ -400,7 +400,7 @@ msgid "after the last signature."
 msgstr ""
 
 msgid "The PDF will be stored encrypted on the server"
-msgstr ""
+msgstr "Die PDF wird verschlüsselt auf dem Server gespeichert"
 
 #, php-format
 msgid "%s Start sharing"
@@ -411,7 +411,7 @@ msgid "%s Sign this PDF with multiple people"
 msgstr ""
 
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr ""
+msgstr "Mehrere Personen können dieses PDF gleichzeitig signieren."
 
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
@@ -442,10 +442,10 @@ msgid "Signed PDF"
 msgstr "PDF unterschrieben"
 
 msgid "Your signature has been successfully recorded!"
-msgstr ""
+msgstr "Ihre Signatur wurde erfolgreich erfasst!"
 
 msgid "Text to modify"
-msgstr ""
+msgstr "Zu ändernder Text"
 
 msgid "Free open-source software"
 msgstr "Freie Open-Source-Software"

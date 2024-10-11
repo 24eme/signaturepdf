@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 12:57+0200\n"
+"POT-Creation-Date: 2024-10-12 00:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Save and download the PDF"
 msgstr ""
 
-msgid "Download the PDF"
+msgid "Save changes"
 msgstr ""
 
 msgid "Organize PDF"
@@ -426,6 +426,9 @@ msgid "Signed PDF"
 msgstr ""
 
 msgid "Your signature has been successfully recorded!"
+msgstr ""
+
+msgid "Download the PDF"
 msgstr ""
 
 msgid "Text to modify"

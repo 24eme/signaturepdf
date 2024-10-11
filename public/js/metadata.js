@@ -146,13 +146,12 @@ function deleteMetadata(el) {
 
 function setIsChanged(changed) {
     hasModifications = changed;
-    if(changed) {
-        document.getElementById('save_local').disabled = false;
-        document.getElementById('save_mobile_local').disabled = false;
-    } else {
-        document.getElementById('save_local').disabled = true;
-        document.getElementById('save_mobile_local').disabled = true;
-    }
+    document.getElementById('save_local').disabled = !changed;
+    document.getElementById('save_mobile_local').disabled = !changed;
+    document.getElementById('save_local').classList.toggle('btn-primary', changed);
+    document.getElementById('save_local').classList.toggle('btn-outline-primary', !changed);
+    document.getElementById('save_mobile_local').classList.toggle('btn-primary', changed);
+    document.getElementById('save_mobile_local').classList.toggle('btn-outline-primary', !changed);
 }
 
 async function save() {

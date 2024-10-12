@@ -523,10 +523,12 @@ function updateGlobalState() {
 }
 
 async function uploadAndLoadPDF(input_upload) {
+    showLoading('Loading')
     for (let i = 0; i < input_upload.files.length; i++) {
         nbPDF++;
         await loadPDF(input_upload.files[i], input_upload.files[i].name, nbPDF);
     }
+    endLoading()
 }
 
 async function saveAll() {
@@ -696,6 +698,7 @@ function createEventsListener() {
 }
 
 async function uploadFromUrl(url) {
+    showLoading('Download')
     history.replaceState({}, '', '/organization');
     var response = await fetch(url);
     if(response.status != 200) {
@@ -713,6 +716,7 @@ async function uploadFromUrl(url) {
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
     document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
+    endLoading('Download')
 }
 
 async function pageUpload() {

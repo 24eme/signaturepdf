@@ -1,3 +1,5 @@
+const modalLoading = new bootstrap.Modal('#modalLoading')
+
 function is_mobile() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
 };
@@ -65,6 +67,7 @@ async function storeFileInCache() {
 }
 
 async function loadFileFromUrl(url, pageUrl, local = null) {
+    showLoading('Download')
     history.replaceState({}, '', pageUrl);
     let response = await fetch(url);
     if(response.status != 200) {
@@ -88,6 +91,7 @@ async function loadFileFromUrl(url, pageUrl, local = null) {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
+    endLoading()
 }
 
 function startProcessingMode(btn) {
@@ -100,6 +104,15 @@ function endProcessingMode(btn) {
     btn.querySelector('.spinner-grow').remove();
     btn.querySelector('.bi').classList.remove('position-relative');
     btn.disabled = false;
+}
+
+function showLoading(message) {
+    document.getElementById('modalLoading').querySelector('p').innerText = message
+    modalLoading.show();
+}
+
+function endLoading(message) {
+    modalLoading.hide();
 }
 
 function download(blob, filename) {

@@ -1,15 +1,9 @@
 <!doctype html>
 <html lang="<?php echo $TRANSLATION_LANGUAGE ?>" dir="<?php echo $DIRECTION_LANGUAGE ?>" style="direction: <?php echo $DIRECTION_LANGUAGE ?>;" class="<?php echo $DIRECTION_LANGUAGE ?>">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php include('components/header.html.php'); ?>
 
-    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.<?php echo $DIRECTION_LANGUAGE ?>.min.css?5.3.3" rel="stylesheet">
-    <link href="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap-icons.min.css?1.11.3" rel="stylesheet">
-    <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.ico">
-
     <title><?php _("Organize PDF"); ?></title>
   </head>
   <body>
@@ -126,27 +120,7 @@
         </div>
     </div>
 
-    <span id="is_mobile" class="d-md-none"></span>
-
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.3.3"></script>
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.mjs?4.6.82-legacy" type="module"></script>
-    <script type="module">
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.worker.mjs?4.6.82-legacy';
-    </script>
-    <script>
-    var trad = <?php echo json_encode([
-        'Select this page' => _('Select this page'),
-        'Delete this page' => _('Delete this page'),
-        'Restore this page' => _('Restore this page'),
-        'Move this page' => _('Move this page'),
-        'Move here' => _('Move here'),
-        'Turn this page' => _('Turn this page'),
-        'Download this page' => _('Download this page'),
-        'Page' => _('Page')
-    ]); ?>;
-    </script>
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
+    <?php include('components/common.html.php'); ?>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/organization.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/organization.js") ?>"></script>
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?1.17.1"></script>
   </body>
 </html>

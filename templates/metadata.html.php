@@ -87,7 +87,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content bg-transparent border-0">
             <div class="modal-body text-center my-5 text-white fs-4">
-                <p class="monospace">Récupération du fichier en cours ...</p>
+                <p>Récupération du fichier</p>
                 <div class="spinner-border" role="status"></div>
             </div>
         </div>

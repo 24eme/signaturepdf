@@ -4,6 +4,7 @@ let pdffile = null
 let deletedMetadata = [];
 let isLocalPath = false;
 let hasModifications = false;
+const modalLoading = new bootstrap.Modal('#modalLoading')
 
 function responsiveDisplay() {
     let menu = document.getElementById('sidebarTools');
@@ -259,6 +260,7 @@ async function pageUpload() {
 }
 
 async function pageMetadata(url) {
+    modalLoading.show();
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-metadata').classList.remove('d-none');
@@ -272,11 +274,10 @@ async function pageMetadata(url) {
     if(url && url.match(/^cache:\/\//)) {
         await loadFileFromCache(url.replace(/^cache:\/\//, ''));
     } else if (url) {
-        const modalLoading = new bootstrap.Modal('#modalLoading')
-        modalLoading.show();
         await loadFileFromUrl(url);
-        modalLoading.hide();
     }
+
+    document.getElementById('modalLoading').querySelector('p').innerText = 'Chargement du PDF'
 
     if(!document.getElementById('input_pdf_upload').files.length) {
         alert("Chargement du PDF impossible");
@@ -286,7 +287,8 @@ async function pageMetadata(url) {
 
     responsiveDisplay();
     createEventsListener();
-    loadPDF(document.getElementById('input_pdf_upload').files[0]);
+    await loadPDF(document.getElementById('input_pdf_upload').files[0]);
+    modalLoading.hide();
 };
 
 

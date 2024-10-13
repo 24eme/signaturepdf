@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content bg-transparent border-0">
             <div class="modal-body text-center my-5 text-white fs-4">
-                <p>Récupération</p>
+                <p></p>
                 <div class="spinner-border" role="status"></div>
             </div>
         </div>

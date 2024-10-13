@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:18+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -206,30 +206,6 @@ msgstr "Descărcați selecția"
 
 msgid "PDF documents"
 msgstr "Documente PDF"
-
-msgid "Select this page"
-msgstr "Selectați această pagină"
-
-msgid "Delete this page"
-msgstr "Ștergeți această pagină"
-
-msgid "Restore this page"
-msgstr "Restaurați această pagină"
-
-msgid "Move this page"
-msgstr "Mutați această pagină"
-
-msgid "Move here"
-msgstr "Mută aici"
-
-msgid "Turn this page"
-msgstr "Întoarce această pagină"
-
-msgid "Download this page"
-msgstr "Descărcați această pagină"
-
-msgid "Page"
-msgstr "Pagină"
 
 #, php-format
 msgid "%s Sign a PDF"
@@ -441,11 +417,51 @@ msgstr "PDF semnat"
 msgid "Your signature has been successfully recorded!"
 msgstr "Semnătura ta a fost înregistrată cu succes!"
 
+msgid ""
+"This application does not automatically send an email. If you want to write "
+"one you can use <a>this pre-written email</a>"
+msgstr ""
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+
 msgid "Download the PDF"
 msgstr "Descărcați PDF-ul"
 
 msgid "Text to modify"
 msgstr "Text de modificat"
+
+msgid "Select this page"
+msgstr "Selectați această pagină"
+
+msgid "Delete this page"
+msgstr "Ștergeți această pagină"
+
+msgid "Restore this page"
+msgstr "Restaurați această pagină"
+
+msgid "Move this page"
+msgstr "Mutați această pagină"
+
+msgid "Move here"
+msgstr "Mută aici"
+
+msgid "Turn this page"
+msgstr "Întoarce această pagină"
+
+msgid "Download this page"
+msgstr "Descărcați această pagină"
+
+msgid "Page"
+msgstr "Pagină"
 
 msgid "Free open-source software"
 msgstr "Software gratuit cu sursă deschisă"

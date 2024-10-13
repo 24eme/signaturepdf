@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:18+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2024-02-07 02:01+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
@@ -210,30 +210,6 @@ msgstr "Auswahl herunterladen"
 
 msgid "PDF documents"
 msgstr "PDF-Dokumente"
-
-msgid "Select this page"
-msgstr "Diese Seite auswählen"
-
-msgid "Delete this page"
-msgstr "Diese Seite löschen"
-
-msgid "Restore this page"
-msgstr "Diese Seite wiederherstellen"
-
-msgid "Move this page"
-msgstr "Diese Seite verschieben"
-
-msgid "Move here"
-msgstr "Hierher verschieben"
-
-msgid "Turn this page"
-msgstr "Diese Seite drehen"
-
-msgid "Download this page"
-msgstr "Diese Seite herunterladen"
-
-msgid "Page"
-msgstr "Seite"
 
 #, php-format
 msgid "%s Sign a PDF"
@@ -444,11 +420,51 @@ msgstr "PDF unterschrieben"
 msgid "Your signature has been successfully recorded!"
 msgstr "Ihre Signatur wurde erfolgreich erfasst!"
 
+msgid ""
+"This application does not automatically send an email. If you want to write "
+"one you can use <a>this pre-written email</a>"
+msgstr ""
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+
 msgid "Download the PDF"
 msgstr "PDF herunterladen"
 
 msgid "Text to modify"
 msgstr "Zu ändernder Text"
+
+msgid "Select this page"
+msgstr "Diese Seite auswählen"
+
+msgid "Delete this page"
+msgstr "Diese Seite löschen"
+
+msgid "Restore this page"
+msgstr "Diese Seite wiederherstellen"
+
+msgid "Move this page"
+msgstr "Diese Seite verschieben"
+
+msgid "Move here"
+msgstr "Hierher verschieben"
+
+msgid "Turn this page"
+msgstr "Diese Seite drehen"
+
+msgid "Download this page"
+msgstr "Diese Seite herunterladen"
+
+msgid "Page"
+msgstr "Seite"
 
 msgid "Free open-source software"
 msgstr "Freie Open-Source-Software"

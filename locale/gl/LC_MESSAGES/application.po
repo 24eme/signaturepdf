@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:18+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2024-10-12 10:22+0000\n"
 "Last-Translator: \"josé m.\" <correoxm@disroot.org>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/signature-pdf/"
@@ -205,30 +205,6 @@ msgstr "Descargar a selección"
 
 msgid "PDF documents"
 msgstr "Documentos PDF"
-
-msgid "Select this page"
-msgstr "Seleccionar esta páxina"
-
-msgid "Delete this page"
-msgstr "Eliminar esta páxina"
-
-msgid "Restore this page"
-msgstr "Restablecer esta páxina"
-
-msgid "Move this page"
-msgstr "Mover esta páxina"
-
-msgid "Move here"
-msgstr "Mover aquí"
-
-msgid "Turn this page"
-msgstr "Xirar esta páxina"
-
-msgid "Download this page"
-msgstr "Descargar esta páxina"
-
-msgid "Page"
-msgstr "Páxina"
 
 #, php-format
 msgid "%s Sign a PDF"
@@ -438,11 +414,51 @@ msgstr "Asinaches o PDF"
 msgid "Your signature has been successfully recorded!"
 msgstr "A túa sinatura foi gravada correctamente!"
 
+msgid ""
+"This application does not automatically send an email. If you want to write "
+"one you can use <a>this pre-written email</a>"
+msgstr ""
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+
 msgid "Download the PDF"
 msgstr "Descargar o PDF"
 
 msgid "Text to modify"
 msgstr "Texto a modificar"
+
+msgid "Select this page"
+msgstr "Seleccionar esta páxina"
+
+msgid "Delete this page"
+msgstr "Eliminar esta páxina"
+
+msgid "Restore this page"
+msgstr "Restablecer esta páxina"
+
+msgid "Move this page"
+msgstr "Mover esta páxina"
+
+msgid "Move here"
+msgstr "Mover aquí"
+
+msgid "Turn this page"
+msgstr "Xirar esta páxina"
+
+msgid "Download this page"
+msgstr "Descargar esta páxina"
+
+msgid "Page"
+msgstr "Páxina"
 
 msgid "Free open-source software"
 msgstr "Software gratuíto e de código aberto"

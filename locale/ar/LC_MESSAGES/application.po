@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:18+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -206,30 +206,6 @@ msgstr "تنزيل المُحدَّدة"
 
 msgid "PDF documents"
 msgstr "مستندات PDF"
-
-msgid "Select this page"
-msgstr "اختر هذه الصفحة"
-
-msgid "Delete this page"
-msgstr "احذف هذه الصفحة"
-
-msgid "Restore this page"
-msgstr "استرجِع هذه الصفحة"
-
-msgid "Move this page"
-msgstr "انقُل هذه الصفحة"
-
-msgid "Move here"
-msgstr "انقُلها إلى هنا"
-
-msgid "Turn this page"
-msgstr "تدوير هذه الصفحة"
-
-msgid "Download this page"
-msgstr "تنزيل هذه الصفحة"
-
-msgid "Page"
-msgstr "صفحة"
 
 #, php-format
 msgid "%s Sign a PDF"
@@ -435,11 +411,51 @@ msgstr "ملف PDF مُوَقَّع"
 msgid "Your signature has been successfully recorded!"
 msgstr "تم تسجيل توقيعك بنجاح!"
 
+msgid ""
+"This application does not automatically send an email. If you want to write "
+"one you can use <a>this pre-written email</a>"
+msgstr ""
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+
 msgid "Download the PDF"
 msgstr "تنزيل الـ PDF"
 
 msgid "Text to modify"
 msgstr "النص الذي تودّ تعديله"
+
+msgid "Select this page"
+msgstr "اختر هذه الصفحة"
+
+msgid "Delete this page"
+msgstr "احذف هذه الصفحة"
+
+msgid "Restore this page"
+msgstr "استرجِع هذه الصفحة"
+
+msgid "Move this page"
+msgstr "انقُل هذه الصفحة"
+
+msgid "Move here"
+msgstr "انقُلها إلى هنا"
+
+msgid "Turn this page"
+msgstr "تدوير هذه الصفحة"
+
+msgid "Download this page"
+msgstr "تنزيل هذه الصفحة"
+
+msgid "Page"
+msgstr "صفحة"
 
 msgid "Free open-source software"
 msgstr "برنامج حُرّ ومفتوح المصدر"

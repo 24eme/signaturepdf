@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:18+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2024-10-10 10:15+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
@@ -205,30 +205,6 @@ msgstr "Telecargar la seleccion"
 
 msgid "PDF documents"
 msgstr "Documents PDF"
-
-msgid "Select this page"
-msgstr "Seleccionar aquesta pagina"
-
-msgid "Delete this page"
-msgstr "Suprimir aquesta pagina"
-
-msgid "Restore this page"
-msgstr "Restaurar aquesta pagina"
-
-msgid "Move this page"
-msgstr "Desplaçar aquesta pagina"
-
-msgid "Move here"
-msgstr "Desplaçar aicí"
-
-msgid "Turn this page"
-msgstr "Virar aquesta pagina"
-
-msgid "Download this page"
-msgstr "Telecargar aquesta pagina"
-
-msgid "Page"
-msgstr "Pagina"
 
 #, php-format
 msgid "%s Sign a PDF"
@@ -440,11 +416,51 @@ msgstr "PDF signat"
 msgid "Your signature has been successfully recorded!"
 msgstr "Vòstra signatura es estada corrèctament enregistrada !"
 
+msgid ""
+"This application does not automatically send an email. If you want to write "
+"one you can use <a>this pre-written email</a>"
+msgstr ""
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+
 msgid "Download the PDF"
 msgstr "Telecargar lo PDF"
 
 msgid "Text to modify"
 msgstr "Tèxt de modificar"
+
+msgid "Select this page"
+msgstr "Seleccionar aquesta pagina"
+
+msgid "Delete this page"
+msgstr "Suprimir aquesta pagina"
+
+msgid "Restore this page"
+msgstr "Restaurar aquesta pagina"
+
+msgid "Move this page"
+msgstr "Desplaçar aquesta pagina"
+
+msgid "Move here"
+msgstr "Desplaçar aicí"
+
+msgid "Turn this page"
+msgstr "Virar aquesta pagina"
+
+msgid "Download this page"
+msgstr "Telecargar aquesta pagina"
+
+msgid "Page"
+msgstr "Pagina"
 
 msgid "Free open-source software"
 msgstr "Logicial liure"

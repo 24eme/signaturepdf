@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:18+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: 2024-08-12 14:09+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
@@ -206,30 +206,6 @@ msgstr "Deskargatu hautaketa"
 
 msgid "PDF documents"
 msgstr "PDF dokumentuak"
-
-msgid "Select this page"
-msgstr "Hautatu orri hau"
-
-msgid "Delete this page"
-msgstr "Ezabatu orri hau"
-
-msgid "Restore this page"
-msgstr "Berrezarri orri hau"
-
-msgid "Move this page"
-msgstr "Mugitu orri hau"
-
-msgid "Move here"
-msgstr "Mugitu hona"
-
-msgid "Turn this page"
-msgstr "Biratu orri hau"
-
-msgid "Download this page"
-msgstr "Deskargatu orri hau"
-
-msgid "Page"
-msgstr "Orri"
 
 #, php-format
 msgid "%s Sign a PDF"
@@ -438,11 +414,51 @@ msgstr "Sinatutako PDFa"
 msgid "Your signature has been successfully recorded!"
 msgstr "Zure sinadura ondo grabatu da!"
 
+msgid ""
+"This application does not automatically send an email. If you want to write "
+"one you can use <a>this pre-written email</a>"
+msgstr ""
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+
 msgid "Download the PDF"
 msgstr "Deskargatu PDFa"
 
 msgid "Text to modify"
 msgstr "Moldatzeko testua"
+
+msgid "Select this page"
+msgstr "Hautatu orri hau"
+
+msgid "Delete this page"
+msgstr "Ezabatu orri hau"
+
+msgid "Restore this page"
+msgstr "Berrezarri orri hau"
+
+msgid "Move this page"
+msgstr "Mugitu orri hau"
+
+msgid "Move here"
+msgstr "Mugitu hona"
+
+msgid "Turn this page"
+msgstr "Biratu orri hau"
+
+msgid "Download this page"
+msgstr "Deskargatu orri hau"
+
+msgid "Page"
+msgstr "Orri"
 
 msgid "Free open-source software"
 msgstr "Kode irekiko software librea"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:18+0200\n"
+"POT-Creation-Date: 2024-10-14 00:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -201,30 +201,6 @@ msgid "Download the selection"
 msgstr ""
 
 msgid "PDF documents"
-msgstr ""
-
-msgid "Select this page"
-msgstr ""
-
-msgid "Delete this page"
-msgstr ""
-
-msgid "Restore this page"
-msgstr ""
-
-msgid "Move this page"
-msgstr ""
-
-msgid "Move here"
-msgstr ""
-
-msgid "Turn this page"
-msgstr ""
-
-msgid "Download this page"
-msgstr ""
-
-msgid "Page"
 msgstr ""
 
 #, php-format
@@ -427,10 +403,50 @@ msgstr ""
 msgid "Your signature has been successfully recorded!"
 msgstr ""
 
+msgid ""
+"This application does not automatically send an email. If you want to write "
+"one you can use <a>this pre-written email</a>"
+msgstr ""
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+
 msgid "Download the PDF"
 msgstr ""
 
 msgid "Text to modify"
+msgstr ""
+
+msgid "Select this page"
+msgstr ""
+
+msgid "Delete this page"
+msgstr ""
+
+msgid "Restore this page"
+msgstr ""
+
+msgid "Move this page"
+msgstr ""
+
+msgid "Move here"
+msgstr ""
+
+msgid "Turn this page"
+msgstr ""
+
+msgid "Download this page"
+msgstr ""
+
+msgid "Page"
 msgstr ""
 
 msgid "Free open-source software"

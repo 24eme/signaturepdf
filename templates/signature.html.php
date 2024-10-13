@@ -182,6 +182,16 @@
       </div>
     </div>
     </div>
+    <div class="modal" id="modalLoading" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-body text-center my-5 text-white fs-4">
+                    <p></p>
+                    <div class="spinner-border" role="status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php if(!isset($hash) && !isset($noSharingMode)): ?>
     <div id="modal-start-share" class="modal" tabindex="-1">
         <div class="modal-dialog modal-md">
@@ -256,16 +266,6 @@
         </div>
     </div>
     <?php endif; ?>
-    <div class="modal" id="modalLoading" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content bg-transparent border-0">
-                <div class="modal-body text-center my-5 text-white fs-4">
-                    <p></p>
-                    <div class="spinner-border" role="status"></div>
-                </div>
-            </div>
-        </div>
-    </div>
     <span id="is_mobile" class="d-md-none"></span>
 
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.3.3"></script>

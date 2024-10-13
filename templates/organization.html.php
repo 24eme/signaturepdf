@@ -42,7 +42,7 @@
             <button id="btn-zoom-decrease" class="btn btn-outline-dark bg-white text-dark"><i class="bi bi-zoom-out"></i></button>
         </div>
         <div id="div-margin-bottom" style="height: 55px;" class="d-md-none"></div>
-        <div class="offcanvas offcanvas-end show shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
+        <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
             <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="<?php echo _("Close this PDF and return to home"); ?>" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"></a>
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><?php echo _("PDF organization"); ?> <span class="float-end me-2" title="<?php echo _("This PDF is stored on your computer to be signed by you only"); ?>"><i class="bi-ui-checks-grid"></i></span></h5>

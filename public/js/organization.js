@@ -1,12 +1,10 @@
 function responsiveDisplay() {
     if(is_mobile()) {
         document.getElementById('page-organization').classList.remove('decalage-pdf-div');
-        document.getElementById('sidebarTools').classList.remove('show');
         document.getElementById('container-pages').classList.remove('vh-100');
         document.getElementById('container-btn-zoom').classList.add('d-none');
     } else {
         document.getElementById('page-organization').classList.add('decalage-pdf-div');
-        document.getElementById('sidebarTools').classList.add('show');
         document.getElementById('container-pages').classList.add('vh-100');
         document.getElementById('container-btn-zoom').classList.remove('d-none');
     }

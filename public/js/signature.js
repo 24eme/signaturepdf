@@ -138,7 +138,7 @@ async function loadPDF(pdfBlob) {
                       event.target.scaleX = event.target.scaleY;
                   }
               });
-              canvasEdition.on('object:scaled', function(event) {
+              canvasEdition.on('object:modified', function(event) {
                   if (event.target instanceof fabric.IText) {
                       currentTextScale = event.target.scaleX;
                       return;

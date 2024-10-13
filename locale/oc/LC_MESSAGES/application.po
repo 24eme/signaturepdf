@@ -131,7 +131,7 @@ msgid "Save and download the PDF"
 msgstr "Enregistrar e telecargar lo PDF"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Salvar las modificacions"
 
 msgid "Organize PDF"
 msgstr "Organizar un PDF"

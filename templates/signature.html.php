@@ -257,7 +257,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="mb-1"><i class="bi bi-check-circle text-success"></i> <?php echo _("Your signature has been successfully recorded!"); ?></p>
+                    <p class="mb-1 text-success"><i class="bi bi-check-circle"></i> <?php echo _("Your signature has been successfully recorded!"); ?></p>
+                    <p id="text_nomail_notification" class="mt-3 text-muted"><i class="bi bi-info-circle"></i> <?php echo _("This application does not automatically send an email. If you want to write one you can use <a>this pre-written email</a>") ?>
+                    </p>
+                    <a id="link_compose_mail" class="d-none" href="mailto:?<?php echo http_build_query(["subject" => sprintf(_("Signing the document : %s"), "DOCUMENT_NAME"), "body" => sprintf(_("Hello,\n\nI just signed the document (%s) : %s"), "DOCUMENT_NAME", "DOCUMENT_URL")], "", null, PHP_QUERY_RFC3986) ?>"></a>
                 </div>
                 <div class="modal-footer text-center d-block">
                     <a class="btn btn-outline-dark" href="<?php echo $REVERSE_PROXY_URL; ?>/signature/<?php echo $hash ?>/pdf"><i class="bi bi-download"></i> <?php echo _("Download the PDF"); ?></a>

@@ -976,6 +976,14 @@ function modalSharing() {
     if(openModal == 'signed') {
         let modalSignedEl = document.getElementById('modal-signed');
         let modalSigned = bootstrap.Modal.getOrCreateInstance(modalSignedEl);
+
+        document.querySelector('#modal-signed #text_nomail_notification a').addEventListener('click', function() {
+            this.href = this.href.replace(/DOCUMENT_NAME/g, document.getElementById('text_document_name').title);
+            this.href = this.href.replace('DOCUMENT_URL', document.location.href);
+        });
+
+        document.querySelector('#modal-signed #text_nomail_notification a').href = document.getElementById('link_compose_mail').href;
+
         modalSigned.show();
     }
 }

@@ -361,7 +361,9 @@ $f3->route('GET /cron', function($f3) {
         }
         $expiredFolder = str_replace('.expire', '', $expireFile);
         array_map('unlink', glob($expiredFolder."/*"));
-        unlink($expiredFolder.'/.lock');
+        if(file_exists($expiredFolder.'/.lock')) {
+            unlink($expiredFolder.'/.lock');
+        }
         rmdir($expiredFolder);
         unlink($expireFile);
     }

@@ -423,7 +423,7 @@ msgstr ""
 
 #, php-format
 msgid "Signing the document : %s"
-msgstr ""
+msgstr "Asinando o documento: %s"
 
 #, php-format
 msgid ""
@@ -431,6 +431,9 @@ msgid ""
 "\n"
 "I just signed the document (%s) : %s"
 msgstr ""
+"Ola,\n"
+"\n"
+"asinei o documento (%s): %s"
 
 msgid "Download the PDF"
 msgstr "Descargar o PDF"
@@ -482,3 +485,10 @@ msgstr "Organizar"
 
 msgid "Metadata"
 msgstr "Metadatos"
+
+msgid ""
+"This application does not automatically send an email. If you want to write "
+"one you can use <a>this pre-written email</a>"
+msgstr ""
+"Esta aplicación non envía automaticamente un correo. Se queres escribir un "
+"podes usar <a>este modelo de correo</a>"

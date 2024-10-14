@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 00:56+0200\n"
+"POT-Creation-Date: 2024-10-14 09:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -404,9 +404,11 @@ msgstr ""
 msgid "Your signature has been successfully recorded!"
 msgstr ""
 
+msgid "This application does not automatically send emails to other signers."
+msgstr ""
+
 msgid ""
-"This application does not automatically send an email. If you want to write "
-"one you can use <a>this pre-written email</a>"
+"If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
 
 #, php-format

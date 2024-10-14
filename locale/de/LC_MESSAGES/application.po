@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-10-14 09:31+0200\n"
 "PO-Revision-Date: 2024-02-07 02:01+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
@@ -420,9 +420,11 @@ msgstr "PDF unterschrieben"
 msgid "Your signature has been successfully recorded!"
 msgstr "Ihre Signatur wurde erfolgreich erfasst!"
 
+msgid "This application does not automatically send emails to other signers."
+msgstr ""
+
 msgid ""
-"This application does not automatically send an email. If you want to write "
-"one you can use <a>this pre-written email</a>"
+"If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
 
 #, php-format

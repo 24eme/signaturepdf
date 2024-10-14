@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-10-14 09:31+0200\n"
 "PO-Revision-Date: 2024-08-11 13:12+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -413,9 +413,11 @@ msgstr "Afaylu PDF yettwasezmel"
 msgid "Your signature has been successfully recorded!"
 msgstr "Azmul-ik yettwasekles akken iwata!"
 
+msgid "This application does not automatically send emails to other signers."
+msgstr ""
+
 msgid ""
-"This application does not automatically send an email. If you want to write "
-"one you can use <a>this pre-written email</a>"
+"If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
 
 #, php-format

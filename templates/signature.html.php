@@ -258,7 +258,7 @@
                 </div>
                 <div class="modal-body">
                     <p class="mb-1 text-success"><i class="bi bi-check-circle"></i> <?php echo _("Your signature has been successfully recorded!"); ?></p>
-                    <p id="text_nomail_notification" class="mt-3 text-muted"><i class="bi bi-info-circle"></i> <?php echo _("This application does not automatically send an email. If you want to write one you can use <a>this pre-written email</a>") ?>
+                    <p id="text_nomail_notification" class="mt-3 text-muted opacity-75"><i class="bi bi-info-circle"></i> <?php echo _("This application does not automatically send emails to other signers.") ?> <?php echo _("If you want to send one yourself, you can use <a>this pre-written email</a>.") ?>
                     </p>
                     <a id="link_compose_mail" class="d-none" href="mailto:?<?php echo http_build_query(["subject" => sprintf(_("Signing the document : %s"), "DOCUMENT_NAME"), "body" => sprintf(_("Hello,\n\nI just signed the document (%s) : %s"), "DOCUMENT_NAME", "DOCUMENT_URL")], "", null, PHP_QUERY_RFC3986) ?>"></a>
                 </div>

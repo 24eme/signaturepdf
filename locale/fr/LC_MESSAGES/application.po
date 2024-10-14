@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 00:50+0200\n"
+"POT-Creation-Date: 2024-10-14 09:31+0200\n"
 "PO-Revision-Date: 2024-10-13 22:55+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -416,12 +416,12 @@ msgstr "PDF signé"
 msgid "Your signature has been successfully recorded!"
 msgstr "Votre signature a bien été prise en compte !"
 
-msgid ""
-"This application does not automatically send an email. If you want to write "
-"one you can use <a>this pre-written email</a>"
+msgid "This application does not automatically send emails to other signers."
 msgstr ""
-"Cette application n'envoie pas automatiquement de mail. Si vous souhaitez en "
-"écrire un vous pouvez utiliser <a>ce mail pré-rédigé</a>"
+
+msgid ""
+"If you want to send one yourself, you can use <a>this pre-written email</a>."
+msgstr ""
 
 #, php-format
 msgid "Signing the document : %s"
@@ -487,6 +487,13 @@ msgstr "Organiser"
 
 msgid "Metadata"
 msgstr "Métadonnées"
+
+#~ msgid ""
+#~ "This application does not automatically send an email. If you want to "
+#~ "write one you can use <a>this pre-written email</a>"
+#~ msgstr ""
+#~ "Cette application n'envoie pas automatiquement de mail. Si vous souhaitez "
+#~ "en écrire un vous pouvez utiliser <a>ce mail pré-rédigé</a>"
 
 #, php-format
 #~ msgid "%s Compress"

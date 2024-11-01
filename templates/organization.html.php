@@ -4,6 +4,7 @@
     <?php include('components/header.html.php'); ?>
 
     <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.png" />
     <title><?php _("Organize PDF"); ?></title>
   </head>
   <body>

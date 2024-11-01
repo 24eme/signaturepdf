@@ -3,6 +3,7 @@
 <head>
     <?php include('components/header.html.php'); ?>
     <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-metadata.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-metadata.png" />
     <title><?php echo _("Editing PDF metadata"); ?></title>
 </head>
 <body>

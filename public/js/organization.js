@@ -590,7 +590,7 @@ async function save(order) {
     // Let's try to compress our PDF using the compress feature
     let data = new FormData();
     data.append("input_pdf_upload", newPDF, filename + ".pdf");
-    data.append("compressionType", "screen");
+    data.append("compressionType", "highest");
     const response = await fetch("/compress", {method: "POST", body: data});
     let compressedBlob = null;
     if (response.status == 200) {

@@ -585,9 +585,31 @@ async function save(order) {
         pdf.addPage(pdfPage);
     }
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
-    await download(newPDF, filename+".pdf");
+    //PDF-lib's PDF are quite huge, because they are uncompressed. As a result, a single page extraded from a PDF is usually (almost) as big as the whole PDF !
+    // And PDF-lib doesn't have built-in compression, so we'll use the compress endpoint
+    // Let's try to compress our PDF using the compress feature
+    let data = new FormData();
+    data.append("input_pdf_upload", newPDF, filename + ".pdf");
+    data.append("compressionType", "screen");
+    const response = await fetch("/compress", {method: "POST", body: data});
+    let compressedBlob = null;
+    if (response.status == 200) {
+        compressedBlob = await response.blob();
+    }
+    // Should not happen, but worst case scenario just send the uncompressed file
+    else {
+        await download(newPDF, filename+".pdf");
+        return;
+    }
+    // If there is any kind of error (e.g file already optimized), /compress will answer with a 200 + a blob of HTML (to be displayed on the /compress page)
+    // We obviously don't want to send HTML as PDF, so make sure we are sending the correct thing
+    if (compressedBlob.type == "application/pdf") {
+        await download(compressedBlob, filename+".pdf");
+    }
+    else {
+        await download(newPDF, filename+".pdf");
+    }
 }
-
 function createEventsListener() {
     document.getElementById('save-select_mobile').addEventListener('click', async function(event) {
         event.preventDefault();

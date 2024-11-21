@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Signature PDF Libre - Signer un PDF en ligne</title>
+    <title>Signature PDF - Signer un PDF en ligne</title>
     <meta name="description" content="Signature PDF est un logiciel libre en ligne qui permet de signer, parapher, tamponner, compléter un pdf seul ou à plusieurs.">
     <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon.png" />

@@ -422,10 +422,11 @@ $f3->route ('POST /compress',
             $compressionType = '/ebook';
         } elseif ($compressionType === 'low') {
             $compressionType = '/printer';
+        } elseif ($compressionType === 'highest') {
+            $compressionType = '/prepress';  
         } else {
             $compressionType = '/screen';
         }
-
         $arrayPath = array_keys($files);
         $filePath = reset($arrayPath);
 

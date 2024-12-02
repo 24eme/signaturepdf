@@ -27,4 +27,4 @@ RUN envsubst < /usr/local/signaturepdf/config/php.ini > /usr/local/etc/php/conf.
 
 WORKDIR /usr/local/signaturepdf
 
-CMD /usr/local/signaturepdf/entrypoint.sh
+CMD ["/usr/local/signaturepdf/entrypoint.sh"]

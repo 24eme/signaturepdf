@@ -8,9 +8,13 @@ ENV PDF_STORAGE_PATH=/data
 ENV DISABLE_ORGANIZATION=false
 ENV DEFAULT_LANGUAGE=fr_FR.UTF-8
 ENV PDF_STORAGE_ENCRYPTION=false
+ENV NSS3_DIRECTORY=/nss3
+ENV NSS3_PASSWORD=toto
+ENV NSS3_NICK="PDF certificate"
+ENV ADMIN_AUTHORIZED_IP=127.0.0.1
 
 RUN apt update && \
-    apt install -y vim locales gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript gpg && \
+    apt install -y vim locales gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript gpg poppler-utils libnss3-tools && \
     docker-php-ext-install gettext && \
     rm -rf /var/lib/apt/lists/*
 

@@ -12,3 +12,11 @@ PDF_DEMO_LINK=${PDF_DEMO_LINK}
 
 ; Encryption activation (default activation if GPG is installed)
 PDF_STORAGE_ENCRYPTION=${PDF_STORAGE_ENCRYPTION}
+
+;NSS3 configuration (used to sign pdf with pdfsig)
+NSS3_DIRECTORY=${NSS3_DIRECTORY}
+NSS3_PASSWORD=${NSS3_PASSWORD}
+NSS3_NICK=${NSS3_NICK}
+
+; Authorize these IP to use debug mode (separate IP adresses with space ' ')
+ADMIN_AUTHORIZED_IP=${ADMIN_AUTHORIZED_IP}

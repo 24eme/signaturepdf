@@ -10,7 +10,8 @@
     <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/app.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app.css") ?>" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-compress.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-compress.png" />
-    <title><?php echo _("Compress PDF"); ?></title>
+    <title>Signature PDF - Compresser un PDF en ligne</title>
+    <meta name="description" content="Logiciel libre en ligne qui permet réduire la taille d'un pdf par compression.">
 </head>
 <body>
 <noscript>

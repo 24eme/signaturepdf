@@ -5,7 +5,8 @@
 
     <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.png" />
-    <title><?php echo _("Organize PDF"); ?></title>
+    <title>Signature PDF - Organiser les pages d'un PDF en ligne</title>
+    <meta name="description" content="Logiciel libre en ligne qui permet de fusionner, trier, pivoter, supprimer et extraire les pages de PDF">
   </head>
   <body>
     <noscript>

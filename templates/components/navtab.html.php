@@ -1,3 +1,4 @@
+<nav>
 <?php if(!$disableOrganization): ?>
     <?php if ($IS_ADMIN): ?>
         <div class="position-absolute top-0 start-0 mt-2 ms-2">
@@ -30,3 +31,4 @@
         </li>
     </ul>
 <?php endif; ?>
+</nav>

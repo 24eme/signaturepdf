@@ -153,8 +153,8 @@
                 <tbody>
                     <tr>
                         <th class="align-top col-3">PDF_STORAGE_PATH</th>
-                        <?php $storage_path_exists = $PDF_STORAGE_PATH && is_dir($PDF_STORAGE_PATH);?>
-                        <td class="text-muted col-3"><?php if ($PDF_STORAGE_PATH) { echo $PDF_STORAGE_PATH; } ?></td>
+                        <?php $storage_path_exists = isset($PDF_STORAGE_PATH) && is_dir($PDF_STORAGE_PATH);?>
+                        <td class="text-muted col-3"><?php echo isset($PDF_STORAGE_PATH) ? $PDF_STORAGE_PATH : null ?></td>
                         <td class="col-6">
                             <?php if ($storage_path_exists): ?>
                                 <i class="bi bi-check-square text-success"></i>

@@ -196,6 +196,27 @@ class PDFSignature
         }
     }
 
+    public static function convertTextToFiligrane($text, $outputFile)
+    {
+        // Création svg
+        // TODO
+
+        // conversion du filigrane en pdf
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s",
+            escapeshellarg($outputFile.'_filigrane.pdf'),
+            escapeshellarg($outputFile.'_filigrane.svg')
+        ));
+
+        // on applique le filigrane
+        shell_exec(sprintf("pdftk %s background %s output %s",
+            escapeshellarg($outputFile),
+            escapeshellarg($outputFile.'_filigrane.pdf'),
+            escapeshellarg($outputFile.'_withfiligrane.pdf')
+        ));
+
+        rename($outputFile.'_withfiligrane.pdf', $outputFile);
+    }
+
     public function clean() {
         foreach($this->toClean as $path) {
             if(strpos($path, $this->pathHash) !== false) {

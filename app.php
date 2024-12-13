@@ -178,6 +178,7 @@ $f3->route('POST /image2svg',
 $f3->route('POST /sign',
     function($f3) {
         $filename = null;
+        $filigrane = $f3->get('POST.filigrane');
         $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign_'.uniqid("", true));
         unlink($tmpfile);
         $svgFiles = [];
@@ -215,6 +216,9 @@ $f3->route('POST /sign',
 
         PDFSignature::createPDFFromSvg($svgFiles, $tmpfile.'.svg.pdf');
         PDFSignature::addSvgToPDF($tmpfile.'.pdf', $tmpfile.'.svg.pdf', $tmpfile.'_signe.pdf');
+        if ($filigrane) {
+            PDFSignature::convertTextToFiligrane($filigrane, $tmpfile.'_signe.pdf');
+        }
 
         Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
 

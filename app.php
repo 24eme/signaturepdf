@@ -429,9 +429,7 @@ $f3->route ('POST /compress',
         } else {
             $compressionType = '/screen';
         }
-
-        $arrayPath = array_keys($files);
-        $filePath = reset($arrayPath);
+        $filePath = reset(array_keys($files));
 
         $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
 
@@ -444,7 +442,7 @@ $f3->route ('POST /compress',
             header('location: /compress?err=' . $error);
         } else {
             header('Content-Type: application/pdf');
-            header("Content-Disposition: attachment; filename=$outputFileName");
+            header("Content-Disposition: attachment; filename=".basename($outputFileName));
             readfile($outputFileName);
         }
 
@@ -487,8 +485,6 @@ $f3->route('PUT /api/file/save', function($f3) {
     file_put_contents($pdf_path, $f3->get('BODY'));
 
 });
-
-
 
 function getCommit() {
     if(!file_exists(__DIR__.'/.git/HEAD')) {

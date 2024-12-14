@@ -559,6 +559,8 @@ async function save(order) {
     const pdf = await PDFDocument.create();
     let filename = "";
     let pages = [];
+    const pagesOrganize = order.split(',');
+
     for (let i = 0; i < document.querySelector('#input_pdf').files.length; i++) {
         if(filename) {
             filename += '_';
@@ -566,14 +568,19 @@ async function save(order) {
         filename += document.querySelector('#input_pdf').files.item(i).name.replace(/\.pdf$/, '');
         pdfFile = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer());
 
-        const pdfPages = await pdf.copyPages(pdfFile, pdfFile.getPageIndices());
+        const indices = [];
+        const letter = getLetter(i);
+        for(let k in pagesOrganize) {
+            if(pagesOrganize[k].startsWith(letter)) {
+                indices.push(parseInt(pagesOrganize[k].split('-')[0].replace(letter, '')) - 1)
+            }
+        }
+
+        const pdfPages = await pdf.copyPages(pdfFile, indices);
         for(j in pdfPages) {
-            const numPage = parseInt(j) + 1;
-            pages[getLetter(i)+numPage.toString()] = pdfPages[j];
+            pages[letter+(indices[j]+1).toString()] = pdfPages[j];
         }
     }
-
-    const pagesOrganize = order.split(',');
 
     for(let i in pagesOrganize) {
         const pageOrganize = pagesOrganize[i].split('-')[0];

@@ -51,7 +51,7 @@
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body pt-3" style="padding-bottom: 60px;">
-                <div id="list_pdf_container">
+                <div id="list_pdf_container" style="max-height: 400px; overflow: auto;">
                     <ul id="list_pdf" class="list-group">
                     </ul>
                 </div>

@@ -163,8 +163,7 @@ async function save() {
     const PDFHexString = window['PDFLib'].PDFHexString
     const PDFName = window['PDFLib'].PDFName
 
-    const arrayBuffer = await pdffile.arrayBuffer();
-    const pdf = await PDFDocument.load(arrayBuffer);
+    const pdf = await PDFDocument.load(await pdffile.arrayBuffer(), { ignoreEncryption: true, password: "" });
 
     deletedMetadata.forEach(function (el) {
         pdf.getInfoDict().delete(PDFName.of(el))

@@ -566,7 +566,7 @@ async function save(order) {
             filename += '_';
         }
         filename += document.querySelector('#input_pdf').files.item(i).name.replace(/\.pdf$/, '');
-        pdfFile = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer());
+        pdfFile = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer(), { ignoreEncryption: true, password: "" });
 
         const indices = [];
         const letter = getLetter(i);

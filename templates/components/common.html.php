@@ -14,7 +14,7 @@
 <script type="module">
     pdfjsLib.GlobalWorkerOptions.workerSrc = '<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.worker.min.mjs?4.6.82-legacy';
 </script>
-<script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?1.17.1"></script>
+<script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?2.2.4"></script>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
 <script>
 var trad = <?php echo json_encode([

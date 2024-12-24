@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 09:31+0200\n"
-"PO-Revision-Date: 2024-08-11 13:12+0000\n"
+"PO-Revision-Date: 2024-12-24 13:00+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid "en"
 msgstr "kab"
 
 msgid "Administration panel"
-msgstr ""
+msgstr "Agalis n tedbelt"
 
 msgid "Configuration"
-msgstr ""
+msgstr "Twila"
 
 msgid "Server installation"
-msgstr ""
+msgstr "Asbeddi n uqeddac"
 
 #, php-format
 msgid "Minimal version required : %s"
@@ -44,7 +44,7 @@ msgid "Package %s missing"
 msgstr ""
 
 msgid "File Configuration"
-msgstr ""
+msgstr "Twila n ikaramen"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
@@ -131,7 +131,7 @@ msgid "Save and download the PDF"
 msgstr "Sekles syen sader PDF"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Sekles ibeddilen"
 
 msgid "Organize PDF"
 msgstr "Asuddes n PDF"
@@ -141,7 +141,7 @@ msgid "%s Organize PDF"
 msgstr "%s Asuddes n PDF"
 
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr "Smezdi, smizwer, sezzi, kkes, tsuffeɣ-d isebtar"
+msgstr "Smezdi, smizwer, sezzi, kkes, tsuffeɣḍ-d isebtar"
 
 msgid "Touch a page to select it"
 msgstr "Sit ɣef usebter i wakken ad t-tferneḍ"
@@ -422,7 +422,7 @@ msgstr ""
 
 #, php-format
 msgid "Signing the document : %s"
-msgstr ""
+msgstr "Azmul n zzmam: %s"
 
 #, php-format
 msgid ""
@@ -430,6 +430,9 @@ msgid ""
 "\n"
 "I just signed the document (%s) : %s"
 msgstr ""
+"Azul.\n"
+"\n"
+"Tura kan i zemleɣ zzmam (%s): %s"
 
 msgid "Download the PDF"
 msgstr "Sader PDF"

@@ -18,6 +18,7 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [pdf.spirio.fr](https://pdf.spirio.fr)
 - [pdf.sequanux.org](https://pdf.sequanux.org)
 - [pdf.deblan.org](https://pdf.deblan.org)
+- [signpdf.liber-it.fr](https://signpdf.liber-it.fr)
 
 _N'hésitez pas à rajouter la votre via une issue ou une pull request_
 

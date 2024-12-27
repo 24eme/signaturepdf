@@ -48,7 +48,7 @@ Open-source software under the AGPL V3 license.
 ## Installation
 
 - [Debian/Ubuntu](installation.md#debian)
-- [Docker](installation.md#docker)
+- [Docker](installation.md#deploy-with-docker)
 - [Linux Alpine](installation.md#alpine)
 - [Package](installation.md#package)
 

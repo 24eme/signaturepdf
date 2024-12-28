@@ -215,7 +215,13 @@ Vincent LAURENT (24ème), Jean-Baptiste Le Metayer (24ème), Xavier Garnier (Log
 - 1 950 € excl. taxes from the company Logilab for the development of the metadata editing feature
 - 100 € excl. taxes donations from the company Spirkop
 - 100 € excl. taxes donations from the company PDG IT
-- 1 040 € excl. taxes from the foundation NLNet pour software internationalization
+- 1 040 € excl. taxes from the foundation NLNet for software internationalization
+- 1 040 € excl. taxes from the foundation NLNet for compress / Reduce PDF File Size
+- 1 040 € excl. taxes from the foundation NLNet for encrypt PDFs transmitted and stored on servers
+- 1 040 € excl. taxes from the foundation NLNet for signature signed and verified with a key
+- 1 040 € excl. taxes from the foundation NLNet for client side organization of the PDF
+- 520 € excl. taxes from the foundation NLNet for debian package
+- 520 € excl. taxes from the foundation NLNet for allow PDFs to be stored outside
 
 The development of the software was primarily done during the working hours of 24ème employees.
 

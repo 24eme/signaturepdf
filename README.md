@@ -76,16 +76,6 @@ In the `config/config.ini` file, configure the `PDF_STORAGE_PATH` variable with 
 PDF_STORAGE_PATH=/path/to/folder
 ```
 
-You can enable PDFs to be stored encrypted on the server with a symmetric key known only to the signers.
-
-To activate it, gpg needs to be installed and option PDF_STORAGE_ENCRYPTION must be set to true.
-
-In the `config/config.ini` file :
-
-```
-PDF_STORAGE_ENCRYPTION=true
-```
-
 Create this folder:
 
 ```
@@ -98,6 +88,16 @@ For example, for Apache:
 
 ```
 chown www-data /path/to/folder/to/store/pdf
+```
+
+You can enable PDFs to be stored encrypted on the server with a symmetric key known only to the signers.
+
+To activate it, gpg needs to be installed and option PDF_STORAGE_ENCRYPTION must be set to true.
+
+In the `config/config.ini` file :
+
+```
+PDF_STORAGE_ENCRYPTION=true
 ```
 
 ### Enabling digital signature

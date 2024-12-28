@@ -5,18 +5,18 @@ Free web software for signing (alone or with others), organizing (merge, sort, r
 
 ## Instances
 List of instances where you can use this software:
-- [pdf.24eme.fr](https://pdf.24eme.fr)
-- [pdf.libreon.fr](https://pdf.libreon.fr)
-- [pdf.hostux.net](https://pdf.hostux.net)
-- [pdf.nebulae.co](https://pdf.nebulae.co)
+- [pdf.24eme.fr](https://pdf.24eme.fr) (by [winy](https://piaille.fr/@winy) hosted by [24eme](https://www.24eme.fr/services-libres/)) 
+- [pdf.libreon.fr](https://pdf.libreon.fr) (by [Libreon](https://libreon.fr/))
+- [pdf.hostux.net](https://pdf.hostux.net) (by [Hostux](https://hostux.network/))
+- [pdf.nebulae.co](https://pdf.nebulae.co) (by [Nebulae](https://nebulae.co/))
 - [pdf.kaosx.ovh](https://pdf.kaosx.ovh)
-- [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr)
-- [pdf.cemea.org](https://pdf.cemea.org)
-- [pdf.spirio.fr](https://pdf.spirio.fr)
-- [pdf.sequanux.org](https://pdf.sequanux.org)
-- [pdf.deblan.org](https://pdf.deblan.org)
-- [pdf.ouvaton.coop](https://pdf.ouvaton.coop)
-- [signpdf.liber-it.fr](https://signpdf.liber-it.fr)
+- [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr) (by [Ti Nuage](https://www.ti-nuage.fr/))
+- [pdf.cemea.org](https://pdf.cemea.org) (by [Les Ceméa](https://mallette.cemea.org))
+- [pdf.spirio.fr](https://pdf.spirio.fr) (by [Spirio.fr](https://spirio.fr/))
+- [pdf.sequanux.org](https://pdf.sequanux.org) (by [Sequanux](https://www.sequanux.org/))
+- [pdf.deblan.org](https://pdf.deblan.org) (by [Deblan](https://wiki.deblan.org/hosting/overview/))
+- [pdf.ouvaton.coop](https://pdf.ouvaton.coop) (by [OUVATON](https://ouvaton.coop/))
+- [signpdf.liber-it.fr](https://signpdf.liber-it.fr) (by [Liber-IT](https://site.liber-it.fr/)) 
 
 _Feel free to add yours through an issue or a pull request._
 

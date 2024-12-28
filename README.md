@@ -5,7 +5,7 @@ Free web software for signing (alone or with others), organizing (merge, sort, r
 
 ## Instances
 List of instances where you can use this software:
-- [pdf.24eme.fr](https://pdf.24eme.fr) (by [24eme](https://www.24eme.fr/services-libres/)) 
+- [pdf.24eme.fr](https://pdf.24eme.fr) (by [24eme](https://www.24eme.fr/services-libres/))
 - [pdf.libreon.fr](https://pdf.libreon.fr) (by [Libreon](https://libreon.fr/))
 - [pdf.hostux.net](https://pdf.hostux.net) (by [Hostux](https://hostux.network/))
 - [pdf.nebulae.co](https://pdf.nebulae.co) (by [Nebulae](https://nebulae.co/))
@@ -16,7 +16,7 @@ List of instances where you can use this software:
 - [pdf.sequanux.org](https://pdf.sequanux.org) (by [Sequanux](https://www.sequanux.org/))
 - [pdf.deblan.org](https://pdf.deblan.org) (by [Deblan](https://wiki.deblan.org/hosting/overview/))
 - [pdf.ouvaton.coop](https://pdf.ouvaton.coop) (by [OUVATON](https://ouvaton.coop/))
-- [signpdf.liber-it.fr](https://signpdf.liber-it.fr) (by [Liber-IT](https://site.liber-it.fr/)) 
+- [signpdf.liber-it.fr](https://signpdf.liber-it.fr) (by [Liber-IT](https://site.liber-it.fr/))
 
 _Feel free to add yours through an issue or a pull request._
 
@@ -99,6 +99,7 @@ For example, for Apache:
 ```
 chown www-data /path/to/folder/to/store/pdf
 ```
+
 ### Enabling digital signature
 
 The digital signature depends on `pdfsig` from the poppler project (poppler-utils debian package) and `certutil` from libnss3 project (libnss3-tools debian package).

@@ -1,4 +1,4 @@
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0) [![État de la traduction](https://hosted.weblate.org/widget/signature-pdf/application/svg-badge.svg)](https://hosted.weblate.org/engage/signature-pdf/) [![Docker Pull](https://img.shields.io/docker/pulls/xgaia/signaturepdf)](https://hub.docker.com/r/xgaia/signaturepdf)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0) [![État de la traduction](https://hosted.weblate.org/widget/signature-pdf/application/svg-badge.svg)](https://hosted.weblate.org/engage/signature-pdf/) [![Docker Pull](https://img.shields.io/docker/pulls/xgaia/signaturepdf)](https://hub.docker.com/r/xgaia/signaturepdf) [![Install Signaturepdf with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://apps.yunohost.org/app/signaturepdf)
 # Signature PDF
 
 Free web software for signing (alone or with others), organizing (merge, sort, rotate, delete, extract pages, ...), editing metadatas or compressing PDFs.

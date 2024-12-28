@@ -39,14 +39,7 @@ Open-source software under the AGPL V3 license.
 - [Tests](#tests)
 - [Libraries Used](#libraries-used)
 - [Contributions](#contributions)
-    - [Translation](#translation)
-    - [Contributors](#contributors)
-    - [Fundings](#fundings)
 - [Screenshots](#screenshots)
-    - [Signature feature](#signature-feature)
-    - [Organizing feature](#organizing-feature)
-    - [Metadata feature](#metadata-feature)
-    - [Compression feature](#compression-feature)
 
 
 ## Installation

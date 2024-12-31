@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 09:31+0200\n"
-"PO-Revision-Date: 2024-08-12 14:09+0000\n"
+"PO-Revision-Date: 2024-12-31 04:04+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
 "application/eu/>\n"
@@ -17,38 +17,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid "en"
 msgstr "eu"
 
 msgid "Administration panel"
-msgstr ""
+msgstr "Administrazio-panela"
 
 msgid "Configuration"
-msgstr ""
+msgstr "Konfigurazioa"
 
 msgid "Server installation"
-msgstr ""
+msgstr "Zerbitzariko instalazioa"
 
 #, php-format
 msgid "Minimal version required : %s"
-msgstr ""
+msgstr "Behar den gutxieneko bertsioa: %s"
 
 #, php-format
 msgid "Package %s required"
-msgstr ""
+msgstr "%s paketea beharrezkoa da"
 
 #, php-format
 msgid "Package %s missing"
-msgstr ""
+msgstr "%s paketea falta da"
 
 msgid "File Configuration"
-msgstr ""
+msgstr "Fitxategiaren konfigurazioa"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
 msgstr ""
+"%s direktorioa lehendik egon behar da, eta bertan idazteko baimena izan "
+"behar da"
 
 msgid "Compress PDF"
 msgstr "Konprimatu PDFa"
@@ -132,7 +134,7 @@ msgid "Save and download the PDF"
 msgstr "Gorde eta deskargatu PDFa"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Gorde aldaketak"
 
 msgid "Organize PDF"
 msgstr "Antolatu PDFa"
@@ -416,14 +418,18 @@ msgstr "Zure sinadura ondo grabatu da!"
 
 msgid "This application does not automatically send emails to other signers."
 msgstr ""
+"Aplikazio honek ez die automatikoki mezu elektronikorik bidaltzen beste "
+"sinatzaileei."
 
 msgid ""
 "If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
+"Zuk zeuk bidali nahi baduzu, <a>aurrez idatzitako mezu elektroniko hau</a> "
+"erabil dezakezu."
 
 #, php-format
 msgid "Signing the document : %s"
-msgstr ""
+msgstr "Dokumentua sinatzen: %s"
 
 #, php-format
 msgid ""
@@ -431,6 +437,9 @@ msgid ""
 "\n"
 "I just signed the document (%s) : %s"
 msgstr ""
+"Kaixo,\n"
+"\n"
+"Dokumentua (%s) sinatu berri dut: %s"
 
 msgid "Download the PDF"
 msgstr "Deskargatu PDFa"

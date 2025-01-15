@@ -78,13 +78,16 @@ class Jig {
 	*	@param $file string
 	*	@param $data array
 	**/
-	function write($file,array $data=NULL) {
+	function write($file,?array $data=NULL) {
 		if (!$this->dir || $this->lazy)
 			return count($this->data[$file]=$data);
 		$fw=\Base::instance();
 		switch ($this->format) {
 			case self::FORMAT_JSON:
-				$out=json_encode($data,JSON_PRETTY_PRINT);
+				if(version_compare(PHP_VERSION, '7.2.0') >= 0)
+					$out=json_encode($data,JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE);
+				else
+					$out=json_encode($data,JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR);
 				break;
 			case self::FORMAT_Serialized:
 				$out=$fw->serialize($data);

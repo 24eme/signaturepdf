@@ -124,8 +124,8 @@ class SQL {
 	function value($type,$val) {
 		switch ($type) {
 			case self::PARAM_FLOAT:
-				if (!is_string($val))
-					$val=str_replace(',','.',$val);
+				if (!is_string($val) && $val !== NULL)
+					$val=str_replace(',','.',(string) $val);
 				return $val;
 			case \PDO::PARAM_NULL:
 				return NULL;
@@ -319,7 +319,7 @@ class SQL {
 		$cache=\Cache::instance();
 		if ($fw->CACHE && $ttl &&
 			($cached=$cache->exists(
-				$hash=$fw->hash($this->dsn.$table).'.schema',$result)) &&
+				$hash=$fw->hash($this->dsn.$table.(is_array($fields) ? implode(',',$fields) : $fields)).'.schema',$result)) &&
 			$cached[0]+$ttl>microtime(TRUE))
 			return $result;
 		if (strpos($table,'.'))
@@ -375,6 +375,7 @@ class SQL {
 							('AND K.TABLE_CATALOG=T.TABLE_CATALOG '):'').
 				'WHERE '.
 					'C.TABLE_NAME='.$this->quote($table).
+					(empty($schema) ? '' : ' AND C.TABLE_SCHEMA='.$this->quote($schema)).
 					($this->dbname?
 						(' AND C.TABLE_CATALOG='.
 							$this->quote($this->dbname)):''),
@@ -535,7 +536,7 @@ class SQL {
 	*	@param $pw string
 	*	@param $options array
 	**/
-	function __construct($dsn,$user=NULL,$pw=NULL,array $options=NULL) {
+	function __construct($dsn,$user=NULL,$pw=NULL,?array $options=NULL) {
 		$fw=\Base::instance();
 		$this->uuid=$fw->hash($this->dsn=$dsn);
 		if (preg_match('/^.+?(?:dbname|database)=(.+?)(?=;|$)/is',$dsn,$parts))

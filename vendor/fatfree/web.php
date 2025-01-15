@@ -359,7 +359,8 @@ class Web extends Prefab {
 			curl_setopt($curl,CURLOPT_POSTFIELDS,$options['content']);
 		if (isset($options['proxy']))
 			curl_setopt($curl,CURLOPT_PROXY,$options['proxy']);
-		curl_setopt($curl,CURLOPT_ENCODING,'gzip,deflate');
+		curl_setopt($curl,CURLOPT_ENCODING,isset($options['encoding'])
+			? $options['encoding'] : 'gzip,deflate');
 		$timeout=isset($options['timeout'])?
 			$options['timeout']:
 			ini_get('default_socket_timeout');
@@ -591,7 +592,7 @@ class Web extends Prefab {
 	*	@param $url string
 	*	@param $options array
 	**/
-	function request($url,array $options=NULL) {
+	function request($url,?array $options=NULL) {
 		$fw=Base::instance();
 		$parts=parse_url($url);
 		if (empty($parts['scheme'])) {
@@ -617,7 +618,8 @@ class Web extends Prefab {
 		}
 		$this->subst($options['header'],
 			[
-				'Accept-Encoding: gzip,deflate',
+				'Accept-Encoding: '.(isset($options['encoding'])?
+					$options['encoding']:'gzip,deflate'),
 				'User-Agent: '.(isset($options['user_agent'])?
 					$options['user_agent']:
 					'Mozilla/5.0 (compatible; '.php_uname('s').')'),

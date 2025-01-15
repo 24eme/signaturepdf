@@ -149,13 +149,11 @@ class Mapper extends \DB\Cursor {
 	*	@return mixed
 	*	@param $func string
 	*	@param $args array
+	*	@deprecated (this is only used for custom dynamic properties that are callables
 	**/
 	function __call($func,$args) {
-		return call_user_func_array(
-			(array_key_exists($func,$this->props)?
-				$this->props[$func]:
-				$this->$func),$args
-		);
+		$callable = (array_key_exists($func,$this->props) ? $this->props[$func] : $this->$func);
+		return $callable ? call_user_func_array($callable,$args) : null;
 	}
 
 	/**
@@ -207,7 +205,7 @@ class Mapper extends \DB\Cursor {
 	*	@param $filter string|array
 	*	@param $options array
 	**/
-	function stringify($fields,$filter=NULL,array $options=NULL) {
+	function stringify($fields,$filter=NULL,?array $options=NULL) {
 		if (!$options)
 			$options=[];
 		$options+=[
@@ -222,7 +220,7 @@ class Mapper extends \DB\Cursor {
 		if (isset($this->as))
 			$sql.=' AS '.$this->db->quotekey($this->as);
 		$args=[];
-		if (is_array($filter)) {
+		if (is_array($filter) && !empty($filter)) {
 			$args=isset($filter[1]) && is_array($filter[1])?
 				$filter[1]:
 				array_slice($filter,1,NULL,TRUE);
@@ -305,7 +303,7 @@ class Mapper extends \DB\Cursor {
 	*	@param $options array
 	*	@param $ttl int|array
 	**/
-	function select($fields,$filter=NULL,array $options=NULL,$ttl=0) {
+	function select($fields,$filter=NULL,?array $options=NULL,$ttl=0) {
 		list($sql,$args)=$this->stringify($fields,$filter,$options);
 		$result=$this->db->exec($sql,$args,$ttl);
 		$out=[];
@@ -331,7 +329,7 @@ class Mapper extends \DB\Cursor {
 	*	@param $options array
 	*	@param $ttl int|array
 	**/
-	function find($filter=NULL,array $options=NULL,$ttl=0) {
+	function find($filter=NULL,?array $options=NULL,$ttl=0) {
 		if (!$options)
 			$options=[];
 		$options+=[
@@ -357,7 +355,7 @@ class Mapper extends \DB\Cursor {
 	*	@param $options array
 	*	@param $ttl int|array
 	**/
-	function count($filter=NULL,array $options=NULL,$ttl=0) {
+	function count($filter=NULL,?array $options=NULL,$ttl=0) {
 		$adhoc=[];
 		// with grouping involved, we need to wrap the actualy query and count the results
 		if ($subquery_mode=($options && !empty($options['group']))) {

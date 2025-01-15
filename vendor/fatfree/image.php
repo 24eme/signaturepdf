@@ -414,7 +414,7 @@ class Image {
 		}
 		$fw=Base::instance();
 		foreach ($fw->split($path?:$fw->UI.';./') as $dir)
-			if (is_file($path=$dir.$font)) {
+			if (is_file($path=realpath($dir.$font))) {
 				$seed=strtoupper(substr(
 					$ssl?bin2hex(openssl_random_pseudo_bytes($len)):uniqid(),
 					-$len));

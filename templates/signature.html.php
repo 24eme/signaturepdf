@@ -63,35 +63,35 @@
                 <label style="cursor: pointer;" class="form-check-label" for="add-lock-checkbox"> <?php echo _("Keep the selection active"); ?></label>
             </div>
             <div id="svg_list_signature" class="list-item-add"></div>
-            <div class="d-grid gap-2 mb-2 list-item-add">
+            <div class="d-grid gap-2 mb-2 list-item-add" <?=((isset($HIDE_SIGNATURE)) && $HIDE_SIGNATURE) ? 'style="visibility:hidden;"' : ''?>>
                 <input type="radio" class="btn-check" id="radio_svg_signature_add" name="svg_2_add" autocomplete="off" value="signature">
                 <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="signature" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_signature_add" id="label_svg_signature_add"><?php echo sprintf(_("%s Signature"), '<i class="bi bi-vector-pen"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
             </div>
             <div id="svg_list_initials" class="list-item-add"></div>
-            <div class="d-grid gap-2 mb-2 list-item-add">
+            <div class="d-grid gap-2 mb-2 list-item-add" <?=((isset($HIDE_INITIALS)) && $HIDE_INITIALS) ? 'style="visibility:hidden;"' : '' ?>>
                 <input type="radio" class="btn-check" id="radio_svg_initials_add" name="svg_2_add" autocomplete="off" value="intials">
-                <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="initials" data-modalnav="#nav-type-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_initials_add" id="label_svg_initials_add"><?php echo sprintf(_("%s Initial"), '<i class="bi bi-type"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
-            </div>
-            <div id="svg_list_rubber_stamber" class="list-item-add"></div>
-            <div class="d-grid gap-2 mb-2 list-item-add">
+                <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="initials" <?=((isset($HIDE_TEXT_SIGNATURE_INITIALS) && $HIDE_TEXT_SIGNATURE_INITIALS)) ? '': 'data-modalnav="#nav-type-tab"'?> class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_initials_add" id="label_svg_initials_add"><?php echo sprintf(_("%s Initial"), '<i class="bi bi-type"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
+	        </div>
+        <div id="svg_list_rubber_stamber" class="list-item-add"></div>
+            <div class="d-grid gap-2 mb-2 list-item-add" <?=((isset($HIDE_STAMP)) && $HIDE_STAMP) ? 'style="visibility:hidden;"' : '' ?>>
                 <input type="radio" class="btn-check" id="radio_svg_rubber_stamber_add" name="svg_2_add" autocomplete="off" value="rubber_stamber">
                 <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" data-modalnav="#nav-import-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add" id="label_svg_rubber_stamber_add"><?php echo sprintf(_("%s Stamp"), '<i class="bi bi-card-text"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
-            </div>
-            <div class="d-grid gap-2 mb-2 list-item-add">
+	    </div>
+	         <div class="d-grid gap-2 mb-2 list-item-add" <?=((isset($HIDE_TEXT)) && $HIDE_TEXT) ? 'style="visibility:hidden;"' : '' ?>>
                   <input type="radio" class="btn-check" id="radio_svg_text" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdGV4dGFyZWEtdCIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMS41IDIuNUExLjUgMS41IDAgMCAxIDMgMWgxMGExLjUgMS41IDAgMCAxIDEuNSAxLjV2My41NjNhMiAyIDAgMCAxIDAgMy44NzRWMTMuNUExLjUgMS41IDAgMCAxIDEzIDE1SDNhMS41IDEuNSAwIDAgMS0xLjUtMS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNXptMSAzLjU2M2EyIDIgMCAwIDEgMCAzLjg3NFYxMy41YS41LjUgMCAwIDAgLjUuNWgxMGEuNS41IDAgMCAwIC41LS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNUEuNS41IDAgMCAwIDEzIDJIM2EuNS41IDAgMCAwLS41LjV2My41NjN6TTIgN2ExIDEgMCAxIDAgMCAyIDEgMSAwIDAgMCAwLTJ6bTEyIDBhMSAxIDAgMSAwIDAgMiAxIDEgMCAwIDAgMC0yeiIvPjxwYXRoIGQ9Ik0xMS40MzQgNEg0LjU2Nkw0LjUgNS45OTRoLjM4NmMuMjEtMS4yNTIuNjEyLTEuNDQ2IDIuMTczLTEuNDk1bC4zNDMtLjAxMXY2LjM0M2MwIC41MzctLjExNi42NjUtMS4wNDkuNzQ4VjEyaDMuMjk0di0uNDIxYy0uOTM4LS4wODMtMS4wNTQtLjIxLTEuMDU0LS43NDhWNC40ODhsLjM0OC4wMWMxLjU2LjA1IDEuOTYzLjI0NCAyLjE3MyAxLjQ5NmguMzg2TDExLjQzNCA0eiIvPjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="text">
                   <label draggable="true" id="label_svg_text" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text"><?php echo sprintf(_("%s Text"), '<i class="bi bi-textarea-t"></i>'); ?></label>
-              </div>
-              <div class="d-grid gap-2 mb-2 list-item-add">
+	      </div>
+	         <div class="d-grid gap-2 mb-2 list-item-add" <?=((isset($HIDE_STRIKETHROUGH)) && $HIDE_STRIKETHROUGH) ? 'style="visibility:hidden;"' : '' ?>>
                   <input type="radio" class="btn-check" id="radio_svg_strikethrough" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdHlwZS1zdHJpa2V0aHJvdWdoIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik02LjMzMyA1LjY4NmMwIC4zMS4wODMuNTgxLjI3LjgxNEg1LjE2NmEyLjggMi44IDAgMCAxLS4wOTktLjc2YzAtMS42MjcgMS40MzYtMi43NjggMy40OC0yLjc2OCAxLjk2OSAwIDMuMzkgMS4xNzUgMy40NDUgMi44NWgtMS4yM2MtLjExLTEuMDgtLjk2NC0xLjc0My0yLjI1LTEuNzQzLTEuMjMgMC0yLjE4LjYwMi0yLjE4IDEuNjA3em0yLjE5NCA3LjQ3OGMtMi4xNTMgMC0zLjU4OS0xLjEwNy0zLjcwNS0yLjgxaDEuMjNjLjE0NCAxLjA2IDEuMTI5IDEuNzAzIDIuNTQ0IDEuNzAzIDEuMzQgMCAyLjMxLS43MDUgMi4zMS0xLjY3NSAwLS44MjctLjU0Ny0xLjM3NC0xLjkxNC0xLjY3NUw4LjA0NiA4LjVIMXYtMWgxNHYxaC0zLjUwNGMuNDY4LjQzNy42NzUuOTk0LjY3NSAxLjY5NyAwIDEuODI2LTEuNDM2IDIuOTY3LTMuNjQ0IDIuOTY3Ij48L3BhdGg+Cjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="strikethrough">
                   <label draggable="true" id="label_svg_strikethrough" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_strikethrough"><i class="bi bi-type-strikethrough"></i> <?php echo _("Strikethrough"); ?></label>
-              </div>
-              <div class="d-grid gap-2 mb-2 list-item-add">
+	      </div>
+		     <div class="d-grid gap-2 mb-2 list-item-add" <?=((isset($HIDE_CHECKBOX)) && $HIDE_CHECKBOX) ? 'style="visibility:hidden;"' : '' ?>>
                   <input type="radio" class="btn-check" id="radio_svg_check" data-height="18" name="svg_2_add" autocomplete="off" value="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktY2hlY2stbGciIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTEyLjczNiAzLjk3YS43MzMuNzMzIDAgMCAxIDEuMDQ3IDBjLjI4Ni4yODkuMjkuNzU2LjAxIDEuMDVMNy44OCAxMi4wMWEuNzMzLjczMyAwIDAgMS0xLjA2NS4wMkwzLjIxNyA4LjM4NGEuNzU3Ljc1NyAwIDAgMSAwLTEuMDYuNzMzLjczMyAwIDAgMSAxLjA0NyAwbDMuMDUyIDMuMDkzIDUuNC02LjQyNWEuMjQ3LjI0NyAwIDAgMSAuMDItLjAyMloiLz4KPC9zdmc+Cg==">
                   <label draggable="true" id="label_svg_check" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_check"><?php echo sprintf(_("%s Check box"), '<i class="bi bi-check-square"></i>'); ?></label>
-              </div>
+	      </div>
               <div id="svg_list" class="d-grid gap-2 mt-2 mb-2 list-item-add"></div>
 
-              <div class="d-grid gap-2 mt-2">
+              <div class="d-grid gap-2 mt-2" <?=((isset($HIDE_CREATE)) && $HIDE_CREATE) ? 'style="visibility:hidden;"' : '' ?>>
                   <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><?php echo sprintf(_("%s Create an element"), '<i class="bi bi-plus-circle"></i>'); ?></button>
               </div>
               <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
@@ -153,8 +153,8 @@
         <div class="modal-content">
             <div class="modal-body">
                 <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active ps-2 ps-md-3 pe-2 pe-md-3" id="nav-draw-tab" data-bs-toggle="tab" data-bs-target="#nav-draw" type="button" role="tab" aria-controls="nav-draw" aria-selected="true"><i class="bi bi-vector-pen"></i> <?php echo _("Draw"); ?><br /><small><?php echo _("freehand"); ?></small></button>
-                    <button class="nav-link ps-2 ps-md-3 pe-2 pe-md-3" id="nav-type-tab" data-bs-toggle="tab" data-bs-target="#nav-type" type="button" role="tab" aria-controls="nav-type" aria-selected="false"><i class="bi bi-fonts"></i> <?php echo _("Enter"); ?><br /><small><?php echo _("text"); ?></small></button>
+		            <button class="nav-link active ps-2 ps-md-3 pe-2 pe-md-3" id="nav-draw-tab" data-bs-toggle="tab" data-bs-target="#nav-draw" type="button" role="tab" aria-controls="nav-draw" aria-selected="true"><i class="bi bi-vector-pen"></i> <?php echo _("Draw"); ?><br /><small><?php echo _("freehand"); ?></small></button>
+		            <button class="nav-link ps-2 ps-md-3 pe-2 pe-md-3" id="nav-type-tab" data-bs-toggle="tab" data-bs-target="#nav-type" type="button" role="tab" aria-controls="nav-type" aria-selected="false" <?=((isset($HIDE_TEXT_SIGNATURE_INITIALS)) && $HIDE_TEXT_SIGNATURE_INITIALS) ? 'style="display:none;visibility:hidden;"' : '' ?>><i class="bi bi-fonts"></i> <?php echo _("Enter"); ?><br /><small><?php echo _("text"); ?></small></button>
                     <button class="nav-link ps-2 ps-md-3 pe-2 pe-md-3" id="nav-import-tab" data-bs-toggle="tab" data-bs-target="#nav-import" type="button" role="tab" aria-controls="nav-import" aria-selected="false"><i class="bi bi-image"></i> <?php echo _("Import"); ?><br /><small><?php echo _("an image"); ?></small></button>
                 </nav>
                 <div class="tab-content mt-3" id="nav-svg-add">

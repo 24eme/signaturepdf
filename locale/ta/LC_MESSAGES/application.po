@@ -8,411 +8,426 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-01 22:33+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-03 23:02+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/signature-pdf/"
+"application/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 msgid "en"
-msgstr ""
+msgstr "என்"
 
 msgid "Administration panel"
-msgstr ""
+msgstr "நிர்வாக குழு"
 
 msgid "Configuration"
-msgstr ""
+msgstr "உள்ளமைவு"
 
 msgid "Server installation"
-msgstr ""
+msgstr "சேவையக நிறுவல்"
 
 #, php-format
 msgid "Minimal version required : %s"
-msgstr ""
+msgstr "குறைந்தபட்ச பதிப்பு தேவை: %s"
 
 #, php-format
 msgid "Package %s required"
-msgstr ""
+msgstr "தொகுப்பு %s தேவை"
 
 #, php-format
 msgid "Package %s missing"
-msgstr ""
+msgstr "தொகுப்பு %s காணவில்லை"
 
 msgid "File Configuration"
-msgstr ""
+msgstr "கோப்பு உள்ளமைவு"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
-msgstr ""
+msgstr "அடைவு %s இருக்க வேண்டும் மற்றும் எழுதக்கூடியதாக இருக்க வேண்டும்"
 
 msgid "Compress PDF"
-msgstr ""
+msgstr "PDF ஐ சுருக்கவும்"
 
 msgid "Site not functional without JavaScript enabled"
-msgstr ""
+msgstr "சாவாச்கிரிப்ட் இயக்கப்படாமல் தளம் செயல்படாது"
 
 #, php-format
 msgid "%s Compress a PDF"
-msgstr ""
+msgstr "%s ஒரு PDF ஐ சுருக்கவும்"
 
 msgid "Reduce the size of a PDF"
-msgstr ""
+msgstr "ஒரு PDF இன் அளவைக் குறைக்கவும்"
 
 msgid "Choose a PDF"
-msgstr ""
+msgstr "ஒரு PDF ஐத் தேர்வுசெய்க"
 
 msgid "The PDF must not exceed "
-msgstr ""
+msgstr "PDF ஐ விட அதிகமாக இருக்கக்கூடாது "
 
 msgid "Mb"
-msgstr ""
+msgstr "எம்பி"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
-msgstr ""
+msgstr "பி.டி.எஃப் தக்கவைக்கப்படாமல் சேவையகத்தால் செயலாக்கப்படும்"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "உங்கள் PDF ஏற்கனவே உகந்ததாக உள்ளது"
 
 msgid "Compress"
-msgstr ""
+msgstr "சுருக்க"
 
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "குறைந்த சுருக்க (அதிகபட்ச தரம்)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s நடுத்தர சுருக்க %s (இயல்புநிலை)"
 
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "உயர் சுருக்க (குறைந்தபட்ச தரம்)"
 
 msgid "Editing PDF metadata"
-msgstr ""
+msgstr "PDF மெட்டாடேட்டாவை திருத்துதல்"
 
 #, php-format
 msgid "%s Edit metadata"
-msgstr ""
+msgstr "%s மேனிலை தரவு"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr ""
+"ஒரு PDF இலிருந்து மெட்டாடேட்டாவைச் சேர்க்கவும், திருத்தவும் அல்லது அகற்றவும்"
 
 msgid "Test with a demo PDF"
-msgstr ""
+msgstr "டெமோ பி.டி.எஃப் உடன் சோதிக்கவும்"
 
 msgid "List of PDF metadata"
-msgstr ""
+msgstr "PDF மெட்டாடேட்டாவின் பட்டியல்"
 
 msgid "Add new metadata"
-msgstr ""
+msgstr "புதிய மெட்டாடேட்டாவைச் சேர்க்கவும்"
 
 msgid "Key"
-msgstr ""
+msgstr "விசை"
 
 msgid "Value"
-msgstr ""
+msgstr "மதிப்பு"
 
 #, php-format
 msgid "%s Add"
-msgstr ""
+msgstr "%s சேர்"
 
 msgid "Close this PDF and return to the home page"
-msgstr ""
+msgstr "இந்த PDF ஐ மூடி, முகப்பு பக்கத்திற்குத் திரும்புக"
 
 msgid "Edit metadata"
-msgstr ""
+msgstr "மெட்டாடேட்டாவைத் திருத்து"
 
 msgid "Save and download the PDF"
-msgstr ""
+msgstr "PDF ஐ சேமித்து பதிவிறக்கவும்"
 
 msgid "Save changes"
-msgstr ""
+msgstr "மாற்றங்களைச் சேமிக்கவும்"
 
 msgid "Organize PDF"
-msgstr ""
+msgstr "PDF ஐ ஒழுங்கமைக்கவும்"
 
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s PDF ஐ ஒழுங்கமைக்கின்றன"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr ""
+"ஒன்றிணைக்கவும், வரிசைப்படுத்தவும், சுழற்றவும், நீக்கவும், பக்கங்களை பிரித்தெடுக்கவும்"
 
 msgid "Touch a page to select it"
-msgstr ""
+msgstr "அதைத் தேர்ந்தெடுக்க ஒரு பக்கத்தைத் தொடவும்"
 
 msgid "Close this PDF and return to home"
-msgstr ""
+msgstr "இந்த PDF ஐ மூடி வீட்டிற்கு திரும்பவும்"
 
 msgid "PDF organization"
-msgstr ""
+msgstr "பி.டி.எஃப் அமைப்பு"
 
 msgid "This PDF is stored on your computer to be signed by you only"
-msgstr ""
+msgstr "இந்த PDF உங்கள் கணினியில் நீங்கள் மட்டுமே கையொப்பமிட வேண்டும்"
 
 #, php-format
 msgid "%s Add a PDF"
-msgstr ""
+msgstr "%s ஒரு PDF ஐச் சேர்க்கவும்"
 
 #, php-format
 msgid "%s page(s) selected"
-msgstr ""
+msgstr "%s பக்கம் (IS) தேர்ந்தெடுக்கப்பட்டது"
 
 #, php-format
 msgid "%s Rotate 90°"
-msgstr ""
+msgstr "%s 90 ° ஐ சுழற்றுகின்றன"
 
 #, php-format
 msgid "%s Move"
-msgstr ""
+msgstr "%s MOVE"
 
 #, php-format
 msgid "%s Delete"
-msgstr ""
+msgstr "%s நீக்கு"
 
 #, php-format
 msgid "%s Extract and download"
-msgstr ""
+msgstr "%s சாறு மற்றும் பதிவிறக்க"
 
 #, php-format
 msgid "%s Cancel selection"
-msgstr ""
+msgstr "%s தேர்வு"
 
 #, php-format
 msgid "%s Download the full PDF"
-msgstr ""
+msgstr "%s முழு PDF ஐ பதிவிறக்கவும்"
 
 msgid "No"
-msgstr ""
+msgstr "இல்லை"
 
 msgid "page"
-msgstr ""
+msgstr "பக்கம்"
 
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்துசெய்"
 
 #, php-format
 msgid "%s Turn"
-msgstr ""
+msgstr "%s"
 
 msgid "Download the selection"
-msgstr ""
+msgstr "தேர்வைப் பதிவிறக்கவும்"
 
 msgid "PDF documents"
-msgstr ""
+msgstr "PDF ஆவணங்கள்"
 
 #, php-format
 msgid "%s Sign a PDF"
-msgstr ""
+msgstr "%s ஒரு PDF இல் கையெழுத்திடுகின்றன"
 
 msgid "Sign, initial, stamp, complete a document"
-msgstr ""
+msgstr "அடையாளம், ஆரம்ப, முத்திரை, ஒரு ஆவணத்தை முடிக்கவும்"
 
 msgid "The PDF should not exceed"
-msgstr ""
+msgstr "PDF ஐ விட அதிகமாக இருக்கக்கூடாது"
 
 msgid "MB and"
-msgstr ""
+msgstr "எம்பி மற்றும்"
 
 msgid "pages"
-msgstr ""
+msgstr "பக்கங்கள்"
 
 msgid "How to sign?"
-msgstr ""
+msgstr "கையெழுத்திடுவது எப்படி?"
 
 msgid "By clicking directly on the document page"
-msgstr ""
+msgstr "ஆவண பக்கத்தில் நேரடியாக சொடுக்கு செய்வதன் மூலம்"
 
 msgid "to insert the selected item in the right column"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட உருப்படியை வலது நெடுவரிசையில் செருக"
 
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "கையொப்பம், ஆரம்ப, உரை, முத்திரை போன்றவை ..."
 
 msgid "Close this PDF and return to the homepage"
-msgstr ""
+msgstr "இந்த PDF ஐ மூடி முகப்புப்பக்கத்திற்குத் திரும்புக"
 
 msgid "PDF Signature"
-msgstr ""
+msgstr "PDF கையொப்பம்"
 
 msgid "This PDF is shared with others to be signed by multiple people"
-msgstr ""
+msgstr "இந்த PDF மற்றவர்களுடன் பல நபர்களால் கையெழுத்திடப்பட வேண்டும்"
 
 msgid "This PDF is stored encrypted on the server."
-msgstr ""
+msgstr "இந்த PDF சேவையகத்தில் குறியாக்கம் செய்யப்படுகிறது."
 
 msgid "Keep the selection active"
-msgstr ""
+msgstr "தேர்வை செயலில் வைத்திருங்கள்"
 
 #, php-format
 msgid "%s Signature"
-msgstr ""
+msgstr "%s கையொப்பம்"
 
 msgid "Create"
-msgstr ""
+msgstr "உருவாக்கு"
 
 #, php-format
 msgid "%s Initial"
-msgstr ""
+msgstr "%s தொடக்க"
 
 #, php-format
 msgid "%s Stamp"
-msgstr ""
+msgstr "%s STAMP"
 
 #, php-format
 msgid "%s Text"
-msgstr ""
+msgstr "%s உரை"
 
 msgid "Strikethrough"
-msgstr ""
+msgstr "ச்ட்ரைகெத்ரோ"
 
 #, php-format
 msgid "%s Check box"
-msgstr ""
+msgstr "%s தேர்வுப்பெட்டி"
 
 #, php-format
 msgid "%s Create an element"
-msgstr ""
+msgstr "%s ஒரு உறுப்பை உருவாக்குகின்றன"
 
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr ""
+msgstr "பல நபர்களுடன் %s இல் கையெழுத்திட %s பங்கு"
 
 msgid "Download the signed PDF"
-msgstr ""
+msgstr "கையொப்பமிடப்பட்ட PDF ஐப் பதிவிறக்கவும்"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr ""
+msgstr "இந்த PDF இல் கையெழுத்திட்ட நீங்கள் %s"
 
 #, php-format
 msgid "%s Download the PDF"
-msgstr ""
+msgstr "%s PDF ஐ பதிவிறக்குகின்றன"
 
 msgid "Transmit my signature"
-msgstr ""
+msgstr "எனது கையொப்பத்தை கடத்தவும்"
 
 #, php-format
 msgid "%s Select a signature"
-msgstr ""
+msgstr "%s கையொப்பத்தைத் தேர்ந்தெடுக்கவும்"
 
 msgid "Draw"
-msgstr ""
+msgstr "டிரா"
 
 msgid "freehand"
-msgstr ""
+msgstr "ஃப்ரீஏண்ட்"
 
 msgid "Enter"
-msgstr ""
+msgstr "உள்ளிடவும்"
 
 msgid "text"
-msgstr ""
+msgstr "உரை"
 
 msgid "Import"
-msgstr ""
+msgstr "இறக்குமதி"
 
 msgid "an image"
-msgstr ""
+msgstr "ஒரு படம்"
 
 msgid "Clear signature"
-msgstr ""
+msgstr "தெளிவான கையொப்பம்"
 
 msgid "My signature"
-msgstr ""
+msgstr "எனது கையொப்பம்"
 
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr ""
+msgstr "இந்த பி.டி.எஃப்"
 
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
+"PDF பகிர்வை இயக்குவதன் மூலம், நீங்கள் விரும்பும் நபர்களுக்கு நீங்கள் ஒரு இணைப்பை வழங்க "
+"முடியும், இதனால் அவர்கள் இந்த PDF இல் கையெழுத்திட முடியும்."
 
 #, php-format
 msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s இந்த பகிர்வுக்கு PDF ஐ மாற்றவும் எதிர்கால கையொப்பமிடுபவர்களை அணுக சேவையகத்தில் "
+"சேமிக்கவும் வேண்டும்."
 
 #, php-format
 msgid "%s The PDF will be kept"
-msgstr ""
+msgstr "%s PDF வைக்கப்படும்"
 
 msgid "for one year"
-msgstr ""
+msgstr "ஒரு வருடம்"
 
 msgid "for six months"
-msgstr ""
+msgstr "ஆறு மாதங்களுக்கு"
 
 msgid "for one month"
-msgstr ""
+msgstr "ஒரு மாதத்திற்கு"
 
 msgid "for one week"
-msgstr ""
+msgstr "ஒரு வாரம்"
 
 msgid "for one day"
-msgstr ""
+msgstr "ஒரு நாள்"
 
 msgid "for one hour"
-msgstr ""
+msgstr "ஒரு மணி நேரம்"
 
 msgid "after the last signature."
-msgstr ""
+msgstr "கடைசி கையொப்பத்திற்குப் பிறகு."
 
 msgid "The PDF will be stored encrypted on the server"
-msgstr ""
+msgstr "PDF சேவையகத்தில் குறியாக்கம் செய்யப்படும்"
 
 #, php-format
 msgid "%s Start sharing"
-msgstr ""
+msgstr "%s பகிர்வு"
 
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr ""
+msgstr "இந்த PDF ஐ பல நபர்களுடன் %s கையொப்பமிடுகின்றன"
 
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr ""
+msgstr "பல நபர்கள் இந்த PDF ஐ ஒரே நேரத்தில் கையெழுத்திடலாம்."
 
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
+"அவ்வாறு செய்ய, இந்தப் பக்கத்திற்கான இணைப்பை நீங்கள் விரும்பும் நபர்களுடன் பகிர்ந்து கொள்ளுங்கள்:"
 
 msgid "Sharing link"
-msgstr ""
+msgstr "பகிர்வு இணைப்பு"
 
 msgid "Copied !"
-msgstr ""
+msgstr "நகலெடுக்கப்பட்டது!"
 
 msgid "Copy"
-msgstr ""
+msgstr "நகலெடு"
 
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr ""
+"கையொப்பமிட்டவர்கள் ஒவ்வொன்றும் கையொப்பமிடப்பட்ட PDF இன் அண்மைக் கால பதிப்பை எந்த நேரத்திலும் "
+"பதிவிறக்கம் செய்யலாம்."
 
 msgid "Close"
-msgstr ""
+msgstr "மூடு"
 
 msgid "Signed PDF"
-msgstr ""
+msgstr "கையொப்பமிடப்பட்ட PDF"
 
 msgid "Your signature has been successfully recorded!"
-msgstr ""
+msgstr "உங்கள் கையொப்பம் வெற்றிகரமாக பதிவு செய்யப்பட்டுள்ளது!"
 
 msgid "This application does not automatically send emails to other signers."
 msgstr ""
+"இந்த பயன்பாடு தானாகவே மற்ற கையொப்பமிட்டவர்களுக்கு மின்னஞ்சல்களை அனுப்பாது."
 
 msgid ""
 "If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
+"ஒன்றை நீங்களே அனுப்ப விரும்பினால், நீங்கள் பயன்படுத்தலாம் <a> இந்த முன் எழுதப்பட்ட மின்னஞ்சல் "
+"</a>."
 
 #, php-format
 msgid "Signing the document : %s"
-msgstr ""
+msgstr "ஆவணத்தில் கையொப்பமிடுதல்: %s"
 
 #, php-format
 msgid ""
@@ -420,54 +435,57 @@ msgid ""
 "\n"
 "I just signed the document (%s) : %s"
 msgstr ""
+"வணக்கம்,\n"
+"\n"
+" நான் ஆவணத்தில் கையெழுத்திட்டேன் ( %s): %s"
 
 msgid "Download the PDF"
-msgstr ""
+msgstr "PDF ஐப் பதிவிறக்கவும்"
 
 msgid "Text to modify"
-msgstr ""
+msgstr "மாற்ற உரை"
 
 msgid "Select this page"
-msgstr ""
+msgstr "இந்த பக்கத்தைத் தேர்ந்தெடுக்கவும்"
 
 msgid "Delete this page"
-msgstr ""
+msgstr "இந்த பக்கத்தை நீக்கு"
 
 msgid "Restore this page"
-msgstr ""
+msgstr "இந்த பக்கத்தை மீட்டெடுக்கவும்"
 
 msgid "Move this page"
-msgstr ""
+msgstr "இந்த பக்கத்தை நகர்த்தவும்"
 
 msgid "Move here"
-msgstr ""
+msgstr "இங்கே செல்லுங்கள்"
 
 msgid "Turn this page"
-msgstr ""
+msgstr "இந்த பக்கத்தைத் திருப்புங்கள்"
 
 msgid "Download this page"
-msgstr ""
+msgstr "இந்த பக்கத்தைப் பதிவிறக்கவும்"
 
 msgid "Page"
-msgstr ""
+msgstr "பக்கம்"
 
 msgid "Free open-source software"
-msgstr ""
+msgstr "இலவச திறந்த மூல மென்பொருள்"
 
 msgid "under AGPL-3.0 license"
-msgstr ""
+msgstr "AGPL-3.0 உரிமத்தின் கீழ்"
 
 msgid "see the source code"
-msgstr ""
+msgstr "மூலக் குறியீட்டைக் காண்க"
 
 msgid "Language"
-msgstr ""
+msgstr "மொழி"
 
 msgid "Sign"
-msgstr ""
+msgstr "அடையாளம்"
 
 msgid "Organize"
-msgstr ""
+msgstr "ஒழுங்கமைக்கவும்"
 
 msgid "Metadata"
-msgstr ""
+msgstr "மேனிலை தரவு"

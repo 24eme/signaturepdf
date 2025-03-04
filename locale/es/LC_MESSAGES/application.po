@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2024-10-22 18:15+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -50,9 +50,6 @@ msgstr "Configuración del archivo"
 msgid "The directory %s should exist and be writeable"
 msgstr "El directorio %s debe existir y ser escribible"
 
-msgid "Compress PDF"
-msgstr "Comprimir PDF"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "La página no funciona sin JavaScript habilitado"
 
@@ -92,9 +89,6 @@ msgstr "%s Compresión media %s (por defecto)"
 msgid "High compression (minimum quality)"
 msgstr "Alta compresión (menor calidad)"
 
-msgid "Editing PDF metadata"
-msgstr "Edición de los metadatos del PDF"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Editar los metadatos"
@@ -133,9 +127,6 @@ msgstr "Guardar y descargar el PDF"
 msgid "Save changes"
 msgstr "Gardar cambios"
 
-msgid "Organize PDF"
-msgstr "Organizar PDF"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Organizar PDF"
@@ -151,9 +142,6 @@ msgstr "Cerrar este PDF y volver al inicio"
 
 msgid "PDF organization"
 msgstr "Organización del PDF"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "Este PDF se almacena en tu ordenador para que solo tu lo firmes"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -242,6 +230,9 @@ msgstr "Firma el PDF"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "Este PDF se comparte con otros para que lo firmen varias personas"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "Este PDF se almacena en tu ordenador para que solo tu lo firmes"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr "Este PDF se almacena cifrado en el servidor."
@@ -489,3 +480,12 @@ msgstr "Organizar"
 
 msgid "Metadata"
 msgstr "Metadatos"
+
+#~ msgid "Compress PDF"
+#~ msgstr "Comprimir PDF"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "Edición de los metadatos del PDF"
+
+#~ msgid "Organize PDF"
+#~ msgstr "Organizar PDF"

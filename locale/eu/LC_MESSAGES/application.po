@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2024-12-31 04:04+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
@@ -52,9 +52,6 @@ msgstr ""
 "%s direktorioa lehendik egon behar da, eta bertan idazteko baimena izan "
 "behar da"
 
-msgid "Compress PDF"
-msgstr "Konprimatu PDFa"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "Webgunea ezin da erabili JavaScript aktibatu arte"
 
@@ -95,9 +92,6 @@ msgstr "%s Konpresio ertaina %s (lehenetsia)"
 msgid "High compression (minimum quality)"
 msgstr "Konpresio altua (kalitate txikiena)"
 
-msgid "Editing PDF metadata"
-msgstr "PDFaren metadatuak editatzen"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Editatu metadatuak"
@@ -136,9 +130,6 @@ msgstr "Gorde eta deskargatu PDFa"
 msgid "Save changes"
 msgstr "Gorde aldaketak"
 
-msgid "Organize PDF"
-msgstr "Antolatu PDFa"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Antolatu PDFa"
@@ -154,9 +145,6 @@ msgstr "Itxi PDFa eta itzuli hasierara"
 
 msgid "PDF organization"
 msgstr "PDFaren antolaketa"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "PDFa ordenagailuan gordeta dago zuk bakarrik sinatu ahal izateko"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -245,6 +233,9 @@ msgstr "PDFaren sinadura"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "PDF hau partekatua da, pertsona batek baino gehiagok sinatzeko"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "PDFa ordenagailuan gordeta dago zuk bakarrik sinatu ahal izateko"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr "PDFa enkriptatuta gordeko da zerbitzarian."
@@ -491,3 +482,12 @@ msgstr "Antolatu"
 
 msgid "Metadata"
 msgstr "Metadatuak"
+
+#~ msgid "Compress PDF"
+#~ msgstr "Konprimatu PDFa"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "PDFaren metadatuak editatzen"
+
+#~ msgid "Organize PDF"
+#~ msgstr "Antolatu PDFa"

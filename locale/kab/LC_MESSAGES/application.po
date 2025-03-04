@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2024-12-24 13:00+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -50,9 +50,6 @@ msgstr "Twila n ikaramen"
 msgid "The directory %s should exist and be writeable"
 msgstr ""
 
-msgid "Compress PDF"
-msgstr "Ssed PDF"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "Asmel ur iteddu ara ma yella ur yermid ara JavaScript"
 
@@ -92,9 +89,6 @@ msgstr "%s Tussda talemmast %s (tamezwert)"
 msgid "High compression (minimum quality)"
 msgstr "Tussda ɛlayen (taɣara taddayt)"
 
-msgid "Editing PDF metadata"
-msgstr "Aẓrag n yiɣefisefka n PDF"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Aẓrag n yiɣefisefka"
@@ -133,9 +127,6 @@ msgstr "Sekles syen sader PDF"
 msgid "Save changes"
 msgstr "Sekles ibeddilen"
 
-msgid "Organize PDF"
-msgstr "Asuddes n PDF"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Asuddes n PDF"
@@ -151,9 +142,6 @@ msgstr "Mdel afaylu-a n PDF syen uɣal ɣer usebter"
 
 msgid "PDF organization"
 msgstr "Asuddes n yifuyla PDF"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "Afaylu-a PDF yettwaḥraz deg uselkim-ik i wakken ad t-tzemleḍ kan kečč"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -244,6 +232,9 @@ msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
 "Afaylu-a PDF yettwabḍa d yimdanen niḍen i wakken ad yetgusezmel sɣur waṭas n "
 "yimdanen"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "Afaylu-a PDF yettwaḥraz deg uselkim-ik i wakken ad t-tzemleḍ kan kečč"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr "Afaylu-a PDF yettwaḥrez yettwawgelhen ɣef uqeddac."
@@ -484,6 +475,15 @@ msgstr "Suddes"
 
 msgid "Metadata"
 msgstr "Iɣefisefka"
+
+#~ msgid "Compress PDF"
+#~ msgstr "Ssed PDF"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "Aẓrag n yiɣefisefka n PDF"
+
+#~ msgid "Organize PDF"
+#~ msgstr "Asuddes n PDF"
 
 #~ msgid ""
 #~ "The PDF will be processed by the server without being stored or saved"

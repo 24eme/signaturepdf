@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -51,9 +51,6 @@ msgstr ""
 msgid "The directory %s should exist and be writeable"
 msgstr ""
 
-msgid "Compress PDF"
-msgstr "Comprimați un PDF"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "Site-ul nu funcționează fără JavaScript activat"
 
@@ -93,9 +90,6 @@ msgstr "%s compresie medie %s (implicit)"
 msgid "High compression (minimum quality)"
 msgstr "Compresie ridicată (calitate minimă)"
 
-msgid "Editing PDF metadata"
-msgstr "Editarea metadatelor PDF"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Editați metadatele"
@@ -134,9 +128,6 @@ msgstr "Salvați și descărcați PDF-ul"
 msgid "Save changes"
 msgstr ""
 
-msgid "Organize PDF"
-msgstr "Organizați un PDF"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Organizați PDF-uri"
@@ -152,9 +143,6 @@ msgstr "Închideți acest PDF și reveniți acasă"
 
 msgid "PDF organization"
 msgstr "Organizare PDF-uri"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "Acest PDF este stocat pe computer pentru a fi semnat numai de dvs"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -245,6 +233,9 @@ msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
 "Acest PDF este partajat altor persoane pentru a fi semnat de mai multe "
 "persoane"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "Acest PDF este stocat pe computer pentru a fi semnat numai de dvs"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr ""
@@ -485,3 +476,12 @@ msgstr "Organizează"
 
 msgid "Metadata"
 msgstr "Metadate"
+
+#~ msgid "Compress PDF"
+#~ msgstr "Comprimați un PDF"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "Editarea metadatelor PDF"
+
+#~ msgid "Organize PDF"
+#~ msgstr "Organizați un PDF"

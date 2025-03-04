@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -51,9 +51,6 @@ msgstr ""
 msgid "The directory %s should exist and be writeable"
 msgstr ""
 
-msgid "Compress PDF"
-msgstr "ضغط PDF"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "لا يمكن تشغيل المَوقِع من دون تمكين الجافاسكريبت"
 
@@ -93,9 +90,6 @@ msgstr "%s ضغط متوسط %s (مبدئي)"
 msgid "High compression (minimum quality)"
 msgstr "ضغط عالي (جودة دنيا)"
 
-msgid "Editing PDF metadata"
-msgstr "تحرير البيانات الوصفية لـ PDF"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s تعديل البيانات الوصفية"
@@ -134,9 +128,6 @@ msgstr "حفظ وتنزيل الـ PDF"
 msgid "Save changes"
 msgstr ""
 
-msgid "Organize PDF"
-msgstr "تنظيم PDF"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s تنظيم الـ PDF"
@@ -152,9 +143,6 @@ msgstr "إغلاق هذا PDF والعودة إلى الرئيسية"
 
 msgid "PDF organization"
 msgstr "تنظيم ملفات الـ PDF"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "ملف PDF هذا مُخزَّن على حاسوبك كي تُوقِّعه أنت فقط"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -243,6 +231,9 @@ msgstr "توقيع الـ PDF"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "ملف PDF هذا مشارَك مع أشخاص آخرين لإمضائه من قِبل عدة أشخاص"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "ملف PDF هذا مُخزَّن على حاسوبك كي تُوقِّعه أنت فقط"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr ""
@@ -479,6 +470,15 @@ msgstr "نظِّم"
 
 msgid "Metadata"
 msgstr "البيانات الوصفية"
+
+#~ msgid "Compress PDF"
+#~ msgstr "ضغط PDF"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "تحرير البيانات الوصفية لـ PDF"
+
+#~ msgid "Organize PDF"
+#~ msgstr "تنظيم PDF"
 
 #~ msgid ""
 #~ "The PDF will be processed by the server without being stored or saved"

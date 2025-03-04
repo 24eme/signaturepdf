@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -45,9 +45,6 @@ msgstr ""
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
-msgstr ""
-
-msgid "Compress PDF"
 msgstr ""
 
 msgid "Site not functional without JavaScript enabled"
@@ -89,9 +86,6 @@ msgstr ""
 msgid "High compression (minimum quality)"
 msgstr ""
 
-msgid "Editing PDF metadata"
-msgstr ""
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr ""
@@ -130,9 +124,6 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-msgid "Organize PDF"
-msgstr ""
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr ""
@@ -147,9 +138,6 @@ msgid "Close this PDF and return to home"
 msgstr ""
 
 msgid "PDF organization"
-msgstr ""
-
-msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
 
 #, php-format
@@ -238,6 +226,9 @@ msgid "PDF Signature"
 msgstr ""
 
 msgid "This PDF is shared with others to be signed by multiple people"
+msgstr ""
+
+msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
 
 msgid "This PDF is stored encrypted on the server."

@@ -32,6 +32,7 @@ $f3->set('SUPPORTED_LANGUAGES',
         'kab' => 'Taqbaylit',
         'oc' => 'Occitan',
         'ro' => 'Română',
+        'ta' => 'தமிழ்',
         'tr' => 'Türkçe'
     ]);
 

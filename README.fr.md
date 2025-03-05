@@ -19,7 +19,7 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [pdf.sequanux.org](https://pdf.sequanux.org)
 - [pdf.deblan.org](https://pdf.deblan.org)
 - [signpdf.liber-it.fr](https://signpdf.liber-it.fr)
-- [signaturepdf.linux07.fr](https://signaturepdf.linux07.fr) (by [Linu07](https://linux07.fr/))
+- [signaturepdf.linux07.fr](https://signaturepdf.linux07.fr) ([Linu07](https://linux07.fr/))
 
 _N'hésitez pas à rajouter la votre via une issue ou une pull request_
 

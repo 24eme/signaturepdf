@@ -8,6 +8,15 @@ ENV PDF_STORAGE_PATH=/data
 ENV DISABLE_ORGANIZATION=false
 ENV DEFAULT_LANGUAGE=fr_FR.UTF-8
 ENV PDF_STORAGE_ENCRYPTION=false
+ENV HIDE_SIGNATURE=false
+ENV HIDE_INITIALS=false
+ENV HIDE_TEXT=false
+ENV HIDE_TEXT_SIGNATURE_INITIALS=false
+ENV HIDE_STAMP=false
+ENV HIDE_CHECKBOX=false
+ENV HIDE_STRIKETHROUGH=false
+ENV HIDE_CREATE=false
+
 
 RUN apt update && \
     apt install -y vim locales gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript gpg && \

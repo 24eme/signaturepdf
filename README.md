@@ -134,7 +134,7 @@ To hide the demo PDF link, add `PDF_DEMO_LINK=false` to the
 
 ### Customize the CSS
 
-It is possible to add a custom CSS file to the location `public/css/app-specific.css`.
+It's possible to add a custom CSS file to the location `public/css/app-specific.css`.
 
 If this file exists, it will be loaded automatically.
 

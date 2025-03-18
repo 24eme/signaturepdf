@@ -35,13 +35,13 @@ Open-source software under the AGPL V3 license.
     - [Enabling and Configuring Multi-Signature Mode](#enabling-and-configuring-multi-signature-mode)
     - [Disabling the Organize Mode](#disabling-the-organize-mode)
     - [Hiding or Modifying the Demo PDF Link](#hiding-or-modifying-the-demo-pdf-link)
+    - [Customize the CSS](#customize-the-css)
     - [Default Fields for Metadata Editing](#default-fields-for-metadata-editing)
 - [Update](#update)
 - [Tests](#tests)
 - [Libraries Used](#libraries-used)
 - [Contributions](#contributions)
 - [Screenshots](#screenshots)
-
 
 ## Installation
 
@@ -131,6 +131,12 @@ To disable the Organize mode, add `DISABLE_ORGANIZATION=true` to the
 
 To hide the demo PDF link, add `PDF_DEMO_LINK=false` to the
 `config/config.ini` file.
+
+### Customize the CSS
+
+It is possible to add a custom CSS file to the location `public/css/app-specific.css`.
+
+If this file exists, it will be loaded automatically.
 
 ### Default Fields for Metadata Editing
 

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 09:31+0200\n"
-"PO-Revision-Date: 2024-09-17 03:09+0000\n"
-"Last-Translator: micheleC <castellom@tutamail.com>\n"
+"PO-Revision-Date: 2025-03-25 00:42+0000\n"
+"Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
 "Language: it\n"
@@ -17,23 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid "en"
 msgstr "it"
 
 msgid "Administration panel"
-msgstr ""
+msgstr "Pannello amministratore"
 
 msgid "Configuration"
-msgstr ""
+msgstr "Configurazione"
 
 msgid "Server installation"
-msgstr ""
+msgstr "Installazione da server"
 
 #, php-format
 msgid "Minimal version required : %s"
-msgstr ""
+msgstr "Versione minima richiesta : %s"
 
 #, php-format
 msgid "Package %s required"
@@ -44,7 +44,7 @@ msgid "Package %s missing"
 msgstr ""
 
 msgid "File Configuration"
-msgstr ""
+msgstr "Configurazione File"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
@@ -131,7 +131,7 @@ msgid "Save and download the PDF"
 msgstr "Salva e scarica il PDF"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Salva modifiche"
 
 msgid "Organize PDF"
 msgstr "Organizza un PDF"
@@ -422,7 +422,7 @@ msgstr ""
 
 #, php-format
 msgid "Signing the document : %s"
-msgstr ""
+msgstr "Firma del documento : %s"
 
 #, php-format
 msgid ""
@@ -430,6 +430,9 @@ msgid ""
 "\n"
 "I just signed the document (%s) : %s"
 msgstr ""
+"Ciao!\n"
+"\n"
+"Ho appena firmato il documento (%s) : %s"
 
 msgid "Download the PDF"
 msgstr "Scarica il PDF"

@@ -1,0 +1,473 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-01 22:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "en"
+msgstr ""
+
+msgid "Administration panel"
+msgstr ""
+
+msgid "Configuration"
+msgstr ""
+
+msgid "Server installation"
+msgstr ""
+
+#, php-format
+msgid "Minimal version required : %s"
+msgstr ""
+
+#, php-format
+msgid "Package %s required"
+msgstr ""
+
+#, php-format
+msgid "Package %s missing"
+msgstr ""
+
+msgid "File Configuration"
+msgstr ""
+
+#, php-format
+msgid "The directory %s should exist and be writeable"
+msgstr ""
+
+msgid "Compress PDF"
+msgstr ""
+
+msgid "Site not functional without JavaScript enabled"
+msgstr ""
+
+#, php-format
+msgid "%s Compress a PDF"
+msgstr ""
+
+msgid "Reduce the size of a PDF"
+msgstr ""
+
+msgid "Choose a PDF"
+msgstr ""
+
+msgid "The PDF must not exceed "
+msgstr ""
+
+msgid "Mb"
+msgstr ""
+
+msgid ""
+"The PDF will be processed by the server without being retained or stored"
+msgstr ""
+
+msgid "Your pdf is already optimized"
+msgstr ""
+
+msgid "Compress"
+msgstr ""
+
+msgid "Low compression (maximum quality)"
+msgstr ""
+
+#, php-format
+msgid "%s Medium compression %s (default)"
+msgstr ""
+
+msgid "High compression (minimum quality)"
+msgstr ""
+
+msgid "Editing PDF metadata"
+msgstr ""
+
+#, php-format
+msgid "%s Edit metadata"
+msgstr ""
+
+msgid "Add, edit, or remove metadata from a PDF"
+msgstr ""
+
+msgid "Test with a demo PDF"
+msgstr ""
+
+msgid "List of PDF metadata"
+msgstr ""
+
+msgid "Add new metadata"
+msgstr ""
+
+msgid "Key"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+#, php-format
+msgid "%s Add"
+msgstr ""
+
+msgid "Close this PDF and return to the home page"
+msgstr ""
+
+msgid "Edit metadata"
+msgstr ""
+
+msgid "Save and download the PDF"
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
+msgid "Organize PDF"
+msgstr ""
+
+#, php-format
+msgid "%s Organize PDF"
+msgstr ""
+
+msgid "Merge, sort, rotate, delete, extract pages"
+msgstr ""
+
+msgid "Touch a page to select it"
+msgstr ""
+
+msgid "Close this PDF and return to home"
+msgstr ""
+
+msgid "PDF organization"
+msgstr ""
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr ""
+
+#, php-format
+msgid "%s Add a PDF"
+msgstr ""
+
+#, php-format
+msgid "%s page(s) selected"
+msgstr ""
+
+#, php-format
+msgid "%s Rotate 90°"
+msgstr ""
+
+#, php-format
+msgid "%s Move"
+msgstr ""
+
+#, php-format
+msgid "%s Delete"
+msgstr ""
+
+#, php-format
+msgid "%s Extract and download"
+msgstr ""
+
+#, php-format
+msgid "%s Cancel selection"
+msgstr ""
+
+#, php-format
+msgid "%s Download the full PDF"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "page"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+#, php-format
+msgid "%s Turn"
+msgstr ""
+
+msgid "Download the selection"
+msgstr ""
+
+msgid "PDF documents"
+msgstr ""
+
+#, php-format
+msgid "%s Sign a PDF"
+msgstr ""
+
+msgid "Sign, initial, stamp, complete a document"
+msgstr ""
+
+msgid "The PDF should not exceed"
+msgstr ""
+
+msgid "MB and"
+msgstr ""
+
+msgid "pages"
+msgstr ""
+
+msgid "How to sign?"
+msgstr ""
+
+msgid "By clicking directly on the document page"
+msgstr ""
+
+msgid "to insert the selected item in the right column"
+msgstr ""
+
+msgid "signature, initial, text, stamp, etc ..."
+msgstr ""
+
+msgid "Close this PDF and return to the homepage"
+msgstr ""
+
+msgid "PDF Signature"
+msgstr ""
+
+msgid "This PDF is shared with others to be signed by multiple people"
+msgstr ""
+
+msgid "This PDF is stored encrypted on the server."
+msgstr ""
+
+msgid "Keep the selection active"
+msgstr ""
+
+#, php-format
+msgid "%s Signature"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+#, php-format
+msgid "%s Initial"
+msgstr ""
+
+#, php-format
+msgid "%s Stamp"
+msgstr ""
+
+#, php-format
+msgid "%s Text"
+msgstr ""
+
+msgid "Strikethrough"
+msgstr ""
+
+#, php-format
+msgid "%s Check box"
+msgstr ""
+
+#, php-format
+msgid "%s Create an element"
+msgstr ""
+
+#, php-format
+msgid "%s Share to sign %s with multiple people"
+msgstr ""
+
+msgid "Download the signed PDF"
+msgstr ""
+
+#, php-format
+msgid "You are %s to have signed this PDF"
+msgstr ""
+
+#, php-format
+msgid "%s Download the PDF"
+msgstr ""
+
+msgid "Transmit my signature"
+msgstr ""
+
+#, php-format
+msgid "%s Select a signature"
+msgstr ""
+
+msgid "Draw"
+msgstr ""
+
+msgid "freehand"
+msgstr ""
+
+msgid "Enter"
+msgstr ""
+
+msgid "text"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "an image"
+msgstr ""
+
+msgid "Clear signature"
+msgstr ""
+
+msgid "My signature"
+msgstr ""
+
+#, php-format
+msgid "%s Share this PDF to sign it with several people"
+msgstr ""
+
+msgid ""
+"By enabling PDF sharing, you will be able to provide a link to the people of "
+"your choice so that they can sign this PDF."
+msgstr ""
+
+#, php-format
+msgid ""
+"%s This sharing requires the PDF to be transferred and stored on the server "
+"for future signers to access."
+msgstr ""
+
+#, php-format
+msgid "%s The PDF will be kept"
+msgstr ""
+
+msgid "for one year"
+msgstr ""
+
+msgid "for six months"
+msgstr ""
+
+msgid "for one month"
+msgstr ""
+
+msgid "for one week"
+msgstr ""
+
+msgid "for one day"
+msgstr ""
+
+msgid "for one hour"
+msgstr ""
+
+msgid "after the last signature."
+msgstr ""
+
+msgid "The PDF will be stored encrypted on the server"
+msgstr ""
+
+#, php-format
+msgid "%s Start sharing"
+msgstr ""
+
+#, php-format
+msgid "%s Sign this PDF with multiple people"
+msgstr ""
+
+msgid "Multiple people can sign this PDF simultaneously."
+msgstr ""
+
+msgid ""
+"To do so, simply share the link to this page with the people of your choice:"
+msgstr ""
+
+msgid "Sharing link"
+msgstr ""
+
+msgid "Copied !"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid ""
+"Each of the signatories can download the latest version of the signed PDF at "
+"any time."
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Signed PDF"
+msgstr ""
+
+msgid "Your signature has been successfully recorded!"
+msgstr ""
+
+msgid "This application does not automatically send emails to other signers."
+msgstr ""
+
+msgid ""
+"If you want to send one yourself, you can use <a>this pre-written email</a>."
+msgstr ""
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+
+msgid "Download the PDF"
+msgstr ""
+
+msgid "Text to modify"
+msgstr ""
+
+msgid "Select this page"
+msgstr ""
+
+msgid "Delete this page"
+msgstr ""
+
+msgid "Restore this page"
+msgstr ""
+
+msgid "Move this page"
+msgstr ""
+
+msgid "Move here"
+msgstr ""
+
+msgid "Turn this page"
+msgstr ""
+
+msgid "Download this page"
+msgstr ""
+
+msgid "Page"
+msgstr ""
+
+msgid "Free open-source software"
+msgstr ""
+
+msgid "under AGPL-3.0 license"
+msgstr ""
+
+msgid "see the source code"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Sign"
+msgstr ""
+
+msgid "Organize"
+msgstr ""
+
+msgid "Metadata"
+msgstr ""

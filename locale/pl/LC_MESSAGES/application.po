@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-01 22:33+0100\n"
-"PO-Revision-Date: 2025-03-25 07:01+0000\n"
-"Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
+"PO-Revision-Date: 2025-03-25 20:01+0000\n"
+"Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/signature-pdf/"
 "application/pl/>\n"
 "Language: pl\n"
@@ -152,7 +152,7 @@ msgid "Close this PDF and return to home"
 msgstr ""
 
 msgid "PDF organization"
-msgstr ""
+msgstr "Organizacja plików PDF"
 
 msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
@@ -190,13 +190,13 @@ msgid "%s Download the full PDF"
 msgstr ""
 
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 msgid "page"
-msgstr ""
+msgstr "strona"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 #, php-format
 msgid "%s Turn"
@@ -222,7 +222,7 @@ msgid "MB and"
 msgstr ""
 
 msgid "pages"
-msgstr ""
+msgstr "strony"
 
 msgid "How to sign?"
 msgstr ""
@@ -256,7 +256,7 @@ msgid "%s Signature"
 msgstr ""
 
 msgid "Create"
-msgstr ""
+msgstr "Utwórz"
 
 #, php-format
 msgid "%s Initial"
@@ -304,7 +304,7 @@ msgid "%s Select a signature"
 msgstr ""
 
 msgid "Draw"
-msgstr ""
+msgstr "Rysuj"
 
 msgid "freehand"
 msgstr ""
@@ -313,10 +313,10 @@ msgid "Enter"
 msgstr ""
 
 msgid "text"
-msgstr ""
+msgstr "tekst"
 
 msgid "Import"
-msgstr ""
+msgstr "Importuj"
 
 msgid "an image"
 msgstr ""
@@ -392,7 +392,7 @@ msgid "Copied !"
 msgstr ""
 
 msgid "Copy"
-msgstr ""
+msgstr "Kopiuj"
 
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
@@ -400,7 +400,7 @@ msgid ""
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "Zamknij"
 
 msgid "Signed PDF"
 msgstr ""
@@ -454,7 +454,7 @@ msgid "Download this page"
 msgstr ""
 
 msgid "Page"
-msgstr ""
+msgstr "Strona"
 
 msgid "Free open-source software"
 msgstr ""
@@ -466,7 +466,7 @@ msgid "see the source code"
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "Język"
 
 msgid "Sign"
 msgstr ""
@@ -475,4 +475,4 @@ msgid "Organize"
 msgstr ""
 
 msgid "Metadata"
-msgstr ""
+msgstr "Metadane"

@@ -166,9 +166,6 @@ async function loadPDF(pdfBlob) {
 };
 
 async function reloadPDF(url) {
-    const pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.js?legacy';
-
     pdfjsLib.getDocument(url).promise.then(function(pdf) {
         for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
             pdf.getPage(pageNumber).then(function(page) {

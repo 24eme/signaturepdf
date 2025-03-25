@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2024-10-16 13:15+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
@@ -50,9 +50,6 @@ msgstr "Configuracion del fichièr"
 msgid "The directory %s should exist and be writeable"
 msgstr "Lo dossièr %s deu existir e èsser accessible en escritura"
 
-msgid "Compress PDF"
-msgstr "Compressar un PDF"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "Site non foncional sens lo JavaScript activat"
 
@@ -92,9 +89,6 @@ msgstr "%s Compression mejana %s (per defaut)"
 msgid "High compression (minimum quality)"
 msgstr "Compression fòrta (qualitat minimala)"
 
-msgid "Editing PDF metadata"
-msgstr "Edicion de metadonadas PDF"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Modificar las metadonadas"
@@ -133,9 +127,6 @@ msgstr "Enregistrar e telecargar lo PDF"
 msgid "Save changes"
 msgstr "Salvar las modificacions"
 
-msgid "Organize PDF"
-msgstr "Organizar un PDF"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Organizar de PDF"
@@ -151,9 +142,6 @@ msgstr "Tampar aqueste PDF e tornar a l’acuèlh"
 
 msgid "PDF organization"
 msgstr "Organizacion de PDF"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "Aqueste PDF es servat sus vòstre ordenador sonque per que lo signetz"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -244,6 +232,9 @@ msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
 "Aqueste PDF es partejat amb d’autras personas per èsser signat per mantuna "
 "persona"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "Aqueste PDF es servat sus vòstre ordenador sonque per que lo signetz"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr "Lo PDF es gardat chifrat sul servidor."
@@ -417,7 +408,8 @@ msgid "Your signature has been successfully recorded!"
 msgstr "Vòstra signatura es estada corrèctament enregistrada !"
 
 msgid "This application does not automatically send emails to other signers."
-msgstr "Aquesta aplicacion manda pas automaticament de corrièrs als signataris."
+msgstr ""
+"Aquesta aplicacion manda pas automaticament de corrièrs als signataris."
 
 msgid ""
 "If you want to send one yourself, you can use <a>this pre-written email</a>."
@@ -488,6 +480,15 @@ msgstr "Organizar"
 
 msgid "Metadata"
 msgstr "Metadonadas"
+
+#~ msgid "Compress PDF"
+#~ msgstr "Compressar un PDF"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "Edicion de metadonadas PDF"
+
+#~ msgid "Organize PDF"
+#~ msgstr "Organizar un PDF"
 
 #~ msgid ""
 #~ "The PDF will be processed by the server without being stored or saved"

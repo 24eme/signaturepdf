@@ -17,6 +17,7 @@ List of instances where you can use this software:
 - [pdf.deblan.org](https://pdf.deblan.org) (by [Deblan](https://wiki.deblan.org/hosting/overview/))
 - [pdf.ouvaton.coop](https://pdf.ouvaton.coop) (by [OUVATON](https://ouvaton.coop/))
 - [signpdf.liber-it.fr](https://signpdf.liber-it.fr) (by [Liber-IT](https://site.liber-it.fr/))
+- [signaturepdf.linux07.fr](https://signaturepdf.linux07.fr) (by [Linux07](https://linux07.fr/))
 
 _Feel free to add yours through an issue or a pull request._
 
@@ -34,13 +35,13 @@ Open-source software under the AGPL V3 license.
     - [Enabling and Configuring Multi-Signature Mode](#enabling-and-configuring-multi-signature-mode)
     - [Disabling the Organize Mode](#disabling-the-organize-mode)
     - [Hiding or Modifying the Demo PDF Link](#hiding-or-modifying-the-demo-pdf-link)
+    - [Customize the CSS](#customize-the-css)
     - [Default Fields for Metadata Editing](#default-fields-for-metadata-editing)
 - [Update](#update)
 - [Tests](#tests)
 - [Libraries Used](#libraries-used)
 - [Contributions](#contributions)
 - [Screenshots](#screenshots)
-
 
 ## Installation
 
@@ -130,6 +131,12 @@ To disable the Organize mode, add `DISABLE_ORGANIZATION=true` to the
 
 To hide the demo PDF link, add `PDF_DEMO_LINK=false` to the
 `config/config.ini` file.
+
+### Customize the CSS
+
+It's possible to add a custom CSS file to the location `public/css/app-specific.css`.
+
+If this file exists, it will be loaded automatically.
 
 ### Default Fields for Metadata Editing
 

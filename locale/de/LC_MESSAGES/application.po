@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2024-10-16 23:15+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
@@ -50,9 +50,6 @@ msgstr "Dateikonfiguration"
 msgid "The directory %s should exist and be writeable"
 msgstr "Das Verzeichnis %s sollte existieren und beschreibbar sein"
 
-msgid "Compress PDF"
-msgstr "PDF komprimieren"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "Diese Website funktioniert nicht ohne aktiviertes JavaScript"
 
@@ -94,9 +91,6 @@ msgstr "%s Mittlere Kompression %s (Standard)"
 msgid "High compression (minimum quality)"
 msgstr "Hohe Komprimierung (minimale Qualität)"
 
-msgid "Editing PDF metadata"
-msgstr "PDF-Metadaten bearbeiten"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Metadaten bearbeiten"
@@ -136,9 +130,6 @@ msgstr "PDF speichern und herunterladen"
 msgid "Save changes"
 msgstr "Änderungen speichern"
 
-msgid "Organize PDF"
-msgstr "PDF organisieren"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s PDF organisieren"
@@ -154,11 +145,6 @@ msgstr ""
 
 msgid "PDF organization"
 msgstr "PDF-Organisation"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr ""
-"Diese PDF-Datei wird auf Ihrem Computer gespeichert und kann nur von Ihnen "
-"unterzeichnet werden"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -249,6 +235,11 @@ msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
 "Diese PDF-Datei wird an andere weitergegeben, damit sie von mehreren "
 "Personen unterzeichnet werden kann"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr ""
+"Diese PDF-Datei wird auf Ihrem Computer gespeichert und kann nur von Ihnen "
+"unterzeichnet werden"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr "Dieses PDF wird verschlüsselt auf dem Server gespeichert."
@@ -488,3 +479,12 @@ msgstr "Organisieren"
 
 msgid "Metadata"
 msgstr "Metadaten"
+
+#~ msgid "Compress PDF"
+#~ msgstr "PDF komprimieren"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "PDF-Metadaten bearbeiten"
+
+#~ msgid "Organize PDF"
+#~ msgstr "PDF organisieren"

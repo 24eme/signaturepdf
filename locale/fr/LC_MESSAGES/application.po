@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2024-10-14 07:49+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -51,9 +51,6 @@ msgstr "Configuration des dossiers"
 msgid "The directory %s should exist and be writeable"
 msgstr "Le répertoire %s doit exister et avoir les droits d'écriture"
 
-msgid "Compress PDF"
-msgstr "Compresser un PDF"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "Site non fonctionnel sans JavaScript activé"
 
@@ -93,9 +90,6 @@ msgstr "%s Moyenne compression %s (défaut)"
 msgid "High compression (minimum quality)"
 msgstr "Haute compression (qualité minimale)"
 
-msgid "Editing PDF metadata"
-msgstr "Édition des métadonnées d'un PDF"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Éditer les métadonnées"
@@ -134,9 +128,6 @@ msgstr "Enregistrer et télécharger le PDF"
 msgid "Save changes"
 msgstr "Enregistrer les modifications"
 
-msgid "Organize PDF"
-msgstr "Organiser un PDF"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Organiser des PDF"
@@ -152,10 +143,6 @@ msgstr "Fermer ce PDF et retourner à l'accueil"
 
 msgid "PDF organization"
 msgstr "Organisation de PDF"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr ""
-"Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -244,6 +231,10 @@ msgstr "Signature du PDF"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "Ce PDF est partagé avec d'autres personnes pour être signé à plusieurs"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr ""
+"Ce PDF est stocké sur votre ordinateur pour être signé par vous uniquement"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr "Le PDF est stocké chiffré sur le serveur."
@@ -491,6 +482,15 @@ msgstr "Organiser"
 
 msgid "Metadata"
 msgstr "Métadonnées"
+
+#~ msgid "Compress PDF"
+#~ msgstr "Compresser un PDF"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "Édition des métadonnées d'un PDF"
+
+#~ msgid "Organize PDF"
+#~ msgstr "Organiser un PDF"
 
 #~ msgid ""
 #~ "This application does not automatically send an email. If you want to "

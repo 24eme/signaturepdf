@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 09:31+0200\n"
+"POT-Creation-Date: 2025-03-04 10:07+0100\n"
 "PO-Revision-Date: 2023-12-06 14:10+0000\n"
 "Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -50,9 +50,6 @@ msgstr ""
 msgid "The directory %s should exist and be writeable"
 msgstr ""
 
-msgid "Compress PDF"
-msgstr "PDF Sıkıştır"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "JavaScript etkinleştirilmeden site çalışmıyor"
 
@@ -92,9 +89,6 @@ msgstr "%s Orta sıkıştırma %s (varsayılan)"
 msgid "High compression (minimum quality)"
 msgstr "Yüksek sıkıştırma (minimum kalite)"
 
-msgid "Editing PDF metadata"
-msgstr "PDF meta verilerini düzenleme"
-
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Meta verileri düzenleme"
@@ -133,9 +127,6 @@ msgstr "PDF'i kaydedin ve indirin"
 msgid "Save changes"
 msgstr ""
 
-msgid "Organize PDF"
-msgstr "PDF Düzenle"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s PDF Düzenle"
@@ -151,10 +142,6 @@ msgstr "Bu PDF'i kapat ve anasayfaya dön"
 
 msgid "PDF organization"
 msgstr "PDF organizasyonu"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr ""
-"Bu PDF, yalnızca sizin tarafınızda imzalanmak için bilgisayarınızda depolanır"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -244,6 +231,10 @@ msgstr "PDF İmzala"
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
 "Bu PDF birden fazla kişi tarafından imzalanmak üzere başkalarıyla paylaşılır"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr ""
+"Bu PDF, yalnızca sizin tarafınızda imzalanmak için bilgisayarınızda depolanır"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr ""
@@ -486,3 +477,12 @@ msgstr "Organize et"
 #, fuzzy
 msgid "Metadata"
 msgstr "Metadata"
+
+#~ msgid "Compress PDF"
+#~ msgstr "PDF Sıkıştır"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "PDF meta verilerini düzenleme"
+
+#~ msgid "Organize PDF"
+#~ msgstr "PDF Düzenle"

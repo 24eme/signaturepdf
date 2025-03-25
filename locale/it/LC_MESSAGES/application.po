@@ -50,6 +50,9 @@ msgstr "Configurazione File"
 msgid "The directory %s should exist and be writeable"
 msgstr ""
 
+msgid "Compress PDF"
+msgstr "Comprimi un PDF"
+
 msgid "Site not functional without JavaScript enabled"
 msgstr "Il sito non funziona senza JavaScript abilitato"
 
@@ -89,6 +92,9 @@ msgstr "%s Compressione media %s (default)"
 msgid "High compression (minimum quality)"
 msgstr "Compressione alta (minima qualità)"
 
+msgid "Editing PDF metadata"
+msgstr "Modifica i metadata di un PDF"
+
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Modifica i metadata"
@@ -127,6 +133,9 @@ msgstr "Salva e scarica il PDF"
 msgid "Save changes"
 msgstr "Salva modifiche"
 
+msgid "Organize PDF"
+msgstr "Organizza un PDF"
+
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Organizza PDF"
@@ -142,6 +151,9 @@ msgstr "Chiudi questo PDF e ritorna alla home"
 
 msgid "PDF organization"
 msgstr "Organizzazione del PDF"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "Questo PDF è salvato sul tuo computer per essere firmato solo da te"
 
 #, php-format
 msgid "%s Add a PDF"
@@ -230,9 +242,6 @@ msgstr "Firma del PDF"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "Questo PDF è condiviso con altri per essere firmato da più persone"
-
-msgid "This PDF is stored on your computer to be signed by you only"
-msgstr "Questo PDF è salvato sul tuo computer per essere firmato solo da te"
 
 msgid "This PDF is stored encrypted on the server."
 msgstr "Questo PDF é conservato nel server crittografato."
@@ -475,12 +484,3 @@ msgstr "Organizza"
 
 msgid "Metadata"
 msgstr "Metadata"
-
-#~ msgid "Compress PDF"
-#~ msgstr "Comprimi un PDF"
-
-#~ msgid "Editing PDF metadata"
-#~ msgstr "Modifica i metadata di un PDF"
-
-#~ msgid "Organize PDF"
-#~ msgstr "Organizza un PDF"

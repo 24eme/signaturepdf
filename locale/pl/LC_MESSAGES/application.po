@@ -8,140 +8,145 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-01 22:33+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-25 07:01+0000\n"
+"Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/signature-pdf/"
+"application/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid "en"
-msgstr ""
+msgstr "en"
 
 msgid "Administration panel"
-msgstr ""
+msgstr "Panel administratora"
 
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguracja"
 
 msgid "Server installation"
-msgstr ""
+msgstr "Instalacja serwerowa"
 
 #, php-format
 msgid "Minimal version required : %s"
-msgstr ""
+msgstr "Minimalna wymagana wersja  : %s"
 
 #, php-format
 msgid "Package %s required"
-msgstr ""
+msgstr "Pakiet %s jest wymagany"
 
 #, php-format
 msgid "Package %s missing"
-msgstr ""
+msgstr "Pakiet %s nieobecny"
 
 msgid "File Configuration"
-msgstr ""
+msgstr "Konfiguracja pliku"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
 msgstr ""
 
 msgid "Compress PDF"
-msgstr ""
+msgstr "Kompresja PDF"
 
 msgid "Site not functional without JavaScript enabled"
-msgstr ""
+msgstr "Strona wymaga JavaScript do poprawnego działania"
 
 #, php-format
 msgid "%s Compress a PDF"
-msgstr ""
+msgstr "%s kompresja pliku PDF"
 
 msgid "Reduce the size of a PDF"
-msgstr ""
+msgstr "Zmiejsz rozmiar pliku PDF"
 
 msgid "Choose a PDF"
-msgstr ""
+msgstr "Wybierz PDF"
 
 msgid "The PDF must not exceed "
-msgstr ""
+msgstr "PDF nie może przekraczać "
 
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr ""
+"PDF będzie przetwarzany przez serwer bez jego przechowywania ani zapisywania"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "Twój PDF jest już zoptymalizowany"
 
 msgid "Compress"
-msgstr ""
+msgstr "Kompresja"
 
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "Niska kompresja (najwyższa jakość)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s Średnia kompresja %s (domyślne)"
 
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "Wysoka kompresja (najniższa jakość)"
 
 msgid "Editing PDF metadata"
-msgstr ""
+msgstr "Edytyj metadane pliku PDF"
 
 #, php-format
 msgid "%s Edit metadata"
-msgstr ""
+msgstr "%s Edytuj metadane"
 
 msgid "Add, edit, or remove metadata from a PDF"
-msgstr ""
+msgstr "Dodaj, edytuj, bądź wymaż metadane z pliku PDF"
 
 msgid "Test with a demo PDF"
-msgstr ""
+msgstr "Sprawdź z próbnym dokumentem PDF"
 
 msgid "List of PDF metadata"
-msgstr ""
+msgstr "Lista metadanych"
 
 msgid "Add new metadata"
-msgstr ""
+msgstr "Dodaj nowe metadane"
 
 msgid "Key"
-msgstr ""
+msgstr "Klucz"
 
 msgid "Value"
-msgstr ""
+msgstr "Wartość"
 
 #, php-format
 msgid "%s Add"
-msgstr ""
+msgstr "%s Dodaj"
 
 msgid "Close this PDF and return to the home page"
-msgstr ""
+msgstr "Zamknij PDF i powróć do ekranu głównego"
 
 msgid "Edit metadata"
-msgstr ""
+msgstr "Edytuj metadane"
 
 msgid "Save and download the PDF"
-msgstr ""
+msgstr "Zapisz i pobierz PDF"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Zapisz zmiany"
 
 msgid "Organize PDF"
-msgstr ""
+msgstr "Zorganizuj PDF"
 
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s Zorganizuj PDF"
 
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
+msgstr "Scal, ułóż, obróć, usuń, i wyciągnij strony"
 
 msgid "Touch a page to select it"
-msgstr ""
+msgstr "Kliknij stronę, by ją wybrać"
 
 msgid "Close this PDF and return to home"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-18 12:10+0200\n"
+"POT-Creation-Date: 2024-11-01 22:33+0100\n"
 "PO-Revision-Date: 2025-03-25 07:01+0000\n"
 "Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -51,6 +51,9 @@ msgstr "Konfiguracja pliku"
 msgid "The directory %s should exist and be writeable"
 msgstr ""
 
+msgid "Compress PDF"
+msgstr "Kompresja PDF"
+
 msgid "Site not functional without JavaScript enabled"
 msgstr "Strona wymaga JavaScript do poprawnego działania"
 
@@ -91,6 +94,9 @@ msgstr "%s Średnia kompresja %s (domyślne)"
 msgid "High compression (minimum quality)"
 msgstr "Wysoka kompresja (najniższa jakość)"
 
+msgid "Editing PDF metadata"
+msgstr "Edytyj metadane pliku PDF"
+
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Edytuj metadane"
@@ -129,6 +135,9 @@ msgstr "Zapisz i pobierz PDF"
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
+msgid "Organize PDF"
+msgstr "Zorganizuj PDF"
+
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Zorganizuj PDF"
@@ -143,6 +152,9 @@ msgid "Close this PDF and return to home"
 msgstr ""
 
 msgid "PDF organization"
+msgstr ""
+
+msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
 
 #, php-format
@@ -231,9 +243,6 @@ msgid "PDF Signature"
 msgstr ""
 
 msgid "This PDF is shared with others to be signed by multiple people"
-msgstr ""
-
-msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
 
 msgid "This PDF is stored encrypted on the server."
@@ -467,12 +476,3 @@ msgstr ""
 
 msgid "Metadata"
 msgstr ""
-
-#~ msgid "Compress PDF"
-#~ msgstr "Kompresja PDF"
-
-#~ msgid "Editing PDF metadata"
-#~ msgstr "Edytyj metadane pliku PDF"
-
-#~ msgid "Organize PDF"
-#~ msgstr "Zorganizuj PDF"

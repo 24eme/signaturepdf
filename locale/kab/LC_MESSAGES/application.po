@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-04 10:07+0100\n"
-"PO-Revision-Date: 2024-12-24 13:00+0000\n"
+"PO-Revision-Date: 2025-04-09 21:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid "en"
 msgstr "kab"
@@ -37,11 +37,11 @@ msgstr ""
 
 #, php-format
 msgid "Package %s required"
-msgstr ""
+msgstr "Akemmus %s yettwasra"
 
 #, php-format
 msgid "Package %s missing"
-msgstr ""
+msgstr "Akemmus %s ulac-it"
 
 msgid "File Configuration"
 msgstr "Twila n ikaramen"
@@ -262,7 +262,7 @@ msgid "%s Text"
 msgstr "%s Aḍris"
 
 msgid "Strikethrough"
-msgstr ""
+msgstr "Jerreḍ"
 
 #, php-format
 msgid "%s Check box"
@@ -405,7 +405,7 @@ msgid "Your signature has been successfully recorded!"
 msgstr "Azmul-ik yettwasekles akken iwata!"
 
 msgid "This application does not automatically send emails to other signers."
-msgstr ""
+msgstr "Asnas-a ur yettazen ara imaylen s wudem awurman i yizmulen-nniḍen."
 
 msgid ""
 "If you want to send one yourself, you can use <a>this pre-written email</a>."

@@ -31,6 +31,7 @@ $f3->set('SUPPORTED_LANGUAGES',
         'gl' => 'Galego',
         'kab' => 'Taqbaylit',
         'oc' => 'Occitan',
+        'pl' => 'Polski',
         'ro' => 'Română',
         'ta' => 'தமிழ்',
         'tr' => 'Türkçe'

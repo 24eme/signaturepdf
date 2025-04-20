@@ -2,11 +2,10 @@
 <html lang="<?php echo $TRANSLATION_LANGUAGE ?>" dir="<?php echo $DIRECTION_LANGUAGE ?>" style="direction: <?php echo $DIRECTION_LANGUAGE ?>;" class="<?php echo $DIRECTION_LANGUAGE ?>">
   <head>
     <?php include('components/header.html.php'); ?>
-
-    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.ico">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.png" />
     <title>Signature PDF - Organiser les pages d'un PDF en ligne</title>
     <meta name="description" content="Logiciel libre en ligne qui permet de fusionner, trier, pivoter, supprimer et extraire les pages de PDF">
+    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-organization.png" />
   </head>
   <body>
     <noscript>

@@ -2,10 +2,10 @@
 <html lang="<?php echo $TRANSLATION_LANGUAGE ?>" dir="<?php echo $DIRECTION_LANGUAGE ?>" style="direction: <?php echo $DIRECTION_LANGUAGE ?>;">
 <head>
     <?php include('components/header.html.php'); ?>
-    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-metadata.ico">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-metadata.png" />
     <title>Signature PDF - Éditer les métadonnées</title>
     <meta name="description" content="Logiciel libre en ligne qui permet d'jouter, modifier ou supprimer les métadonnées d'un PDF">
+    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-metadata.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-metadata.png" />
 </head>
 <body>
 <noscript>

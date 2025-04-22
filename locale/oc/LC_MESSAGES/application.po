@@ -115,7 +115,7 @@ msgid "Allow multiple people to sign via a shared link"
 msgstr "Signar entre mantuna persona via un ligam partejat"
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "Signat amb lo certificat del servidor"
 
 msgid "Organize PDFs"
 msgstr ""

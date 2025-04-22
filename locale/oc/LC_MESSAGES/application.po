@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-22 15:19+0200\n"
-"PO-Revision-Date: 2025-04-22 21:03+0000\n"
+"PO-Revision-Date: 2025-04-23 04:02+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -118,31 +118,31 @@ msgid "Sign with the server certificate"
 msgstr "Signat amb lo certificat del servidor"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "Organizar de PDF"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "Fusionar mantun fichièr PDF"
 
 msgid "Reorder pages"
-msgstr ""
+msgstr "Reorganizar las paginas"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "Traire de paginas"
 
 msgid "Rotate pages"
-msgstr ""
+msgstr "Pivotar las paginas"
 
 msgid "Delete pages"
-msgstr ""
+msgstr "Suprimir de paginas"
 
 msgid "Edit a PDF"
-msgstr ""
+msgstr "Modificar un PDF"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Apondre, modificar o suprimir de metadonada d’un PDF"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "Compressar e resuire la talha d'un PDF"
 
 #, php-format
 msgid "%s Edit metadata"
@@ -518,7 +518,7 @@ msgid "see the source code"
 msgstr "veire lo còdi font"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "Signar e manipular de PDF liurament"
 
 msgid "Language"
 msgstr "Lenga"

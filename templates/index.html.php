@@ -3,7 +3,7 @@
 <head>
     <?php include('components/header.html.php'); ?>
     <title>Signature PDF</title>
-    <meta name="description" content="<?php echo _("Free open-source software for signing and manipulating PDFs") ?>">
+    <meta name="description" content="Logiciel libre pour signer et manipuler des fichiers PDF">
 </head>
 <body>
 <noscript>

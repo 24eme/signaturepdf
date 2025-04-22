@@ -2,10 +2,8 @@
 <html lang="<?php echo $TRANSLATION_LANGUAGE ?>" dir="<?php echo $DIRECTION_LANGUAGE ?>" style="direction: <?php echo $DIRECTION_LANGUAGE ?>;">
 <head>
     <?php include('components/header.html.php'); ?>
-    <title>Signature PDF - Accueil</title>
-    <meta name="description" content="">
-    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon.ico">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon.png" />
+    <title>Signature PDF</title>
+    <meta name="description" content="<?php echo _("Free open-source software for signing and manipulating PDFs") ?>">
 </head>
 <body>
 <noscript>
@@ -20,37 +18,36 @@
     <div class="row">
     <div class="col-xs-12 col-sm-6 mt-4">
         <div class="card">
-          <div class="card-header">Signer un PDF</div>
+          <div class="card-header"><?php echo _("Sign a PDF") ?></div>
           <div class="list-group list-group-flush">
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-vector-pen"></i> Ajouter une signature</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-type"></i> Ajouter une paraphe</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-card-text"></i> Ajouter un tampon</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-textarea-t"></i> Saisir du texte</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-type-strikethrough"></i> Rayer du texte</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-people-fill"></i> Signer à plusieurs via <i class="bi bi-share"></i> un partage</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-patch-check"></i> Signer avec le certificat du serveur</a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-vector-pen"></i> <?php echo _("Add a signature") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-type"></i> <?php echo _("Add initials") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-card-text"></i> <?php echo _("Add a stamp") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-textarea-t"></i> <?php echo _("Type text") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-type-strikethrough"></i> <?php echo _("Strike through text") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-people-fill"></i> <?php echo _("Allow multiple people to sign via a shared link") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-patch-check"></i> <?php echo _("Sign with the server certificate") ?></a>
         </div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 mt-4">
         <div class="card">
-          <div class="card-header">Organiser des PDF</div>
+          <div class="card-header"><?php echo _("Organize PDFs") ?></div>
           <div class="list-group list-group-flush">
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-file-earmark-plus"></i> Fusionner des PDF</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrows-move"></i> Réorganiser les pages</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> Extraire des pages</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrow-clockwise"></i> Pivoter des pages</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-trash"></i> Supprimer des pages</a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-file-earmark-plus"></i> <?php echo _("Combine multiple PDF files") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrows-move"></i> <?php echo _("Reorder pages") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> <?php echo _("Extract pages") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrow-clockwise"></i> <?php echo _("Rotate pages") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-trash"></i> <?php echo _("Delete pages") ?></a>
             </div>
         </div>
-
         <div class="card mt-4">
           <div class="card-header">
-            Modifier un PDF
+            <?php echo _("Edit a PDF"); ?>
           </div>
           <div class="list-group list-group-flush">
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/metadata" class="list-group-item list-group-item-action"><i class="bi bi-tags"></i> Ajouter, modifier ou supprimer les métadonnées</a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/compress" class="list-group-item list-group-item-action"><i class="bi bi-chevron-bar-contract"></i> Compresser et réduire la taille d'un PDF</a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/metadata" class="list-group-item list-group-item-action"><i class="bi bi-tags"></i> <?php echo _("Add, edit, or remove metadata from a PDF") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/compress" class="list-group-item list-group-item-action"><i class="bi bi-chevron-bar-contract"></i> <?php echo _("Compress and reduce the size of a PDF") ?></a>
             </div>
         </div>
     </div>

@@ -14,7 +14,6 @@
         </ul>
     </div>
     <ul class="nav justify-content-center nav-tabs mt-2">
-
         <li class="nav-item">
             <a class="nav-link <?php if($activeTab === 'sign'): ?>active<?php endif; ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"><i class="bi bi-vector-pen"></i> <span class="d-none d-md-inline-block"><?php echo _("Sign"); ?></span></a>
         </li>

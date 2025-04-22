@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-22 15:19+0200\n"
-"PO-Revision-Date: 2024-10-16 13:15+0000\n"
+"PO-Revision-Date: 2025-04-22 21:03+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 msgid "en"
 msgstr "oc"
@@ -90,29 +90,29 @@ msgid "High compression (minimum quality)"
 msgstr "Compression fòrta (qualitat minimala)"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "Logicial liure per signar e manipular los PDF"
 
 #, php-format
 msgid "Sign a PDF"
 msgstr "Signar un PDF"
 
 msgid "Add a signature"
-msgstr ""
+msgstr "Apondre una signatura"
 
 msgid "Add initials"
-msgstr ""
+msgstr "Apondre una parafa"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "Apondre un sagèl"
 
 msgid "Type text"
-msgstr ""
+msgstr "Picar de tèxte"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "Raiar de texte"
 
 msgid "Allow multiple people to sign via a shared link"
-msgstr ""
+msgstr "Signar entre mantuna persona via un ligam partejat"
 
 msgid "Sign with the server certificate"
 msgstr ""

@@ -14,7 +14,8 @@
 <?php include('components/navtab.html.php'); ?>
 <div class="container">
     <p class="lead mt-4 text-center mb-3"><img src="logo.svg" style="height: 200px;" class="text-center" /></p>
-    <p class="lead mt-4 text-center mb-0"><?php echo _("Free open-source software for signing and manipulating PDFs") ?></p>
+    <h1 class="text-center h3">Signature PDF</h1>
+    <p class="lead mt-3 text-center mb-0"><?php echo _("Free open-source software for signing and manipulating PDFs") ?></p>
     <div class="row">
     <div class="col-xs-12 col-sm-6 mt-4">
         <div class="card">

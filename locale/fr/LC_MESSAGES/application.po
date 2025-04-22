@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-22 15:19+0200\n"
-"PO-Revision-Date: 2024-10-14 07:49+0000\n"
+"PO-Revision-Date: 2025-04-22 13:43+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
 "application/fr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 msgid "en"
 msgstr "fr"
@@ -91,59 +91,59 @@ msgid "High compression (minimum quality)"
 msgstr "Haute compression (qualité minimale)"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "Logiciel libre pour signer et manipuler des PDF"
 
 #, php-format
 msgid "Sign a PDF"
 msgstr "Signer un PDF"
 
 msgid "Add a signature"
-msgstr ""
+msgstr "Ajouter une signature"
 
 msgid "Add initials"
-msgstr ""
+msgstr "Ajouter une paraphe"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "Ajouter un tampon"
 
 msgid "Type text"
-msgstr ""
+msgstr "Saisir du texte"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "Rayer du texte"
 
 msgid "Allow multiple people to sign via a shared link"
-msgstr ""
+msgstr "Signer entre plusieurs personnes via un lien partagé"
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "Signer avec le certificat du serveur"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "Organiser des PDF"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "Fusionner plusieurs fichiers PDF"
 
 msgid "Reorder pages"
-msgstr ""
+msgstr "Réorganiser les pages"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "Extraire des pages"
 
 msgid "Rotate pages"
-msgstr ""
+msgstr "Pivoter les pages"
 
 msgid "Delete pages"
-msgstr ""
+msgstr "Supprimer des pages"
 
 msgid "Edit a PDF"
-msgstr ""
+msgstr "Modifier un PDF"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Ajouter, modifier ou supprimer les métadonnées d'un PDF"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "Compresser et réduire la taille d'un PDF"
 
 #, php-format
 msgid "%s Edit metadata"
@@ -520,7 +520,7 @@ msgid "see the source code"
 msgstr "voir le code source"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "Signer et manipuler des PDF librement"
 
 msgid "Language"
 msgstr "Langue"

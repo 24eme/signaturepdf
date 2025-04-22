@@ -104,7 +104,8 @@ if($f3->get('PDF_DEMO_LINK') === null || $f3->get('PDF_DEMO_LINK') === true) {
 
 $f3->route('GET /',
     function($f3) {
-        $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature');
+        $f3->set('activeTab', 'index');
+        echo View::instance()->render('index.html.php');
     }
 );
 $f3->route('GET /signature',

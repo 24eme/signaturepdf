@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-01 22:33+0100\n"
+"POT-Creation-Date: 2025-04-22 15:19+0200\n"
 "PO-Revision-Date: 2025-03-25 07:01+0000\n"
 "Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -51,9 +51,6 @@ msgstr "Konfiguracja pliku"
 msgid "The directory %s should exist and be writeable"
 msgstr ""
 
-msgid "Compress PDF"
-msgstr "Kompresja PDF"
-
 msgid "Site not functional without JavaScript enabled"
 msgstr "Strona wymaga JavaScript do poprawnego działania"
 
@@ -94,15 +91,64 @@ msgstr "%s Średnia kompresja %s (domyślne)"
 msgid "High compression (minimum quality)"
 msgstr "Wysoka kompresja (najniższa jakość)"
 
-msgid "Editing PDF metadata"
-msgstr "Edytyj metadane pliku PDF"
+msgid "Free open-source software for signing and manipulating PDFs"
+msgstr ""
+
+#, php-format
+msgid "Sign a PDF"
+msgstr ""
+
+msgid "Add a signature"
+msgstr ""
+
+msgid "Add initials"
+msgstr ""
+
+msgid "Add a stamp"
+msgstr ""
+
+msgid "Type text"
+msgstr ""
+
+msgid "Strike through text"
+msgstr ""
+
+msgid "Allow multiple people to sign via a shared link"
+msgstr ""
+
+msgid "Sign with the server certificate"
+msgstr ""
+
+msgid "Organize PDFs"
+msgstr ""
+
+msgid "Combine multiple PDF files"
+msgstr ""
+
+msgid "Reorder pages"
+msgstr ""
+
+msgid "Extract pages"
+msgstr ""
+
+msgid "Rotate pages"
+msgstr ""
+
+msgid "Delete pages"
+msgstr ""
+
+msgid "Edit a PDF"
+msgstr ""
+
+msgid "Add, edit, or remove metadata from a PDF"
+msgstr "Dodaj, edytuj, bądź wymaż metadane z pliku PDF"
+
+msgid "Compress and reduce the size of a PDF"
+msgstr ""
 
 #, php-format
 msgid "%s Edit metadata"
 msgstr "%s Edytuj metadane"
-
-msgid "Add, edit, or remove metadata from a PDF"
-msgstr "Dodaj, edytuj, bądź wymaż metadane z pliku PDF"
 
 msgid "Test with a demo PDF"
 msgstr "Sprawdź z próbnym dokumentem PDF"
@@ -135,9 +181,6 @@ msgstr "Zapisz i pobierz PDF"
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
-msgid "Organize PDF"
-msgstr "Zorganizuj PDF"
-
 #, php-format
 msgid "%s Organize PDF"
 msgstr "%s Zorganizuj PDF"
@@ -152,9 +195,6 @@ msgid "Close this PDF and return to home"
 msgstr ""
 
 msgid "PDF organization"
-msgstr ""
-
-msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
 
 #, php-format
@@ -208,10 +248,6 @@ msgstr ""
 msgid "PDF documents"
 msgstr ""
 
-#, php-format
-msgid "%s Sign a PDF"
-msgstr ""
-
 msgid "Sign, initial, stamp, complete a document"
 msgstr ""
 
@@ -243,6 +279,9 @@ msgid "PDF Signature"
 msgstr ""
 
 msgid "This PDF is shared with others to be signed by multiple people"
+msgstr ""
+
+msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
 
 msgid "This PDF is stored encrypted on the server."
@@ -465,6 +504,9 @@ msgstr ""
 msgid "see the source code"
 msgstr ""
 
+msgid "Sign and manipulate PDFs freely"
+msgstr ""
+
 msgid "Language"
 msgstr ""
 
@@ -476,3 +518,12 @@ msgstr ""
 
 msgid "Metadata"
 msgstr ""
+
+#~ msgid "Compress PDF"
+#~ msgstr "Kompresja PDF"
+
+#~ msgid "Editing PDF metadata"
+#~ msgstr "Edytyj metadane pliku PDF"
+
+#~ msgid "Organize PDF"
+#~ msgstr "Zorganizuj PDF"

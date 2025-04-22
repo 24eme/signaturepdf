@@ -1013,6 +1013,7 @@ function updateNbLayers() {
       if (xhr.status == 200) {
           let newNblayers = xhr.response;
           if(nblayers !== null && nblayers != newNblayers) {
+              console.log('/signature/'+pdfHash+'/pdf');
               reloadPDF('/signature/'+pdfHash+'/pdf');
           }
           nblayers = newNblayers;

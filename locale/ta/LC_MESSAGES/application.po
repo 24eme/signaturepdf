@@ -478,6 +478,61 @@ msgstr "ஒழுங்கமைக்கவும்"
 msgid "Metadata"
 msgstr "மேனிலை தரவு"
 
+msgid "Free open-source software for signing and manipulating PDFs"
+msgstr ""
+
+#, php-format
+msgid "Sign a PDF"
+msgstr "ஒரு PDF இல் கையெழுத்திடுகின்றன"
+
+msgid "Add a signature"
+msgstr ""
+
+msgid "Add initials"
+msgstr ""
+
+msgid "Add a stamp"
+msgstr ""
+
+msgid "Type text"
+msgstr ""
+
+msgid "Strike through text"
+msgstr ""
+
+msgid "Allow multiple people to sign via a shared link"
+msgstr ""
+
+msgid "Sign with the server certificate"
+msgstr ""
+
+msgid "Organize PDFs"
+msgstr ""
+
+msgid "Combine multiple PDF files"
+msgstr ""
+
+msgid "Reorder pages"
+msgstr ""
+
+msgid "Extract pages"
+msgstr ""
+
+msgid "Rotate pages"
+msgstr ""
+
+msgid "Delete pages"
+msgstr ""
+
+msgid "Edit a PDF"
+msgstr ""
+
+msgid "Compress and reduce the size of a PDF"
+msgstr ""
+
+msgid "Sign and manipulate PDFs freely"
+msgstr ""
+
 #~ msgid "Compress PDF"
 #~ msgstr "PDF ஐ சுருக்கவும்"
 

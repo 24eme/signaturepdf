@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-04 10:07+0100\n"
+"POT-Creation-Date: 2025-04-22 15:19+0200\n"
 "PO-Revision-Date: 2024-10-16 23:15+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
@@ -91,13 +91,65 @@ msgstr "%s Mittlere Kompression %s (Standard)"
 msgid "High compression (minimum quality)"
 msgstr "Hohe Komprimierung (minimale Qualität)"
 
+msgid "Free open-source software for signing and manipulating PDFs"
+msgstr ""
+
 #, php-format
-msgid "%s Edit metadata"
-msgstr "%s Metadaten bearbeiten"
+msgid "Sign a PDF"
+msgstr "PDF signieren"
+
+msgid "Add a signature"
+msgstr ""
+
+msgid "Add initials"
+msgstr ""
+
+msgid "Add a stamp"
+msgstr ""
+
+msgid "Type text"
+msgstr ""
+
+msgid "Strike through text"
+msgstr ""
+
+msgid "Allow multiple people to sign via a shared link"
+msgstr ""
+
+msgid "Sign with the server certificate"
+msgstr ""
+
+msgid "Organize PDFs"
+msgstr ""
+
+msgid "Combine multiple PDF files"
+msgstr ""
+
+msgid "Reorder pages"
+msgstr ""
+
+msgid "Extract pages"
+msgstr ""
+
+msgid "Rotate pages"
+msgstr ""
+
+msgid "Delete pages"
+msgstr ""
+
+msgid "Edit a PDF"
+msgstr ""
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr ""
 "Hinzufügen, Bearbeiten oder Entfernen von Metadaten aus einer PDF-Datei"
+
+msgid "Compress and reduce the size of a PDF"
+msgstr ""
+
+#, php-format
+msgid "%s Edit metadata"
+msgstr "%s Metadaten bearbeiten"
 
 msgid "Test with a demo PDF"
 msgstr "Mit Demo-PDF testen"
@@ -196,10 +248,6 @@ msgstr "Auswahl herunterladen"
 
 msgid "PDF documents"
 msgstr "PDF-Dokumente"
-
-#, php-format
-msgid "%s Sign a PDF"
-msgstr "%s PDF signieren"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr ""
@@ -467,6 +515,9 @@ msgstr "unter AGPL-3.0-Lizenz"
 
 msgid "see the source code"
 msgstr "siehe den Quellcode"
+
+msgid "Sign and manipulate PDFs freely"
+msgstr ""
 
 msgid "Language"
 msgstr "Sprache"

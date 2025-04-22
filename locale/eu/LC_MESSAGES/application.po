@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-04 10:07+0100\n"
+"POT-Creation-Date: 2025-04-22 15:19+0200\n"
 "PO-Revision-Date: 2024-12-31 04:04+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
@@ -92,12 +92,64 @@ msgstr "%s Konpresio ertaina %s (lehenetsia)"
 msgid "High compression (minimum quality)"
 msgstr "Konpresio altua (kalitate txikiena)"
 
+msgid "Free open-source software for signing and manipulating PDFs"
+msgstr ""
+
 #, php-format
-msgid "%s Edit metadata"
-msgstr "%s Editatu metadatuak"
+msgid "Sign a PDF"
+msgstr "Sinatu PDFa"
+
+msgid "Add a signature"
+msgstr ""
+
+msgid "Add initials"
+msgstr ""
+
+msgid "Add a stamp"
+msgstr ""
+
+msgid "Type text"
+msgstr ""
+
+msgid "Strike through text"
+msgstr ""
+
+msgid "Allow multiple people to sign via a shared link"
+msgstr ""
+
+msgid "Sign with the server certificate"
+msgstr ""
+
+msgid "Organize PDFs"
+msgstr ""
+
+msgid "Combine multiple PDF files"
+msgstr ""
+
+msgid "Reorder pages"
+msgstr ""
+
+msgid "Extract pages"
+msgstr ""
+
+msgid "Rotate pages"
+msgstr ""
+
+msgid "Delete pages"
+msgstr ""
+
+msgid "Edit a PDF"
+msgstr ""
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Gehitu, editatu, edo kendu PDF baten metadatuak"
+
+msgid "Compress and reduce the size of a PDF"
+msgstr ""
+
+#, php-format
+msgid "%s Edit metadata"
+msgstr "%s Editatu metadatuak"
 
 msgid "Test with a demo PDF"
 msgstr "Probatu demozko PDF batekin"
@@ -196,10 +248,6 @@ msgstr "Deskargatu hautaketa"
 
 msgid "PDF documents"
 msgstr "PDF dokumentuak"
-
-#, php-format
-msgid "%s Sign a PDF"
-msgstr "%s Sinatu PDFa"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Sinatu, idatzi inizialak, zigilatu, osatu dokumentua"
@@ -470,6 +518,9 @@ msgstr "AGPL-3.0 lizentziapean"
 
 msgid "see the source code"
 msgstr "ikusi iturburu kodea"
+
+msgid "Sign and manipulate PDFs freely"
+msgstr ""
 
 msgid "Language"
 msgstr "Hizkuntza"

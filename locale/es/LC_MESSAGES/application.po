@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-04 10:07+0100\n"
+"POT-Creation-Date: 2025-04-22 15:19+0200\n"
 "PO-Revision-Date: 2024-10-22 18:15+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -89,12 +89,64 @@ msgstr "%s Compresión media %s (por defecto)"
 msgid "High compression (minimum quality)"
 msgstr "Alta compresión (menor calidad)"
 
+msgid "Free open-source software for signing and manipulating PDFs"
+msgstr ""
+
 #, php-format
-msgid "%s Edit metadata"
-msgstr "%s Editar los metadatos"
+msgid "Sign a PDF"
+msgstr "Firmar un PDF"
+
+msgid "Add a signature"
+msgstr ""
+
+msgid "Add initials"
+msgstr ""
+
+msgid "Add a stamp"
+msgstr ""
+
+msgid "Type text"
+msgstr ""
+
+msgid "Strike through text"
+msgstr ""
+
+msgid "Allow multiple people to sign via a shared link"
+msgstr ""
+
+msgid "Sign with the server certificate"
+msgstr ""
+
+msgid "Organize PDFs"
+msgstr ""
+
+msgid "Combine multiple PDF files"
+msgstr ""
+
+msgid "Reorder pages"
+msgstr ""
+
+msgid "Extract pages"
+msgstr ""
+
+msgid "Rotate pages"
+msgstr ""
+
+msgid "Delete pages"
+msgstr ""
+
+msgid "Edit a PDF"
+msgstr ""
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Agregar, editar o eliminar metadatos de un PDF"
+
+msgid "Compress and reduce the size of a PDF"
+msgstr ""
+
+#, php-format
+msgid "%s Edit metadata"
+msgstr "%s Editar los metadatos"
 
 msgid "Test with a demo PDF"
 msgstr "Prueba con un PDF de demostración"
@@ -193,10 +245,6 @@ msgstr "Descargar la selección"
 
 msgid "PDF documents"
 msgstr "Documentos PDF"
-
-#, php-format
-msgid "%s Sign a PDF"
-msgstr "%s Firmar un PDF"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Firmar, rubricar, sellar, cumplimentar un documento"
@@ -468,6 +516,9 @@ msgstr "bajo licencia AGPL 3.0"
 
 msgid "see the source code"
 msgstr "ver el código fuente"
+
+msgid "Sign and manipulate PDFs freely"
+msgstr ""
 
 msgid "Language"
 msgstr "Idioma"

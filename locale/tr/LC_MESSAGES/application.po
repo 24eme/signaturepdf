@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-04 10:07+0100\n"
+"POT-Creation-Date: 2025-04-22 15:19+0200\n"
 "PO-Revision-Date: 2023-12-06 14:10+0000\n"
 "Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -89,12 +89,64 @@ msgstr "%s Orta sıkıştırma %s (varsayılan)"
 msgid "High compression (minimum quality)"
 msgstr "Yüksek sıkıştırma (minimum kalite)"
 
+msgid "Free open-source software for signing and manipulating PDFs"
+msgstr ""
+
 #, php-format
-msgid "%s Edit metadata"
-msgstr "%s Meta verileri düzenleme"
+msgid "Sign a PDF"
+msgstr "PDF imzala"
+
+msgid "Add a signature"
+msgstr ""
+
+msgid "Add initials"
+msgstr ""
+
+msgid "Add a stamp"
+msgstr ""
+
+msgid "Type text"
+msgstr ""
+
+msgid "Strike through text"
+msgstr ""
+
+msgid "Allow multiple people to sign via a shared link"
+msgstr ""
+
+msgid "Sign with the server certificate"
+msgstr ""
+
+msgid "Organize PDFs"
+msgstr ""
+
+msgid "Combine multiple PDF files"
+msgstr ""
+
+msgid "Reorder pages"
+msgstr ""
+
+msgid "Extract pages"
+msgstr ""
+
+msgid "Rotate pages"
+msgstr ""
+
+msgid "Delete pages"
+msgstr ""
+
+msgid "Edit a PDF"
+msgstr ""
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "PDF'ye meta veri ekleme, düzenleme veya PDF'den meta veri kaldırma"
+
+msgid "Compress and reduce the size of a PDF"
+msgstr ""
+
+#, php-format
+msgid "%s Edit metadata"
+msgstr "%s Meta verileri düzenleme"
 
 msgid "Test with a demo PDF"
 msgstr "Demo PDF ile test edin"
@@ -193,10 +245,6 @@ msgstr "Seçileni indirin"
 
 msgid "PDF documents"
 msgstr "PDF dökümanları"
-
-#, php-format
-msgid "%s Sign a PDF"
-msgstr "%s PDF imzala"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Belgeyi imzalamak, paraflamak, damgalamak, tamamlamak"
@@ -464,6 +512,9 @@ msgstr "AGPL-3.0 lisansı altında"
 
 msgid "see the source code"
 msgstr "kaynak koda bakın"
+
+msgid "Sign and manipulate PDFs freely"
+msgstr ""
 
 msgid "Language"
 msgstr "Dil"

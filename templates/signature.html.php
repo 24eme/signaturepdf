@@ -4,8 +4,6 @@
     <?php include('components/header.html.php'); ?>
     <title>Signature PDF - Signer un PDF en ligne</title>
     <meta name="description" content="Signature PDF est un logiciel libre en ligne qui permet de signer, parapher, tamponner, compléter un pdf seul ou à plusieurs.">
-    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon.ico">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon.png" />
 </head>
 <body>
 <noscript>
@@ -16,7 +14,7 @@
 <div id="page-upload">
     <?php include('components/navtab.html.php'); ?>
     <div class="px-4 py-4 text-center">
-        <h1 class="display-5 fw-bold mb-0 mt-3"><?php echo sprintf(_("%s Sign a PDF"), '<i class="bi bi-vector-pen"></i>'); ?></h1>
+        <h1 class="display-5 fw-bold mb-0 mt-3"><?php echo sprintf(_("Sign a PDF"), '<i class="bi bi-vector-pen"></i>'); ?></h1>
         <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document") ?></p>
         <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
             <div class="col-12">

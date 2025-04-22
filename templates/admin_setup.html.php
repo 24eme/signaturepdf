@@ -7,9 +7,10 @@
 </head>
 <body>
     <?php include('components/navtab.html.php'); ?>
+    <div class="container">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-1"></div>
+        <div class="col-10">
             <h1 class="px-4 py-4 display-5 fw-bold mb-0 mt-3 text-center"><i class="bi bi-wrench-adjustable"></i> <?php echo _("Configuration"); ?></h1>
             <h2 class="my-4"><?php echo _("Server installation"); ?></h2>
 
@@ -17,8 +18,8 @@
                 <tbody>
                     <tr>
                         <th class="align-top col-3">PHP</th>
-                        <td class="text-muted col-3"><?php echo 'PHP version ' . phpversion(); ?></td>
-                        <td class="col-6">
+                        <td class="text-muted col-4"><?php echo 'PHP version ' . phpversion(); ?></td>
+                        <td class="col-5">
                             <?php if (version_compare(phpversion(), "5.6.0", ">=")): ?>
                                 <i class="bi bi-check-square text-success" title="<?php echo sprintf(_("Minimal version required : %s"), "5.6.0"); ?>"></i>
                             <?php else: ?>
@@ -150,8 +151,8 @@
                     <tr>
                         <th class="align-top col-3">PDF_STORAGE_PATH</th>
                         <?php $storage_path_exists = isset($PDF_STORAGE_PATH) && is_dir($PDF_STORAGE_PATH);?>
-                        <td class="text-muted col-3"><?php echo isset($PDF_STORAGE_PATH) ? $PDF_STORAGE_PATH : null ?></td>
-                        <td class="col-6">
+                        <td class="text-muted col-4"><?php echo isset($PDF_STORAGE_PATH) ? $PDF_STORAGE_PATH : null ?></td>
+                        <td class="col-5">
                             <?php if ($storage_path_exists): ?>
                                 <i class="bi bi-check-square text-success"></i>
                             <?php else: ?>
@@ -186,5 +187,7 @@
 
         </div>
     </div>
+    </div>
+    <?php include('components/footer.html.php'); ?>
 </body>
 </html>

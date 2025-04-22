@@ -6,3 +6,5 @@
 <?php if (file_exists($ROOT."/public/css/app-specific.css")): ?>
 <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/app-specific.css?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/css/app-specific.css") ?>" rel="stylesheet">
 <?php endif; ?>
+<link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon.png" />

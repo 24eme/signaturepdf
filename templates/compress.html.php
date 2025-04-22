@@ -4,8 +4,6 @@
     <?php include('components/header.html.php'); ?>
     <title>Signature PDF - Compresser un PDF en ligne</title>
     <meta name="description" content="Logiciel libre en ligne qui permet réduire la taille d'un pdf par compression.">
-    <link rel="icon" type="image/x-icon" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-compress.ico">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $REVERSE_PROXY_URL; ?>/favicon-compress.png" />
 </head>
 <body>
 <noscript>

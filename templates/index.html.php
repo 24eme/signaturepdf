@@ -59,5 +59,6 @@
 </div>
 
 <span id="is_mobile" class="d-md-none"></span>
+<script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
 </body>
 </html>

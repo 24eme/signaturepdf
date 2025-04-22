@@ -1,6 +1,8 @@
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0) [![État de la traduction](https://hosted.weblate.org/widget/signature-pdf/application/svg-badge.svg)](https://hosted.weblate.org/engage/signature-pdf/) [![Docker Pull](https://img.shields.io/docker/pulls/xgaia/signaturepdf)](https://hub.docker.com/r/xgaia/signaturepdf) [<img src="https://install-app.yunohost.org/install-with-yunohost.svg" alt="Install Signaturepdf with YunoHost" style="height:20px" />](https://apps.yunohost.org/app/signaturepdf)
 # Signature PDF
 
+![Logo signature PDF](https://github.com/24eme/signaturepdf/blob/master/public/logo.svg)
+
 Free web software for signing (alone or with others), organizing (merge, sort, rotate, delete, extract pages, ...), editing metadatas or compressing PDFs.
 
 ## Instances

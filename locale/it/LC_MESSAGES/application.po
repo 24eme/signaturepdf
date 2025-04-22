@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-22 15:19+0200\n"
-"PO-Revision-Date: 2025-03-25 00:42+0000\n"
-"Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
+"PO-Revision-Date: 2025-04-22 21:03+0000\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 msgid "en"
 msgstr "it"
@@ -37,18 +37,18 @@ msgstr "Versione minima richiesta : %s"
 
 #, php-format
 msgid "Package %s required"
-msgstr ""
+msgstr "Pacchetto %s richiesto"
 
 #, php-format
 msgid "Package %s missing"
-msgstr ""
+msgstr "Pacchetto %s mancante"
 
 msgid "File Configuration"
 msgstr "Configurazione File"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
-msgstr ""
+msgstr "La directory %s dovrebbe esistere ed essere scrivibile"
 
 msgid "Site not functional without JavaScript enabled"
 msgstr "Il sito non funziona senza JavaScript abilitato"
@@ -90,59 +90,59 @@ msgid "High compression (minimum quality)"
 msgstr "Compressione alta (minima qualità)"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "Software open source gratuito per la firma e la manipolazione dei PDF"
 
 #, php-format
 msgid "Sign a PDF"
 msgstr "Firma un PDF"
 
 msgid "Add a signature"
-msgstr ""
+msgstr "Aggiungi una firma"
 
 msgid "Add initials"
-msgstr ""
+msgstr "Aggiungi le iniziali"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "Aggiungi un timbro"
 
 msgid "Type text"
-msgstr ""
+msgstr "Digita il testo"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "Barrare il testo"
 
 msgid "Allow multiple people to sign via a shared link"
-msgstr ""
+msgstr "Consenti a più persone di firmare tramite un collegamento condiviso"
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "Firma con il certificato del server"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "Organizza i PDF"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "Unisci più file PDF"
 
 msgid "Reorder pages"
-msgstr ""
+msgstr "Riordina le pagine"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "Estrai pagine"
 
 msgid "Rotate pages"
-msgstr ""
+msgstr "Ruota le pagine"
 
 msgid "Delete pages"
-msgstr ""
+msgstr "Elimina pagine"
 
 msgid "Edit a PDF"
-msgstr ""
+msgstr "Modifica un PDF"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Aggiungi, modifica o rimuovi i metadata da un PDF"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "Comprimi e riduci le dimensioni di un PDF"
 
 #, php-format
 msgid "%s Edit metadata"
@@ -454,10 +454,13 @@ msgstr "La tua firma è stata salvata correttamente!"
 
 msgid "This application does not automatically send emails to other signers."
 msgstr ""
+"Questa applicazione non invia automaticamente e-mail ad altri firmatari."
 
 msgid ""
 "If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
+"Se preferisci inviarne una tu stesso, puoi utilizzare <a>questa email "
+"preimpostata</a>."
 
 #, php-format
 msgid "Signing the document : %s"
@@ -513,7 +516,7 @@ msgid "see the source code"
 msgstr "vedi il codice sorgente"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "Firma e manipola i PDF liberamente"
 
 msgid "Language"
 msgstr "Lingua"

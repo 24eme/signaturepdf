@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 14:23+0200\n"
-"PO-Revision-Date: 2025-04-22 13:43+0000\n"
+"POT-Creation-Date: 2025-04-22 15:19+0200\n"
+"PO-Revision-Date: 2025-04-23 21:54+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
 "application/fr/>\n"
@@ -93,6 +93,7 @@ msgstr "Haute compression (qualité minimale)"
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Logiciel libre pour signer et manipuler des PDF"
 
+#, php-format
 msgid "Sign a PDF"
 msgstr "Signer un PDF"
 
@@ -100,7 +101,7 @@ msgid "Add a signature"
 msgstr "Ajouter une signature"
 
 msgid "Add initials"
-msgstr "Ajouter une paraphe"
+msgstr "Ajouter un paraphe"
 
 msgid "Add a stamp"
 msgstr "Ajouter un tampon"

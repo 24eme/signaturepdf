@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-22 15:19+0200\n"
-"PO-Revision-Date: 2025-04-22 21:02+0000\n"
+"PO-Revision-Date: 2025-04-23 21:54+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -100,37 +100,37 @@ msgid "Add a signature"
 msgstr "Rnu azmul"
 
 msgid "Add initials"
-msgstr ""
+msgstr "Rnu isekkilen imezwura"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "Rnu iziwel"
 
 msgid "Type text"
 msgstr "Sekcem aḍris"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "Jerreḍ aḍris"
 
 msgid "Allow multiple people to sign via a shared link"
 msgstr ""
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "Zmel s uselkin n useqdac"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "Suddes ifuyla PDF"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "Sdukkel aṭas ifuyla PDF"
 
 msgid "Reorder pages"
 msgstr "Ales asmizwer n yisebtar"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "Sefsu isebtar"
 
 msgid "Rotate pages"
-msgstr ""
+msgstr "Zzi isebtar"
 
 msgid "Delete pages"
 msgstr "Kkes isebtar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-22 15:47+0200\n"
+"POT-Creation-Date: 2025-04-23 14:23+0200\n"
 "PO-Revision-Date: 2025-04-20 21:02+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/signature-pdf/"
@@ -92,7 +92,6 @@ msgstr "உயர் சுருக்க (குறைந்தபட்ச �
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
 
-#, php-format
 msgid "Sign a PDF"
 msgstr "ஒரு PDF இல் கையெழுத்திடுகின்றன"
 

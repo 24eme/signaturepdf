@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-22 15:19+0200\n"
+"POT-Creation-Date: 2025-04-23 14:23+0200\n"
 "PO-Revision-Date: 2025-04-22 21:03+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -92,7 +92,6 @@ msgstr "Compressione alta (minima qualità)"
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Software open source gratuito per la firma e la manipolazione dei PDF"
 
-#, php-format
 msgid "Sign a PDF"
 msgstr "Firma un PDF"
 

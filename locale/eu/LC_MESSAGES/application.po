@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-22 15:19+0200\n"
-"PO-Revision-Date: 2024-12-31 04:04+0000\n"
+"PO-Revision-Date: 2025-04-22 21:03+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
 "application/eu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 msgid "en"
 msgstr "eu"
@@ -74,7 +74,7 @@ msgstr "Mb"
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr ""
-"PDFa zerbitzariak prozesatuko du, baina ez du mantenduko edo biltegiratuko"
+"Zerbitzariak PDFa prozesatuko du, baina ez du mantenduko edo biltegiratuko"
 
 msgid "Your pdf is already optimized"
 msgstr "PDFa lehendik optimizatuta dago"
@@ -93,59 +93,61 @@ msgid "High compression (minimum quality)"
 msgstr "Konpresio altua (kalitate txikiena)"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "PDFak maneiatzeko eta sinatzeko kode irekiko software askea"
 
 #, php-format
 msgid "Sign a PDF"
 msgstr "Sinatu PDFa"
 
 msgid "Add a signature"
-msgstr ""
+msgstr "Gehitu sinadura"
 
 msgid "Add initials"
-msgstr ""
+msgstr "Gehitu inizialak"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "Gehitu zigilua"
 
 msgid "Type text"
-msgstr ""
+msgstr "Idatzi testua"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "Zirrimarratu testua"
 
 msgid "Allow multiple people to sign via a shared link"
 msgstr ""
+"Baimendu pertsona batek baino gehiagok sinatzea partekatutako esteka bat "
+"erabiliz"
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "Sinatu zerbitzariko ziurtagiriarekin"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "Antolatu PDFak"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "Batu PDF fitxategiak"
 
 msgid "Reorder pages"
-msgstr ""
+msgstr "Berrantolatu orriak"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "Erauzi orriak"
 
 msgid "Rotate pages"
-msgstr ""
+msgstr "Biratu orriak"
 
 msgid "Delete pages"
-msgstr ""
+msgstr "Ezabatu orriak"
 
 msgid "Edit a PDF"
-msgstr ""
+msgstr "Editatu PDFa"
 
 msgid "Add, edit, or remove metadata from a PDF"
-msgstr "Gehitu, editatu, edo kendu PDF baten metadatuak"
+msgstr "Gehitu, editatu, edo kendu PDFaren metadatuak"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "Konprimatu eta murriztu PDFaren tamaina"
 
 #, php-format
 msgid "%s Edit metadata"
@@ -286,7 +288,7 @@ msgid "This PDF is stored on your computer to be signed by you only"
 msgstr "PDFa ordenagailuan gordeta dago zuk bakarrik sinatu ahal izateko"
 
 msgid "This PDF is stored encrypted on the server."
-msgstr "PDFa enkriptatuta gordeko da zerbitzarian."
+msgstr "PDFa zifratuta gorde da zerbitzarian."
 
 msgid "Keep the selection active"
 msgstr "Mantendu hautaketa aktibo"
@@ -311,7 +313,7 @@ msgid "%s Text"
 msgstr "%s Testua"
 
 msgid "Strikethrough"
-msgstr "Zirrimarra(tu)"
+msgstr "Zirrimarra"
 
 #, php-format
 msgid "%s Check box"
@@ -412,7 +414,7 @@ msgid "after the last signature."
 msgstr "azken sinadura eta gero."
 
 msgid "The PDF will be stored encrypted on the server"
-msgstr "PDFa enkriptatuta gordeko da zerbitzarian"
+msgstr "PDFa zifratuta gordeko da zerbitzarian"
 
 #, php-format
 msgid "%s Start sharing"
@@ -517,10 +519,10 @@ msgid "under AGPL-3.0 license"
 msgstr "AGPL-3.0 lizentziapean"
 
 msgid "see the source code"
-msgstr "ikusi iturburu kodea"
+msgstr "ikusi iturburu-kodea"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "Sinatu eta maneiatu PDFak nahieran"
 
 msgid "Language"
 msgstr "Hizkuntza"

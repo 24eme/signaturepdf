@@ -13,7 +13,7 @@
 </noscript>
 <div id="page-upload">
     <?php include('components/navtab.html.php'); ?>
-    <div class="px-4 py-4 text-center">
+    <div class="px-4 py-4 text-center fullpage">
         <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-vector-pen"></i> <?php echo _("Sign a PDF"); ?></h1>
         <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document") ?></p>
         <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">

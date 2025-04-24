@@ -172,3 +172,7 @@ html.ltr .file-list-checkbox {
 html.rtl .file-list-checkbox {
     left: 10px;
 }
+
+.fullpage {
+    min-height: calc(100vh - 95px);
+}

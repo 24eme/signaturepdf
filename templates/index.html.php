@@ -12,8 +12,8 @@
     </div>
 </noscript>
 <?php include('components/navtab.html.php'); ?>
-<div class="container">
-    <p class="lead mt-4 text-center mb-2"><img src="logo.svg" style="height: 200px;" class="text-center" /></p>
+<div class="container pt-4 fullpage">
+    <p class="lead text-center mb-2"><img src="logo.svg" style="height: 200px;" class="text-center" /></p>
     <h1 class="text-center h4 d-lg-none">Signature PDF</h1>
     <p class="lead mt-3 text-center mb-0"><?php echo _("Free open-source software for signing and manipulating PDFs") ?></p>
     <div class="row">
@@ -53,8 +53,8 @@
         </div>
     </div>
     </div>
-    <?php include('components/footer.html.php'); ?>
 </div>
+<?php include('components/footer.html.php'); ?>
 
 <span id="is_mobile" class="d-md-none"></span>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.3.3"></script>

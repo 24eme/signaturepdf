@@ -13,7 +13,7 @@
 </noscript>
 <div id="page-upload">
     <?php include('components/navtab.html.php'); ?>
-    <div class="px-4 py-4 text-center">
+    <div class="px-4 py-4 text-center fullpage">
         <form method="post" action="<?php echo $REVERSE_PROXY_URL; ?>/compress" enctype="multipart/form-data">
             <h1 class="display-5 fw-bold mb-0 mt-3"> <?php echo sprintf(_("%s Compress a PDF"), '<i class="bi bi-chevron-bar-contract"></i>'); ?></h1>
             <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Reduce the size of a PDF"); ?></p>

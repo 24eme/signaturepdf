@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php include('components/navtab.html.php'); ?>
-    <div class="container">
+    <div class="container fullpage">
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10">

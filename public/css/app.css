@@ -174,5 +174,5 @@ html.rtl .file-list-checkbox {
 }
 
 .fullpage {
-    min-height: calc(100vh - 95px);
+    min-height: calc(100dvh - 95px);
 }

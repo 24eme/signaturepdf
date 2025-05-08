@@ -556,7 +556,7 @@ async function save(order) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
 
-    const pdf = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(0).arrayBuffer(), { ignoreEncryption: true, password: "" });
+    const pdf = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(0).arrayBuffer(), { ignoreEncryption: true, password: "", updateMetadata: false });
 
     let filename = "";
     let pages = [];
@@ -584,7 +584,7 @@ async function save(order) {
                 pdf.removePage(0);
             }
         } else {
-            const pdfFile = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer(), { ignoreEncryption: true, password: "" });
+            const pdfFile = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer(), { ignoreEncryption: true, password: "", updateMetadata: false });
             pdfPages = await pdf.copyPages(pdfFile, indices);
             for(j in pdfPages) {
                 pages[letter+(indices[j]+1).toString()] = pdfPages[j];

@@ -614,15 +614,21 @@ function cleanPDF(pdf) {
         pagesRef.push(page.ref.tag)
     }
 
+    let hasPageDeleted = false;
     //Supprime les objets pages qui on été supprimés
     for(d of pdf.pageMap.entries()) {
         for(p of d) {
             if(p.ref) {
                 if(!pagesRef.includes(p.ref.tag)) {
+                    hasPageDeleted = true;
                     pdf.context.indirectObjects.delete(window['PDFLib'].PDFRef.of(p.ref.objectNumber));
                 }
             }
         }
+    }
+
+    if(! hasPageDeleted) {
+        return;
     }
 
     //Supprime les objets non utilisés tant qu'il y en a
@@ -643,7 +649,8 @@ function cleanPDF(pdf) {
             for(e of o) {
                 if(e.tag && !tags.includes(e.tag)) {
                     tagsToDelete.push(e.tag);
-                    console.log(e.objectNumber);
+                    //console.log(e.objectNumber);
+                    //console.log(pdf.context.indirectObjects.get(window['PDFLib'].PDFRef.of(e.objectNumber)));
                     pdf.context.indirectObjects.delete(window['PDFLib'].PDFRef.of(e.objectNumber))
                 }
             }

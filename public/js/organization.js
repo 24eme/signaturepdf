@@ -556,7 +556,8 @@ async function save(order) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
 
-    const pdf = await PDFDocument.create();
+    const pdf = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(0).arrayBuffer(), { ignoreEncryption: true, password: "", updateMetadata: false });
+
     let filename = "";
     let pages = [];
     const pagesOrganize = order.split(',');
@@ -566,8 +567,6 @@ async function save(order) {
             filename += '_';
         }
         filename += document.querySelector('#input_pdf').files.item(i).name.replace(/\.pdf$/, '');
-        pdfFile = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer(), { ignoreEncryption: true, password: "" });
-
         const indices = [];
         const letter = getLetter(i);
         for(let k in pagesOrganize) {
@@ -575,10 +574,21 @@ async function save(order) {
                 indices.push(parseInt(pagesOrganize[k].split('-')[0].replace(letter, '')) - 1)
             }
         }
-
-        const pdfPages = await pdf.copyPages(pdfFile, indices);
-        for(j in pdfPages) {
-            pages[letter+(indices[j]+1).toString()] = pdfPages[j];
+        let pdfPages = [];
+        if(i == 0) {
+            pdfPages = await pdf.getPages();
+            for(j in indices) {
+                pages[letter+(indices[j]+1).toString()] = pdfPages[indices[parseInt(j)]];
+            }
+            for(let i in pdf.getPages()) {
+                pdf.removePage(0);
+            }
+        } else {
+            const pdfFile = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(i).arrayBuffer(), { ignoreEncryption: true, password: "", updateMetadata: false });
+            pdfPages = await pdf.copyPages(pdfFile, indices);
+            for(j in pdfPages) {
+                pages[letter+(indices[j]+1).toString()] = pdfPages[j];
+            }
         }
     }
 
@@ -591,8 +601,82 @@ async function save(order) {
         }
         pdf.addPage(pdfPage);
     }
+
+    cleanPDF(pdf);
+
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
     await download(newPDF, filename+".pdf");
+}
+
+function cleanPDF(pdf) {
+    let pagesRef = [];
+    for(page of pdf.getPages()) {
+        pagesRef.push(page.ref.tag)
+    }
+
+    let hasPageDeleted = false;
+    //Supprime les objets pages qui on été supprimés
+    for(d of pdf.pageMap.entries()) {
+        for(p of d) {
+            if(p.ref) {
+                if(!pagesRef.includes(p.ref.tag)) {
+                    hasPageDeleted = true;
+                    pdf.context.indirectObjects.delete(window['PDFLib'].PDFRef.of(p.ref.objectNumber));
+                }
+            }
+        }
+    }
+
+    if(! hasPageDeleted) {
+        return;
+    }
+
+    //Supprime les objets non utilisés tant qu'il y en a
+    let tagsToDelete = [];
+    do {
+        tagsToDelete = [];
+        let tags = [];
+        tags.push(pdf.context.trailerInfo.Info.tag);
+        tags.push(pdf.context.trailerInfo.Root.tag);
+        tags.concat(getPDFTags(pdf.catalog));
+        pdf.context.indirectObjects.forEach(function(object) {
+            tags = tags.concat(getPDFTags(object));
+        });
+        for(p of pdf.getPages()) {
+            tags = tags.concat(getPDFTags(p.node));
+        }
+        for(o of pdf.context.enumerateIndirectObjects()) {
+            for(e of o) {
+                if(e.tag && !tags.includes(e.tag)) {
+                    tagsToDelete.push(e.tag);
+                    //console.log(e.objectNumber);
+                    //console.log(pdf.context.indirectObjects.get(window['PDFLib'].PDFRef.of(e.objectNumber)));
+                    pdf.context.indirectObjects.delete(window['PDFLib'].PDFRef.of(e.objectNumber))
+                }
+            }
+        }
+    } while(tagsToDelete.length);
+}
+
+function getPDFTags(node) {
+    let tags = [];
+
+    if(node.tag) {
+        tags.push(node.tag);
+    }
+    if(node.array) {
+        for(item of node.array) {
+            tags = tags.concat(getPDFTags(item));
+        }
+    }
+    if(node.dict) {
+        for(dict of node.dict.entries()) {
+            for(object of dict) {
+                tags = tags.concat(getPDFTags(object));
+            }
+        }
+    }
+    return tags;
 }
 
 function createEventsListener() {

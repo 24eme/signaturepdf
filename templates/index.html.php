@@ -2,7 +2,7 @@
 <html lang="<?php echo $TRANSLATION_LANGUAGE ?>" dir="<?php echo $DIRECTION_LANGUAGE ?>" style="direction: <?php echo $DIRECTION_LANGUAGE ?>;">
 <head>
     <?php include('components/header.html.php'); ?>
-    <title>Signature PDF</title>
+    <title>Signature PDF - Signer et manipuler des PDF en ligne librement</title>
     <meta name="description" content="Logiciel libre pour signer et manipuler des fichiers PDF">
 </head>
 <body>

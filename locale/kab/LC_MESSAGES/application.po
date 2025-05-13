@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-23 23:59+0200\n"
-"PO-Revision-Date: 2025-04-23 21:54+0000\n"
+"PO-Revision-Date: 2025-05-12 18:02+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid "en"
 msgstr "kab"
@@ -90,7 +90,7 @@ msgid "High compression (minimum quality)"
 msgstr "Tussda ɛlayen (taɣara taddayt)"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "Aseɣẓan ilelli i usizmel d usseqerdec n ifuyla PDF"
 
 msgid "Sign a PDF"
 msgstr "Asezmel n PDF"
@@ -111,7 +111,7 @@ msgid "Strike through text"
 msgstr "Jerreḍ aḍris"
 
 msgid "Allow multiple people to sign via a shared link"
-msgstr ""
+msgstr "Astenyi gar waṭas n medden s wassaɣ yettwabḍan"
 
 msgid "Sign with the server certificate"
 msgstr "Zmel s uselkin n useqdac"
@@ -141,7 +141,7 @@ msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Rnu, ẓreg, neɣ kkes iɣefisefka seg PDF"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "Skussem, tesneqseḍ tiddi n PDF"
 
 #, php-format
 msgid "%s Edit metadata"
@@ -512,7 +512,7 @@ msgid "see the source code"
 msgstr "wali tangalt taɣbalut"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "Zmel rnu sqerdec ifuyla PDF akken i k⋅m-yehwa"
 
 msgid "Language"
 msgstr "Tutlayt"

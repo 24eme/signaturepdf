@@ -636,7 +636,9 @@ function cleanPDF(pdf) {
     do {
         tagsToDelete = [];
         let tags = [];
-        tags.push(pdf.context.trailerInfo.Info.tag);
+        if(pdf.context.trailerInfo.Info) {
+            tags.push(pdf.context.trailerInfo.Info.tag);
+        }
         tags.push(pdf.context.trailerInfo.Root.tag);
         tags.concat(getPDFTags(pdf.catalog));
         pdf.context.indirectObjects.forEach(function(object) {

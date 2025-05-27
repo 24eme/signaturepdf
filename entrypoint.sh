@@ -9,10 +9,9 @@ export LANG=$DEFAULT_LANGUAGE
 export LANGUAGE=$DEFAULT_LANGUAGE
 export LC_ALL=$DEFAULT_LANGUAGE
 
-
-if [[ ! -z $PDF_STORAGE_PATH ]] ; then
-    mkdir -p $PDF_STORAGE_PATH
-    chown www-data:www-data $PDF_STORAGE_PATH
+if [[ -n $PDF_STORAGE_PATH ]] ; then
+    mkdir -p "$PDF_STORAGE_PATH"
+    chown www-data:www-data "$PDF_STORAGE_PATH"
 fi
 
 apache2-foreground

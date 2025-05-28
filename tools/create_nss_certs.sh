@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 nss_dir=$1
 nss_pass=$2
 nss_nick=$3
@@ -15,32 +17,34 @@ if ! test -d "$nss_dir"; then
     echo "ERROR: nss_dir \"$nss_dir\" should exist"  1>&2 ;
     exit 2;
 fi
-if echo "$nss_nick" | grep '\.' > /dev/null ; then
+if echo "$nss_nick" | grep -q -F "."; then
     echo "ERROR: $nss_nick should not contain . " 1>&2 ;
     exit 3;
 fi
 
-signaturepdf_domain=$(echo $signaturepdf_url | sed 's/https*:\/\///' | sed 's/\/.*//')
-signaturepdf_path=$(echo $signaturepdf_url | sed 's/https*:\/\///' | sed 's/.*'$signaturepdf_domain'\/*//')
-signaturepdf_dc=$(echo $signaturepdf_domain | tr '.' '\n' | sed 's/^/DC=/' | tr '\n' ',' | sed 's/,$//')
+set -u
+
+signaturepdf_domain=$(echo "$signaturepdf_url" | sed -e 's@https*://@@' -e 's@/.*@@')
+signaturepdf_path=$(echo "$signaturepdf_url" | sed -e 's@https*://@@' -e "s@.*$signaturepdf_domain/*@@")
+signaturepdf_dc=$(echo "$signaturepdf_domain" | tr '.' '\n' | sed 's/^/DC=/' | tr '\n' ',' | sed 's/,$//')
 if test "$signaturepdf_path"; then
-    signaturepdf_dc="DC=/"$signaturepdf_path','$signaturepdf_dc;
+    signaturepdf_dc="DC=/${signaturepdf_path},${signaturepdf_dc}";
 fi
 
 echo "$nss_pass" > /tmp/nss.$$.tmp
 certutil -N -f /tmp/nss.$$.tmp -d "$nss_dir"
 
-echo $RANDOM" CACert "$(date)" $$ "$RANDOM | shasum > /tmp/nss_noise.$$.tmp
+echo "$RANDOM CACert $(date) $$ $RANDOM" | shasum > /tmp/nss_noise.$$.tmp
 certutil -S -s "CN=PDF Sign CA Cert,$signaturepdf_dc" -n "PDFSignCA" -z /tmp/nss_noise.$$.tmp -x -t "CT,CT,CT" -v 120 -m 1234 -d "$nss_dir" -f /tmp/nss.$$.tmp
 
-echo $RANDOM" $signaturepdf_dc "$(date)" $$ "$RANDOM | shasum >> /tmp/nss_noise.$$.tmp
+echo "$RANDOM $signaturepdf_dc $(date) $$ $RANDOM" | shasum >> /tmp/nss_noise.$$.tmp
 certutil -S -s "CN=$nss_nick,$signaturepdf_dc" -n "$nss_nick" -c "PDFSignCA" -z /tmp/nss_noise.$$.tmp -t ",," -m 730  -d "$nss_dir" -f /tmp/nss.$$.tmp
 
 echo "Certs created :"
 echo "==============="
-certutil -f /tmp/nss.$$.tmp -d $nss_dir -L
+certutil -f /tmp/nss.$$.tmp -d "$nss_dir" -L
 echo "Private keys created :"
 echo "======================"
-certutil -f /tmp/nss.$$.tmp -d $nss_dir -K
+certutil -f /tmp/nss.$$.tmp -d "$nss_dir" -K
 
 rm /tmp/nss.$$.tmp /tmp/nss_noise.$$.tmp

@@ -178,16 +178,6 @@
       </div>
     </div>
     </div>
-    <div class="modal" id="modalLoading" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content bg-transparent border-0">
-                <div class="modal-body text-center my-5 text-white fs-4">
-                    <p></p>
-                    <div class="spinner-border" role="status"></div>
-                </div>
-            </div>
-        </div>
-    </div>
     <?php if(!isset($hash) && !isset($noSharingMode)): ?>
     <div id="modal-start-share" class="modal" tabindex="-1">
         <div class="modal-dialog modal-md">
@@ -265,13 +255,7 @@
         </div>
     </div>
     <?php endif; ?>
-    <span id="is_mobile" class="d-md-none"></span>
-
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.3.3"></script>
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.min.mjs?4.6.82-legacy" type="module"></script>
-    <script type="module">
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.worker.min.mjs?4.6.82-legacy';
-    </script>
+    <?php include('components/common.html.php'); ?>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?5.4.0"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?5.0.3"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/opentype.min.js?1.3.4"></script>
@@ -301,7 +285,6 @@
     url_font = <?php echo json_encode('/vendor/fonts/Caveat-Regular.ttf') ?>
     <?php endif; ?>
     </script>
-    <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>
   </body>
 </html>

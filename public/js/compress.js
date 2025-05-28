@@ -1,5 +1,6 @@
-function handleFileChange() {
+async function handleFileChange() {
     const fileInput = document.getElementById('input_pdf_upload');
+    await convertInputFileImagesToPDF(fileInput);
 
     if(fileInput.files[0].size > maxSize) {
         alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");

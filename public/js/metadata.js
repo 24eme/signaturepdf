@@ -286,6 +286,7 @@ async function pageMetadata(url) {
 
     responsiveDisplay();
     createEventsListener();
+    await convertInputFileImagesToPDF(document.getElementById('input_pdf_upload'));
     loadPDF(document.getElementById('input_pdf_upload').files[0]);
 };
 

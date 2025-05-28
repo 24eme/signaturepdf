@@ -517,53 +517,12 @@ function updateGlobalState() {
 
 async function uploadAndLoadPDF(input_upload) {
     showLoading('Loading')
-
-    let dataTransfer = new DataTransfer();
-    for (let i = 0; i < input_upload.files.length; i++) {
-        if(["image/png", "image/jpeg"].includes(input_upload.files[i].type)) {
-            dataTransfer.items.add(await imageToPdf(input_upload.files[i]));
-        } else {
-            dataTransfer.items.add(input_upload.files[i]);
-        }
-    }
-    input_upload.files = dataTransfer.files
-
+    await convertInputFileImagesToPDF(input_upload)
     for (let i = 0; i < input_upload.files.length; i++) {
         nbPDF++;
         await loadPDF(input_upload.files[i], input_upload.files[i].name, nbPDF);
     }
     endLoading()
-}
-
-async function imageToPdf(file) {
-  const pdfDoc = await window['PDFLib'].PDFDocument.create();
-  const imageBytes = await file.arrayBuffer();
-  let image = null;
-  if(file.type == "image/png") {
-      image = await pdfDoc.embedPng(imageBytes);
-  } else if(file.type == "image/jpeg") {
-      image = await pdfDoc.embedJpg(imageBytes);
-  }
-
-  if(!image) {
-      return;
-  }
-
-  const { width, height } = image.scale(1);
-
-  const page = pdfDoc.addPage([width, height]);
-  page.drawImage(image, {
-    x: 0,
-    y: 0,
-    width,
-    height,
-  });
-
-  const pdfBytes = await pdfDoc.save();
-
-  return new File([pdfBytes], file.name+'.pdf', {
-      type: 'application/pdf'
-  });
 }
 
 async function saveAll() {

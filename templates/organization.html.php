@@ -18,7 +18,7 @@
             <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Merge, sort, rotate, delete, extract pages"); ?></p>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
-                  <label class="form-label mt-4" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?></label>
+                  <label class="form-label mt-4" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?><small class="text-muted opacity-75 d-block"><?php echo _("or an image"); ?></small></label>
                   <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" multiple="true" />
                   <p class="mt-2 small fw-light text-dark">&nbsp;</p>
                   <?php if($PDF_DEMO_LINK): ?>

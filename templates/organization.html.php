@@ -19,7 +19,7 @@
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
                   <label class="form-label mt-4" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?></label>
-                  <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" multiple="true" />
+                  <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" multiple="true" />
                   <p class="mt-2 small fw-light text-dark">&nbsp;</p>
                   <?php if($PDF_DEMO_LINK): ?>
                       <p class="mt-4"><a class="link-opacity-75 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover small" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF") ?></a></p>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="d-grid gap-2 mt-2">
                     <button type="button" class="btn btn-sm btn-outline-dark" onclick="document.getElementById('input_pdf_upload_2').click();"><?php echo sprintf(_("%s Add a PDF"), '<i class="bi bi-plus-circle"></i>'); ?></button>
-                    <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf" multiple="true">
+                    <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" multiple="true">
                 </div>
                 <hr />
                 <div id="container_btn_select" class="opacity-50 card">

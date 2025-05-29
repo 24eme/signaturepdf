@@ -1077,7 +1077,6 @@ async function pageSignature(url) {
     displaysSVG();
     stateAddLock();
     createEventsListener();
-    await convertInputFileImagesToPDF(document.getElementById('input_pdf_upload'));
     loadPDF(document.getElementById('input_pdf_upload').files[0]);
 };
 

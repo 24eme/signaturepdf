@@ -20,7 +20,7 @@
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="col-12">
                     <label class="form-label mt-4" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo _("The PDF must not exceed "); ?> <?php echo round($maxSize / 1024 / 1024) ?> <?php echo _("Mb"); ?>"><i class="bi bi-info-circle"></i></small></label>
-                    <input name="input_pdf_upload" id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" onchange="handleFileChange()" />
+                    <input name="input_pdf_upload" id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" onchange="handleFileChange()" />
                     <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being retained or stored") ?></p>
                     <?php if ($error_message == "PDF optimized"): ?>
                         <div class="alert alert-danger">

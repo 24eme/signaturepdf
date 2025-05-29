@@ -517,6 +517,7 @@ function updateGlobalState() {
 
 async function uploadAndLoadPDF(input_upload) {
     showLoading('Loading')
+    await convertInputFileImagesToPDF(input_upload)
     for (let i = 0; i < input_upload.files.length; i++) {
         nbPDF++;
         await loadPDF(input_upload.files[i], input_upload.files[i].name, nbPDF);

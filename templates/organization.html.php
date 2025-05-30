@@ -118,8 +118,7 @@
             </div>
         </div>
     </div>
-
-    <?php include('components/common.html.php'); ?>
+    <?php $loadJs = ['pdf-lib.js' => true, 'pdf.js' => true]; include('components/common.html.php'); ?>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/organization.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/organization.js") ?>"></script>
   </body>
 </html>

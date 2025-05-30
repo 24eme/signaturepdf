@@ -75,8 +75,7 @@
         </div>
     </div>
 </div>
-
-<?php include('components/common.html.php'); ?>
+<?php $loadJs = ['pdf-lib.js' => true, 'pdf.js' => true]; include('components/common.html.php'); ?>
 <script>
     var defaultFields = <?php echo json_encode(isset($METADATA_DEFAULT_FIELDS) ? $METADATA_DEFAULT_FIELDS : array()); ?>;
 </script>

@@ -436,7 +436,7 @@ $f3->route ('POST /compress',
 
         $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
 
-        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dQUIET -o %s %s", $compressionType, $outputFileName, $filePath));
+        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
 
         if ($returnCode === false) {
             echo "PDF compression failed.";

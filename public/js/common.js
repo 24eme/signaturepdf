@@ -257,5 +257,5 @@ async function imageToPdf(file) {
 }
 
 function convertOctet2MegoOctet(nbOctet) {
-    return (Math.round(nbOctet/1024/1024*100)/100).toFixed(2);
+    return (Math.round(nbOctet/1000/1000*100)/100).toFixed(2);
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 14:23+0200\n"
+"POT-Creation-Date: 2025-06-01 22:39+0200\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -22,6 +22,12 @@ msgstr ""
 
 msgid "en"
 msgstr "ro"
+
+msgid "PDF compression failed"
+msgstr ""
+
+msgid "Your pdf is already optimized"
+msgstr "PDF-ul dvs. este deja optimizat"
 
 msgid "Administration panel"
 msgstr ""
@@ -64,18 +70,13 @@ msgstr "Reduceți dimensiunea unui PDF"
 msgid "Choose a PDF"
 msgstr "Alegeți un PDF"
 
-msgid "The PDF must not exceed "
-msgstr "PDF-ul nu trebuie să depășească "
-
-msgid "Mb"
-msgstr "Mb"
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr ""
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr "PDF-ul va fi procesat de server fără a fi reținut sau stocat"
-
-msgid "Your pdf is already optimized"
-msgstr "PDF-ul dvs. este deja optimizat"
 
 msgid "Compress"
 msgstr "Comprimă"
@@ -89,6 +90,16 @@ msgstr "%s compresie medie %s (implicit)"
 
 msgid "High compression (minimum quality)"
 msgstr "Compresie ridicată (calitate minimă)"
+
+#, php-format
+msgid "%s Mb"
+msgstr ""
+
+msgid "Compressed at %s%"
+msgstr ""
+
+msgid "Download the PDF"
+msgstr "Descărcați PDF-ul"
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
@@ -133,6 +144,9 @@ msgid "Rotate pages"
 msgstr ""
 
 msgid "Delete pages"
+msgstr ""
+
+msgid "Convert images to PDF"
 msgstr ""
 
 msgid "Edit a PDF"
@@ -185,6 +199,9 @@ msgstr "%s Organizați PDF-uri"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Îmbinați, sortați, rotiți, ștergeți, extrageți pagini"
+
+msgid "or an image"
+msgstr ""
 
 msgid "Touch a page to select it"
 msgstr "Atingeți o pagină pentru a o selecta"
@@ -473,9 +490,6 @@ msgid ""
 "I just signed the document (%s) : %s"
 msgstr ""
 
-msgid "Download the PDF"
-msgstr "Descărcați PDF-ul"
-
 msgid "Text to modify"
 msgstr "Text de modificat"
 
@@ -526,6 +540,12 @@ msgstr "Organizează"
 
 msgid "Metadata"
 msgstr "Metadate"
+
+#~ msgid "The PDF must not exceed "
+#~ msgstr "PDF-ul nu trebuie să depășească "
+
+#~ msgid "Mb"
+#~ msgstr "Mb"
 
 #~ msgid "Compress PDF"
 #~ msgstr "Comprimați un PDF"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 14:23+0200\n"
+"POT-Creation-Date: 2025-06-01 22:39+0200\n"
 "PO-Revision-Date: 2025-04-22 21:03+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
@@ -21,6 +21,12 @@ msgstr ""
 
 msgid "en"
 msgstr "eu"
+
+msgid "PDF compression failed"
+msgstr ""
+
+msgid "Your pdf is already optimized"
+msgstr "PDFa lehendik optimizatuta dago"
 
 msgid "Administration panel"
 msgstr "Administrazio-panela"
@@ -65,19 +71,14 @@ msgstr "Murriztu PDF baten tamaina"
 msgid "Choose a PDF"
 msgstr "Aukeratu PDFa"
 
-msgid "The PDF must not exceed "
-msgstr "PDFak ezin ditu izan "
-
-msgid "Mb"
-msgstr "Mb"
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr ""
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr ""
 "Zerbitzariak PDFa prozesatuko du, baina ez du mantenduko edo biltegiratuko"
-
-msgid "Your pdf is already optimized"
-msgstr "PDFa lehendik optimizatuta dago"
 
 msgid "Compress"
 msgstr "Konprimatu"
@@ -91,6 +92,16 @@ msgstr "%s Konpresio ertaina %s (lehenetsia)"
 
 msgid "High compression (minimum quality)"
 msgstr "Konpresio altua (kalitate txikiena)"
+
+#, php-format
+msgid "%s Mb"
+msgstr ""
+
+msgid "Compressed at %s%"
+msgstr ""
+
+msgid "Download the PDF"
+msgstr "Deskargatu PDFa"
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "PDFak maneiatzeko eta sinatzeko kode irekiko software askea"
@@ -138,6 +149,9 @@ msgstr "Biratu orriak"
 
 msgid "Delete pages"
 msgstr "Ezabatu orriak"
+
+msgid "Convert images to PDF"
+msgstr ""
 
 msgid "Edit a PDF"
 msgstr "Editatu PDFa"
@@ -189,6 +203,9 @@ msgstr "%s Antolatu PDFa"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Bateratu, sailkatu, biratu, ezabatu, erauzi orriak"
+
+msgid "or an image"
+msgstr ""
 
 msgid "Touch a page to select it"
 msgstr "Ukitu orria hautatzeko"
@@ -481,9 +498,6 @@ msgstr ""
 "\n"
 "Dokumentua (%s) sinatu berri dut: %s"
 
-msgid "Download the PDF"
-msgstr "Deskargatu PDFa"
-
 msgid "Text to modify"
 msgstr "Moldatzeko testua"
 
@@ -534,6 +548,12 @@ msgstr "Antolatu"
 
 msgid "Metadata"
 msgstr "Metadatuak"
+
+#~ msgid "The PDF must not exceed "
+#~ msgstr "PDFak ezin ditu izan "
+
+#~ msgid "Mb"
+#~ msgstr "Mb"
 
 #~ msgid "Compress PDF"
 #~ msgstr "Konprimatu PDFa"

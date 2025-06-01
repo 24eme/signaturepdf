@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 14:23+0200\n"
+"POT-Creation-Date: 2025-06-01 22:39+0200\n"
 "PO-Revision-Date: 2023-12-06 14:10+0000\n"
 "Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -21,6 +21,12 @@ msgstr ""
 
 msgid "en"
 msgstr "tr"
+
+msgid "PDF compression failed"
+msgstr ""
+
+msgid "Your pdf is already optimized"
+msgstr "Pdf'iniz zaten optimize edilmiş"
 
 msgid "Administration panel"
 msgstr ""
@@ -63,18 +69,13 @@ msgstr "PDF'nin boyutunu küçültme"
 msgid "Choose a PDF"
 msgstr "Bir PDF Seç"
 
-msgid "The PDF must not exceed "
-msgstr "PDF, aşmamalıdır "
-
-msgid "Mb"
-msgstr "Mb"
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr ""
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr "PDF, saklanmadan veya depolanmadan sunucu tarafından işlenecektir"
-
-msgid "Your pdf is already optimized"
-msgstr "Pdf'iniz zaten optimize edilmiş"
 
 msgid "Compress"
 msgstr "Sıkıştır"
@@ -88,6 +89,16 @@ msgstr "%s Orta sıkıştırma %s (varsayılan)"
 
 msgid "High compression (minimum quality)"
 msgstr "Yüksek sıkıştırma (minimum kalite)"
+
+#, php-format
+msgid "%s Mb"
+msgstr ""
+
+msgid "Compressed at %s%"
+msgstr ""
+
+msgid "Download the PDF"
+msgstr "PDF dosyasını indirin"
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
@@ -132,6 +143,9 @@ msgid "Rotate pages"
 msgstr ""
 
 msgid "Delete pages"
+msgstr ""
+
+msgid "Convert images to PDF"
 msgstr ""
 
 msgid "Edit a PDF"
@@ -184,6 +198,9 @@ msgstr "%s PDF Düzenle"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Birleştirme, sıralama, döndürme, silme, sayfa çıkarma"
+
+msgid "or an image"
+msgstr ""
 
 msgid "Touch a page to select it"
 msgstr "Seçmek için bir sayfaya dokunun"
@@ -473,9 +490,6 @@ msgid ""
 "I just signed the document (%s) : %s"
 msgstr ""
 
-msgid "Download the PDF"
-msgstr "PDF dosyasını indirin"
-
 msgid "Text to modify"
 msgstr "Değiştirilecek metin"
 
@@ -527,6 +541,12 @@ msgstr "Organize et"
 #, fuzzy
 msgid "Metadata"
 msgstr "Metadata"
+
+#~ msgid "The PDF must not exceed "
+#~ msgstr "PDF, aşmamalıdır "
+
+#~ msgid "Mb"
+#~ msgstr "Mb"
 
 #~ msgid "Compress PDF"
 #~ msgstr "PDF Sıkıştır"

@@ -12,10 +12,10 @@
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.3.3"></script>
 <?php if(isset($loadJs['pdf.js'])): ?>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.min.mjs?4.6.82-legacy" type="module"></script>
-<?php endif; ?>
 <script type="module">
     pdfjsLib.GlobalWorkerOptions.workerSrc = '<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.worker.min.mjs?4.6.82-legacy';
 </script>
+<?php endif; ?>
 <?php if(isset($loadJs['pdf-lib.js'])): ?>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?2.2.4"></script>
 <?php endif; ?>

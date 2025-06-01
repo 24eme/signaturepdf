@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 22:39+0200\n"
-"PO-Revision-Date: 2025-05-12 18:02+0000\n"
+"POT-Creation-Date: 2025-04-23 23:59+0200\n"
+"PO-Revision-Date: 2025-05-29 13:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -21,12 +21,6 @@ msgstr ""
 
 msgid "en"
 msgstr "kab"
-
-msgid "PDF compression failed"
-msgstr ""
-
-msgid "Your pdf is already optimized"
-msgstr ""
 
 msgid "Administration panel"
 msgstr "Agalis n tedbelt"
@@ -69,13 +63,18 @@ msgstr "Senqes teɣzi n PDF"
 msgid "Choose a PDF"
 msgstr "Fren PDF"
 
-#, php-format
-msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgid "The PDF must not exceed "
+msgstr "Afaylu PDF ur ilaq ara ad iɛeddi "
+
+msgid "Mb"
+msgstr "Mb"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr "Afaylu PDF ad yettusesfer s uqeddac war ma yettwaḥraz neɣ yettwasekles"
+
+msgid "Your pdf is already optimized"
+msgstr ""
 
 msgid "Compress"
 msgstr "Ssed"
@@ -89,16 +88,6 @@ msgstr "%s Tussda talemmast %s (tamezwert)"
 
 msgid "High compression (minimum quality)"
 msgstr "Tussda ɛlayen (taɣara taddayt)"
-
-#, php-format
-msgid "%s Mb"
-msgstr ""
-
-msgid "Compressed at %s%"
-msgstr ""
-
-msgid "Download the PDF"
-msgstr "Sader PDF"
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Aseɣẓan ilelli i usizmel d usseqerdec n ifuyla PDF"
@@ -144,9 +133,6 @@ msgstr "Zzi isebtar"
 
 msgid "Delete pages"
 msgstr "Kkes isebtar"
-
-msgid "Convert images to PDF"
-msgstr ""
 
 msgid "Edit a PDF"
 msgstr "Ẓreg a PDF"
@@ -198,9 +184,6 @@ msgstr "%s Asuddes n PDF"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Smezdi, smizwer, sezzi, kkes, tsuffeɣḍ-d isebtar"
-
-msgid "or an image"
-msgstr ""
 
 msgid "Touch a page to select it"
 msgstr "Sit ɣef usebter i wakken ad t-tferneḍ"
@@ -474,6 +457,8 @@ msgstr "Asnas-a ur yettazen ara imaylen s wudem awurman i yizmulen-nniḍen."
 msgid ""
 "If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
+"Ma tebɣiḍ ad d-tazneḍ yiwen i yiman-ik, tzemreḍ ad tesqedceḍ <a>imayl-a "
+"yuran yakan</a>."
 
 #, php-format
 msgid "Signing the document : %s"
@@ -488,6 +473,9 @@ msgstr ""
 "Azul.\n"
 "\n"
 "Tura kan i zemleɣ zzmam (%s): %s"
+
+msgid "Download the PDF"
+msgstr "Sader PDF"
 
 msgid "Text to modify"
 msgstr "Aḍris ara yettuṣeggmen"
@@ -540,11 +528,25 @@ msgstr "Suddes"
 msgid "Metadata"
 msgstr "Iɣefisefka"
 
-#~ msgid "The PDF must not exceed "
-#~ msgstr "Afaylu PDF ur ilaq ara ad iɛeddi "
+msgid "PDF compression failed"
+msgstr ""
 
-#~ msgid "Mb"
-#~ msgstr "Mb"
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr ""
+
+#, php-format
+msgid "%s Mb"
+msgstr ""
+
+msgid "Compressed at %s%"
+msgstr ""
+
+msgid "Convert images to PDF"
+msgstr ""
+
+msgid "or an image"
+msgstr ""
 
 #~ msgid "Compress PDF"
 #~ msgstr "Ssed PDF"

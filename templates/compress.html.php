@@ -28,9 +28,9 @@
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <button type="submit" name="compressionType" value="low" id="lowCompressBtn" class="dropdown-item"><?php echo _("Low compression (maximum quality)"); ?></button>
-                        <button type="submit" name="compressionType" value="medium" id="mediumCompressBtn" class="dropdown-item"><?php echo sprintf(_("%s Medium compression %s (default)"), "<strong>", "</strong>"); ?></button>
-                        <button type="submit" name="compressionType" value="high" id="highCompressBtn" class="dropdown-item"><?php echo _("High compression (minimum quality)"); ?></button>
+                        <button type="submit" name="compressionType" value="low" id="lowCompressBtn" class="dropdown-item"><i class="bi bi-reception-0"></i> <?php echo _("Low compression (maximum quality)"); ?></button>
+                        <button type="submit" name="compressionType" value="medium" id="mediumCompressBtn" class="dropdown-item"><i class="bi bi-reception-2"></i> <?php echo sprintf(_("%s Medium compression %s (default)"), "<strong>", "</strong>"); ?></button>
+                        <button type="submit" name="compressionType" value="high" id="highCompressBtn" class="dropdown-item"><i class="bi bi-reception-4"></i> <?php echo _("High compression (minimum quality)"); ?></button>
                     </div>
                 </div>
                 <div id="error_message" class="alert alert-warning mt-5 d-none"></div>

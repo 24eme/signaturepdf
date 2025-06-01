@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-01 22:39+0200\n"
-"PO-Revision-Date: 2025-05-27 15:38+0000\n"
+"PO-Revision-Date: 2025-06-01 20:46+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
 "application/fr/>\n"
@@ -24,7 +24,7 @@ msgid "en"
 msgstr "fr"
 
 msgid "PDF compression failed"
-msgstr ""
+msgstr "La compression du PDF a échoué"
 
 msgid "Your pdf is already optimized"
 msgstr "Votre PDF est déja optimisé"
@@ -72,7 +72,7 @@ msgstr "Choisir un PDF"
 
 #, php-format
 msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgstr "La taille du PDF ne doit pas dépasser %s Mo"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
@@ -93,10 +93,10 @@ msgstr "Haute compression (qualité minimale)"
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s Mo"
 
 msgid "Compressed at %s%"
-msgstr ""
+msgstr "Compressé à %s%"
 
 msgid "Download the PDF"
 msgstr "Télécharger le PDF"
@@ -147,7 +147,7 @@ msgid "Delete pages"
 msgstr "Supprimer des pages"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "Convertir des images en PDF"
 
 msgid "Edit a PDF"
 msgstr "Modifier un PDF"
@@ -201,7 +201,7 @@ msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Fusionner, trier, pivoter, supprimer, extraire des pages"
 
 msgid "or an image"
-msgstr ""
+msgstr "ou une image"
 
 msgid "Touch a page to select it"
 msgstr "Toucher une page pour la sélectionner"

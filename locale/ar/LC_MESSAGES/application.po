@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 14:23+0200\n"
+"POT-Creation-Date: 2025-06-01 22:39+0200\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -22,6 +22,12 @@ msgstr ""
 
 msgid "en"
 msgstr "ar"
+
+msgid "PDF compression failed"
+msgstr ""
+
+msgid "Your pdf is already optimized"
+msgstr "ملف PDF الخاص بك بالفعل أمثل"
 
 msgid "Administration panel"
 msgstr ""
@@ -64,18 +70,13 @@ msgstr "تخفيف حجم ملف PDF"
 msgid "Choose a PDF"
 msgstr "إختر ملف PDF"
 
-msgid "The PDF must not exceed "
-msgstr "لا يجب أن يتجاوز حجم ملف الـ PDF "
-
-msgid "Mb"
-msgstr "ميغابايت"
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr ""
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr "سيتم معالجة ملف PDF على الخادم دون الاحتفاظ به أو تخزينه"
-
-msgid "Your pdf is already optimized"
-msgstr "ملف PDF الخاص بك بالفعل أمثل"
 
 msgid "Compress"
 msgstr "ضغط"
@@ -89,6 +90,16 @@ msgstr "%s ضغط متوسط %s (مبدئي)"
 
 msgid "High compression (minimum quality)"
 msgstr "ضغط عالي (جودة دنيا)"
+
+#, php-format
+msgid "%s Mb"
+msgstr ""
+
+msgid "Compressed at %s%"
+msgstr ""
+
+msgid "Download the PDF"
+msgstr "تنزيل الـ PDF"
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
@@ -133,6 +144,9 @@ msgid "Rotate pages"
 msgstr ""
 
 msgid "Delete pages"
+msgstr ""
+
+msgid "Convert images to PDF"
 msgstr ""
 
 msgid "Edit a PDF"
@@ -185,6 +199,9 @@ msgstr "%s تنظيم الـ PDF"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "دمج، فرز، تدوير، حذف، استخراج الصفحات"
+
+msgid "or an image"
+msgstr ""
 
 msgid "Touch a page to select it"
 msgstr "اضغط على صفحة لتحديدها"
@@ -467,9 +484,6 @@ msgid ""
 "I just signed the document (%s) : %s"
 msgstr ""
 
-msgid "Download the PDF"
-msgstr "تنزيل الـ PDF"
-
 msgid "Text to modify"
 msgstr "النص الذي تودّ تعديله"
 
@@ -520,6 +534,12 @@ msgstr "نظِّم"
 
 msgid "Metadata"
 msgstr "البيانات الوصفية"
+
+#~ msgid "The PDF must not exceed "
+#~ msgstr "لا يجب أن يتجاوز حجم ملف الـ PDF "
+
+#~ msgid "Mb"
+#~ msgstr "ميغابايت"
 
 #~ msgid "Compress PDF"
 #~ msgstr "ضغط PDF"

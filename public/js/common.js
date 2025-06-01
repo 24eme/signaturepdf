@@ -98,12 +98,18 @@ function startProcessingMode(btn) {
     btn.disabled = true;
     btn.querySelector('.bi').classList.add('position-relative');
     btn.querySelector('.bi').insertAdjacentHTML('afterbegin', '<span class="spinner-grow spinner-grow-sm position-absolute top-50 start-50 translate-middle"></span>');
+    if(btn.parentNode.querySelector('.dropdown-toggle')) {
+        btn.parentNode.querySelector('.dropdown-toggle').disabled = true;
+    }
 }
 
 function endProcessingMode(btn) {
     btn.querySelector('.spinner-grow').remove();
     btn.querySelector('.bi').classList.remove('position-relative');
     btn.disabled = false;
+    if(btn.parentNode.querySelector('.dropdown-toggle')) {
+        btn.parentNode.querySelector('.dropdown-toggle').disabled = false;
+    }
 }
 
 function showLoading(message) {
@@ -248,4 +254,8 @@ async function imageToPdf(file) {
   return new File([pdfBytes], file.name+'.pdf', {
       type: 'application/pdf'
   });
+}
+
+function convertOctet2MegoOctet(nbOctet) {
+    return (Math.round(nbOctet/1000/1000*100)/100).toFixed(2);
 }

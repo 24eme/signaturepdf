@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 14:23+0200\n"
+"POT-Creation-Date: 2025-06-01 22:39+0200\n"
 "PO-Revision-Date: 2024-10-22 18:15+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -21,6 +21,12 @@ msgstr ""
 
 msgid "en"
 msgstr "es"
+
+msgid "PDF compression failed"
+msgstr ""
+
+msgid "Your pdf is already optimized"
+msgstr "Tu pdf ya está optimizado"
 
 msgid "Administration panel"
 msgstr "Panel de control"
@@ -63,18 +69,13 @@ msgstr "Reducir el tamaño de un PDF"
 msgid "Choose a PDF"
 msgstr "Elige un PDF"
 
-msgid "The PDF must not exceed "
-msgstr "El PDF no debe exceder "
-
-msgid "Mb"
-msgstr "Mb"
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr ""
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr "El PDF será procesado por el servidor sin ser almacenado ni guardado"
-
-msgid "Your pdf is already optimized"
-msgstr "Tu pdf ya está optimizado"
 
 msgid "Compress"
 msgstr "Comprimir"
@@ -88,6 +89,16 @@ msgstr "%s Compresión media %s (por defecto)"
 
 msgid "High compression (minimum quality)"
 msgstr "Alta compresión (menor calidad)"
+
+#, php-format
+msgid "%s Mb"
+msgstr ""
+
+msgid "Compressed at %s%"
+msgstr ""
+
+msgid "Download the PDF"
+msgstr "Descargar el PDF"
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
@@ -132,6 +143,9 @@ msgid "Rotate pages"
 msgstr ""
 
 msgid "Delete pages"
+msgstr ""
+
+msgid "Convert images to PDF"
 msgstr ""
 
 msgid "Edit a PDF"
@@ -184,6 +198,9 @@ msgstr "%s Organizar PDF"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Fusionar, ordenar, rotar, eliminar, extraer páginas"
+
+msgid "or an image"
+msgstr ""
 
 msgid "Touch a page to select it"
 msgstr "Toca una página para seleccionarla"
@@ -477,9 +494,6 @@ msgstr ""
 "\n"
 "Acabo de firmar el documento (%s) : %s"
 
-msgid "Download the PDF"
-msgstr "Descargar el PDF"
-
 msgid "Text to modify"
 msgstr "Texto a modificar"
 
@@ -530,6 +544,12 @@ msgstr "Organizar"
 
 msgid "Metadata"
 msgstr "Metadatos"
+
+#~ msgid "The PDF must not exceed "
+#~ msgstr "El PDF no debe exceder "
+
+#~ msgid "Mb"
+#~ msgstr "Mb"
 
 #~ msgid "Compress PDF"
 #~ msgstr "Comprimir PDF"

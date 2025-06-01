@@ -528,6 +528,26 @@ msgstr "Suddes"
 msgid "Metadata"
 msgstr "Iɣefisefka"
 
+msgid "PDF compression failed"
+msgstr ""
+
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr ""
+
+#, php-format
+msgid "%s Mb"
+msgstr ""
+
+msgid "Compressed at %s%"
+msgstr ""
+
+msgid "Convert images to PDF"
+msgstr ""
+
+msgid "or an image"
+msgstr ""
+
 #~ msgid "Compress PDF"
 #~ msgstr "Ssed PDF"
 

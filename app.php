@@ -402,12 +402,8 @@ $f3->route ('GET /administration',
 
 $f3->route('GET /compress',
     function($f3) {
-        $f3->set('error_message', "none");
         $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('activeTab', 'compress');
-        if (isset($_GET['err'])) {
-            $f3->set('error_message', "PDF optimized");
-        }
         echo View::instance()->render('compress.html.php');
     }
 );
@@ -436,13 +432,18 @@ $f3->route ('POST /compress',
 
         $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
 
-        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dQUIET -o %s %s", $compressionType, $outputFileName, $filePath));
+        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
 
         if ($returnCode === false) {
-            echo "PDF compression failed.";
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF compression failed");
+            return;
         } elseif (filesize($filePath) <= filesize($outputFileName)) {
-            $error = "pdfalreadyoptimized";
-            header('location: /compress?err=' . $error);
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("Your pdf is already optimized");
+            return;
         } else {
             header('Content-Type: application/pdf');
             header("Content-Disposition: attachment; filename=".basename($outputFileName));
@@ -535,11 +536,11 @@ function convertPHPSizeToBytes($sSize)
     }
     $iValue = substr($sSize, 0, -1);
     switch ($sSuffix) {
-        case 'P': $iValue *= 1024;
-        case 'T': $iValue *= 1024;
-        case 'G': $iValue *= 1024;
-        case 'M': $iValue *= 1024;
-        case 'K': $iValue *= 1024; break;
+        case 'P': $iValue *= 1000;
+        case 'T': $iValue *= 1000;
+        case 'G': $iValue *= 1000;
+        case 'M': $iValue *= 1000;
+        case 'K': $iValue *= 1000; break;
     }
     return (int)$iValue;
 }

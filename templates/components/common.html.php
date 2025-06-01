@@ -10,11 +10,15 @@
 </div>
 <span id="is_mobile" class="d-md-none"></span>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.3.3"></script>
+<?php if(isset($loadJs['pdf.js'])): ?>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.min.mjs?4.6.82-legacy" type="module"></script>
 <script type="module">
     pdfjsLib.GlobalWorkerOptions.workerSrc = '<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf.worker.min.mjs?4.6.82-legacy';
 </script>
+<?php endif; ?>
+<?php if(isset($loadJs['pdf-lib.js'])): ?>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?2.2.4"></script>
+<?php endif; ?>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
 <script>
 var trad = <?php echo json_encode([

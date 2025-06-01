@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 14:23+0200\n"
+"POT-Creation-Date: 2025-06-01 22:39+0200\n"
 "PO-Revision-Date: 2025-04-24 09:32+0000\n"
 "Last-Translator: Valerio Bozzolan <bozzolan.valerio@educ.di.unito.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -21,6 +21,12 @@ msgstr ""
 
 msgid "en"
 msgstr "it"
+
+msgid "PDF compression failed"
+msgstr ""
+
+msgid "Your pdf is already optimized"
+msgstr "Il tuo PDF è già ottimizzato"
 
 msgid "Administration panel"
 msgstr "Pannello amministratore"
@@ -63,18 +69,13 @@ msgstr "Riduci la dimensione di un PDF"
 msgid "Choose a PDF"
 msgstr "Scegli un PDF"
 
-msgid "The PDF must not exceed "
-msgstr "Il PDF non deve superare "
-
-msgid "Mb"
-msgstr "Mb"
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr ""
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr "Il PDF sarà processato dal server senza essere memorizzato o salvato"
-
-msgid "Your pdf is already optimized"
-msgstr "Il tuo PDF è già ottimizzato"
 
 msgid "Compress"
 msgstr "Comprimi"
@@ -88,6 +89,16 @@ msgstr "%s Compressione media %s (default)"
 
 msgid "High compression (minimum quality)"
 msgstr "Compressione alta (minima qualità)"
+
+#, php-format
+msgid "%s Mb"
+msgstr ""
+
+msgid "Compressed at %s%"
+msgstr ""
+
+msgid "Download the PDF"
+msgstr "Scarica il PDF"
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Software libero ed open source per la firma e la manipolazione dei PDF"
@@ -133,6 +144,9 @@ msgstr "Ruota le pagine"
 
 msgid "Delete pages"
 msgstr "Elimina pagine"
+
+msgid "Convert images to PDF"
+msgstr ""
 
 msgid "Edit a PDF"
 msgstr "Modifica un PDF"
@@ -184,6 +198,9 @@ msgstr "%s Organizza PDF"
 
 msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Unisci, ordina, ruota, elimina, estrai pagine"
+
+msgid "or an image"
+msgstr ""
 
 msgid "Touch a page to select it"
 msgstr "Clicca sulla pagina per selezionarla"
@@ -475,9 +492,6 @@ msgstr ""
 "\n"
 "Ho appena firmato il documento (%s) : %s"
 
-msgid "Download the PDF"
-msgstr "Scarica il PDF"
-
 msgid "Text to modify"
 msgstr "Testo da modificare"
 
@@ -528,6 +542,12 @@ msgstr "Organizza"
 
 msgid "Metadata"
 msgstr "Metadata"
+
+#~ msgid "The PDF must not exceed "
+#~ msgstr "Il PDF non deve superare "
+
+#~ msgid "Mb"
+#~ msgstr "Mb"
 
 #~ msgid "Compress PDF"
 #~ msgstr "Comprimi un PDF"

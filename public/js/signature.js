@@ -1067,7 +1067,7 @@ async function pageSignature(url) {
 
     if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
 
-        alert("Le PDF ne doit pas dépasser " + Math.round(maxSize/1024/1024) + " Mo");
+        alert("Le PDF ne doit pas dépasser " + convertOctet2MegoOctet(maxSize) + " Mo");
         document.getElementById('input_pdf_upload').value = "";
         return;
     }

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
               document.querySelector('#compressBtn').classList.remove('btn-primary');
               document.querySelector('#compressBtn').classList.add('btn-outline-primary');
               document.querySelector('#size_compressed').innerText = convertOctet2MegoOctet(blob.size);
-              document.querySelector('#pourcentage_compressed').innerText = 100 - Math.round((blob.size * 100)/ document.getElementById('input_pdf_upload').files[0].size);
+              document.querySelector('#pourcentage_compressed').innerText = document.querySelector('#pourcentage_compressed').dataset.templateText.replace("%s", 100 - Math.round((blob.size * 100)/ document.getElementById('input_pdf_upload').files[0].size));
               document.querySelector('#card_resultat').classList.remove('d-none');
 
               let dataTransfer = new DataTransfer();

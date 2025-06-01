@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   type: 'application/pdf'
               }));
               document.getElementById('input_pdf_compressed').files = dataTransfer.files;
+              document.querySelector('#downloadBtn').focus();
           } else {
               document.querySelector('#error_message').classList.remove('d-none');
               document.querySelector('#error_message').innerText = await response.text();

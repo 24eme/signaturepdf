@@ -3,7 +3,7 @@
 <head>
     <?php include('components/header.html.php'); ?>
     <title>Signature PDF - Signer et manipuler des PDF en ligne librement</title>
-    <meta name="description" content="Logiciel libre pour signer et manipuler des fichiers PDF">
+    <meta name="description" content="Signature PDF est un logiciel libre en ligne pour signer (seul ou à plusieurs), organiser ou compresser des fichiers PDF">
 </head>
 <body>
 <noscript>

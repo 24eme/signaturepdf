@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-01 22:48+0200\n"
-"PO-Revision-Date: 2025-05-29 13:01+0000\n"
+"PO-Revision-Date: 2025-06-03 16:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -23,7 +23,7 @@ msgid "en"
 msgstr "kab"
 
 msgid "PDF compression failed"
-msgstr ""
+msgstr "Tussda n PDF ur teddi ara"
 
 msgid "Your pdf is already optimized"
 msgstr ""
@@ -71,7 +71,7 @@ msgstr "Fren PDF"
 
 #, php-format
 msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgstr "Tiddi n PDF ur ilaq ara ad tɛeddi nnig %s Maṭ"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
@@ -92,7 +92,7 @@ msgstr "Tussda ɛlayen (taɣara taddayt)"
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s Maṭ"
 
 msgid "Compressed at %s%"
 msgstr ""
@@ -146,7 +146,7 @@ msgid "Delete pages"
 msgstr "Kkes isebtar"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "Aselket n tugniwin ɣer PDF"
 
 msgid "Edit a PDF"
 msgstr "Ẓreg a PDF"
@@ -200,7 +200,7 @@ msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Smezdi, smizwer, sezzi, kkes, tsuffeɣḍ-d isebtar"
 
 msgid "or an image"
-msgstr ""
+msgstr "neɣ ldi yiwet n tugna"
 
 msgid "Touch a page to select it"
 msgstr "Sit ɣef usebter i wakken ad t-tferneḍ"

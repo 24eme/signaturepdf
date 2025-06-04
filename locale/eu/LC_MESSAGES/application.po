@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-01 22:39+0200\n"
-"PO-Revision-Date: 2025-04-22 21:03+0000\n"
+"PO-Revision-Date: 2025-06-04 18:09+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
 "application/eu/>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid "en"
 msgstr "eu"
 
 msgid "PDF compression failed"
-msgstr ""
+msgstr "PDFa konprimatzeak huts egin du"
 
 msgid "Your pdf is already optimized"
 msgstr "PDFa lehendik optimizatuta dago"
@@ -73,7 +73,7 @@ msgstr "Aukeratu PDFa"
 
 #, php-format
 msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgstr "PDFak ezin ditu %s Mb baino gehiago izan"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
@@ -95,10 +95,10 @@ msgstr "Konpresio altua (kalitate txikiena)"
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s Mb"
 
 msgid "Compressed at %s%"
-msgstr ""
+msgstr "%s%(e)an konprimatuta"
 
 msgid "Download the PDF"
 msgstr "Deskargatu PDFa"
@@ -151,7 +151,7 @@ msgid "Delete pages"
 msgstr "Ezabatu orriak"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "Bihurtu irudiak PDFra"
 
 msgid "Edit a PDF"
 msgstr "Editatu PDFa"
@@ -205,7 +205,7 @@ msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Bateratu, sailkatu, biratu, ezabatu, erauzi orriak"
 
 msgid "or an image"
-msgstr ""
+msgstr "edo irudi bat"
 
 msgid "Touch a page to select it"
 msgstr "Ukitu orria hautatzeko"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-01 22:39+0200\n"
-"PO-Revision-Date: 2025-06-02 13:01+0000\n"
-"Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
+"PO-Revision-Date: 2025-06-05 18:01+0000\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
 "Language: it\n"
@@ -92,10 +92,10 @@ msgstr "Compressione alta (minima qualità)"
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s Mb"
 
 msgid "Compressed at %s%"
-msgstr ""
+msgstr "Compresso a %s%"
 
 msgid "Download the PDF"
 msgstr "Scarica il PDF"
@@ -146,7 +146,7 @@ msgid "Delete pages"
 msgstr "Elimina pagine"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "Convertire le immagini in PDF"
 
 msgid "Edit a PDF"
 msgstr "Modifica un PDF"
@@ -200,7 +200,7 @@ msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Unisci, ordina, ruota, elimina, estrai pagine"
 
 msgid "or an image"
-msgstr ""
+msgstr "o un'immagine"
 
 msgid "Touch a page to select it"
 msgstr "Clicca sulla pagina per selezionarla"

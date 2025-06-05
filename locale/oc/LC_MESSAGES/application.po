@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-01 22:39+0200\n"
-"PO-Revision-Date: 2025-04-28 12:01+0000\n"
+"PO-Revision-Date: 2025-06-02 05:44+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -23,7 +23,7 @@ msgid "en"
 msgstr "oc"
 
 msgid "PDF compression failed"
-msgstr ""
+msgstr "Fracàs de la compression del PDF"
 
 msgid "Your pdf is already optimized"
 msgstr "Lo PDF es ja optimizat"
@@ -71,7 +71,7 @@ msgstr "Causir un PDF"
 
 #, php-format
 msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgstr "La talha del PDF deu pas despassar %s Mo"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
@@ -92,10 +92,10 @@ msgstr "Compression fòrta (qualitat minimala)"
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s Mo"
 
 msgid "Compressed at %s%"
-msgstr ""
+msgstr "Compressat a %s%"
 
 msgid "Download the PDF"
 msgstr "Telecargar lo PDF"
@@ -146,7 +146,7 @@ msgid "Delete pages"
 msgstr "Suprimir de paginas"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "Convertir d’imatges en PDF"
 
 msgid "Edit a PDF"
 msgstr "Modificar un PDF"
@@ -200,7 +200,7 @@ msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Fusionar, triar, pivotar, suprimir, extraire de paginas"
 
 msgid "or an image"
-msgstr ""
+msgstr "o un imatge"
 
 msgid "Touch a page to select it"
 msgstr "Tocar una pagina per la seleccionar"

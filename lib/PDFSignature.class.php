@@ -196,25 +196,25 @@ class PDFSignature
         }
     }
 
-    public static function convertTextToFiligrane($text, $outputFile)
+    public static function addFiligrane($text, $pdf)
     {
-        // Création svg
-        // TODO
+        // Création texte watermark
+        $watermarkCommand = sprintf(
+            'magick -background None -fill "%s" -pointsize 20 label:"%s" -rotate -40 +repage -write mpr:TILE +delete ( %s_signe.pdf[0] -density 288 -fill mpr:TILE -draw "color 0,0 reset" ) %s_wm.pdf',
+            "#444E", $text, $pdf, $pdf);
+        shell_exec(escapeshellcmd($watermarkCommand));
 
-        // conversion du filigrane en pdf
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s",
-            escapeshellarg($outputFile.'_filigrane.pdf'),
-            escapeshellarg($outputFile.'_filigrane.svg')
-        ));
+        $applyWatermarkCommand = sprintf(
+            'pdftk %s_signe.pdf multistamp %s_wm.pdf output %s_with_watermark.pdf flatten',
+            $pdf, $pdf, $pdf
+        );
+        shell_exec(escapeshellcmd($applyWatermarkCommand));
 
-        // on applique le filigrane
-        shell_exec(sprintf("pdftk %s background %s output %s",
-            escapeshellarg($outputFile),
-            escapeshellarg($outputFile.'_filigrane.pdf'),
-            escapeshellarg($outputFile.'_withfiligrane.pdf')
-        ));
-
-        rename($outputFile.'_withfiligrane.pdf', $outputFile);
+        $flattenCommand = sprintf(
+            'magick -density 144 %s_with_watermark.pdf -resize 90%% -compress zip %s_signe.pdf',
+            $pdf, $pdf
+        );
+        shell_exec(escapeshellcmd($flattenCommand));
     }
 
     public function clean() {

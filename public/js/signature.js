@@ -757,6 +757,10 @@ function createEventsListener() {
         event.preventDefault();
     });
 
+    document.querySelector('input[name=watermark]').addEventListener('blur', function (e) {
+        setIsChanged(hasModifications || !!e.target.value)
+    })
+
     if(document.querySelector('#alert-signature-help')) {
         document.getElementById('btn-signature-help').addEventListener('click', function(event) {
             document.querySelector('#alert-signature-help').classList.remove('d-none');

@@ -459,28 +459,30 @@ function addObjectInCanvas(canvas, item) {
     return canvas.add(item);
 };
 
-function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
+function setIsChanged(changed) {
+    hasModifications = changed
+
     if(document.querySelector('#alert-signature-help')) {
-        document.querySelector('#alert-signature-help').classList.add('d-none');
+        document.querySelector('#alert-signature-help').classList.toggle('d-none', changed);
     }
     if(document.getElementById('save')) {
-        document.getElementById('save').removeAttribute('disabled');
+        document.getElementById('save').toggleAttribute('disabled', !changed);
     }
-
-    hasModifications = true;
-
     if(document.getElementById('save_mobile')) {
-        document.getElementById('save_mobile').removeAttribute('disabled');
+        document.getElementById('save_mobile').toggleAttribute('disabled', !changed);
     }
     if(document.getElementById('btn_download')) {
-        document.getElementById('btn_download').classList.remove('btn-outline-dark');
-        document.getElementById('btn_download').classList.add('btn-outline-secondary');
+        document.getElementById('btn_download').classList.toggle('btn-outline-dark', !changed);
+        document.getElementById('btn_download').classList.toggle('btn-outline-secondary', changed);
     }
     if(document.getElementById('btn_share')) {
-        document.getElementById('btn_share').classList.remove('btn-outline-dark');
-        document.getElementById('btn_share').classList.add('btn-outline-secondary');
+        document.getElementById('btn_share').classList.toggle('btn-outline-dark', !changed);
+        document.getElementById('btn_share').classList.toggle('btn-outline-secondary', changed);
     }
+}
 
+function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
+    setIsChanged(true)
 
     if(!height) {
         height = 100;

@@ -763,6 +763,7 @@ function createEventsListener() {
 
         input.classList.remove('d-none')
         div.classList.add('d-none')
+        input.querySelector('input').focus()
     })
     document.querySelector('input[name=watermark]').addEventListener('blur', function (e) {
         setIsChanged(hasModifications || !!e.target.value)

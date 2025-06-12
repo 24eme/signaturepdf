@@ -85,11 +85,11 @@
               </div>
 
               <div class="input-watermark-placeholder btn btn-outline-secondary w-100 text-start text-dark">
-                <span class="bi bi-droplet-half" id="watermark-addon"></span> Watermark
+                <span class="bi bi-droplet-half" id="watermark-addon"></span> <?php echo _("Watermark") ?>
               </div>
               <div class="input-group d-none">
                   <span class="input-group-text border-secondary"><i class="bi bi-droplet-half"></i></span>
-                  <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="Watermark" aria-label="Watermark" aria-describedby="watermark-addon" maxlength="20">
+                  <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="<?php echo _("Watermark") ?>" aria-label="Watermark" aria-describedby="watermark-addon" maxlength="20">
               </div>
 
               <div id="svg_list" class="d-grid gap-2 mt-2 mb-2 list-item-add"></div>

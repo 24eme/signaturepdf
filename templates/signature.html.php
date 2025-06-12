@@ -89,7 +89,7 @@
               </div>
               <div class="input-group d-none">
                   <span class="input-group-text border-secondary"><i class="bi bi-droplet-half"></i></span>
-                  <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="Watermark" aria-label="Watermark" aria-describedby="watermark-addon">
+                  <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="Watermark" aria-label="Watermark" aria-describedby="watermark-addon" maxlength="20">
               </div>
 
               <div id="svg_list" class="d-grid gap-2 mt-2 mb-2 list-item-add"></div>

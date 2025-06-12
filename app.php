@@ -181,7 +181,7 @@ $f3->route('POST /image2svg',
 $f3->route('POST /sign',
     function($f3) {
         $filename = null;
-        $filigrane = $f3->get('POST.filigrane');
+        $filigrane = $f3->get('POST.watermark');
         $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign_'.uniqid("", true));
         unlink($tmpfile);
         $svgFiles = [];

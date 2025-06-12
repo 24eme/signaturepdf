@@ -757,6 +757,13 @@ function createEventsListener() {
         event.preventDefault();
     });
 
+    document.querySelector('.input-watermark-placeholder').addEventListener('click', function (e) {
+        const div = e.target
+        const input = div.parentNode.querySelector('.input-group')
+
+        input.classList.remove('d-none')
+        div.classList.add('d-none')
+    })
     document.querySelector('input[name=watermark]').addEventListener('blur', function (e) {
         setIsChanged(hasModifications || !!e.target.value)
     })

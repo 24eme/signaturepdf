@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-13 12:41+0200\n"
+"POT-Creation-Date: 2025-06-13 15:05+0200\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -126,6 +126,9 @@ msgid "Allow multiple people to sign via a shared link"
 msgstr ""
 
 msgid "Sign with the server certificate"
+msgstr ""
+
+msgid "Add a watermark"
 msgstr ""
 
 msgid "Organize PDFs"

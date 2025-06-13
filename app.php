@@ -117,6 +117,15 @@ $f3->route('GET /signature',
             $f3->set('noSharingMode', true);
         }
 
+        if ($f3->exists('signature')) {
+            $retentions = [];
+            foreach ($f3->get('signature.retention') ?? [] as $retention) {
+                $r = explode(':', $retention);
+                $retentions[$r[0]] = $r[1];
+            }
+            $f3->set('signatureRetention', $retentions);
+        }
+
         $f3->set('activeTab', 'sign');
 
         echo View::instance()->render('signature.html.php');

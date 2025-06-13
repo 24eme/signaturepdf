@@ -198,7 +198,23 @@
                 <div class="modal-body">
                     <p><?php echo _("By enabling PDF sharing, you will be able to provide a link to the people of your choice so that they can sign this PDF."); ?></p>
                     <p><?php echo sprintf(_("%s This sharing requires the PDF to be transferred and stored on the server for future signers to access."), '<i class="bi bi-hdd-network"></i>'); ?></p>
-                    <p><?php echo sprintf(_("%s The PDF will be kept"), '<i class="bi bi-hourglass-split"></i>'); ?> <select name='duration' form='form_sharing'><option value='+1 year'><?php echo _("for one year"); ?></option><option value='+6 month'><?php echo _("for six months"); ?></option><option value='+1 month' selected='selected'><?php echo _("for one month"); ?></option><option value='+1 week'><?php echo _("for one week"); ?></option><option value='+1 day'><?php echo _("for one day"); ?></option><option value='+1 hour'><?php echo _("for one hour"); ?></option></select> <?php echo _("after the last signature."); ?></p>
+                    <p><?php echo sprintf(_("%s The PDF will be kept"), '<i class="bi bi-hourglass-split"></i>'); ?>
+                        <?php if (isset($signatureRetention)): ?>
+                            <select name='duration' form='form_sharing'>
+                                <?php foreach ($signatureRetention as $value => $text): ?>
+                                    <option value='<?php echo $value ?>'><?php echo _("$text"); ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        <?php else: ?>
+                            <select name='duration' form='form_sharing'>
+                                <option value='+1 year'><?php echo _("for one year"); ?></option>
+                                <option value='+6 month'><?php echo _("for six months"); ?></option>
+                                <option value='+1 month' selected='selected'><?php echo _("for one month"); ?></option>
+                                <option value='+1 week'><?php echo _("for one week"); ?></option>
+                                <option value='+1 day'><?php echo _("for one day"); ?></option>
+                                <option value='+1 hour'><?php echo _("for one hour"); ?></option>
+                            </select>
+                        <?php endif ?> <?php echo _("after the last signature."); ?></p>
                     <?php if ($PDF_STORAGE_ENCRYPTION): ?>
                         <p><i class="bi bi-lock-fill"></i> <input type="checkbox" id="checkbox_encryption" name="encryption" value="true" checked="checked" form='form_sharing'/>
                                 <label for="checkbox_encryption"><?php echo _("The PDF will be stored encrypted on the server"); ?></label>

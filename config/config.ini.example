@@ -29,3 +29,16 @@ PDF_STORAGE_PATH=/path/to/folder
 
 ; Enable the edition of local server pdf metadata
 ; PDF_LOCAL_PATH=/path/to/pdf/metadata/edition
+
+; Custom options for the signature page
+;[signature]
+
+; Enable custom retention period for shared PDF
+; This override the default retention periods
+; Warning: Text on the right of the colon will be translated according to the .po files
+;retention.0="+1 year:for one year"
+;retention.1="+6 months:for six months"
+;retention.2="+1 month:for one month"
+;retention.3="+1 week:for one week"
+;retention.4="+1 day:for one day"
+;retention.5="+1 hour:for one hour"

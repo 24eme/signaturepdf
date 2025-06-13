@@ -84,13 +84,15 @@
                   <label draggable="true" id="label_svg_check" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_check"><?php echo sprintf(_("%s Check box"), '<i class="bi bi-check-square"></i>'); ?></label>
               </div>
 
-              <div class="input-watermark-placeholder btn btn-outline-secondary w-100 text-start text-dark">
-                <span class="bi bi-droplet-half" id="watermark-addon"></span> <?php echo _("Watermark") ?>
-              </div>
-              <div class="input-group d-none">
-                  <span class="input-group-text border-secondary"><i class="bi bi-droplet-half"></i></span>
-                  <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="<?php echo _("Watermark") ?>" aria-label="Watermark" aria-describedby="watermark-addon" maxlength="20">
-              </div>
+              <?php if (! isset($hash)): ?>
+                  <div class="input-watermark-placeholder btn btn-outline-secondary w-100 text-start text-dark">
+                    <span class="bi bi-droplet-half" id="watermark-addon"></span> <?php echo _("Watermark") ?>
+                  </div>
+                  <div class="input-group d-none">
+                      <span class="input-group-text border-secondary"><i class="bi bi-droplet-half"></i></span>
+                      <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="<?php echo _("Watermark") ?>" aria-label="Watermark" aria-describedby="watermark-addon" maxlength="20">
+                  </div>
+              <?php endif ?>
 
               <div id="svg_list" class="d-grid gap-2 mt-2 mb-2 list-item-add"></div>
 

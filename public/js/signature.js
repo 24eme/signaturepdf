@@ -757,7 +757,7 @@ function createEventsListener() {
         event.preventDefault();
     });
 
-    document.querySelector('.input-watermark-placeholder').addEventListener('click', function (e) {
+    document.querySelector('.input-watermark-placeholder')?.addEventListener('click', function (e) {
         const div = e.target
         const input = div.parentNode.querySelector('.input-group')
 
@@ -765,7 +765,7 @@ function createEventsListener() {
         div.classList.add('d-none')
         input.querySelector('input').focus()
     })
-    document.querySelector('input[name=watermark]').addEventListener('keyup', function (e) {
+    document.querySelector('input[name=watermark]')?.addEventListener('keyup', function (e) {
         setIsChanged(hasModifications || !!e.target.value)
     })
 

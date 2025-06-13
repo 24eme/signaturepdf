@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 22:39+0200\n"
+"POT-Creation-Date: 2025-06-13 12:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -325,6 +325,9 @@ msgstr ""
 
 #, php-format
 msgid "%s Check box"
+msgstr ""
+
+msgid "Watermark"
 msgstr ""
 
 #, php-format

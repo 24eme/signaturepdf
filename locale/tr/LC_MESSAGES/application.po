@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 22:39+0200\n"
+"POT-Creation-Date: 2025-06-13 12:41+0200\n"
 "PO-Revision-Date: 2023-12-06 14:10+0000\n"
 "Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -331,6 +331,9 @@ msgstr ""
 #, php-format
 msgid "%s Check box"
 msgstr "%s Onay Kutusu Doldurma"
+
+msgid "Watermark"
+msgstr ""
 
 #, php-format
 msgid "%s Create an element"

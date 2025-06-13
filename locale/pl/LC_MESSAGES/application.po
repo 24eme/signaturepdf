@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 22:39+0200\n"
+"POT-Creation-Date: 2025-06-13 12:41+0200\n"
 "PO-Revision-Date: 2025-06-02 13:01+0000\n"
 "Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -330,6 +330,9 @@ msgstr ""
 
 #, php-format
 msgid "%s Check box"
+msgstr ""
+
+msgid "Watermark"
 msgstr ""
 
 #, php-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 22:39+0200\n"
+"POT-Creation-Date: 2025-06-13 12:41+0200\n"
 "PO-Revision-Date: 2024-10-14 07:49+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/signature-pdf/"
@@ -329,6 +329,9 @@ msgstr "Riscado"
 #, php-format
 msgid "%s Check box"
 msgstr "%s Caixa de selección"
+
+msgid "Watermark"
+msgstr ""
 
 #, php-format
 msgid "%s Create an element"

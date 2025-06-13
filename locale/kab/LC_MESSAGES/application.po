@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-01 22:48+0200\n"
+"POT-Creation-Date: 2025-06-13 12:41+0200\n"
 "PO-Revision-Date: 2025-06-03 16:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -331,6 +331,9 @@ msgstr "Jerreḍ"
 #, php-format
 msgid "%s Check box"
 msgstr "%s Tabewwaḍt n uṛcam"
+
+msgid "Watermark"
+msgstr ""
 
 #, php-format
 msgid "%s Create an element"

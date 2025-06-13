@@ -765,7 +765,7 @@ function createEventsListener() {
         div.classList.add('d-none')
         input.querySelector('input').focus()
     })
-    document.querySelector('input[name=watermark]').addEventListener('blur', function (e) {
+    document.querySelector('input[name=watermark]').addEventListener('keyup', function (e) {
         setIsChanged(hasModifications || !!e.target.value)
     })
 

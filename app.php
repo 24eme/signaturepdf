@@ -119,9 +119,8 @@ $f3->route('GET /signature',
 
         if ($f3->exists('signature')) {
             $retentions = [];
-            foreach ($f3->get('signature.retention') ?? [] as $retention) {
-                $r = explode(':', $retention);
-                $retentions[$r[0]] = $r[1];
+            foreach ($f3->get('signature.retention') ?? [] as $key => $text) {
+                $retentions[$key] = $text;
             }
             $f3->set('signatureRetention', $retentions);
         }

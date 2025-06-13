@@ -767,15 +767,6 @@ function createEventsListener() {
     })
     document.querySelector('input[name=watermark]').addEventListener('blur', function (e) {
         setIsChanged(hasModifications || !!e.target.value)
-
-        const input = e.target
-        input.classList.remove('border-success')
-        input.classList.add('border-secondary')
-
-        if (input.value) {
-            input.classList.remove('border-secondary')
-            input.classList.add('border-success')
-        }
     })
 
     if(document.querySelector('#alert-signature-help')) {

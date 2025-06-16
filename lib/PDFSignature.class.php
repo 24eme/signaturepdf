@@ -200,9 +200,9 @@ class PDFSignature
     {
         // Création texte watermark
         $watermarkCommand = sprintf(
-            'magick -background None -fill "%s" -pointsize 20 label:"%s" -rotate -40 +repage -write mpr:TILE +delete ( %s_signe.pdf[0] -density 288 -fill mpr:TILE -draw "color 0,0 reset" ) %s_wm.pdf',
-            "#444E", $text, $pdf, $pdf);
-        shell_exec(escapeshellcmd($watermarkCommand));
+            'convert -density 144 -units PixelsPerInch -background None -channel RGBA -fill "#0007" -pointsize 20 label:%s -rotate -40 +repage -write mpr:TILE +delete \( %s_signe.pdf[0] -fill mpr:TILE -draw "color 0,0 reset" \) %s_wm.pdf',
+            escapeshellarg($text), escapeshellarg($pdf), escapeshellarg($pdf));
+        shell_exec($watermarkCommand);
 
         $applyWatermarkCommand = sprintf(
             'pdftk %s_signe.pdf multistamp %s_wm.pdf output %s_with_watermark.pdf flatten',
@@ -211,7 +211,7 @@ class PDFSignature
         shell_exec(escapeshellcmd($applyWatermarkCommand));
 
         $flattenCommand = sprintf(
-            'magick -density 144 %s_with_watermark.pdf -resize 90%% -compress zip %s_signe.pdf',
+            'convert -density 144 -units PixelsPerInch %s_with_watermark.pdf -compress zip %s_signe.pdf',
             $pdf, $pdf
         );
         shell_exec(escapeshellcmd($flattenCommand));

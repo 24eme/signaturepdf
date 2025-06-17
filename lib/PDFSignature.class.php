@@ -198,9 +198,12 @@ class PDFSignature
 
     public static function addFiligrane($text, $pdf)
     {
+        // check version of imagick
+        $command = (null === shell_exec("command -v magick")) ? 'convert' : 'magick';
+
         // Création texte watermark
         $watermarkCommand = sprintf(
-            'convert -density 144 -units PixelsPerInch pdf:%s_signe.pdf -write mpr:base \
+            '%s -density 144 -units PixelsPerInch pdf:%s_signe.pdf -write mpr:base \
                 \( -density 144 -units PixelsPerInch -background None -fill "#0007" -pointsize 20 label:%s -rotate -40 +repage -write mpr:TILE +delete \) \
                 \( -clone 0 -tile mpr:TILE -draw "color 0,0 reset" -write mpr:TILES -delete 0 \) \
                 -delete 0--1 \
@@ -210,7 +213,7 @@ class PDFSignature
                 -sharpen 0x1.0 \
                 -compress zip \
                 pdf:%s_signe.pdf'
-        , escapeshellarg($pdf), escapeshellarg($text), escapeshellarg($pdf));
+        , $command, escapeshellarg($pdf), escapeshellarg($text), escapeshellarg($pdf));
 
         shell_exec($watermarkCommand);
     }

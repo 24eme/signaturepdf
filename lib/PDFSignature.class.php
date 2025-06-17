@@ -200,21 +200,19 @@ class PDFSignature
     {
         // Création texte watermark
         $watermarkCommand = sprintf(
-            'convert -density 144 -units PixelsPerInch -background None -channel RGBA -fill "#0007" -pointsize 20 label:%s -rotate -40 +repage -write mpr:TILE +delete \( %s_signe.pdf[0] -fill mpr:TILE -draw "color 0,0 reset" \) %s_wm.pdf',
-            escapeshellarg($text), escapeshellarg($pdf), escapeshellarg($pdf));
+            'convert -density 144 -units PixelsPerInch pdf:%s_signe.pdf -write mpr:base \
+                \( -density 144 -units PixelsPerInch -background None -fill "#0007" -pointsize 20 label:%s -rotate -40 +repage -write mpr:TILE +delete \) \
+                \( -clone 0 -tile mpr:TILE -draw "color 0,0 reset" -write mpr:TILES -delete 0 \) \
+                -delete 0--1 \
+                mpr:TILES null: mpr:base \
+                -compose Overlay -layers composite \
+                -density 144 -units PixelsPerInch \
+                -sharpen 0x1.0 \
+                -compress zip \
+                pdf:%s_signe.pdf'
+        , escapeshellarg($pdf), escapeshellarg($text), escapeshellarg($pdf));
+
         shell_exec($watermarkCommand);
-
-        $applyWatermarkCommand = sprintf(
-            'pdftk %s_signe.pdf multistamp %s_wm.pdf output %s_with_watermark.pdf flatten',
-            $pdf, $pdf, $pdf
-        );
-        shell_exec(escapeshellcmd($applyWatermarkCommand));
-
-        $flattenCommand = sprintf(
-            'convert -density 144 -units PixelsPerInch %s_with_watermark.pdf -compress zip %s_signe.pdf',
-            $pdf, $pdf
-        );
-        shell_exec(escapeshellcmd($flattenCommand));
     }
 
     public function clean() {

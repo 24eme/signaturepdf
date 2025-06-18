@@ -17,7 +17,8 @@ let menuOffcanvas = null;
 let currentCursor = null;
 let signaturePad = null;
 const penColorPicker = document.getElementById('penColorPicker');
-let penColor = '#000000'
+let penColor = localStorage.getItem('penColor') ?? '#000000'
+penColorPicker.value = penColor
 let nblayers = null;
 let hasModifications = false;
 let currentTextScale = 1;
@@ -946,6 +947,7 @@ function createEventsListener() {
     penColorPicker.addEventListener('input', function (e) {
         e.preventDefault()
         penColor = penColorPicker.value
+        localStorage.setItem('penColor', penColor)
     })
 
     window.addEventListener('beforeunload', function(event) {

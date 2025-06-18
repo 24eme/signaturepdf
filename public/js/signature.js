@@ -16,6 +16,8 @@ let menu = null;
 let menuOffcanvas = null;
 let currentCursor = null;
 let signaturePad = null;
+const penColorPicker = document.getElementById('penColorPicker');
+let penColor = '#000000'
 let nblayers = null;
 let hasModifications = false;
 let currentTextScale = 1;
@@ -501,7 +503,8 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
         top: y - 20,
         fontSize: 20,
         direction: direction,
-        fontFamily: 'Monospace'
+        fontFamily: 'Monospace',
+        fill: penColor
       });
 
       addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
@@ -518,8 +521,8 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 
     if(item == 'strikethrough') {
         let line = new fabric.Line([x, y, x + 250, y], {
-          fill: 'black',
-          stroke: 'black',
+          fill: penColor,
+          stroke: penColor,
           lockScalingFlip: true,
           strokeWidth: 2,
           padding: 10,
@@ -545,6 +548,8 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
         }
         svg.top = y - (svg.getScaledHeight() / 2);
         svg.left = x - (svg.getScaledWidth() / 2);
+
+        svg.fill = penColor
 
         addObjectInCanvas(canvas, svg);
     });
@@ -937,6 +942,11 @@ function createEventsListener() {
     document.getElementById('btn-zoom-increase').addEventListener('click', function() {
         zoomChange(1)
     });
+
+    penColorPicker.addEventListener('input', function (e) {
+        e.preventDefault()
+        penColor = penColorPicker.value
+    })
 
     window.addEventListener('beforeunload', function(event) {
         if(!hasModifications) {

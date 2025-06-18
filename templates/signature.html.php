@@ -181,8 +181,9 @@
                 </div>
                 <input id="input-svg-type" type="hidden" />
           </div>
-          <div class="modal-footer d-block">
+          <div class="modal-footer justify-content-between">
             <button tabindex="-1" type="button" class="btn btn-light col-4" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
+            <input type="color" id="penColorPicker" class="form-control form-control-color">
             <button id="btn_modal_ajouter" type="button" disabled="disabled" data-bs-dismiss="modal" class="btn btn-primary float-end col-4"><span id="btn_modal_ajouter_spinner" class="spinner-border spinner-border-sm d-none"></span><span id="btn_modal_ajouter_check" class="bi bi-check-circle"></span> <?php echo _("Create"); ?></button>
           </div>
         </div>

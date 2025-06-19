@@ -973,14 +973,14 @@ function createSignaturePad() {
         minWidth: 1,
         maxWidth: 2
     });
-    signaturePad.addEventListener('endStroke', function(){
+    signaturePad.addEventListener('endStroke', debounce(function(){
         const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
             type: 'image/png'
         });
         let data = new FormData();
         data.append('file', file);
         uploadSVG(data);
-    });
+    }), 500);
 };
 
 async function getPDFBlobFromCache(cacheUrl) {

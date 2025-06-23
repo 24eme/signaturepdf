@@ -781,7 +781,7 @@ function createEventsListener() {
         setIsChanged(hasModifications || !!e.target.value)
 
         canvasEditions.forEach(function (canvas) {
-            const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0007"})
+            const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009"})
             const overlay = new fabric.Rect({
                 fill: new fabric.Pattern({source: text.toCanvasElement(), repeat: 'repeat'}),
                 height: canvas.height,

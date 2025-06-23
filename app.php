@@ -174,7 +174,7 @@ $f3->route('POST /image2svg',
 
         shell_exec(sprintf("convert -background white -flatten %s %s", $imageFile, $imageFile.".bmp"));
         shell_exec(sprintf("mkbitmap -x -f 8 %s -o %s", $imageFile.".bmp", $imageFile.".bpm"));
-        shell_exec(sprintf("potrace --svg %s -o %s", $imageFile.".bpm", $imageFile.".svg"));
+        shell_exec(sprintf("potrace --flat --svg %s -o %s", $imageFile.".bpm", $imageFile.".svg"));
 
         header('Content-Type: image/svg+xml');
         echo file_get_contents($imageFile.".svg");

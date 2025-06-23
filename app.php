@@ -228,7 +228,7 @@ $f3->route('POST /sign',
         PDFSignature::createPDFFromSvg($svgFiles, $tmpfile.'.svg.pdf');
         PDFSignature::addSvgToPDF($tmpfile.'.pdf', $tmpfile.'.svg.pdf', $tmpfile.'_signe.pdf');
         if ($filigrane) {
-            PDFSignature::addFiligrane($filigrane, $tmpfile);
+            PDFSignature::flatten($tmpfile);
         }
 
         Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);

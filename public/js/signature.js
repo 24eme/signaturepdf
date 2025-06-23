@@ -777,9 +777,20 @@ function createEventsListener() {
         div.classList.add('d-none')
         input.querySelector('input').focus()
     })
-    document.querySelector('input[name=watermark]')?.addEventListener('keyup', function (e) {
+    document.querySelector('input[name=watermark]')?.addEventListener('keyup', debounce(function (e) {
         setIsChanged(hasModifications || !!e.target.value)
-    })
+
+        canvasEditions.forEach(function (canvas) {
+            const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0007"})
+            const overlay = new fabric.Rect({
+                fill: new fabric.Pattern({source: text.toCanvasElement(), repeat: 'repeat'}),
+                height: canvas.height,
+                width: canvas.width
+            })
+
+            canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas))
+        })
+    }, 750))
 
     if(document.querySelector('#alert-signature-help')) {
         document.getElementById('btn-signature-help').addEventListener('click', function(event) {

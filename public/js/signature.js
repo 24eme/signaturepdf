@@ -815,10 +815,24 @@ function createEventsListener() {
         div.classList.add('d-none')
         input.querySelector('input').focus()
     })
-    document.querySelector('input[name=watermark]')?.addEventListener('keyup', function (e) {
+
+    document.querySelector('input[name=watermark]')?.addEventListener('keyup', debounce(function (e) {
         setIsChanged(hasModifications || !!e.target.value)
         updateFlatten();
-    })
+        canvasEditions.forEach(function (canvas) {
+                // Pourquoi 27 : 40 / 1.5 = 26.6666
+                //      fontSize ^    ^ currentScale par défaut
+                // Comme ça le texte de l'overlay ne bouge pas au zoom
+            const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
+            const overlay = new fabric.Rect({
+                fill: new fabric.Pattern({source: text.toCanvasElement(), repeat: 'repeat'}),
+                height: canvas.height,
+                width: canvas.width
+            })
+
+            canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas))
+        })
+    }, 750))
 
     if(document.querySelector('#alert-signature-help')) {
         document.getElementById('btn-signature-help').addEventListener('click', function(event) {
@@ -1017,7 +1031,7 @@ function createSignaturePad() {
         let data = new FormData();
         data.append('file', file);
         uploadSVG(data);
-    }), 500);
+    }, 500));
 };
 
 async function getPDFBlobFromCache(cacheUrl) {

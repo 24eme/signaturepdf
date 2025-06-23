@@ -133,6 +133,9 @@ async function loadPDF(pdfBlob) {
                   if (event.target instanceof fabric.Line) {
                       return;
                   }
+                  if (event.target instanceof fabric.Rect) {
+                      return;
+                  }
                   if(event.transform.action == "scaleX") {
                       event.target.scaleY = event.target.scaleX;
                   }
@@ -273,7 +276,7 @@ function svgChange(input, event) {
 
     let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
-    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "strikethrough") {
+    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "strikethrough" && input_selected.value != "rectangle") {
         input_selected = null;
     }
 
@@ -439,6 +442,9 @@ function deleteActiveObject() {
     canvasEditions.forEach(function(canvasEdition, index) {
         canvasEdition.getActiveObjects().forEach(function(activeObject) {
             canvasEdition.remove(activeObject);
+            if(activeObject.type == "rect") {
+                updateFlatten();
+            }
         });
     })
 };
@@ -467,6 +473,21 @@ function addObjectInCanvas(canvas, item) {
 
     return canvas.add(item);
 };
+
+function updateFlatten() {
+    let flatten = Boolean(document.querySelector('input[name=watermark]').value);
+    canvasEditions.forEach(function(canvasEdition, index) {
+        canvasEdition.getObjects().forEach(function(object) {
+            if(object.type == "rect") {
+                flatten = true;
+            }
+        });
+    })
+    document.querySelector('input[name=flatten]').checked = flatten;
+    if(document.getElementById('save_flatten_indicator')) {
+        document.getElementById('save_flatten_indicator').classList.toggle('invisible', !flatten);
+    }
+}
 
 function setIsChanged(changed) {
     hasModifications = changed
@@ -531,6 +552,23 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 
         addObjectInCanvas(canvas, line).setActiveObject(line);
 
+        return;
+    }
+
+    if(item == 'rectangle') {
+        let rect = new fabric.Rect({
+          left: x,
+          top: y,
+          width: 200,
+          height: 100,
+          fill: '#000',
+          lockScalingFlip: true
+        });
+        rect.setControlsVisibility({ tl: false, tr: false, bl: false, br: false,})
+
+        addObjectInCanvas(canvas, rect).setActiveObject(rect);
+
+        updateFlatten();
         return;
     }
 
@@ -779,6 +817,7 @@ function createEventsListener() {
     })
     document.querySelector('input[name=watermark]')?.addEventListener('keyup', function (e) {
         setIsChanged(hasModifications || !!e.target.value)
+        updateFlatten();
     })
 
     if(document.querySelector('#alert-signature-help')) {
@@ -1167,7 +1206,9 @@ const toolBox = (function () {
         _colorpicker.addEventListener('input', function (e) {
             target.set({ fill: e.target.value })
             target.canvas.requestRenderAll()
-            storePenColor(e.target.value)
+            if(target.type != "rect") {
+                storePenColor(e.target.value)
+            }
         })
 
         _colorpicker.click()

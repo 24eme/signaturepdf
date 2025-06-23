@@ -978,7 +978,7 @@ function createSignaturePad() {
         let data = new FormData();
         data.append('file', file);
         uploadSVG(data);
-    }), 500);
+    }, 500));
 };
 
 async function getPDFBlobFromCache(cacheUrl) {

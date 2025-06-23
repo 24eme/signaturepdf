@@ -781,7 +781,10 @@ function createEventsListener() {
         setIsChanged(hasModifications || !!e.target.value)
 
         canvasEditions.forEach(function (canvas) {
-            const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009"})
+            // Pourquoi 27 : 40 / 1.5 = 26.6666
+            //      fontSize ^    ^ currentScale par défaut
+            // Comme ça le texte de l'overlay ne bouge pas au zoom
+            const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
             const overlay = new fabric.Rect({
                 fill: new fabric.Pattern({source: text.toCanvasElement(), repeat: 'repeat'}),
                 height: canvas.height,

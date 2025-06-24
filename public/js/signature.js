@@ -819,18 +819,25 @@ function createEventsListener() {
     document.querySelector('input[name=watermark]')?.addEventListener('keyup', debounce(function (e) {
         setIsChanged(hasModifications || !!e.target.value)
         updateFlatten();
-        canvasEditions.forEach(function (canvas) {
-                // Pourquoi 27 : 40 / 1.5 = 26.6666
-                //      fontSize ^    ^ currentScale par défaut
-                // Comme ça le texte de l'overlay ne bouge pas au zoom
-            const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
-            const overlay = new fabric.Rect({
-                fill: new fabric.Pattern({source: text.toCanvasElement(), repeat: 'repeat'}),
-                height: canvas.height,
-                width: canvas.width
-            })
 
-            canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas))
+        // Pourquoi 27 : 40 / 1.5 = 26.6666
+        //      fontSize ^    ^ currentScale par défaut
+        // Comme ça le texte de l'overlay ne bouge pas au zoom
+        const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
+        const overlay = new fabric.Rect({
+            fill: new fabric.Pattern({
+                source: text.toCanvasElement(),
+            }),
+        })
+
+        canvasEditions.forEach(function (canvas) {
+            overlay.height = canvas.height
+            overlay.width = canvas.width
+
+            canvas.objectCaching = false
+            canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas), {
+                objectCaching: false
+            })
         })
     }, 750))
 

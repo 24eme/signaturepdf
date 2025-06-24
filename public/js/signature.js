@@ -476,13 +476,13 @@ function addObjectInCanvas(canvas, item) {
 
 function updateFlatten() {
     let flatten = Boolean(document.querySelector('input[name=watermark]').value);
-    canvasEditions.forEach(function(canvasEdition, index) {
-        canvasEdition.getObjects().forEach(function(object) {
-            if(object.type == "rect") {
-                flatten = true;
-            }
-        });
+
+    flatten = flatten || canvasEditions.some(function (canvas) {
+        return canvas.getObjects().some(function (object) {
+            return object.type === "rect"
+        })
     })
+
     document.querySelector('input[name=flatten]').checked = flatten;
     if(document.getElementById('save_flatten_indicator')) {
         document.getElementById('save_flatten_indicator').classList.toggle('invisible', !flatten);

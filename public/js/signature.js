@@ -474,6 +474,27 @@ function addObjectInCanvas(canvas, item) {
     return canvas.add(item);
 };
 
+function updateWatermark() {
+    const text = new fabric.Text(document.querySelector('input[name=watermark]').value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
+    text.scale = 0.
+    const overlay = new fabric.Rect({
+        fill: new fabric.Pattern({
+            source: text.toCanvasElement(),
+        }),
+    })
+
+    canvasEditions.forEach(function (canvas) {
+        overlay.height = canvas.height
+        overlay.width = canvas.width
+
+        canvas.objectCaching = false
+        canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas), {
+            objectCaching: false
+        })
+    })
+}
+
+
 function updateFlatten() {
     let flatten = Boolean(document.querySelector('input[name=watermark]').value);
 
@@ -596,6 +617,7 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 function autoZoom() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizePDF, 100);
+    updateWatermark();
 };
 
 function zoomChange(inOrOut) {
@@ -681,6 +703,8 @@ function resizePDF(scale = 'auto') {
             resizeTimeout = null;
         });
     });
+
+    updateWatermark();
 };
 
 function createEventsListener() {

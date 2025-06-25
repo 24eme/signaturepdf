@@ -29,6 +29,7 @@
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-people-fill"></i> <?php echo _("Allow multiple people to sign via a shared link") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-patch-check"></i> <?php echo _("Sign with the server certificate") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-droplet-half"></i> <?php echo _("Add a watermark") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-bounding-box"></i> <?php echo _("Redact areas") ?></a>
         </div>
         </div>
     </div>

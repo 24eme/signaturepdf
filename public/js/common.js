@@ -259,3 +259,15 @@ async function imageToPdf(file) {
 function convertOctet2MegoOctet(nbOctet) {
     return (Math.round(nbOctet/1000/1000*100)/100).toFixed(2);
 }
+
+function debounce(callback, delay){
+    let timer;
+    return function(){
+        const args = arguments;
+        const context = this;
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+            callback.apply(context, args);
+        }, delay)
+    }
+}

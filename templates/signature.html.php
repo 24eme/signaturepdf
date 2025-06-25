@@ -83,14 +83,17 @@
                   <input type="radio" class="btn-check" id="radio_svg_check" data-height="18" name="svg_2_add" autocomplete="off" value="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktY2hlY2stbGciIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTEyLjczNiAzLjk3YS43MzMuNzMzIDAgMCAxIDEuMDQ3IDBjLjI4Ni4yODkuMjkuNzU2LjAxIDEuMDVMNy44OCAxMi4wMWEuNzMzLjczMyAwIDAgMS0xLjA2NS4wMkwzLjIxNyA4LjM4NGEuNzU3Ljc1NyAwIDAgMSAwLTEuMDYuNzMzLjczMyAwIDAgMSAxLjA0NyAwbDMuMDUyIDMuMDkzIDUuNC02LjQyNWEuMjQ3LjI0NyAwIDAgMSAuMDItLjAyMloiLz4KPC9zdmc+Cg==">
                   <label draggable="true" id="label_svg_check" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_check"><?php echo sprintf(_("%s Check box"), '<i class="bi bi-check-square"></i>'); ?></label>
               </div>
-
               <?php if (! isset($hash)): ?>
+                  <div class="d-grid gap-2 mb-2 list-item-add">
+                      <input type="radio" class="btn-check" id="radio_svg_rectangle" name="svg_2_add" autocomplete="off" value="rectangle" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktYm91bmRpbmctYm94IiB2aWV3Qm94PSIwIDAgMTYgMTYiPg0KICA8cGF0aCBkPSJNNSAyVjBIMHY1aDJ2NkgwdjVoNXYtMmg2djJoNXYtNWgtMlY1aDJWMGgtNXYyem02IDF2MmgydjZoLTJ2Mkg1di0ySDNWNWgyVjN6bTEtMmgzdjNoLTN6bTMgMTF2M2gtM3YtM3pNNCAxNUgxdi0zaDN6TTEgNFYxaDN2M3oiLz4NCjwvc3ZnPg==">
+                      <label draggable="true" id="label_svg_rectangle" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_rectangle"><i class="bi bi-bounding-box"></i> <?php echo _("Redaction area"); ?></label>
+                  </div>
                   <div class="input-watermark-placeholder btn btn-outline-secondary w-100 text-start text-dark">
                     <span class="bi bi-droplet-half" id="watermark-addon"></span> <?php echo _("Watermark") ?>
                   </div>
                   <div class="input-group d-none">
                       <span class="input-group-text border-secondary"><i class="bi bi-droplet-half"></i></span>
-                      <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="<?php echo _("Watermark") ?>" aria-label="Watermark" aria-describedby="watermark-addon" maxlength="30">
+                      <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="<?php echo _("Watermark") ?>" aria-label="Watermark" aria-describedby="watermark-addon">
                   </div>
               <?php endif ?>
 
@@ -107,8 +110,9 @@
                   <form id="form_pdf" action="<?php echo $REVERSE_PROXY_URL; ?>/sign" method="post" enctype="multipart/form-data" class="d-none d-sm-none d-md-block">
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
-                        <button class="btn btn-primary w-100 mt-2" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> <?php echo _("Download the signed PDF"); ?></button>
-                  </form>
+                        <input name="flatten" type="checkbox" value="1" class="d-none" />
+                        <button class="btn btn-primary w-100 mt-2 w-100" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> <?php echo _("Download the signed PDF"); ?> <i id="save_flatten_indicator" class="bi bi-layers-half opacity-50 float-end invisible" title="<?php echo _("The PDF will be flattened") ?>"></i></button>
+                </form>
                 <?php elseif(!isset($noSharingMode)): ?>
                   <div class="d-none d-sm-none d-md-block position-relative">
                       <a id="btn-signature-help" class="position-absolute top-0 end-0 text-dark" href="" style="z-index: 5;"><i class="bi bi-question-circle"></i></a>
@@ -181,8 +185,9 @@
                 </div>
                 <input id="input-svg-type" type="hidden" />
           </div>
-          <div class="modal-footer d-block">
+          <div class="modal-footer justify-content-between">
             <button tabindex="-1" type="button" class="btn btn-light col-4" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
+            <input type="color" id="penColorPicker" class="form-control form-control-color">
             <button id="btn_modal_ajouter" type="button" disabled="disabled" data-bs-dismiss="modal" class="btn btn-primary float-end col-4"><span id="btn_modal_ajouter_spinner" class="spinner-border spinner-border-sm d-none"></span><span id="btn_modal_ajouter_check" class="bi bi-check-circle"></span> <?php echo _("Create"); ?></button>
           </div>
         </div>

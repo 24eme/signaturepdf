@@ -174,7 +174,7 @@ $f3->route('POST /image2svg',
 
         shell_exec(sprintf("convert -background white -flatten %s %s", $imageFile, $imageFile.".bmp"));
         shell_exec(sprintf("mkbitmap -x -f 8 %s -o %s", $imageFile.".bmp", $imageFile.".bpm"));
-        shell_exec(sprintf("potrace --svg %s -o %s", $imageFile.".bpm", $imageFile.".svg"));
+        shell_exec(sprintf("potrace --flat --svg %s -o %s", $imageFile.".bpm", $imageFile.".svg"));
 
         header('Content-Type: image/svg+xml');
         echo file_get_contents($imageFile.".svg");
@@ -189,7 +189,6 @@ $f3->route('POST /image2svg',
 $f3->route('POST /sign',
     function($f3) {
         $filename = null;
-        $filigrane = $f3->get('POST.watermark');
         $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_sign_'.uniqid("", true));
         unlink($tmpfile);
         $svgFiles = [];
@@ -227,8 +226,8 @@ $f3->route('POST /sign',
 
         PDFSignature::createPDFFromSvg($svgFiles, $tmpfile.'.svg.pdf');
         PDFSignature::addSvgToPDF($tmpfile.'.pdf', $tmpfile.'.svg.pdf', $tmpfile.'_signe.pdf');
-        if ($filigrane) {
-            PDFSignature::addFiligrane($filigrane, $tmpfile);
+        if ($f3->get('POST.flatten')) {
+            PDFSignature::flatten($tmpfile);
         }
 
         Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);

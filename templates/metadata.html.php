@@ -2,6 +2,7 @@
 <html lang="<?php echo $TRANSLATION_LANGUAGE ?>" dir="<?php echo $DIRECTION_LANGUAGE ?>" style="direction: <?php echo $DIRECTION_LANGUAGE ?>;">
 <head>
     <?php include('components/header.html.php'); ?>
+    <link href="<?php echo $REVERSE_PROXY_URL; ?>/css/pdf_viewer.css" rel="stylesheet">
     <title>Signature PDF - Éditer les métadonnées</title>
     <meta name="description" content="Logiciel libre en ligne qui permet d'jouter, modifier ou supprimer les métadonnées d'un PDF">
 </head>

@@ -81,14 +81,34 @@ async function pageRender(pageIndex) {
   let scaleWidth = sizeWidth / viewport.width;
   let viewportWidth = page.getViewport({scale: scaleWidth });
 
+  document.documentElement.style.setProperty('--scale-factor', scaleWidth) // needed to scale the textLayer
+                                                                           // to the canvas size (var used in style attribute)
+
   viewport = viewportWidth;
 
-  let canvasPDF = document.createElement('canvas');
-  canvasPDF.classList.add('shadow-sm');
-  document.getElementById('container-pages').appendChild(canvasPDF);
-  let context = canvasPDF.getContext('2d');
+  const containerPagePDF = document.createElement('div')
+  const canvasPDF = document.createElement('canvas')
+  const wrapperPDF = document.createElement('div')
+  const textPDF = document.createElement('div')
+
+  document.getElementById('container-pages').appendChild(containerPagePDF)
+  containerPagePDF.appendChild(wrapperPDF)
+  wrapperPDF.appendChild(canvasPDF)
+  wrapperPDF.appendChild(textPDF)
+
+  const context = canvasPDF.getContext('2d')
+
   canvasPDF.height = viewport.height;
   canvasPDF.width = viewport.width;
+  canvasPDF.classList.add('shadow-sm');
+
+  containerPagePDF.classList.add('page')
+  containerPagePDF.setAttribute('id', 'container-page-'+pageIndex)
+
+  wrapperPDF.classList.add('canvasWrapper');
+  wrapperPDF.style.position = 'relative'
+
+  textPDF.classList.add('textLayer')
 
   if(pdfRenderTasks[pageIndex]) {
     pdfRenderTasks[pageIndex].cancel();
@@ -97,6 +117,18 @@ async function pageRender(pageIndex) {
     canvasContext: context,
     viewport: viewport,
   });
+
+  pdfRenderTasks[pageIndex].promise.then(function () {
+    return page.getTextContent()
+  }).then(function (textContent) {
+      const textLayer = new pdfjsLib.TextLayer({
+          textContentSource: textContent,
+          viewport: viewport,
+          container: textPDF,
+      });
+
+      textLayer.render()
+  })
 }
 
 function addMetadata(key, value, type, focus) {

@@ -16,6 +16,8 @@ let menu = null;
 let menuOffcanvas = null;
 let currentCursor = null;
 let signaturePad = null;
+const penColorPicker = document.getElementById('penColorPicker');
+let penColor = localStorage.getItem('penColor') ?? '#000000'
 let nblayers = null;
 let hasModifications = false;
 let currentTextScale = 1;
@@ -131,6 +133,9 @@ async function loadPDF(pdfBlob) {
                   if (event.target instanceof fabric.Line) {
                       return;
                   }
+                  if (event.target instanceof fabric.Rect) {
+                      return;
+                  }
                   if(event.transform.action == "scaleX") {
                       event.target.scaleY = event.target.scaleX;
                   }
@@ -156,6 +161,13 @@ async function loadPDF(pdfBlob) {
                    }
                   const textLinesMaxWidth = event.target.textLines.reduce((max, _, i) => Math.max(max, event.target.getLineWidth(i)), 0);
                   event.target.set({width: textLinesMaxWidth});
+              });
+              canvasEdition.on("selection:created", function(event) {
+                  if (event.selected.length > 1 || event.selected.length === 0) {
+                      return;
+                  }
+
+                  toolBox.init(event.selected[0])
               });
               canvasEditions.push(canvasEdition);
             });
@@ -264,7 +276,7 @@ function svgChange(input, event) {
 
     let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
-    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "strikethrough") {
+    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "strikethrough" && input_selected.value != "rectangle") {
         input_selected = null;
     }
 
@@ -430,6 +442,9 @@ function deleteActiveObject() {
     canvasEditions.forEach(function(canvasEdition, index) {
         canvasEdition.getActiveObjects().forEach(function(activeObject) {
             canvasEdition.remove(activeObject);
+            if(activeObject.type == "rect") {
+                updateFlatten();
+            }
         });
     })
 };
@@ -458,6 +473,42 @@ function addObjectInCanvas(canvas, item) {
 
     return canvas.add(item);
 };
+
+function updateWatermark() {
+    const text = new fabric.Text(document.querySelector('input[name=watermark]').value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
+    text.scale = 0.
+    const overlay = new fabric.Rect({
+        fill: new fabric.Pattern({
+            source: text.toCanvasElement(),
+        }),
+    })
+
+    canvasEditions.forEach(function (canvas) {
+        overlay.height = canvas.height
+        overlay.width = canvas.width
+
+        canvas.objectCaching = false
+        canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas), {
+            objectCaching: false
+        })
+    })
+}
+
+
+function updateFlatten() {
+    let flatten = Boolean(document.querySelector('input[name=watermark]').value);
+
+    flatten = flatten || canvasEditions.some(function (canvas) {
+        return canvas.getObjects().some(function (object) {
+            return object.type === "rect"
+        })
+    })
+
+    document.querySelector('input[name=flatten]').checked = flatten;
+    if(document.getElementById('save_flatten_indicator')) {
+        document.getElementById('save_flatten_indicator').classList.toggle('invisible', !flatten);
+    }
+}
 
 function setIsChanged(changed) {
     hasModifications = changed
@@ -494,7 +545,8 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
         top: y - 20,
         fontSize: 20,
         direction: direction,
-        fontFamily: 'Monospace'
+        fontFamily: 'Monospace',
+        fill: penColor
       });
 
       addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
@@ -511,8 +563,8 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 
     if(item == 'strikethrough') {
         let line = new fabric.Line([x, y, x + 250, y], {
-          fill: 'black',
-          stroke: 'black',
+          fill: penColor,
+          stroke: penColor,
           lockScalingFlip: true,
           strokeWidth: 2,
           padding: 10,
@@ -521,6 +573,23 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 
         addObjectInCanvas(canvas, line).setActiveObject(line);
 
+        return;
+    }
+
+    if(item == 'rectangle') {
+        let rect = new fabric.Rect({
+          left: x,
+          top: y,
+          width: 200,
+          height: 100,
+          fill: '#000',
+          lockScalingFlip: true
+        });
+        rect.setControlsVisibility({ tl: false, tr: false, bl: false, br: false,})
+
+        addObjectInCanvas(canvas, rect).setActiveObject(rect);
+
+        updateFlatten();
         return;
     }
 
@@ -539,6 +608,8 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
         svg.top = y - (svg.getScaledHeight() / 2);
         svg.left = x - (svg.getScaledWidth() / 2);
 
+        svg.fill = penColor
+
         addObjectInCanvas(canvas, svg);
     });
 };
@@ -546,6 +617,7 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 function autoZoom() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizePDF, 100);
+    updateWatermark();
 };
 
 function zoomChange(inOrOut) {
@@ -631,6 +703,8 @@ function resizePDF(scale = 'auto') {
             resizeTimeout = null;
         });
     });
+
+    updateWatermark();
 };
 
 function createEventsListener() {
@@ -765,9 +839,31 @@ function createEventsListener() {
         div.classList.add('d-none')
         input.querySelector('input').focus()
     })
-    document.querySelector('input[name=watermark]')?.addEventListener('keyup', function (e) {
+
+    document.querySelector('input[name=watermark]')?.addEventListener('keyup', debounce(function (e) {
         setIsChanged(hasModifications || !!e.target.value)
-    })
+        updateFlatten();
+
+        // Pourquoi 27 : 40 / 1.5 = 26.6666
+        //      fontSize ^    ^ currentScale par défaut
+        // Comme ça le texte de l'overlay ne bouge pas au zoom
+        const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
+        const overlay = new fabric.Rect({
+            fill: new fabric.Pattern({
+                source: text.toCanvasElement(),
+            }),
+        })
+
+        canvasEditions.forEach(function (canvas) {
+            overlay.height = canvas.height
+            overlay.width = canvas.width
+
+            canvas.objectCaching = false
+            canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas), {
+                objectCaching: false
+            })
+        })
+    }, 750))
 
     if(document.querySelector('#alert-signature-help')) {
         document.getElementById('btn-signature-help').addEventListener('click', function(event) {
@@ -931,6 +1027,11 @@ function createEventsListener() {
         zoomChange(1)
     });
 
+    penColorPicker.addEventListener('input', function (e) {
+        e.preventDefault()
+        storePenColor(penColorPicker.value)
+    })
+
     window.addEventListener('beforeunload', function(event) {
         if(!hasModifications) {
             return;
@@ -954,14 +1055,14 @@ function createSignaturePad() {
         minWidth: 1,
         maxWidth: 2
     });
-    signaturePad.addEventListener('endStroke', function(){
+    signaturePad.addEventListener('endStroke', debounce(function(){
         const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
             type: 'image/png'
         });
         let data = new FormData();
         data.append('file', file);
         uploadSVG(data);
-    });
+    }, 500));
 };
 
 async function getPDFBlobFromCache(cacheUrl) {
@@ -1086,6 +1187,7 @@ async function pageSignature(url) {
         return;
     }
 
+    storePenColor(penColor)
     createSignaturePad();
     responsiveDisplay();
     displaysSVG();
@@ -1118,3 +1220,62 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.reload();
     })
 });
+
+function storePenColor(color) {
+    penColor = color
+    penColorPicker.value = color
+    localStorage.setItem('penColor', penColor)
+}
+
+const toolBox = (function () {
+    const _coloricon = document.createElement('img')
+          _coloricon.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-palette" viewBox="0 0 16 16"><path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/><path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8m-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7"/></svg>'
+
+    function _renderIcon(icon) {
+        return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
+            const size = this.cornerSize;
+            ctx.save();
+            ctx.translate(left, top);
+            ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
+            ctx.drawImage(icon, -size/2, -size/2, size, size);
+            ctx.restore();
+        }
+    }
+
+    function _changeColor(eventData, transform) {
+        const target = transform.target;
+        const _colorpicker = document.createElement('input')
+              _colorpicker.setAttribute('type', 'color')
+              _colorpicker.value = penColor
+
+        _colorpicker.addEventListener('input', function (e) {
+            target.set({ fill: e.target.value })
+            target.canvas.requestRenderAll()
+            if(target.type != "rect") {
+                storePenColor(e.target.value)
+            }
+        })
+
+        _colorpicker.click()
+        _colorpicker.remove()
+    }
+
+    function init(el) {
+        colorControl = new fabric.Control({
+            x: 0.5,
+            y: -0.5,
+            offsetY: -16,
+            offsetX: 16,
+            cursorStyle: 'pointer',
+            mouseUpHandler: _changeColor,
+            render: _renderIcon(_coloricon),
+            cornerSize: 24
+        })
+
+        el.controls.color = colorControl
+    }
+
+    return {
+        init: init
+    }
+})()

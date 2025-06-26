@@ -550,8 +550,20 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
         fill: penColor
       });
 
+      fabric.Textbox.prototype.customEnterAction = function (e) {
+          if (e.ctrlKey) {
+            this.insertChars('\n', undefined, this.selectionStart)
+            this.exitEditing();
+            this.enterEditing();
+            this.moveCursorRight(e);
+            return
+          }
+
+          this.exitEditing()
+      }
+
       addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
-      textbox.keysMap[13] = "exitEditing";
+      textbox.keysMap[13] = "customEnterAction";
       textbox.lockScalingFlip = true;
       textbox.scaleX = currentTextScale;
       textbox.scaleY = currentTextScale;

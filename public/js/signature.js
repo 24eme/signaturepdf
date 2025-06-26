@@ -21,6 +21,7 @@ let penColor = localStorage.getItem('penColor') ?? '#000000'
 let nblayers = null;
 let hasModifications = false;
 let currentTextScale = 1;
+const defaultScale = 1.5;
 
 async function loadPDF(pdfBlob) {
     let filename = pdfBlob.name;
@@ -617,7 +618,6 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 function autoZoom() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizePDF, 100);
-    updateWatermark();
 };
 
 function zoomChange(inOrOut) {
@@ -843,27 +843,14 @@ function createEventsListener() {
     document.querySelector('input[name=watermark]')?.addEventListener('keyup', debounce(function (e) {
         setIsChanged(hasModifications || !!e.target.value)
         updateFlatten();
-
-        // Pourquoi 27 : 40 / 1.5 = 26.6666
-        //      fontSize ^    ^ currentScale par défaut
-        // Comme ça le texte de l'overlay ne bouge pas au zoom
-        const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
-        const overlay = new fabric.Rect({
-            fill: new fabric.Pattern({
-                source: text.toCanvasElement(),
-            }),
-        })
-
-        canvasEditions.forEach(function (canvas) {
-            overlay.height = canvas.height
-            overlay.width = canvas.width
-
-            canvas.objectCaching = false
-            canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas), {
-                objectCaching: false
-            })
-        })
+        updateWatermark();
     }, 750))
+
+    document.querySelector('input[name=watermark]')?.addEventListener('change', function (e) {
+        setIsChanged(hasModifications || !!e.target.value)
+        updateFlatten();
+        updateWatermark();
+    });
 
     if(document.querySelector('#alert-signature-help')) {
         document.getElementById('btn-signature-help').addEventListener('click', function(event) {
@@ -878,6 +865,11 @@ function createEventsListener() {
 
     if(document.getElementById('save')) {
         document.getElementById('save').addEventListener('click', function(event) {
+            let previousScale = currentScale;
+            if(currentScale != defaultScale) {
+                resizePDF(defaultScale)
+                while(!renderComplete) { }
+            }
             let dataTransfer = new DataTransfer();
             canvasEditions.forEach(function(canvasEdition, index) {
                 dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
@@ -885,6 +877,11 @@ function createEventsListener() {
                 }));
             })
             document.getElementById('input_svg').files = dataTransfer.files;
+            if(previousScale != currentScale) {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(resizePDF(previousScale), 100);
+            }
+
             hasModifications = false;
         });
     }

@@ -66,6 +66,14 @@
     left: 6px;
 }
 
+#color-picker {
+    display: block; position: fixed; height:28px; width: 28px; border-radius: 24px; background: #000; top: 14px; right: 366px; border: 2px solid #fff; color: #fff; font-size: 10px; text-align: center; line-height: 20px; opacity: 0.25;
+}
+
+#color-picker:hover {
+     opacity: 1;
+}
+
 .canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
     font-size: 30px;
     cursor: move;

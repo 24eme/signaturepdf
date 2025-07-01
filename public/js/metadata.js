@@ -82,6 +82,7 @@ async function loadPDF(pdfBlob) {
 
                 const newInput = addMetadata(treeKey.join(' « '), node.textContent.trim(), "text", false, true)
                 newInput.dataset.fromAttachment = value.filename
+                newInput.disabled = true
             }
         })
     }

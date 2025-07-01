@@ -22,50 +22,49 @@ function responsiveDisplay() {
 async function loadPDF(pdfBlob) {
     showLoading('Loading')
 
-    let filename = pdfBlob.name;
-    let url = await URL.createObjectURL(pdfBlob);
+    const filename = pdfBlob.name;
+    const url = URL.createObjectURL(pdfBlob);
     document.title = filename + ' - ' + document.title;
+    document.querySelector('#text_document_name span').innerText = filename;
 
     pdffile = pdfBlob
-    let loadingTask = pdfjsLib.getDocument(url);
-    document.querySelector('#text_document_name span').innerText = filename;
-    await loadingTask.promise.then(function(pdf) {
-        pdf.getMetadata().then(function(metadata) {
-            for(fieldKey in defaultFields) {
-                addMetadata(fieldKey, null, defaultFields[fieldKey]['type'], false);
-            }
 
-            for(metaKey in metadata.info) {
-                if(metaKey == "Custom" || metaKey == "PDFFormatVersion" || metaKey.match(/^Is/) || metaKey == "Trapped") {
-                    continue;
-                }
-                addMetadata(metaKey, metadata.info[metaKey], "text", false);
-            }
+    const loadingTask = pdfjsLib.getDocument(url);
+    const pdf = await loadingTask.promise;
+    const metadata = await pdf.getMetadata()
 
-            for(metaKey in metadata.info.Custom) {
-                if(metaKey == "sha256") {
-                    continue;
-                }
+    for(fieldKey in defaultFields) {
+        addMetadata(fieldKey, null, defaultFields[fieldKey]['type'], false);
+    }
 
-                addMetadata(metaKey, metadata.info.Custom[metaKey], "text", false);
-            }
+    for(metaKey in metadata.info) {
+        if(metaKey == "Custom" || metaKey == "PDFFormatVersion" || metaKey.match(/^Is/) || metaKey == "Trapped") {
+            continue;
+        }
+        addMetadata(metaKey, metadata.info[metaKey], "text", false);
+    }
 
-            for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
-                pdf.getPage(pageNumber).then(function(page) {
-                    let pageIndex = (page.pageNumber - 1);
-                    pages[pageIndex] = page;
-                    pageRender(pageIndex);
-                });
-            }
-            if(document.querySelector('.input-metadata input')) {
-                document.querySelector('.input-metadata input').focus();
-            } else {
-                document.getElementById('input_metadata_key').focus();
-            }
+    for(metaKey in metadata.info.Custom) {
+        if(metaKey == "sha256") {
+            continue;
+        }
+
+        addMetadata(metaKey, metadata.info.Custom[metaKey], "text", false);
+    }
+
+    for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
+        pdf.getPage(pageNumber).then(function(page) {
+            let pageIndex = (page.pageNumber - 1);
+            pages[pageIndex] = page;
+            pageRender(pageIndex);
         });
-    }, function (reason) {
-        console.error(reason);
-    });
+    }
+
+    if(document.querySelector('.input-metadata input')) {
+        document.querySelector('.input-metadata input').focus();
+    } else {
+        document.getElementById('input_metadata_key').focus();
+    }
 
     endLoading();
 
@@ -319,7 +318,9 @@ async function pageMetadata(url) {
     responsiveDisplay();
     createEventsListener();
     await convertInputFileImagesToPDF(document.getElementById('input_pdf_upload'));
-    loadPDF(document.getElementById('input_pdf_upload').files[0]);
+    await loadPDF(document.getElementById('input_pdf_upload').files[0]).catch(function (reason) {
+        console.error(reason);
+    });
 };
 
 

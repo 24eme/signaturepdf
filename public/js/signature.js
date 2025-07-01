@@ -170,6 +170,20 @@ async function loadPDF(pdfBlob) {
 
                   toolBox.init(event.selected[0])
               });
+              canvasEdition.on("selection:updated", function(event) {
+                  toolBox.reset()
+                  if (event.selected.length > 1 || event.selected.length === 0) {
+                      return;
+                  }
+
+                  toolBox.init(event.selected[0])
+              });
+              canvasEdition.on("object:moving", function(event) {
+                  debounce(toolBox.move(), 500)
+              });
+              canvasEdition.on("selection:cleared", function(event) {
+                  toolBox.reset()
+              });
               canvasEditions.push(canvasEdition);
             });
         }
@@ -1251,19 +1265,11 @@ const toolBox = (function () {
     const _coloricon = document.createElement('img')
     _coloricon.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-fill" viewBox="0 0 16 16"><path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6M6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13"/></svg>'
 
-    function _renderIcon(icon) {
-        return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
-            const size = this.cornerSize;
-            ctx.save();
-            ctx.translate(left, top);
-            ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
-            ctx.drawImage(icon, -size/2, -size/2, size, size);
-            ctx.restore();
-        }
-    }
+    let _elToolbox
+    let _elSelected
 
     function _changeColor(eventData, transform) {
-        const target = transform.target;
+        const target = transform
         const _colorpicker = document.createElement('input')
               _colorpicker.setAttribute('type', 'color')
               _colorpicker.value = penColor
@@ -1281,21 +1287,31 @@ const toolBox = (function () {
     }
 
     function init(el) {
-        colorControl = new fabric.Control({
-            x: 0.5,
-            y: -0.5,
-            offsetY: -16,
-            offsetX: 16,
-            cursorStyle: 'pointer',
-            mouseUpHandler: _changeColor,
-            render: _renderIcon(_coloricon),
-            cornerSize: 24
-        })
+        _elSelected = el
 
-        el.controls.color = colorControl
+        _elToolbox = document.createElement('div')
+        _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-secondary-subtle', 'shadow-sm')
+        _elToolbox.style.top = (el.top + el.height + _coloricon.height + 2)+'px'
+        _elToolbox.style.left = (el.left + _coloricon.width + el.width / 2)+'px'
+        _elToolbox.appendChild(_coloricon)
+        document.getElementById('container-pages').appendChild(_elToolbox)
+
+        _coloricon.addEventListener('click', function() {_changeColor(null, _elSelected)})
+    }
+
+    function move() {
+        _elToolbox.style.top = (_elSelected.top + _elSelected.height + _coloricon.height + 20)+'px'
+        _elToolbox.style.left = (_elSelected.left + _coloricon.width + _elSelected.width / 2)+'px'
+    }
+
+    function reset() {
+        _elSelected = null
+        _elToolbox.remove()
     }
 
     return {
-        init: init
+        init: init,
+        move: move,
+        reset: reset
     }
 })()

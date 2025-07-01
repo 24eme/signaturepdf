@@ -141,6 +141,29 @@ It's possible to add a custom CSS file to the location `public/css/app-specific.
 
 If this file exists, it will be loaded automatically.
 
+
+### Custom retention period for shared PDF
+
+In `config/config.ini` file activate these options :
+
+```
+[signature]
+
+; Enable custom retention period for shared PDF
+; This override the default retention periods
+; Warning: Text on the right of the colon will be translated according to the .po files
+;retention[+1 year]="for one year"
+;retention[+6 months]="for six months"
+;retention[+1 month]="for one month"
+;retention[+1 week]="for one week"
+;retention[+1 day]="for one day"
+;retention[+1 hour]="for one hour"
+
+retention[+10 days]="for ten days"
+```
+
+This configuration allows the retention of the PDF for only 10 days
+
 ### Default Fields for Metadata Editing
 
 In the `config/config.ini` file, you can add as many fields as you want with the HTML input type (text, date, number, email, etc.) that will be preloaded for each PDF.

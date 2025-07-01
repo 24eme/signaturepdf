@@ -113,6 +113,10 @@
     user-select: none;
 }
 
+.input-metadata > label {
+    width: 110%;
+}
+
 .input-metadata:hover > .delete-metadata {
     display: block;
 }

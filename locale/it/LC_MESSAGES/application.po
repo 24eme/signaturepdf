@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-13 15:05+0200\n"
+"POT-Creation-Date: 2025-07-01 14:31+0200\n"
 "PO-Revision-Date: 2025-06-18 03:05+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -129,6 +129,9 @@ msgstr "Firma con il certificato del server"
 
 msgid "Add a watermark"
 msgstr "Aggiungi una filigrana"
+
+msgid "Redact areas"
+msgstr ""
 
 msgid "Organize PDFs"
 msgstr "Organizza i PDF"
@@ -333,6 +336,9 @@ msgstr "Barrato"
 msgid "%s Check box"
 msgstr "%s Check box"
 
+msgid "Redaction area"
+msgstr ""
+
 msgid "Watermark"
 msgstr "Filigrana"
 
@@ -346,6 +352,9 @@ msgstr "%s Condividi per firmare %s con più persone"
 
 msgid "Download the signed PDF"
 msgstr "Scarica il PDF firmato"
+
+msgid "The PDF will be flattened"
+msgstr ""
 
 #, php-format
 msgid "You are %s to have signed this PDF"

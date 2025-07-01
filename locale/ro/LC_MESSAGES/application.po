@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-13 15:05+0200\n"
+"POT-Creation-Date: 2025-07-01 14:31+0200\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -129,6 +129,9 @@ msgid "Sign with the server certificate"
 msgstr ""
 
 msgid "Add a watermark"
+msgstr ""
+
+msgid "Redact areas"
 msgstr ""
 
 msgid "Organize PDFs"
@@ -336,6 +339,9 @@ msgstr ""
 msgid "%s Check box"
 msgstr "Caseta de selectare %s"
 
+msgid "Redaction area"
+msgstr ""
+
 msgid "Watermark"
 msgstr ""
 
@@ -349,6 +355,9 @@ msgstr "%s Distribuie pentru a semna %s cu mai multe persoane"
 
 msgid "Download the signed PDF"
 msgstr "Descărcați PDF-ul semnat"
+
+msgid "The PDF will be flattened"
+msgstr ""
 
 #, php-format
 msgid "You are %s to have signed this PDF"

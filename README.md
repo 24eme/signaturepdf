@@ -39,6 +39,7 @@ Open-source software under the AGPL V3 license.
     - [Disabling the Organize Mode](#disabling-the-organize-mode)
     - [Hiding or Modifying the Demo PDF Link](#hiding-or-modifying-the-demo-pdf-link)
     - [Customize the CSS](#customize-the-css)
+    - [Custom retention period for shared PDF](#custom-retention-period-for-shared-pdf)
     - [Default Fields for Metadata Editing](#default-fields-for-metadata-editing)
 - [Update](#update)
 - [Tests](#tests)

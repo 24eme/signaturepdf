@@ -242,6 +242,10 @@ async function save() {
         const label = el.querySelector('label').innerText
         const input = el.querySelector('input').value
 
+        if ('fromAttachment' in el.querySelector('input').dataset) {
+            return;
+        }
+
         pdf.getInfoDict().set(PDFName.of(label), PDFHexString.fromText(input));
     });
 

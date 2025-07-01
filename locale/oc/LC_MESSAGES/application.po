@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-13 15:05+0200\n"
-"PO-Revision-Date: 2025-06-02 05:44+0000\n"
+"POT-Creation-Date: 2025-07-01 14:31+0200\n"
+"PO-Revision-Date: 2025-06-18 13:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.12.1\n"
 
 msgid "en"
 msgstr "oc"
@@ -128,6 +128,9 @@ msgid "Sign with the server certificate"
 msgstr "Signar amb lo certificat del servidor"
 
 msgid "Add a watermark"
+msgstr "Apondre una filigrana"
+
+msgid "Redact areas"
 msgstr ""
 
 msgid "Organize PDFs"
@@ -335,8 +338,11 @@ msgstr "Raiar"
 msgid "%s Check box"
 msgstr "%s Cassa de marcar"
 
-msgid "Watermark"
+msgid "Redaction area"
 msgstr ""
+
+msgid "Watermark"
+msgstr "Filigrana"
 
 #, php-format
 msgid "%s Create an element"
@@ -348,6 +354,9 @@ msgstr "%s Partejar per signar %s amb mantuna persona"
 
 msgid "Download the signed PDF"
 msgstr "Telecargar lo PDF signat"
+
+msgid "The PDF will be flattened"
+msgstr ""
 
 #, php-format
 msgid "You are %s to have signed this PDF"

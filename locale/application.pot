@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-16 15:26+0200\n"
+"POT-Creation-Date: 2025-07-01 14:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,6 +126,9 @@ msgid "Sign with the server certificate"
 msgstr ""
 
 msgid "Add a watermark"
+msgstr ""
+
+msgid "Redact areas"
 msgstr ""
 
 msgid "Organize PDFs"
@@ -331,6 +334,9 @@ msgstr ""
 msgid "%s Check box"
 msgstr ""
 
+msgid "Redaction area"
+msgstr ""
+
 msgid "Watermark"
 msgstr ""
 
@@ -343,6 +349,9 @@ msgid "%s Share to sign %s with multiple people"
 msgstr ""
 
 msgid "Download the signed PDF"
+msgstr ""
+
+msgid "The PDF will be flattened"
 msgstr ""
 
 #, php-format

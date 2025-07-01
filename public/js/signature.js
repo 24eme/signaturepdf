@@ -21,6 +21,7 @@ let penColor = localStorage.getItem('penColor') ?? '#000000'
 let nblayers = null;
 let hasModifications = false;
 let currentTextScale = 1;
+const defaultScale = 1.5;
 
 async function loadPDF(pdfBlob) {
     let filename = pdfBlob.name;
@@ -549,8 +550,20 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
         fill: penColor
       });
 
+      fabric.Textbox.prototype.customEnterAction = function (e) {
+          if (e.ctrlKey) {
+            this.insertChars('\n', undefined, this.selectionStart)
+            this.exitEditing();
+            this.enterEditing();
+            this.moveCursorRight(e);
+            return
+          }
+
+          this.exitEditing()
+      }
+
       addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
-      textbox.keysMap[13] = "exitEditing";
+      textbox.keysMap[13] = "customEnterAction";
       textbox.lockScalingFlip = true;
       textbox.scaleX = currentTextScale;
       textbox.scaleY = currentTextScale;
@@ -617,7 +630,6 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 function autoZoom() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizePDF, 100);
-    updateWatermark();
 };
 
 function zoomChange(inOrOut) {
@@ -843,27 +855,14 @@ function createEventsListener() {
     document.querySelector('input[name=watermark]')?.addEventListener('keyup', debounce(function (e) {
         setIsChanged(hasModifications || !!e.target.value)
         updateFlatten();
-
-        // Pourquoi 27 : 40 / 1.5 = 26.6666
-        //      fontSize ^    ^ currentScale par défaut
-        // Comme ça le texte de l'overlay ne bouge pas au zoom
-        const text = new fabric.Text(e.target.value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
-        const overlay = new fabric.Rect({
-            fill: new fabric.Pattern({
-                source: text.toCanvasElement(),
-            }),
-        })
-
-        canvasEditions.forEach(function (canvas) {
-            overlay.height = canvas.height
-            overlay.width = canvas.width
-
-            canvas.objectCaching = false
-            canvas.setOverlayImage(overlay, canvas.renderAll.bind(canvas), {
-                objectCaching: false
-            })
-        })
+        updateWatermark();
     }, 750))
+
+    document.querySelector('input[name=watermark]')?.addEventListener('change', function (e) {
+        setIsChanged(hasModifications || !!e.target.value)
+        updateFlatten();
+        updateWatermark();
+    });
 
     if(document.querySelector('#alert-signature-help')) {
         document.getElementById('btn-signature-help').addEventListener('click', function(event) {
@@ -878,6 +877,11 @@ function createEventsListener() {
 
     if(document.getElementById('save')) {
         document.getElementById('save').addEventListener('click', function(event) {
+            let previousScale = currentScale;
+            if(currentScale != defaultScale) {
+                resizePDF(defaultScale)
+                while(!renderComplete) { }
+            }
             let dataTransfer = new DataTransfer();
             canvasEditions.forEach(function(canvasEdition, index) {
                 dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
@@ -885,6 +889,11 @@ function createEventsListener() {
                 }));
             })
             document.getElementById('input_svg').files = dataTransfer.files;
+            if(previousScale != currentScale) {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(resizePDF(previousScale), 100);
+            }
+
             hasModifications = false;
         });
     }
@@ -1030,6 +1039,10 @@ function createEventsListener() {
     penColorPicker.addEventListener('input', function (e) {
         e.preventDefault()
         storePenColor(penColorPicker.value)
+    })
+
+    document.getElementById('color-picker').addEventListener('click', function(event) {
+        penColorPicker.click();
     })
 
     window.addEventListener('beforeunload', function(event) {
@@ -1225,11 +1238,18 @@ function storePenColor(color) {
     penColor = color
     penColorPicker.value = color
     localStorage.setItem('penColor', penColor)
+    document.getElementById('color-picker').style.backgroundColor = penColor;
+    if(penColor != "#000000") {
+        document.getElementById('color-picker').style.opacity = 1;
+    } else {
+        document.getElementById('color-picker').style.opacity = 0.25;
+    }
+
 }
 
 const toolBox = (function () {
     const _coloricon = document.createElement('img')
-          _coloricon.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-palette" viewBox="0 0 16 16"><path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/><path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8m-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7"/></svg>'
+    _coloricon.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-fill" viewBox="0 0 16 16"><path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6M6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13"/></svg>'
 
     function _renderIcon(icon) {
         return function renderIcon(ctx, left, top, styleOverride, fabricObject) {

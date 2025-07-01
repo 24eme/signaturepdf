@@ -131,6 +131,7 @@
               </div>
             </div>
         </div>
+        <button id="color-picker" class="shadow-sm" title="Changer la couleur de l'encre"><i class="bi bi-droplet-fill"></i></button>
         <div class="position-fixed top-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div class="d-grid gap-2">
             <button id="btn_svn_select" class="btn btn-light btn-lg" data-bs-toggle="offcanvas" data-bs-target="#sidebarTools" aria-controls="sidebarTools"><?php echo sprintf(_("%s Select a signature"), '<i class="bi bi-hand-index"></i>'); ?></button>

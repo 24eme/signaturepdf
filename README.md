@@ -39,6 +39,7 @@ Open-source software under the AGPL V3 license.
     - [Disabling the Organize Mode](#disabling-the-organize-mode)
     - [Hiding or Modifying the Demo PDF Link](#hiding-or-modifying-the-demo-pdf-link)
     - [Customize the CSS](#customize-the-css)
+    - [Custom retention period for shared PDF](#custom-retention-period-for-shared-pdf)
     - [Default Fields for Metadata Editing](#default-fields-for-metadata-editing)
 - [Update](#update)
 - [Tests](#tests)
@@ -140,6 +141,29 @@ To hide the demo PDF link, add `PDF_DEMO_LINK=false` to the
 It's possible to add a custom CSS file to the location `public/css/app-specific.css`.
 
 If this file exists, it will be loaded automatically.
+
+
+### Custom retention period for shared PDF
+
+In `config/config.ini` file activate these options :
+
+```
+[signature]
+
+; Enable custom retention period for shared PDF
+; This override the default retention periods
+; Warning: Text on the right of the colon will be translated according to the .po files
+;retention[+1 year]="for one year"
+;retention[+6 months]="for six months"
+;retention[+1 month]="for one month"
+;retention[+1 week]="for one week"
+;retention[+1 day]="for one day"
+;retention[+1 hour]="for one hour"
+
+retention[+10 days]="for ten days"
+```
+
+This configuration allows the retention of the PDF for only 10 days
 
 ### Default Fields for Metadata Editing
 

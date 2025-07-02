@@ -178,6 +178,9 @@ async function loadPDF(pdfBlob) {
 
                   toolBox.init(event.selected[0])
               });
+              canvasEdition.on("object:modified", function(event) {
+                  toolBox.init(event.target)
+              });
               canvasEdition.on("selection:cleared", function(event) {
                   toolBox.reset()
               });

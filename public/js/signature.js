@@ -1295,7 +1295,7 @@ const toolBox = (function () {
 
         _elToolbox = document.createElement('div')
         _elToolbox.id = 'toolbox'
-        _elToolbox.classList.add('fixed-top', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'w-25', 'm-auto', 'mt-3', 'd-xs-none', 'd-sm-none', 'd-md-block')
+        _elToolbox.classList.add('fixed-top', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'w-25', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
 
         _elToolbox.appendChild(_coloricon)
         _elToolbox.appendChild(_trashicon)

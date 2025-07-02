@@ -1275,7 +1275,7 @@ const toolBox = (function () {
 
     const _elToolbox = document.createElement('div')
           _elToolbox.id = 'toolbox'
-          _elToolbox.classList.add('position-fixed', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
+          _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
           _elToolbox.style['z-index'] = 1030
           _elToolbox.style.width = 'max-content'
 
@@ -1328,7 +1328,8 @@ const toolBox = (function () {
         }
 
         _elSelected = el
-        document.body.appendChild(_elToolbox)
+        const container = document.getElementById('container-pages')
+        container.appendChild(_elToolbox)
 
         _elToolbox.style.left = (
             _elSelected.getBoundingRect().left
@@ -1337,9 +1338,9 @@ const toolBox = (function () {
             + +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
         ) + 'px'
         _elToolbox.style.top = (
-            _elSelected.getBoundingRect().top
-            + _elSelected.getScaledHeight()
-            + +window.getComputedStyle(_elToolbox).getPropertyValue("height").replace('px', '') / 2
+            Math.max(..._elSelected.getCoords().map((c) => c.y)) // on sélectionne le coin le plus bas
+            + _elSelected.canvas._offset.top // hauteur du canvas dans le viewport
+            + container.scrollTop // haut du container
         ) + 'px'
     }
 

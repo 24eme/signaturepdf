@@ -1291,6 +1291,10 @@ const toolBox = (function () {
     }
 
     function init(el) {
+        if (_elToolbox) {
+            this.reset()
+        }
+
         _elSelected = el
 
         _elToolbox = document.createElement('div')

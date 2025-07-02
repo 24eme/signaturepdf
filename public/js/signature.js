@@ -1263,7 +1263,7 @@ const toolBox = (function () {
           _coloricon.classList.add('bi', 'bi-droplet-fill', 'mx-1')
 
     const _trashicon = document.createElement('i')
-          _trashicon.classList.add('bi', 'bi-trash3', 'float-end', 'border-start', 'mx-1', 'ps-1')
+          _trashicon.classList.add('bi', 'bi-trash3', 'float-end', 'border-start', 'border-2', 'mx-1', 'ps-1')
 
     let _elToolbox
     let _elSelected
@@ -1295,7 +1295,8 @@ const toolBox = (function () {
 
         _elToolbox = document.createElement('div')
         _elToolbox.id = 'toolbox'
-        _elToolbox.classList.add('fixed-top', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'w-25', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
+        _elToolbox.classList.add('fixed-top', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
+        _elToolbox.style.width = 'max-content'
 
         _elToolbox.appendChild(_coloricon)
         _elToolbox.appendChild(_trashicon)

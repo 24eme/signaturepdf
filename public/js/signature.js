@@ -1262,6 +1262,9 @@ const toolBox = (function () {
     const _coloricon = document.createElement('i')
           _coloricon.classList.add('bi', 'bi-droplet-fill', 'mx-1')
 
+    const _trashicon = document.createElement('i')
+          _trashicon.classList.add('bi', 'bi-trash3', 'float-end', 'border-start', 'mx-1', 'ps-1')
+
     let _elToolbox
     let _elSelected
 
@@ -1282,6 +1285,11 @@ const toolBox = (function () {
         _colorpicker.remove()
     }
 
+    function _delete() {
+        deleteActiveObject()
+        this.reset()
+    }
+
     function init(el) {
         _elSelected = el
 
@@ -1290,9 +1298,11 @@ const toolBox = (function () {
         _elToolbox.classList.add('fixed-top', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'w-25', 'm-auto', 'mt-3', 'd-xs-none', 'd-sm-none', 'd-md-block')
 
         _elToolbox.appendChild(_coloricon)
+        _elToolbox.appendChild(_trashicon)
         document.body.appendChild(_elToolbox)
 
         _coloricon.addEventListener('click', _changeColor)
+        _trashicon.addEventListener('click', _delete)
     }
 
     function reset() {

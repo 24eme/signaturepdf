@@ -178,9 +178,6 @@ async function loadPDF(pdfBlob) {
 
                   toolBox.init(event.selected[0])
               });
-              canvasEdition.on("object:moving", function(event) {
-                  debounce(toolBox.move(), 500)
-              });
               canvasEdition.on("selection:cleared", function(event) {
                   toolBox.reset()
               });
@@ -1290,18 +1287,12 @@ const toolBox = (function () {
         _elSelected = el
 
         _elToolbox = document.createElement('div')
-        _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-secondary-subtle', 'shadow-sm')
-        _elToolbox.style.top = (el.top + el.height + _coloricon.height + 2)+'px'
-        _elToolbox.style.left = (el.left + _coloricon.width + el.width / 2)+'px'
+        _elToolbox.classList.add('fixed-top', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'w-25', 'm-auto', 'mt-3', 'd-xs-none', 'd-sm-none', 'd-md-block')
+
         _elToolbox.appendChild(_coloricon)
-        document.getElementById('container-pages').appendChild(_elToolbox)
+        document.body.appendChild(_elToolbox)
 
         _coloricon.addEventListener('click', function() {_changeColor(null, _elSelected)})
-    }
-
-    function move() {
-        _elToolbox.style.top = (_elSelected.top + _elSelected.height + _coloricon.height + 20)+'px'
-        _elToolbox.style.left = (_elSelected.left + _coloricon.width + _elSelected.width / 2)+'px'
     }
 
     function reset() {
@@ -1311,7 +1302,6 @@ const toolBox = (function () {
 
     return {
         init: init,
-        move: move,
         reset: reset
     }
 })()

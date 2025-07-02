@@ -1265,16 +1265,15 @@ const toolBox = (function () {
     let _elToolbox
     let _elSelected
 
-    function _changeColor(eventData, transform) {
-        const target = transform
+    function _changeColor() {
         const _colorpicker = document.createElement('input')
               _colorpicker.setAttribute('type', 'color')
               _colorpicker.value = penColor
 
         _colorpicker.addEventListener('input', function (e) {
-            target.set({ fill: e.target.value })
-            target.canvas.requestRenderAll()
-            if(target.type != "rect") {
+            _elSelected.set({ fill: e.target.value })
+            _elSelected.canvas.requestRenderAll()
+            if(_elSelected.type != "rect") {
                 storePenColor(e.target.value)
             }
         })
@@ -1292,7 +1291,7 @@ const toolBox = (function () {
         _elToolbox.appendChild(_coloricon)
         document.body.appendChild(_elToolbox)
 
-        _coloricon.addEventListener('click', function() {_changeColor(null, _elSelected)})
+        _coloricon.addEventListener('click', _changeColor)
     }
 
     function reset() {

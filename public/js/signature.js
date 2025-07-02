@@ -1303,12 +1303,12 @@ const toolBox = (function () {
 
     function _delete() {
         deleteActiveObject()
-        this.reset()
+        reset()
     }
 
     function init(el) {
         if (_elToolbox) {
-            this.reset()
+            reset()
         }
 
         _elSelected = el

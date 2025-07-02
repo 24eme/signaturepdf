@@ -131,7 +131,7 @@ msgid "Add a watermark"
 msgstr "Apondre una filigrana"
 
 msgid "Redact areas"
-msgstr "Enriquir zònas"
+msgstr "Enfosquir zònas"
 
 msgid "Organize PDFs"
 msgstr "Organizar de PDF"

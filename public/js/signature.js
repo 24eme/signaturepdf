@@ -1268,8 +1268,21 @@ const toolBox = (function () {
     const _copyicon = document.createElement('i')
           _copyicon.classList.add('bi', 'bi-copy', 'mx-1')
 
-    let _elToolbox
     let _elSelected
+
+    const _elToolbox = document.createElement('div')
+          _elToolbox.id = 'toolbox'
+          _elToolbox.classList.add('position-fixed', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
+          _elToolbox.style['z-index'] = 1030
+          _elToolbox.style.width = 'max-content'
+
+          _elToolbox.appendChild(_coloricon)
+          _elToolbox.appendChild(_trashicon)
+          _elToolbox.appendChild(_copyicon)
+
+    _coloricon.addEventListener('click', _changeColor)
+    _trashicon.addEventListener('click', _delete)
+    _copyicon.addEventListener('click', _copy)
 
     function _changeColor() {
         const _colorpicker = document.createElement('input')
@@ -1312,20 +1325,19 @@ const toolBox = (function () {
         }
 
         _elSelected = el
-
-        _elToolbox = document.createElement('div')
-        _elToolbox.id = 'toolbox'
-        _elToolbox.classList.add('fixed-top', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
-        _elToolbox.style.width = 'max-content'
-
-        _elToolbox.appendChild(_coloricon)
-        _elToolbox.appendChild(_trashicon)
-        _elToolbox.appendChild(_copyicon)
         document.body.appendChild(_elToolbox)
 
-        _coloricon.addEventListener('click', _changeColor)
-        _trashicon.addEventListener('click', _delete)
-        _copyicon.addEventListener('click', _copy)
+        _elToolbox.style.left = (
+            _elSelected.getBoundingRect().left
+            + _elSelected.getScaledWidth() / 2
+            - _elToolbox.offsetWidth / 2
+            + +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
+        ) + 'px'
+        _elToolbox.style.top = (
+            _elSelected.getBoundingRect().top
+            + _elSelected.getScaledHeight()
+            + +window.getComputedStyle(_elToolbox).getPropertyValue("height").replace('px', '') / 2
+        ) + 'px'
     }
 
     function reset() {

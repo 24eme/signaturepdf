@@ -74,6 +74,10 @@
      opacity: 1;
 }
 
+#toolbox img {
+    cursor: pointer;
+}
+
 .canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {
     font-size: 30px;
     cursor: move;

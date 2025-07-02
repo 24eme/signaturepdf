@@ -1265,6 +1265,9 @@ const toolBox = (function () {
     const _trashicon = document.createElement('i')
           _trashicon.classList.add('bi', 'bi-trash3', 'float-end', 'border-start', 'border-2', 'mx-1', 'ps-1')
 
+    const _copyicon = document.createElement('i')
+          _copyicon.classList.add('bi', 'bi-copy', 'mx-1')
+
     let _elToolbox
     let _elSelected
 
@@ -1283,6 +1286,19 @@ const toolBox = (function () {
 
         _colorpicker.click()
         _colorpicker.remove()
+    }
+
+    function _copy() {
+        canvasEditions.forEach(function (canvas) {
+            if  (_elSelected.canvas === canvas) {
+                return
+            }
+
+            _elSelected.clone(function (clonedItem) {
+                addObjectInCanvas(canvas, clonedItem)
+            })
+        })
+
     }
 
     function _delete() {
@@ -1304,10 +1320,12 @@ const toolBox = (function () {
 
         _elToolbox.appendChild(_coloricon)
         _elToolbox.appendChild(_trashicon)
+        _elToolbox.appendChild(_copyicon)
         document.body.appendChild(_elToolbox)
 
         _coloricon.addEventListener('click', _changeColor)
         _trashicon.addEventListener('click', _delete)
+        _copyicon.addEventListener('click', _copy)
     }
 
     function reset() {

@@ -23,6 +23,7 @@ if(is_mobile()) {
 
 let nbPDF = 0;
 let pages = [];
+let formats = [];
 let pdfRenderTasks = [];
 
 async function loadPDF(pdfBlob, filename, pdfIndex) {
@@ -47,7 +48,11 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
             pdf.getPage(pageNumber).then(function(page) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
                 pages[pageIndex] = page;
-
+                const viewportFormat = page.getViewport({ scale: 1 });
+                const widthFormat = Math.round(viewportFormat.width * 25.4 / 72 * 10) / 10;
+                const heightFormat = Math.round(viewportFormat.height * 25.4 / 72 * 10) / 10;
+                formats[pageIndex] = widthFormat + " x " + heightFormat + " mm";
+                let pageTitle = trad['Page'] + ' ' + page.pageNumber + ' - '+formats[pageIndex]+' - ' + filename;
                 let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container d-flex align-items-center justify-content-center bg-transparent bg-opacity-25 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
                     pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
                     pageHTML += '<div title="' + trad['Select this page'] + '" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select d-none"><i class="bi bi-check-square"></i></div>';
@@ -57,7 +62,7 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
                     pageHTML += '<div title="' + trad['Move here'] + '" class="position-absolute start-50 top-50 translate-middle p-2 ps-4 pe-4 container-resize btn-drag-here d-none"><i class="bi bi-arrows-expand-vertical"></i></div>';
                     pageHTML += '<div title="' + trad['Turn this page'] + '" class="position-absolute top-50 end-0 translate-middle-y p-2 ps-3 pe-3 me-2 rounded-circle container-rotate btn-rotate d-none"><i class="bi bi-arrow-clockwise"></i></div>';
                     pageHTML += '<div title="' + trad['Download this page'] + '" class="position-absolute bottom-0 start-50 translate-middle-x p-2 ps-3 pe-3 mb-3 rounded-circle btn-download d-none"><i class="bi bi-download"></i></div>';
-                    pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">' + trad['Page'] + ' ' + page.pageNumber + ' - ' + filename + '</p>';
+                    pageHTML += '<p class="page-title position-absolute text-center w-100 ps-2 pe-2 pb-0 pt-0 mb-1 bg-white opacity-75 d-none" style="bottom: -4px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">' + pageTitle + '</p>';
                     pageHTML += '<input form="form_pdf" class="checkbox-page d-none" role="switch" type="checkbox" checked="checked" value="'+pdfLetter+page.pageNumber+'" />';
                     pageHTML += '<input type="hidden" class="input-rotate" value="0" id="input_rotate_'+pageIndex+'" />';
                     pageHTML += '<input type="checkbox" class="input-select d-none" value="'+pdfLetter+page.pageNumber+'" id="input_select_'+pageIndex+'" />';
@@ -68,6 +73,7 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
                 document.getElementById('container-pages').insertAdjacentHTML('beforeend', pageHTML);
 
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
+                canvasContainer.title = pageTitle;
                 canvasContainer.addEventListener('click', function(e) {
                     canvasContainer.querySelector('.btn-select').click();
                 });
@@ -214,6 +220,7 @@ async function pageRender(pageIndex) {
       scrollWidth = -4;
   }
   let page = pages[pageIndex];
+
   let rotation = parseInt(document.querySelector('#input_rotate_'+pageIndex).value);
   let viewport = page.getViewport({scale: 1, rotation: rotation});
   let sizeWidth = Math.floor((document.getElementById('container-pages').offsetWidth - (8*(nbPagePerLine+1)) - scrollWidth) / nbPagePerLine);

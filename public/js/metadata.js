@@ -32,6 +32,7 @@ async function loadPDF(pdfBlob) {
     const loadingTask = pdfjsLib.getDocument(url);
     const pdf = await loadingTask.promise;
     const metadata = await pdf.getMetadata()
+    const attachments = await pdf.getAttachments();
 
     for(fieldKey in defaultFields) {
         addMetadata(fieldKey, null, defaultFields[fieldKey]['type'], false);
@@ -50,6 +51,40 @@ async function loadPDF(pdfBlob) {
         }
 
         addMetadata(metaKey, metadata.info.Custom[metaKey], "text", false);
+    }
+
+    if (attachments) {
+        Object.entries(attachments).forEach(([_key, value]) => {
+            if (value.filename.startsWith('factur-x') === false) {
+                return
+            }
+            const decodedAttachment = new TextDecoder().decode(value.content)
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(decodedAttachment, "application/xml")
+            const error = xml.querySelector('parseerror')
+            if (error) {
+                console.log(error)
+                return
+            }
+
+            const walker = xml.createTreeWalker(xml.firstChild, NodeFilter.SHOW_TEXT)
+            while(walker.nextNode()) {
+                const node = walker.currentNode
+
+                const treeKey = []
+                treeKey.push(node.parentNode.localName)
+
+                let root = node.parentNode
+                while (! (root.parentNode instanceof XMLDocument)) {
+                    root = root.parentNode
+                    treeKey.push(root.localName) // nodeName si on veut le namespace
+                }
+
+                const newInput = addMetadata(treeKey.join(' « '), node.textContent.trim(), "text", false, true)
+                newInput.dataset.fromAttachment = value.filename
+                newInput.disabled = true
+            }
+        })
     }
 
     for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
@@ -130,17 +165,19 @@ async function pageRender(pageIndex) {
   })
 }
 
-function addMetadata(key, value, type, focus) {
-    let input = document.querySelector('.input-metadata input[name="'+key+'"]');
+function addMetadata(key, value, type, focus, forceCreation = false) {
+    if (! forceCreation) {
+        let input = document.querySelector('.input-metadata input[name="'+key+'"]');
 
-    if(input && !input.value) {
-        input.value = value;
-    }
-    if(input && focus) {
-        input.focus();
-    }
-    if(input) {
-        return;
+        if(input && !input.value) {
+            input.value = value;
+        }
+        if(input && focus) {
+            input.focus();
+        }
+        if(input) {
+            return input;
+        }
     }
 
     let div = document.createElement('div');
@@ -168,6 +205,8 @@ function addMetadata(key, value, type, focus) {
     if(focus) {
         input.focus();
     }
+
+    return input
 }
 
 function deleteMetadata(el) {
@@ -203,6 +242,10 @@ async function save() {
     ([...document.getElementsByClassName('input-metadata')] || []).forEach(function (el) {
         const label = el.querySelector('label').innerText
         const input = el.querySelector('input').value
+
+        if ('fromAttachment' in el.querySelector('input').dataset) {
+            return;
+        }
 
         pdf.getInfoDict().set(PDFName.of(label), PDFHexString.fromText(input));
     });

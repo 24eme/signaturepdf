@@ -170,6 +170,20 @@ async function loadPDF(pdfBlob) {
 
                   toolBox.init(event.selected[0])
               });
+              canvasEdition.on("selection:updated", function(event) {
+                  toolBox.reset()
+                  if (event.selected.length > 1 || event.selected.length === 0) {
+                      return;
+                  }
+
+                  toolBox.init(event.selected[0])
+              });
+              canvasEdition.on("object:modified", function(event) {
+                  toolBox.init(event.target)
+              });
+              canvasEdition.on("selection:cleared", function(event) {
+                  toolBox.reset()
+              });
               canvasEditions.push(canvasEdition);
             });
         }
@@ -1248,30 +1262,40 @@ function storePenColor(color) {
 }
 
 const toolBox = (function () {
-    const _coloricon = document.createElement('img')
-    _coloricon.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-fill" viewBox="0 0 16 16"><path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6M6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13"/></svg>'
+    const _coloricon = document.createElement('i')
+          _coloricon.classList.add('bi', 'bi-droplet-fill', 'mx-1')
 
-    function _renderIcon(icon) {
-        return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
-            const size = this.cornerSize;
-            ctx.save();
-            ctx.translate(left, top);
-            ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
-            ctx.drawImage(icon, -size/2, -size/2, size, size);
-            ctx.restore();
-        }
-    }
+    const _trashicon = document.createElement('i')
+          _trashicon.classList.add('bi', 'bi-trash3', 'float-end', 'border-start', 'border-2', 'mx-1', 'ps-1')
 
-    function _changeColor(eventData, transform) {
-        const target = transform.target;
+    const _copyicon = document.createElement('i')
+          _copyicon.classList.add('bi', 'bi-copy', 'mx-1')
+
+    let _elSelected
+
+    const _elToolbox = document.createElement('div')
+          _elToolbox.id = 'toolbox'
+          _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
+          _elToolbox.style['z-index'] = 1030
+          _elToolbox.style.width = 'max-content'
+
+          _elToolbox.appendChild(_coloricon)
+          _elToolbox.appendChild(_trashicon)
+          _elToolbox.appendChild(_copyicon)
+
+    _coloricon.addEventListener('click', _changeColor)
+    _trashicon.addEventListener('click', _delete)
+    _copyicon.addEventListener('click', _copy)
+
+    function _changeColor() {
         const _colorpicker = document.createElement('input')
               _colorpicker.setAttribute('type', 'color')
               _colorpicker.value = penColor
 
         _colorpicker.addEventListener('input', function (e) {
-            target.set({ fill: e.target.value })
-            target.canvas.requestRenderAll()
-            if(target.type != "rect") {
+            _elSelected.set({ fill: e.target.value })
+            _elSelected.canvas.requestRenderAll()
+            if(_elSelected.type != "rect") {
                 storePenColor(e.target.value)
             }
         })
@@ -1280,22 +1304,53 @@ const toolBox = (function () {
         _colorpicker.remove()
     }
 
-    function init(el) {
-        colorControl = new fabric.Control({
-            x: 0.5,
-            y: -0.5,
-            offsetY: -16,
-            offsetX: 16,
-            cursorStyle: 'pointer',
-            mouseUpHandler: _changeColor,
-            render: _renderIcon(_coloricon),
-            cornerSize: 24
+    function _copy() {
+        canvasEditions.forEach(function (canvas) {
+            if  (_elSelected.canvas === canvas) {
+                return
+            }
+
+            _elSelected.clone(function (clonedItem) {
+                addObjectInCanvas(canvas, clonedItem)
+            })
         })
 
-        el.controls.color = colorControl
+    }
+
+    function _delete() {
+        deleteActiveObject()
+        reset()
+    }
+
+    function init(el) {
+        if (_elToolbox) {
+            reset()
+        }
+
+        _elSelected = el
+        const container = document.getElementById('container-pages')
+        container.appendChild(_elToolbox)
+
+        _elToolbox.style.left = (
+            _elSelected.getBoundingRect().left
+            + _elSelected.getScaledWidth() / 2
+            - _elToolbox.offsetWidth / 2
+            + +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
+        ) + 'px'
+        _elToolbox.style.top = (
+            Math.max(..._elSelected.getCoords().map((c) => c.y)) // on sélectionne le coin le plus bas
+            + _elSelected.canvas._offset.top // hauteur du canvas dans le viewport
+            + container.scrollTop // haut du container
+        ) + 'px'
+    }
+
+    function reset() {
+        _elSelected = null
+        _elToolbox.remove()
     }
 
     return {
-        init: init
+        init: init,
+        reset: reset
     }
 })()

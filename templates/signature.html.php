@@ -41,7 +41,7 @@
         </div>
     <?php endif; ?>
     <div style="height: 65px;" class="d-md-none"></div>
-    <div id="container-pages" class="col-12 pt-1 pb-1 text-center vh-100" dir="auto">
+    <div id="container-pages" class="col-12 pt-1 pb-1 text-center vh-100 position-relative" dir="auto">
     </div>
     <div style="height: 55px;" class="d-md-none"></div>
     <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">

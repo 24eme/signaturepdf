@@ -57,6 +57,14 @@
                     <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" multiple="true">
                 </div>
                 <hr />
+                <div id="list_format_container">
+                    <div class="card">
+                        <div class="card-header small">Formats des pages</div>
+                        <ul id="list_formats" class="list-group list-group-flush small" style="max-height: 130px; overflow: auto;">
+                        </ul>
+                    </div>
+                </div>
+                <hr />
                 <div id="container_btn_select" class="opacity-50 card">
                     <div class="card-header small text-center p-1"><?php echo sprintf(_("%s page(s) selected"), '<span>0</span>'); ?> <button id="btn_cancel_select" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
                     <div class="card-body d-grid gap-2 p-2">

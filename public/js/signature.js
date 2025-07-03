@@ -1331,16 +1331,23 @@ const toolBox = (function () {
         const container = document.getElementById('container-pages')
         container.appendChild(_elToolbox)
 
+        const xCoords = _elSelected.getCoords().map((c) => c.x)
+        const yCoords = _elSelected.getCoords().map((c) => c.y)
+
         _elToolbox.style.left = (
-            _elSelected.getBoundingRect().left
-            + _elSelected.getScaledWidth() / 2
-            - _elToolbox.offsetWidth / 2
-            + +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
+            Math.min(...xCoords)              // on sélectionne le coin le plus à gauche
+            + _elSelected.canvas._offset.left // décalage du canvas dans le viewport
+            + (
+                Math.max(...xCoords)      // on sélectionne le coin le plus à droite
+              - Math.min(...xCoords)      // on sélectionne le coin le plus à gauche
+            ) / 2                         // pour calculer la largeur et avoir le centre
+            - _elToolbox.offsetWidth / 2  // centre de la toolbox
+            - +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
         ) + 'px'
         _elToolbox.style.top = (
-            Math.max(..._elSelected.getCoords().map((c) => c.y)) // on sélectionne le coin le plus bas
+            Math.max(...yCoords)             // on sélectionne le coin le plus bas
             + _elSelected.canvas._offset.top // hauteur du canvas dans le viewport
-            + container.scrollTop // haut du container
+            + container.scrollTop            // haut du container
         ) + 'px'
     }
 

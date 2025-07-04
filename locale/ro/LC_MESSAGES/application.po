@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 14:31+0200\n"
+"POT-Creation-Date: 2025-07-04 15:24+0200\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -503,6 +503,21 @@ msgid ""
 "Hello,\n"
 "\n"
 "I just signed the document (%s) : %s"
+msgstr ""
+
+msgid "Change the color of the selected element"
+msgstr ""
+
+msgid "Duplicate the element"
+msgstr ""
+
+msgid "Duplicate on each page"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Delete the element"
 msgstr ""
 
 msgid "Text to modify"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 14:31+0200\n"
+"POT-Creation-Date: 2025-07-04 15:24+0200\n"
 "PO-Revision-Date: 2025-06-25 23:02+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
@@ -512,6 +512,21 @@ msgstr ""
 "Kaixo,\n"
 "\n"
 "Dokumentua (%s) sinatu berri dut: %s"
+
+msgid "Change the color of the selected element"
+msgstr ""
+
+msgid "Duplicate the element"
+msgstr ""
+
+msgid "Duplicate on each page"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Delete the element"
+msgstr ""
 
 msgid "Text to modify"
 msgstr "Moldatzeko testua"

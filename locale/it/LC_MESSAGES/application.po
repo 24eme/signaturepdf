@@ -558,6 +558,21 @@ msgstr "Organizza"
 msgid "Metadata"
 msgstr "Metadata"
 
+msgid "Change the color of the selected element"
+msgstr ""
+
+msgid "Duplicate the element"
+msgstr ""
+
+msgid "Duplicate on each page"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Delete the element"
+msgstr ""
+
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Il PDF non deve superare "
 

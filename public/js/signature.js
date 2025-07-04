@@ -1262,30 +1262,35 @@ function storePenColor(color) {
 }
 
 const toolBox = (function () {
-    const _coloricon = document.createElement('i')
-          _coloricon.classList.add('bi', 'bi-droplet-fill', 'mx-1')
-
-    const _trashicon = document.createElement('i')
-          _trashicon.classList.add('bi', 'bi-trash3', 'float-end', 'border-start', 'border-2', 'mx-1', 'ps-1')
-
-    const _copyicon = document.createElement('i')
-          _copyicon.classList.add('bi', 'bi-copy', 'mx-1')
-
     let _elSelected
 
     const _elToolbox = document.createElement('div')
           _elToolbox.id = 'toolbox'
-          _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block')
+          _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block', 'user-select-none')
           _elToolbox.style['z-index'] = 1030
           _elToolbox.style.width = 'max-content'
 
-          _elToolbox.appendChild(_coloricon)
-          _elToolbox.appendChild(_trashicon)
-          _elToolbox.appendChild(_copyicon)
+    const _elToolboxElements = document.querySelector("#toolbox-elements-template").content.cloneNode(true)
+          _elToolbox.appendChild(_elToolboxElements)
 
-    _coloricon.addEventListener('click', _changeColor)
-    _trashicon.addEventListener('click', _delete)
-    _copyicon.addEventListener('click', _copy)
+    _elToolbox.addEventListener('click', function (e) {
+        e.preventDefault()
+        target = e.target
+
+        el = target.closest("[data-action]")
+        if (el) {
+            switch (el.dataset.action) {
+                case "changeColor":
+                    _changeColor(); break;
+                case "delete":
+                    _delete(); break;
+                case "copy":
+                    _copy(); break;
+                case "duplicate":
+                    _duplicate(); break;
+            }
+        }
+    })
 
     function _changeColor() {
         const _colorpicker = document.createElement('input')
@@ -1305,6 +1310,14 @@ const toolBox = (function () {
     }
 
     function _copy() {
+        _elSelected.clone(function (clonedItem) {
+            clonedItem.top -= 20;
+            clonedItem.left += 20;
+            addObjectInCanvas(_elSelected.canvas, clonedItem).setActiveObject(clonedItem)
+        })
+    }
+
+    function _duplicate() {
         canvasEditions.forEach(function (canvas) {
             if  (_elSelected.canvas === canvas) {
                 return
@@ -1331,16 +1344,23 @@ const toolBox = (function () {
         const container = document.getElementById('container-pages')
         container.appendChild(_elToolbox)
 
+        const xCoords = _elSelected.getCoords().map((c) => c.x)
+        const yCoords = _elSelected.getCoords().map((c) => c.y)
+
         _elToolbox.style.left = (
-            _elSelected.getBoundingRect().left
-            + _elSelected.getScaledWidth() / 2
-            - _elToolbox.offsetWidth / 2
-            + +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
+            Math.min(...xCoords)              // on sélectionne le coin le plus à gauche
+            + _elSelected.canvas._offset.left // décalage du canvas dans le viewport
+            + (
+                Math.max(...xCoords)      // on sélectionne le coin le plus à droite
+              - Math.min(...xCoords)      // on sélectionne le coin le plus à gauche
+            ) / 2                         // pour calculer la largeur et avoir le centre
+            - _elToolbox.offsetWidth / 2  // centre de la toolbox
+            - +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
         ) + 'px'
         _elToolbox.style.top = (
-            Math.max(..._elSelected.getCoords().map((c) => c.y)) // on sélectionne le coin le plus bas
+            Math.max(...yCoords)             // on sélectionne le coin le plus bas
             + _elSelected.canvas._offset.top // hauteur du canvas dans le viewport
-            + container.scrollTop // haut du container
+            + container.scrollTop            // haut du container
         ) + 'px'
     }
 

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-04 15:24+0200\n"
-"PO-Revision-Date: 2025-07-01 12:33+0000\n"
+"PO-Revision-Date: 2025-07-04 13:36+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
 "application/fr/>\n"
@@ -512,19 +512,19 @@ msgstr ""
 "Je viens de signer le document (%s) : %s"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "Changer la couleur de l'élément sélectionné"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "Dupliquer l'élément"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "Dupliquer sur chacune des pages"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliquer"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "Supprimer l'élément"
 
 msgid "Text to modify"
 msgstr "Texte à modifier"

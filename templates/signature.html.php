@@ -289,15 +289,15 @@
     </div>
     <?php endif; ?>
     <template id="toolbox-elements-template">
-        <div class="toolbox-action" data-action="changeColor"><i class="bi bi-droplet-fill"></i></div>
-        <div class="toolbox-action dropdown">
+        <div class="toolbox-action" data-action="changeColor" title="<?php echo _("Change the color of the selected element") ?>"><i class="bi bi-droplet-fill"></i></div>
+        <div class="toolbox-action dropdown" title="<?php echo _("Duplicate the element") ?>">
             <span class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside"><i class="bi bi-copy mx-1"></i></span>
             <ul class="dropdown-menu shadow-sm bg-body-secondary">
-                <li><a class="dropdown-item" data-action="duplicate">Duplicate on each page</a></li>
-                <li><a class="dropdown-item" data-action="copy">Duplicate</a></li>
+                <li><a class="dropdown-item" data-action="duplicate"><?php echo _("Duplicate on each page") ?></a></li>
+                <li><a class="dropdown-item" data-action="copy"><?php echo _("Duplicate") ?></a></li>
             </ul>
         </div>
-        <div class="toolbox-action" data-action="delete"><i class="bi bi-trash3"></i></div>
+        <div class="toolbox-action" data-action="delete" title="<?php echo _("Delete the element") ?>"><i class="bi bi-trash3"></i></div>
     </template>
     <?php $loadJs = ['pdf.js' => true]; include('components/common.html.php'); ?>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?5.4.0"></script>

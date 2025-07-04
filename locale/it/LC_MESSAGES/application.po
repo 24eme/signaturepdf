@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-01 14:31+0200\n"
-"PO-Revision-Date: 2025-07-01 23:01+0000\n"
+"PO-Revision-Date: 2025-07-04 20:01+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
@@ -334,7 +334,7 @@ msgstr "Barrato"
 
 #, php-format
 msgid "%s Check box"
-msgstr "%s Check box"
+msgstr "%s Casella di controllo"
 
 msgid "Redaction area"
 msgstr "Area di redazione"
@@ -559,19 +559,19 @@ msgid "Metadata"
 msgstr "Metadata"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "Cambia il colore dell'elemento selezionato"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "Duplica l'elemento"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "Duplica su ogni pagina"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicare"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "Elimina l'elemento"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Il PDF non deve superare "

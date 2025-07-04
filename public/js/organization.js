@@ -49,10 +49,15 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
                 pages[pageIndex] = page;
                 const viewportFormat = page.getViewport({ scale: 1 });
-                const widthFormat = Math.round(viewportFormat.width * 25.4 / 72 * 10) / 10;
-                const heightFormat = Math.round(viewportFormat.height * 25.4 / 72 * 10) / 10;
-                formats[pageIndex] = widthFormat + " x " + heightFormat + " mm";
-                let pageTitle = trad['Page'] + ' ' + page.pageNumber + ' - '+formats[pageIndex]+' - ' + filename;
+                const widthFormat = Math.round(viewportFormat.width * 25.4 / 72);
+                const heightFormat = Math.round(viewportFormat.height * 25.4 / 72);
+                const format = [widthFormat,heightFormat].sort().join('x')
+
+                if(!formats[format]) {
+                    formats[format] = []
+                }
+                formats[format].push(pageIndex);
+                let pageTitle = trad['Page'] + ' ' + page.pageNumber + ' - ' + widthFormat + ' x ' + heightFormat + ' mm - ' + filename;
                 let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container d-flex align-items-center justify-content-center bg-transparent bg-opacity-25 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
                     pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
                     pageHTML += '<div title="' + trad['Select this page'] + '" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select d-none"><i class="bi bi-check-square"></i></div>';
@@ -251,6 +256,8 @@ async function pageRender(pageIndex) {
     canvasContext: context,
     viewport: viewport,
   });
+
+  updateFormats();
 }
 
 function getFileIndex(page) {
@@ -303,6 +310,22 @@ function updateListePDF() {
         }
     }
     updateGlobalState();
+}
+
+function updateFormats() {
+    document.querySelector('#list_formats').innerHTML = "";
+    for (let format in formats) {
+        document.querySelector('#list_formats').insertAdjacentHTML('beforeend', '<li id="format_' + format + '" class="list-group-item ps-2 pe-5"><span class="ms-2">'+format+' mm : '+formats[format].length+' pages</span> <input class="form-check-input float-end position-absolute file-list-checkbox" type="checkbox" value="'+format+'" /></li>');
+        document.querySelector('#format_' + format+ ' input[type=checkbox]').addEventListener('change', function(e) {
+            for(numPage of formats[this.value]) {
+                let page = document.getElementById('canvas-container-' + numPage);
+                if(!isPageDeleted(page)) {
+                    selectPage(page, e.target.checked);
+                }
+            }
+            updateGlobalState();
+        });
+    }
 }
 
 function getPagesSelected() {
@@ -474,6 +497,26 @@ function updateFilesState() {
             document.querySelector('#file_'+fileIndex+' span').classList.add('text-primary');
         }
     }
+
+    document.querySelectorAll('#list_formats input[type=checkbox]').forEach(function(checkbox) {
+        let format = checkbox.value;
+        let numPages = formats[format];
+        checkbox.checked = false;
+        checkbox.indeterminate = false;
+        document.querySelector('#format_'+format).classList.remove('text-primary');
+        for(numPage of numPages) {
+            let page = document.getElementById('canvas-container-' + numPage);
+            if(isPageSelected(page)) {
+                checkbox.checked = true;
+            } else if(!isPageDeleted(page) && checkbox.checked) {
+                checkbox.checked = false;
+                checkbox.indeterminate = true;
+            }
+        }
+        if(checkbox.checked || checkbox.indeterminate) {
+            document.querySelector('#format_'+format).classList.add('text-primary');
+        }
+    });
 }
 
 function updateGlobalState() {

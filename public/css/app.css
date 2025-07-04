@@ -74,8 +74,22 @@
      opacity: 1;
 }
 
-#toolbox i {
+#toolbox div {
     cursor: pointer;
+    padding: 1px;
+    display: inline-block;
+    padding-left: .25rem;
+    padding-right: .25rem;
+}
+
+#toolbox div + div {
+    border-left: 1px solid #CCC;
+}
+
+#toolbox .dropdown-menu {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0;
 }
 
 .canvas-container .btn-drag, .canvas-container .btn-rotate, .canvas-container .btn-delete, .canvas-container .btn-select, .canvas-container .btn-download, .canvas-container .btn-restore, .canvas-container .btn-drag-here, .canvas-container .btn-drag-here_mobile, .canvas-container .btn-cancel {

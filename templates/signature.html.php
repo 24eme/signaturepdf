@@ -288,6 +288,17 @@
         </div>
     </div>
     <?php endif; ?>
+    <template id="toolbox-elements-template">
+        <div class="toolbox-action" data-action="changeColor"><i class="bi bi-droplet-fill"></i></div>
+        <div class="toolbox-action dropdown">
+            <span class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside"><i class="bi bi-copy mx-1"></i></span>
+            <ul class="dropdown-menu shadow-sm bg-body-secondary">
+                <li><a class="dropdown-item" data-action="duplicate">Duplicate on each page</a></li>
+                <li><a class="dropdown-item" data-action="copy">Duplicate</a></li>
+            </ul>
+        </div>
+        <div class="toolbox-action" data-action="delete"><i class="bi bi-trash3"></i></div>
+    </template>
     <?php $loadJs = ['pdf.js' => true]; include('components/common.html.php'); ?>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?5.4.0"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?5.0.3"></script>

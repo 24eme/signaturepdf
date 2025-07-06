@@ -92,7 +92,7 @@ msgstr "உயர் சுருக்க (குறைந்தபட்ச �
 
 #, php-format
 msgid "%s Mb"
-msgstr "%XSMB"
+msgstr "%s எம்பி"
 
 msgid "Compressed at %s%"
 msgstr "%s %இல் சுருக்கப்பட்டது"
@@ -507,19 +507,19 @@ msgstr ""
 " நான் ஆவணத்தில் கையெழுத்திட்டேன் ( %s): %s"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட உறுப்பின் நிறத்தை மாற்றவும்"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "உறுப்பு நகல்"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "ஒவ்வொரு பக்கத்திலும் நகல்"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "நகல்"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "உறுப்பை நீக்கு"
 
 msgid "Text to modify"
 msgstr "மாற்ற உரை"

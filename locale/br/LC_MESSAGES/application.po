@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
+"POT-Creation-Date: 2025-07-09 16:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -148,6 +148,9 @@ msgstr ""
 msgid "Delete pages"
 msgstr ""
 
+msgid "Change or standardize the page format"
+msgstr ""
+
 msgid "Convert images to PDF"
 msgstr ""
 
@@ -242,6 +245,9 @@ msgstr ""
 msgid "%s Cancel selection"
 msgstr ""
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr ""
@@ -263,6 +269,21 @@ msgid "Download the selection"
 msgstr ""
 
 msgid "PDF documents"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Pages format"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
@@ -462,9 +483,6 @@ msgstr ""
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
-msgstr ""
-
-msgid "Close"
 msgstr ""
 
 msgid "Signed PDF"

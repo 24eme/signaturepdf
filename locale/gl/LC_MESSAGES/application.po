@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
+"POT-Creation-Date: 2025-07-09 16:35+0200\n"
 "PO-Revision-Date: 2024-10-14 07:49+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/signature-pdf/"
@@ -151,6 +151,9 @@ msgstr ""
 msgid "Delete pages"
 msgstr ""
 
+msgid "Change or standardize the page format"
+msgstr ""
+
 msgid "Convert images to PDF"
 msgstr ""
 
@@ -245,6 +248,9 @@ msgstr "%s Extraer e descargar"
 msgid "%s Cancel selection"
 msgstr "%s Desbotar selección"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s Descargar PDF completo"
@@ -267,6 +273,21 @@ msgstr "Descargar a selección"
 
 msgid "PDF documents"
 msgstr "Documentos PDF"
+
+msgid "Close"
+msgstr "Pechar"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Pages format"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Asinar, iniciais, selo, completar un documento"
@@ -474,9 +495,6 @@ msgid ""
 msgstr ""
 "Cada unha das persoas asinantes pode descargar en calquera momento a última "
 "versión do PDF asinado."
-
-msgid "Close"
-msgstr "Pechar"
 
 msgid "Signed PDF"
 msgstr "Asinaches o PDF"

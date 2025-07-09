@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
+"POT-Creation-Date: 2025-07-09 16:35+0200\n"
 "PO-Revision-Date: 2025-06-03 16:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -151,6 +151,9 @@ msgstr "Zzi isebtar"
 msgid "Delete pages"
 msgstr "Kkes isebtar"
 
+msgid "Change or standardize the page format"
+msgstr ""
+
 msgid "Convert images to PDF"
 msgstr "Aselket n tugniwin ɣer PDF"
 
@@ -245,6 +248,9 @@ msgstr "%s Ssef, tsadreḍ"
 msgid "%s Cancel selection"
 msgstr "%s Sefsex tafrant"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s Sader PDF ummid"
@@ -267,6 +273,21 @@ msgstr "Sader tafrant"
 
 msgid "PDF documents"
 msgstr "Isemliyen n PDF"
+
+msgid "Close"
+msgstr "Mdel"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Pages format"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Zmel, zmel deg yidis, err iziwel neɣ smed isemli"
@@ -473,9 +494,6 @@ msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr "Yal win izemlen afaylu ad d-isader lqem aneggaru n PDF melmi i yebɣa."
-
-msgid "Close"
-msgstr "Mdel"
 
 msgid "Signed PDF"
 msgstr "Afaylu PDF yettwasezmel"

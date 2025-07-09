@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 14:31+0200\n"
+"POT-Creation-Date: 2025-07-09 16:35+0200\n"
 "PO-Revision-Date: 2025-07-04 20:01+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -151,6 +151,9 @@ msgstr "Ruota le pagine"
 msgid "Delete pages"
 msgstr "Elimina pagine"
 
+msgid "Change or standardize the page format"
+msgstr ""
+
 msgid "Convert images to PDF"
 msgstr "Convertire le immagini in PDF"
 
@@ -245,6 +248,9 @@ msgstr "%s Estrai e scarica"
 msgid "%s Cancel selection"
 msgstr "%s Annulla selezione"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s Scaricato il PDF completo"
@@ -267,6 +273,21 @@ msgstr "Scarica la selezione"
 
 msgid "PDF documents"
 msgstr "Documenti PDF"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Pages format"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Firma, annota, timbra, completa un documento"
@@ -474,9 +495,6 @@ msgstr ""
 "Ogni firmatario può scaricare l'ultima versione del PDF firmato in qualsiasi "
 "momento."
 
-msgid "Close"
-msgstr "Chiudi"
-
 msgid "Signed PDF"
 msgstr "PDF firmato"
 
@@ -506,6 +524,21 @@ msgstr ""
 "Ciao!\n"
 "\n"
 "Ho appena firmato il documento (%s) : %s"
+
+msgid "Change the color of the selected element"
+msgstr "Cambia il colore dell'elemento selezionato"
+
+msgid "Duplicate the element"
+msgstr "Duplica l'elemento"
+
+msgid "Duplicate on each page"
+msgstr "Duplica su ogni pagina"
+
+msgid "Duplicate"
+msgstr "Duplicare"
+
+msgid "Delete the element"
+msgstr "Elimina l'elemento"
 
 msgid "Text to modify"
 msgstr "Testo da modificare"
@@ -557,21 +590,6 @@ msgstr "Organizza"
 
 msgid "Metadata"
 msgstr "Metadata"
-
-msgid "Change the color of the selected element"
-msgstr "Cambia il colore dell'elemento selezionato"
-
-msgid "Duplicate the element"
-msgstr "Duplica l'elemento"
-
-msgid "Duplicate on each page"
-msgstr "Duplica su ogni pagina"
-
-msgid "Duplicate"
-msgstr "Duplicare"
-
-msgid "Delete the element"
-msgstr "Elimina l'elemento"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Il PDF non deve superare "

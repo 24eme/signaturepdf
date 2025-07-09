@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
+"POT-Creation-Date: 2025-07-09 16:35+0200\n"
 "PO-Revision-Date: 2025-07-05 22:01+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
@@ -156,6 +156,9 @@ msgstr "Biratu orriak"
 msgid "Delete pages"
 msgstr "Ezabatu orriak"
 
+msgid "Change or standardize the page format"
+msgstr ""
+
 msgid "Convert images to PDF"
 msgstr "Bihurtu irudiak PDFra"
 
@@ -250,6 +253,9 @@ msgstr "%s Erauzi eta deskargatu"
 msgid "%s Cancel selection"
 msgstr "%s Utzi hautaketa"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s Deskargatu PDF osoa"
@@ -272,6 +278,21 @@ msgstr "Deskargatu hautaketa"
 
 msgid "PDF documents"
 msgstr "PDF dokumentuak"
+
+msgid "Close"
+msgstr "Itxi"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Pages format"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Sinatu, idatzi inizialak, zigilatu, osatu dokumentua"
@@ -478,9 +499,6 @@ msgid ""
 msgstr ""
 "Sinatzaile bakoitzak sinatutako PDFaren azken bertsioa deskargatu dezake "
 "edozein unetan."
-
-msgid "Close"
-msgstr "Itxi"
 
 msgid "Signed PDF"
 msgstr "Sinatutako PDFa"

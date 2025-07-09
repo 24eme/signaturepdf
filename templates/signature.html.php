@@ -317,6 +317,34 @@
     pdfHash = "<?php echo $hash ?>";
     <?php endif; ?>
 
+    <?php if(Flash::instance()->hasKey('adminKey')): ?>
+        localStorage.setItem(pdfHash+'.adminKey', '<?php echo Flash::instance()->getKey('adminKey') ?>')
+    <?php endif; ?>
+
+    const adminKey = localStorage.getItem(pdfHash+'.adminKey')
+    if (adminKey) {
+        const icon = document.createElement('i')
+        icon.classList.add('float-end', 'bi', 'bi-trash3')
+        icon.style.cursor = 'pointer'
+        document.getElementById('text_document_name').appendChild(icon)
+
+        icon.addEventListener('click', async function () {
+            if (confirm("Êtes vous sûr de vouloir supprimer ce PDF ainsi que les signatures associées ?")) {
+                try {
+                    const response = await fetch('/signature/'+pdfHash+'/delete/'+adminKey);
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+
+                    localStorage.removeItem(pdfHash+'.adminKey')
+                    window.location.replace('/signature')
+                } catch (error) {
+                    console.error(error.message);
+                }
+            }
+        })
+    }
+
     var trad = <?php echo json_encode([
         'Text to modify' => _('Text to modify')
     ]); ?>;

@@ -292,11 +292,36 @@ $f3->route('POST /share',
         }
 
         \Flash::instance()->setKey('openModal', 'shareinformations');
+        \Flash::instance()->setKey("adminKey", $pdfSignature->createAdminKey());
 
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.(($symmetricKey) ? '#'.$symmetricKey : null));
     }
 
 );
+
+$f3->route('GET @signature_deletion: /signature/@hash/delete/@key', function ($f3) {
+    $sharingFolder = $f3->get('PDF_STORAGE_PATH');
+    $baseHash = $sharingFolder.$f3->get('PARAMS.hash');
+
+    if (is_dir($baseHash) === false) {
+        $f3->error(403);
+    }
+
+    if (is_file($baseHash.'.admin') === false || is_readable($baseHash.'.admin') === false) {
+        $f3->error(403);
+    }
+
+    if (file_get_contents($baseHash.'.admin') !== $f3->get('PARAMS.key')) {
+        $f3->error(403);
+    }
+
+    GPGCryptography::hardUnlink($baseHash.'/.lock');
+    GPGCryptography::hardUnlink($baseHash);
+    unlink($baseHash.'.admin');
+    unlink($baseHash.'.expire');
+
+    $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature');
+});
 
 $f3->route('GET /signature/@hash/pdf',
     function($f3) {

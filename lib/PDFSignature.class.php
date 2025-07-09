@@ -30,6 +30,14 @@ class PDFSignature
         }
     }
 
+    public function createAdminKey()
+    {
+        $link = $this->gpg->createSymmetricKey(20);
+        file_put_contents($this->pathHash.'.admin', $link);
+
+        return $link;
+    }
+
     public function verifyEncryption() {
         if(!$this->isEncrypted()) {
 

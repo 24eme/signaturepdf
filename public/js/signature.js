@@ -493,6 +493,10 @@ function addObjectInCanvas(canvas, item) {
 };
 
 function updateWatermark() {
+    if (document.querySelector('input[name=watermark]') === null) {
+        return
+    }
+
     const text = new fabric.Text(document.querySelector('input[name=watermark]').value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
     text.scale = 0.
     const overlay = new fabric.Rect({

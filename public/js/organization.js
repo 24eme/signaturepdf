@@ -49,8 +49,8 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
                 pages[pageIndex] = page;
                 const viewportFormat = page.getViewport({ scale: 1 });
-                const widthFormat = Math.round(viewportFormat.width * 25.4 / 72);
-                const heightFormat = Math.round(viewportFormat.height * 25.4 / 72);
+                const widthFormat = points2mm(viewportFormat.width);
+                const heightFormat = points2mm(viewportFormat.height);
                 const format = [widthFormat,heightFormat].sort().join('x')
 
                 if(!formats[format]) {
@@ -313,19 +313,26 @@ function updateListePDF() {
 }
 
 function updateFormats() {
-    document.querySelector('#list_formats').innerHTML = "";
-    for (let format in formats) {
-        document.querySelector('#list_formats').insertAdjacentHTML('beforeend', '<li id="format_' + format + '" class="list-group-item ps-2 pe-5"><span class="ms-2">'+format+' mm : '+formats[format].length+' pages</span> <input class="form-check-input float-end position-absolute file-list-checkbox" type="checkbox" value="'+format+'" /></li>');
-        document.querySelector('#format_' + format+ ' input[type=checkbox]').addEventListener('change', function(e) {
-            for(numPage of formats[this.value]) {
-                let page = document.getElementById('canvas-container-' + numPage);
-                if(!isPageDeleted(page)) {
-                    selectPage(page, e.target.checked);
-                }
-            }
-            updateGlobalState();
-        });
+    const selectFormat = document.querySelector('#select_paper_format');
+    const selectFormatOptionCurrent = document.querySelector('#select_paper_format_current');
+    let formatsLabel = [];
+    for(format in formats) {
+        if(document.querySelector('#select_paper_format option[value="'+format+'"]')) {
+            formatsLabel.push(document.querySelector('#select_paper_format option[value="'+format+'"]').innerText);
+        } else {
+            formatsLabel.push(format.replace('x', ' x ') + ' mm');
+        }
     }
+
+    selectFormatOptionCurrent.innerText = formatsLabel.join(', ');
+    document.querySelector('#printable_infos').innerText = selectFormat.selectedOptions[0].text;
+    document.querySelector('#printable_infos').classList.add('text-muted');
+    document.querySelector('#printable_infos').classList.remove('fw-bold');
+    if(selectFormat.value) {
+        document.querySelector('#printable_infos').classList.remove('text-muted');
+        document.querySelector('#printable_infos').classList.add('fw-bold');
+    }
+    document.querySelector('#printable_infos').title = document.querySelector('#printable_infos').innerText;
 }
 
 function getPagesSelected() {
@@ -497,26 +504,6 @@ function updateFilesState() {
             document.querySelector('#file_'+fileIndex+' span').classList.add('text-primary');
         }
     }
-
-    document.querySelectorAll('#list_formats input[type=checkbox]').forEach(function(checkbox) {
-        let format = checkbox.value;
-        let numPages = formats[format];
-        checkbox.checked = false;
-        checkbox.indeterminate = false;
-        document.querySelector('#format_'+format).classList.remove('text-primary');
-        for(numPage of numPages) {
-            let page = document.getElementById('canvas-container-' + numPage);
-            if(isPageSelected(page)) {
-                checkbox.checked = true;
-            } else if(!isPageDeleted(page) && checkbox.checked) {
-                checkbox.checked = false;
-                checkbox.indeterminate = true;
-            }
-        }
-        if(checkbox.checked || checkbox.indeterminate) {
-            document.querySelector('#format_'+format).classList.add('text-primary');
-        }
-    });
 }
 
 function updateGlobalState() {
@@ -647,8 +634,12 @@ async function save(order) {
         const pageOrganize = pagesOrganize[i].split('-')[0];
         const rotation = pagesOrganize[i].split('-')[1];
         const pdfPage = pages[pageOrganize];
+        const format = document.querySelector('#select_paper_format').value;
         if(rotation) {
             pdfPage.setRotation(window['PDFLib'].degrees(parseInt(rotation)));
+        }
+        if(format) {
+            resizePage(pdfPage, mm2points(parseInt(format.split("x")[0])), mm2points(parseInt(format.split("x")[1])));
         }
         pdf.addPage(pdfPage);
     }
@@ -657,6 +648,39 @@ async function save(order) {
 
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
     await download(newPDF, filename+".pdf");
+}
+
+function mm2points(mm) {
+
+    return mm * 72 / 25.4;
+}
+
+function points2mm(points) {
+
+    return Math.round(points * 25.4 / 72);
+}
+
+function resizePage(page, newWidth, newHeight) {
+    const oldWidth = page.getSize().width;
+    const oldHeight = page.getSize().height;
+
+    // Calcul des facteurs d’échelle
+    const scaleX = newWidth / oldWidth;
+    const scaleY = newHeight / oldHeight;
+
+    // Utiliser le facteur le plus petit pour garder les proportions
+    const scale = Math.min(scaleX, scaleY);
+
+    // Définir la nouvelle taille
+    page.setSize(newWidth, newHeight);
+
+    // Calculer le décalage pour centrer le contenu
+    const offsetX = (newWidth - (oldWidth * scale)) / 2;
+    const offsetY = (newHeight - (oldHeight * scale)) / 2;
+
+    // Appliquer la transformation au contenu
+    page.scaleContent(scale, scale);
+    page.translateContent(offsetX, offsetY);
 }
 
 function cleanPDF(pdf) {
@@ -831,7 +855,9 @@ function createEventsListener() {
         }
         document.getElementById('btn_cancel_select').click();
     });
-
+    document.querySelector('#select_paper_format').addEventListener('change', function(event) {
+        updateFormats();
+    });
 }
 
 async function uploadFromUrl(url) {

@@ -70,16 +70,10 @@ sudo service apache2 restart
 
 ## [Deploy with Docker](#docker)
 
-### Building the image
-
-```bash
-docker build -t signaturepdf .
-```
-
 ### Running a container
 
 ```bash
-docker run -d --name=signaturepdf -p 8080:80 signaturepdf
+docker run -d --name=signaturepdf -p 8080:80 xgaia/signaturepdf
 ```
 
 [localhost:8080](http://localhost:8080)
@@ -102,6 +96,17 @@ The following variables can be used to configure the deployment:
 
 ```bash
 docker run -d --name=signaturepdf -p 8080:80 -e SERVERNAME=pdf.example.org -e UPLOAD_MAX_FILESIZE=48M -e POST_MAX_SIZE=48M -e MAX_FILE_UPLOADS=401 -e PDF_STORAGE_PATH=/data signaturepdf
+```
+
+### Building the image from source
+
+You can also build the Docker image from source if necessary:
+
+```bash
+git clone https://github.com/24eme/signaturepdf.git
+cd signaturepdf
+docker build -t signaturepdf .
+docker run -d --name=signaturepdf -p 8080:80 signaturepdf
 ```
 
 ## [Alpine](#alpine)

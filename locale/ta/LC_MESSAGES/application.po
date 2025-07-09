@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
-"PO-Revision-Date: 2025-04-20 21:02+0000\n"
+"POT-Creation-Date: 2025-07-09 17:39+0200\n"
+"PO-Revision-Date: 2025-07-06 20:04+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/signature-pdf/"
 "application/ta/>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 msgid "en"
 msgstr "ta"
 
 msgid "PDF compression failed"
-msgstr ""
+msgstr "பி.டி.எஃப் சுருக்க தோல்வியுற்றது"
 
 msgid "Your pdf is already optimized"
 msgstr "உங்கள் PDF ஏற்கனவே உகந்ததாக உள்ளது"
@@ -71,7 +71,7 @@ msgstr "ஒரு PDF ஐத் தேர்வுசெய்க"
 
 #, php-format
 msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgstr "PDF %s MB ஐ தாண்டக்கூடாது"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
@@ -92,76 +92,79 @@ msgstr "உயர் சுருக்க (குறைந்தபட்ச �
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s எம்பி"
 
 msgid "Compressed at %s%"
-msgstr ""
+msgstr "%s %இல் சுருக்கப்பட்டது"
 
 msgid "Download the PDF"
 msgstr "PDF ஐப் பதிவிறக்கவும்"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "PDF களில் கையொப்பமிடுவதற்கும் கையாளுவதற்கும் இலவச திறந்த மூல மென்பொருள்"
 
 msgid "Sign a PDF"
 msgstr "ஒரு PDF இல் கையெழுத்திடுகின்றன"
 
 msgid "Add a signature"
-msgstr ""
+msgstr "ஒரு கையொப்பத்தைச் சேர்க்கவும்"
 
 msgid "Add initials"
-msgstr ""
+msgstr "முதலெழுத்துகளைச் சேர்க்கவும்"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "ஒரு முத்திரை சேர்க்கவும்"
 
 msgid "Type text"
-msgstr ""
+msgstr "உரையைத் தட்டச்சு செய்க"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "உரை மூலம் வேலைநிறுத்தம்"
 
 msgid "Allow multiple people to sign via a shared link"
-msgstr ""
+msgstr "பகிரப்பட்ட இணைப்பு வழியாக பல நபர்களை கையெழுத்திட அனுமதிக்கவும்"
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "சேவையக சான்றிதழுடன் கையொப்பமிடுங்கள்"
 
 msgid "Add a watermark"
-msgstr ""
+msgstr "ஒரு வாட்டர்மார்க் சேர்க்கவும்"
 
 msgid "Redact areas"
-msgstr ""
+msgstr "திருத்தும் பகுதிகள்"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "PDF ஐ ஒழுங்கமைக்கவும்"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "பல PDF கோப்புகளை இணைக்கவும்"
 
 msgid "Reorder pages"
-msgstr ""
+msgstr "பக்கங்களை மறுவரிசைப்படுத்தவும்"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "பக்கங்களை பிரித்தெடுக்கவும்"
 
 msgid "Rotate pages"
+msgstr "பக்கங்களை சுழற்றுங்கள்"
+
+msgid "Change or standardize the paper size"
 msgstr ""
 
 msgid "Delete pages"
-msgstr ""
+msgstr "பக்கங்களை நீக்கு"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "படங்களை PDF ஆக மாற்றவும்"
 
 msgid "Edit a PDF"
-msgstr ""
+msgstr "ஒரு PDF ஐத் திருத்து"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "ஒரு PDF இலிருந்து மெட்டாடேட்டாவைச் சேர்க்கவும், திருத்தவும் அல்லது அகற்றவும்"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "ஒரு PDF இன் அளவை சுருக்கி குறைக்கவும்"
 
 #, php-format
 msgid "%s Edit metadata"
@@ -206,7 +209,7 @@ msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "ஒன்றிணைக்கவும், வரிசைப்படுத்தவும், சுழற்றவும், நீக்கவும், பக்கங்களை பிரித்தெடுக்கவும்"
 
 msgid "or an image"
-msgstr ""
+msgstr "அல்லது ஒரு படம்"
 
 msgid "Touch a page to select it"
 msgstr "அதைத் தேர்ந்தெடுக்க ஒரு பக்கத்தைத் தொடவும்"
@@ -245,6 +248,9 @@ msgstr "%s சாறு மற்றும் பதிவிறக்க"
 msgid "%s Cancel selection"
 msgstr "%s தேர்வு"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s முழு PDF ஐ பதிவிறக்கவும்"
@@ -267,6 +273,21 @@ msgstr "தேர்வைப் பதிவிறக்கவும்"
 
 msgid "PDF documents"
 msgstr "PDF ஆவணங்கள்"
+
+msgid "Close"
+msgstr "மூடு"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Paper size"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "அடையாளம், ஆரம்ப, முத்திரை, ஒரு ஆவணத்தை முடிக்கவும்"
@@ -337,10 +358,10 @@ msgid "%s Check box"
 msgstr "%s தேர்வுப்பெட்டி"
 
 msgid "Redaction area"
-msgstr ""
+msgstr "மறுசீரமைப்பு பகுதி"
 
 msgid "Watermark"
-msgstr ""
+msgstr "வாட்டர்மார்க்"
 
 #, php-format
 msgid "%s Create an element"
@@ -354,7 +375,7 @@ msgid "Download the signed PDF"
 msgstr "கையொப்பமிடப்பட்ட PDF ஐப் பதிவிறக்கவும்"
 
 msgid "The PDF will be flattened"
-msgstr ""
+msgstr "PDF தட்டையானது"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
@@ -474,9 +495,6 @@ msgstr ""
 "கையொப்பமிட்டவர்கள் ஒவ்வொன்றும் கையொப்பமிடப்பட்ட PDF இன் அண்மைக் கால பதிப்பை எந்த நேரத்திலும் "
 "பதிவிறக்கம் செய்யலாம்."
 
-msgid "Close"
-msgstr "மூடு"
-
 msgid "Signed PDF"
 msgstr "கையொப்பமிடப்பட்ட PDF"
 
@@ -507,19 +525,19 @@ msgstr ""
 " நான் ஆவணத்தில் கையெழுத்திட்டேன் ( %s): %s"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட உறுப்பின் நிறத்தை மாற்றவும்"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "உறுப்பு நகல்"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "ஒவ்வொரு பக்கத்திலும் நகல்"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "நகல்"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "உறுப்பை நீக்கு"
 
 msgid "Text to modify"
 msgstr "மாற்ற உரை"
@@ -558,7 +576,7 @@ msgid "see the source code"
 msgstr "மூலக் குறியீட்டைக் காண்க"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "PDF களை சுதந்திரமாக கையொப்பமிட்டு கையாளவும்"
 
 msgid "Language"
 msgstr "மொழி"

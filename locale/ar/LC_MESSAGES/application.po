@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
+"POT-Creation-Date: 2025-07-09 17:39+0200\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -149,6 +149,9 @@ msgstr ""
 msgid "Rotate pages"
 msgstr ""
 
+msgid "Change or standardize the paper size"
+msgstr ""
+
 msgid "Delete pages"
 msgstr ""
 
@@ -246,6 +249,9 @@ msgstr "%s فك الضغط وتنزيل"
 msgid "%s Cancel selection"
 msgstr "%s إلغاء التحديد"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s تنزيل الـ PDF كاملًا"
@@ -268,6 +274,21 @@ msgstr "تنزيل المُحدَّدة"
 
 msgid "PDF documents"
 msgstr "مستندات PDF"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Paper size"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "وقِّع أو وقِّع جانبيا أو ضع خاتما أو اكمل مُستَنَدًا"
@@ -471,9 +492,6 @@ msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr "بإمكان كل مُوَقِّع تنزيل آخِر نسخة من ملف الـ PDF المُوَقَّع في أي وقت."
-
-msgid "Close"
-msgstr "إغلاق"
 
 msgid "Signed PDF"
 msgstr "ملف PDF مُوَقَّع"

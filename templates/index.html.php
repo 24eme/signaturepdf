@@ -41,9 +41,9 @@
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrows-move"></i> <?php echo _("Reorder pages") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> <?php echo _("Extract pages") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrow-clockwise"></i> <?php echo _("Rotate pages") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-rulers"></i> <?php echo _("Change or standardize the paper size") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-trash"></i> <?php echo _("Delete pages") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-images"></i> <?php echo _("Convert images to PDF") ?></a>
-
             </div>
         </div>
         <div class="card mt-4">

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
+"POT-Creation-Date: 2025-07-09 17:39+0200\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -149,6 +149,9 @@ msgstr ""
 msgid "Rotate pages"
 msgstr ""
 
+msgid "Change or standardize the paper size"
+msgstr ""
+
 msgid "Delete pages"
 msgstr ""
 
@@ -246,6 +249,9 @@ msgstr "%s Extrageți și descărcați"
 msgid "%s Cancel selection"
 msgstr "%s Anulează selecția"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s Descărcați PDF-ul complet"
@@ -268,6 +274,21 @@ msgstr "Descărcați selecția"
 
 msgid "PDF documents"
 msgstr "Documente PDF"
+
+msgid "Close"
+msgstr "Închide"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Paper size"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Semnează, inițială, ștampilă, completează un document"
@@ -477,9 +498,6 @@ msgid ""
 msgstr ""
 "Fiecare dintre semnatari poate descărca oricând cea mai recentă versiune a "
 "PDF-ului semnat."
-
-msgid "Close"
-msgstr "Închide"
 
 msgid "Signed PDF"
 msgstr "PDF semnat"

@@ -57,14 +57,6 @@
                     <input id="input_pdf_upload_2" class="form-control d-none" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" multiple="true">
                 </div>
                 <hr />
-                <div id="list_format_container">
-                    <div class="card">
-                        <div class="card-header small">Formats des pages</div>
-                        <ul id="list_formats" class="list-group list-group-flush small" style="max-height: 130px; overflow: auto;">
-                        </ul>
-                    </div>
-                </div>
-                <hr />
                 <div id="container_btn_select" class="opacity-50 card">
                     <div class="card-header small text-center p-1"><?php echo sprintf(_("%s page(s) selected"), '<span>0</span>'); ?> <button id="btn_cancel_select" type="button" class="btn-close btn-close-white float-end" aria-label="Close"></button></div>
                     <div class="card-body d-grid gap-2 p-2">
@@ -81,6 +73,12 @@
                         <input id="input_pdf" name="pdf[]" type="file" class="d-none" />
                         <input id="input_pages" type="hidden" value="" name="pages" />
                         <div id="btn_container" class="d-grid gap-2 mt-2">
+                            <button type="button" class="btn btn-light btn text-start border position-relative mb-2" data-bs-toggle="modal" data-bs-target="#modalPrintable">
+                                <i class="bi bi-gear position-absolute top-50 end-0 translate-middle-y pe-3 "></i>
+                                <small><?php echo _("Printing options") ?></small>
+                                <div id="printable_infos" class="text-muted small clamp-2-lines"></div>
+                            </button>
+
                             <button class="btn btn-primary" type="submit" id="save"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
                         </div>
                     </form>
@@ -119,9 +117,57 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo _("PDF documents"); ?></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php echo _("Close") ?>"></button>
                 </div>
                 <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalPrintable" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo _("Printing options"); ?></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php echo _("Close") ?>"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating">
+                      <select class="form-select" id="select_paper_format">
+                        <optgroup label="<?php echo _("Original format") ?>">
+                            <option id="select_paper_format_current" value="" selected></option>
+                        </optgroup>
+                        <optgroup label="<?php echo _("Most common formats") ?>">
+                            <option value="210x297">A4 (210 × 297 mm)</option>
+                            <option value="216x279">Letter (8.5 × 11 pouces / 216 × 279 mm)</option>
+                        </optgroup>
+                        <optgroup label="<?php echo _("Other formats") ?>">
+                            <option value="841x1189">A0 (841 × 1189 mm)</option>
+                            <option value="594x841">A1 (594 × 841 mm)</option>
+                            <option value="420x594">A2 (420 × 594 mm)</option>
+                            <option value="297x420">A3 (297 × 420 mm)</option>
+                            <option value="210x297">A4 (210 × 297 mm)</option>
+                            <option value="148x210">A5 (148 × 210 mm)</option>
+                            <option value="105x148">A6 (105 × 148 mm)</option>
+                            <option value="250x353">B4 (250 × 353 mm)</option>
+                            <option value="176x250">B5 (176 × 250 mm)</option>
+                            <option value="216x356">Legal (8.5 × 14 pouces / 216 × 356 mm)</option>
+                            <option value="279x432">Tabloid (11 × 17 pouces / 279 × 432 mm)</option>
+                            <!--<option value="custom">Other Custom ...</option>-->
+                        </optgroup>
+                      </select>
+                      <label for="select-format"><?php echo _("Paper size") ?></label>
+                    </div>
+                    <!--<div class="form-floating mt-3">
+                      <select class="form-select" readonly="readonly" id="select-format">
+                          <option selected>Normal</option>
+                          <option>Booklet</option>
+                      </select>
+                      <label for="select-format">PDF Formatting</label>
+                    </div>-->
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_printable_validate" type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo _("Close") ?></button>
                 </div>
             </div>
         </div>

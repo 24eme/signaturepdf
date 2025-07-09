@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
+"POT-Creation-Date: 2025-07-09 17:39+0200\n"
 "PO-Revision-Date: 2023-12-06 14:10+0000\n"
 "Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -148,6 +148,9 @@ msgstr ""
 msgid "Rotate pages"
 msgstr ""
 
+msgid "Change or standardize the paper size"
+msgstr ""
+
 msgid "Delete pages"
 msgstr ""
 
@@ -245,6 +248,9 @@ msgstr "%s Ayıklayın ve indirin"
 msgid "%s Cancel selection"
 msgstr "%s Seçimi iptal et"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s PDF'in tamamını indirin"
@@ -267,6 +273,21 @@ msgstr "Seçileni indirin"
 
 msgid "PDF documents"
 msgstr "PDF dökümanları"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Paper size"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Belgeyi imzalamak, paraflamak, damgalamak, tamamlamak"
@@ -477,9 +498,6 @@ msgid ""
 msgstr ""
 "İmzacıların her biri, imzalanan PDF'nin en son sürümünü istediği zaman "
 "indirebilir."
-
-msgid "Close"
-msgstr "Kapat"
 
 msgid "Signed PDF"
 msgstr "PDF imzala"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 14:31+0200\n"
-"PO-Revision-Date: 2025-07-03 06:01+0000\n"
+"POT-Creation-Date: 2025-07-09 17:39+0200\n"
+"PO-Revision-Date: 2025-07-05 07:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -148,6 +148,9 @@ msgstr "Traire de paginas"
 msgid "Rotate pages"
 msgstr "Pivotar las paginas"
 
+msgid "Change or standardize the paper size"
+msgstr ""
+
 msgid "Delete pages"
 msgstr "Suprimir de paginas"
 
@@ -245,6 +248,9 @@ msgstr "%s Extraire e telecargar"
 msgid "%s Cancel selection"
 msgstr "%s Anullar la seleccion"
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s Telecargar lo PDF complèt"
@@ -267,6 +273,21 @@ msgstr "Telecargar la seleccion"
 
 msgid "PDF documents"
 msgstr "Documents PDF"
+
+msgid "Close"
+msgstr "Tampar"
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Paper size"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Signar, parafar, sagelar, completar un document"
@@ -477,9 +498,6 @@ msgstr ""
 "Cada signatari poirà a tot moment telecargar la darrièra version del PDF "
 "signat."
 
-msgid "Close"
-msgstr "Tampar"
-
 msgid "Signed PDF"
 msgstr "PDF signat"
 
@@ -508,6 +526,21 @@ msgstr ""
 "Bonjorn,\n"
 "\n"
 "Veni de signar lo document (%s) : %s"
+
+msgid "Change the color of the selected element"
+msgstr "Cambiar la color de l'element seleccionat"
+
+msgid "Duplicate the element"
+msgstr "Duplicar l'element"
+
+msgid "Duplicate on each page"
+msgstr "Duplicar sus cada pagina"
+
+msgid "Duplicate"
+msgstr "Duplicar"
+
+msgid "Delete the element"
+msgstr "Suprimir l'element"
 
 msgid "Text to modify"
 msgstr "Tèxt de modificar"
@@ -559,21 +592,6 @@ msgstr "Organizar"
 
 msgid "Metadata"
 msgstr "Metadonadas"
-
-msgid "Change the color of the selected element"
-msgstr ""
-
-msgid "Duplicate the element"
-msgstr ""
-
-msgid "Duplicate on each page"
-msgstr ""
-
-msgid "Duplicate"
-msgstr ""
-
-msgid "Delete the element"
-msgstr ""
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Lo PDF deu pas despassar "

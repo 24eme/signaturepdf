@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 15:24+0200\n"
+"POT-Creation-Date: 2025-07-09 17:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,6 +146,9 @@ msgstr ""
 msgid "Rotate pages"
 msgstr ""
 
+msgid "Change or standardize the paper size"
+msgstr ""
+
 msgid "Delete pages"
 msgstr ""
 
@@ -243,6 +246,9 @@ msgstr ""
 msgid "%s Cancel selection"
 msgstr ""
 
+msgid "Printing options"
+msgstr ""
+
 #, php-format
 msgid "%s Download the full PDF"
 msgstr ""
@@ -264,6 +270,21 @@ msgid "Download the selection"
 msgstr ""
 
 msgid "PDF documents"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Original format"
+msgstr ""
+
+msgid "Most common formats"
+msgstr ""
+
+msgid "Other formats"
+msgstr ""
+
+msgid "Paper size"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
@@ -463,9 +484,6 @@ msgstr ""
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
-msgstr ""
-
-msgid "Close"
 msgstr ""
 
 msgid "Signed PDF"

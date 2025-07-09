@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 14:31+0200\n"
+"POT-Creation-Date: 2025-07-04 15:24+0200\n"
 "PO-Revision-Date: 2025-04-20 21:02+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/signature-pdf/"
@@ -505,6 +505,21 @@ msgstr ""
 "வணக்கம்,\n"
 "\n"
 " நான் ஆவணத்தில் கையெழுத்திட்டேன் ( %s): %s"
+
+msgid "Change the color of the selected element"
+msgstr ""
+
+msgid "Duplicate the element"
+msgstr ""
+
+msgid "Duplicate on each page"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Delete the element"
+msgstr ""
 
 msgid "Text to modify"
 msgstr "மாற்ற உரை"

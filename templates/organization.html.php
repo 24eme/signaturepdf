@@ -156,7 +156,7 @@
                             <!--<option value="custom">Other Custom ...</option>-->
                         </optgroup>
                       </select>
-                      <label for="select-format"><?php echo _("Pages format") ?></label>
+                      <label for="select-format"><?php echo _("Paper size") ?></label>
                     </div>
                     <!--<div class="form-floating mt-3">
                       <select class="form-select" readonly="readonly" id="select-format">

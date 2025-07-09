@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 16:35+0200\n"
+"POT-Creation-Date: 2025-07-09 17:39+0200\n"
 "PO-Revision-Date: 2025-07-04 13:36+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -149,11 +149,11 @@ msgstr "Extraire des pages"
 msgid "Rotate pages"
 msgstr "Pivoter les pages"
 
+msgid "Change or standardize the paper size"
+msgstr ""
+
 msgid "Delete pages"
 msgstr "Supprimer des pages"
-
-msgid "Change or standardize the page format"
-msgstr ""
 
 msgid "Convert images to PDF"
 msgstr "Convertir des images en PDF"
@@ -287,7 +287,7 @@ msgstr ""
 msgid "Other formats"
 msgstr ""
 
-msgid "Pages format"
+msgid "Paper size"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"

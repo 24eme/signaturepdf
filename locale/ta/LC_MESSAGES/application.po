@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 16:35+0200\n"
+"POT-Creation-Date: 2025-07-09 17:39+0200\n"
 "PO-Revision-Date: 2025-07-06 20:04+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/signature-pdf/"
@@ -148,11 +148,11 @@ msgstr "பக்கங்களை பிரித்தெடுக்கவ�
 msgid "Rotate pages"
 msgstr "பக்கங்களை சுழற்றுங்கள்"
 
+msgid "Change or standardize the paper size"
+msgstr ""
+
 msgid "Delete pages"
 msgstr "பக்கங்களை நீக்கு"
-
-msgid "Change or standardize the page format"
-msgstr ""
 
 msgid "Convert images to PDF"
 msgstr "படங்களை PDF ஆக மாற்றவும்"
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Other formats"
 msgstr ""
 
-msgid "Pages format"
+msgid "Paper size"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"

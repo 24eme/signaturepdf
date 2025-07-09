@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-09 17:39+0200\n"
-"PO-Revision-Date: 2025-07-04 20:01+0000\n"
+"PO-Revision-Date: 2025-07-10 00:55+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
@@ -149,7 +149,7 @@ msgid "Rotate pages"
 msgstr "Ruota le pagine"
 
 msgid "Change or standardize the paper size"
-msgstr ""
+msgstr "Modificare o standardizzare il formato della carta"
 
 msgid "Delete pages"
 msgstr "Elimina pagine"
@@ -249,7 +249,7 @@ msgid "%s Cancel selection"
 msgstr "%s Annulla selezione"
 
 msgid "Printing options"
-msgstr ""
+msgstr "Opzioni di stampa"
 
 #, php-format
 msgid "%s Download the full PDF"
@@ -278,16 +278,16 @@ msgid "Close"
 msgstr "Chiudi"
 
 msgid "Original format"
-msgstr ""
+msgstr "Formato originale"
 
 msgid "Most common formats"
-msgstr ""
+msgstr "Formati più comuni"
 
 msgid "Other formats"
-msgstr ""
+msgstr "Altri formati"
 
 msgid "Paper size"
-msgstr ""
+msgstr "Formato della carta"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Firma, annota, timbra, completa un documento"

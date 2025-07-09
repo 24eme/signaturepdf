@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-01 14:31+0200\n"
-"PO-Revision-Date: 2025-07-03 06:01+0000\n"
+"PO-Revision-Date: 2025-07-05 07:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -561,19 +561,19 @@ msgid "Metadata"
 msgstr "Metadonadas"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "Cambiar la color de l'element seleccionat"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "Duplicar l'element"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "Duplicar sus cada pagina"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicar"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "Suprimir l'element"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Lo PDF deu pas despassar "

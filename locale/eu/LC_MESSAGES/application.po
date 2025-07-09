@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-04 15:24+0200\n"
-"PO-Revision-Date: 2025-06-25 23:02+0000\n"
+"PO-Revision-Date: 2025-07-05 22:01+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
 "application/eu/>\n"
@@ -136,7 +136,7 @@ msgid "Add a watermark"
 msgstr "Gehitu filigrana"
 
 msgid "Redact areas"
-msgstr ""
+msgstr "Ezabatu eremuak"
 
 msgid "Organize PDFs"
 msgstr "Antolatu PDFak"
@@ -342,7 +342,7 @@ msgid "%s Check box"
 msgstr "%s Kontrol-laukia"
 
 msgid "Redaction area"
-msgstr ""
+msgstr "Ezabatzeko eremua"
 
 msgid "Watermark"
 msgstr "Filigrana"
@@ -359,7 +359,7 @@ msgid "Download the signed PDF"
 msgstr "Deskargatu sinatutako PDFa"
 
 msgid "The PDF will be flattened"
-msgstr ""
+msgstr "PDFa lautuko da"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
@@ -514,19 +514,19 @@ msgstr ""
 "Dokumentua (%s) sinatu berri dut: %s"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "Aldatu hautatutako elementuaren kolorea"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "Bikoiztu elementua"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "Bikoiztu orri bakoitzean"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Bikoiztu"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "Ezabatu elementua"
 
 msgid "Text to modify"
 msgstr "Moldatzeko testua"

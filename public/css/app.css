@@ -206,3 +206,11 @@ html.rtl .file-list-checkbox {
 .fullpage {
     min-height: calc(100dvh - 95px);
 }
+
+.clamp-2-lines {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

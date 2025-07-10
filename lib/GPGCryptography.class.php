@@ -71,7 +71,7 @@ class GPGCryptography
     }
 
     public static function hardUnlink($element) {
-        if (!$element) {
+        if (file_exists($element) === false) {
             return;
         }
         if (is_dir($element)) {

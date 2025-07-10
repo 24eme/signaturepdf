@@ -77,6 +77,8 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
 
                 document.getElementById('container-pages').insertAdjacentHTML('beforeend', pageHTML);
 
+                document.querySelector('#input_rotate_'+pageIndex).value = page.rotate;
+
                 let canvasContainer = document.getElementById('canvas-container-' + pageIndex);
                 canvasContainer.title = pageTitle;
                 canvasContainer.addEventListener('click', function(e) {

@@ -526,7 +526,8 @@ function updateGlobalState() {
     document.querySelector('#top_bar_action_selection').classList.add('d-none');
     document.querySelector('#bottom_bar_action').classList.remove('d-none');
     document.querySelector('#bottom_bar_action_selection').classList.add('d-none');
-    document.querySelector('#save').removeAttribute('disabled');
+    document.querySelector('#save').classList.remove('d-none');
+    document.querySelector('#save_select').classList.add('d-none');
 
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
@@ -548,7 +549,8 @@ function updateGlobalState() {
         document.querySelector('#top_bar_action').classList.add('d-none');
         document.querySelector('#bottom_bar_action_selection').classList.remove('d-none');
         document.querySelector('#bottom_bar_action').classList.add('d-none');
-        document.querySelector('#save').setAttribute('disabled', 'disabled');
+        document.querySelector('#save').classList.add('d-none');
+        document.querySelector('#save_select').classList.remove('d-none');
     }
 }
 
@@ -757,17 +759,23 @@ function getPDFTags(node) {
 }
 
 function createEventsListener() {
-    document.getElementById('save-select_mobile').addEventListener('click', async function(event) {
+    document.getElementById('save_select_mobile').addEventListener('click', async function(event) {
         event.preventDefault();
-        startProcessingMode(document.getElementById('save-select_mobile'));
+        startProcessingMode(document.getElementById('save_select_mobile'));
         await saveAll();
-        endProcessingMode(document.getElementById('save-select_mobile'));
+        endProcessingMode(document.getElementById('save_select_mobile'));
     });
-    document.getElementById('save-select').addEventListener('click', async function(event) {
+    document.getElementById('btn_extract_select').addEventListener('click', async function(event) {
         event.preventDefault();
-        startProcessingMode(document.getElementById('save-select'));
+        startProcessingMode(document.getElementById('btn_extract_select'));
         await saveAll();
-        endProcessingMode(document.getElementById('save-select'));
+        endProcessingMode(document.getElementById('btn_extract_select'));
+    });
+    document.getElementById('save_select').addEventListener('click', async function(event) {
+        event.preventDefault();
+        startProcessingMode(document.getElementById('save_select'));
+        await saveAll();
+        endProcessingMode(document.getElementById('save_select'));
     });
     document.getElementById('save').addEventListener('click', async function(e) {
         e.preventDefault();
@@ -850,7 +858,7 @@ function createEventsListener() {
         document.querySelector('#btn_liste_pdf').click();
     });
     document.querySelector('body').addEventListener('click', function(event) {
-        if(!event.originalTarget.classList.contains('offcanvas-header') && !event.originalTarget.classList.contains('offcanvas-body') && event.originalTarget.id != 'container-pages' && event.originalTarget.id != 'sidebarToolsLabel' && event.originalTarget.id != 'btn_container') {
+        if(!event.originalTarget.classList.contains('offcanvas-header') && !event.originalTarget.classList.contains('offcanvas-body') && event.originalTarget.id != 'container-pages' && event.originalTarget.id != 'sidebarTools' && event.originalTarget.id != 'sidebarToolsLabel' && event.originalTarget.id != 'btn_container') {
             return;
         }
         document.getElementById('btn_cancel_select').click();

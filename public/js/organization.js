@@ -643,7 +643,14 @@ async function save(order) {
             pdfPage.setRotation(window['PDFLib'].degrees(parseInt(rotation)));
         }
         if(format) {
-            resizePage(pdfPage, mm2points(parseInt(format.split("x")[0])), mm2points(parseInt(format.split("x")[1])));
+            let width = mm2points(parseInt(format.split("x")[0]));
+            let height = mm2points(parseInt(format.split("x")[1]));
+
+            if(pdfPage.getHeight() > pdfPage.getWidth()) {
+                resizePage(pdfPage, Math.min(height, width), Math.max(height, width));
+            } else {
+                resizePage(pdfPage,  Math.max(height, width), Math.min(height, width));
+            }
         }
         pdf.addPage(pdfPage);
     }

@@ -329,15 +329,15 @@
         document.getElementById('text_document_name').appendChild(icon)
 
         icon.addEventListener('click', async function () {
-            if (confirm("Êtes vous sûr de vouloir supprimer ce PDF ainsi que les signatures associées ?")) {
+            if (confirm("<?php echo _("Are you sure you want to delete this PDF and the associated signatures?") ?>")) {
                 try {
-                    const response = await fetch('/signature/'+pdfHash+'/delete/'+adminKey);
+                    const response = await fetch('<?php echo $REVERSE_PROXY_URL; ?>/signature/'+pdfHash+'/delete/'+adminKey);
                     if (!response.ok) {
                         throw new Error(`Response status: ${response.status}`);
                     }
 
                     localStorage.removeItem(pdfHash+'.adminKey')
-                    window.location.replace('/signature')
+                    window.location.replace('<?php echo $REVERSE_PROXY_URL; ?>/signature')
                 } catch (error) {
                     console.error(error.message);
                 }

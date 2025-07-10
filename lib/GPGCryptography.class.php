@@ -90,8 +90,7 @@ class GPGCryptography
         return preg_replace('/[^0-9a-zA-Z]*/', '', $key);
     }
 
-    public static function createSymmetricKey() {
-            $length = 15;
+    public static function createSymmetricKey($length = 15) {
             $keySpace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $pieces = [];
             $max = mb_strlen($keySpace, '8bit') - 1;

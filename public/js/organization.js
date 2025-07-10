@@ -295,7 +295,7 @@ function updateListePDF() {
     for (var i = 0; i < nbFiles; i++) {
         let pdfLetter = getLetter(i);
         const pdfFile = document.querySelector('#input_pdf').files.item(i);
-        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><span class="ms-2">'+decodeURI(pdfFile.name)+'</span> <input class="form-check-input float-end position-absolute file-list-checkbox" type="checkbox" /> </li>');
+        document.querySelector('#list_pdf').insertAdjacentHTML('beforeend', '<li id="file_' + pdfLetter + '" class="list-group-item small ps-2 pe-5" title="'+decodeURI(pdfFile.name)+'" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><i class="bi bi-files"></i><label class="ms-2" style="cursor: pointer; display: inline;" for="file_' + pdfLetter + '_name">'+decodeURI(pdfFile.name)+'</label> <input id="file_' + pdfLetter + '_name" class="form-check-input float-end position-absolute file-list-checkbox" type="checkbox" /> </li>');
         let fileItem = document.querySelector('#file_' + pdfLetter);
         fileItem.querySelector('input[type=checkbox]').addEventListener('change', function(e) {
             document.querySelectorAll('.canvas-container').forEach(function(page) {
@@ -501,9 +501,9 @@ function updateFilesState() {
         let fileStat = filesStats[fileIndex];
         checkbox.checked = (fileStat.nbPageSelected > 0 && fileStat.nbPageSelected == fileStat.nbPage);
         checkbox.indeterminate = (fileStat.nbPageSelected > 0 && fileStat.nbPageSelected < fileStat.nbPage);
-        document.querySelector('#file_'+fileIndex+' span').classList.remove('text-primary');
+        document.querySelector('#file_'+fileIndex+' label').classList.remove('text-primary');
         if(fileStat.nbPageSelected > 0) {
-            document.querySelector('#file_'+fileIndex+' span').classList.add('text-primary');
+            document.querySelector('#file_'+fileIndex+' label').classList.add('text-primary');
         }
     }
 }

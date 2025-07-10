@@ -593,6 +593,9 @@ msgstr "Organizar"
 msgid "Metadata"
 msgstr "Metadonadas"
 
+msgid "Are you sure you want to delete this PDF and the associated signatures?"
+msgstr ""
+
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Lo PDF deu pas despassar "
 

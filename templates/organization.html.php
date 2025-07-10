@@ -63,7 +63,7 @@
                         <button id="btn_rotate_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><?php echo sprintf(_("%s Rotate 90°"), '<i class="bi bi-arrow-clockwise"></i>'); ?></button>
                         <button id="btn_drag_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><?php echo sprintf(_("%s Move"), '<i class="bi bi-arrows-move"></i>'); ?></button>
                         <button id="btn_delete_select" disabled="disabled" type="button" class="btn btn-sm btn-outline-secondary"><?php echo sprintf(_("%s Delete"), '<i class="bi bi-trash"></i>'); ?></button>
-                        <button id="save-select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><?php echo sprintf(_("%s Extract and download"), '<i class="bi bi-download"></i>'); ?></button>
+                        <button id="btn_extract_select" class="btn btn-sm btn-outline-secondary" disabled="disabled" form="form_pdf" type="submit"><?php echo sprintf(_("%s Extract and download"), '<i class="bi bi-download"></i>'); ?></button>
                     </div>
                     <div class="card-footer d-none small text-center p-1 border-primary bg-primary bg-opacity-25"><a id="btn_cancel_select_footer" type="button" aria-label="Close" style="text-decoration: none;" class="text-primary"><?php echo sprintf(_("%s Cancel selection"), '<i class="bi bi-x-lg"></i>'); ?></a></div>
                 </div>
@@ -80,6 +80,7 @@
                             </button>
 
                             <button class="btn btn-primary" type="submit" id="save"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
+                            <button id="save_select" class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
                         </div>
                     </form>
                 </div>
@@ -108,7 +109,7 @@
                 <button class="btn btn-primary" type="submit" id="save_mobile"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
             </div>
             <div id="bottom_bar_action_selection" class="d-grid gap-2 d-none">
-                <button id="save-select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
+                <button id="save_select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
             </div>
         </div>
     </div>

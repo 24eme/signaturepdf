@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-09 17:39+0200\n"
-"PO-Revision-Date: 2025-07-05 07:01+0000\n"
+"PO-Revision-Date: 2025-07-10 12:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -149,7 +149,7 @@ msgid "Rotate pages"
 msgstr "Pivotar las paginas"
 
 msgid "Change or standardize the paper size"
-msgstr ""
+msgstr "Modificar o estandardizar la talha del papièr"
 
 msgid "Delete pages"
 msgstr "Suprimir de paginas"
@@ -249,7 +249,7 @@ msgid "%s Cancel selection"
 msgstr "%s Anullar la seleccion"
 
 msgid "Printing options"
-msgstr ""
+msgstr "Opcions d'impression"
 
 #, php-format
 msgid "%s Download the full PDF"
@@ -278,16 +278,16 @@ msgid "Close"
 msgstr "Tampar"
 
 msgid "Original format"
-msgstr ""
+msgstr "Format original"
 
 msgid "Most common formats"
-msgstr ""
+msgstr "Formats mai comuns"
 
 msgid "Other formats"
-msgstr ""
+msgstr "Autres formats"
 
 msgid "Paper size"
-msgstr ""
+msgstr "Talha del papièr"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Signar, parafar, sagelar, completar un document"

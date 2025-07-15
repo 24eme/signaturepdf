@@ -659,6 +659,7 @@ async function save(order) {
 
     const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
     await download(newPDF, filename+".pdf");
+    await storeFileInCache(newPDF, filename+'.pdf');
 }
 
 function mm2points(mm) {

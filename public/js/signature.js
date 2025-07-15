@@ -1148,8 +1148,9 @@ async function pageUpload() {
     document.getElementById('input_pdf_upload').focus();
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
         if(await canUseCache()) {
-            storeFileInCache();
-            history.pushState({}, '', '/signature#'+document.getElementById('input_pdf_upload').files[0].name);
+            const file = document.getElementById('input_pdf_upload').files[0]
+            storeFileInCache(file, file.name);
+            history.pushState({}, '', '/signature#'+file.name);
         }
         pageSignature(null);
     });

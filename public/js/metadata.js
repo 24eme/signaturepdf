@@ -328,8 +328,9 @@ async function pageUpload() {
     })
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
         if(await canUseCache()) {
-            storeFileInCache();
-            history.pushState({}, '', '/metadata#'+document.getElementById('input_pdf_upload').files[0].name);
+            const file = document.getElementById('input_pdf_upload').files[0]
+            storeFileInCache(file, file.name);
+            history.pushState({}, '', '/metadata#'+file.name);
         }
         pageMetadata(null);
     });

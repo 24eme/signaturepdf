@@ -924,6 +924,9 @@ document.addEventListener('DOMContentLoaded', function () {
         let hashUrl = window.location.hash.replace(/^\#/, '');
         pageUpload();
         uploadFromUrl(hashUrl);
+    } else if (window.location.hash && canUseCache()) {
+        pageUpload()
+        loadFileFromCache('/pdf/'+window.location.hash.replace(/^\#/, ''));
     } else {
         pageUpload();
     }

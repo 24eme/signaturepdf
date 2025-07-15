@@ -57,6 +57,7 @@ async function loadFileFromCache(cacheUrl, pageUrl) {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
+    document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
 }
 
 async function storeFileInCache() {

@@ -597,7 +597,7 @@ async function saveAll() {
 async function save(order) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
-
+    const printFormating = "Normal";
     const pdf = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(0).arrayBuffer(), { ignoreEncryption: true, password: "", updateMetadata: false });
 
     let filename = "";
@@ -649,15 +649,25 @@ async function save(order) {
             if(pdfPage.getHeight() > pdfPage.getWidth()) {
                 resizePage(pdfPage, Math.min(height, width), Math.max(height, width));
             } else {
-                resizePage(pdfPage,  Math.max(height, width), Math.min(height, width));
+                resizePage(pdfPage, Math.max(height, width), Math.min(height, width));
             }
         }
         pdf.addPage(pdfPage);
     }
 
-    cleanPDF(pdf);
+    if(printFormating == "Booklet") {
+        const pdfBooklet = await window['PDFLib'].PDFDocument.create();
+        for(let i = 0; i < pdf.getPages().length; i = i + 2) {
+            await merge2Pages(pdfBooklet, pdf.getPages()[i], pdf.getPages()[i+1])
+        }
+        let newPDF = new Blob([await pdfBooklet.save()], {type: "application/pdf"});
 
-    const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
+        await download(newPDF, filename+".pdf");
+        return;
+    }
+
+    cleanPDF(pdf);
+    let newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
     await download(newPDF, filename+".pdf");
 }
 
@@ -669,6 +679,40 @@ function mm2points(mm) {
 function points2mm(points) {
 
     return Math.round(points * 25.4 / 72);
+}
+
+async function merge2Pages(pdf, pageA, pageB) {
+    const newPageWidth =  Math.max(pageA.getWidth(), pageA.getHeight());
+    const newPageHeight =  Math.min(pageA.getWidth(), pageA.getHeight());
+    const page = pdf.addPage([newPageWidth, newPageHeight]);
+
+    const pageEmbeddedA = await pdf.embedPage(pageA, {
+        left: 0,
+        bottom: 0,
+        right: pageA.getWidth(),
+        top: pageA.getHeight(),
+    });
+
+    const pageEmbeddedDimsA = pageEmbeddedA.scale((newPageWidth / 2) / pageA.getWidth());
+    page.drawPage(pageEmbeddedA, {
+      ...pageEmbeddedDimsA,
+      x: 0,
+      y: 0,
+    });
+
+    const pageEmbeddedB = await pdf.embedPage(pageB, {
+        left: 0,
+        bottom: 0,
+        right: pageB.getWidth(),
+        top: pageB.getHeight(),
+    });
+
+    const pageEmbeddedDimsB = pageEmbeddedB.scale((newPageWidth / 2) / pageB.getWidth());
+    page.drawPage(pageEmbeddedB, {
+      ...pageEmbeddedDimsB,
+      x: newPageWidth / 2,
+      y: 0,
+    });
 }
 
 function resizePage(page, newWidth, newHeight) {

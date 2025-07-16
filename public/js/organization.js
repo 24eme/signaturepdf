@@ -327,14 +327,19 @@ function updateFormats() {
     }
 
     selectFormatOptionCurrent.innerText = formatsLabel.join(', ');
-    document.querySelector('#printable_infos').innerText = selectFormat.selectedOptions[0].text;
-    document.querySelector('#printable_infos').classList.add('text-muted');
-    document.querySelector('#printable_infos').classList.remove('fw-bold');
+    document.querySelector('#printable_paper_size_infos').innerText = selectFormat.selectedOptions[0].text;
+    document.querySelector('#printable_paper_size_infos').classList.add('text-muted');
+    document.querySelector('#printable_paper_size_infos').classList.remove('fw-bold');
     if(selectFormat.value) {
-        document.querySelector('#printable_infos').classList.remove('text-muted');
-        document.querySelector('#printable_infos').classList.add('fw-bold');
+        document.querySelector('#printable_paper_size_infos').classList.remove('text-muted');
+        document.querySelector('#printable_paper_size_infos').classList.add('fw-bold');
     }
-    document.querySelector('#printable_infos').title = document.querySelector('#printable_infos').innerText;
+    document.querySelector('#printable_paper_size_infos').title = document.querySelector('#printable_paper_size_infos').innerText;
+
+    document.querySelector('#printable_formatting_infos').innerText = null;
+    if(document.querySelector('#select_formatting').value) {
+        document.querySelector('#printable_formatting_infos').innerText = document.querySelector('#select_formatting').selectedOptions[0].text;
+    }
 }
 
 function getPagesSelected() {
@@ -597,7 +602,6 @@ async function saveAll() {
 async function save(order) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
-    const printFormating = "Normal";
     const pdf = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(0).arrayBuffer(), { ignoreEncryption: true, password: "", updateMetadata: false });
 
     let filename = "";
@@ -655,10 +659,19 @@ async function save(order) {
         pdf.addPage(pdfPage);
     }
 
-    if(printFormating == "Booklet") {
+    if(document.querySelector('#select_formatting').value == "booklet") {
+        const orgaPages = [];
+        const nbPages = Math.ceil(pdf.getPages().length / 4) * 2;
+
+        const pageWidth = pdf.getPages()[0].getWidth();
+        const pageHeight = pdf.getPages()[0].getHeight();
+
         const pdfBooklet = await window['PDFLib'].PDFDocument.create();
-        for(let i = 0; i < pdf.getPages().length; i = i + 2) {
-            await merge2Pages(pdfBooklet, pdf.getPages()[i], pdf.getPages()[i+1])
+        for(let i = nbPages; i > 0; i--) {
+            orgaPages.push([i, 2 * nbPages - i + 1]);
+        }
+        for(pages of orgaPages.reverse()) {
+            await merge2Pages(pdfBooklet, pdf.getPages()[pages[0] - 1], pdf.getPages()[pages[1] - 1], pageWidth, pageHeight)
         }
         let newPDF = new Blob([await pdfBooklet.save()], {type: "application/pdf"});
 
@@ -681,38 +694,40 @@ function points2mm(points) {
     return Math.round(points * 25.4 / 72);
 }
 
-async function merge2Pages(pdf, pageA, pageB) {
-    const newPageWidth =  Math.max(pageA.getWidth(), pageA.getHeight());
-    const newPageHeight =  Math.min(pageA.getWidth(), pageA.getHeight());
+async function merge2Pages(pdf, pageA, pageB, pageWidth, pageHeight) {
+    const newPageWidth =  Math.max(pageWidth, pageHeight);
+    const newPageHeight =  Math.min(pageWidth, pageHeight);
     const page = pdf.addPage([newPageWidth, newPageHeight]);
+    if(pageA) {
+        const pageEmbeddedA = await pdf.embedPage(pageA, {
+            left: 0,
+            bottom: 0,
+            right: pageA.getWidth(),
+            top: pageA.getHeight(),
+        });
 
-    const pageEmbeddedA = await pdf.embedPage(pageA, {
-        left: 0,
-        bottom: 0,
-        right: pageA.getWidth(),
-        top: pageA.getHeight(),
-    });
+        const pageEmbeddedDimsA = pageEmbeddedA.scale((newPageWidth / 2) / pageA.getWidth());
+        page.drawPage(pageEmbeddedA, {
+          ...pageEmbeddedDimsA,
+          x: 0,
+          y: 0,
+        });
+    }
+    if(pageB) {
+        const pageEmbeddedB = await pdf.embedPage(pageB, {
+            left: 0,
+            bottom: 0,
+            right: pageB.getWidth(),
+            top: pageB.getHeight(),
+        });
 
-    const pageEmbeddedDimsA = pageEmbeddedA.scale((newPageWidth / 2) / pageA.getWidth());
-    page.drawPage(pageEmbeddedA, {
-      ...pageEmbeddedDimsA,
-      x: 0,
-      y: 0,
-    });
-
-    const pageEmbeddedB = await pdf.embedPage(pageB, {
-        left: 0,
-        bottom: 0,
-        right: pageB.getWidth(),
-        top: pageB.getHeight(),
-    });
-
-    const pageEmbeddedDimsB = pageEmbeddedB.scale((newPageWidth / 2) / pageB.getWidth());
-    page.drawPage(pageEmbeddedB, {
-      ...pageEmbeddedDimsB,
-      x: newPageWidth / 2,
-      y: 0,
-    });
+        const pageEmbeddedDimsB = pageEmbeddedB.scale((newPageWidth / 2) / pageB.getWidth());
+        page.drawPage(pageEmbeddedB, {
+          ...pageEmbeddedDimsB,
+          x: newPageWidth / 2,
+          y: 0,
+        });
+    }
 }
 
 function resizePage(page, newWidth, newHeight) {
@@ -917,6 +932,9 @@ function createEventsListener() {
         document.getElementById('btn_cancel_select').click();
     });
     document.querySelector('#select_paper_format').addEventListener('change', function(event) {
+        updateFormats();
+    });
+    document.querySelector('#select_formatting').addEventListener('change', function(event) {
         updateFormats();
     });
 }

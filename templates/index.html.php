@@ -28,7 +28,7 @@
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-type-strikethrough"></i> <?php echo _("Strike through text") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-people-fill"></i> <?php echo _("Allow multiple people to sign via a shared link") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-patch-check"></i> <?php echo _("Sign with the server certificate") ?></a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-droplet-half"></i> <?php echo _("Add a watermark") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action position-relative"><i class="bi bi-droplet-half"></i> <?php echo _("Add a watermark") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
             <!-- <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-bounding-box"></i> <?php echo _("Redact areas") ?></a> -->
         </div>
         </div>
@@ -41,9 +41,10 @@
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrows-move"></i> <?php echo _("Reorder pages") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> <?php echo _("Extract pages") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrow-clockwise"></i> <?php echo _("Rotate pages") ?></a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-rulers"></i> <?php echo _("Change or standardize the paper size") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action position-relative"><i class="bi bi-rulers"></i> <?php echo _("Change or standardize the paper size") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-trash"></i> <?php echo _("Delete pages") ?></a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-images"></i> <?php echo _("Convert images to PDF") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization#booklet" class="list-group-item list-group-item-action position-relative"><i class="bi bi-book"></i> <?php echo _("Generate a booklet") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action position-relative"><i class="bi bi-images"></i> <?php echo _("Convert images to PDF") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
             </div>
         </div>
         <div class="card mt-4">

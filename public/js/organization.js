@@ -987,8 +987,12 @@ async function pageOrganization() {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
+    if(window.location.hash.match(/#booklet/)) {
+        document.querySelector('#select_formatting').value = "booklet";
+        document.querySelector('#demo_link').href = document.querySelector('#demo_link').href + '#booklet';
+    }
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
-        let hashUrl = window.location.hash.replace(/^\#/, '');
+        let hashUrl = window.location.hash.replace('#booklet', '').replace(/^\#/, '');
         pageUpload();
         uploadFromUrl(hashUrl);
     } else {

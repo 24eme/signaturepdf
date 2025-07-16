@@ -22,7 +22,7 @@
                   <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" multiple="true" />
                   <p class="mt-2 small fw-light text-dark">&nbsp;</p>
                   <?php if($PDF_DEMO_LINK): ?>
-                      <p class="mt-4"><a class="link-opacity-75 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover small" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF") ?></a></p>
+                      <p class="mt-4"><a id="demo_link" class="link-opacity-75 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover small" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF") ?></a></p>
                   <?php endif; ?>
                 </div>
             </div>

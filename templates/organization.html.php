@@ -165,7 +165,7 @@
                           <option value="" selected><?php echo _("Normal") ?></option>
                           <option value="booklet"><?php echo _("Booklet") ?></option>
                       </select>
-                      <label for="select-format"><?php echo _("PDF Formatting") ?></label>
+                      <label for="select-format"><?php echo _("Formatting") ?></label>
                     </div>
                 </div>
                 <div class="modal-footer">

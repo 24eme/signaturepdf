@@ -668,7 +668,12 @@ async function save(order) {
 
         const pdfBooklet = await window['PDFLib'].PDFDocument.create();
         for(let i = nbPages; i > 0; i--) {
-            orgaPages.push([i, 2 * nbPages - i + 1]);
+            let pages = [i, 2 * nbPages - i + 1];
+            if(i % 2) {
+                orgaPages.push(pages.reverse());
+            } else {
+                orgaPages.push(pages);
+            }
         }
         for(pages of orgaPages.reverse()) {
             await merge2Pages(pdfBooklet, pdf.getPages()[pages[0] - 1], pdf.getPages()[pages[1] - 1], pageWidth, pageHeight)

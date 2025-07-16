@@ -897,7 +897,9 @@ function createEventsListener() {
     }
 
     if(document.getElementById('save')) {
-        document.getElementById('save').addEventListener('click', function(event) {
+        document.getElementById('save').addEventListener('click', async function(event) {
+            event.preventDefault()
+
             let previousScale = currentScale;
             if(currentScale != defaultScale) {
                 resizePDF(defaultScale)
@@ -914,6 +916,17 @@ function createEventsListener() {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(resizePDF(previousScale), 100);
             }
+
+            const formData = new FormData(this.form)
+            const response = await fetch(this.form.action, {
+                method: "POST",
+                body: formData
+            })
+
+            const blob = await response.blob()
+            const filename = response.headers.get('Content-Disposition').split('"')[1]
+            download(blob, filename)
+            storeFileInCache(blob, formData.get('pdf').name)
 
             hasModifications = false;
         });

@@ -76,7 +76,8 @@
                             <button type="button" class="btn btn-light btn text-start border position-relative mb-2" data-bs-toggle="modal" data-bs-target="#modalPrintable">
                                 <i class="bi bi-gear position-absolute top-50 end-0 translate-middle-y pe-3 "></i>
                                 <small><?php echo _("Printing options") ?></small>
-                                <div id="printable_infos" class="text-muted small clamp-2-lines"></div>
+                                <div id="printable_paper_size_infos" class="text-muted small clamp-2-lines"></div>
+                                <div id="printable_formatting_infos" class="fw-bold small"></div>
                             </button>
 
                             <button class="btn btn-primary" type="submit" id="save"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
@@ -159,13 +160,13 @@
                       </select>
                       <label for="select-format"><?php echo _("Paper size") ?></label>
                     </div>
-                    <!--<div class="form-floating mt-3">
-                      <select class="form-select" readonly="readonly" id="select-format">
-                          <option selected>Normal</option>
-                          <option>Booklet</option>
+                    <div class="form-floating mt-3">
+                      <select class="form-select" id="select_formatting">
+                          <option value="" selected><?php echo _("Normal") ?></option>
+                          <option value="booklet"><?php echo _("Booklet") ?></option>
                       </select>
-                      <label for="select-format">PDF Formatting</label>
-                    </div>-->
+                      <label for="select-format"><?php echo _("PDF Formatting") ?></label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button id="btn_printable_validate" type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo _("Close") ?></button>

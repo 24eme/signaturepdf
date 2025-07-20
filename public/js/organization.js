@@ -706,33 +706,11 @@ async function merge2Pages(pdf, pageA, pageB, pageWidth, pageHeight) {
     const page = pdf.addPage([newPageWidth, newPageHeight]);
     if(pageA) {
         resizePage(pageA, newPageWidth / 2, newPageHeight);
-        const pageEmbeddedA = await pdf.embedPage(pageA, {
-            left: 0,
-            bottom: 0,
-            right: pageA.getWidth(),
-            top: pageA.getHeight(),
-        });
-        page.drawPage(pageEmbeddedA, {
-            width: pageEmbeddedA.width,
-            height: pageEmbeddedA.height,
-          x: 0,
-          y: 0,
-        });
+        await embedPage(pdf, page, pageA, 0, 0);
     }
     if(pageB) {
         resizePage(pageB, newPageWidth / 2, newPageHeight);
-        const pageEmbeddedB = await pdf.embedPage(pageB, {
-            left: 0,
-            bottom: 0,
-            right: pageB.getWidth(),
-            top: pageB.getHeight(),
-        });
-        page.drawPage(pageEmbeddedB, {
-          width: pageEmbeddedB.width,
-          height: pageEmbeddedB.height,
-          x: newPageWidth / 2,
-          y: 0,
-        });
+        await embedPage(pdf, page, pageB, newPageWidth / 2, 0);
     }
 }
 
@@ -757,6 +735,21 @@ function resizePage(page, newWidth, newHeight) {
     // Appliquer la transformation au contenu
     page.scaleContent(scale, scale);
     page.translateContent(offsetX, offsetY);
+}
+
+async function embedPage(pdf, page, pageToEmbed, x, y) {
+    const pageEmbedded = await pdf.embedPage(pageToEmbed, {
+        left: 0,
+        bottom: 0,
+        right: pageToEmbed.getWidth(),
+        top: pageToEmbed.getHeight(),
+    });
+    page.drawPage(pageEmbedded, {
+      width: pageEmbedded.width,
+      height: pageEmbedded.height,
+      x: x,
+      y: y,
+    });
 }
 
 function cleanPDF(pdf) {

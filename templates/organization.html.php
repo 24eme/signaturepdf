@@ -156,7 +156,7 @@
                             <option value="8.5x11xin">Letter (8.5 × 11 in)</option>
                             <option value="8.5x14xin">Legal (8.5 × 14 in)</option>
                             <option value="11x17xin">Tabloid (11 × 17 in)</option>
-                            <option value="custom">Custom</option>
+                            <option value="custom"><?php echo _("Custom") ?></option>
                         </optgroup>
                       </select>
                       <label for="select-format"><?php echo _("Paper size") ?></label>
@@ -178,10 +178,10 @@
                             <div class="form-floating">
                               <select class="form-select" id="select_size_unit">
                                 <option value=""></option>
-                                <option value="mm"><?php echo _("mm") ?></option>
-                                <option value="in"><?php echo _("in") ?></option>
+                                <option value="mm">mm</option>
+                                <option value="in">in</option>
                               </select>
-                              <label for="floatingInputGrid">Unit</label>
+                              <label for="floatingInputGrid"><?php echo _("Unit") ?></label>
                             </div>
                         </div>
                     </div>

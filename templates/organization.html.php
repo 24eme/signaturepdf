@@ -155,11 +155,36 @@
                             <option value="176x250">B5 (176 × 250 mm)</option>
                             <option value="216x356">Legal (8.5 × 14 pouces / 216 × 356 mm)</option>
                             <option value="279x432">Tabloid (11 × 17 pouces / 279 × 432 mm)</option>
-                            <!--<option value="custom">Other Custom ...</option>-->
+                            <option value="custom">Other Custom ...</option>
                         </optgroup>
                       </select>
                       <label for="select-format"><?php echo _("Paper size") ?></label>
                     </div>
+                    <div id="bloc_size" class="row mt-3">
+                        <div class="col">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="input_paper_width" value="">
+                              <label for="input_paper_width"><?php echo _("Width") ?></label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="input_paper_height" value="">
+                              <label for="input_paper_height"><?php echo _("Height") ?></label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                              <select class="form-select" id="select_size_unit">
+                                <option value=""></option>
+                                <option value="mm"><?php echo _("mm") ?></option>
+                                <option value="in"><?php echo _("in") ?></option>
+                              </select>
+                              <label for="floatingInputGrid">Unit</label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
                     <div class="form-floating mt-3">
                       <select class="form-select" id="select_formatting">
                           <option value="" selected><?php echo _("Normal") ?></option>

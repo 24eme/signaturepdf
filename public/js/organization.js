@@ -330,9 +330,26 @@ function updateFormats() {
     document.querySelector('#printable_paper_size_infos').innerText = selectFormat.selectedOptions[0].text;
     document.querySelector('#printable_paper_size_infos').classList.add('text-muted');
     document.querySelector('#printable_paper_size_infos').classList.remove('fw-bold');
+
+    if(!selectFormat.value) {
+        document.querySelector('#input_paper_width').disabled = true;
+        document.querySelector('#input_paper_height').disabled = true;
+        document.querySelector('#select_size_unit').disabled = true;
+        document.querySelector('#input_paper_width').value = null;
+        document.querySelector('#input_paper_height').value = null;
+        document.querySelector('#select_size_unit').value = null;
+    }
     if(selectFormat.value) {
         document.querySelector('#printable_paper_size_infos').classList.remove('text-muted');
         document.querySelector('#printable_paper_size_infos').classList.add('fw-bold');
+        document.querySelector('#input_paper_width').disabled = false;
+        document.querySelector('#input_paper_height').disabled = false;
+        document.querySelector('#select_size_unit').disabled = false;
+    }
+    if(selectFormat.value && selectFormat.value.match(/[0-9]+x[0-9]+/)) {
+        document.querySelector('#input_paper_width').value = selectFormat.value.split('x')[0];
+        document.querySelector('#input_paper_height').value = selectFormat.value.split('x')[1];
+        document.querySelector('#select_size_unit').value = 'mm';
     }
     document.querySelector('#printable_paper_size_infos').title = document.querySelector('#printable_paper_size_infos').innerText;
 
@@ -642,13 +659,12 @@ async function save(order) {
         const pageOrganize = pagesOrganize[i].split('-')[0];
         const rotation = pagesOrganize[i].split('-')[1];
         const pdfPage = pages[pageOrganize];
-        const format = document.querySelector('#select_paper_format').value;
         if(rotation) {
             pdfPage.setRotation(window['PDFLib'].degrees(parseInt(rotation)));
         }
-        if(format) {
-            let width = mm2points(parseInt(format.split("x")[0]));
-            let height = mm2points(parseInt(format.split("x")[1]));
+        if(document.querySelector('#input_paper_width').value && document.querySelector('#input_paper_height').value) {
+            let width = mm2points(parseInt(document.querySelector('#input_paper_width').value));
+            let height = mm2points(parseInt(document.querySelector('#input_paper_height').value));
 
             if(pdfPage.getHeight() > pdfPage.getWidth()) {
                 resizePage(pdfPage, Math.min(height, width), Math.max(height, width));
@@ -934,6 +950,13 @@ function createEventsListener() {
         updateFormats();
     });
     document.querySelector('#select_formatting').addEventListener('change', function(event) {
+        updateFormats();
+    });
+    document.querySelector('#bloc_size').addEventListener('change', function(event) {
+        if(!["input_paper_width", "input_paper_height", "select_size_unit"].includes(event.target.id)) {
+            return;
+        }
+        document.querySelector('#select_paper_format').value = "custom";
         updateFormats();
     });
 }

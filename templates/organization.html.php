@@ -140,22 +140,23 @@
                             <option id="select_paper_format_current" value="" selected></option>
                         </optgroup>
                         <optgroup label="<?php echo _("Most common formats") ?>">
-                            <option value="210x297">A4 (210 × 297 mm)</option>
-                            <option value="216x279">Letter (8.5 × 11 pouces / 216 × 279 mm)</option>
+                            <option value="210x297xmm">A4 (210 × 297 mm)</option>
+                            <option value="8.5x11xin">Letter (8.5 × 11 in)</option>
                         </optgroup>
                         <optgroup label="<?php echo _("Other formats") ?>">
-                            <option value="841x1189">A0 (841 × 1189 mm)</option>
-                            <option value="594x841">A1 (594 × 841 mm)</option>
-                            <option value="420x594">A2 (420 × 594 mm)</option>
-                            <option value="297x420">A3 (297 × 420 mm)</option>
-                            <option value="210x297">A4 (210 × 297 mm)</option>
-                            <option value="148x210">A5 (148 × 210 mm)</option>
-                            <option value="105x148">A6 (105 × 148 mm)</option>
-                            <option value="250x353">B4 (250 × 353 mm)</option>
-                            <option value="176x250">B5 (176 × 250 mm)</option>
-                            <option value="216x356">Legal (8.5 × 14 pouces / 216 × 356 mm)</option>
-                            <option value="279x432">Tabloid (11 × 17 pouces / 279 × 432 mm)</option>
-                            <option value="custom">Other Custom ...</option>
+                            <option value="841x1189xmm">A0 (841 × 1189 mm)</option>
+                            <option value="594x841xmm">A1 (594 × 841 mm)</option>
+                            <option value="420x594xmm">A2 (420 × 594 mm)</option>
+                            <option value="297x420xmm">A3 (297 × 420 mm)</option>
+                            <option value="210x297xmm">A4 (210 × 297 mm)</option>
+                            <option value="148x210xmm">A5 (148 × 210 mm)</option>
+                            <option value="105x148xmm">A6 (105 × 148 mm)</option>
+                            <option value="250x353xmm">B4 (250 × 353 mm)</option>
+                            <option value="176x250xmm">B5 (176 × 250 mm)</option>
+                            <option value="8.5x11xin">Letter (8.5 × 11 in)</option>
+                            <option value="8.5x14xin">Legal (8.5 × 14 in)</option>
+                            <option value="11x17xin">Tabloid (11 × 17 in)</option>
+                            <option value="custom">Custom</option>
                         </optgroup>
                       </select>
                       <label for="select-format"><?php echo _("Paper size") ?></label>

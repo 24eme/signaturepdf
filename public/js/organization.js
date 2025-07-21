@@ -320,10 +320,16 @@ function updateFormats() {
     for(format in formats) {
         formatsLabel.push(getLibelleFormat(format));
     }
+    document.querySelector('#input_paper_width').parentNode.classList.add('opacity-75');
+    document.querySelector('#input_paper_height').parentNode.classList.add('opacity-75');
+    document.querySelector('#select_size_unit').parentNode.classList.add('opacity-75');
 
     selectFormatOptionCurrent.innerText = formatsLabel.join(', ');
     if(selectFormat.value == "custom") {
         document.querySelector('#select_paper_format').selectedOptions[0].text = "Custom ("+document.querySelector('#input_paper_width').value+" x "+ document.querySelector('#input_paper_height').value + " " + document.querySelector("#select_size_unit").value + ")"
+        document.querySelector('#input_paper_width').parentNode.classList.remove('opacity-75');
+        document.querySelector('#input_paper_height').parentNode.classList.remove('opacity-75');
+        document.querySelector('#select_size_unit').parentNode.classList.remove('opacity-75');
     } else {
         document.querySelector('#select_paper_format option[value="custom"]').text = "Custom"
     }
@@ -690,7 +696,7 @@ async function save(order) {
             let unit = document.querySelector('#select_size_unit').value;
             let width = unit2points(parseFloat(document.querySelector('#input_paper_width').value), unit);
             let height = unit2points(parseFloat(document.querySelector('#input_paper_height').value), unit);
-            if(pdfPage.getHeight() > pdfPage.getWidth()) {
+            if(document.querySelector('#select_paper_format').value != "custom" && pdfPage.getHeight() > pdfPage.getWidth()) {
                 resizePage(pdfPage, Math.min(height, width), Math.max(height, width));
             } else {
                 resizePage(pdfPage, Math.max(height, width), Math.min(height, width));
@@ -1003,7 +1009,8 @@ function createEventsListener() {
         document.querySelector('#btn_liste_pdf').click();
     });
     document.querySelector('body').addEventListener('click', function(event) {
-        if(!event.originalTarget.classList.contains('offcanvas-header') && !event.originalTarget.classList.contains('offcanvas-body') && event.originalTarget.id != 'container-pages' && event.originalTarget.id != 'sidebarTools' && event.originalTarget.id != 'sidebarToolsLabel' && event.originalTarget.id != 'btn_container') {
+        if (!(event.target instanceof Element)) return;
+        if(!event.target.classList.contains('offcanvas-header') && !event.target.classList.contains('offcanvas-body') && event.target.id != 'container-pages' && event.target.id != 'sidebarTools' && event.target.id != 'sidebarToolsLabel' && event.target.id != 'btn_container') {
             return;
         }
         document.getElementById('btn_cancel_select').click();

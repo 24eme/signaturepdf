@@ -497,7 +497,7 @@ function updateWatermark() {
         return
     }
 
-    const text = new fabric.Text(document.querySelector('input[name=watermark]').value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
+    const text = new fabric.Text(document.querySelector('input[name=watermark]').value, {angle: -40, fill: document.querySelector("#watermark-color-picker").value, fontSize: 27 * currentScale})
     text.scale = 0.
     const overlay = new fabric.Rect({
         fill: new fabric.Pattern({
@@ -870,7 +870,7 @@ function createEventsListener() {
 
         input.classList.remove('d-none')
         div.classList.add('d-none')
-        input.querySelector('input').focus()
+        input.querySelector('input[type=text]').focus()
     })
 
     document.querySelector('input[name=watermark]')?.addEventListener('keyup', debounce(function (e) {
@@ -883,6 +883,10 @@ function createEventsListener() {
         setIsChanged(hasModifications || !!e.target.value)
         updateFlatten();
         updateWatermark();
+    });
+
+    document.querySelector('#watermark-color-picker')?.addEventListener('change', function (e) {
+        document.querySelector('input[name=watermark]').dispatchEvent(new Event("change"));
     });
 
     if(document.querySelector('#alert-signature-help')) {
@@ -963,6 +967,9 @@ function createEventsListener() {
 
     document.getElementById('save_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
+
+        event.preventDefault();
+        return false;
     });
 
     document.getElementById('btn-svg-pdf-delete').addEventListener('click', function(event) {

@@ -91,8 +91,9 @@
                   <div class="input-watermark-placeholder btn btn-outline-secondary w-100 text-start text-dark">
                     <span class="bi bi-droplet-half" id="watermark-addon"></span> <?php echo _("Watermark") ?>
                   </div>
-                  <div class="input-group d-none">
+                  <div class="input-group d-none position-relative">
                       <span class="input-group-text border-secondary"><i class="bi bi-droplet-half"></i></span>
+                      <input type="color" id="watermark-color-picker" class="form-control form-control-color" value="#828282">
                       <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="<?php echo _("Watermark") ?>" aria-label="Watermark" aria-describedby="watermark-addon">
                   </div>
               <?php endif ?>

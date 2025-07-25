@@ -49,15 +49,14 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
                 let pageIndex = pdfLetter + "_" + (page.pageNumber - 1);
                 pages[pageIndex] = page;
                 const viewportFormat = page.getViewport({ scale: 1 });
-                const widthFormat = points2mm(viewportFormat.width);
-                const heightFormat = points2mm(viewportFormat.height);
-                const format = [widthFormat,heightFormat].sort().join('x')
+                const format = findFormat(viewportFormat.width, viewportFormat.height);
+                const formatLibelle = getLibelleFormat(format);
 
                 if(!formats[format]) {
                     formats[format] = []
                 }
                 formats[format].push(pageIndex);
-                let pageTitle = trad['Page'] + ' ' + page.pageNumber + ' - ' + widthFormat + ' x ' + heightFormat + ' mm - ' + filename;
+                let pageTitle = trad['Page'] + ' ' + page.pageNumber + ' - ' + formatLibelle + ' - ' + filename;
                 let pageHTML = '<div class="position-relative mt-0 ms-1 me-0 mb-1 canvas-container d-flex align-items-center justify-content-center bg-transparent bg-opacity-25 border border-2 border-transparent" id="canvas-container-' + pageIndex +'" draggable="true">';
                     pageHTML += '<canvas class="canvas-pdf shadow-sm"></canvas>';
                     pageHTML += '<div title="' + trad['Select this page'] + '" class="position-absolute top-0 start-50 translate-middle-x p-2 ps-3 pe-3 mt-2 rounded-circle btn-select d-none"><i class="bi bi-check-square"></i></div>';
@@ -319,22 +318,75 @@ function updateFormats() {
     const selectFormatOptionCurrent = document.querySelector('#select_paper_format_current');
     let formatsLabel = [];
     for(format in formats) {
-        if(document.querySelector('#select_paper_format option[value="'+format+'"]')) {
-            formatsLabel.push(document.querySelector('#select_paper_format option[value="'+format+'"]').innerText);
-        } else {
-            formatsLabel.push(format.replace('x', ' x ') + ' mm');
-        }
+        formatsLabel.push(getLibelleFormat(format));
     }
+    document.querySelector('#input_paper_width').parentNode.classList.add('opacity-75');
+    document.querySelector('#input_paper_height').parentNode.classList.add('opacity-75');
+    document.querySelector('#select_size_unit').parentNode.classList.add('opacity-75');
 
     selectFormatOptionCurrent.innerText = formatsLabel.join(', ');
-    document.querySelector('#printable_infos').innerText = selectFormat.selectedOptions[0].text;
-    document.querySelector('#printable_infos').classList.add('text-muted');
-    document.querySelector('#printable_infos').classList.remove('fw-bold');
-    if(selectFormat.value) {
-        document.querySelector('#printable_infos').classList.remove('text-muted');
-        document.querySelector('#printable_infos').classList.add('fw-bold');
+    if(selectFormat.value == "custom") {
+        document.querySelector('#select_paper_format').selectedOptions[0].text = "Custom ("+document.querySelector('#input_paper_width').value+" x "+ document.querySelector('#input_paper_height').value + " " + document.querySelector("#select_size_unit").value + ")"
+        document.querySelector('#input_paper_width').parentNode.classList.remove('opacity-75');
+        document.querySelector('#input_paper_height').parentNode.classList.remove('opacity-75');
+        document.querySelector('#select_size_unit').parentNode.classList.remove('opacity-75');
+    } else {
+        document.querySelector('#select_paper_format option[value="custom"]').text = "Custom"
     }
-    document.querySelector('#printable_infos').title = document.querySelector('#printable_infos').innerText;
+    document.querySelector('#printable_paper_size_infos').innerText = selectFormat.selectedOptions[0].text;
+    document.querySelector('#printable_paper_size_infos').classList.add('text-muted');
+    document.querySelector('#printable_paper_size_infos').classList.remove('fw-bold');
+
+    if(!selectFormat.value) {
+        document.querySelector('#input_paper_width').disabled = true;
+        document.querySelector('#input_paper_height').disabled = true;
+        document.querySelector('#select_size_unit').disabled = true;
+        document.querySelector('#input_paper_width').value = null;
+        document.querySelector('#input_paper_height').value = null;
+        document.querySelector('#select_size_unit').value = null;
+    }
+    if(selectFormat.value) {
+        document.querySelector('#printable_paper_size_infos').classList.remove('text-muted');
+        document.querySelector('#printable_paper_size_infos').classList.add('fw-bold');
+        document.querySelector('#input_paper_width').disabled = false;
+        document.querySelector('#input_paper_height').disabled = false;
+        document.querySelector('#select_size_unit').disabled = false;
+    }
+    if(selectFormat.value && selectFormat.value.match(/[0-9\.]+x[0-9\.]+x/)) {
+        document.querySelector('#input_paper_width').value = selectFormat.value.split('x')[0];
+        document.querySelector('#input_paper_height').value = selectFormat.value.split('x')[1];
+        document.querySelector('#select_size_unit').value = selectFormat.value.split('x')[2];
+    }
+
+    document.querySelector('#printable_paper_size_infos').title = document.querySelector('#printable_paper_size_infos').innerText;
+
+    document.querySelector('#printable_formatting_infos').innerText = null;
+    if(document.querySelector('#select_formatting').value) {
+        document.querySelector('#printable_formatting_infos').innerText = document.querySelector('#select_formatting').selectedOptions[0].text;
+    }
+}
+
+function findFormat(pointWidth, pointHeight) {
+    const format_in = points2unit(pointWidth, 'in')+'x'+points2unit(pointHeight, 'in')+'xin'
+
+    if(document.querySelector('#select_paper_format option[value="'+format_in+'"]')) {
+
+        return format_in;
+    }
+
+    const format_mm = points2unit(pointWidth, 'mm')+'x'+points2unit(pointHeight, 'mm')+'xmm'
+
+    return format_mm;
+}
+
+function getLibelleFormat(format) {
+    if(document.querySelector('#select_paper_format option[value="'+format+'"]')) {
+        return document.querySelector('#select_paper_format option[value="'+format+'"]').innerText
+    }
+
+    const splitFormat = format.split('x');
+
+    return splitFormat[0] + ' x ' + splitFormat[1] + ' ' + splitFormat[2];
 }
 
 function getPagesSelected() {
@@ -597,7 +649,6 @@ async function saveAll() {
 async function save(order) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
-
     const pdf = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(0).arrayBuffer(), { ignoreEncryption: true, password: "", updateMetadata: false });
 
     let filename = "";
@@ -638,27 +689,65 @@ async function save(order) {
         const pageOrganize = pagesOrganize[i].split('-')[0];
         const rotation = pagesOrganize[i].split('-')[1];
         const pdfPage = pages[pageOrganize];
-        const format = document.querySelector('#select_paper_format').value;
         if(rotation) {
             pdfPage.setRotation(window['PDFLib'].degrees(parseInt(rotation)));
         }
-        if(format) {
-            let width = mm2points(parseInt(format.split("x")[0]));
-            let height = mm2points(parseInt(format.split("x")[1]));
-
-            if(pdfPage.getHeight() > pdfPage.getWidth()) {
+        if(document.querySelector('#input_paper_width').value && document.querySelector('#input_paper_height').value, document.querySelector('#select_size_unit').value) {
+            let unit = document.querySelector('#select_size_unit').value;
+            let width = unit2points(parseFloat(document.querySelector('#input_paper_width').value), unit);
+            let height = unit2points(parseFloat(document.querySelector('#input_paper_height').value), unit);
+            if(document.querySelector('#select_paper_format').value != "custom" && pdfPage.getHeight() > pdfPage.getWidth()) {
                 resizePage(pdfPage, Math.min(height, width), Math.max(height, width));
             } else {
-                resizePage(pdfPage,  Math.max(height, width), Math.min(height, width));
+                resizePage(pdfPage, Math.max(height, width), Math.min(height, width));
             }
         }
         pdf.addPage(pdfPage);
     }
 
-    cleanPDF(pdf);
+    if(document.querySelector('#select_formatting').value == "booklet") {
+        const orgaPages = [];
+        const nbPages = Math.ceil(pdf.getPages().length / 4) * 2;
 
-    const newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
+        const pageWidth = pdf.getPages()[0].getWidth();
+        const pageHeight = pdf.getPages()[0].getHeight();
+
+        const pdfBooklet = await window['PDFLib'].PDFDocument.create();
+        for(let i = nbPages; i > 0; i--) {
+            let pages = [i, 2 * nbPages - i + 1];
+            if(i % 2) {
+                orgaPages.push(pages.reverse());
+            } else {
+                orgaPages.push(pages);
+            }
+        }
+        for(pages of orgaPages.reverse()) {
+            await merge2Pages(pdfBooklet, pdf.getPages()[pages[0] - 1], pdf.getPages()[pages[1] - 1], pageWidth, pageHeight)
+        }
+        let newPDF = new Blob([await pdfBooklet.save()], {type: "application/pdf"});
+
+        await download(newPDF, filename+".pdf");
+        return;
+    }
+
+    cleanPDF(pdf);
+    let newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
     await download(newPDF, filename+".pdf");
+    await storeFileInCache(newPDF, filename+'.pdf');
+}
+
+function unit2points(value, unit) {
+    if(unit == 'mm') {
+
+        return mm2points(value);
+    }
+
+    if(unit == 'in') {
+
+        return in2points(value);
+    }
+
+    return value;
 }
 
 function mm2points(mm) {
@@ -666,9 +755,47 @@ function mm2points(mm) {
     return mm * 72 / 25.4;
 }
 
+function in2points(inch) {
+
+    return inch * 72;
+}
+
+function points2unit(value, unit) {
+    if(unit == 'mm') {
+
+        return points2mm(value);
+    }
+
+    if(unit == 'in') {
+
+        return points2in(value);
+    }
+
+    return value;
+}
+
 function points2mm(points) {
 
     return Math.round(points * 25.4 / 72);
+}
+
+function points2in(points) {
+
+    return Math.round(points / 72 * 10) / 10;
+}
+
+async function merge2Pages(pdf, pageA, pageB, pageWidth, pageHeight) {
+    const newPageWidth =  Math.max(pageWidth, pageHeight);
+    const newPageHeight =  Math.min(pageWidth, pageHeight);
+    const page = pdf.addPage([newPageWidth, newPageHeight]);
+    if(pageA) {
+        resizePage(pageA, newPageWidth / 2, newPageHeight);
+        await embedPage(pdf, page, pageA, 0, 0);
+    }
+    if(pageB) {
+        resizePage(pageB, newPageWidth / 2, newPageHeight);
+        await embedPage(pdf, page, pageB, newPageWidth / 2, 0);
+    }
 }
 
 function resizePage(page, newWidth, newHeight) {
@@ -692,6 +819,21 @@ function resizePage(page, newWidth, newHeight) {
     // Appliquer la transformation au contenu
     page.scaleContent(scale, scale);
     page.translateContent(offsetX, offsetY);
+}
+
+async function embedPage(pdf, page, pageToEmbed, x, y) {
+    const pageEmbedded = await pdf.embedPage(pageToEmbed, {
+        left: 0,
+        bottom: 0,
+        right: pageToEmbed.getWidth(),
+        top: pageToEmbed.getHeight(),
+    });
+    page.drawPage(pageEmbedded, {
+      width: pageEmbedded.width,
+      height: pageEmbedded.height,
+      x: x,
+      y: y,
+    });
 }
 
 function cleanPDF(pdf) {
@@ -867,12 +1009,23 @@ function createEventsListener() {
         document.querySelector('#btn_liste_pdf').click();
     });
     document.querySelector('body').addEventListener('click', function(event) {
-        if(!event.originalTarget.classList.contains('offcanvas-header') && !event.originalTarget.classList.contains('offcanvas-body') && event.originalTarget.id != 'container-pages' && event.originalTarget.id != 'sidebarTools' && event.originalTarget.id != 'sidebarToolsLabel' && event.originalTarget.id != 'btn_container') {
+        if (!(event.target instanceof Element)) return;
+        if(!event.target.classList.contains('offcanvas-header') && !event.target.classList.contains('offcanvas-body') && event.target.id != 'container-pages' && event.target.id != 'sidebarTools' && event.target.id != 'sidebarToolsLabel' && event.target.id != 'btn_container') {
             return;
         }
         document.getElementById('btn_cancel_select').click();
     });
     document.querySelector('#select_paper_format').addEventListener('change', function(event) {
+        updateFormats();
+    });
+    document.querySelector('#select_formatting').addEventListener('change', function(event) {
+        updateFormats();
+    });
+    document.querySelector('#bloc_size').addEventListener('change', function(event) {
+        if(!["input_paper_width", "input_paper_height", "select_size_unit"].includes(event.target.id)) {
+            return;
+        }
+        document.querySelector('#select_paper_format').value = "custom";
         updateFormats();
     });
 }
@@ -920,10 +1073,17 @@ async function pageOrganization() {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
+    if(window.location.hash.match(/#booklet/)) {
+        document.querySelector('#select_formatting').value = "booklet";
+        document.querySelector('#demo_link').href = document.querySelector('#demo_link').href + '#booklet';
+    }
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
-        let hashUrl = window.location.hash.replace(/^\#/, '');
+        let hashUrl = window.location.hash.replace('#booklet', '').replace(/^\#/, '');
         pageUpload();
         uploadFromUrl(hashUrl);
+    } else if (window.location.hash && canUseCache()) {
+        pageUpload()
+        loadFileFromCache('/pdf/'+window.location.hash.replace(/^\#/, ''));
     } else {
         pageUpload();
     }

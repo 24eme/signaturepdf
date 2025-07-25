@@ -74,6 +74,14 @@
      opacity: 1;
 }
 
+#watermark-color-picker {
+    display: inline-block; position: absolute; height:28px; width: 28px; border-radius: 24px; top: 5px; right: 6px; z-index: 20;
+}
+
+#watermark-color-picker::-moz-color-swatch, #watermark-color-picker::-webkit-color-swatch {
+    border-radius: 24px;
+}
+
 #toolbox div {
     cursor: pointer;
     padding: 1px;

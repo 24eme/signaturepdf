@@ -22,7 +22,7 @@
                   <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf,image/png,image/jpeg" multiple="true" />
                   <p class="mt-2 small fw-light text-dark">&nbsp;</p>
                   <?php if($PDF_DEMO_LINK): ?>
-                      <p class="mt-4"><a class="link-opacity-75 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover small" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF") ?></a></p>
+                      <p class="mt-4"><a id="demo_link" class="link-opacity-75 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover small" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF") ?></a></p>
                   <?php endif; ?>
                 </div>
             </div>
@@ -76,7 +76,8 @@
                             <button type="button" class="btn btn-light btn text-start border position-relative mb-2" data-bs-toggle="modal" data-bs-target="#modalPrintable">
                                 <i class="bi bi-gear position-absolute top-50 end-0 translate-middle-y pe-3 "></i>
                                 <small><?php echo _("Printing options") ?></small>
-                                <div id="printable_infos" class="text-muted small clamp-2-lines"></div>
+                                <div id="printable_paper_size_infos" class="text-muted small clamp-2-lines"></div>
+                                <div id="printable_formatting_infos" class="fw-bold small"></div>
                             </button>
 
                             <button class="btn btn-primary" type="submit" id="save"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
@@ -139,33 +140,59 @@
                             <option id="select_paper_format_current" value="" selected></option>
                         </optgroup>
                         <optgroup label="<?php echo _("Most common formats") ?>">
-                            <option value="210x297">A4 (210 × 297 mm)</option>
-                            <option value="216x279">Letter (8.5 × 11 pouces / 216 × 279 mm)</option>
+                            <option value="210x297xmm">A4 (210 × 297 mm)</option>
+                            <option value="8.5x11xin">Letter (8.5 × 11 in)</option>
                         </optgroup>
                         <optgroup label="<?php echo _("Other formats") ?>">
-                            <option value="841x1189">A0 (841 × 1189 mm)</option>
-                            <option value="594x841">A1 (594 × 841 mm)</option>
-                            <option value="420x594">A2 (420 × 594 mm)</option>
-                            <option value="297x420">A3 (297 × 420 mm)</option>
-                            <option value="210x297">A4 (210 × 297 mm)</option>
-                            <option value="148x210">A5 (148 × 210 mm)</option>
-                            <option value="105x148">A6 (105 × 148 mm)</option>
-                            <option value="250x353">B4 (250 × 353 mm)</option>
-                            <option value="176x250">B5 (176 × 250 mm)</option>
-                            <option value="216x356">Legal (8.5 × 14 pouces / 216 × 356 mm)</option>
-                            <option value="279x432">Tabloid (11 × 17 pouces / 279 × 432 mm)</option>
-                            <!--<option value="custom">Other Custom ...</option>-->
+                            <option value="841x1189xmm">A0 (841 × 1189 mm)</option>
+                            <option value="594x841xmm">A1 (594 × 841 mm)</option>
+                            <option value="420x594xmm">A2 (420 × 594 mm)</option>
+                            <option value="297x420xmm">A3 (297 × 420 mm)</option>
+                            <option value="210x297xmm">A4 (210 × 297 mm)</option>
+                            <option value="148x210xmm">A5 (148 × 210 mm)</option>
+                            <option value="105x148xmm">A6 (105 × 148 mm)</option>
+                            <option value="250x353xmm">B4 (250 × 353 mm)</option>
+                            <option value="176x250xmm">B5 (176 × 250 mm)</option>
+                            <option value="8.5x11xin">Letter (8.5 × 11 in)</option>
+                            <option value="8.5x14xin">Legal (8.5 × 14 in)</option>
+                            <option value="11x17xin">Tabloid (11 × 17 in)</option>
+                            <option value="custom"><?php echo _("Custom") ?></option>
                         </optgroup>
                       </select>
                       <label for="select-format"><?php echo _("Paper size") ?></label>
                     </div>
-                    <!--<div class="form-floating mt-3">
-                      <select class="form-select" readonly="readonly" id="select-format">
-                          <option selected>Normal</option>
-                          <option>Booklet</option>
+                    <div id="bloc_size" class="row mt-3">
+                        <div class="col">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="input_paper_width" value="">
+                              <label for="input_paper_width"><?php echo _("Width") ?></label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="input_paper_height" value="">
+                              <label for="input_paper_height"><?php echo _("Height") ?></label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                              <select class="form-select" id="select_size_unit">
+                                <option value=""></option>
+                                <option value="mm">mm</option>
+                                <option value="in">in</option>
+                              </select>
+                              <label for="floatingInputGrid"><?php echo _("Unit") ?></label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-floating mt-3">
+                      <select class="form-select" id="select_formatting">
+                          <option value="" selected><?php echo _("Normal") ?></option>
+                          <option value="booklet"><?php echo _("Booklet") ?></option>
                       </select>
-                      <label for="select-format">PDF Formatting</label>
-                    </div>-->
+                      <label for="select-format"><?php echo _("Formatting") ?></label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button id="btn_printable_validate" type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo _("Close") ?></button>

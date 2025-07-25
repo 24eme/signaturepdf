@@ -497,7 +497,7 @@ function updateWatermark() {
         return
     }
 
-    const text = new fabric.Text(document.querySelector('input[name=watermark]').value, {angle: -40, fill: "#0009", fontSize: 27 * currentScale})
+    const text = new fabric.Text(document.querySelector('input[name=watermark]').value, {angle: -40, fill: document.querySelector("#watermark-color-picker").value, fontSize: 27 * currentScale})
     text.scale = 0.
     const overlay = new fabric.Rect({
         fill: new fabric.Pattern({
@@ -870,7 +870,7 @@ function createEventsListener() {
 
         input.classList.remove('d-none')
         div.classList.add('d-none')
-        input.querySelector('input').focus()
+        input.querySelector('input[type=text]').focus()
     })
 
     document.querySelector('input[name=watermark]')?.addEventListener('keyup', debounce(function (e) {
@@ -885,6 +885,10 @@ function createEventsListener() {
         updateWatermark();
     });
 
+    document.querySelector('#watermark-color-picker')?.addEventListener('change', function (e) {
+        document.querySelector('input[name=watermark]').dispatchEvent(new Event("change"));
+    });
+
     if(document.querySelector('#alert-signature-help')) {
         document.getElementById('btn-signature-help').addEventListener('click', function(event) {
             document.querySelector('#alert-signature-help').classList.remove('d-none');
@@ -897,7 +901,11 @@ function createEventsListener() {
     }
 
     if(document.getElementById('save')) {
-        document.getElementById('save').addEventListener('click', function(event) {
+        document.getElementById('save').addEventListener('click', async function(event) {
+            if(!pdfHash) {
+                event.preventDefault()
+            }
+
             let previousScale = currentScale;
             if(currentScale != defaultScale) {
                 resizePDF(defaultScale)
@@ -913,6 +921,21 @@ function createEventsListener() {
             if(previousScale != currentScale) {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(resizePDF(previousScale), 100);
+            }
+
+            if(!pdfHash) {
+                startProcessingMode(this)
+                const formData = new FormData(this.form)
+                const response = await fetch(this.form.action, {
+                    method: "POST",
+                    body: formData
+                })
+
+                const blob = await response.blob()
+                const filename = response.headers.get('Content-Disposition').split('"')[1]
+                await download(blob, filename)
+                await storeFileInCache(blob, formData.get('pdf').name)
+                endProcessingMode(this)
             }
 
             hasModifications = false;
@@ -944,6 +967,9 @@ function createEventsListener() {
 
     document.getElementById('save_mobile').addEventListener('click', function(event) {
         document.getElementById('save').click();
+
+        event.preventDefault();
+        return false;
     });
 
     document.getElementById('btn-svg-pdf-delete').addEventListener('click', function(event) {
@@ -1148,8 +1174,9 @@ async function pageUpload() {
     document.getElementById('input_pdf_upload').focus();
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
         if(await canUseCache()) {
-            storeFileInCache();
-            history.pushState({}, '', '/signature#'+document.getElementById('input_pdf_upload').files[0].name);
+            const file = document.getElementById('input_pdf_upload').files[0]
+            storeFileInCache(file, file.name);
+            history.pushState({}, '', '/signature#'+file.name);
         }
         pageSignature(null);
     });

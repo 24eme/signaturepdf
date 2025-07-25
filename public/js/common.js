@@ -57,12 +57,12 @@ async function loadFileFromCache(cacheUrl, pageUrl) {
         type: 'application/pdf'
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
+    document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
 }
 
-async function storeFileInCache() {
-    let cache = await caches.open('pdf');
-    let filename = document.getElementById('input_pdf_upload').files[0].name;
-    let response = new Response(document.getElementById('input_pdf_upload').files[0], { "status" : 200, "statusText" : "OK" });
+async function storeFileInCache(file, filename, cacheStore = 'pdf') {
+    let cache = await caches.open(cacheStore);
+    let response = new Response(file, { "status" : 200, "statusText" : "OK" });
     await cache.put('/pdf/'+filename, response);
 }
 

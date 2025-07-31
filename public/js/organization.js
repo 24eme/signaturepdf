@@ -104,7 +104,7 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
                     this.querySelector('.container-resize').classList.add('d-none');
                     this.querySelector('.canvas-pdf').classList.add('shadow-lg');
                     this.querySelector('.canvas-pdf').style.border = '2px dashed #777';
-                    e.dataTransfer.setData('element', this.id);
+                    e.dataTransfer.setData(this.id.replace('canvas-container-', ''), '');
                     this.style.opacity = 0.4;
                 });
                 canvasContainer.addEventListener('dragend', function(e) {
@@ -119,8 +119,7 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
                         e.preventDefault();
                     }
                     let pdfOver = this;
-                    let pdfMoving = document.querySelector('#'+e.dataTransfer.getData('element'));
-
+                    let pdfMoving = document.querySelector('#canvas-container-'+e.dataTransfer.types[0].toUpperCase());
                     if(pdfOver.id == pdfMoving.id) {
 
                         return;

@@ -325,11 +325,18 @@ function updateFormats() {
 
     selectFormatOptionCurrent.innerText = formatsLabel.join(', ');
     if(selectFormat.value == "custom") {
-        document.querySelector('#select_paper_format').selectedOptions[0].text = "Custom ("+document.querySelector('#input_paper_width').value+" x "+ document.querySelector('#input_paper_height').value + " " + document.querySelector("#select_size_unit").value + ")"
+        document.querySelector('#bloc_size').classList.remove('d-none');
+        document.querySelector('#bloc_size').nextElementSibling.classList.remove('d-none');
+        document.querySelector('#select_paper_format').selectedOptions[0].text = "Custom";
+        if(document.querySelector('#input_paper_width').value && document.querySelector('#input_paper_height').value && document.querySelector("#select_size_unit").value) {
+            document.querySelector('#select_paper_format').selectedOptions[0].text += " ("+document.querySelector('#input_paper_width').value+" x "+ document.querySelector('#input_paper_height').value + " " + document.querySelector("#select_size_unit").value + ")"
+        }
         document.querySelector('#input_paper_width').parentNode.classList.remove('opacity-75');
         document.querySelector('#input_paper_height').parentNode.classList.remove('opacity-75');
         document.querySelector('#select_size_unit').parentNode.classList.remove('opacity-75');
     } else {
+        document.querySelector('#bloc_size').nextElementSibling.classList.add('d-none');
+        document.querySelector('#bloc_size').classList.add('d-none');
         document.querySelector('#select_paper_format option[value="custom"]').text = "Custom"
     }
     document.querySelector('#printable_paper_size_infos').innerText = selectFormat.selectedOptions[0].text;

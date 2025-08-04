@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 17:39+0200\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
 "PO-Revision-Date: 2025-07-11 14:01+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
@@ -130,6 +130,9 @@ msgstr "Signar amb lo certificat del servidor"
 msgid "Add a watermark"
 msgstr "Apondre una filigrana"
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr "Enfosquir zònas"
 
@@ -153,6 +156,9 @@ msgstr "Modificar o estandardizar la talha del papièr"
 
 msgid "Delete pages"
 msgstr "Suprimir de paginas"
+
+msgid "Generate a booklet"
+msgstr ""
 
 msgid "Convert images to PDF"
 msgstr "Convertir d’imatges en PDF"
@@ -255,6 +261,9 @@ msgstr "Opcions d'impression"
 msgid "%s Download the full PDF"
 msgstr "%s Telecargar lo PDF complèt"
 
+msgid "Download the selection"
+msgstr "Telecargar la seleccion"
+
 msgid "No"
 msgstr "Non"
 
@@ -267,9 +276,6 @@ msgstr "Anullar"
 #, php-format
 msgid "%s Turn"
 msgstr "%s Virar"
-
-msgid "Download the selection"
-msgstr "Telecargar la seleccion"
 
 msgid "PDF documents"
 msgstr "Documents PDF"
@@ -286,8 +292,29 @@ msgstr "Formats mai comuns"
 msgid "Other formats"
 msgstr "Autres formats"
 
+msgid "Custom"
+msgstr ""
+
 msgid "Paper size"
 msgstr "Talha del papièr"
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Signar, parafar, sagelar, completar un document"
@@ -542,6 +569,10 @@ msgstr "Duplicar"
 msgid "Delete the element"
 msgstr "Suprimir l'element"
 
+msgid "Are you sure you want to delete this PDF and the associated signatures?"
+msgstr ""
+"Volètz vertadièrament suprimir aqueste PDF e las signaturas associadas ?"
+
 msgid "Text to modify"
 msgstr "Tèxt de modificar"
 
@@ -592,10 +623,6 @@ msgstr "Organizar"
 
 msgid "Metadata"
 msgstr "Metadonadas"
-
-msgid "Are you sure you want to delete this PDF and the associated signatures?"
-msgstr ""
-"Volètz vertadièrament suprimir aqueste PDF e las signaturas associadas ?"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Lo PDF deu pas despassar "

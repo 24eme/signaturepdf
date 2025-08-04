@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
 "PO-Revision-Date: 2025-06-03 16:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -130,6 +130,9 @@ msgstr "Zmel s uselkin n useqdac"
 msgid "Add a watermark"
 msgstr ""
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr ""
 
@@ -153,6 +156,9 @@ msgstr ""
 
 msgid "Delete pages"
 msgstr "Kkes isebtar"
+
+msgid "Generate a booklet"
+msgstr ""
 
 msgid "Convert images to PDF"
 msgstr "Aselket n tugniwin ɣer PDF"
@@ -255,6 +261,9 @@ msgstr ""
 msgid "%s Download the full PDF"
 msgstr "%s Sader PDF ummid"
 
+msgid "Download the selection"
+msgstr "Sader tafrant"
+
 msgid "No"
 msgstr "Uhu"
 
@@ -267,9 +276,6 @@ msgstr "Sefsex"
 #, php-format
 msgid "%s Turn"
 msgstr "%s Dewweṛ"
-
-msgid "Download the selection"
-msgstr "Sader tafrant"
 
 msgid "PDF documents"
 msgstr "Isemliyen n PDF"
@@ -286,7 +292,28 @@ msgstr ""
 msgid "Other formats"
 msgstr ""
 
+msgid "Custom"
+msgstr ""
+
 msgid "Paper size"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
 "PO-Revision-Date: 2024-10-22 18:15+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -130,6 +130,9 @@ msgstr ""
 msgid "Add a watermark"
 msgstr ""
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr ""
 
@@ -152,6 +155,9 @@ msgid "Change or standardize the paper size"
 msgstr ""
 
 msgid "Delete pages"
+msgstr ""
+
+msgid "Generate a booklet"
 msgstr ""
 
 msgid "Convert images to PDF"
@@ -255,6 +261,9 @@ msgstr ""
 msgid "%s Download the full PDF"
 msgstr "%s Descargar el PDF completo"
 
+msgid "Download the selection"
+msgstr "Descargar la selección"
+
 msgid "No"
 msgstr "No"
 
@@ -267,9 +276,6 @@ msgstr "Cancelar"
 #, php-format
 msgid "%s Turn"
 msgstr "%s Girar"
-
-msgid "Download the selection"
-msgstr "Descargar la selección"
 
 msgid "PDF documents"
 msgstr "Documentos PDF"
@@ -286,7 +292,28 @@ msgstr ""
 msgid "Other formats"
 msgstr ""
 
+msgid "Custom"
+msgstr ""
+
 msgid "Paper size"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"

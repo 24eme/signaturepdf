@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
 "PO-Revision-Date: 2023-11-18 05:03+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/signature-pdf/"
@@ -131,6 +131,9 @@ msgstr ""
 msgid "Add a watermark"
 msgstr ""
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr ""
 
@@ -153,6 +156,9 @@ msgid "Change or standardize the paper size"
 msgstr ""
 
 msgid "Delete pages"
+msgstr ""
+
+msgid "Generate a booklet"
 msgstr ""
 
 msgid "Convert images to PDF"
@@ -256,6 +262,9 @@ msgstr ""
 msgid "%s Download the full PDF"
 msgstr "%s تنزيل الـ PDF كاملًا"
 
+msgid "Download the selection"
+msgstr "تنزيل المُحدَّدة"
+
 msgid "No"
 msgstr "لا شيء"
 
@@ -268,9 +277,6 @@ msgstr "إلغاء"
 #, php-format
 msgid "%s Turn"
 msgstr "%s دوران"
-
-msgid "Download the selection"
-msgstr "تنزيل المُحدَّدة"
 
 msgid "PDF documents"
 msgstr "مستندات PDF"
@@ -287,7 +293,28 @@ msgstr ""
 msgid "Other formats"
 msgstr ""
 
+msgid "Custom"
+msgstr ""
+
 msgid "Paper size"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"

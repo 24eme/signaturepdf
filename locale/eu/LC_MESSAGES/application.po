@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
 "PO-Revision-Date: 2025-07-25 22:06+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
@@ -135,6 +135,9 @@ msgstr "Sinatu zerbitzariko ziurtagiriarekin"
 msgid "Add a watermark"
 msgstr "Gehitu filigrana"
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr "Ezabatu eremuak"
 
@@ -158,6 +161,9 @@ msgstr "Aldatu edo estandarizatu paperaren neurria"
 
 msgid "Delete pages"
 msgstr "Ezabatu orriak"
+
+msgid "Generate a booklet"
+msgstr ""
 
 msgid "Convert images to PDF"
 msgstr "Bihurtu irudiak PDFra"
@@ -260,6 +266,9 @@ msgstr "Inprimatzeko aukerak"
 msgid "%s Download the full PDF"
 msgstr "%s Deskargatu PDF osoa"
 
+msgid "Download the selection"
+msgstr "Deskargatu hautaketa"
+
 msgid "No"
 msgstr "Ez"
 
@@ -272,9 +281,6 @@ msgstr "Utzi"
 #, php-format
 msgid "%s Turn"
 msgstr "%s Biratu"
-
-msgid "Download the selection"
-msgstr "Deskargatu hautaketa"
 
 msgid "PDF documents"
 msgstr "PDF dokumentuak"
@@ -291,8 +297,29 @@ msgstr "Formatu erabilienak"
 msgid "Other formats"
 msgstr "Beste formatu batzuk"
 
+msgid "Custom"
+msgstr ""
+
 msgid "Paper size"
 msgstr "Paperaren neurria"
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Sinatu, idatzi inizialak, zigilatu, osatu dokumentua"

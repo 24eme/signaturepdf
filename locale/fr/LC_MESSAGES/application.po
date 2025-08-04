@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
 "PO-Revision-Date: 2025-08-04 11:17+0000\n"
 "Last-Translator: 24ème <equipe@24eme.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/signature-pdf/"
@@ -131,6 +131,9 @@ msgstr "Signer avec le certificat du serveur"
 msgid "Add a watermark"
 msgstr "Ajouter un filigrane"
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr "Caviarder des zones"
 
@@ -154,6 +157,9 @@ msgstr "Changer ou uniformiser la dimension des pages"
 
 msgid "Delete pages"
 msgstr "Supprimer des pages"
+
+msgid "Generate a booklet"
+msgstr ""
 
 msgid "Convert images to PDF"
 msgstr "Convertir des images en PDF"
@@ -256,6 +262,9 @@ msgstr "Options d'impression"
 msgid "%s Download the full PDF"
 msgstr "%s Télécharger le PDF complet"
 
+msgid "Download the selection"
+msgstr "Télécharger la sélection"
+
 msgid "No"
 msgstr "Aucune"
 
@@ -268,9 +277,6 @@ msgstr "Annuler"
 #, php-format
 msgid "%s Turn"
 msgstr "%s Tourner"
-
-msgid "Download the selection"
-msgstr "Télécharger la sélection"
 
 msgid "PDF documents"
 msgstr "Documents PDF"
@@ -287,8 +293,29 @@ msgstr "Formats les plus courants"
 msgid "Other formats"
 msgstr "Autres formats"
 
+msgid "Custom"
+msgstr ""
+
 msgid "Paper size"
 msgstr "Dimension des pages"
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
+msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Signer, parapher, tamponner, compléter un document"
@@ -545,7 +572,9 @@ msgid "Delete the element"
 msgstr "Supprimer l'élément"
 
 msgid "Are you sure you want to delete this PDF and the associated signatures?"
-msgstr "Êtes vous sûr de vouloir supprimer ce PDF ainsi que les signatures associées ?"
+msgstr ""
+"Êtes vous sûr de vouloir supprimer ce PDF ainsi que les signatures "
+"associées ?"
 
 msgid "Text to modify"
 msgstr "Texte à modifier"

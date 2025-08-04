@@ -161,7 +161,7 @@
                       </select>
                       <label for="select-format"><?php echo _("Paper size") ?></label>
                     </div>
-                    <div id="bloc_size" class="row mt-3">
+                    <div id="bloc_size" class="row mt-3 d-none">
                         <div class="col">
                             <div class="form-floating">
                               <input type="number" class="form-control" id="input_paper_width" value="">
@@ -185,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr />
+                    <hr class="d-none" />
                     <div class="form-floating mt-3">
                       <select class="form-select" id="select_formatting">
                           <option value="" selected><?php echo _("Normal") ?></option>

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-04 13:21+0200\n"
-"PO-Revision-Date: 2025-07-11 14:01+0000\n"
+"PO-Revision-Date: 2025-08-05 21:02+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -131,7 +131,7 @@ msgid "Add a watermark"
 msgstr "Apondre una filigrana"
 
 msgid "New"
-msgstr ""
+msgstr "Nòu"
 
 msgid "Redact areas"
 msgstr "Enfosquir zònas"
@@ -158,7 +158,7 @@ msgid "Delete pages"
 msgstr "Suprimir de paginas"
 
 msgid "Generate a booklet"
-msgstr ""
+msgstr "Generar un libret"
 
 msgid "Convert images to PDF"
 msgstr "Convertir d’imatges en PDF"
@@ -293,28 +293,28 @@ msgid "Other formats"
 msgstr "Autres formats"
 
 msgid "Custom"
-msgstr ""
+msgstr "Personalizat"
 
 msgid "Paper size"
 msgstr "Talha del papièr"
 
 msgid "Width"
-msgstr ""
+msgstr "Largor"
 
 msgid "Height"
-msgstr ""
+msgstr "Nautor"
 
 msgid "Unit"
-msgstr ""
+msgstr "Unitat"
 
 msgid "Normal"
-msgstr ""
+msgstr "Normala"
 
 msgid "Booklet"
-msgstr ""
+msgstr "Libret"
 
 msgid "Formatting"
-msgstr ""
+msgstr "Formatatge"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Signar, parafar, sagelar, completar un document"

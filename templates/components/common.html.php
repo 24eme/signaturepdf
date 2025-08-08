@@ -21,6 +21,7 @@
 <?php endif; ?>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
 <script>
+var REVERSE_PROXY_URL = <?php echo json_encode($REVERSE_PROXY_URL); ?>;
 var trad = <?php echo json_encode([
     'Select this page' => _('Select this page'),
     'Delete this page' => _('Delete this page'),

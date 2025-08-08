@@ -1,17 +1,3 @@
-@font-face {
-    font-family: 'Caveat';
-    font-style: normal;
-    font-weight: 400;
-    src: url(/vendor/fonts/Caveat-Regular.ttf) format('truetype');
-}
-
-@font-face {
-    font-family: 'Tajawal';
-    font-style: normal;
-    font-weight: 400;
-    src: url(/vendor/fonts/Tajawal-Medium.ttf) format('truetype');
-}
-
 #container-pages {
     overflow: auto;
 }

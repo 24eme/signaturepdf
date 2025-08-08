@@ -1176,7 +1176,7 @@ async function pageUpload() {
         if(await canUseCache()) {
             const file = document.getElementById('input_pdf_upload').files[0]
             storeFileInCache(file, file.name);
-            history.pushState({}, '', '/signature#'+file.name);
+            history.pushState({}, '', `${REVERSE_PROXY_URL ? '/': ''}${REVERSE_PROXY_URL}/signature#${file.name}`);
         }
         pageSignature(null);
     });

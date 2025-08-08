@@ -351,11 +351,11 @@
     ]); ?>;
 
     <?php if ($TRANSLATION_LANGUAGE == 'ar'): ?>
-    url_font = <?php echo json_encode('/vendor/fonts/Tajawal-Medium.ttf') ?>
+    url_font = <?php echo json_encode((!empty($REVERSE_PROXY_URL) ? '/': '') . $REVERSE_PROXY_URL . '/vendor/fonts/Tajawal-Medium.ttf') ?>
     <?php elseif ($TRANSLATION_LANGUAGE == 'kab'): ?>
-    url_font = <?php echo json_encode('/vendor/fonts/FiraSans-MediumItalic.ttf') ?>
+    url_font = <?php echo json_encode((!empty($REVERSE_PROXY_URL) ? '/': '') . $REVERSE_PROXY_URL . '/vendor/fonts/FiraSans-MediumItalic.ttf') ?>
     <?php else: ?>
-    url_font = <?php echo json_encode('/vendor/fonts/Caveat-Regular.ttf') ?>
+    url_font = <?php echo json_encode((!empty($REVERSE_PROXY_URL) ? '/': '') . $REVERSE_PROXY_URL . '/vendor/fonts/Caveat-Regular.ttf') ?>
     <?php endif; ?>
     </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>

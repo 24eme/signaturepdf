@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-04 13:21+0200\n"
-"PO-Revision-Date: 2025-07-31 00:09+0000\n"
+"PO-Revision-Date: 2025-08-14 20:01+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
@@ -131,7 +131,7 @@ msgid "Add a watermark"
 msgstr "Aggiungi una filigrana"
 
 msgid "New"
-msgstr ""
+msgstr "Nuovo"
 
 msgid "Redact areas"
 msgstr "Redigi aree"
@@ -158,7 +158,7 @@ msgid "Delete pages"
 msgstr "Elimina pagine"
 
 msgid "Generate a booklet"
-msgstr ""
+msgstr "Genera un libretto"
 
 msgid "Convert images to PDF"
 msgstr "Convertire le immagini in PDF"
@@ -293,28 +293,28 @@ msgid "Other formats"
 msgstr "Altri formati"
 
 msgid "Custom"
-msgstr ""
+msgstr "Personalizzato"
 
 msgid "Paper size"
 msgstr "Formato della carta"
 
 msgid "Width"
-msgstr ""
+msgstr "Larghezza"
 
 msgid "Height"
-msgstr ""
+msgstr "Altezza"
 
 msgid "Unit"
-msgstr ""
+msgstr "Unità"
 
 msgid "Normal"
-msgstr ""
+msgstr "Normale"
 
 msgid "Booklet"
-msgstr ""
+msgstr "Libretto"
 
 msgid "Formatting"
-msgstr ""
+msgstr "Formattazione"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Firma, annota, timbra, completa un documento"

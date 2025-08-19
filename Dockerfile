@@ -19,7 +19,7 @@ COPY . /usr/local/signaturepdf
 RUN envsubst < /usr/local/signaturepdf/config/php.ini > /usr/local/etc/php/conf.d/uploads.ini && \
     envsubst < /usr/local/signaturepdf/config/apache.conf > /etc/apache2/sites-available/signaturepdf.conf && \
     envsubst < /usr/local/signaturepdf/config/config.ini.tpl > /usr/local/signaturepdf/config/config.ini && \
-         a2enmod rewrite && a2ensite signaturepdf
+         a2enmod rewrite && a2dissite 000-default && a2ensite signaturepdf
 
 WORKDIR /usr/local/signaturepdf
 

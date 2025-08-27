@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-04 13:21+0200\n"
-"PO-Revision-Date: 2024-10-22 18:15+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"PO-Revision-Date: 2025-08-27 20:01+0000\n"
+"Last-Translator: Deleted User <noreply+48943@weblate.org>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/signature-pdf/"
 "application/es/>\n"
 "Language: es\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.13\n"
 
 msgid "en"
 msgstr "es"
 
 msgid "PDF compression failed"
-msgstr ""
+msgstr "La compresión del PDF ha fallado"
 
 msgid "Your pdf is already optimized"
 msgstr "Tu pdf ya está optimizado"
@@ -71,7 +71,7 @@ msgstr "Elige un PDF"
 
 #, php-format
 msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgstr "El PDF no puede exceder los %s Mb"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
@@ -92,85 +92,85 @@ msgstr "Alta compresión (menor calidad)"
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s Mb"
 
 msgid "Compressed at %s%"
-msgstr ""
+msgstr "Comprimido al %s%"
 
 msgid "Download the PDF"
 msgstr "Descargar el PDF"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "Software libre de código abierto para firma y manejo de archivos PDF"
 
 msgid "Sign a PDF"
 msgstr "Firmar un PDF"
 
 msgid "Add a signature"
-msgstr ""
+msgstr "Agregar una firma"
 
 msgid "Add initials"
-msgstr ""
+msgstr "Agregar iniciales"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "Agregar un timbre"
 
 msgid "Type text"
-msgstr ""
+msgstr "Escribir texto"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "Tachar texto"
 
 msgid "Allow multiple people to sign via a shared link"
-msgstr ""
+msgstr "Permitir a varias personas firmar a través de un enlace compartido"
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "Firmar utilizando el certificado de este servidor"
 
 msgid "Add a watermark"
-msgstr ""
+msgstr "Agregar una marca da agua"
 
 msgid "New"
-msgstr ""
+msgstr "Nuevo"
 
 msgid "Redact areas"
-msgstr ""
+msgstr "Ocultar áreas"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "Organizar PDFs"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "Combinar múltiples archivos PDF"
 
 msgid "Reorder pages"
-msgstr ""
+msgstr "Reordenar páginas"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "Extraer páginas"
 
 msgid "Rotate pages"
-msgstr ""
+msgstr "Rotar páginas"
 
 msgid "Change or standardize the paper size"
-msgstr ""
+msgstr "Cambiar o uniformar el tamaño del papel"
 
 msgid "Delete pages"
-msgstr ""
+msgstr "Eliminar páginas"
 
 msgid "Generate a booklet"
-msgstr ""
+msgstr "Crear un folleto"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "Convertir imágenes a PDF"
 
 msgid "Edit a PDF"
-msgstr ""
+msgstr "Editar un PDF"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Agregar, editar o eliminar metadatos de un PDF"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "Comprimir y reducir el tamaño de un PDF"
 
 #, php-format
 msgid "%s Edit metadata"
@@ -215,7 +215,7 @@ msgid "Merge, sort, rotate, delete, extract pages"
 msgstr "Fusionar, ordenar, rotar, eliminar, extraer páginas"
 
 msgid "or an image"
-msgstr ""
+msgstr "o una imagen"
 
 msgid "Touch a page to select it"
 msgstr "Toca una página para seleccionarla"
@@ -255,7 +255,7 @@ msgid "%s Cancel selection"
 msgstr "%s cancelar selección"
 
 msgid "Printing options"
-msgstr ""
+msgstr "Opciones de impresión"
 
 #, php-format
 msgid "%s Download the full PDF"
@@ -284,37 +284,37 @@ msgid "Close"
 msgstr "Cerrar"
 
 msgid "Original format"
-msgstr ""
+msgstr "Formato original"
 
 msgid "Most common formats"
-msgstr ""
+msgstr "Formatos más comunes"
 
 msgid "Other formats"
-msgstr ""
+msgstr "Otros formatos"
 
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 msgid "Paper size"
-msgstr ""
+msgstr "Tamaño del papel"
 
 msgid "Width"
-msgstr ""
+msgstr "Ancho"
 
 msgid "Height"
-msgstr ""
+msgstr "Alto"
 
 msgid "Unit"
-msgstr ""
+msgstr "Unidad"
 
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 msgid "Booklet"
-msgstr ""
+msgstr "Folleto"
 
 msgid "Formatting"
-msgstr ""
+msgstr "Formateando"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Firmar, rubricar, sellar, cumplimentar un documento"
@@ -344,7 +344,7 @@ msgid "Close this PDF and return to the homepage"
 msgstr "Cerrar este PDF y volver a la página principal"
 
 msgid "PDF Signature"
-msgstr "Firma el PDF"
+msgstr "PDF Signature"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr "Este PDF se comparte con otros para que lo firmen varias personas"
@@ -385,10 +385,10 @@ msgid "%s Check box"
 msgstr "%s Casilla de verificación"
 
 msgid "Redaction area"
-msgstr ""
+msgstr "Área ocultable"
 
 msgid "Watermark"
-msgstr ""
+msgstr "Marca de agua"
 
 #, php-format
 msgid "%s Create an element"
@@ -402,7 +402,7 @@ msgid "Download the signed PDF"
 msgstr "Descargar el PDF firmado"
 
 msgid "The PDF will be flattened"
-msgstr ""
+msgstr "El PDF será acoplado"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
@@ -555,22 +555,23 @@ msgstr ""
 "Acabo de firmar el documento (%s) : %s"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "Cambiar el color del elemento seleccionado"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "Duplicar el elemento"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "Duplicar en cada página"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicar"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "Eliminar el elemento"
 
 msgid "Are you sure you want to delete this PDF and the associated signatures?"
 msgstr ""
+"¿Está seguro que desea eliminar este PDF junto con sus firmas asociadas?"
 
 msgid "Text to modify"
 msgstr "Texto a modificar"
@@ -609,7 +610,7 @@ msgid "see the source code"
 msgstr "ver el código fuente"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "Firma y maneja archivos PDF libremente"
 
 msgid "Language"
 msgstr "Idioma"

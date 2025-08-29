@@ -167,7 +167,10 @@ async function pageRender(pageIndex) {
 
 
 window.addEventListener('message', function(event) {
-    if (event.data.action === 'addMetadata' && event.data.key  && event.data.value) {
+    if (event.data.action === 'addMetadata' && event.data.key) {
+        if (!event.data.value) {
+            event.data.value = '';
+        }
         console.log('addMetadata via message: '+event.data.key+'='+event.data.value);
         input = document.getElementsByName(event.data.key)[0];
         if (input) {

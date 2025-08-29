@@ -169,7 +169,14 @@ async function pageRender(pageIndex) {
 window.addEventListener('message', function(event) {
     if (event.data.action === 'addMetadata' && event.data.key  && event.data.value) {
         console.log('addMetadata via message: '+event.data.key+'='+event.data.value);
-        addMetadata(event.data.key, event.data.value);
+        input = document.getElementsByName(event.data.key)[0];
+        if (input) {
+            input.focus();
+            setTimeout('document.getElementsByName("'+event.data.key+'")[0].value = "'+event.data.value+'";', 500);
+        }else{
+            addMetadata(event.data.key, event.data.value);
+            setTimeout('document.getElementsByName("'+event.data.key+'")[0].focus();', 100);
+        }
     }
 });
 

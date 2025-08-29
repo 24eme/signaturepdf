@@ -165,6 +165,14 @@ async function pageRender(pageIndex) {
   })
 }
 
+
+window.addEventListener('message', function(event) {
+    if (event.data.action === 'addMetadata' && event.data.key  && event.data.value) {
+        console.log('addMetadata via message: '+event.data.key+'='+event.data.value);
+        addMetadata(event.data.key, event.data.value);
+    }
+});
+
 function addMetadata(key, value, type, focus, forceCreation = false) {
     if (! forceCreation) {
         let input = document.querySelector('.input-metadata input[name="'+key+'"]');

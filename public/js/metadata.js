@@ -177,6 +177,7 @@ window.addEventListener('message', function(event) {
             addMetadata(event.data.key, event.data.value);
             setTimeout('document.getElementsByName("'+event.data.key+'")[0].focus();', 100);
         }
+        setIsChanged(true);
     }
 });
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-04 13:21+0200\n"
-"PO-Revision-Date: 2025-06-03 16:01+0000\n"
+"PO-Revision-Date: 2025-09-03 19:21+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13.1-rc\n"
 
 msgid "en"
 msgstr "kab"
@@ -131,7 +131,7 @@ msgid "Add a watermark"
 msgstr ""
 
 msgid "New"
-msgstr ""
+msgstr "Amaynut"
 
 msgid "Redact areas"
 msgstr ""
@@ -255,7 +255,7 @@ msgid "%s Cancel selection"
 msgstr "%s Sefsex tafrant"
 
 msgid "Printing options"
-msgstr ""
+msgstr "Tixtiṛiyin n usiggez"
 
 #, php-format
 msgid "%s Download the full PDF"
@@ -293,28 +293,28 @@ msgid "Other formats"
 msgstr ""
 
 msgid "Custom"
-msgstr ""
+msgstr "Aggan"
 
 msgid "Paper size"
 msgstr ""
 
 msgid "Width"
-msgstr ""
+msgstr "Tehri"
 
 msgid "Height"
-msgstr ""
+msgstr "Teɣzi"
 
 msgid "Unit"
 msgstr ""
 
 msgid "Normal"
-msgstr ""
+msgstr "Amagnu"
 
 msgid "Booklet"
 msgstr ""
 
 msgid "Formatting"
-msgstr ""
+msgstr "Amsal"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Zmel, zmel deg yidis, err iziwel neɣ smed isemli"

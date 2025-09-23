@@ -442,15 +442,21 @@ $f3->route('GET /compress',
 
 $f3->route ('POST /compress',
     function($f3) {
-        $filename = null;
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_compress_'.uniqid("", true));
-        unlink($tmpfile);
-
+        $originalFilename = null;
         $files = Web::instance()->receive(function($file,$formFieldName) {
             if ($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);
             }
+        }, false, function($fileBaseName, $formFieldName) use(&$originalFilename) {
+            $originalFilename = $fileBaseName;
+            return date("YmdHis")."_".uniqid()."_".md5($fileBaseName).'.pdf';
         });
+
+        if(!count($files)) {
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF compression failed");
+        }
 
         $compressionType = $f3->get('POST.compressionType');
         if ($compressionType === 'medium') {
@@ -466,19 +472,19 @@ $f3->route ('POST /compress',
 
         $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
 
-        if ($returnCode === false) {
+        if ($returnCode === false || !file_exists($outputFileName)) {
             http_response_code("500");
             header('Content-Type: text/plain');
             echo _("PDF compression failed");
             return;
         } elseif (filesize($filePath) <= filesize($outputFileName)) {
-            http_response_code("500");
-            header('Content-Type: text/plain');
-            echo _("Your pdf is already optimized");
+            http_response_code("204");
+            unlink($outputFileName);
+            unlink($filePath);
             return;
         } else {
             header('Content-Type: application/pdf');
-            header("Content-Disposition: attachment; filename=".basename($outputFileName));
+            header("Content-Disposition: attachment; filename=".basename(str_replace(".pdf", "_compressed.pdf", $originalFilename)));
             readfile($outputFileName);
         }
 

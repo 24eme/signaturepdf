@@ -36,7 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetch(form.action, { method: form.method, body: formData })
         .then(async function(response) {
-          if (response.ok) {
+          if (response.status == 204 ) {
+              document.querySelector('#error_message').classList.remove('d-none');
+              document.querySelector('#error_message').innerText = trad["Your pdf is already optimized"];
+          } else if (response.ok) {
               let filename = response.headers.get('content-disposition').replace('attachment; filename=', '');
               let blob = await response.blob();
 

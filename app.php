@@ -456,6 +456,7 @@ $f3->route ('POST /compress',
             http_response_code("500");
             header('Content-Type: text/plain');
             echo _("PDF compression failed");
+            return;
         }
 
         $compressionType = $f3->get('POST.compressionType');

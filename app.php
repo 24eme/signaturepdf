@@ -501,13 +501,27 @@ $f3->route('GET /api/file/get', function($f3) {
     }
     $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
     $pdf_filename = basename($pdf_path);
-    if (!preg_match('/.pdf$/', $pdf_path)) {
+    $extension = 'pdf';
+    if (preg_match('/.(pdf|png|jpg|jpeg)$/', $pdf_path, $m)) {
+        $extension = $m[1];
+    }else{
         $f3->error(403);
     }
     if (!file_exists($pdf_path)) {
         $f3->error(403);
     }
-    header('Content-type: application/pdf');
+    switch ($extension) {
+        case 'jpg':
+        case 'jpeg':
+            header('Content-type: image/jpg');
+            break;
+        case 'png':
+            header('Content-type: image/png');
+            break;
+        default:
+            header('Content-type: application/pdf');
+            break;
+    }
     header("Content-Disposition: attachment; filename=$pdf_filename");
     echo file_get_contents($pdf_path);
 });
@@ -519,13 +533,16 @@ $f3->route('PUT /api/file/save', function($f3) {
     }
     $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
     $pdf_filename = basename($pdf_path);
-    if (!preg_match('/.pdf$/', $pdf_path)) {
+    if (preg_match('/(.*).(pdf|png|jpg|jpeg)$/', $pdf_path, $m)) {
+        $basefile = $m[1];
+        $extension = $m[2];
+    }else{
         $f3->error(403);
     }
     if (!file_exists($pdf_path)) {
         $f3->error(403);
     }
-    file_put_contents($pdf_path, $f3->get('BODY'));
+    file_put_contents($basefile.'.pdf', $f3->get('BODY'));
 
 });
 

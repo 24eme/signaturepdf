@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
 "PO-Revision-Date: 2025-07-06 20:04+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/signature-pdf/"
@@ -130,6 +130,9 @@ msgstr "சேவையக சான்றிதழுடன் கையொப�
 msgid "Add a watermark"
 msgstr "ஒரு வாட்டர்மார்க் சேர்க்கவும்"
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr "திருத்தும் பகுதிகள்"
 
@@ -153,6 +156,9 @@ msgstr ""
 
 msgid "Delete pages"
 msgstr "பக்கங்களை நீக்கு"
+
+msgid "Generate a booklet"
+msgstr ""
 
 msgid "Convert images to PDF"
 msgstr "படங்களை PDF ஆக மாற்றவும்"
@@ -255,6 +261,9 @@ msgstr ""
 msgid "%s Download the full PDF"
 msgstr "%s முழு PDF ஐ பதிவிறக்கவும்"
 
+msgid "Download the selection"
+msgstr "தேர்வைப் பதிவிறக்கவும்"
+
 msgid "No"
 msgstr "இல்லை"
 
@@ -267,9 +276,6 @@ msgstr "ரத்துசெய்"
 #, php-format
 msgid "%s Turn"
 msgstr "%s"
-
-msgid "Download the selection"
-msgstr "தேர்வைப் பதிவிறக்கவும்"
 
 msgid "PDF documents"
 msgstr "PDF ஆவணங்கள்"
@@ -286,7 +292,28 @@ msgstr ""
 msgid "Other formats"
 msgstr ""
 
+msgid "Custom"
+msgstr ""
+
 msgid "Paper size"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"

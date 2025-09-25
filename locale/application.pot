@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
+"POT-Creation-Date: 2025-09-01 10:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,6 +128,9 @@ msgstr ""
 msgid "Add a watermark"
 msgstr ""
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr ""
 
@@ -150,6 +153,9 @@ msgid "Change or standardize the paper size"
 msgstr ""
 
 msgid "Delete pages"
+msgstr ""
+
+msgid "Generate a booklet"
 msgstr ""
 
 msgid "Convert images to PDF"
@@ -253,6 +259,9 @@ msgstr ""
 msgid "%s Download the full PDF"
 msgstr ""
 
+msgid "Download the selection"
+msgstr ""
+
 msgid "No"
 msgstr ""
 
@@ -264,9 +273,6 @@ msgstr ""
 
 #, php-format
 msgid "%s Turn"
-msgstr ""
-
-msgid "Download the selection"
 msgstr ""
 
 msgid "PDF documents"
@@ -284,7 +290,28 @@ msgstr ""
 msgid "Other formats"
 msgstr ""
 
+msgid "Custom"
+msgstr ""
+
 msgid "Paper size"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"

@@ -165,6 +165,27 @@ async function pageRender(pageIndex) {
   })
 }
 
+
+window.addEventListener('message', function(event) {
+    if (event.data.action === 'addMetadata' && event.data.key) {
+        if (!event.data.value) {
+            event.data.value = '';
+        }
+        console.log('addMetadata via message: '+event.data.key+'='+event.data.value);
+        input = document.getElementsByName(event.data.key)[0];
+        if (input) {
+            input.focus();
+            if (event.data.value) {
+                setTimeout('document.getElementsByName("'+event.data.key+'")[0].value = "'+event.data.value+'";', 500);
+            }
+        }else{
+            addMetadata(event.data.key, event.data.value);
+            setTimeout('document.getElementsByName("'+event.data.key+'")[0].focus();', 100);
+        }
+        setIsChanged(true);
+    }
+});
+
 function addMetadata(key, value, type, focus, forceCreation = false) {
     if (! forceCreation) {
         let input = document.querySelector('.input-metadata input[name="'+key+'"]');
@@ -330,7 +351,7 @@ async function pageUpload() {
         if(await canUseCache()) {
             const file = document.getElementById('input_pdf_upload').files[0]
             storeFileInCache(file, file.name);
-            history.pushState({}, '', '/metadata#'+file.name);
+            history.pushState({}, '', `${REVERSE_PROXY_URL ? '/': ''}${REVERSE_PROXY_URL}/metadata#${file.name}`);
         }
         pageMetadata(null);
     });

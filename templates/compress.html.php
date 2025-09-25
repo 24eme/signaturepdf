@@ -51,6 +51,9 @@
 <?php include('components/common.html.php'); ?>
 <script>
     var maxSize = <?php echo $maxSize ?>;
+    var trad = <?php echo json_encode([
+        'Your pdf is already optimized' => _("Your pdf is already optimized")
+    ]); ?>;
 </script>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/compress.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/compress.js") ?>"></script>
 </body>

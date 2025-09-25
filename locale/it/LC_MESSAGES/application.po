@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
-"PO-Revision-Date: 2025-07-04 20:01+0000\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
+"PO-Revision-Date: 2025-08-14 20:01+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
 "application/it/>\n"
@@ -130,6 +130,9 @@ msgstr "Firma con il certificato del server"
 msgid "Add a watermark"
 msgstr "Aggiungi una filigrana"
 
+msgid "New"
+msgstr "Nuovo"
+
 msgid "Redact areas"
 msgstr "Redigi aree"
 
@@ -149,10 +152,13 @@ msgid "Rotate pages"
 msgstr "Ruota le pagine"
 
 msgid "Change or standardize the paper size"
-msgstr ""
+msgstr "Modificare o standardizzare il formato della carta"
 
 msgid "Delete pages"
 msgstr "Elimina pagine"
+
+msgid "Generate a booklet"
+msgstr "Genera un libretto"
 
 msgid "Convert images to PDF"
 msgstr "Convertire le immagini in PDF"
@@ -249,11 +255,14 @@ msgid "%s Cancel selection"
 msgstr "%s Annulla selezione"
 
 msgid "Printing options"
-msgstr ""
+msgstr "Opzioni di stampa"
 
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s Scaricato il PDF completo"
+
+msgid "Download the selection"
+msgstr "Scarica la selezione"
 
 msgid "No"
 msgstr "No"
@@ -268,9 +277,6 @@ msgstr "Annulla"
 msgid "%s Turn"
 msgstr "%s Ruota"
 
-msgid "Download the selection"
-msgstr "Scarica la selezione"
-
 msgid "PDF documents"
 msgstr "Documenti PDF"
 
@@ -278,16 +284,37 @@ msgid "Close"
 msgstr "Chiudi"
 
 msgid "Original format"
-msgstr ""
+msgstr "Formato originale"
 
 msgid "Most common formats"
-msgstr ""
+msgstr "Formati più comuni"
 
 msgid "Other formats"
-msgstr ""
+msgstr "Altri formati"
+
+msgid "Custom"
+msgstr "Personalizzato"
 
 msgid "Paper size"
-msgstr ""
+msgstr "Formato della carta"
+
+msgid "Width"
+msgstr "Larghezza"
+
+msgid "Height"
+msgstr "Altezza"
+
+msgid "Unit"
+msgstr "Unità"
+
+msgid "Normal"
+msgstr "Normale"
+
+msgid "Booklet"
+msgstr "Libretto"
+
+msgid "Formatting"
+msgstr "Formattazione"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Firma, annota, timbra, completa un documento"
@@ -541,7 +568,7 @@ msgid "Delete the element"
 msgstr "Elimina l'elemento"
 
 msgid "Are you sure you want to delete this PDF and the associated signatures?"
-msgstr ""
+msgstr "Vuoi davvero eliminare questo PDF e le firme associate?"
 
 msgid "Text to modify"
 msgstr "Testo da modificare"

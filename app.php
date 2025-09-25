@@ -442,15 +442,22 @@ $f3->route('GET /compress',
 
 $f3->route ('POST /compress',
     function($f3) {
-        $filename = null;
-        $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_compress_'.uniqid("", true));
-        unlink($tmpfile);
-
+        $originalFilename = null;
         $files = Web::instance()->receive(function($file,$formFieldName) {
             if ($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
                 $f3->error(403);
             }
+        }, false, function($fileBaseName, $formFieldName) use(&$originalFilename) {
+            $originalFilename = $fileBaseName;
+            return date("YmdHis")."_".uniqid()."_".md5($fileBaseName).'.pdf';
         });
+
+        if(!count($files)) {
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF compression failed");
+            return;
+        }
 
         $compressionType = $f3->get('POST.compressionType');
         if ($compressionType === 'medium') {
@@ -466,19 +473,19 @@ $f3->route ('POST /compress',
 
         $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
 
-        if ($returnCode === false) {
+        if ($returnCode === false || !file_exists($outputFileName)) {
             http_response_code("500");
             header('Content-Type: text/plain');
             echo _("PDF compression failed");
             return;
         } elseif (filesize($filePath) <= filesize($outputFileName)) {
-            http_response_code("500");
-            header('Content-Type: text/plain');
-            echo _("Your pdf is already optimized");
+            http_response_code("204");
+            unlink($outputFileName);
+            unlink($filePath);
             return;
         } else {
             header('Content-Type: application/pdf');
-            header("Content-Disposition: attachment; filename=".basename($outputFileName));
+            header("Content-Disposition: attachment; filename=".basename(str_replace(".pdf", "_compressed.pdf", $originalFilename)));
             readfile($outputFileName);
         }
 
@@ -494,13 +501,27 @@ $f3->route('GET /api/file/get', function($f3) {
     }
     $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
     $pdf_filename = basename($pdf_path);
-    if (!preg_match('/.pdf$/', $pdf_path)) {
+    $extension = 'pdf';
+    if (preg_match('/.(pdf|png|jpg|jpeg)$/', $pdf_path, $m)) {
+        $extension = $m[1];
+    }else{
         $f3->error(403);
     }
     if (!file_exists($pdf_path)) {
         $f3->error(403);
     }
-    header('Content-type: application/pdf');
+    switch ($extension) {
+        case 'jpg':
+        case 'jpeg':
+            header('Content-type: image/jpg');
+            break;
+        case 'png':
+            header('Content-type: image/png');
+            break;
+        default:
+            header('Content-type: application/pdf');
+            break;
+    }
     header("Content-Disposition: attachment; filename=$pdf_filename");
     echo file_get_contents($pdf_path);
 });
@@ -512,13 +533,16 @@ $f3->route('PUT /api/file/save', function($f3) {
     }
     $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
     $pdf_filename = basename($pdf_path);
-    if (!preg_match('/.pdf$/', $pdf_path)) {
+    if (preg_match('/(.*).(pdf|png|jpg|jpeg)$/', $pdf_path, $m)) {
+        $basefile = $m[1];
+        $extension = $m[2];
+    }else{
         $f3->error(403);
     }
     if (!file_exists($pdf_path)) {
         $f3->error(403);
     }
-    file_put_contents($pdf_path, $f3->get('BODY'));
+    file_put_contents($basefile.'.pdf', $f3->get('BODY'));
 
 });
 

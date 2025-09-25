@@ -91,8 +91,9 @@
                   <div class="input-watermark-placeholder btn btn-outline-secondary w-100 text-start text-dark">
                     <span class="bi bi-droplet-half" id="watermark-addon"></span> <?php echo _("Watermark") ?>
                   </div>
-                  <div class="input-group d-none">
+                  <div class="input-group d-none position-relative">
                       <span class="input-group-text border-secondary"><i class="bi bi-droplet-half"></i></span>
+                      <input type="color" id="watermark-color-picker" class="form-control form-control-color" value="#828282">
                       <input form="form_pdf" type="text" class="form-control border-secondary" name="watermark" placeholder="<?php echo _("Watermark") ?>" aria-label="Watermark" aria-describedby="watermark-addon">
                   </div>
               <?php endif ?>
@@ -350,11 +351,11 @@
     ]); ?>;
 
     <?php if ($TRANSLATION_LANGUAGE == 'ar'): ?>
-    url_font = <?php echo json_encode('/vendor/fonts/Tajawal-Medium.ttf') ?>
+    url_font = <?php echo json_encode((!empty($REVERSE_PROXY_URL) ? '/': '') . $REVERSE_PROXY_URL . '/vendor/fonts/Tajawal-Medium.ttf') ?>
     <?php elseif ($TRANSLATION_LANGUAGE == 'kab'): ?>
-    url_font = <?php echo json_encode('/vendor/fonts/FiraSans-MediumItalic.ttf') ?>
+    url_font = <?php echo json_encode((!empty($REVERSE_PROXY_URL) ? '/': '') . $REVERSE_PROXY_URL . '/vendor/fonts/FiraSans-MediumItalic.ttf') ?>
     <?php else: ?>
-    url_font = <?php echo json_encode('/vendor/fonts/Caveat-Regular.ttf') ?>
+    url_font = <?php echo json_encode((!empty($REVERSE_PROXY_URL) ? '/': '') . $REVERSE_PROXY_URL . '/vendor/fonts/Caveat-Regular.ttf') ?>
     <?php endif; ?>
     </script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>

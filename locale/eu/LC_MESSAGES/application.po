@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 12:08+0200\n"
-"PO-Revision-Date: 2025-07-05 22:01+0000\n"
+"POT-Creation-Date: 2025-08-04 13:21+0200\n"
+"PO-Revision-Date: 2025-07-25 22:06+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
 "application/eu/>\n"
@@ -135,6 +135,9 @@ msgstr "Sinatu zerbitzariko ziurtagiriarekin"
 msgid "Add a watermark"
 msgstr "Gehitu filigrana"
 
+msgid "New"
+msgstr ""
+
 msgid "Redact areas"
 msgstr "Ezabatu eremuak"
 
@@ -154,10 +157,13 @@ msgid "Rotate pages"
 msgstr "Biratu orriak"
 
 msgid "Change or standardize the paper size"
-msgstr ""
+msgstr "Aldatu edo estandarizatu paperaren neurria"
 
 msgid "Delete pages"
 msgstr "Ezabatu orriak"
+
+msgid "Generate a booklet"
+msgstr ""
 
 msgid "Convert images to PDF"
 msgstr "Bihurtu irudiak PDFra"
@@ -254,11 +260,14 @@ msgid "%s Cancel selection"
 msgstr "%s Utzi hautaketa"
 
 msgid "Printing options"
-msgstr ""
+msgstr "Inprimatzeko aukerak"
 
 #, php-format
 msgid "%s Download the full PDF"
 msgstr "%s Deskargatu PDF osoa"
+
+msgid "Download the selection"
+msgstr "Deskargatu hautaketa"
 
 msgid "No"
 msgstr "Ez"
@@ -273,9 +282,6 @@ msgstr "Utzi"
 msgid "%s Turn"
 msgstr "%s Biratu"
 
-msgid "Download the selection"
-msgstr "Deskargatu hautaketa"
-
 msgid "PDF documents"
 msgstr "PDF dokumentuak"
 
@@ -283,15 +289,36 @@ msgid "Close"
 msgstr "Itxi"
 
 msgid "Original format"
-msgstr ""
+msgstr "Jatorrizko formatua"
 
 msgid "Most common formats"
-msgstr ""
+msgstr "Formatu erabilienak"
 
 msgid "Other formats"
+msgstr "Beste formatu batzuk"
+
+msgid "Custom"
 msgstr ""
 
 msgid "Paper size"
+msgstr "Paperaren neurria"
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Booklet"
+msgstr ""
+
+msgid "Formatting"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
@@ -547,7 +574,7 @@ msgid "Delete the element"
 msgstr "Ezabatu elementua"
 
 msgid "Are you sure you want to delete this PDF and the associated signatures?"
-msgstr ""
+msgstr "Ziur PDF hau eta erlazionatutako sinadurak ezabatu nahi dituzula?"
 
 msgid "Text to modify"
 msgstr "Moldatzeko testua"

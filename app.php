@@ -102,7 +102,7 @@ if($f3->get('PDF_DEMO_LINK') === null || $f3->get('PDF_DEMO_LINK') === true) {
     }
 }
 
-$f3->route('GET /',
+$f3->route('GET|HEAD /',
     function($f3) {
         $f3->set('activeTab', 'index');
         echo View::instance()->render('index.html.php');

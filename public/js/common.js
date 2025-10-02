@@ -79,8 +79,14 @@ async function loadFileFromUrl(url, pageUrl, local = null) {
     if(response.headers.has('content-disposition') && response.headers.get('Content-Disposition').match(/attachment; filename="/)) {
         file_id = response.headers.get('Content-Disposition').replace(/^[^"]*"/, "").replace(/"[^"]*$/, "").replace(/_signe-[0-9]+\x.pdf/, '.pdf');
     }
-
-    if(pdfBlob.type != 'application/pdf' && pdfBlob.type != 'application/octet-stream') {
+    filetype = 'application/pdf';
+    if(pdfBlob.type == 'application/pdf' || pdfBlob.type == 'application/octet-stream') {
+        filetype = 'application/pdf';
+    }else if (pdfBlob.type == 'image/jpg' || pdfBlob.type == 'image/jpeg') {
+        filetype = 'image/jpg';
+    }else if (pdfBlob.type == 'image/png') {
+        filetype = 'image/png';
+    }else{
         return;
     }
     let dataTransfer = new DataTransfer();
@@ -88,7 +94,7 @@ async function loadFileFromUrl(url, pageUrl, local = null) {
         file_id = local;
     }
     dataTransfer.items.add(new File([pdfBlob], file_id, {
-        type: 'application/pdf'
+        type: filetype
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
     endLoading()

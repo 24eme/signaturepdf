@@ -8,527 +8,545 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-01 10:50+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-10-14 01:07+0000\n"
+"Last-Translator: Lode Vermeiren <lodev@lodev.name>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/signature-pdf/"
+"application/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 msgid "en"
-msgstr ""
+msgstr "nl"
 
 msgid "PDF compression failed"
-msgstr ""
+msgstr "PDF comprimeren mislukt"
 
 msgid "Your pdf is already optimized"
-msgstr ""
+msgstr "Je pdf is reeds geoptimaliseerd"
 
 msgid "Administration panel"
-msgstr ""
+msgstr "Instellingen"
 
 msgid "Configuration"
-msgstr ""
+msgstr "Configuratie"
 
 msgid "Server installation"
-msgstr ""
+msgstr "Server installatie"
 
 #, php-format
 msgid "Minimal version required : %s"
-msgstr ""
+msgstr "Minimaal vereiste versie : %s"
 
 #, php-format
 msgid "Package %s required"
-msgstr ""
+msgstr "Pakket %s vereist"
 
 #, php-format
 msgid "Package %s missing"
-msgstr ""
+msgstr "Pakket %s ontbreekt"
 
 msgid "File Configuration"
-msgstr ""
+msgstr "Bestandsconfiguratie"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
-msgstr ""
+msgstr "De map %s moet bestaan en beschrijfbaar zijn"
 
 msgid "Site not functional without JavaScript enabled"
-msgstr ""
+msgstr "Site werkt niet zonder dat JavaScript is geactiveerd"
 
 #, php-format
 msgid "%s Compress a PDF"
-msgstr ""
+msgstr "%s Comprimeer een PDF"
 
 msgid "Reduce the size of a PDF"
-msgstr ""
+msgstr "Verklein de bestandsgrootte van een PDF"
 
 msgid "Choose a PDF"
-msgstr ""
+msgstr "Kies een PDF"
 
 #, php-format
 msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgstr "Het PDF-bestand mag niet groter zijn dan %s Mb"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
 msgstr ""
+"De PDF wordt verwerkt op de server zonder dat deze bewaard of opgeslagen "
+"wordt"
 
 msgid "Compress"
-msgstr ""
+msgstr "Comprimeren"
 
 msgid "Low compression (maximum quality)"
-msgstr ""
+msgstr "Lage compressie (maximum kwaliteit)"
 
 #, php-format
 msgid "%s Medium compression %s (default)"
-msgstr ""
+msgstr "%s Medium compressie %s (standaard)"
 
 msgid "High compression (minimum quality)"
-msgstr ""
+msgstr "Hoge compressie (minimum kwaliteit)"
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s Mb"
 
 msgid "Compressed at %s%"
-msgstr ""
+msgstr "Gecomprimeerd op %s%"
 
 msgid "Download the PDF"
-msgstr ""
+msgstr "Download de PDF"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "Vrije open-bron software voor het tekenen en bewerken van PDFs"
 
 msgid "Sign a PDF"
-msgstr ""
+msgstr "Teken een PDF"
 
 msgid "Add a signature"
-msgstr ""
+msgstr "Voeg een handtekening toe"
 
 msgid "Add initials"
-msgstr ""
+msgstr "Voeg initialen toe"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "Voeg een stempel toe"
 
 msgid "Type text"
-msgstr ""
+msgstr "Typ tekst"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "Tekst doorhalen"
 
 msgid "Allow multiple people to sign via a shared link"
-msgstr ""
+msgstr "Laat meerdere mensen ondertekenen via een gedeelde link"
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "Onderteken met het server certificaat"
 
 msgid "Add a watermark"
-msgstr ""
+msgstr "Voeg een watermerk toe"
 
 msgid "New"
-msgstr ""
+msgstr "Nieuw"
 
 msgid "Redact areas"
-msgstr ""
+msgstr "Maak vlakken onleesbaar"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "Orden PDFs"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "Voeg meerdere PDFs samen"
 
 msgid "Reorder pages"
-msgstr ""
+msgstr "Herorder pagina's"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "Extraheer pagina's"
 
 msgid "Rotate pages"
-msgstr ""
+msgstr "Roteer pagina's"
 
 msgid "Change or standardize the paper size"
-msgstr ""
+msgstr "Wijzig of standardiseer het paginaformaat"
 
 msgid "Delete pages"
-msgstr ""
+msgstr "Verwijder pagina's"
 
 msgid "Generate a booklet"
-msgstr ""
+msgstr "Maak een boekje"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "Converteer afbeeldingen naar PDF"
 
 msgid "Edit a PDF"
-msgstr ""
+msgstr "Bewerk een PDF"
 
 msgid "Add, edit, or remove metadata from a PDF"
-msgstr ""
+msgstr "Bewerk, verwijder of voeg metadata toe van een PDF"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "Comprimeer en verminder de grootte van een PDF"
 
 #, php-format
 msgid "%s Edit metadata"
-msgstr ""
+msgstr "%s Bewerk metadata"
 
 msgid "Test with a demo PDF"
-msgstr ""
+msgstr "Test met een demo PDF"
 
 msgid "List of PDF metadata"
-msgstr ""
+msgstr "Lijst met PDF metadata"
 
 msgid "Add new metadata"
-msgstr ""
+msgstr "Voeg nieuwe metadata toe"
 
 msgid "Key"
-msgstr ""
+msgstr "Sleutel"
 
 msgid "Value"
-msgstr ""
+msgstr "Waarde"
 
 #, php-format
 msgid "%s Add"
-msgstr ""
+msgstr "%s Voeg toe"
 
 msgid "Close this PDF and return to the home page"
-msgstr ""
+msgstr "Sluit deze PDF en ga terug naar de homepagina"
 
 msgid "Edit metadata"
-msgstr ""
+msgstr "Bewerk metadata"
 
 msgid "Save and download the PDF"
-msgstr ""
+msgstr "Bewaar en download de PDF"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Bewaar wijzigingen"
 
 #, php-format
 msgid "%s Organize PDF"
-msgstr ""
+msgstr "%s Orden PDF"
 
 msgid "Merge, sort, rotate, delete, extract pages"
-msgstr ""
+msgstr "Voeg samen, sorteer, roteer, verwijder, extraheer pagina's"
 
 msgid "or an image"
-msgstr ""
+msgstr "of een afbeelding"
 
 msgid "Touch a page to select it"
-msgstr ""
+msgstr "Raak een pagina aan om ze te selecteren"
 
 msgid "Close this PDF and return to home"
-msgstr ""
+msgstr "Sluit deze PDF en ga terug naar de homepagina"
 
 msgid "PDF organization"
-msgstr ""
+msgstr "PDF ordenen"
 
 #, php-format
 msgid "%s Add a PDF"
-msgstr ""
+msgstr "%s Voeg een PDF toe"
 
 #, php-format
 msgid "%s page(s) selected"
-msgstr ""
+msgstr "%s pagina(s) geselecteerd"
 
 #, php-format
 msgid "%s Rotate 90°"
-msgstr ""
+msgstr "%s Roteer 90°"
 
 #, php-format
 msgid "%s Move"
-msgstr ""
+msgstr "%s Verplaats"
 
 #, php-format
 msgid "%s Delete"
-msgstr ""
+msgstr "%s Verwijder"
 
 #, php-format
 msgid "%s Extract and download"
-msgstr ""
+msgstr "%s Extraheer en download"
 
 #, php-format
 msgid "%s Cancel selection"
-msgstr ""
+msgstr "%s Annuleer selectie"
 
 msgid "Printing options"
-msgstr ""
+msgstr "Print opties"
 
 #, php-format
 msgid "%s Download the full PDF"
-msgstr ""
+msgstr "%s Download de volledige PDF"
 
 msgid "Download the selection"
-msgstr ""
+msgstr "Download de selectie"
 
 msgid "No"
-msgstr ""
+msgstr "Neen"
 
 msgid "page"
-msgstr ""
+msgstr "pagina"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #, php-format
 msgid "%s Turn"
-msgstr ""
+msgstr "%s Draai"
 
 msgid "PDF documents"
-msgstr ""
+msgstr "PDF documenten"
 
 msgid "Close"
-msgstr ""
+msgstr "Sluit"
 
 msgid "Original format"
-msgstr ""
+msgstr "Origineel formaat"
 
 msgid "Most common formats"
-msgstr ""
+msgstr "Meest courante formaten"
 
 msgid "Other formats"
-msgstr ""
+msgstr "Andere formaten"
 
 msgid "Custom"
-msgstr ""
+msgstr "Aangepast"
 
 msgid "Paper size"
-msgstr ""
+msgstr "Papierformaat"
 
 msgid "Width"
-msgstr ""
+msgstr "Breedte"
 
 msgid "Height"
-msgstr ""
+msgstr "Hoogte"
 
 msgid "Unit"
-msgstr ""
+msgstr "Eenheid"
 
 msgid "Normal"
-msgstr ""
+msgstr "Normaal"
 
 msgid "Booklet"
-msgstr ""
+msgstr "Boekje"
 
 msgid "Formatting"
-msgstr ""
+msgstr "Formaat"
 
 msgid "Sign, initial, stamp, complete a document"
-msgstr ""
+msgstr "Teken, initiaal, stempel, vervolledig een document"
 
 msgid "The PDF should not exceed"
-msgstr ""
+msgstr "De PDF moet niet groter zijn dan"
 
 msgid "MB and"
-msgstr ""
+msgstr "MB en"
 
 msgid "pages"
-msgstr ""
+msgstr "pagina's"
 
 msgid "How to sign?"
-msgstr ""
+msgstr "Hoe tekenen?"
 
 msgid "By clicking directly on the document page"
-msgstr ""
+msgstr "Door op de pagina van het document te klikken"
 
 msgid "to insert the selected item in the right column"
-msgstr ""
+msgstr "om het geselecteerde item toe te voegen aan de rechterkolom"
 
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "teken, initiaal, tekst, stempelen, etc ..."
 
 msgid "Close this PDF and return to the homepage"
-msgstr ""
+msgstr "Sluit deze PDF en ga terug naar de homepagina"
 
 msgid "PDF Signature"
-msgstr ""
+msgstr "PDF Handtekening"
 
 msgid "This PDF is shared with others to be signed by multiple people"
 msgstr ""
+"Deze PDF wordt met anderen gedeeld om door meerdere personen getekend te "
+"worden"
 
 msgid "This PDF is stored on your computer to be signed by you only"
 msgstr ""
+"Deze PDF wordt op uw computer bewaard om alleen door U ondertekend te worden"
 
 msgid "This PDF is stored encrypted on the server."
-msgstr ""
+msgstr "Deze PDF wordt geëncrypteerd op de server bewaard."
 
 msgid "Keep the selection active"
-msgstr ""
+msgstr "Hou de selectie actief"
 
 #, php-format
 msgid "%s Signature"
-msgstr ""
+msgstr "%s Handtekening"
 
 msgid "Create"
-msgstr ""
+msgstr "Maak"
 
 #, php-format
 msgid "%s Initial"
-msgstr ""
+msgstr "%s Initiaal"
 
 #, php-format
 msgid "%s Stamp"
-msgstr ""
+msgstr "%s Stempel"
 
 #, php-format
 msgid "%s Text"
-msgstr ""
+msgstr "%s Tekst"
 
 msgid "Strikethrough"
-msgstr ""
+msgstr "Doorhalen"
 
 #, php-format
 msgid "%s Check box"
-msgstr ""
+msgstr "%s Selectievakje"
 
 msgid "Redaction area"
-msgstr ""
+msgstr "Onleesbaar gebied"
 
 msgid "Watermark"
-msgstr ""
+msgstr "Watermerk"
 
 #, php-format
 msgid "%s Create an element"
-msgstr ""
+msgstr "%s Maak een element"
 
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr ""
+msgstr "%s Deel om %s te tekenen met meerdere personen"
 
 msgid "Download the signed PDF"
-msgstr ""
+msgstr "Download de ondertekende PDF"
 
 msgid "The PDF will be flattened"
-msgstr ""
+msgstr "De PDF wordt uitgevlakt"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr ""
+msgstr "Je bent persoon %s die deze PDF getekend heeft"
 
 #, php-format
 msgid "%s Download the PDF"
-msgstr ""
+msgstr "%s Download de PDF"
 
 msgid "Transmit my signature"
-msgstr ""
+msgstr "Verzend mijn handtekening"
 
 #, php-format
 msgid "%s Select a signature"
-msgstr ""
+msgstr "%s Selecteer een handtekening"
 
 msgid "Draw"
-msgstr ""
+msgstr "Teken"
 
 msgid "freehand"
-msgstr ""
+msgstr "uit de vrije hand"
 
 msgid "Enter"
-msgstr ""
+msgstr "Invoeren"
 
 msgid "text"
-msgstr ""
+msgstr "Tekst"
 
 msgid "Import"
-msgstr ""
+msgstr "Importeer"
 
 msgid "an image"
-msgstr ""
+msgstr "een afbeelding"
 
 msgid "Clear signature"
-msgstr ""
+msgstr "Wis handtekening"
 
 msgid "My signature"
-msgstr ""
+msgstr "Mijn handtekening"
 
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr ""
+msgstr "%s Deel deze PDF om te ondertekenen met meerdere personen"
 
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
 "your choice so that they can sign this PDF."
 msgstr ""
+"Door PDF delen in te schakelen kan je een link bezorgen aan personen die je "
+"kiest zodat ze deze PDF kunnen ondertekenen."
 
 #, php-format
 msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s Door deze PDF te delen moet het bestand op de server bewaard worden voor "
+"toekomstige ondertekenaars."
 
 #, php-format
 msgid "%s The PDF will be kept"
-msgstr ""
+msgstr "%s Deze PDF wordt bewaard"
 
 msgid "for one year"
-msgstr ""
+msgstr "gedurende een jaar"
 
 msgid "for six months"
-msgstr ""
+msgstr "gedurende zes maanden"
 
 msgid "for one month"
-msgstr ""
+msgstr "gedurende een maand"
 
 msgid "for one week"
-msgstr ""
+msgstr "gedurende een week"
 
 msgid "for one day"
-msgstr ""
+msgstr "gedurende een dag"
 
 msgid "for one hour"
-msgstr ""
+msgstr "gedurende een uur"
 
 msgid "after the last signature."
-msgstr ""
+msgstr "na de laatste handtekening."
 
 msgid "The PDF will be stored encrypted on the server"
-msgstr ""
+msgstr "De PDF wordt geëncrypteerd bewaard op de server"
 
 #, php-format
 msgid "%s Start sharing"
-msgstr ""
+msgstr "%s Start delen"
 
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr ""
+msgstr "%s Onderteken deze PDF met meerdere personen"
 
 msgid "Multiple people can sign this PDF simultaneously."
-msgstr ""
+msgstr "Meerdere personen kunnen deze PDF tegelijk ondertekenen."
 
 msgid ""
 "To do so, simply share the link to this page with the people of your choice:"
 msgstr ""
+"Om dit te doen, deel gewoon de link naar deze pagina met de personen van uw "
+"keuze:"
 
 msgid "Sharing link"
-msgstr ""
+msgstr "Deel link"
 
 msgid "Copied !"
-msgstr ""
+msgstr "Gekopieerd!"
 
 msgid "Copy"
-msgstr ""
+msgstr "Kopieer"
 
 msgid ""
 "Each of the signatories can download the latest version of the signed PDF at "
 "any time."
 msgstr ""
+"Elke ondertekenaar kan op elk moment de laatst gedeelde versie van de PDF "
+"downloaden."
 
 msgid "Signed PDF"
-msgstr ""
+msgstr "Getekende PDF"
 
 msgid "Your signature has been successfully recorded!"
-msgstr ""
+msgstr "Je handtekening werd succesvol bewaard!"
 
 msgid "This application does not automatically send emails to other signers."
 msgstr ""
+"Deze toepassing verzend geen automatische e-mails naar andere ondertekenaars."
 
 msgid ""
 "If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
+"Als je zelf een e-mail wil sturen, kan je <a>deze voorgeschreven e-mail</a> "
+"gebruiken."
 
 #, php-format
 msgid "Signing the document : %s"
-msgstr ""
+msgstr "%s tekenen het document"
 
 #, php-format
 msgid ""
@@ -536,72 +554,76 @@ msgid ""
 "\n"
 "I just signed the document (%s) : %s"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Ik ondertekende zonet het document (%s) : %s"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "Wijzig de kleur van het geselecteerde element"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "Dupliceer het element"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "Dupliceer op elke pagina"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliceer"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "Verwijder het element"
 
 msgid "Are you sure you want to delete this PDF and the associated signatures?"
 msgstr ""
+"Ben je zeker dat je deze PDF en de bijhorende handtekeningen wil verwijderen?"
 
 msgid "Text to modify"
-msgstr ""
+msgstr "Te wijzigen tekst"
 
 msgid "Select this page"
-msgstr ""
+msgstr "Selecteer deze pagina"
 
 msgid "Delete this page"
-msgstr ""
+msgstr "Verwijder deze pagina"
 
 msgid "Restore this page"
-msgstr ""
+msgstr "Zet deze pagina terug"
 
 msgid "Move this page"
-msgstr ""
+msgstr "Verplaats deze pagina"
 
 msgid "Move here"
-msgstr ""
+msgstr "Verplaats naar hier"
 
 msgid "Turn this page"
-msgstr ""
+msgstr "Draai deze pagina"
 
 msgid "Download this page"
-msgstr ""
+msgstr "Download deze pagina"
 
 msgid "Page"
-msgstr ""
+msgstr "Pagina"
 
 msgid "Free open-source software"
-msgstr ""
+msgstr "Vrije open-bron software"
 
 msgid "under AGPL-3.0 license"
-msgstr ""
+msgstr "onder AGPL-3.0 licentie"
 
 msgid "see the source code"
-msgstr ""
+msgstr "bekijk de broncode"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "Onderteken en bewerk PDFs vrijuit"
 
 msgid "Language"
-msgstr ""
+msgstr "Taal"
 
 msgid "Sign"
-msgstr ""
+msgstr "Onderteken"
 
 msgid "Organize"
-msgstr ""
+msgstr "Orden"
 
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"

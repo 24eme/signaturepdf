@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-04 13:21+0200\n"
+"POT-Creation-Date: 2025-10-23 15:30+0200\n"
 "PO-Revision-Date: 2025-10-16 22:07+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
@@ -24,9 +24,6 @@ msgstr "oc"
 
 msgid "PDF compression failed"
 msgstr "Fracàs de la compression del PDF"
-
-msgid "Your pdf is already optimized"
-msgstr "Lo PDF es ja optimizat"
 
 msgid "Administration panel"
 msgstr "Panèl d'administracion"
@@ -99,6 +96,9 @@ msgstr "Compressat a %s%"
 
 msgid "Download the PDF"
 msgstr "Telecargar lo PDF"
+
+msgid "Your pdf is already optimized"
+msgstr "Lo PDF es ja optimizat"
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Logicial liure per signar e manipular los PDF"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-04 13:21+0200\n"
+"POT-Creation-Date: 2025-10-23 15:30+0200\n"
 "PO-Revision-Date: 2025-09-03 19:21+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -24,9 +24,6 @@ msgstr "kab"
 
 msgid "PDF compression failed"
 msgstr "Tussda n PDF ur teddi ara"
-
-msgid "Your pdf is already optimized"
-msgstr ""
 
 msgid "Administration panel"
 msgstr "Agalis n tedbelt"
@@ -99,6 +96,9 @@ msgstr ""
 
 msgid "Download the PDF"
 msgstr "Sader PDF"
+
+msgid "Your pdf is already optimized"
+msgstr ""
 
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Aseɣẓan ilelli i usizmel d usseqerdec n ifuyla PDF"

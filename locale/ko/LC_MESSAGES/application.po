@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-04 13:21+0200\n"
+"POT-Creation-Date: 2025-10-23 15:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -20,9 +20,6 @@ msgid "en"
 msgstr ""
 
 msgid "PDF compression failed"
-msgstr ""
-
-msgid "Your pdf is already optimized"
 msgstr ""
 
 msgid "Administration panel"
@@ -95,6 +92,9 @@ msgid "Compressed at %s%"
 msgstr ""
 
 msgid "Download the PDF"
+msgstr ""
+
+msgid "Your pdf is already optimized"
 msgstr ""
 
 msgid "Free open-source software for signing and manipulating PDFs"

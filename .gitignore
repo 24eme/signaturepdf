@@ -6,3 +6,5 @@ config/config.ini
 public/css/app-specific.css
 *~
 .idea/
+
+/vendor/

@@ -5,6 +5,7 @@
 Dependencies:
 
 - php >= 5.6
+- composer
 - librsvg2-bin (rsvg-convert)
 - pdftk
 - imagemagick
@@ -12,15 +13,17 @@ Dependencies:
 - ghostcript
 - gpg
 
-Installing dependencies:
+Installing system dependencies:
 ```
 sudo apt-get install php librsvg2-bin pdftk imagemagick potrace ghostscript locales gpg
 ```
 
-Getting the source code:
+Getting the source code and installing PHP dependencies:
 
 ```
 git clone https://github.com/24eme/signaturepdf.git
+cd signaturepdf
+composer install
 ```
 
 To run it:
@@ -164,6 +167,9 @@ service php-fpm8 restart
 
 cd /var/www
 git clone https://github.com/24eme/signaturepdf.git
+
+cd /var/www/signaturepdf
+composer install
 
 cat <<EOF >>/etc/nginx/http.d/signaturepdf.conf
 server {

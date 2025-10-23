@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-04 13:21+0200\n"
-"PO-Revision-Date: 2025-08-05 21:02+0000\n"
+"PO-Revision-Date: 2025-10-16 22:07+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
 "application/oc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 msgid "en"
 msgstr "oc"
@@ -57,14 +57,14 @@ msgid "The directory %s should exist and be writeable"
 msgstr "Lo dossièr %s deu existir e èsser accessible en escritura"
 
 msgid "Site not functional without JavaScript enabled"
-msgstr "Site non foncional sens lo JavaScript activat"
+msgstr "Site non foncional sens lo JavaScript d’activat"
 
 #, php-format
 msgid "%s Compress a PDF"
 msgstr "%s Compressar un PDF"
 
 msgid "Reduce the size of a PDF"
-msgstr "Redusir la talha d’un PDF"
+msgstr "Reduire la talha d’un PDF"
 
 msgid "Choose a PDF"
 msgstr "Causir un PDF"
@@ -119,7 +119,7 @@ msgid "Type text"
 msgstr "Picar de tèxte"
 
 msgid "Strike through text"
-msgstr "Raiar de texte"
+msgstr "Raiar de tèxte"
 
 msgid "Allow multiple people to sign via a shared link"
 msgstr "Signar entre mantuna persona via un ligam partejat"
@@ -177,7 +177,7 @@ msgid "%s Edit metadata"
 msgstr "%s Modificar las metadonadas"
 
 msgid "Test with a demo PDF"
-msgstr "Ensajar amb un PDF d’ensag"
+msgstr "Ensajar amb un PDF de demostracion"
 
 msgid "List of PDF metadata"
 msgstr "Lista de las metadonadas PDF"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-04 13:21+0200\n"
-"PO-Revision-Date: 2025-07-11 04:03+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2025-10-23 13:28+0000\n"
+"Last-Translator: Christian Eßl <indy.essl@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
 "application/de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 msgid "en"
 msgstr "de"
@@ -29,7 +29,7 @@ msgid "Your pdf is already optimized"
 msgstr "Ihr PDF ist bereits optimiert"
 
 msgid "Administration panel"
-msgstr ""
+msgstr "Administrationsbereich"
 
 msgid "Configuration"
 msgstr "Konfiguration"
@@ -71,7 +71,7 @@ msgstr "Wähle eine PDF"
 
 #, php-format
 msgid "The PDF must not exceed %s Mb"
-msgstr ""
+msgstr "Die PDF darf %s Mb nicht überschreiten"
 
 msgid ""
 "The PDF will be processed by the server without being retained or stored"
@@ -94,86 +94,86 @@ msgstr "Hohe Komprimierung (minimale Qualität)"
 
 #, php-format
 msgid "%s Mb"
-msgstr ""
+msgstr "%s Mb"
 
 msgid "Compressed at %s%"
-msgstr ""
+msgstr "Komprimiert mit %s%"
 
 msgid "Download the PDF"
 msgstr "PDF herunterladen"
 
 msgid "Free open-source software for signing and manipulating PDFs"
-msgstr ""
+msgstr "Kostenlose Open-Source-Software zum Signieren und Bearbeiten von PDFs"
 
 msgid "Sign a PDF"
 msgstr "PDF signieren"
 
 msgid "Add a signature"
-msgstr ""
+msgstr "Unterschrift hinzufügen"
 
 msgid "Add initials"
-msgstr ""
+msgstr "Initialen hinzufügen"
 
 msgid "Add a stamp"
-msgstr ""
+msgstr "Stempel hinzufügen"
 
 msgid "Type text"
-msgstr ""
+msgstr "Text hinzufügen"
 
 msgid "Strike through text"
-msgstr ""
+msgstr "Text durchstreichen"
 
 msgid "Allow multiple people to sign via a shared link"
-msgstr ""
+msgstr "Mehreren Personen das Signieren über geteilten Link erlauben"
 
 msgid "Sign with the server certificate"
-msgstr ""
+msgstr "Mit Server-Zertifikat signieren"
 
 msgid "Add a watermark"
-msgstr ""
+msgstr "Wasserzeichen hinzufügen"
 
 msgid "New"
-msgstr ""
+msgstr "Neu"
 
 msgid "Redact areas"
-msgstr ""
+msgstr "Bereiche schwärzen"
 
 msgid "Organize PDFs"
-msgstr ""
+msgstr "PDFs organisieren"
 
 msgid "Combine multiple PDF files"
-msgstr ""
+msgstr "Mehrere PDFs kombinieren"
 
 msgid "Reorder pages"
-msgstr ""
+msgstr "Seiten neu anordnen"
 
 msgid "Extract pages"
-msgstr ""
+msgstr "Seiten extrahieren"
 
 msgid "Rotate pages"
-msgstr ""
+msgstr "Seiten rotieren"
 
 msgid "Change or standardize the paper size"
-msgstr ""
+msgstr "Papierformat ändern oder vereinheitlichen"
 
 msgid "Delete pages"
-msgstr ""
+msgstr "Seiten entfernen"
 
 msgid "Generate a booklet"
-msgstr ""
+msgstr "Broschüre erstellen"
 
 msgid "Convert images to PDF"
-msgstr ""
+msgstr "Bilder in PDF umwandeln"
 
 msgid "Edit a PDF"
-msgstr ""
+msgstr "PDF bearbeiten"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr ""
 "Hinzufügen, Bearbeiten oder Entfernen von Metadaten aus einer PDF-Datei"
 
 msgid "Compress and reduce the size of a PDF"
-msgstr ""
+msgstr "PDF komprimieren und Dateigröße reduzieren"
 
 #, php-format
 msgid "%s Edit metadata"
@@ -199,7 +199,7 @@ msgid "%s Add"
 msgstr "%s Hinzufügen"
 
 msgid "Close this PDF and return to the home page"
-msgstr ""
+msgstr "PDF schließen und zur Startseite zurückkehren"
 
 msgid "Edit metadata"
 msgstr "Metadaten bearbeiten"
@@ -224,7 +224,7 @@ msgid "Touch a page to select it"
 msgstr "Eine Seite berühren, um sie auszuwählen"
 
 msgid "Close this PDF and return to home"
-msgstr ""
+msgstr "PDF schließen und zu Home zurückkehren"
 
 msgid "PDF organization"
 msgstr "PDF-Organisation"
@@ -258,7 +258,7 @@ msgid "%s Cancel selection"
 msgstr "%s Auswahl aufheben"
 
 msgid "Printing options"
-msgstr ""
+msgstr "Druckoptionen"
 
 #, php-format
 msgid "%s Download the full PDF"
@@ -287,43 +287,43 @@ msgid "Close"
 msgstr "Schließen"
 
 msgid "Original format"
-msgstr ""
+msgstr "Originalformat"
 
 msgid "Most common formats"
-msgstr ""
+msgstr "Gängigste Formate"
 
 msgid "Other formats"
 msgstr "Andere Formate"
 
 msgid "Custom"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
 msgid "Paper size"
 msgstr "Papiergröße"
 
 msgid "Width"
-msgstr ""
+msgstr "Breite"
 
 msgid "Height"
-msgstr ""
+msgstr "Höhe"
 
 msgid "Unit"
-msgstr ""
+msgstr "Einheit"
 
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 msgid "Booklet"
-msgstr ""
+msgstr "Broschüre"
 
 msgid "Formatting"
-msgstr ""
+msgstr "Formatierung"
 
 msgid "Sign, initial, stamp, complete a document"
-msgstr ""
+msgstr "Dokument unterschreiben, signieren, stempeln oder abschließen"
 
 msgid "The PDF should not exceed"
-msgstr ""
+msgstr "Die PDF darf nicht größer sein als"
 
 msgid "MB and"
 msgstr "MB und"
@@ -338,13 +338,13 @@ msgid "By clicking directly on the document page"
 msgstr "Durch direktes Anklicken der Dokumentenseite"
 
 msgid "to insert the selected item in the right column"
-msgstr ""
+msgstr "um das ausgewählte Element in die rechte Spalte einzufügen"
 
 msgid "signature, initial, text, stamp, etc ..."
-msgstr ""
+msgstr "Unterschrift, Initialen, Text, Stempel usw."
 
 msgid "Close this PDF and return to the homepage"
-msgstr ""
+msgstr "PDF schließen und zur Startseite zurückkehren"
 
 msgid "PDF Signature"
 msgstr "PDF-Signatur"
@@ -374,11 +374,11 @@ msgstr "Erstellen"
 
 #, php-format
 msgid "%s Initial"
-msgstr ""
+msgstr "%s Signatur"
 
 #, php-format
 msgid "%s Stamp"
-msgstr ""
+msgstr "%s Stempel"
 
 #, php-format
 msgid "%s Text"
@@ -392,28 +392,28 @@ msgid "%s Check box"
 msgstr "%s Kontrollkästchen"
 
 msgid "Redaction area"
-msgstr ""
+msgstr "Schwärzungsbereich"
 
 msgid "Watermark"
-msgstr ""
+msgstr "Wasserzeichen"
 
 #, php-format
 msgid "%s Create an element"
-msgstr ""
+msgstr "%s Element erstellen"
 
 #, php-format
 msgid "%s Share to sign %s with multiple people"
-msgstr ""
+msgstr "%s Mit mehreren Personen %s zur Unterschrift teilen"
 
 msgid "Download the signed PDF"
 msgstr "Signierte PDF herunterladen"
 
 msgid "The PDF will be flattened"
-msgstr ""
+msgstr "Die PDF wird in ein nicht bearbeitbares Format umgewandelt"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
-msgstr ""
+msgstr "Du bist %s, der/die diese PDF unterschrieben hat"
 
 #, php-format
 msgid "%s Download the PDF"
@@ -433,7 +433,7 @@ msgid "freehand"
 msgstr "freihand"
 
 msgid "Enter"
-msgstr ""
+msgstr "Eingeben"
 
 msgid "text"
 msgstr "Text"
@@ -445,14 +445,14 @@ msgid "an image"
 msgstr "ein Bild"
 
 msgid "Clear signature"
-msgstr ""
+msgstr "Signatur entfernen"
 
 msgid "My signature"
 msgstr "Meine Unterschrift"
 
 #, php-format
 msgid "%s Share this PDF to sign it with several people"
-msgstr ""
+msgstr "%s Diese PDF zum Unterschreiben mit mehreren Personen teilen"
 
 msgid ""
 "By enabling PDF sharing, you will be able to provide a link to the people of "
@@ -467,10 +467,12 @@ msgid ""
 "%s This sharing requires the PDF to be transferred and stored on the server "
 "for future signers to access."
 msgstr ""
+"%s Das Teilen erfordert, dass die PDF auf den Server übertragen und "
+"gespeichert wird, damit zukünftige Unterzeichner darauf zugreifen können."
 
 #, php-format
 msgid "%s The PDF will be kept"
-msgstr ""
+msgstr "%s Die PDF wird"
 
 msgid "for one year"
 msgstr "für ein Jahr"
@@ -491,18 +493,18 @@ msgid "for one hour"
 msgstr "für eine Stunde"
 
 msgid "after the last signature."
-msgstr ""
+msgstr "nach der letzten Unterschrift behalten."
 
 msgid "The PDF will be stored encrypted on the server"
 msgstr "Die PDF wird verschlüsselt auf dem Server gespeichert"
 
 #, php-format
 msgid "%s Start sharing"
-msgstr ""
+msgstr "%s Starte Teilen"
 
 #, php-format
 msgid "%s Sign this PDF with multiple people"
-msgstr ""
+msgstr "%s Unterschreibe diese PDF mit mehreren Personen"
 
 msgid "Multiple people can sign this PDF simultaneously."
 msgstr "Mehrere Personen können dieses PDF gleichzeitig signieren."
@@ -514,7 +516,7 @@ msgstr ""
 "weiter:"
 
 msgid "Sharing link"
-msgstr ""
+msgstr "Teilen-Link"
 
 msgid "Copied !"
 msgstr "Kopiert!"
@@ -537,14 +539,17 @@ msgstr "Ihre Signatur wurde erfolgreich erfasst!"
 
 msgid "This application does not automatically send emails to other signers."
 msgstr ""
+"Diese Anwendung versendet nicht automatisch E-Mails an andere Unterzeichner."
 
 msgid ""
 "If you want to send one yourself, you can use <a>this pre-written email</a>."
 msgstr ""
+"Wenn Sie selbst eine E-Mail senden möchten, können Sie <a>diese "
+"vorgefertigte E-Mail</a> verwenden."
 
 #, php-format
 msgid "Signing the document : %s"
-msgstr ""
+msgstr "Dokument wird unterschrieben: %s"
 
 #, php-format
 msgid ""
@@ -552,24 +557,28 @@ msgid ""
 "\n"
 "I just signed the document (%s) : %s"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Ich habe dieses Dokument gerade unterschrieben (%s): %s"
 
 msgid "Change the color of the selected element"
-msgstr ""
+msgstr "Farbe des ausgewählten Elements ändern"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "Element duplizieren"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "Auf jeder Seite duplizieren"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplizieren"
 
 msgid "Delete the element"
-msgstr ""
+msgstr "Element entfernen"
 
 msgid "Are you sure you want to delete this PDF and the associated signatures?"
 msgstr ""
+"Möchten Sie diese PDF und die zugehörigen Unterschriften wirklich löschen?"
 
 msgid "Text to modify"
 msgstr "Zu ändernder Text"
@@ -608,7 +617,7 @@ msgid "see the source code"
 msgstr "siehe den Quellcode"
 
 msgid "Sign and manipulate PDFs freely"
-msgstr ""
+msgstr "PDFs frei signieren und bearbeiten"
 
 msgid "Language"
 msgstr "Sprache"

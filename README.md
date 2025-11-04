@@ -14,6 +14,7 @@ List of instances where you can use this software:
 - [pdf.kaosx.ovh](https://pdf.kaosx.ovh)
 - [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr) (by [Ti Nuage](https://www.ti-nuage.fr/))
 - [pdf.cemea.org](https://pdf.cemea.org) (by [Les Ceméa](https://mallette.cemea.org))
+- [pdf.caph.info](https://pdf.caph.info) (by [caph.info](https://caph.info))
 - [pdf.spirio.fr](https://pdf.spirio.fr) (by [Spirio.fr](https://spirio.fr/))
 - [pdf.sequanux.org](https://pdf.sequanux.org) (by [Sequanux](https://www.sequanux.org/))
 - [pdf.deblan.org](https://pdf.deblan.org) (by [Deblan](https://wiki.deblan.org/hosting/overview/))

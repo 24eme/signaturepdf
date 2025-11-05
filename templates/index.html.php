@@ -16,11 +16,19 @@
     <p class="lead text-center mb-2"><img src="logo.svg" style="height: 200px;" class="text-center" /></p>
     <h1 class="text-center h4 d-lg-none">Signature PDF</h1>
     <p class="lead mt-3 text-center mb-0"><?php echo _("Free open-source software for signing and manipulating PDFs") ?></p>
-    <div class="row">
-    <div class="col-xs-12 col-sm-6 mt-4">
-        <div class="card">
-          <div class="card-header"><?php echo _("Sign a PDF") ?></div>
-          <div class="list-group list-group-flush">
+    <div class="row justify-content-center mt-4">
+        <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-10">
+            <div class="position-relative">
+            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y fs-6" style="left: 14px  !important; opacity: 0.65;"></i>
+            <input id="search_tools" autofocus="autofocus" type="text" class="form-control form-control-lg fs-6 shadow-sm" style="padding-left: 40px;" placeholder="<?php echo _("Search for a tool (e.g., sign, compress, extract, watermark...)") ?>">
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+    <div class="col-lg-4 col-md-10 col-sm-12 mt-4">
+        <div class="card shadow-sm">
+            <a tabindex="-1" href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="card-header text-body-secondary link-underline link-underline-opacity-0"><?php echo _("Sign") ?></a>
+            <div class="list-group list-group-flush">
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-vector-pen"></i> <?php echo _("Add a signature") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-type"></i> <?php echo _("Add initials") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-card-text"></i> <?php echo _("Add a stamp") ?></a>
@@ -30,27 +38,27 @@
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-patch-check"></i> <?php echo _("Sign with the server certificate") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action position-relative"><i class="bi bi-droplet-half"></i> <?php echo _("Add a watermark") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
             <!-- <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-bounding-box"></i> <?php echo _("Redact areas") ?></a> -->
-        </div>
+            </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-6 mt-4">
-        <div class="card">
-          <div class="card-header"><?php echo _("Organize PDFs") ?></div>
+    <div class="col-lg-4 col-md-10 col-sm-12 mt-4">
+        <div class="card shadow-sm">
+          <a tabindex="-1" href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="card-header text-body-secondary link-underline link-underline-opacity-0"><?php echo _("Organize") ?></a>
           <div class="list-group list-group-flush">
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-file-earmark-plus"></i> <?php echo _("Combine multiple PDF files") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrows-move"></i> <?php echo _("Reorder pages") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> <?php echo _("Extract pages") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-arrow-clockwise"></i> <?php echo _("Rotate pages") ?></a>
-            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action position-relative"><i class="bi bi-rulers"></i> <?php echo _("Change or standardize the paper size") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action position-relative"><i class="bi bi-rulers"></i> <?php echo _("Change or standardize the paper size") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action"><i class="bi bi-trash"></i> <?php echo _("Delete pages") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization#booklet" class="list-group-item list-group-item-action position-relative"><i class="bi bi-book"></i> <?php echo _("Generate a booklet") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/organization" class="list-group-item list-group-item-action position-relative"><i class="bi bi-images"></i> <?php echo _("Convert images to PDF") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
             </div>
         </div>
-        <div class="card mt-4">
-          <div class="card-header">
-            <?php echo _("Edit a PDF"); ?>
-          </div>
+    </div>
+    <div class="col-lg-4 col-md-10 col-sm-12 mt-4">
+        <div class="card shadow-sm">
+          <div class="card-header text-body-secondary"><?php echo _("Metadata & Optimize") ?></div>
           <div class="list-group list-group-flush">
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/metadata" class="list-group-item list-group-item-action"><i class="bi bi-tags"></i> <?php echo _("Add, edit, or remove metadata from a PDF") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/compress" class="list-group-item list-group-item-action"><i class="bi bi-chevron-bar-contract"></i> <?php echo _("Compress and reduce the size of a PDF") ?></a>
@@ -64,5 +72,25 @@
 <span id="is_mobile" class="d-md-none"></span>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/bootstrap.bundle.min.js?5.3.3"></script>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
+<script>
+    document.querySelector('#search_tools').addEventListener('keyup', function(e) {
+        let searchTerm = this.value;
+        console.log(searchTerm);
+        document.querySelectorAll('.list-group-item-action').forEach(function(item) {
+            if(!searchTerm || item.innerText.match(new RegExp(searchTerm, "i"))) {
+                item.classList.remove('d-none');
+            } else {
+                item.classList.add('d-none');
+            }
+        })
+        document.querySelectorAll('.card').forEach(function(item) {
+            if(item.querySelectorAll('.list-group-item-action.d-none').length == item.querySelectorAll('.list-group-item-action').length) {
+                item.parentNode.classList.add('d-none');
+            } else {
+                item.parentNode.classList.remove('d-none');
+            }
+        });
+    })
+</script>
 </body>
 </html>

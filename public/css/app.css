@@ -21,6 +21,10 @@
     z-index: 10000;
 }
 
+#search_tools::placeholder {
+    opacity: 0.65;
+}
+
 #modalFichier {
     z-index: 10001;
 }

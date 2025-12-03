@@ -486,7 +486,7 @@ $f3->route ('POST /compress',
             return;
         } else {
             header('Content-Type: application/pdf');
-            header("Content-Disposition: attachment; filename=".basename(str_replace(".pdf", "_compressed.pdf", $originalFilename)));
+            header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_compressed.pdf", $originalFilename))));
             readfile($outputFileName);
         }
 

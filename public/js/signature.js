@@ -932,8 +932,7 @@ function createEventsListener() {
                 })
 
                 const blob = await response.blob()
-                const filename = response.headers.get('Content-Disposition').split('"')[1]
-                await download(blob, filename)
+                await download(blob, formData.get('pdf').name.replace(/\.pdf$/, '_signe.pdf'))
                 await storeFileInCache(blob, formData.get('pdf').name)
                 endProcessingMode(this)
             }
@@ -1124,19 +1123,6 @@ function createSignaturePad() {
         uploadSVG(data);
     }, 500));
 };
-
-async function getPDFBlobFromCache(cacheUrl) {
-    const cache = await caches.open('pdf');
-    let responsePdf = await cache.match(cacheUrl);
-
-    if(!responsePdf) {
-        return null;
-    }
-
-    let pdfBlob = await responsePdf.blob();
-
-    return pdfBlob;
-}
 
 function modalSharing() {
     if(openModal == "shareinformations") {

@@ -48,7 +48,7 @@ async function loadFileFromCache(cacheUrl, pageUrl) {
         return;
     }
 
-    let filename = cacheUrl.replace('/pdf/', '');
+    let filename = decodeURI(cacheUrl.replace('/pdf/', ''));
 
     let pdfBlob = await responsePdf.blob();
 
@@ -77,7 +77,7 @@ async function loadFileFromUrl(url, pageUrl, local = null) {
     let file_id = url.replace(/^.*\//, '');
 
     if(response.headers.has('content-disposition') && response.headers.get('Content-Disposition').match(/attachment; filename="/)) {
-        file_id = response.headers.get('Content-Disposition').replace(/^[^"]*"/, "").replace(/"[^"]*$/, "").replace(/_signe-[0-9]+\x.pdf/, '.pdf');
+        file_id = decodeURI(response.headers.get('Content-Disposition')).replace(/^[^"]*"/, "").replace(/"[^"]*$/, "").replace(/_signe-[0-9]+\x.pdf/, '.pdf');
     }
     filetype = 'application/pdf';
     if(pdfBlob.type == 'application/pdf' || pdfBlob.type == 'application/octet-stream') {

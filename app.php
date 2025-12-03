@@ -334,7 +334,7 @@ $f3->route('GET /signature/@hash/pdf',
             $f3->error(403, 'Unable to decrypt pdf because of wrong symmetric key');
         }
 
-        Web::instance()->send($pdfSignature->getPDF(), null, 0, TRUE, $pdfSignature->getPublicFilename());
+        Web::instance()->send($pdfSignature->getPDF(), null, 0, TRUE, urlencode($pdfSignature->getPublicFilename()));
 
         if($f3->get('DEBUG')) {
             return;

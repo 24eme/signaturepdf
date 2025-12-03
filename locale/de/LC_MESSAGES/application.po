@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 15:30+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: 2025-10-23 13:28+0000\n"
 "Last-Translator: Christian Eßl <indy.essl@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/signature-pdf/"
@@ -105,8 +105,11 @@ msgstr "Ihr PDF ist bereits optimiert"
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Kostenlose Open-Source-Software zum Signieren und Bearbeiten von PDFs"
 
-msgid "Sign a PDF"
-msgstr "PDF signieren"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
+msgstr "Signieren"
 
 msgid "Add a signature"
 msgstr "Unterschrift hinzufügen"
@@ -138,8 +141,8 @@ msgstr "Neu"
 msgid "Redact areas"
 msgstr "Bereiche schwärzen"
 
-msgid "Organize PDFs"
-msgstr "PDFs organisieren"
+msgid "Organize"
+msgstr "Organisieren"
 
 msgid "Combine multiple PDF files"
 msgstr "Mehrere PDFs kombinieren"
@@ -165,8 +168,8 @@ msgstr "Broschüre erstellen"
 msgid "Convert images to PDF"
 msgstr "Bilder in PDF umwandeln"
 
-msgid "Edit a PDF"
-msgstr "PDF bearbeiten"
+msgid "Metadata"
+msgstr "Metadaten"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr ""
@@ -318,6 +321,9 @@ msgstr "Broschüre"
 
 msgid "Formatting"
 msgstr "Formatierung"
+
+msgid "Sign a PDF"
+msgstr "PDF signieren"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Dokument unterschreiben, signieren, stempeln oder abschließen"
@@ -622,14 +628,11 @@ msgstr "PDFs frei signieren und bearbeiten"
 msgid "Language"
 msgstr "Sprache"
 
-msgid "Sign"
-msgstr "Signieren"
+#~ msgid "Organize PDFs"
+#~ msgstr "PDFs organisieren"
 
-msgid "Organize"
-msgstr "Organisieren"
-
-msgid "Metadata"
-msgstr "Metadaten"
+#~ msgid "Edit a PDF"
+#~ msgstr "PDF bearbeiten"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Das PDF darf nicht überschreiten "

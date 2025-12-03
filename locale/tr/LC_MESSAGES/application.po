@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 15:30+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: 2023-12-06 14:10+0000\n"
 "Last-Translator: Metin Gür <gurmetin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -103,8 +103,11 @@ msgstr "Pdf'iniz zaten optimize edilmiş"
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
 
-msgid "Sign a PDF"
-msgstr "PDF imzala"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
+msgstr "İmzala"
 
 msgid "Add a signature"
 msgstr ""
@@ -136,8 +139,8 @@ msgstr ""
 msgid "Redact areas"
 msgstr ""
 
-msgid "Organize PDFs"
-msgstr ""
+msgid "Organize"
+msgstr "Organize et"
 
 msgid "Combine multiple PDF files"
 msgstr ""
@@ -163,8 +166,9 @@ msgstr ""
 msgid "Convert images to PDF"
 msgstr ""
 
-msgid "Edit a PDF"
-msgstr ""
+#, fuzzy
+msgid "Metadata"
+msgstr "Metadata"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "PDF'ye meta veri ekleme, düzenleme veya PDF'den meta veri kaldırma"
@@ -315,6 +319,9 @@ msgstr ""
 
 msgid "Formatting"
 msgstr ""
+
+msgid "Sign a PDF"
+msgstr "PDF imzala"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Belgeyi imzalamak, paraflamak, damgalamak, tamamlamak"
@@ -609,16 +616,6 @@ msgstr ""
 
 msgid "Language"
 msgstr "Dil"
-
-msgid "Sign"
-msgstr "İmzala"
-
-msgid "Organize"
-msgstr "Organize et"
-
-#, fuzzy
-msgid "Metadata"
-msgstr "Metadata"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "PDF, aşmamalıdır "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 15:30+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: 2025-08-14 20:01+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -103,8 +103,11 @@ msgstr "Il tuo PDF è già ottimizzato"
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Software libero ed open source per la firma e la manipolazione dei PDF"
 
-msgid "Sign a PDF"
-msgstr "Firma un PDF"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
+msgstr "Firma"
 
 msgid "Add a signature"
 msgstr "Aggiungi una firma"
@@ -136,8 +139,8 @@ msgstr "Nuovo"
 msgid "Redact areas"
 msgstr "Redigi aree"
 
-msgid "Organize PDFs"
-msgstr "Organizza i PDF"
+msgid "Organize"
+msgstr "Organizza"
 
 msgid "Combine multiple PDF files"
 msgstr "Unisci più file PDF"
@@ -163,8 +166,8 @@ msgstr "Genera un libretto"
 msgid "Convert images to PDF"
 msgstr "Convertire le immagini in PDF"
 
-msgid "Edit a PDF"
-msgstr "Modifica un PDF"
+msgid "Metadata"
+msgstr "Metadata"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Aggiungi, modifica o rimuovi i metadata da un PDF"
@@ -315,6 +318,9 @@ msgstr "Libretto"
 
 msgid "Formatting"
 msgstr "Formattazione"
+
+msgid "Sign a PDF"
+msgstr "Firma un PDF"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Firma, annota, timbra, completa un documento"
@@ -612,14 +618,11 @@ msgstr "Firma e manipola i PDF liberamente"
 msgid "Language"
 msgstr "Lingua"
 
-msgid "Sign"
-msgstr "Firma"
+#~ msgid "Organize PDFs"
+#~ msgstr "Organizza i PDF"
 
-msgid "Organize"
-msgstr "Organizza"
-
-msgid "Metadata"
-msgstr "Metadata"
+#~ msgid "Edit a PDF"
+#~ msgstr "Modifica un PDF"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Il PDF non deve superare "

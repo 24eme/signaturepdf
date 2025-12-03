@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 15:30+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: 2025-10-16 22:07+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/signature-pdf/"
@@ -103,8 +103,11 @@ msgstr "Lo PDF es ja optimizat"
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Logicial liure per signar e manipular los PDF"
 
-msgid "Sign a PDF"
-msgstr "Signar un PDF"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
+msgstr "Signar"
 
 msgid "Add a signature"
 msgstr "Apondre una signatura"
@@ -136,8 +139,8 @@ msgstr "Nòu"
 msgid "Redact areas"
 msgstr "Enfosquir zònas"
 
-msgid "Organize PDFs"
-msgstr "Organizar de PDF"
+msgid "Organize"
+msgstr "Organizar"
 
 msgid "Combine multiple PDF files"
 msgstr "Fusionar mantun fichièr PDF"
@@ -163,8 +166,8 @@ msgstr "Generar un libret"
 msgid "Convert images to PDF"
 msgstr "Convertir d’imatges en PDF"
 
-msgid "Edit a PDF"
-msgstr "Modificar un PDF"
+msgid "Metadata"
+msgstr "Metadonadas"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Apondre, modificar o suprimir de metadonada d’un PDF"
@@ -315,6 +318,9 @@ msgstr "Libret"
 
 msgid "Formatting"
 msgstr "Formatatge"
+
+msgid "Sign a PDF"
+msgstr "Signar un PDF"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Signar, parafar, sagelar, completar un document"
@@ -615,14 +621,11 @@ msgstr "Signar e manipular de PDF liurament"
 msgid "Language"
 msgstr "Lenga"
 
-msgid "Sign"
-msgstr "Signar"
+#~ msgid "Organize PDFs"
+#~ msgstr "Organizar de PDF"
 
-msgid "Organize"
-msgstr "Organizar"
-
-msgid "Metadata"
-msgstr "Metadonadas"
+#~ msgid "Edit a PDF"
+#~ msgstr "Modificar un PDF"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Lo PDF deu pas despassar "

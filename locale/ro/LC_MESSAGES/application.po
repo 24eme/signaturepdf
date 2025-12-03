@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 15:30+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: 2024-01-02 19:08+0000\n"
 "Last-Translator: Alexandru-Ionut Chiuta <chiuta@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/signature-pdf/"
@@ -104,8 +104,11 @@ msgstr "PDF-ul dvs. este deja optimizat"
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
 
-msgid "Sign a PDF"
-msgstr "Semnează un PDF"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
+msgstr "Semnează"
 
 msgid "Add a signature"
 msgstr ""
@@ -137,8 +140,8 @@ msgstr ""
 msgid "Redact areas"
 msgstr ""
 
-msgid "Organize PDFs"
-msgstr ""
+msgid "Organize"
+msgstr "Organizează"
 
 msgid "Combine multiple PDF files"
 msgstr ""
@@ -164,8 +167,8 @@ msgstr ""
 msgid "Convert images to PDF"
 msgstr ""
 
-msgid "Edit a PDF"
-msgstr ""
+msgid "Metadata"
+msgstr "Metadate"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Adăugați, editați sau eliminați metadate dintr-un PDF"
@@ -316,6 +319,9 @@ msgstr ""
 
 msgid "Formatting"
 msgstr ""
+
+msgid "Sign a PDF"
+msgstr "Semnează un PDF"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Semnează, inițială, ștampilă, completează un document"
@@ -609,15 +615,6 @@ msgstr ""
 
 msgid "Language"
 msgstr "Limba"
-
-msgid "Sign"
-msgstr "Semnează"
-
-msgid "Organize"
-msgstr "Organizează"
-
-msgid "Metadata"
-msgstr "Metadate"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "PDF-ul nu trebuie să depășească "

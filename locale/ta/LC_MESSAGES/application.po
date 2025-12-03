@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 15:30+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: 2025-07-06 20:04+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/signature-pdf/"
@@ -103,8 +103,11 @@ msgstr "உங்கள் PDF ஏற்கனவே உகந்ததாக �
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "PDF களில் கையொப்பமிடுவதற்கும் கையாளுவதற்கும் இலவச திறந்த மூல மென்பொருள்"
 
-msgid "Sign a PDF"
-msgstr "ஒரு PDF இல் கையெழுத்திடுகின்றன"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
+msgstr "அடையாளம்"
 
 msgid "Add a signature"
 msgstr "ஒரு கையொப்பத்தைச் சேர்க்கவும்"
@@ -136,8 +139,8 @@ msgstr ""
 msgid "Redact areas"
 msgstr "திருத்தும் பகுதிகள்"
 
-msgid "Organize PDFs"
-msgstr "PDF ஐ ஒழுங்கமைக்கவும்"
+msgid "Organize"
+msgstr "ஒழுங்கமைக்கவும்"
 
 msgid "Combine multiple PDF files"
 msgstr "பல PDF கோப்புகளை இணைக்கவும்"
@@ -163,8 +166,8 @@ msgstr ""
 msgid "Convert images to PDF"
 msgstr "படங்களை PDF ஆக மாற்றவும்"
 
-msgid "Edit a PDF"
-msgstr "ஒரு PDF ஐத் திருத்து"
+msgid "Metadata"
+msgstr "மேனிலை தரவு"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "ஒரு PDF இலிருந்து மெட்டாடேட்டாவைச் சேர்க்கவும், திருத்தவும் அல்லது அகற்றவும்"
@@ -315,6 +318,9 @@ msgstr ""
 
 msgid "Formatting"
 msgstr ""
+
+msgid "Sign a PDF"
+msgstr "ஒரு PDF இல் கையெழுத்திடுகின்றன"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "அடையாளம், ஆரம்ப, முத்திரை, ஒரு ஆவணத்தை முடிக்கவும்"
@@ -611,14 +617,11 @@ msgstr "PDF களை சுதந்திரமாக கையொப்பம
 msgid "Language"
 msgstr "மொழி"
 
-msgid "Sign"
-msgstr "அடையாளம்"
+#~ msgid "Organize PDFs"
+#~ msgstr "PDF ஐ ஒழுங்கமைக்கவும்"
 
-msgid "Organize"
-msgstr "ஒழுங்கமைக்கவும்"
-
-msgid "Metadata"
-msgstr "மேனிலை தரவு"
+#~ msgid "Edit a PDF"
+#~ msgstr "ஒரு PDF ஐத் திருத்து"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "PDF ஐ விட அதிகமாக இருக்கக்கூடாது "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 15:30+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: 2025-06-02 13:01+0000\n"
 "Last-Translator: Armando Bastoni <weblate@sabato.anonaddy.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/signature-pdf/"
@@ -105,7 +105,10 @@ msgstr "Twój PDF jest już zoptymalizowany"
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
 
-msgid "Sign a PDF"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
 msgstr ""
 
 msgid "Add a signature"
@@ -138,7 +141,7 @@ msgstr ""
 msgid "Redact areas"
 msgstr ""
 
-msgid "Organize PDFs"
+msgid "Organize"
 msgstr ""
 
 msgid "Combine multiple PDF files"
@@ -165,8 +168,8 @@ msgstr ""
 msgid "Convert images to PDF"
 msgstr "Przetwórz obraz w dokument PDF"
 
-msgid "Edit a PDF"
-msgstr "Edytuj PDF"
+msgid "Metadata"
+msgstr ""
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Dodaj, edytuj, bądź wymaż metadane z pliku PDF"
@@ -316,6 +319,9 @@ msgid "Booklet"
 msgstr ""
 
 msgid "Formatting"
+msgstr ""
+
+msgid "Sign a PDF"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
@@ -601,14 +607,8 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-msgid "Sign"
-msgstr ""
-
-msgid "Organize"
-msgstr ""
-
-msgid "Metadata"
-msgstr ""
+#~ msgid "Edit a PDF"
+#~ msgstr "Edytuj PDF"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "PDF nie może przekraczać "

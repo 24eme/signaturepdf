@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 15:30+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: 2025-11-30 15:00+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
@@ -103,8 +103,11 @@ msgstr ""
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Aseɣẓan ilelli i usizmel d usseqerdec n ifuyla PDF"
 
-msgid "Sign a PDF"
-msgstr "Asezmel n PDF"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
+msgstr "Zmel"
 
 msgid "Add a signature"
 msgstr "Rnu azmul"
@@ -136,8 +139,8 @@ msgstr "Amaynut"
 msgid "Redact areas"
 msgstr ""
 
-msgid "Organize PDFs"
-msgstr "Suddes ifuyla PDF"
+msgid "Organize"
+msgstr "Suddes"
 
 msgid "Combine multiple PDF files"
 msgstr "Sdukkel aṭas ifuyla PDF"
@@ -163,8 +166,8 @@ msgstr "Sirew azmam"
 msgid "Convert images to PDF"
 msgstr "Aselket n tugniwin ɣer PDF"
 
-msgid "Edit a PDF"
-msgstr "Ẓreg a PDF"
+msgid "Metadata"
+msgstr "Iɣefisefka"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Rnu, ẓreg, neɣ kkes iɣefisefka seg PDF"
@@ -315,6 +318,9 @@ msgstr ""
 
 msgid "Formatting"
 msgstr "Amsal"
+
+msgid "Sign a PDF"
+msgstr "Asezmel n PDF"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Zmel, zmel deg yidis, err iziwel neɣ smed isemli"
@@ -611,14 +617,11 @@ msgstr "Zmel rnu sqerdec ifuyla PDF akken i k⋅m-yehwa"
 msgid "Language"
 msgstr "Tutlayt"
 
-msgid "Sign"
-msgstr "Zmel"
+#~ msgid "Organize PDFs"
+#~ msgstr "Suddes ifuyla PDF"
 
-msgid "Organize"
-msgstr "Suddes"
-
-msgid "Metadata"
-msgstr "Iɣefisefka"
+#~ msgid "Edit a PDF"
+#~ msgstr "Ẓreg a PDF"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "Afaylu PDF ur ilaq ara ad iɛeddi "

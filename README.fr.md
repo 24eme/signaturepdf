@@ -20,6 +20,7 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [pdf.deblan.org](https://pdf.deblan.org)
 - [signpdf.liber-it.fr](https://signpdf.liber-it.fr)
 - [signaturepdf.linux07.fr](https://signaturepdf.linux07.fr)
+- [framapdf.org](https://framapdf.org/home) (by [Framasoft](https://framasoft.org))
 
 _N'hésitez pas à rajouter la votre via une issue ou une pull request_
 

@@ -36,158 +36,170 @@ async function loadPDF(pdfBlob) {
     dataTransfer.items.add(new File([pdfBlob], filename, {
         type: 'application/pdf'
     }));
-    if(document.getElementById('input_pdf')) {
+    if (document.getElementById('input_pdf')) {
         document.getElementById('input_pdf').files = dataTransfer.files;
     }
-    if(document.getElementById('input_pdf_share')) {
+    if (document.getElementById('input_pdf_share')) {
         document.getElementById('input_pdf_share').files = dataTransfer.files;
     }
     let loadingTask = pdfjsLib.getDocument(url);
-    loadingTask.promise.then(function(pdf) {
+    loadingTask.promise.then(function (pdf) {
 
-        if(pdf.numPages > maxPage) {
-            alert("Le PDF de doit pas dépasser "+maxPage+" pages");
+        if (pdf.numPages > maxPage) {
+            alert("Le PDF de doit pas dépasser " + maxPage + " pages");
             document.location = "/";
             return;
         }
-        for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
-            pdf.getPage(pageNumber).then(function(page) {
-              let scale = 1.5;
-              let viewport = page.getViewport({scale: scale});
-              if(viewport.width > document.getElementById('container-pages').clientWidth - 40) {
-                  viewport = page.getViewport({scale: 1});
-                  scale = (document.getElementById('container-pages').clientWidth - 40) / viewport.width;
-                  viewport = page.getViewport({ scale: scale });
-              }
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+            pdf.getPage(pageNumber).then(function (page) {
+                let scale = 1.5;
+                let viewport = page.getViewport({ scale: scale });
+                if (viewport.width > document.getElementById('container-pages').clientWidth - 40) {
+                    viewport = page.getViewport({ scale: 1 });
+                    scale = (document.getElementById('container-pages').clientWidth - 40) / viewport.width;
+                    viewport = page.getViewport({ scale: scale });
+                }
 
-              currentScale = scale;
+                currentScale = scale;
 
-              let pageIndex = page.pageNumber - 1;
+                let pageIndex = page.pageNumber - 1;
 
-              document.getElementById('form_block').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
-              document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex +'"><canvas id="canvas-pdf-'+pageIndex+'" class="shadow-sm canvas-pdf"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-'+pageIndex+'"></canvas></div></div>');
+                document.getElementById('form_block').insertAdjacentHTML('beforeend', '<input name="svg[' + pageIndex + ']" id="data-svg-' + pageIndex + '" type="hidden" value="" />');
+                document.getElementById('container-pages').insertAdjacentHTML('beforeend', '<div class="position-relative mt-1 ms-1 me-1 d-inline-block" id="canvas-container-' + pageIndex + '"><canvas id="canvas-pdf-' + pageIndex + '" class="shadow-sm canvas-pdf"></canvas><div class="position-absolute top-0 start-0"><canvas id="canvas-edition-' + pageIndex + '"></canvas></div></div>');
 
-              let canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
-              let canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
-              // Prepare canvas using PDF page dimensions
-              let context = canvasPDF.getContext('2d');
-              canvasPDF.height = viewport.height;
-              canvasPDF.width = viewport.width;
-              canvasEditionHTML.height = canvasPDF.height;
-              canvasEditionHTML.width = canvasPDF.width;
+                let canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
+                let canvasEditionHTML = document.getElementById('canvas-edition-' + pageIndex);
+                // Prepare canvas using PDF page dimensions
+                let context = canvasPDF.getContext('2d');
+                canvasPDF.height = viewport.height;
+                canvasPDF.width = viewport.width;
+                canvasEditionHTML.height = canvasPDF.height;
+                canvasEditionHTML.width = canvasPDF.width;
 
-              let renderContext = {
-                canvasContext: context,
-                viewport: viewport,
-                enhanceTextSelection: true
-              };
-              let renderTask = page.render(renderContext);
-              pdfRenderTasks.push(renderTask);
-              pdfPages.push(page);
-              let canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {
-                selection : false,
-                allowTouchScrolling: true
-              });
+                let renderContext = {
+                    canvasContext: context,
+                    viewport: viewport,
+                    enhanceTextSelection: true
+                };
+                let renderTask = page.render(renderContext);
+                pdfRenderTasks.push(renderTask);
+                pdfPages.push(page);
+                let canvasEdition = new fabric.Canvas('canvas-edition-' + pageIndex, {
+                    selection: false,
+                    allowTouchScrolling: true
+                });
 
-              document.getElementById('canvas-container-' + pageIndex).addEventListener('drop', function(event) {
-                  var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-                  if(!input_selected) {
-                      return;
-                  }
+                document.getElementById('canvas-container-' + pageIndex).addEventListener('drop', function (event) {
+                    var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+                    if (!input_selected) {
+                        return;
+                    }
 
-                  createAndAddSvgInCanvas(canvasEdition, input_selected.value, event.layerX, event.layerY, input_selected.dataset.height);
-                  input_selected.checked = false;
-                  input_selected.dispatchEvent(new Event("change"));
-              });
-              canvasEdition.on('mouse:move', function(event) {
-                  activeCanvas = this;
-                  activeCanvasPointer = event.pointer;
-              });
-              canvasEdition.on('mouse:down:before', function(event) {
-                  currentCursor = this.defaultCursor;
-              });
-              canvasEdition.on('mouse:down', function(event) {
-                  if(event.target) {
-                      this.defaultCursor = 'default';
-                      return;
-                  }
-                  var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-                  if(currentCursor == 'default' && input_selected) {
-                       this.defaultCursor = 'copy';
-                  }
-                  if(currentCursor != 'copy') {
-                      return;
-                  }
-                  if(!input_selected) {
-                      return;
-                  }
+                    createAndAddSvgInCanvas(canvasEdition, input_selected.value, event.layerX, event.layerY, input_selected.dataset.height);
+                    input_selected.checked = false;
+                    input_selected.dispatchEvent(new Event("change"));
+                });
+                canvasEdition.on('mouse:move', function (event) {
+                    activeCanvas = this;
+                    activeCanvasPointer = event.pointer;
+                });
+                canvasEdition.on('mouse:down:before', function (event) {
+                    currentCursor = this.defaultCursor;
+                });
+                canvasEdition.on('mouse:down', function (event) {
+                    if (event.target) {
+                        this.defaultCursor = 'default';
+                        return;
+                    }
+                    var input_selected = document.querySelector('input[name="svg_2_add"]:checked');
+                    if (currentCursor == 'default' && input_selected) {
+                        this.defaultCursor = 'copy';
+                    }
+                    if (currentCursor != 'copy') {
+                        return;
+                    }
+                    if (!input_selected) {
+                        return;
+                    }
 
-                  createAndAddSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y, input_selected.dataset.height);
+                    createAndAddSvgInCanvas(this, input_selected.value, event.pointer.x, event.pointer.y, input_selected.dataset.height);
 
-                  if(addLock) {
-                      return;
-                  }
-                  input_selected.checked = false;
-                  input_selected.dispatchEvent(new Event("change"));
-              });
-              canvasEdition.on('object:scaling', function(event) {
-                  if (event.target instanceof fabric.Line) {
-                      return;
-                  }
-                  if (event.target instanceof fabric.Rect) {
-                      return;
-                  }
-                  if(event.transform.action == "scaleX") {
-                      event.target.scaleY = event.target.scaleX;
-                  }
-                  if(event.transform.action == "scaleY") {
-                      event.target.scaleX = event.target.scaleY;
-                  }
-              });
-              canvasEdition.on('object:modified', function(event) {
-                  if (event.target instanceof fabric.IText) {
-                      currentTextScale = event.target.scaleX;
-                      return;
-                  }
-                  var item = getSvgItem(event.target.svgOrigin);
-                  if(!item) {
-                      return;
-                  }
-                  item.scale = event.target.width * event.target.scaleX / event.target.canvas.width;
-                  storeCollections();
-              });
-              canvasEdition.on("text:changed", function(event) {
-                   if (!event.target instanceof fabric.IText) {
-                       return;
-                   }
-                  const textLinesMaxWidth = event.target.textLines.reduce((max, _, i) => Math.max(max, event.target.getLineWidth(i)), 0);
-                  event.target.set({width: textLinesMaxWidth});
-              });
-              canvasEdition.on("selection:created", function(event) {
-                  if (event.selected.length > 1 || event.selected.length === 0) {
-                      return;
-                  }
+                    if (addLock) {
+                        return;
+                    }
+                    input_selected.checked = false;
+                    input_selected.dispatchEvent(new Event("change"));
+                });
+                canvasEdition.on('object:scaling', function (event) {
+                    if (event.target instanceof fabric.Line) {
+                        return;
+                    }
+                    if (event.target instanceof fabric.Rect) {
+                        return;
+                    }
+                    if (event.transform.action == "scaleX") {
+                        event.target.scaleY = event.target.scaleX;
+                    }
+                    if (event.transform.action == "scaleY") {
+                        event.target.scaleX = event.target.scaleY;
+                    }
+                });
+                canvasEdition.on('object:modified', function (event) {
+                    if (event.target instanceof fabric.IText) {
+                        currentTextScale = event.target.scaleX;
+                        // Trigger auto-save on text changes
+                        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+                            AutoSave.save();
+                        }
+                        return;
+                    }
+                    var item = getSvgItem(event.target.svgOrigin);
+                    if (!item) {
+                        return;
+                    }
+                    item.scale = event.target.width * event.target.scaleX / event.target.canvas.width;
+                    storeCollections();
+                    // Trigger auto-save on object modification
+                    if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+                        AutoSave.save();
+                    }
+                });
+                canvasEdition.on("text:changed", function (event) {
+                    if (!event.target instanceof fabric.IText) {
+                        return;
+                    }
+                    const textLinesMaxWidth = event.target.textLines.reduce((max, _, i) => Math.max(max, event.target.getLineWidth(i)), 0);
+                    event.target.set({ width: textLinesMaxWidth });
+                    // Trigger auto-save on text input
+                    if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+                        AutoSave.save();
+                    }
+                });
+                canvasEdition.on("selection:created", function (event) {
+                    if (event.selected.length > 1 || event.selected.length === 0) {
+                        return;
+                    }
 
-                  toolBox.init(event.selected[0])
-              });
-              canvasEdition.on("selection:updated", function(event) {
-                  toolBox.reset()
-                  if (event.selected.length > 1 || event.selected.length === 0) {
-                      return;
-                  }
+                    toolBox.init(event.selected[0])
+                });
+                canvasEdition.on("selection:updated", function (event) {
+                    toolBox.reset()
+                    if (event.selected.length > 1 || event.selected.length === 0) {
+                        return;
+                    }
 
-                  toolBox.init(event.selected[0])
-              });
-              canvasEdition.on("object:modified", function(event) {
-                  toolBox.init(event.target)
-              });
-              canvasEdition.on("object:moving", function(event) {
-                  toolBox.reset()
-              });
-              canvasEdition.on("selection:cleared", function(event) {
-                  toolBox.reset()
-              });
-              canvasEditions.push(canvasEdition);
+                    toolBox.init(event.selected[0])
+                });
+                canvasEdition.on("object:modified", function (event) {
+                    toolBox.init(event.target)
+                });
+                canvasEdition.on("object:moving", function (event) {
+                    toolBox.reset()
+                });
+                canvasEdition.on("selection:cleared", function (event) {
+                    toolBox.reset()
+                });
+                canvasEditions.push(canvasEdition);
             });
         }
     }, function (reason) {
@@ -196,13 +208,13 @@ async function loadPDF(pdfBlob) {
 };
 
 async function reloadPDF(url) {
-    pdfjsLib.getDocument(url).promise.then(function(pdf) {
-        for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
-            pdf.getPage(pageNumber).then(function(page) {
+    pdfjsLib.getDocument(url).promise.then(function (pdf) {
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+            pdf.getPage(pageNumber).then(function (page) {
                 page.render({
-                  canvasContext: document.getElementById('canvas-pdf-' + (page.pageNumber - 1)).getContext('2d'),
-                  viewport: page.getViewport({scale: currentScale}),
-                  enhanceTextSelection: true
+                    canvasContext: document.getElementById('canvas-pdf-' + (page.pageNumber - 1)).getContext('2d'),
+                    viewport: page.getViewport({ scale: currentScale }),
+                    enhanceTextSelection: true
                 });
             });
         }
@@ -210,7 +222,7 @@ async function reloadPDF(url) {
 }
 
 function responsiveDisplay() {
-    if(is_mobile()) {
+    if (is_mobile()) {
         document.getElementById('page-signature').classList.remove('decalage-pdf-div');
         menu.classList.remove('show');
         menuOffcanvas.hide();
@@ -226,12 +238,16 @@ function responsiveDisplay() {
 
 function storeCollections() {
     localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
+    // Trigger auto-save when collections change
+    if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+        AutoSave.save();
+    }
 };
 
 function getSvgItem(svg) {
     for (index in svgCollections) {
         let svgItem = svgCollections[index];
-        if(svgItem.svg == svg) {
+        if (svgItem.svg == svg) {
 
             return svgItem;
         }
@@ -241,19 +257,19 @@ function getSvgItem(svg) {
 };
 
 function svgClick(label, event) {
-    if(event.detail == 1) {
-        label.dataset.lock = parseInt(addLock*1);
+    if (event.detail == 1) {
+        label.dataset.lock = parseInt(addLock * 1);
     }
-    if(event.detail > 1){
-        stateAddLock(parseInt(label.dataset.lock*1) != 1);
+    if (event.detail > 1) {
+        stateAddLock(parseInt(label.dataset.lock * 1) != 1);
     }
-    if(event.detail > 1) {
+    if (event.detail > 1) {
         return;
     }
-    if(!document.getElementById(label.htmlFor)) {
+    if (!document.getElementById(label.htmlFor)) {
         return;
     }
-    if(!document.getElementById(label.htmlFor).checked) {
+    if (!document.getElementById(label.htmlFor).checked) {
         return;
     }
     document.getElementById(label.htmlFor).checked = false;
@@ -262,7 +278,7 @@ function svgClick(label, event) {
 };
 
 function svgDblClick(label, event) {
-    if(parseInt(label.dataset.lock*1) == 1) {
+    if (parseInt(label.dataset.lock * 1) == 1) {
         return;
     }
     stateAddLock(true);
@@ -274,11 +290,11 @@ function svgDragStart(label, event) {
 };
 
 function svgChange(input, event) {
-    if(input.checked) {
+    if (input.checked) {
         document.getElementById('btn_svn_select').classList.add('d-none');
         document.getElementById('svg_object_actions').classList.add('d-none');
         document.getElementById('svg_selected_container').classList.remove('d-none');
-        if(input.value.match(/^data:/)) {
+        if (input.value.match(/^data:/)) {
             document.getElementById('svg_selected').src = input.value;
         } else {
             document.getElementById('svg_selected').src = input.dataset.svg;
@@ -294,26 +310,26 @@ function svgChange(input, event) {
 
     let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
-    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "strikethrough" && input_selected.value != "rectangle") {
+    if (input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "strikethrough" && input_selected.value != "rectangle") {
         input_selected = null;
     }
 
-    document.querySelectorAll('.btn-svg').forEach(function(item) {
-        if(input_selected && item.htmlFor == input_selected.id) {
+    document.querySelectorAll('.btn-svg').forEach(function (item) {
+        if (input_selected && item.htmlFor == input_selected.id) {
             item.style.setProperty('cursor', 'copy');
         } else {
             item.style.removeProperty('cursor');
         }
     });
 
-    canvasEditions.forEach(function(canvasEdition, index) {
-        if(input_selected) {
+    canvasEditions.forEach(function (canvasEdition, index) {
+        if (input_selected) {
             canvasEdition.defaultCursor = 'copy';
         } else {
             canvasEdition.defaultCursor = 'default';
         }
     })
-    if(is_mobile()) {
+    if (is_mobile()) {
         menuOffcanvas.hide();
     }
 };
@@ -322,44 +338,44 @@ function getHtmlSvg(svg, i) {
     let inputRadio = document.createElement('input');
     inputRadio.type = "radio";
     inputRadio.classList.add("btn-check");
-    inputRadio.id="radio_svg_"+i;
+    inputRadio.id = "radio_svg_" + i;
     inputRadio.name = "svg_2_add";
     inputRadio.autocomplete = "off";
     inputRadio.value = svg.svg;
-    inputRadio.addEventListener('change', function() {
+    inputRadio.addEventListener('change', function () {
         svgChange(this, event);
     });
     let svgButton = document.createElement('label');
-    svgButton.id = "label_svg_"+i;
+    svgButton.id = "label_svg_" + i;
     svgButton.classList.add('position-relative');
     svgButton.classList.add('btn');
     svgButton.classList.add('btn-svg');
     svgButton.classList.add('btn-outline-secondary');
-    svgButton.htmlFor = "radio_svg_"+i;
-    if(svg.type == 'signature') {
+    svgButton.htmlFor = "radio_svg_" + i;
+    if (svg.type == 'signature') {
         svgButton.innerHTML += '<i class="bi bi-vector-pen text-black align-middle float-start"></i>';
     }
-    if(svg.type == 'initials') {
+    if (svg.type == 'initials') {
         svgButton.innerHTML += '<i class="bi bi-type text-black align-middle float-start"></i>';
     }
-    if(svg.type == 'rubber_stamber') {
+    if (svg.type == 'rubber_stamber') {
         svgButton.innerHTML += '<i class="bi bi-card-text text-black align-middle float-start"></i>';
     }
-    if(svg.type) {
-        document.querySelector('.btn-add-svg-type[data-type="'+svg.type+'"]').classList.add('d-none');
+    if (svg.type) {
+        document.querySelector('.btn-add-svg-type[data-type="' + svg.type + '"]').classList.add('d-none');
     }
-    svgButton.innerHTML += '<a title="Supprimer" data-index="'+i+'" class="btn-svg-list-suppression opacity-50 link-dark position-absolute"><i class="bi bi-trash"></i></a>';
+    svgButton.innerHTML += '<a title="Supprimer" data-index="' + i + '" class="btn-svg-list-suppression opacity-50 link-dark position-absolute"><i class="bi bi-trash"></i></a>';
     svgButton.draggable = true;
-    svgButton.addEventListener('dragstart', function(event) {
+    svgButton.addEventListener('dragstart', function (event) {
         svgDragStart(this, event);
     });
-    svgButton.addEventListener('click', function(event) {
+    svgButton.addEventListener('click', function (event) {
         svgClick(this, event);
     });
-    svgButton.addEventListener('dblclick', function(event) {
+    svgButton.addEventListener('dblclick', function (event) {
         svgDblClick(this, event);
     });
-    svgButton.addEventListener('mouseout', function(event) {
+    svgButton.addEventListener('mouseout', function (event) {
         this.style.removeProperty('cursor');
     })
     let svgImg = document.createElement('img');
@@ -377,7 +393,7 @@ function getHtmlSvg(svg, i) {
 };
 
 function stateAddLock(state) {
-    if(forceAddLock) {
+    if (forceAddLock) {
         state = true;
     }
     let checkbox = document.getElementById('add-lock-checkbox');
@@ -385,15 +401,15 @@ function stateAddLock(state) {
 
     addLock = state;
 
-    if(!input_selected) {
+    if (!input_selected) {
         addLock = false;
         checkbox.disabled = true;
     } else {
         checkbox.disabled = false;
     }
 
-    if(addLock && input_selected) {
-        let svgButton = document.querySelector('.btn-svg[for="'+input_selected.id+'"]');
+    if (addLock && input_selected) {
+        let svgButton = document.querySelector('.btn-svg[for="' + input_selected.id + '"]');
         checkbox.checked = true;
         return;
     }
@@ -406,29 +422,29 @@ function displaysSVG() {
     document.getElementById('svg_list_signature').innerHTML = "";
     document.getElementById('svg_list_initials').innerHTML = "";
     document.getElementById('svg_list_rubber_stamber').innerHTML = "";
-    document.querySelectorAll('.btn-add-svg-type').forEach(function(item) {
+    document.querySelectorAll('.btn-add-svg-type').forEach(function (item) {
         item.classList.remove('d-none');
     });
     svgCollections.forEach((svg, i) => {
         let svgHtmlChild = getHtmlSvg(svg, i);
-        if(svg.type) {
-            document.getElementById('svg_list_'+svg.type).appendChild(svgHtmlChild);
+        if (svg.type) {
+            document.getElementById('svg_list_' + svg.type).appendChild(svgHtmlChild);
             return;
         }
         document.getElementById('svg_list').appendChild(svgHtmlChild);
     });
 
-    if(svgCollections.length > 0) {
+    if (svgCollections.length > 0) {
         document.getElementById('btn-add-svg').classList.add('btn-light');
         document.getElementById('btn-add-svg').classList.remove('btn-primary');
     }
 
-    if(document.getElementById('btn-add-svg').classList.contains('btn-primary')) {
+    if (document.getElementById('btn-add-svg').classList.contains('btn-primary')) {
         document.getElementById('btn-add-svg').focus();
     }
 
-    document.querySelectorAll('.btn-svg-list-suppression').forEach(function(item) {
-        item.addEventListener('click', function() {
+    document.querySelectorAll('.btn-svg-list-suppression').forEach(function (item) {
+        item.addEventListener('click', function () {
             svgCollections.splice(this.dataset.index, 1);
             displaysSVG();
             storeCollections();
@@ -443,7 +459,7 @@ function uploadSVG(formData) {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
+    xhr.open('POST', document.getElementById('form-image-upload').action, true);
     xhr.onreadystatechange = function () {
         var svgImage = svgToDataUrl(trimSvgWhitespace(this.responseText));
         document.getElementById('img-upload').src = svgImage;
@@ -453,14 +469,14 @@ function uploadSVG(formData) {
         document.getElementById('btn_modal_ajouter_check').classList.remove('d-none');
         document.getElementById('btn_modal_ajouter').focus();
     };
-    xhr.send( formData );
+    xhr.send(formData);
 };
 
 function deleteActiveObject() {
-    canvasEditions.forEach(function(canvasEdition, index) {
-        canvasEdition.getActiveObjects().forEach(function(activeObject) {
+    canvasEditions.forEach(function (canvasEdition, index) {
+        canvasEdition.getActiveObjects().forEach(function (activeObject) {
             canvasEdition.remove(activeObject);
-            if(activeObject.type == "rect") {
+            if (activeObject.type == "rect") {
                 updateFlatten();
             }
         });
@@ -468,8 +484,8 @@ function deleteActiveObject() {
 };
 
 function addObjectInCanvas(canvas, item) {
-    item.on('selected', function(event) {
-        if(!is_mobile()) {
+    item.on('selected', function (event) {
+        if (!is_mobile()) {
             return;
         }
         document.getElementById('svg_object_actions').classList.remove('d-none');
@@ -477,11 +493,11 @@ function addObjectInCanvas(canvas, item) {
         document.getElementById('btn_svn_select').classList.add('d-none');
     });
 
-    item.on('deselected', function(event) {
-        if(!is_mobile()) {
+    item.on('deselected', function (event) {
+        if (!is_mobile()) {
             return;
         }
-        if(document.querySelector('input[name="svg_2_add"]:checked')) {
+        if (document.querySelector('input[name="svg_2_add"]:checked')) {
             document.getElementById('svg_selected_container').classList.remove('d-none');
         } else {
             document.getElementById('btn_svn_select').classList.remove('d-none');
@@ -497,7 +513,7 @@ function updateWatermark() {
         return
     }
 
-    const text = new fabric.Text(document.querySelector('input[name=watermark]').value, {angle: -40, fill: document.querySelector("#watermark-color-picker").value, fontSize: 27 * currentScale})
+    const text = new fabric.Text(document.querySelector('input[name=watermark]').value, { angle: -40, fill: document.querySelector("#watermark-color-picker").value, fontSize: 27 * currentScale })
     text.scale = 0.
     const overlay = new fabric.Rect({
         fill: new fabric.Pattern({
@@ -527,7 +543,7 @@ function updateFlatten() {
     })
 
     document.querySelector('input[name=flatten]').checked = flatten;
-    if(document.getElementById('save_flatten_indicator')) {
+    if (document.getElementById('save_flatten_indicator')) {
         document.getElementById('save_flatten_indicator').classList.toggle('invisible', !flatten);
     }
 }
@@ -535,20 +551,20 @@ function updateFlatten() {
 function setIsChanged(changed) {
     hasModifications = changed
 
-    if(document.querySelector('#alert-signature-help')) {
+    if (document.querySelector('#alert-signature-help')) {
         document.querySelector('#alert-signature-help').classList.toggle('d-none', changed);
     }
-    if(document.getElementById('save')) {
+    if (document.getElementById('save')) {
         document.getElementById('save').toggleAttribute('disabled', !changed);
     }
-    if(document.getElementById('save_mobile')) {
+    if (document.getElementById('save_mobile')) {
         document.getElementById('save_mobile').toggleAttribute('disabled', !changed);
     }
-    if(document.getElementById('btn_download')) {
+    if (document.getElementById('btn_download')) {
         document.getElementById('btn_download').classList.toggle('btn-outline-dark', !changed);
         document.getElementById('btn_download').classList.toggle('btn-outline-secondary', changed);
     }
-    if(document.getElementById('btn_share')) {
+    if (document.getElementById('btn_share')) {
         document.getElementById('btn_share').classList.toggle('btn-outline-dark', !changed);
         document.getElementById('btn_share').classList.toggle('btn-outline-secondary', changed);
     }
@@ -557,86 +573,103 @@ function setIsChanged(changed) {
 function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
     setIsChanged(true)
 
-    if(!height) {
+    if (!height) {
         height = 100;
     }
 
-    if(item == 'text') {
+    if (item == 'text') {
         let textbox = new fabric.Textbox(trad['Text to modify'], {
-        left: x,
-        top: y - 20,
-        fontSize: 20,
-        direction: direction,
-        fontFamily: 'Monospace',
-        fill: penColor
-      });
-
-      fabric.Textbox.prototype.customEnterAction = function (e) {
-          if (e.ctrlKey) {
-            this.insertChars('\n', undefined, this.selectionStart)
-            this.exitEditing();
-            this.enterEditing();
-            this.moveCursorRight(e);
-            return
-          }
-
-          this.exitEditing()
-      }
-
-      addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
-      textbox.keysMap[13] = "customEnterAction";
-      textbox.lockScalingFlip = true;
-      textbox.scaleX = currentTextScale;
-      textbox.scaleY = currentTextScale;
-      textbox.enterEditing();
-      textbox.selectAll();
-
-
-      return;
-    }
-
-    if(item == 'strikethrough') {
-        let line = new fabric.Line([x, y, x + 250, y], {
-          fill: penColor,
-          stroke: penColor,
-          lockScalingFlip: true,
-          strokeWidth: 2,
-          padding: 10,
+            left: x,
+            top: y - 20,
+            fontSize: 20,
+            direction: direction,
+            fontFamily: 'Monospace',
+            fill: penColor
         });
-        line.setControlsVisibility({ bl: false, br: false, mt: false, mb: false, tl: false, tr: false})
 
-        addObjectInCanvas(canvas, line).setActiveObject(line);
+        fabric.Textbox.prototype.customEnterAction = function (e) {
+            if (e.ctrlKey) {
+                this.insertChars('\n', undefined, this.selectionStart)
+                this.exitEditing();
+                this.enterEditing();
+                this.moveCursorRight(e);
+                return
+            }
+
+            this.exitEditing()
+        }
+
+        addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
+        textbox.keysMap[13] = "customEnterAction";
+        textbox.lockScalingFlip = true;
+        textbox.scaleX = currentTextScale;
+        textbox.scaleY = currentTextScale;
+        textbox.enterEditing();
+        textbox.selectAll();
+
+        // Trigger auto-save when text is added
+        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+            AutoSave.save();
+        }
 
         return;
     }
 
-    if(item == 'rectangle') {
-        let rect = new fabric.Rect({
-          left: x,
-          top: y,
-          width: 200,
-          height: 100,
-          fill: '#000',
-          lockScalingFlip: true
+    if (item == 'strikethrough') {
+        let line = new fabric.Line([x - 100, y, x + 100, y], {
+            lockScalingFlip: true,
+            strokeWidth: 2,
+            stroke: penColor
         });
-        rect.setControlsVisibility({ tl: false, tr: false, bl: false, br: false,})
+
+        line.setControlsVisibility({ bl: false, br: false, mt: false, mb: false, tl: false, tr: false });
+
+        addObjectInCanvas(canvas, line).setActiveObject(line);
+
+        updateFlatten();
+
+        // Trigger auto-save when strikethrough is added
+        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+            AutoSave.save();
+        }
+
+        return;
+    }
+
+    if (item == 'rectangle') {
+        let rect = new fabric.Rect({
+            left: x,
+            top: y,
+            width: 200,
+            height: 100,
+            fill: '#000',
+            lockScalingFlip: true
+        });
+        rect.setControlsVisibility({ tl: false, tr: false, bl: false, br: false, })
 
         addObjectInCanvas(canvas, rect).setActiveObject(rect);
 
         updateFlatten();
+
+        // Trigger auto-save when rectangle is added
+        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+            AutoSave.save();
+        }
+
         return;
     }
 
-    fabric.loadSVGFromURL(item, function(objects, options) {
+    // Handle SVG/Stamp items
+    fabric.loadSVGFromURL(item, function (objects, options) {
         let svg = fabric.util.groupSVGElements(objects, options);
         svg.svgOrigin = item;
         svg.lockScalingFlip = true;
         svg.scaleToHeight(height);
-        if(svg.getScaledWidth() > 200) {
+        if (svg.getScaledWidth() > 200) {
             svg.scaleToWidth(200);
         }
         let svgItem = getSvgItem(item);
-        if(svgItem && svgItem.scale) {
+        if (svgItem && svgItem.scale) {
             svg.scaleToWidth(canvas.width * svgItem.scale);
         }
         svg.top = y - (svg.getScaledHeight() / 2);
@@ -645,8 +678,13 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
         svg.fill = penColor
 
         addObjectInCanvas(canvas, svg);
+
+        // Trigger auto-save when SVG is added
+        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+            AutoSave.save();
+        }
     });
-};
+}
 
 function autoZoom() {
     clearTimeout(resizeTimeout);
@@ -654,16 +692,16 @@ function autoZoom() {
 };
 
 function zoomChange(inOrOut) {
-    if(resizeTimeout) {
+    if (resizeTimeout) {
         return;
     }
 
     let deltaScale = 0.2 * inOrOut;
 
-    if(currentScale + deltaScale < 0) {
+    if (currentScale + deltaScale < 0) {
         return
     }
-    if(currentScale + deltaScale > 3) {
+    if (currentScale + deltaScale > 3) {
         return
     }
 
@@ -675,30 +713,30 @@ function zoomChange(inOrOut) {
 
 function resizePDF(scale = 'auto') {
     renderComplete = true;
-    pdfRenderTasks.forEach(function(renderTask) {
-        if(!renderTask) {
+    pdfRenderTasks.forEach(function (renderTask) {
+        if (!renderTask) {
             renderComplete = false;
         }
     });
 
-    if(!renderComplete) {
+    if (!renderComplete) {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function(){ resizePDF(scale) }, 50);
+        resizeTimeout = setTimeout(function () { resizePDF(scale) }, 50);
         return;
     }
 
-    pdfPages.forEach(function(page, pageIndex) {
+    pdfPages.forEach(function (page, pageIndex) {
         let renderTask = pdfRenderTasks[pageIndex];
 
-        if(scale == 'auto' && page.getViewport({scale: 1.5}).width > document.getElementById('container-pages').clientWidth - 40) {
-            scale = (document.getElementById('container-pages').clientWidth - 40) / page.getViewport({scale: 1}).width;
+        if (scale == 'auto' && page.getViewport({ scale: 1.5 }).width > document.getElementById('container-pages').clientWidth - 40) {
+            scale = (document.getElementById('container-pages').clientWidth - 40) / page.getViewport({ scale: 1 }).width;
         }
 
-        if(scale == 'auto') {
+        if (scale == 'auto') {
             scale = 1.5;
         }
 
-        let viewport = page.getViewport({scale: scale});
+        let viewport = page.getViewport({ scale: scale });
         currentScale = scale;
 
         let canvasPDF = document.getElementById('canvas-pdf-' + pageIndex);
@@ -710,11 +748,11 @@ function resizePDF(scale = 'auto') {
         let scaleMultiplier = canvasPDF.width / canvasEdition.width;
         let objects = canvasEdition.getObjects();
         for (let i in objects) {
-           objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-           objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-           objects[i].left = objects[i].left * scaleMultiplier;
-           objects[i].top = objects[i].top * scaleMultiplier;
-           objects[i].setCoords();
+            objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+            objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+            objects[i].left = objects[i].left * scaleMultiplier;
+            objects[i].top = objects[i].top * scaleMultiplier;
+            objects[i].setCoords();
         }
 
         canvasEdition.setWidth(canvasEdition.getWidth() * scaleMultiplier);
@@ -723,9 +761,9 @@ function resizePDF(scale = 'auto') {
         canvasEdition.calcOffset();
 
         let renderContext = {
-          canvasContext: context,
-          viewport: viewport,
-          enhanceTextSelection: true
+            canvasContext: context,
+            viewport: viewport,
+            enhanceTextSelection: true
         };
         renderTask.cancel();
         pdfRenderTasks[pageIndex] = null;
@@ -742,46 +780,46 @@ function resizePDF(scale = 'auto') {
 
 function createEventsListener() {
 
-    document.getElementById('add-lock-checkbox').addEventListener('change', function() {
+    document.getElementById('add-lock-checkbox').addEventListener('change', function () {
         stateAddLock(this.checked);
     });
 
-    document.querySelectorAll('.btn-add-svg-type').forEach(function(item) {
-        item.addEventListener('click', function(event) {
+    document.querySelectorAll('.btn-add-svg-type').forEach(function (item) {
+        item.addEventListener('click', function (event) {
             document.getElementById('input-svg-type').value = this.dataset.type;
-            if(this.dataset.modalnav) {
-                bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab '+this.dataset.modalnav)).show();
+            if (this.dataset.modalnav) {
+                bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab ' + this.dataset.modalnav)).show();
             }
         });
     });
 
-    document.querySelectorAll('label.btn-svg').forEach(function(item) {
-        item.addEventListener('dragstart', function(event) {
+    document.querySelectorAll('label.btn-svg').forEach(function (item) {
+        item.addEventListener('dragstart', function (event) {
             svgDragStart(this, event);
         });
-        item.addEventListener('click', function(event) {
+        item.addEventListener('click', function (event) {
             svgClick(this, event);
         });
-        item.addEventListener('dblclick', function(event) {
+        item.addEventListener('dblclick', function (event) {
             svgDblClick(this, event);
         });
     });
 
     document.querySelectorAll('input[name="svg_2_add"]').forEach(function (item) {
-        item.addEventListener('change', function(event) {
+        item.addEventListener('change', function (event) {
             svgChange(this, event);
         });
     });
 
-    document.getElementById('btn_modal_ajouter').addEventListener('click', function() {
+    document.getElementById('btn_modal_ajouter').addEventListener('click', function () {
         let svgItem = {};
-        if(document.getElementById('input-svg-type').value) {
+        if (document.getElementById('input-svg-type').value) {
             svgItem.type = document.getElementById('input-svg-type').value;
         }
-        if(document.getElementById('nav-draw-tab').classList.contains('active')) {
+        if (document.getElementById('nav-draw-tab').classList.contains('active')) {
             svgItem.svg = document.getElementById('img-upload').src;
         }
-        if(document.getElementById('nav-type-tab').classList.contains('active')) {
+        if (document.getElementById('nav-type-tab').classList.contains('active')) {
             let fontPath = fontCaveat.getPath(document.getElementById('input-text-signature').value, 0, 0, 42);
             let fabricPath = new fabric.Path(fontPath.toPathData());
             fabricPath.top = 0;
@@ -794,7 +832,7 @@ function createEventsListener() {
             textCanvasFabric.add(fabricPath).renderAll();
             svgItem.svg = svgToDataUrl(textCanvasFabric.toSVG());
         }
-        if(document.getElementById('nav-import-tab').classList.contains('active')) {
+        if (document.getElementById('nav-import-tab').classList.contains('active')) {
             svgItem.svg = document.getElementById('img-upload').src;
         }
         svgCollections.push(svgItem);
@@ -802,38 +840,40 @@ function createEventsListener() {
         localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
 
         let svg_list_id = "svg_list";
-        if(svgItem.type) {
+        if (svgItem.type) {
             svg_list_id = svg_list_id + "_" + svgItem.type;
         }
 
-        document.querySelector('#'+svg_list_id+' label:last-child').click();
+        document.querySelector('#' + svg_list_id + ' label:last-child').click();
 
-        if(document.querySelector('#save').disabled && document.querySelector('#alert-signature-help.auto-open') && !is_mobile()) {
+        if (document.querySelector('#save').disabled && document.querySelector('#alert-signature-help.auto-open') && !is_mobile()) {
             document.querySelector('#alert-signature-help').classList.remove('d-none');
         }
     });
 
 
-    document.getElementById('signature-pad-reset').addEventListener('click', function(event) {
+    document.getElementById('signature-pad-reset').addEventListener('click', function (event) {
         signaturePad.clear();
         event.preventDefault();
     })
 
-    document.querySelectorAll('#modalAddSvg .nav-link').forEach(function(item) { item.addEventListener('shown.bs.tab', function (event) {
-        let firstInput = document.querySelector(event.target.dataset.bsTarget).querySelector('input');
-        if(firstInput) {
-            firstInput.focus();
-        }
-    })});
+    document.querySelectorAll('#modalAddSvg .nav-link').forEach(function (item) {
+        item.addEventListener('shown.bs.tab', function (event) {
+            let firstInput = document.querySelector(event.target.dataset.bsTarget).querySelector('input');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        })
+    });
 
     document.getElementById('modalAddSvg').addEventListener('shown.bs.modal', function (event) {
         document.querySelector('#modalAddSvg #nav-tab button:first-child').focus();
         let tab = document.querySelector('#modalAddSvg .tab-pane.active');
-        if(tab.querySelector('input')) {
+        if (tab.querySelector('input')) {
             tab.querySelector('input').focus();
         }
         let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-        if(input_selected) {
+        if (input_selected) {
             input_selected.checked = false;
             input_selected.dispatchEvent(new Event("change"));
         }
@@ -850,14 +890,14 @@ function createEventsListener() {
         bootstrap.Tab.getOrCreateInstance(document.querySelector('#modalAddSvg #nav-tab button:first-child')).show();
     })
 
-    document.getElementById('input-text-signature').addEventListener('keydown', function(event) {
+    document.getElementById('input-text-signature').addEventListener('keydown', function (event) {
         document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
-        if(event.key == 'Enter') {
+        if (event.key == 'Enter') {
             document.getElementById('btn_modal_ajouter').click()
         }
     })
 
-    document.getElementById('input-image-upload').addEventListener('change', function(event) {
+    document.getElementById('input-image-upload').addEventListener('change', function (event) {
         let data = new FormData();
         data.append('file', document.getElementById('input-image-upload').files[0]);
         uploadSVG(data);
@@ -877,53 +917,65 @@ function createEventsListener() {
         setIsChanged(hasModifications || !!e.target.value)
         updateFlatten();
         updateWatermark();
+        // Trigger auto-save on watermark change
+        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+            AutoSave.save();
+        }
     }, 750))
 
     document.querySelector('input[name=watermark]')?.addEventListener('change', function (e) {
         setIsChanged(hasModifications || !!e.target.value)
         updateFlatten();
         updateWatermark();
+        // Trigger auto-save on watermark change
+        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+            AutoSave.save();
+        }
     });
 
     document.querySelector('#watermark-color-picker')?.addEventListener('change', function (e) {
         document.querySelector('input[name=watermark]').dispatchEvent(new Event("change"));
+        // Trigger auto-save on watermark color change
+        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+            AutoSave.save();
+        }
     });
 
-    if(document.querySelector('#alert-signature-help')) {
-        document.getElementById('btn-signature-help').addEventListener('click', function(event) {
+    if (document.querySelector('#alert-signature-help')) {
+        document.getElementById('btn-signature-help').addEventListener('click', function (event) {
             document.querySelector('#alert-signature-help').classList.remove('d-none');
             event.preventDefault();
         });
-        document.querySelector('#alert-signature-help .btn-close').addEventListener('click', function(event) {
+        document.querySelector('#alert-signature-help .btn-close').addEventListener('click', function (event) {
             document.querySelector('#alert-signature-help').classList.add('d-none');
             event.preventDefault();
         });
     }
 
-    if(document.getElementById('save')) {
-        document.getElementById('save').addEventListener('click', async function(event) {
-            if(!pdfHash) {
+    if (document.getElementById('save')) {
+        document.getElementById('save').addEventListener('click', async function (event) {
+            if (!pdfHash) {
                 event.preventDefault()
             }
 
             let previousScale = currentScale;
-            if(currentScale != defaultScale) {
+            if (currentScale != defaultScale) {
                 resizePDF(defaultScale)
-                while(!renderComplete) { }
+                while (!renderComplete) { }
             }
             let dataTransfer = new DataTransfer();
-            canvasEditions.forEach(function(canvasEdition, index) {
-                dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
+            canvasEditions.forEach(function (canvasEdition, index) {
+                dataTransfer.items.add(new File([canvasEdition.toSVG()], index + '.svg', {
                     type: 'image/svg+xml'
                 }));
             })
             document.getElementById('input_svg').files = dataTransfer.files;
-            if(previousScale != currentScale) {
+            if (previousScale != currentScale) {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(resizePDF(previousScale), 100);
             }
 
-            if(!pdfHash) {
+            if (!pdfHash) {
                 startProcessingMode(this)
                 const formData = new FormData(this.form)
                 const response = await fetch(this.form.action, {
@@ -941,12 +993,12 @@ function createEventsListener() {
         });
     }
 
-    if(document.getElementById('save_share')) {
-        document.getElementById('save_share').addEventListener('click', function(event) {
+    if (document.getElementById('save_share')) {
+        document.getElementById('save_share').addEventListener('click', function (event) {
             let dataTransfer = new DataTransfer();
-            if(!document.getElementById('save').hasAttribute('disabled')) {
-                canvasEditions.forEach(function(canvasEdition, index) {
-                    dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
+            if (!document.getElementById('save').hasAttribute('disabled')) {
+                canvasEditions.forEach(function (canvasEdition, index) {
+                    dataTransfer.items.add(new File([canvasEdition.toSVG()], index + '.svg', {
                         type: 'image/svg+xml'
                     }));
                 })
@@ -964,18 +1016,18 @@ function createEventsListener() {
         });
     }
 
-    document.getElementById('save_mobile').addEventListener('click', function(event) {
+    document.getElementById('save_mobile').addEventListener('click', function (event) {
         document.getElementById('save').click();
 
         event.preventDefault();
         return false;
     });
 
-    document.getElementById('btn-svg-pdf-delete').addEventListener('click', function(event) {
+    document.getElementById('btn-svg-pdf-delete').addEventListener('click', function (event) {
         deleteActiveObject();
     });
 
-    document.getElementById('btn_svg_selected_close').addEventListener('click', function(event) {
+    document.getElementById('btn_svg_selected_close').addEventListener('click', function (event) {
         let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
         stateAddLock(false);
@@ -984,10 +1036,10 @@ function createEventsListener() {
         this.blur();
     });
 
-    document.addEventListener('click', function(event) {
-        if(event.target.nodeName == "DIV") {
+    document.addEventListener('click', function (event) {
+        if (event.target.nodeName == "DIV") {
             let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-            if(!input_selected) {
+            if (!input_selected) {
                 return;
             }
             stateAddLock(false);
@@ -996,10 +1048,10 @@ function createEventsListener() {
         }
     });
 
-    document.addEventListener('keydown', function(event) {
-        if(event.key == 'Escape' && (event.target.tagName == "BODY" || event.target.name == "svg_2_add")) {
+    document.addEventListener('keydown', function (event) {
+        if (event.key == 'Escape' && (event.target.tagName == "BODY" || event.target.name == "svg_2_add")) {
             let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
-            if(!input_selected) {
+            if (!input_selected) {
                 return;
             }
             input_selected.checked = false;
@@ -1008,16 +1060,16 @@ function createEventsListener() {
             input_selected.blur();
             return;
         }
-        if(event.target.tagName != "BODY") {
+        if (event.target.tagName != "BODY") {
             return;
         }
-        if(event.key == 'Delete') {
+        if (event.key == 'Delete') {
             deleteActiveObject();
             return;
         }
 
-        if(event.ctrlKey && event.key == 'c') {
-            if(!activeCanvas || !activeCanvas.getActiveObject()) {
+        if (event.ctrlKey && event.key == 'c') {
+            if (!activeCanvas || !activeCanvas.getActiveObject()) {
                 return;
             }
             copiedObject = fabric.util.object.clone(activeCanvas.getActiveObject());
@@ -1025,7 +1077,7 @@ function createEventsListener() {
             return;
         }
 
-        if(event.ctrlKey && event.key == 'v') {
+        if (event.ctrlKey && event.key == 'v') {
             copiedObject = fabric.util.object.clone(copiedObject);
             copiedObject.left = activeCanvasPointer.x;
             copiedObject.top = activeCanvasPointer.y;
@@ -1033,19 +1085,19 @@ function createEventsListener() {
             return;
         }
 
-        if(event.ctrlKey && (event.key == 'à' || event.key == '0')) {
+        if (event.ctrlKey && (event.key == 'à' || event.key == '0')) {
             autoZoom();
             event.preventDefault() && event.stopPropagation();
 
             return;
         }
-        if(event.ctrlKey && (event.key == '=' || event.key == '+')) {
+        if (event.ctrlKey && (event.key == '=' || event.key == '+')) {
             zoomChange(1);
             event.preventDefault() && event.stopPropagation();
 
             return;
         }
-        if(event.ctrlKey && event.key == '-') {
+        if (event.ctrlKey && event.key == '-') {
             zoomChange(-1);
             event.preventDefault() && event.stopPropagation();
 
@@ -1053,32 +1105,32 @@ function createEventsListener() {
         }
     });
 
-    window.addEventListener('resize', function(event) {
+    window.addEventListener('resize', function (event) {
         event.preventDefault() && event.stopPropagation();
-        if(windowWidth == window.innerWidth) {
+        if (windowWidth == window.innerWidth) {
             return;
         }
         responsiveDisplay();
         windowWidth = window.innerWidth;
         autoZoom();
     });
-    document.addEventListener('wheel', function(event) {
-        if(!event.ctrlKey) {
+    document.addEventListener('wheel', function (event) {
+        if (!event.ctrlKey) {
             return;
         }
         event.preventDefault() && event.stopPropagation();
 
-        if(event.deltaY > 0) {
+        if (event.deltaY > 0) {
             zoomChange(-1)
         } else {
             zoomChange(1)
         }
     }, { passive: false });
 
-    document.getElementById('btn-zoom-decrease').addEventListener('click', function() {
+    document.getElementById('btn-zoom-decrease').addEventListener('click', function () {
         zoomChange(-1)
     });
-    document.getElementById('btn-zoom-increase').addEventListener('click', function() {
+    document.getElementById('btn-zoom-increase').addEventListener('click', function () {
         zoomChange(1)
     });
 
@@ -1087,12 +1139,12 @@ function createEventsListener() {
         storePenColor(penColorPicker.value)
     })
 
-    document.getElementById('color-picker').addEventListener('click', function(event) {
+    document.getElementById('color-picker').addEventListener('click', function (event) {
         penColorPicker.click();
     })
 
-    window.addEventListener('beforeunload', function(event) {
-        if(!hasModifications) {
+    window.addEventListener('beforeunload', function (event) {
+        if (!hasModifications) {
             return;
         }
 
@@ -1100,9 +1152,9 @@ function createEventsListener() {
         return true;
     });
 
-    if(pdfHash) {
+    if (pdfHash) {
         updateNbLayers();
-        setInterval(function() {
+        setInterval(function () {
             updateNbLayers();
         }, 10000);
     }
@@ -1114,28 +1166,32 @@ function createSignaturePad() {
         minWidth: 1,
         maxWidth: 2
     });
-    signaturePad.addEventListener('endStroke', debounce(function(){
+    signaturePad.addEventListener('endStroke', debounce(function () {
         const file = new File([dataURLtoBlob(signaturePad.toDataURL())], "draw.png", {
             type: 'image/png'
         });
         let data = new FormData();
         data.append('file', file);
         uploadSVG(data);
+        // Trigger auto-save when signature is drawn
+        if (typeof AutoSave !== 'undefined' && AutoSave.isEnabled()) {
+            AutoSave.save();
+        }
     }, 500));
 };
 
 function modalSharing() {
-    if(openModal == "shareinformations") {
+    if (openModal == "shareinformations") {
         let modalInformationsEl = document.getElementById('modal-share-informations');
         let modalInformations = bootstrap.Modal.getOrCreateInstance(modalInformationsEl);
         modalInformations.show();
     }
 
-    if(openModal == 'signed') {
+    if (openModal == 'signed') {
         let modalSignedEl = document.getElementById('modal-signed');
         let modalSigned = bootstrap.Modal.getOrCreateInstance(modalSignedEl);
 
-        document.querySelector('#modal-signed #text_nomail_notification a').addEventListener('click', function() {
+        document.querySelector('#modal-signed #text_nomail_notification a').addEventListener('click', function () {
             this.href = this.href.replace(/DOCUMENT_NAME/g, document.getElementById('text_document_name').title);
             this.href = this.href.replace('DOCUMENT_URL', document.location.href);
         });
@@ -1158,11 +1214,11 @@ async function pageUpload() {
     document.getElementById('page-upload').classList.remove('d-none');
     document.getElementById('page-signature').classList.add('d-none');
     document.getElementById('input_pdf_upload').focus();
-    document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
-        if(await canUseCache()) {
+    document.getElementById('input_pdf_upload').addEventListener('change', async function (event) {
+        if (await canUseCache()) {
             const file = document.getElementById('input_pdf_upload').files[0]
             storeFileInCache(file, file.name);
-          //history.pushState({}, '', `${REVERSE_PROXY_URL ? '/': ''}${REVERSE_PROXY_URL}/signature#${file.name}`);
+            //history.pushState({}, '', `${REVERSE_PROXY_URL ? '/': ''}${REVERSE_PROXY_URL}/signature#${file.name}`);
             history.pushState({}, '', `${REVERSE_PROXY_URL}/signature#${encodeURIComponent(file.name)}`);
         }
         pageSignature(null);
@@ -1171,23 +1227,23 @@ async function pageUpload() {
 
 function updateNbLayers() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/signature/'+pdfHash+'/nblayers', true);
-    xhr.onload = function() {
-      if (xhr.status == 200) {
-          let newNblayers = xhr.response;
-          if(nblayers !== null && nblayers != newNblayers) {
-              console.log('/signature/'+pdfHash+'/pdf');
-              reloadPDF('/signature/'+pdfHash+'/pdf');
-          }
-          nblayers = newNblayers;
-          document.querySelectorAll('.nblayers').forEach(function(item) {
-            item.innerHTML = nblayers;
-          });
-          document.querySelector('#nblayers_text').classList.remove('d-none');
-          if(!nblayers) {
-              document.querySelector('#nblayers_text').classList.add('d-none');
-          }
-      }
+    xhr.open('GET', '/signature/' + pdfHash + '/nblayers', true);
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            let newNblayers = xhr.response;
+            if (nblayers !== null && nblayers != newNblayers) {
+                console.log('/signature/' + pdfHash + '/pdf');
+                reloadPDF('/signature/' + pdfHash + '/pdf');
+            }
+            nblayers = newNblayers;
+            document.querySelectorAll('.nblayers').forEach(function (item) {
+                item.innerHTML = nblayers;
+            });
+            document.querySelector('#nblayers_text').classList.remove('d-none');
+            if (!nblayers) {
+                document.querySelector('#nblayers_text').classList.add('d-none');
+            }
+        }
     };
     xhr.send();
 };
@@ -1204,194 +1260,335 @@ async function pageSignature(url) {
     forceAddLock = !is_mobile();
     addLock = forceAddLock;
 
-    if(localStorage.getItem('svgCollections')) {
+    if (localStorage.getItem('svgCollections')) {
         svgCollections = JSON.parse(localStorage.getItem('svgCollections'));
     }
 
-    if(svgCollections.length == 0 && document.querySelector('#alert-signature-help')) {
+    if (svgCollections.length == 0 && document.querySelector('#alert-signature-help')) {
         document.querySelector('#alert-signature-help').classList.add('auto-open');
     }
 
-    opentype.load(url_font, function(err, font) {
+    opentype.load(url_font, function (err, font) {
         fontCaveat = font;
     });
 
-    if(url && url.match(/^cache:\/\//)) {
+    if (url && url.match(/^cache:\/\//)) {
         await loadFileFromCache(url.replace(/^cache:\/\//, ''));
     } else if (url) {
         await loadFileFromUrl(url);
     }
 
-    if(!document.getElementById('input_pdf_upload').files.length) {
-        alert("Chargement du PDF impossible");
-        document.location = '/signature';
-        return;
+    // If no file was uploaded, attempt to restore from AutoSave before failing
+    const inputFiles = document.getElementById('input_pdf_upload').files;
+    if (!inputFiles.length) {
+        let restored = false;
+        if (typeof AutoSave !== 'undefined' && AutoSave.findSavedPDFEntry) {
+            const found = AutoSave.findSavedPDFEntry();
+            if (found && found.pdfBlob) {
+                try {
+                    const fileName = found.pdfName || 'restored.pdf';
+                    const restoredFile = new File([found.pdfBlob], fileName, { type: 'application/pdf' });
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(restoredFile);
+                    document.getElementById('input_pdf_upload').files = dataTransfer.files;
+                    restored = true;
+                    console.log('[Signature] Restored input file from AutoSave session:', found.sessionKey);
+                } catch (e) {
+                    console.warn('[Signature] Could not restore file into input element:', e);
+                }
+            }
+        }
+        if (!restored) {
+            alert("Chargement du PDF impossible");
+            document.location = '/signature';
+            return;
+        }
     }
 
-    if(document.getElementById('input_pdf_upload').files[0].size > maxSize) {
+    if (document.getElementById('input_pdf_upload').files[0].size > maxSize) {
 
         alert("Le PDF ne doit pas dépasser " + convertOctet2MegoOctet(maxSize) + " Mo");
         document.getElementById('input_pdf_upload').value = "";
         return;
     }
 
-    storePenColor(penColor)
-    createSignaturePad();
-    responsiveDisplay();
-    displaysSVG();
-    stateAddLock();
-    createEventsListener();
-    loadPDF(document.getElementById('input_pdf_upload').files[0]);
-};
-
-document.addEventListener('DOMContentLoaded', function () {
-    if(sharingMode) {
-        setTimeout(function() { runCron() }, 2000);
+    // Initialize auto-save system FIRST
+    if (typeof AutoSave !== 'undefined') {
+        AutoSave.init(true, 1500);
     }
 
-    if(pdfHash) {
-        if (window.location.hash && window.location.hash.match(/^\#/)) {
-            storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#/, ''));
-        } else if (getSymmetricKey(pdfHash)) {
-            window.location.hash = getSymmetricKey(pdfHash);
-        }
-        pageSignature('/signature/'+pdfHash+'/pdf');
-    } else if(window.location.hash && window.location.hash.match(/^\#http/)) {
-        pageSignature(window.location.hash.replace(/^\#/, ''));
-    } else if(window.location.hash) {
-        pageSignature('cache:///pdf/'+window.location.hash.replace(/^\#/, ''));
-    } else {
-        pageUpload();
-    }
-
-    window.addEventListener('hashchange', function() {
-        window.location.reload();
-    })
-});
-
-function storePenColor(color) {
-    penColor = color
-    penColorPicker.value = color
-    localStorage.setItem('penColor', penColor)
-    document.getElementById('color-picker').style.backgroundColor = penColor;
-    if(penColor != "#000000") {
-        document.getElementById('color-picker').style.opacity = 1;
-    } else {
-        document.getElementById('color-picker').style.opacity = 0.25;
-    }
-
-}
-
-const toolBox = (function () {
-    let _elSelected
-
-    const _elToolbox = document.createElement('div')
-          _elToolbox.id = 'toolbox'
-          _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block', 'user-select-none')
-          _elToolbox.style['z-index'] = 1030
-          _elToolbox.style.width = 'max-content'
-
-    const _elToolboxElements = document.querySelector("#toolbox-elements-template").content.cloneNode(true)
-          _elToolbox.appendChild(_elToolboxElements)
-
-    _elToolbox.addEventListener('click', function (e) {
-        e.preventDefault()
-        target = e.target
-
-        el = target.closest("[data-action]")
-        if (el) {
-            switch (el.dataset.action) {
-                case "changeColor":
-                    _changeColor(); break;
-                case "delete":
-                    _delete(); break;
-                case "copy":
-                    _copy(); break;
-                case "duplicate":
-                    _duplicate(); break;
+    // Check if we have a saved PDF in localStorage and restore it
+    let pdfToLoad = document.getElementById('input_pdf_upload').files[0];
+    if (typeof AutoSave !== 'undefined' && (!pdfToLoad || !pdfToLoad.size)) {
+        // First try per-session saved PDF
+        const found = AutoSave.findSavedPDFEntry ? AutoSave.findSavedPDFEntry() : null;
+        if (found && found.pdfBlob) {
+            console.log('[Signature] Restoring PDF from AutoSave session:', found.sessionKey);
+            const fileName = found.pdfName || 'restored.pdf';
+            const restoredFile = new File([found.pdfBlob], fileName, { type: 'application/pdf' });
+            pdfToLoad = restoredFile;
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(restoredFile);
+            document.getElementById('input_pdf_upload').files = dataTransfer.files;
+        } else {
+            // Fallback: check global annotated PDF
+            const global = AutoSave.getGlobalAnnotatedPDF ? AutoSave.getGlobalAnnotatedPDF() : null;
+            if (global && global.base64) {
+                try {
+                    const base64 = global.base64;
+                    const name = global.name || 'restored.pdf';
+                    const byteCharacters = atob(base64.split(',')[1]);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'application/pdf' });
+                    const restoredFile = new File([blob], name, { type: 'application/pdf' });
+                    pdfToLoad = restoredFile;
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(restoredFile);
+                    document.getElementById('input_pdf_upload').files = dataTransfer.files;
+                    console.log('[Signature] Restored PDF from global autosave key');
+                } catch (e) {
+                    console.warn('[Signature] Could not restore global annotated PDF:', e);
+                }
             }
         }
-    })
+    }
 
-    function _changeColor() {
-        const _colorpicker = document.createElement('input')
-              _colorpicker.setAttribute('type', 'color')
-              _colorpicker.value = penColor
+    (async function initRestoreAndLoad() {
+        storePenColor(penColor)
+        createSignaturePad();
+        responsiveDisplay();
+        displaysSVG();
+        stateAddLock();
+        createEventsListener();
 
-        _colorpicker.addEventListener('input', function (e) {
-            _elSelected.set({ fill: e.target.value })
-            _elSelected.canvas.requestRenderAll()
-            if(_elSelected.type != "rect") {
-                storePenColor(e.target.value)
+        // If pdfToLoad isn't already present, attempt to resolve global annotated PDF asynchronously
+        if (!pdfToLoad || !pdfToLoad.size) {
+            try {
+                const global = AutoSave.getGlobalAnnotatedPDFAsync ? await AutoSave.getGlobalAnnotatedPDFAsync() : (AutoSave.getGlobalAnnotatedPDF ? AutoSave.getGlobalAnnotatedPDF() : null);
+                if (global && global.base64) {
+                    const base64 = global.base64;
+                    const name = global.name || 'restored.pdf';
+                    const bytes = Uint8Array.from(atob(base64.split(',')[1]), c => c.charCodeAt(0));
+                    const blob = new Blob([bytes], { type: 'application/pdf' });
+                    const restoredFile = new File([blob], name, { type: 'application/pdf' });
+                    pdfToLoad = restoredFile;
+                    const dataTransfer2 = new DataTransfer();
+                    dataTransfer2.items.add(restoredFile);
+                    document.getElementById('input_pdf_upload').files = dataTransfer2.files;
+                    console.log('[Signature] Restored PDF from global autosave async');
+                }
+            } catch (e) {
+                console.warn('[Signature] Async global annotated PDF restore failed', e);
+            }
+        }
+
+        // Load the PDF (either from input or from saved localStorage)
+        if (pdfToLoad) {
+            loadPDF(pdfToLoad).then(async () => {
+                // After PDF loaded and canvases created, restore previous canvas state if any
+                if (typeof AutoSave !== 'undefined') {
+                    AutoSave.setPDFBlob(pdfToLoad);
+                    AutoSave.regenerateSessionKey();
+                    // Restore canvas objects
+                    if (AutoSave.restore) {
+                        try {
+                            AutoSave.restore();
+                        } catch (err) {
+                            console.warn('[Signature] AutoSave.restore failed', err);
+                        }
+                    }
+
+                    // After restoration, generate an annotated flattened PDF and reload it so user sees the merged result
+                    if (AutoSave.exportAnnotatedPDF) {
+                        try {
+                            const annotatedBase64 = await AutoSave.exportAnnotatedPDF(pdfToLoad);
+                            if (annotatedBase64) {
+                                // Convert base64 to Blob and reload
+                                const bytes = Uint8Array.from(atob(annotatedBase64.split(',')[1]), c => c.charCodeAt(0));
+                                const blob = new Blob([bytes], { type: 'application/pdf' });
+                                const file = new File([blob], pdfToLoad.name || 'annotated.pdf', { type: 'application/pdf' });
+                                const dt = new DataTransfer();
+                                dt.items.add(file);
+                                document.getElementById('input_pdf_upload').files = dt.files;
+                                // Reload the PDF to show the annotated version
+                                await loadPDF(blob);
+                                // Update AutoSave to reference the annotated PDF
+                                if (typeof AutoSave !== 'undefined') {
+                                    AutoSave.setPDFBlob(blob);
+                                    AutoSave.regenerateSessionKey();
+                                    // Immediately save so the annotated PDF is persisted
+                                    if (AutoSave.saveNow) {
+                                        AutoSave.saveNow();
+                                    }
+                                }
+                            }
+                        } catch (e) {
+                            console.warn('[Signature] Could not export annotated PDF on startup:', e);
+                        }
+                    }
+                }
+            });
+            // Store PDF blob reference for auto-save recovery
+            if (typeof AutoSave !== 'undefined') {
+                AutoSave.setPDFBlob(pdfToLoad);
+                // Regenerate session key now that we have the actual PDF filename
+                AutoSave.regenerateSessionKey();
+            }
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        if (sharingMode) {
+            setTimeout(function () { runCron() }, 2000);
+        }
+
+        if (pdfHash) {
+            if (window.location.hash && window.location.hash.match(/^\#/)) {
+                storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#/, ''));
+            } else if (getSymmetricKey(pdfHash)) {
+                window.location.hash = getSymmetricKey(pdfHash);
+            }
+            pageSignature('/signature/' + pdfHash + '/pdf');
+        } else if (window.location.hash && window.location.hash.match(/^\#http/)) {
+            pageSignature(window.location.hash.replace(/^\#/, ''));
+        } else if (window.location.hash) {
+            pageSignature('cache:///pdf/' + window.location.hash.replace(/^\#/, ''));
+        } else {
+            pageUpload();
+        }
+
+        window.addEventListener('hashchange', function () {
+            window.location.reload();
+        })
+    });
+
+    function storePenColor(color) {
+        penColor = color
+        penColorPicker.value = color
+        localStorage.setItem('penColor', penColor)
+        document.getElementById('color-picker').style.backgroundColor = penColor;
+        if (penColor != "#000000") {
+            document.getElementById('color-picker').style.opacity = 1;
+        } else {
+            document.getElementById('color-picker').style.opacity = 0.25;
+        }
+
+    }
+
+    const toolBox = (function () {
+        let _elSelected
+
+        const _elToolbox = document.createElement('div')
+        _elToolbox.id = 'toolbox'
+        _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block', 'user-select-none')
+        _elToolbox.style['z-index'] = 1030
+        _elToolbox.style.width = 'max-content'
+
+        const _elToolboxElements = document.querySelector("#toolbox-elements-template").content.cloneNode(true)
+        _elToolbox.appendChild(_elToolboxElements)
+
+        _elToolbox.addEventListener('click', function (e) {
+            e.preventDefault()
+            target = e.target
+
+            el = target.closest("[data-action]")
+            if (el) {
+                switch (el.dataset.action) {
+                    case "changeColor":
+                        _changeColor(); break;
+                    case "delete":
+                        _delete(); break;
+                    case "copy":
+                        _copy(); break;
+                    case "duplicate":
+                        _duplicate(); break;
+                }
             }
         })
 
-        _colorpicker.click()
-        _colorpicker.remove()
-    }
+        function _changeColor() {
+            const _colorpicker = document.createElement('input')
+            _colorpicker.setAttribute('type', 'color')
+            _colorpicker.value = penColor
 
-    function _copy() {
-        _elSelected.clone(function (clonedItem) {
-            clonedItem.top -= 20;
-            clonedItem.left += 20;
-            addObjectInCanvas(_elSelected.canvas, clonedItem).setActiveObject(clonedItem)
-        })
-    }
-
-    function _duplicate() {
-        canvasEditions.forEach(function (canvas) {
-            if  (_elSelected.canvas === canvas) {
-                return
-            }
-
-            _elSelected.clone(function (clonedItem) {
-                addObjectInCanvas(canvas, clonedItem)
+            _colorpicker.addEventListener('input', function (e) {
+                _elSelected.set({ fill: e.target.value })
+                _elSelected.canvas.requestRenderAll()
+                if (_elSelected.type != "rect") {
+                    storePenColor(e.target.value)
+                }
             })
-        })
 
-    }
+            _colorpicker.click()
+            _colorpicker.remove()
+        }
 
-    function _delete() {
-        deleteActiveObject()
-        reset()
-    }
+        function _copy() {
+            _elSelected.clone(function (clonedItem) {
+                clonedItem.top -= 20;
+                clonedItem.left += 20;
+                addObjectInCanvas(_elSelected.canvas, clonedItem).setActiveObject(clonedItem)
+            })
+        }
 
-    function init(el) {
-        if (_elToolbox) {
+        function _duplicate() {
+            canvasEditions.forEach(function (canvas) {
+                if (_elSelected.canvas === canvas) {
+                    return
+                }
+
+                _elSelected.clone(function (clonedItem) {
+                    addObjectInCanvas(canvas, clonedItem)
+                })
+            })
+
+        }
+
+        function _delete() {
+            deleteActiveObject()
             reset()
         }
 
-        _elSelected = el
-        const container = document.getElementById('container-pages')
-        container.appendChild(_elToolbox)
+        function init(el) {
+            if (_elToolbox) {
+                reset()
+            }
 
-        const xCoords = _elSelected.getCoords().map((c) => c.x)
-        const yCoords = _elSelected.getCoords().map((c) => c.y)
+            _elSelected = el
+            const container = document.getElementById('container-pages')
+            container.appendChild(_elToolbox)
 
-        _elToolbox.style.left = (
-            Math.min(...xCoords)              // on sélectionne le coin le plus à gauche
-            + _elSelected.canvas._offset.left // décalage du canvas dans le viewport
-            + (
-                Math.max(...xCoords)      // on sélectionne le coin le plus à droite
-              - Math.min(...xCoords)      // on sélectionne le coin le plus à gauche
-            ) / 2                         // pour calculer la largeur et avoir le centre
-            - _elToolbox.offsetWidth / 2  // centre de la toolbox
-            - +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
-        ) + 'px'
-        _elToolbox.style.top = (
-            Math.max(...yCoords)             // on sélectionne le coin le plus bas
-            + _elSelected.canvas._offset.top // hauteur du canvas dans le viewport
-            + container.scrollTop            // haut du container
-        ) + 'px'
-    }
+            const xCoords = _elSelected.getCoords().map((c) => c.x)
+            const yCoords = _elSelected.getCoords().map((c) => c.y)
 
-    function reset() {
-        _elSelected = null
-        _elToolbox.remove()
-    }
+            _elToolbox.style.left = (
+                Math.min(...xCoords)              // on sélectionne le coin le plus à gauche
+                + _elSelected.canvas._offset.left // décalage du canvas dans le viewport
+                + (
+                    Math.max(...xCoords)      // on sélectionne le coin le plus à droite
+                    - Math.min(...xCoords)      // on sélectionne le coin le plus à gauche
+                ) / 2                         // pour calculer la largeur et avoir le centre
+                - _elToolbox.offsetWidth / 2  // centre de la toolbox
+                - +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
+            ) + 'px'
+            _elToolbox.style.top = (
+                Math.max(...yCoords)             // on sélectionne le coin le plus bas
+                + _elSelected.canvas._offset.top // hauteur du canvas dans le viewport
+                + container.scrollTop            // haut du container
+            ) + 'px'
+        }
 
-    return {
-        init: init,
-        reset: reset
-    }
-})()
+        function reset() {
+            _elSelected = null
+            _elToolbox.remove()
+        }
+
+        return {
+            init: init,
+            reset: reset
+        }
+    })()

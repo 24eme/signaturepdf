@@ -358,6 +358,7 @@
     url_font = <?php echo json_encode((!empty($REVERSE_PROXY_URL) ? '/': '') . $REVERSE_PROXY_URL . '/vendor/fonts/Caveat-Regular.ttf') ?>
     <?php endif; ?>
     </script>
+    <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/autosave.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/autosave.js") ?>"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/signature.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/signature.js") ?>"></script>
   </body>
 </html>

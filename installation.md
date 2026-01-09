@@ -5,6 +5,9 @@
 Dependencies:
 
 - php >= 5.6
+- php-fileinfo
+- php-gd
+- php-mbstring
 - librsvg2-bin (rsvg-convert)
 - pdftk
 - imagemagick
@@ -14,7 +17,7 @@ Dependencies:
 
 Installing dependencies:
 ```
-sudo apt-get install php librsvg2-bin pdftk imagemagick potrace ghostscript locales gpg
+sudo apt-get install php php-fileinfo php-gd php-mbstring librsvg2-bin pdftk imagemagick potrace ghostscript locales gpg
 ```
 
 Getting the source code:

@@ -5,7 +5,6 @@
 Dependencies:
 
 - php >= 5.6
-- php-fileinfo
 - php-gd
 - php-mbstring
 - librsvg2-bin (rsvg-convert)

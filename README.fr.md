@@ -21,6 +21,8 @@ Liste des instances permettant d'utiliser ce logiciel :
 - [signpdf.liber-it.fr](https://signpdf.liber-it.fr)
 - [signaturepdf.linux07.fr](https://signaturepdf.linux07.fr)
 - [framapdf.org](https://framapdf.org/home) (by [Framasoft](https://framasoft.org))
+- [pdf.s2s.video](https://pdf.s2s.video) (by [s2s](https://www.s2s.video))
+
 
 _N'hésitez pas à rajouter la votre via une issue ou une pull request_
 

@@ -28,27 +28,25 @@
 .block-drag {
     background: #fafafa !important;
     cursor: pointer !important;
-}
 
-.block-drag label {
-    cursor: pointer;
-}
+    label {
+        cursor: pointer;
+    }
 
-.block-drag:hover, .block-drag.active {
-    background: #cff4fc !important;
-    color: #055160 !important;
-    border-color: #055160 !important;
-}
+    &:hover, &.active {
+        background: #cff4fc !important;
+        color: #055160 !important;
+        border-color: #055160 !important;
 
-.block-drag:hover input, .block-drag.active input {
-    background: #edfcff !important;
-    border-color: #98c9d4 !important;
-    color: #055160 !important;
-}
-
-.block-drag:hover input::file-selector-button,
-.block-drag.active input::file-selector-button {
-    background: #c0e7f0 !important;
+        input {
+            background: #edfcff !important;
+            border-color: #98c9d4 !important;
+            color: #055160 !important;
+            &::file-selector-button {
+                background: #c0e7f0 !important;
+            }
+        }
+    }
 }
 
 a.block-drag {

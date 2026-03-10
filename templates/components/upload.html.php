@@ -4,7 +4,7 @@
     <?php endif; ?>
     <label class="form-label" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?><?php if(isset($uploadImgAuhtorized)): ?><small class="opacity-50 d-block"><?php echo _("or an image"); ?></small><?php else: ?><small class="d-block">&nbsp;</small><?php endif; ?></label>
     <div><i class="bi bi-upload fs-2"></i></div>
-    <input id="input_pdf_upload" name="input_pdf_upload" placeholder="<?php echo _(  "Choose a PDF"); ?>" class="form-control d-none mt-3" type="file" accept=".pdf,application/pdf<?php if(isset($uploadImgAuhtorized)): ?>image/png,image/jpeg<?php endif; ?>" <?php if(isset($uploadMultiple) && $uploadMultiple): ?>multiple="true"<?php endif; ?> />
+    <input id="input_pdf_upload" name="input_pdf_upload" placeholder="<?php echo _(  "Choose a PDF"); ?>" class="form-control d-none mt-3" type="file" accept=".pdf,application/pdf<?php if(isset($uploadImgAuhtorized)): ?>,image/png,image/jpeg<?php endif; ?>" <?php if(isset($uploadMultiple) && $uploadMultiple): ?>multiple="true"<?php endif; ?> />
 </div>
 <?php if ($PDF_DEMO_LINK && !isset($uploadNoDemo)): ?>
     <a href="#<?php echo $PDF_DEMO_LINK; ?>" class="block-drag d-block col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto border rounded-2 rounded-top-0 border-top-0 border-dark-subtle p-2 shadow-sm position-relative small text-secondary" style="border-style: dashed !important; cursor: pointer;">

@@ -15,15 +15,20 @@ async function handleFileChange() {
     const dropdownCompressBtn = document.getElementById('dropdownMenuReference');
 
     if (fileInput.files.length > 0) {
+        compressBtn.closest('.btn-group').classList.remove('opacity-25');
         compressBtn.disabled = false;
         dropdownCompressBtn.disabled = false;
     } else {
+        compressBtn.closest('.btn-group').classList.add('opacity-25');
         compressBtn.disabled = true;
         dropdownCompressBtn.disabled = true;
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('#input_pdf_upload').addEventListener('change', function(e) {
+        handleFileChange();
+    })
     document.getElementById('form_compress').addEventListener('submit', async function(e) {
         document.querySelector('#error_message').classList.add('d-none');
         document.querySelector('#card_resultat').classList.add('d-none');

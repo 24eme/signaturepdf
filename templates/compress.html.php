@@ -13,16 +13,16 @@
 </noscript>
 <div id="page-upload">
     <?php include('components/navtab.html.php'); ?>
-    <div class="px-4 py-4 text-center fullpage">
+    <div class="px-3 py-3 text-center fullpage">
         <form id="form_compress" method="post" action="<?php echo $REVERSE_PROXY_URL; ?>/compress" enctype="multipart/form-data">
-            <h1 class="display-5 fw-bold mb-0 mt-3"> <?php echo sprintf(_("%s Compress a PDF"), '<i class="bi bi-chevron-bar-contract"></i>'); ?></h1>
-            <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Reduce the size of a PDF"); ?></p>
+            <i class="bi bi-chevron-bar-contract display-3"></i>
+            <h1 class="mb-0 h2 mt-3"><?php echo sprintf(_("%s Compress a PDF"), ""); ?></h1>
+            <p class="text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Reduce the size of a PDF"); ?></p>
+            <?php $uploadHelp = sprintf(_("The PDF must not exceed %s Mb"), round($maxSize / 1000 / 1000)); ?>
+            <?php $uploadNoDemo = true; ?>
+            <?php include "components/upload.html.php"; ?>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
-                <label class="form-label mt-4" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo sprintf(_("The PDF must not exceed %s Mb"), round($maxSize / 1000 / 1000)); ?>"><i class="bi bi-info-circle"></i></small></label>
-                <input name="input_pdf_upload" id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF"); ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" onchange="handleFileChange()" />
-                <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being retained or stored") ?></p>
-
-                <div class="btn-group mt-4 mb-2">
+                <div class="btn-group mt-4 mb-2 opacity-25">
                     <button type="submit" name="compressionType" value="medium" id="compressBtn" class="btn btn-primary" disabled><i class="bi bi-chevron-bar-contract"></i> <?php echo _("Compress"); ?></button>
                     <button type="button" id="dropdownMenuReference" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent" disabled>
                         <span class="visually-hidden">Toggle Dropdown</span>

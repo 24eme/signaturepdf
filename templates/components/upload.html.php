@@ -18,40 +18,29 @@
 <?php endif; ?>
 
 <script>
-    document.querySelector('#upload_drag_zone').addEventListener('click', function(e) {
-        this.querySelector('input[type=file]').click();
+    const dropArea = document.querySelector("#upload_drag_zone");
+    const dropInput = dropArea.querySelector("input[type=file]");
+    dropArea.addEventListener('click', function(e) {
+        dropInput.click();
     });
     document.querySelector('#upload_drag_zone input[type=file]').addEventListener('change', function(e) {
-        document.querySelector('#upload_drag_zone .bi-upload').classList.add('d-none');
-        //document.querySelector('#upload_drag_zone').classList.add('active');
+        dropArea.querySelector('.bi-upload').classList.add('d-none');
         this.classList.remove('d-none')
     });
-    /*document.querySelector('#upload_drag_zone').addEventListener('drop', function(e) {
-        const files = [...e.dataTransfer.items]
-          .map((item) => item.getAsFile())
-          .filter((file) => file);
-        console.log(files);
-        let dataTransfer = new DataTransfer();
-        for(file of files) {
-            dataTransfer.items.add(file);
-        }
-        this.querySelector('input[type=file]').files = dataTransfer.files;
-        this.querySelector('input[type=file]').dispatchEvent(new Event("change"));
-    });
-    document.querySelector('#upload_drag_zone').addEventListener("dragover", (e) => {
-        this.classList.add('drag-enter');
-      const fileItems = [...e.dataTransfer.items].filter(
-        (item) => item.kind === "file",
-      );
-      if (fileItems.length > 0) {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = "copy";
-      }
+    dropArea.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        dropArea.classList.add("active");
     });
 
-    window.addEventListener("drop", (e) => {
-      if ([...e.dataTransfer.items].some((item) => item.kind === "file")) {
-        e.preventDefault();
-      }
-  });*/
+    dropArea.addEventListener("dragleave", () => {
+      dropArea.classList.remove("active");
+    });
+
+    dropArea.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const target = e.dataTransfer;
+      dropArea.classList.remove("active");
+      dropInput.files = target.files
+      dropInput.dispatchEvent(new Event("change"));
+    });
 </script>

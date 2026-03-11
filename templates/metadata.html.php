@@ -17,7 +17,7 @@
     <div class="px-3 py-3 text-center fullpage">
         <i class="bi bi-tags display-3"></i>
         <h1 class="mb-0 h2 mt-3"><?php echo sprintf(_("%s Edit metadata"), ""); ?></h1>
-        <p class="text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Add, edit, or remove metadata from a PDF"); ?></p>
+        <p class="text-nowrap mt-2 pb-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Add, edit, or remove metadata from a PDF"); ?></p>
         <?php $uploadImgAuhtorized = true; ?>
         <?php $uploadOffline = true; ?>
         <?php include "components/upload.html.php"; ?>

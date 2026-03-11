@@ -17,7 +17,7 @@
         <form id="form_compress" method="post" action="<?php echo $REVERSE_PROXY_URL; ?>/compress" enctype="multipart/form-data">
             <i class="bi bi-chevron-bar-contract display-3"></i>
             <h1 class="mb-0 h2 mt-3"><?php echo sprintf(_("%s Compress a PDF"), ""); ?></h1>
-            <p class="text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Reduce the size of a PDF"); ?></p>
+            <p class="text-nowrap mt-2 pb-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Reduce the size of a PDF"); ?></p>
             <?php $uploadHelp = sprintf(_("The PDF must not exceed %s Mb"), round($maxSize / 1000 / 1000)); ?>
             <?php $uploadNoDemo = true; ?>
             <?php include "components/upload.html.php"; ?>

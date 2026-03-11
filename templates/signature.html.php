@@ -16,7 +16,7 @@
     <div class="px-3 py-3 text-center fullpage">
         <i class="bi bi-vector-pen display-3"></i>
         <h1 class="mb-0 h2 mt-3"><?php echo _("Sign a PDF"); ?></h1>
-        <p class="text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document"); ?></p>
+        <p class="text-nowrap mt-2 pb-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document"); ?></p>
         <?php $uploadHelp = _("The PDF should not exceed")." ".round($maxSize / 1000 / 1000)." "._("MB and")." ".$maxPage." "._("pages"); ?>
         <?php include "components/upload.html.php"; ?>
     </div>

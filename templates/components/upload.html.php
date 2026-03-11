@@ -1,4 +1,4 @@
-<div id="upload_drag_zone" class="block-drag mt-5 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto border rounded-2 <?php if ($PDF_DEMO_LINK && !isset($uploadNoDemo)): ?>rounded-bottom-0<?php endif; ?> border-dark-subtle p-4 shadow-sm position-relative" style="border-style: dashed !important; cursor: pointer;" role="<?php echo _("Choose a PDF"); ?>" aria="link" tabindex="0">
+<div id="upload_drag_zone" class="block-drag mt-4 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto border rounded-2 <?php if ($PDF_DEMO_LINK && !isset($uploadNoDemo)): ?>rounded-bottom-0<?php endif; ?> border-dark-subtle p-4 shadow-sm position-relative" style="border-style: dashed !important; cursor: pointer;" role="<?php echo _("Choose a PDF"); ?>" aria="link" tabindex="0">
     <?php if(isset($uploadHelp)): ?>
     <small class="opacity-75 position-absolute" style="cursor: help; right: 8px; top: 5px;" title="<?php echo $uploadHelp ?>"><i class="bi bi-question-circle"></i></small>
     <?php endif; ?>

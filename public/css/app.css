@@ -33,7 +33,7 @@
         cursor: pointer;
     }
 
-    &:hover, &.active {
+    &:hover, &.active, &:active {
         background: #cff4fc !important;
         color: #055160 !important;
         border-color: #055160 !important;
@@ -53,7 +53,7 @@ a.block-drag {
     text-decoration: none;
 }
 
-a.block-drag:hover, a.block-drag.active {
+a.block-drag:hover, a.block-drag.active, a.block-drag:active {
     color: #055160 !important;
     text-decoration: none;
 }

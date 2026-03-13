@@ -4,7 +4,7 @@
         <span class="d-none d-lg-inline" style="font-size: 15px; position: absolute;top: 10px;left: 56px;">Signature PDF</span>
         <span class="opacity-50 d-none d-lg-inline" style="font-size: 12px; position: absolute;top: 30px;left: 56px;"><?php echo _("Sign and manipulate PDFs freely"); ?></span></a>
         <div class="dropdown position-absolute top-0 end-0 mt-2 me-2">
-            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class='bi bi-translate'></i><span class="d-none d-lg-inline"> <?php echo _("Language"); ?></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

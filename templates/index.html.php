@@ -13,7 +13,7 @@
 </noscript>
 <?php include('components/navtab.html.php'); ?>
 <div class="container pt-4 fullpage">
-    <p class="lead text-center mb-2"><img src="logo.svg" style="height: 160px;" class="text-center" /></p>
+    <p class="lead text-center mb-2"><img src="logo.svg" alt="Logo de signature pdf" style="height: 160px;" class="text-center" /></p>
     <h1 class="text-center lead opacity-50 d-lg-none mb-4">Signature PDF</h1>
     <p class="fs-5 mt-3 text-center mb-0"><?php echo _("Free open-source software for signing and manipulating PDFs"); ?></p>
     <div class="row justify-content-center mt-4">

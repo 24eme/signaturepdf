@@ -1,6 +1,6 @@
 <div class="p-2 mb-3">
     <nav class=" rounded pb-2 mx-auto position-relative">
-        <a class="link-dark" href="<?php echo $REVERSE_PROXY_URL; ?>/"><img src="logo-small.svg" style="height: 42px; position: absolute;top: 6px;left: 8px;" />
+        <a class="link-dark" href="<?php echo $REVERSE_PROXY_URL; ?>/"><img src="logo-small.svg" alt="Logo de signature pdf" style="height: 42px; position: absolute;top: 6px;left: 8px;" />
         <span class="d-none d-lg-inline" style="font-size: 15px; position: absolute;top: 10px;left: 56px;">Signature PDF</span>
         <span class="opacity-50 d-none d-lg-inline" style="font-size: 12px; position: absolute;top: 30px;left: 56px;"><?php echo _("Sign and manipulate PDFs freely"); ?></span></a>
         <div class="dropdown position-absolute top-0 end-0 mt-2 me-2">

@@ -1,0 +1,622 @@
+# Catalan translation for signaturepdf
+# Copyright (C) 2026
+# This file is distributed under the same license as the signaturepdf package.
+# Joan Montané <jmontane aat softcatala doot org>, 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
+"PO-Revision-Date: 2026-03-12 07:33+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+msgid "en"
+msgstr "ca"
+
+msgid "PDF compression failed"
+msgstr "Ha fallat la compressió PDF"
+
+msgid "Administration panel"
+msgstr "Tauler d'administració"
+
+msgid "Configuration"
+msgstr "Configuració"
+
+msgid "Server installation"
+msgstr "Instal·lació del servidor"
+
+#, php-format
+msgid "Minimal version required : %s"
+msgstr "Versió mínima requerida: %s"
+
+#, php-format
+msgid "Package %s required"
+msgstr "Cal el paquet %s"
+
+#, php-format
+msgid "Package %s missing"
+msgstr "Falta el paquet %s"
+
+msgid "File Configuration"
+msgstr "Configuració del fitxer"
+
+#, php-format
+msgid "The directory %s should exist and be writeable"
+msgstr "El directori %s hauria d'existir i ser editable"
+
+msgid "Site not functional without JavaScript enabled"
+msgstr "El lloc no és funcional sense JavaScript habilitat"
+
+#, php-format
+msgid "%s Compress a PDF"
+msgstr "%s Comprimeix un PDF"
+
+msgid "Reduce the size of a PDF"
+msgstr "Redueix la mida d'un PDF"
+
+msgid "Choose a PDF"
+msgstr "Trieu un PDF"
+
+#, php-format
+msgid "The PDF must not exceed %s Mb"
+msgstr "El PDF no ha de superar %s Mb"
+
+msgid ""
+"The PDF will be processed by the server without being retained or stored"
+msgstr "El PDF serà processat pel servidor sense ser retingut ni emmagatzemat"
+
+msgid "Compress"
+msgstr "Comprimeix"
+
+msgid "Low compression (maximum quality)"
+msgstr "Compressió baixa (qualitat màxima)"
+
+#, php-format
+msgid "%s Medium compression %s (default)"
+msgstr "%s Compressió mitjana %s (per defecte)"
+
+msgid "High compression (minimum quality)"
+msgstr "Compressió alta (qualitat mínima)"
+
+#, php-format
+msgid "%s Mb"
+msgstr "%s Mb"
+
+msgid "Compressed at %s%"
+msgstr "Comprimit a %s%"
+
+msgid "Download the PDF"
+msgstr "Baixeu el PDF"
+
+msgid "Your pdf is already optimized"
+msgstr "El vostre pdf ja està optimitzat"
+
+msgid "Free open-source software for signing and manipulating PDFs"
+msgstr ""
+"Programari lliure de codi obert per a la signatura i manipulació de PDF"
+
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr "Cerca una eina (p. ex., signa, comprimeix, extrau, marca d'aigua...)"
+
+msgid "Sign"
+msgstr "Signa"
+
+msgid "Add a signature"
+msgstr "Afegeix una signatura"
+
+msgid "Add initials"
+msgstr "Afegeix inicials"
+
+msgid "Add a stamp"
+msgstr "Afegeix un segell"
+
+msgid "Type text"
+msgstr "Tipus de text"
+
+msgid "Strike through text"
+msgstr "Ratlla a través del text"
+
+msgid "Allow multiple people to sign via a shared link"
+msgstr "Permet que diverses persones signin a través d'un enllaç compartit"
+
+msgid "Sign with the server certificate"
+msgstr "Signa amb el certificat del servidor"
+
+msgid "Add a watermark"
+msgstr "Afegeix una marca d'aigua"
+
+msgid "New"
+msgstr "Nou"
+
+msgid "Redact areas"
+msgstr "Redacta les àrees"
+
+msgid "Organize"
+msgstr "Organitza"
+
+msgid "Combine multiple PDF files"
+msgstr "Combina múltiples fitxers PDF"
+
+msgid "Reorder pages"
+msgstr "Reordena les pàgines"
+
+msgid "Extract pages"
+msgstr "Extreu les pàgines"
+
+msgid "Rotate pages"
+msgstr "Gira les pàgines"
+
+msgid "Change or standardize the paper size"
+msgstr "Canvia o estandarditza la mida del paper"
+
+msgid "Delete pages"
+msgstr "Suprimeix les pàgines"
+
+msgid "Generate a booklet"
+msgstr "Genera un llibret"
+
+msgid "Convert images to PDF"
+msgstr "Converteix les imatges a PDF"
+
+msgid "Metadata"
+msgstr "Metadades"
+
+msgid "Add, edit, or remove metadata from a PDF"
+msgstr "Afegeix, edita o elimina les metadades d'un PDF"
+
+msgid "Compress and reduce the size of a PDF"
+msgstr "Comprimeix i redueix la mida d'un PDF"
+
+#, php-format
+msgid "%s Edit metadata"
+msgstr "%s Edita les metadades"
+
+msgid "Test with a demo PDF"
+msgstr "Prova amb un PDF de demostració"
+
+msgid "List of PDF metadata"
+msgstr "Llista de metadades PDF"
+
+msgid "Add new metadata"
+msgstr "Afegeix metadades noves"
+
+msgid "Key"
+msgstr "Clau"
+
+msgid "Value"
+msgstr "Valor"
+
+#, php-format
+msgid "%s Add"
+msgstr "%s Afegeix"
+
+msgid "Close this PDF and return to the home page"
+msgstr "Tanca aquest PDF i torna a la pàgina d'inici"
+
+msgid "Edit metadata"
+msgstr "Edita les metadades"
+
+msgid "Save and download the PDF"
+msgstr "Desa i baixa el PDF"
+
+msgid "Save changes"
+msgstr "Desa els canvis"
+
+#, php-format
+msgid "%s Organize PDF"
+msgstr "%s Organitza el PDF"
+
+msgid "Merge, sort, rotate, delete, extract pages"
+msgstr "Fusiona, ordena, gira, suprimeix, extreu pàgines"
+
+msgid "or an image"
+msgstr "o una imatge"
+
+msgid "Touch a page to select it"
+msgstr "Toqueu una pàgina per a seleccionar-la"
+
+msgid "Close this PDF and return to home"
+msgstr "Tanca aquest PDF i torna a casa"
+
+msgid "PDF organization"
+msgstr "Organització del PDF"
+
+#, php-format
+msgid "%s Add a PDF"
+msgstr "%s Afegeix un PDF"
+
+#, php-format
+msgid "%s page(s) selected"
+msgstr "%s pàgines seleccionades"
+
+#, php-format
+msgid "%s Rotate 90°"
+msgstr "%s Gira 90°"
+
+#, php-format
+msgid "%s Move"
+msgstr "%s Mou"
+
+#, php-format
+msgid "%s Delete"
+msgstr "%s Suprimeix"
+
+#, php-format
+msgid "%s Extract and download"
+msgstr "%s Extreu i baixa"
+
+#, php-format
+msgid "%s Cancel selection"
+msgstr "%s Cancel·la la selecció"
+
+msgid "Printing options"
+msgstr "Opcions d'impressió"
+
+#, php-format
+msgid "%s Download the full PDF"
+msgstr "%s Baixa el PDF complet"
+
+msgid "Download the selection"
+msgstr "Baixa la selecció"
+
+msgid "No"
+msgstr "No"
+
+msgid "page"
+msgstr "pàgina"
+
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#, php-format
+msgid "%s Turn"
+msgstr "%s torn"
+
+msgid "PDF documents"
+msgstr "Documents PDF"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Original format"
+msgstr "Format original"
+
+msgid "Most common formats"
+msgstr "Formats més comuns"
+
+msgid "Other formats"
+msgstr "Altres formats"
+
+msgid "Custom"
+msgstr "A mida"
+
+msgid "Paper size"
+msgstr "Mida del paper"
+
+msgid "Width"
+msgstr "Amplada"
+
+msgid "Height"
+msgstr "Alçada"
+
+msgid "Unit"
+msgstr "Unitat"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Booklet"
+msgstr "Llibre"
+
+msgid "Formatting"
+msgstr "Formatació"
+
+msgid "Sign a PDF"
+msgstr "Signa un PDF"
+
+msgid "Sign, initial, stamp, complete a document"
+msgstr "Signa, inicial, segella, completa un document"
+
+msgid "The PDF should not exceed"
+msgstr "El PDF no ha de superar"
+
+msgid "MB and"
+msgstr "MB i"
+
+msgid "pages"
+msgstr "pàgines"
+
+msgid "How to sign?"
+msgstr "Com signar?"
+
+msgid "By clicking directly on the document page"
+msgstr "En fer clic directament a la pàgina del document"
+
+msgid "to insert the selected item in the right column"
+msgstr "per a inserir l'element seleccionat a la columna dreta"
+
+msgid "signature, initial, text, stamp, etc ..."
+msgstr "signatura, inicial, text, segell, etc..."
+
+msgid "Close this PDF and return to the homepage"
+msgstr "Tanca aquest PDF i torna a la pàgina d'inici"
+
+msgid "PDF Signature"
+msgstr "Signatura PDF"
+
+msgid "This PDF is shared with others to be signed by multiple people"
+msgstr "Aquest PDF es comparteix amb altres persones per a signar-lo"
+
+msgid "This PDF is stored on your computer to be signed by you only"
+msgstr "Aquest PDF s'emmagatzema a l'ordinador només per a signar-lo"
+
+msgid "This PDF is stored encrypted on the server."
+msgstr "Aquest PDF s'emmagatzema xifrat en el servidor."
+
+msgid "Keep the selection active"
+msgstr "Manté activa la selecció"
+
+#, php-format
+msgid "%s Signature"
+msgstr "Signatura %s"
+
+msgid "Create"
+msgstr "Crea"
+
+#, php-format
+msgid "%s Initial"
+msgstr "%s inicial"
+
+#, php-format
+msgid "%s Stamp"
+msgstr "Marca %s"
+
+#, php-format
+msgid "%s Text"
+msgstr "Text %s"
+
+msgid "Strikethrough"
+msgstr "Ratllat"
+
+#, php-format
+msgid "%s Check box"
+msgstr "Casella de selecció %s"
+
+msgid "Redaction area"
+msgstr "Àrea de reacció"
+
+msgid "Watermark"
+msgstr "Marca"
+
+#, php-format
+msgid "%s Create an element"
+msgstr "%s Crea un element"
+
+#, php-format
+msgid "%s Share to sign %s with multiple people"
+msgstr "%s Comparteix per a signar %s amb diverses persones"
+
+msgid "Download the signed PDF"
+msgstr "Baixa el PDF signat"
+
+msgid "The PDF will be flattened"
+msgstr "El PDF s'aplanarà"
+
+#, php-format
+msgid "You are %s to have signed this PDF"
+msgstr "Esteu %s per a signar aquest PDF"
+
+#, php-format
+msgid "%s Download the PDF"
+msgstr "%s Baixa el PDF"
+
+msgid "Transmit my signature"
+msgstr "Transmet la meva signatura"
+
+#, php-format
+msgid "%s Select a signature"
+msgstr "%s Selecciona una signatura"
+
+msgid "Draw"
+msgstr "Dibuix"
+
+msgid "freehand"
+msgstr "mà alçada"
+
+msgid "Enter"
+msgstr "Retorn"
+
+msgid "text"
+msgstr "text"
+
+msgid "Import"
+msgstr "Importa"
+
+msgid "an image"
+msgstr "una imatge"
+
+msgid "Clear signature"
+msgstr "Neteja la signatura"
+
+msgid "My signature"
+msgstr "La meva signatura"
+
+#, php-format
+msgid "%s Share this PDF to sign it with several people"
+msgstr "%s Comparteix aquest PDF per a signar-lo amb diverses persones"
+
+msgid ""
+"By enabling PDF sharing, you will be able to provide a link to the people "
+"of your choice so that they can sign this PDF."
+msgstr ""
+"En habilitar l'intercanvi de PDF, podreu proporcionar un enllaç a les "
+"persones que trieu perquè puguin signar aquest PDF."
+
+#, php-format
+msgid ""
+"%s This sharing requires the PDF to be transferred and stored on the server "
+"for future signers to access."
+msgstr ""
+"%s Aquesta compartició requereix que el PDF es transfereixi i s'emmagatzemi "
+"al servidor perquè hi accedeixin futurs signants."
+
+#, php-format
+msgid "%s The PDF will be kept"
+msgstr "%s El PDF es mantindrà"
+
+msgid "for one year"
+msgstr "per un any"
+
+msgid "for six months"
+msgstr "durant sis mesos"
+
+msgid "for one month"
+msgstr "durant un mes"
+
+msgid "for one week"
+msgstr "durant una setmana"
+
+msgid "for one day"
+msgstr "per un dia"
+
+msgid "for one hour"
+msgstr "durant una hora"
+
+msgid "after the last signature."
+msgstr "després de l'última signatura."
+
+msgid "The PDF will be stored encrypted on the server"
+msgstr "El PDF s'emmagatzemarà encriptat al servidor"
+
+#, php-format
+msgid "%s Start sharing"
+msgstr "%s Comença a compartir"
+
+#, php-format
+msgid "%s Sign this PDF with multiple people"
+msgstr "%s Signa aquest PDF amb diverses persones"
+
+msgid "Multiple people can sign this PDF simultaneously."
+msgstr "Múltiples persones poden signar aquest PDF simultàniament."
+
+msgid ""
+"To do so, simply share the link to this page with the people of your choice:"
+msgstr ""
+"Per fer-ho, simplement comparteix l'enllaç a aquesta pàgina amb les "
+"persones que triïs:"
+
+msgid "Sharing link"
+msgstr "Enllaç compartit"
+
+msgid "Copied !"
+msgstr "Copiat!"
+
+msgid "Copy"
+msgstr "Copia"
+
+msgid ""
+"Each of the signatories can download the latest version of the signed PDF "
+"at any time."
+msgstr ""
+"Cadascun dels signants pot baixar en qualsevol moment l'última versió del "
+"PDF signat."
+
+msgid "Signed PDF"
+msgstr "PDF signat"
+
+msgid "Your signature has been successfully recorded!"
+msgstr "La vostra signatura s'ha enregistrat correctament!"
+
+msgid "This application does not automatically send emails to other signers."
+msgstr ""
+"Aquesta aplicació no envia automàticament correus electrònics a altres "
+"signants."
+
+msgid ""
+"If you want to send one yourself, you can use <a>this pre-written email</a>."
+msgstr ""
+"Si voleu enviar-ne un, podeu utilitzar <a>aquest correu electrònic "
+"preescrit</a>."
+
+#, php-format
+msgid "Signing the document : %s"
+msgstr "Signant el document: %s"
+
+#, php-format
+msgid ""
+"Hello,\n"
+"\n"
+"I just signed the document (%s) : %s"
+msgstr ""
+"Hola.\n"
+"\n"
+"Acabo de signar el document (%s) : %s"
+
+msgid "Change the color of the selected element"
+msgstr "Canvia el color de l'element seleccionat"
+
+msgid "Duplicate the element"
+msgstr "Duplica l'element"
+
+msgid "Duplicate on each page"
+msgstr "Duplica a cada pàgina"
+
+msgid "Duplicate"
+msgstr "Duplica"
+
+msgid "Delete the element"
+msgstr "Suprimeix l'element"
+
+msgid ""
+"Are you sure you want to delete this PDF and the associated signatures?"
+msgstr ""
+"Esteu segur que voleu suprimir aquest PDF i les signatures associades?"
+
+msgid "Text to modify"
+msgstr "Text a modificar"
+
+msgid "Select this page"
+msgstr "Selecciona aquesta pàgina"
+
+msgid "Delete this page"
+msgstr "Suprimeix aquesta pàgina"
+
+msgid "Restore this page"
+msgstr "Restaura aquesta pàgina"
+
+msgid "Move this page"
+msgstr "Mou aquesta pàgina"
+
+msgid "Move here"
+msgstr "Mou aquí"
+
+msgid "Turn this page"
+msgstr "Gira aquesta pàgina"
+
+msgid "Download this page"
+msgstr "Baixa aquesta pàgina"
+
+msgid "Page"
+msgstr "Pàgina"
+
+msgid "Free open-source software"
+msgstr "Programari lliure de codi obert"
+
+msgid "under AGPL-3.0 license"
+msgstr "sota la llicència AGPL-3.0"
+
+msgid "see the source code"
+msgstr "mostra el codi font"
+
+msgid "Sign and manipulate PDFs freely"
+msgstr "Signa i manipula els PDF lliurement"
+
+msgid "Language"
+msgstr "Llengua"

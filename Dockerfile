@@ -14,6 +14,8 @@ RUN apt update && \
     docker-php-ext-install gettext && \
     rm -rf /var/lib/apt/lists/*
 
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 COPY . /usr/local/signaturepdf
 
 RUN envsubst < /usr/local/signaturepdf/config/php.ini > /usr/local/etc/php/conf.d/uploads.ini && \
@@ -22,5 +24,7 @@ RUN envsubst < /usr/local/signaturepdf/config/php.ini > /usr/local/etc/php/conf.
          a2enmod rewrite && a2ensite signaturepdf
 
 WORKDIR /usr/local/signaturepdf
+
+RUN composer install --no-dev --optimize-autoloader
 
 CMD /usr/local/signaturepdf/entrypoint.sh

@@ -79,8 +79,10 @@ if($f3->get('PDF_STORAGE_ENCRYPTION') && !GPGCryptography::isGpgInstalled()) {
     $f3->set('PDF_STORAGE_ENCRYPTION', false);
 }
 
+$f3->set('nssEnabled', false);
 if ($f3->exists('NSS3_DIRECTORY') && $f3->exists('NSS3_PASSWORD') && $f3->exists('NSS3_NICK')) {
     NSSCryptography::getInstance($f3->get('NSS3_DIRECTORY'), $f3->get('NSS3_PASSWORD'), $f3->get('NSS3_NICK'));
+    $f3->set('nssEnabled', true);
 }
 
 

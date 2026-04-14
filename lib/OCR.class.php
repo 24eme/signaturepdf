@@ -9,7 +9,7 @@ class OCR
         exec('ocrmypdf --version', $output, $returnCode);
 
         if (!$output) {
-            return array(false);
+            return false;
         }
         return $output;
     }

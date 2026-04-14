@@ -48,9 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
           if (response.status == 204 ) {
               document.querySelector('#error_message').classList.remove('d-none');
               document.querySelector('#error_message').innerText = trad["Your pdf is already optimized"];
-              if(e.submitter.value == "ocr") {
-                  document.querySelector('#error_message').innerText = "The PDF already contains selectable text"
-              }
           } else if (response.ok) {
               let filename = decodeURI(response.headers.get('content-disposition').replace('attachment; filename=', ''));
               let blob = await response.blob();
@@ -77,6 +74,9 @@ document.addEventListener('DOMContentLoaded', function () {
           } else {
               document.querySelector('#error_message').classList.remove('d-none');
               document.querySelector('#error_message').innerText = await response.text();
+              if(e.submitter.value == "ocr") {
+                  document.querySelector('#error_message').innerText = "The PDF already contains selectable text"
+              }
           }
           endProcessingMode(document.getElementById('compressBtn'));
         })

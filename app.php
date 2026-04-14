@@ -6,6 +6,7 @@ require(__DIR__.'/lib/NSSCryptography.class.php');
 require(__DIR__.'/lib/PDFSignature.class.php');
 require(__DIR__.'/lib/Image2SVG.class.php');
 require(__DIR__.'/lib/Compression.class.php');
+require(__DIR__.'/lib/OCR.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
@@ -421,6 +422,46 @@ $f3->route('GET /metadata',
     function($f3) {
         $f3->set('activeTab','metadata');
         echo View::instance()->render('metadata.html.php');
+    }
+);
+
+$f3->route ('POST /ocr',
+    function($f3) {
+        $originalFilename = null;
+        $files = Web::instance()->receive(function($file,$formFieldName) {
+            if ($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+        }, false, function($fileBaseName, $formFieldName) use(&$originalFilename) {
+            $originalFilename = $fileBaseName;
+            return date("YmdHis")."_".uniqid()."_".md5($fileBaseName).'.pdf';
+        });
+
+        if(!count($files)) {
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF OCR failed");
+            return;
+        }
+
+        $filePath = reset(array_keys($files));
+        $outputFileName = str_replace(".pdf", "_ocr.pdf", $filePath);
+
+        $returnCode = shell_exec(sprintf("ocrmypdf %s %s", $filePath, $outputFileName));
+
+        if ($returnCode === false || !file_exists($outputFileName)) {
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF compression failed");
+            return;
+        } else {
+            header('Content-Type: application/pdf');
+            header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_ocr.pdf", $originalFilename))));
+            readfile($outputFileName);
+        }
+
+        unlink($outputFileName);
+        unlink($filePath);
     }
 );
 

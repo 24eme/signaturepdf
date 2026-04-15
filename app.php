@@ -447,7 +447,7 @@ $f3->route ('POST /ocr',
         $filePath = reset(array_keys($files));
         $outputFileName = str_replace(".pdf", "_ocr.pdf", $filePath);
 
-        $returnCode = shell_exec(sprintf("ocrmypdf %s %s", $filePath, $outputFileName));
+        $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", $filePath, $outputFileName));
 
         if ($returnCode === false || !file_exists($outputFileName)) {
             http_response_code("500");

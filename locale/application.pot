@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-01 10:50+0200\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,9 +21,6 @@ msgid "en"
 msgstr ""
 
 msgid "PDF compression failed"
-msgstr ""
-
-msgid "Your pdf is already optimized"
 msgstr ""
 
 msgid "Administration panel"
@@ -98,10 +95,16 @@ msgstr ""
 msgid "Download the PDF"
 msgstr ""
 
+msgid "Your pdf is already optimized"
+msgstr ""
+
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr ""
 
-msgid "Sign a PDF"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
 msgstr ""
 
 msgid "Add a signature"
@@ -134,7 +137,7 @@ msgstr ""
 msgid "Redact areas"
 msgstr ""
 
-msgid "Organize PDFs"
+msgid "Organize"
 msgstr ""
 
 msgid "Combine multiple PDF files"
@@ -161,7 +164,7 @@ msgstr ""
 msgid "Convert images to PDF"
 msgstr ""
 
-msgid "Edit a PDF"
+msgid "Metadata"
 msgstr ""
 
 msgid "Add, edit, or remove metadata from a PDF"
@@ -312,6 +315,9 @@ msgid "Booklet"
 msgstr ""
 
 msgid "Formatting"
+msgstr ""
+
+msgid "Sign a PDF"
 msgstr ""
 
 msgid "Sign, initial, stamp, complete a document"
@@ -595,13 +601,4 @@ msgid "Sign and manipulate PDFs freely"
 msgstr ""
 
 msgid "Language"
-msgstr ""
-
-msgid "Sign"
-msgstr ""
-
-msgid "Organize"
-msgstr ""
-
-msgid "Metadata"
 msgstr ""

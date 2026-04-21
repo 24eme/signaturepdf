@@ -14,6 +14,7 @@ List of instances where you can use this software:
 - [pdf.kaosx.ovh](https://pdf.kaosx.ovh)
 - [pdf.ti-nuage.fr](https://pdf.ti-nuage.fr) (by [Ti Nuage](https://www.ti-nuage.fr/))
 - [pdf.cemea.org](https://pdf.cemea.org) (by [Les Ceméa](https://mallette.cemea.org))
+- [pdf.caph.info](https://pdf.caph.info) (by [caph.info](https://caph.info))
 - [pdf.spirio.fr](https://pdf.spirio.fr) (by [Spirio.fr](https://spirio.fr/))
 - [pdf.sequanux.org](https://pdf.sequanux.org) (by [Sequanux](https://www.sequanux.org/))
 - [pdf.deblan.org](https://pdf.deblan.org) (by [Deblan](https://wiki.deblan.org/hosting/overview/))
@@ -21,6 +22,7 @@ List of instances where you can use this software:
 - [signpdf.liber-it.fr](https://signpdf.liber-it.fr) (by [Liber-IT](https://site.liber-it.fr/))
 - [signaturepdf.linux07.fr](https://signaturepdf.linux07.fr) (by [Linux07](https://linux07.fr/))
 - [signpdf.blablalinux.be](https://signpdf.blablalinux.be) (by [Blabla Linux](https://blablalinux.be/))
+- [framapdf.org](https://framapdf.org/home) (by [Framasoft](https://framasoft.org))
 
 _Feel free to add yours through an issue or a pull request._
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-04 13:21+0200\n"
-"PO-Revision-Date: 2025-07-25 22:06+0000\n"
+"POT-Creation-Date: 2025-12-03 18:32+0100\n"
+"PO-Revision-Date: 2025-10-05 23:02+0000\n"
 "Last-Translator: xabirequejo <xabi.rn@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/signature-pdf/"
 "application/eu/>\n"
@@ -17,16 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 msgid "en"
 msgstr "eu"
 
 msgid "PDF compression failed"
 msgstr "PDFa konprimatzeak huts egin du"
-
-msgid "Your pdf is already optimized"
-msgstr "PDFa lehendik optimizatuta dago"
 
 msgid "Administration panel"
 msgstr "Administrazio-panela"
@@ -103,11 +100,17 @@ msgstr "%s%(e)an konprimatuta"
 msgid "Download the PDF"
 msgstr "Deskargatu PDFa"
 
+msgid "Your pdf is already optimized"
+msgstr "PDFa lehendik optimizatuta dago"
+
 msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "PDFak maneiatzeko eta sinatzeko kode irekiko software askea"
 
-msgid "Sign a PDF"
-msgstr "Sinatu PDFa"
+msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
+msgstr ""
+
+msgid "Sign"
+msgstr "Sinatu"
 
 msgid "Add a signature"
 msgstr "Gehitu sinadura"
@@ -136,13 +139,13 @@ msgid "Add a watermark"
 msgstr "Gehitu filigrana"
 
 msgid "New"
-msgstr ""
+msgstr "Berria"
 
 msgid "Redact areas"
 msgstr "Ezabatu eremuak"
 
-msgid "Organize PDFs"
-msgstr "Antolatu PDFak"
+msgid "Organize"
+msgstr "Antolatu"
 
 msgid "Combine multiple PDF files"
 msgstr "Batu PDF fitxategiak"
@@ -163,13 +166,13 @@ msgid "Delete pages"
 msgstr "Ezabatu orriak"
 
 msgid "Generate a booklet"
-msgstr ""
+msgstr "Sortu liburuxka"
 
 msgid "Convert images to PDF"
 msgstr "Bihurtu irudiak PDFra"
 
-msgid "Edit a PDF"
-msgstr "Editatu PDFa"
+msgid "Metadata"
+msgstr "Metadatuak"
 
 msgid "Add, edit, or remove metadata from a PDF"
 msgstr "Gehitu, editatu, edo kendu PDFaren metadatuak"
@@ -298,28 +301,31 @@ msgid "Other formats"
 msgstr "Beste formatu batzuk"
 
 msgid "Custom"
-msgstr ""
+msgstr "Pertsonalizatua"
 
 msgid "Paper size"
 msgstr "Paperaren neurria"
 
 msgid "Width"
-msgstr ""
+msgstr "Zabalera"
 
 msgid "Height"
-msgstr ""
+msgstr "Altuera"
 
 msgid "Unit"
-msgstr ""
+msgstr "Unitatea"
 
 msgid "Normal"
-msgstr ""
+msgstr "Arrunta"
 
 msgid "Booklet"
-msgstr ""
+msgstr "Liburuxka"
 
 msgid "Formatting"
-msgstr ""
+msgstr "Formatua"
+
+msgid "Sign a PDF"
+msgstr "Sinatu PDFa"
 
 msgid "Sign, initial, stamp, complete a document"
 msgstr "Sinatu, idatzi inizialak, zigilatu, osatu dokumentua"
@@ -618,14 +624,11 @@ msgstr "Sinatu eta maneiatu PDFak nahieran"
 msgid "Language"
 msgstr "Hizkuntza"
 
-msgid "Sign"
-msgstr "Sinatu"
+#~ msgid "Organize PDFs"
+#~ msgstr "Antolatu PDFak"
 
-msgid "Organize"
-msgstr "Antolatu"
-
-msgid "Metadata"
-msgstr "Metadatuak"
+#~ msgid "Edit a PDF"
+#~ msgstr "Editatu PDFa"
 
 #~ msgid "The PDF must not exceed "
 #~ msgstr "PDFak ezin ditu izan "

@@ -12,20 +12,13 @@
     </div>
 </noscript>
 <div id="page-upload">
-    <?php include('components/navtab.html.php'); ?>
-    <div class="px-4 py-4 text-center fullpage">
-        <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-vector-pen"></i> <?php echo _("Sign a PDF"); ?></h1>
-        <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document") ?></p>
-        <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
-            <div class="col-12">
-                <label class="form-label mt-4" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo _("The PDF should not exceed"); ?> <?php echo round($maxSize / 1000 / 1000) ?> <?php echo _("MB and"); ?> <?php echo $maxPage ?> <?php echo _("pages"); ?>"><i class="bi bi-info-circle"></i></small></label>
-                    <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF") ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
-                    <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being retained or stored") ?></p>
-                    <?php if($PDF_DEMO_LINK): ?>
-                        <p class="mt-4"><a class="link-opacity-75 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover small" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF") ?></a></p>
-                    <?php endif; ?>
-            </div>
-        </div>
+    <?php include "components/navtab.html.php"; ?>
+    <div class="px-3 py-3 text-center fullpage">
+        <i class="bi bi-vector-pen display-3"></i>
+        <h1 class="mb-0 h2 mt-3"><?php echo _("Sign a PDF"); ?></h1>
+        <p class="text-nowrap mt-2 pb-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document"); ?></p>
+        <?php $uploadHelp = _("The PDF should not exceed")." ".round($maxSize / 1000 / 1000)." "._("MB and")." ".$maxPage." "._("pages"); ?>
+        <?php include "components/upload.html.php"; ?>
     </div>
     <?php include('components/footer.html.php'); ?>
 </div>
@@ -45,9 +38,9 @@
     </div>
     <div style="height: 55px;" class="d-md-none"></div>
     <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
-        <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="<?php echo _("Close this PDF and return to the homepage"); ?>" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"></a>
+        <a class="btn btn-close btn-sm position-absolute d-none d-sm-none d-md-block" style="right: 16px; top: 16px;" title="<?php echo _("Close this PDF and return to the homepage"); ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"></a>
         <div class="offcanvas-header mb-0 pb-0">
-            <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><?php echo _("PDF Signature"); ?> <?php if(isset($hash)): ?><span class="float-end small me-2" title="<?php echo _("This PDF is shared with others to be signed by multiple people"); ?>"><span class="nblayers"></span> <i class="bi bi-people-fill"></i></span><?php else: ?><span class="float-end me-2" title="<?php echo _("This PDF is stored on your computer to be signed by you only"); ?>"><i class="bi bi-person-workspace"></i></span><?php endif; ?></h5>
+            <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><i class="bi bi-vector-pen"></i> <?php echo _("PDF Signature"); ?> <?php if(isset($hash)): ?><span class="badge rounded-pill text-bg-dark" title="<?php echo _("This PDF is shared with others to be signed by multiple people"); ?>"><span class="nblayers"></span> <i class="bi bi-people-fill"></i></span><?php endif; ?></h5>
             <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body pt-0">

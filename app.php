@@ -6,6 +6,7 @@ require(__DIR__.'/lib/NSSCryptography.class.php');
 require(__DIR__.'/lib/PDFSignature.class.php');
 require(__DIR__.'/lib/Image2SVG.class.php');
 require(__DIR__.'/lib/Compression.class.php');
+require(__DIR__.'/lib/OCR.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
@@ -30,6 +31,7 @@ $f3->set('SUPPORTED_LANGUAGES',
         'it' => 'Italiano',
         'gl' => 'Galego',
         'kab' => 'Taqbaylit',
+        'nl'  => 'Nederlands',
         'oc' => 'Occitan',
         'pl' => 'Polski',
         'ro' => 'Română',
@@ -102,7 +104,7 @@ if($f3->get('PDF_DEMO_LINK') === null || $f3->get('PDF_DEMO_LINK') === true) {
     }
 }
 
-$f3->route('GET /',
+$f3->route('GET|HEAD /',
     function($f3) {
         $f3->set('activeTab', 'index');
         echo View::instance()->render('index.html.php');
@@ -333,7 +335,7 @@ $f3->route('GET /signature/@hash/pdf',
             $f3->error(403, 'Unable to decrypt pdf because of wrong symmetric key');
         }
 
-        Web::instance()->send($pdfSignature->getPDF(), null, 0, TRUE, $pdfSignature->getPublicFilename());
+        Web::instance()->send($pdfSignature->getPDF(), null, 0, TRUE, urlencode($pdfSignature->getPublicFilename()));
 
         if($f3->get('DEBUG')) {
             return;
@@ -423,6 +425,46 @@ $f3->route('GET /metadata',
     }
 );
 
+$f3->route ('POST /ocr',
+    function($f3) {
+        $originalFilename = null;
+        $files = Web::instance()->receive(function($file,$formFieldName) {
+            if ($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+        }, false, function($fileBaseName, $formFieldName) use(&$originalFilename) {
+            $originalFilename = $fileBaseName;
+            return date("YmdHis")."_".uniqid()."_".md5($fileBaseName).'.pdf';
+        });
+
+        if(!count($files)) {
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF OCR failed");
+            return;
+        }
+
+        $filePath = reset(array_keys($files));
+        $outputFileName = str_replace(".pdf", "_ocr.pdf", $filePath);
+
+        $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", $filePath, $outputFileName));
+
+        if ($returnCode === false || !file_exists($outputFileName)) {
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF compression failed");
+            return;
+        } else {
+            header('Content-Type: application/pdf');
+            header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_ocr.pdf", $originalFilename))));
+            readfile($outputFileName);
+        }
+
+        unlink($outputFileName);
+        unlink($filePath);
+    }
+);
+
 $f3->route ('GET /administration',
     function ($f3) {
         if (! $f3->get('IS_ADMIN')) {
@@ -471,7 +513,7 @@ $f3->route ('POST /compress',
 
         $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
 
-        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
+        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dAutoRotatePages=/None -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
 
         if ($returnCode === false || !file_exists($outputFileName)) {
             http_response_code("500");
@@ -485,7 +527,7 @@ $f3->route ('POST /compress',
             return;
         } else {
             header('Content-Type: application/pdf');
-            header("Content-Disposition: attachment; filename=".basename(str_replace(".pdf", "_compressed.pdf", $originalFilename)));
+            header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_compressed.pdf", $originalFilename))));
             readfile($outputFileName);
         }
 

@@ -294,7 +294,7 @@ function svgChange(input, event) {
 
     let input_selected = document.querySelector('input[name="svg_2_add"]:checked');
 
-    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "strikethrough" && input_selected.value != "rectangle") {
+    if(input_selected && !input_selected.value.match(/^data:/) && input_selected.value != "text" && input_selected.value != "date" && input_selected.value != "strikethrough" && input_selected.value != "rectangle") {
         input_selected = null;
     }
 
@@ -440,6 +440,22 @@ function uploadSVG(formData) {
     document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
     document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
     document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
+
+    // Check if the uploaded file is an image (png/jpeg)
+    const fileInput = document.getElementById('input-image-upload');
+    if (fileInput && fileInput.files && fileInput.files[0] && fileInput.files[0].type.match(/image\/(png|jpeg)/)) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('img-upload').src = e.target.result;
+            document.getElementById('img-upload').classList.remove("d-none");
+            document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
+            document.getElementById('btn_modal_ajouter_spinner').classList.add('d-none');
+            document.getElementById('btn_modal_ajouter_check').classList.remove('d-none');
+            document.getElementById('btn_modal_ajouter').focus();
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+        return;
+    }
 
     let xhr = new XMLHttpRequest();
 
@@ -593,6 +609,24 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 
 
       return;
+    }
+
+    if(item == 'date') {
+        let date = new Date().toLocaleDateString();
+        let textbox = new fabric.Textbox(date, {
+            left: x,
+            top: y - 20,
+            fontSize: 20,
+            fontFamily: 'Monospace',
+            fill: penColor
+        });
+        
+        addObjectInCanvas(canvas, textbox).setActiveObject(textbox);
+        textbox.lockScalingFlip = true;
+        textbox.scaleX = currentTextScale;
+        textbox.scaleY = currentTextScale;
+        
+        return;
     }
 
     if(item == 'strikethrough') {

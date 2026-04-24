@@ -96,6 +96,9 @@
               <div class="d-grid gap-2 mt-2">
                   <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><?php echo sprintf(_("%s Create an element"), '<i class="bi bi-plus-circle"></i>'); ?></button>
               </div>
+
+              <button id="aaa" >BBB</button>
+
               <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                   <?php if(!isset($hash)): ?>
                   <?php if(!isset($noSharingMode)): ?>
@@ -293,6 +296,17 @@
         </div>
         <div class="toolbox-action" data-action="delete" title="<?php echo _("Delete the element") ?>"><i class="bi bi-trash3"></i></div>
     </template>
+    <dialog id="dialog_change_filename">
+        <form>
+            <label><?php echo _("Change the filename") ?></label>
+            <input type="text" value="" placeholder="New name">
+            <div>
+                <button value="cancel" formmethod="dialog">Annuler</button>
+                <button id="confirmBtn" value="default">Confirmer</button>
+            </div>
+        </form>
+    </dialog>
+
     <?php $loadJs = ['pdf.js' => true]; include('components/common.html.php'); ?>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?5.4.0"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?5.0.3"></script>

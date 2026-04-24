@@ -492,6 +492,28 @@ function addObjectInCanvas(canvas, item) {
     return canvas.add(item);
 };
 
+function initFilenameChange() {
+    const dialog = document.getElementById('dialog_change_filename')
+    const open = document.getElementById('aaa')
+    const confirm = dialog.querySelector('button#confirmBtn')
+    const inputFilename = dialog.querySelector('input')
+
+    open.addEventListener('click', openDialogDocumentName)
+    dialog.addEventListener('close', closeDialogDocumentName)
+    confirm.addEventListener('click', confirmDialogDocumentName)
+
+    function openDialogDocumentName() {
+        dialog.showModal()
+    }
+    function closeDialogDocumentName(e) {
+        console.log(dialog.returnValue)
+    }
+    function confirmDialogDocumentName(e) {
+        e.preventDefault()
+        dialog.close(inputFilename.value);
+    }
+}
+
 function updateWatermark() {
     if (document.querySelector('input[name=watermark]') === null) {
         return
@@ -1236,6 +1258,7 @@ async function pageSignature(url) {
     }
 
     storePenColor(penColor)
+    initFilenameChange()
     createSignaturePad();
     responsiveDisplay();
     displaysSVG();

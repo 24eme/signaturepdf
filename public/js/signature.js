@@ -493,31 +493,20 @@ function addObjectInCanvas(canvas, item) {
 };
 
 function initFilenameChange() {
-    const dialog = document.getElementById('dialog_change_filename')
-    const open = document.querySelector('#text_document_name > .edit_name')
-    const confirm = dialog.querySelector('button#confirmBtn')
-    const inputFilename = dialog.querySelector('input')
-
-    open.addEventListener('click', openDialogDocumentName)
-    dialog.addEventListener('close', closeDialogDocumentName)
-    confirm.addEventListener('click', confirmDialogDocumentName)
+    const open = document.querySelector('#text_document_name')
+    open.addEventListener('mouseup', openDialogDocumentName)
 
     function openDialogDocumentName() {
-        dialog.showModal()
-    }
-    function closeDialogDocumentName(e) {
-        const divname = document.querySelector("#text_document_name")
-        const oldname = divname.querySelector('span').innerText
-        let newname = dialog.returnValue === ""
-                        ? oldname
-                        : dialog.returnValue
+        if (window.getSelection().toString()) {
+            return;
+        }
+
+        const oldname = open.querySelector('span').innerText
+
+        let newname = prompt(this.dataset.promptlabel, oldname)
         newname = newname.endsWith('.pdf') ? newname : newname + '.pdf'
-        divname.title = newname
-        divname.querySelector('span').innerText = newname
-    }
-    function confirmDialogDocumentName(e) {
-        e.preventDefault()
-        dialog.close(inputFilename.value);
+        open.title = newname
+        open.querySelector('span').innerText = newname
     }
 }
 

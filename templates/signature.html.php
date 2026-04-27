@@ -44,9 +44,9 @@
             <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body pt-0">
-            <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="">
+            <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="" data-promptlabel="<?php echo _("Change the filename") ?>">
                 <?php if (isset($isPdfEncrypted) && $isPdfEncrypted): ?><i class="bi bi-lock-fill" title="<?php echo _("This PDF is stored encrypted on the server."); ?>"></i><?php endif;?>
-                <i class="bi bi-files"></i> <span></span> <i class="edit_name bi bi-pencil"></i>
+                <i class="bi bi-files"></i> <span></span>
             </p>
             <div class="form-check form-switch mb-2 small d-none">
                 <input class="form-check-input" type="checkbox" id="add-lock-checkbox" disabled="disabled">
@@ -297,18 +297,6 @@
         </div>
         <div class="toolbox-action" data-action="delete" title="<?php echo _("Delete the element") ?>"><i class="bi bi-trash3"></i></div>
     </template>
-    <dialog id="dialog_change_filename">
-        <form>
-            <p>
-                <label><?php echo _("Change the filename") ?></label>
-                <input type="text" value="" placeholder="New name">
-            </p>
-            <div>
-                <button value="" formmethod="dialog">Annuler</button>
-                <button id="confirmBtn" value="default">Confirmer</button>
-            </div>
-        </form>
-    </dialog>
 
     <?php $loadJs = ['pdf.js' => true]; include('components/common.html.php'); ?>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?5.4.0"></script>

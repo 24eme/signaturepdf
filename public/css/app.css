@@ -245,3 +245,7 @@ html.rtl .file-list-checkbox {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.hiddenCanvasElement {
+    display: none;
+}

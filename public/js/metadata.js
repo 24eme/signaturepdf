@@ -88,7 +88,9 @@ async function loadPDF(pdfBlob) {
     }
 
     document.querySelector('#container-pages').innerHTML = null;
-
+    document.querySelectorAll('.hiddenCanvasElement').forEach(function(item) {
+        item.remove();
+    });
     for(let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++ ) {
         pdf.getPage(pageNumber).then(function(page) {
             let pageIndex = (page.pageNumber - 1);
@@ -357,6 +359,8 @@ function createEventsListener() {
                 console.error(reason);
             });
             endProcessingMode(btn);
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
         })
 
         e.preventDefault();

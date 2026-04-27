@@ -51,9 +51,9 @@
             <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><i class="bi bi-tags"></i> <?php echo _("Edit metadata"); ?></h5>
             <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             <p id="text_document_name" class="text-muted mb-2" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
-            <form id="form_ocr" class="position-absolute" action="<?php echo $REVERSE_PROXY_URL; ?>/ocr" method="post"><button id="btn_ocr" type="submit" class="btn btn-outline-dark btn-sm float-end"><i class="bi bi-upc-scan"></i></button><input class="d-none" name="input_pdf_upload" type="file" name="pdf" /></form>
         </div>
         <div class="offcanvas-body bg-light" style="padding-bottom: 60px;">
+            <form id="form_ocr" class="position-fixed end-0 mt-2 me-4" style="z-index: 1000;" action="<?php echo $REVERSE_PROXY_URL; ?>/ocr" method="post"><button id="btn_ocr" type="submit" class="btn btn-outline-dark bg-white text-dark btn-sm float-end"><i class="bi bi-upc-scan"></i></button><input class="d-none" name="input_pdf_upload" type="file" name="pdf" /></form>
             <div id="container-pages" dir="auto">
             </div>
         </div>

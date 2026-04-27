@@ -505,6 +505,10 @@ function initFilenameChange() {
             return;
         }
 
+        if (this.classList.contains('editable') === false) {
+            return
+        }
+
         const oldname = open.querySelector('span').innerText
 
         let newname = prompt(this.dataset.promptlabel, oldname)

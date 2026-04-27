@@ -44,7 +44,7 @@
             <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body pt-0">
-            <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="" data-promptlabel="<?php echo _("Change the filename") ?>">
+            <p id="text_document_name" class="text-muted<?php if (! isset($hash)): ?> editable<?php endif ?>" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="" data-promptlabel="<?php echo _("Change the filename") ?>">
                 <?php if (isset($isPdfEncrypted) && $isPdfEncrypted): ?><i class="bi bi-lock-fill" title="<?php echo _("This PDF is stored encrypted on the server."); ?>"></i><?php endif;?>
                 <i class="bi bi-files"></i> <span></span>
             </p>

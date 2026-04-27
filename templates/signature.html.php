@@ -178,7 +178,12 @@
                         <img id="img-upload" class="d-none" src="" />
                         </div>
                         <form id="form-image-upload" action="<?php echo $REVERSE_PROXY_URL; ?>/image2svg" method="POST" enctype="multipart/form-data">
-                        <input id="input-image-upload" class="form-control" name="image" type="file">
+                            <input id="input-image-upload" class="form-control" name="image" type="file">
+
+                            <div class="form-check form-switch mt-2">
+                              <input class="form-check-input" type="checkbox" role="switch" id="switch-vectorized" checked>
+                              <label class="form-check-label" for="switch-vectorized">Vectoriser l'image</label>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -924,10 +924,19 @@ function createEventsListener() {
         }
     })
 
+    document.getElementById('switch-vectorized').addEventListener('change', function() {
+        const input = document.getElementById('input-image-upload')
+        if (input.files.length) {
+            input.dispatchEvent(new Event('change'))
+        }
+    })
+
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
-        let data = new FormData();
+        const switchVectorized = document.getElementById('switch-vectorized')
+        const data = new FormData();
         data.append('file', document.getElementById('input-image-upload').files[0]);
-        uploadSVG(data, false);
+
+        uploadSVG(data, switchVectorized.checked);
         event.preventDefault();
     });
 

@@ -496,8 +496,12 @@ function initFilenameChange() {
     const open = document.querySelector('#text_document_name')
     open.addEventListener('mouseup', openDialogDocumentName)
 
-    function openDialogDocumentName() {
+    function openDialogDocumentName(e) {
         if (window.getSelection().toString()) {
+            return;
+        }
+
+        if (e.target.closest('.bi')) {
             return;
         }
 
@@ -510,6 +514,13 @@ function initFilenameChange() {
         newname = newname.endsWith('.pdf') ? newname : newname + '.pdf'
         open.title = newname
         open.querySelector('span').innerText = newname
+
+        // Changement du fichier pour le partage
+        const oldfile = document.getElementById('input_pdf_share').files[0]
+        const dt = new DataTransfer()
+        dt.items.add(new File([oldfile], newname, {type: oldfile.type}))
+        document.getElementById('input_pdf_share').files = dt.files
+        dt.items.clear()
     }
 }
 

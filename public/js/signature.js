@@ -504,6 +504,9 @@ function initFilenameChange() {
         const oldname = open.querySelector('span').innerText
 
         let newname = prompt(this.dataset.promptlabel, oldname)
+
+        if (newname === null || newname === "") { return }
+
         newname = newname.endsWith('.pdf') ? newname : newname + '.pdf'
         open.title = newname
         open.querySelector('span').innerText = newname

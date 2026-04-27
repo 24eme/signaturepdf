@@ -53,6 +53,7 @@
             <p id="text_document_name" class="text-muted mb-2" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><i class="bi bi-files"></i> <span></span></p>
         </div>
         <div class="offcanvas-body bg-light" style="padding-bottom: 60px;">
+            <form id="form_ocr" class="position-fixed end-0 mt-2 me-4" style="z-index: 1000;" action="<?php echo $REVERSE_PROXY_URL; ?>/ocr" method="post"><button id="btn_ocr" type="submit" class="btn btn-outline-dark bg-white text-dark btn-sm float-end"><i class="bi bi-upc-scan"></i></button><input class="d-none" name="input_pdf_upload" type="file" name="pdf" /></form>
             <div id="container-pages" dir="auto">
             </div>
         </div>

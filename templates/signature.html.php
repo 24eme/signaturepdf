@@ -182,7 +182,7 @@
 
                             <div class="form-check form-switch mt-2">
                               <input class="form-check-input" type="checkbox" role="switch" id="switch-vectorized" checked>
-                              <label class="form-check-label" for="switch-vectorized">Vectoriser l'image</label>
+                              <label class="form-check-label" for="switch-vectorized"><?php echo _("Convert the image to a vector format") ?></label>
                             </div>
                         </form>
                     </div>

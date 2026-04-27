@@ -44,7 +44,10 @@
             <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body pt-0">
-            <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><?php if (isset($isPdfEncrypted) && $isPdfEncrypted): ?><i class="bi bi-lock-fill" title="<?php echo _("This PDF is stored encrypted on the server."); ?>"></i><?php endif;?><i class="bi bi-files"></i> <span></span></p>
+            <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="">
+                <?php if (isset($isPdfEncrypted) && $isPdfEncrypted): ?><i class="bi bi-lock-fill" title="<?php echo _("This PDF is stored encrypted on the server."); ?>"></i><?php endif;?>
+                <i class="bi bi-files"></i> <span></span> <i class="edit_name bi bi-pencil"></i>
+            </p>
             <div class="form-check form-switch mb-2 small d-none">
                 <input class="form-check-input" type="checkbox" id="add-lock-checkbox" disabled="disabled">
                 <label style="cursor: pointer;" class="form-check-label" for="add-lock-checkbox"> <?php echo _("Keep the selection active"); ?></label>
@@ -96,8 +99,6 @@
               <div class="d-grid gap-2 mt-2">
                   <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><?php echo sprintf(_("%s Create an element"), '<i class="bi bi-plus-circle"></i>'); ?></button>
               </div>
-
-              <button id="aaa" >BBB</button>
 
               <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                   <?php if(!isset($hash)): ?>
@@ -298,10 +299,12 @@
     </template>
     <dialog id="dialog_change_filename">
         <form>
-            <label><?php echo _("Change the filename") ?></label>
-            <input type="text" value="" placeholder="New name">
+            <p>
+                <label><?php echo _("Change the filename") ?></label>
+                <input type="text" value="" placeholder="New name">
+            </p>
             <div>
-                <button value="cancel" formmethod="dialog">Annuler</button>
+                <button value="" formmethod="dialog">Annuler</button>
                 <button id="confirmBtn" value="default">Confirmer</button>
             </div>
         </form>

@@ -494,7 +494,7 @@ function addObjectInCanvas(canvas, item) {
 
 function initFilenameChange() {
     const dialog = document.getElementById('dialog_change_filename')
-    const open = document.getElementById('aaa')
+    const open = document.querySelector('#text_document_name > .edit_name')
     const confirm = dialog.querySelector('button#confirmBtn')
     const inputFilename = dialog.querySelector('input')
 
@@ -506,7 +506,14 @@ function initFilenameChange() {
         dialog.showModal()
     }
     function closeDialogDocumentName(e) {
-        console.log(dialog.returnValue)
+        const divname = document.querySelector("#text_document_name")
+        const oldname = divname.querySelector('span').innerText
+        let newname = dialog.returnValue === ""
+                        ? oldname
+                        : dialog.returnValue
+        newname = newname.endsWith('.pdf') ? newname : newname + '.pdf'
+        divname.title = newname
+        divname.querySelector('span').innerText = newname
     }
     function confirmDialogDocumentName(e) {
         e.preventDefault()
@@ -954,7 +961,7 @@ function createEventsListener() {
                 })
 
                 const blob = await response.blob()
-                await download(blob, formData.get('pdf').name.replace(/\.pdf$/, '_signe.pdf'))
+                await download(blob, document.querySelector('#text_document_name').title.replace(/\.pdf$/, '_signe.pdf'))
                 await storeFileInCache(blob, formData.get('pdf').name)
                 endProcessingMode(this)
             }

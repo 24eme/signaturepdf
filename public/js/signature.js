@@ -492,6 +492,35 @@ function addObjectInCanvas(canvas, item) {
     return canvas.add(item);
 };
 
+function initFilenameChange() {
+    const dialog = document.getElementById('dialog_change_filename')
+    const open = document.querySelector('#text_document_name > .edit_name')
+    const confirm = dialog.querySelector('button#confirmBtn')
+    const inputFilename = dialog.querySelector('input')
+
+    open.addEventListener('click', openDialogDocumentName)
+    dialog.addEventListener('close', closeDialogDocumentName)
+    confirm.addEventListener('click', confirmDialogDocumentName)
+
+    function openDialogDocumentName() {
+        dialog.showModal()
+    }
+    function closeDialogDocumentName(e) {
+        const divname = document.querySelector("#text_document_name")
+        const oldname = divname.querySelector('span').innerText
+        let newname = dialog.returnValue === ""
+                        ? oldname
+                        : dialog.returnValue
+        newname = newname.endsWith('.pdf') ? newname : newname + '.pdf'
+        divname.title = newname
+        divname.querySelector('span').innerText = newname
+    }
+    function confirmDialogDocumentName(e) {
+        e.preventDefault()
+        dialog.close(inputFilename.value);
+    }
+}
+
 function updateWatermark() {
     if (document.querySelector('input[name=watermark]') === null) {
         return
@@ -932,7 +961,7 @@ function createEventsListener() {
                 })
 
                 const blob = await response.blob()
-                await download(blob, formData.get('pdf').name.replace(/\.pdf$/, '_signe.pdf'))
+                await download(blob, document.querySelector('#text_document_name').title.replace(/\.pdf$/, '_signe.pdf'))
                 await storeFileInCache(blob, formData.get('pdf').name)
                 endProcessingMode(this)
             }
@@ -1236,6 +1265,7 @@ async function pageSignature(url) {
     }
 
     storePenColor(penColor)
+    initFilenameChange()
     createSignaturePad();
     responsiveDisplay();
     displaysSVG();

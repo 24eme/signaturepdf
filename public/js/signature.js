@@ -436,22 +436,36 @@ function displaysSVG() {
     });
 };
 
-function uploadSVG(formData) {
+function uploadSVG(formData, convert = true) {
     document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
     document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
     document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
 
-    let xhr = new XMLHttpRequest();
-
-    xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
-    xhr.onreadystatechange = function () {
-        var svgImage = svgToDataUrl(trimSvgWhitespace(this.responseText));
-        document.getElementById('img-upload').src = svgImage;
+    function updateImage(image) {
+        document.getElementById('img-upload').src = image;
         document.getElementById('img-upload').classList.remove("d-none");
         document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
         document.getElementById('btn_modal_ajouter_spinner').classList.add('d-none');
         document.getElementById('btn_modal_ajouter_check').classList.remove('d-none');
         document.getElementById('btn_modal_ajouter').focus();
+    }
+
+    if (convert === false) {
+        const f = formData.get('file')
+
+        if (f.type === 'image/png') {
+            const fr = new FileReader()
+            fr.onload = (e) => { updateImage(e.target.result) }
+            fr.readAsDataURL(f)
+            return;
+        }
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
+    xhr.onreadystatechange = function () {
+        const svgImage = svgToDataUrl(trimSvgWhitespace(this.responseText));
+        updateImage(svgImage)
     };
     xhr.send( formData );
 };
@@ -661,6 +675,23 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 
         updateFlatten();
         return;
+    }
+
+    if (item.startsWith('data:image/png')) {
+        fabric.Image.fromURL(item, function(img) {
+            img.scaleToHeight(height);
+
+            if(img.getScaledWidth() > 200) {
+                img.scaleToWidth(200);
+            }
+
+            img.top = y - (img.getScaledHeight() / 2);
+            img.left = x - (img.getScaledWidth() / 2);
+
+            addObjectInCanvas(canvas, img);
+        });
+
+        return
     }
 
     fabric.loadSVGFromURL(item, function(objects, options) {
@@ -896,7 +927,7 @@ function createEventsListener() {
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
         let data = new FormData();
         data.append('file', document.getElementById('input-image-upload').files[0]);
-        uploadSVG(data);
+        uploadSVG(data, false);
         event.preventDefault();
     });
 

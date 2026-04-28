@@ -22,6 +22,7 @@ let nblayers = null;
 let hasModifications = false;
 let currentTextScale = 1;
 const defaultScale = 1.5;
+let customText = '';
 
 async function loadPDF(pdfBlob) {
     let filename = pdfBlob.name;
@@ -612,7 +613,10 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
     }
 
     if(item == 'text') {
-        let textbox = new fabric.Textbox(trad['Text to modify'], {
+        const text = (customText) ? customText : trad['Text to modify']
+        customText = ''
+
+        let textbox = new fabric.Textbox(text, {
         left: x,
         top: y - 20,
         fontSize: 20,
@@ -960,6 +964,25 @@ function createEventsListener() {
         updateFlatten();
         updateWatermark();
     });
+
+    document.getElementById('modal-text-more-options').addEventListener('click', function (e) {
+        const checkbox = document.querySelector('#label_svg_text')
+        const el = e.target.closest('.btn-custom-text')
+        const inlimit = e.target.closest('.custom-text-list')
+
+        if (el && inlimit) {
+            if (document.getElementById(checkbox.htmlFor).checked) {
+                checkbox.click() // sans ça, désélectionne l'input text de la sidebar
+            }
+
+            customText = el.querySelector('span.custom-text').innerText.trim()
+            const openModal = el.closest('.modal.show')
+            const modalInstance = bootstrap.Modal.getInstance(openModal);
+            modalInstance.hide()
+
+            checkbox.click()
+        }
+    })
 
     document.querySelector('#watermark-color-picker')?.addEventListener('change', function (e) {
         document.querySelector('input[name=watermark]').dispatchEvent(new Event("change"));

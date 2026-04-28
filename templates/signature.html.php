@@ -67,9 +67,12 @@
                 <input type="radio" class="btn-check" id="radio_svg_rubber_stamber_add" name="svg_2_add" autocomplete="off" value="rubber_stamber">
                 <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" data-modalnav="#nav-import-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add" id="label_svg_rubber_stamber_add"><?php echo sprintf(_("%s Stamp"), '<i class="bi bi-card-text"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
             </div>
-            <div class="d-grid gap-2 mb-2 list-item-add">
-                  <input type="radio" class="btn-check" id="radio_svg_text" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdGV4dGFyZWEtdCIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMS41IDIuNUExLjUgMS41IDAgMCAxIDMgMWgxMGExLjUgMS41IDAgMCAxIDEuNSAxLjV2My41NjNhMiAyIDAgMCAxIDAgMy44NzRWMTMuNUExLjUgMS41IDAgMCAxIDEzIDE1SDNhMS41IDEuNSAwIDAgMS0xLjUtMS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNXptMSAzLjU2M2EyIDIgMCAwIDEgMCAzLjg3NFYxMy41YS41LjUgMCAwIDAgLjUuNWgxMGEuNS41IDAgMCAwIC41LS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNUEuNS41IDAgMCAwIDEzIDJIM2EuNS41IDAgMCAwLS41LjV2My41NjN6TTIgN2ExIDEgMCAxIDAgMCAyIDEgMSAwIDAgMCAwLTJ6bTEyIDBhMSAxIDAgMSAwIDAgMiAxIDEgMCAwIDAgMC0yeiIvPjxwYXRoIGQ9Ik0xMS40MzQgNEg0LjU2Nkw0LjUgNS45OTRoLjM4NmMuMjEtMS4yNTIuNjEyLTEuNDQ2IDIuMTczLTEuNDk1bC4zNDMtLjAxMXY2LjM0M2MwIC41MzctLjExNi42NjUtMS4wNDkuNzQ4VjEyaDMuMjk0di0uNDIxYy0uOTM4LS4wODMtMS4wNTQtLjIxLTEuMDU0LS43NDhWNC40ODhsLjM0OC4wMWMxLjU2LjA1IDEuOTYzLjI0NCAyLjE3MyAxLjQ5NmguMzg2TDExLjQzNCA0eiIvPjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="text">
-                  <label draggable="true" id="label_svg_text" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text"><?php echo sprintf(_("%s Text"), '<i class="bi bi-textarea-t"></i>'); ?></label>
+            <div class="d-flex gap-2 mb-2 list-item-add">
+                <input type="radio" class="btn-check" id="radio_svg_text" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdGV4dGFyZWEtdCIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMS41IDIuNUExLjUgMS41IDAgMCAxIDMgMWgxMGExLjUgMS41IDAgMCAxIDEuNSAxLjV2My41NjNhMiAyIDAgMCAxIDAgMy44NzRWMTMuNUExLjUgMS41IDAgMCAxIDEzIDE1SDNhMS41IDEuNSAwIDAgMS0xLjUtMS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNXptMSAzLjU2M2EyIDIgMCAwIDEgMCAzLjg3NFYxMy41YS41LjUgMCAwIDAgLjUuNWgxMGEuNS41IDAgMCAwIC41LS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNUEuNS41IDAgMCAwIDEzIDJIM2EuNS41IDAgMCAwLS41LjV2My41NjN6TTIgN2ExIDEgMCAxIDAgMCAyIDEgMSAwIDAgMCAwLTJ6bTEyIDBhMSAxIDAgMSAwIDAgMiAxIDEgMCAwIDAgMC0yeiIvPjxwYXRoIGQ9Ik0xMS40MzQgNEg0LjU2Nkw0LjUgNS45OTRoLjM4NmMuMjEtMS4yNTIuNjEyLTEuNDQ2IDIuMTczLTEuNDk1bC4zNDMtLjAxMXY2LjM0M2MwIC41MzctLjExNi42NjUtMS4wNDkuNzQ4VjEyaDMuMjk0di0uNDIxYy0uOTM4LS4wODMtMS4wNTQtLjIxLTEuMDU0LS43NDhWNC40ODhsLjM0OC4wMWMxLjU2LjA1IDEuOTYzLjI0NCAyLjE3MyAxLjQ5NmguMzg2TDExLjQzNCA0eiIvPjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="text">
+                <label draggable="true" id="label_svg_text" class="flex-grow-1 btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text">
+                    <?php echo sprintf(_("%s Text"), '<i class="bi bi-textarea-t"></i>'); ?>
+                </label>
+                <span class="btn-svg-list-more-options btn btn-outline-secondary text-black" data-bs-keyboard=false data-bs-toggle="modal" data-bs-target="#modal-text-more-options"><i class="bi bi-three-dots-vertical"></i></span>
               </div>
               <div class="d-grid gap-2 mb-2 list-item-add">
                   <input type="radio" class="btn-check" id="radio_svg_strikethrough" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdHlwZS1zdHJpa2V0aHJvdWdoIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik02LjMzMyA1LjY4NmMwIC4zMS4wODMuNTgxLjI3LjgxNEg1LjE2NmEyLjggMi44IDAgMCAxLS4wOTktLjc2YzAtMS42MjcgMS40MzYtMi43NjggMy40OC0yLjc2OCAxLjk2OSAwIDMuMzkgMS4xNzUgMy40NDUgMi44NWgtMS4yM2MtLjExLTEuMDgtLjk2NC0xLjc0My0yLjI1LTEuNzQzLTEuMjMgMC0yLjE4LjYwMi0yLjE4IDEuNjA3em0yLjE5NCA3LjQ3OGMtMi4xNTMgMC0zLjU4OS0xLjEwNy0zLjcwNS0yLjgxaDEuMjNjLjE0NCAxLjA2IDEuMTI5IDEuNzAzIDIuNTQ0IDEuNzAzIDEuMzQgMCAyLjMxLS43MDUgMi4zMS0xLjY3NSAwLS44MjctLjU0Ny0xLjM3NC0xLjkxNC0xLjY3NUw4LjA0NiA4LjVIMXYtMWgxNHYxaC0zLjUwNGMuNDY4LjQzNy42NzUuOTk0LjY3NSAxLjY5NyAwIDEuODI2LTEuNDM2IDIuOTY3LTMuNjQ0IDIuOTY3Ij48L3BhdGg+Cjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="strikethrough">
@@ -198,6 +201,34 @@
       </div>
     </div>
     </div>
+
+    <div class="modal fade" id="modal-text-more-options" tabindex="-1" aria-labelledby="modalMoreOptionsLabel" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalMoreOptionsLabel"><?php echo _("Date formats and preconfigured texts") ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="custom-text-list">
+                        <?php $date = new DateTime() ?>
+                        <?php foreach (['dd/MM/Y', 'dd-MM-Y', 'MM/dd/Y', 'MM-dd-Y', 'dd LLLL Y', 'dd LLLL'] as $format): ?>
+                            <div class="d-grid gap-2 mb-2 list-item-add btn-custom-text">
+                                <span class="btn btn-outline-secondary text-black text-start"><i class="bi bi-calendar-date me-1"></i> <span class="custom-text"><?php echo IntlDateFormatter::formatObject($date, $format, $TRANSLATION_LANGUAGE) ?></span></span>
+                            </div>
+                        <?php endforeach ?>
+                        <div class="d-grid gap-2 mb-2 list-item-add btn-custom-text">
+                        <span class="btn btn-outline-secondary text-black text-start"><i class="bi bi-chat-square-dots me-1"></i> <span class="custom-text"><?php echo _("Read and approved") ?></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?php if(!isset($hash) && !isset($noSharingMode)): ?>
     <div id="modal-start-share" class="modal" tabindex="-1">
         <div class="modal-dialog modal-md">

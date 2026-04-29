@@ -188,6 +188,7 @@ async function loadPDF(pdfBlob) {
               canvasEdition.on("selection:cleared", function(event) {
                   toolBox.reset()
               });
+              canvasEdition.on("object:modified", storeCustomText);
               canvasEditions.push(canvasEdition);
             });
         }
@@ -228,6 +229,24 @@ function responsiveDisplay() {
 function storeCollections() {
     localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
 };
+
+function storeCustomText(e) {
+    if (! (e.target instanceof fabric.IText)) {
+        return;
+    }
+
+    if (! e.target.text || e.transform || e.target.text === trad['Text to modify']) {
+        return;
+    }
+
+    let storedStrings = JSON.parse(localStorage.getItem('storedStrings'))
+    if (storedStrings === null) {
+        storedStrings = []
+    }
+    storedStrings.push(e.target.text.trim())
+    storedStrings = [...new Set(storedStrings)] // array_unique version js
+    localStorage.setItem('storedStrings', JSON.stringify(storedStrings))
+}
 
 function getSvgItem(svg) {
     for (index in svgCollections) {

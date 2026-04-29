@@ -984,7 +984,8 @@ function createEventsListener() {
         updateWatermark();
     });
 
-    document.getElementById('modal-text-more-options').addEventListener('click', function (e) {
+    const modalMoreOptions = document.getElementById('modal-text-more-options')
+    modalMoreOptions.addEventListener('click', function (e) {
         const checkbox = document.querySelector('#label_svg_text')
         const el = e.target.closest('.btn-custom-text')
         const inlimit = e.target.closest('.custom-text-list')
@@ -1001,6 +1002,28 @@ function createEventsListener() {
 
             checkbox.click()
         }
+    })
+    modalMoreOptions.addEventListener('show.bs.modal', function (e) {
+        // on construit la liste de texte custom du local storage
+        const modal = e.target
+        const customList = modal.querySelector('.custom-text-list:last-child')
+        while (customList.firstChild) { customList.removeChild(customList.lastChild) }
+        (JSON.parse(localStorage.getItem('storedStrings')) || []).forEach(function (el) {
+            const div = document.createElement('div')
+                  div.classList.add("d-grid", "gap-2", "mb-2", "list-item-add", "btn-custom-text")
+            const span = document.createElement('span')
+                  span.classList.add("btn", "btn-outline-secondary", "text-black", "text-start")
+            const icon = document.createElement('i')
+                  icon.classList.add("bi", "bi-clock-history", "me-1")
+            const text = document.createElement('span')
+                  text.classList.add('custom-text')
+                  text.innerText = el
+            span.appendChild(icon)
+            span.append(" ")
+            span.appendChild(text)
+            div.appendChild(span)
+            customList.appendChild(div)
+        })
     })
 
     document.querySelector('#watermark-color-picker')?.addEventListener('change', function (e) {

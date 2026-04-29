@@ -221,6 +221,8 @@
                         <span class="btn btn-outline-secondary text-black text-start"><i class="bi bi-chat-square-dots me-1"></i> <span class="custom-text"><?php echo _("Read and approved") ?></span></span>
                         </div>
                     </div>
+                    <div class="custom-text-list">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -995,7 +995,18 @@ function createEventsListener() {
                 checkbox.click() // sans ça, désélectionne l'input text de la sidebar
             }
 
-            customText = el.querySelector('span.custom-text').innerText.trim()
+            // si element sélectionné, alors on remplace le texte
+            const activeCanvas = canvasEditions.find((c) => c.getActiveObject())
+
+            if (activeCanvas) {
+                const activeText = activeCanvas.getActiveObject()
+                activeText.text = el.querySelector('span.custom-text').innerText.trim()
+                activeCanvas.discardActiveObject()
+                activeCanvas.requestRenderAll()
+            } else {
+                customText = el.querySelector('span.custom-text').innerText.trim()
+            }
+
             const openModal = el.closest('.modal.show')
             const modalInstance = bootstrap.Modal.getInstance(openModal);
             modalInstance.hide()

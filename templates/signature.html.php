@@ -72,7 +72,7 @@
                 <label draggable="true" id="label_svg_text" class="flex-grow-1 btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text">
                     <?php echo sprintf(_("%s Text"), '<i class="bi bi-textarea-t"></i>'); ?>
                 </label>
-                <span class="btn-svg-list-more-options btn btn-outline-secondary text-black" data-bs-keyboard=false data-bs-toggle="modal" data-bs-target="#modal-text-more-options"><i class="bi bi-three-dots-vertical"></i></span>
+                <span class="btn-svg-list-more-options btn btn-outline-secondary text-black" data-bs-keyboard=false data-bs-toggle="modal" data-bs-target="#modal-text-more-options"><i class="bi bi-layout-text-sidebar-reverse"></i></span>
               </div>
               <div class="d-grid gap-2 mb-2 list-item-add">
                   <input type="radio" class="btn-check" id="radio_svg_strikethrough" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdHlwZS1zdHJpa2V0aHJvdWdoIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik02LjMzMyA1LjY4NmMwIC4zMS4wODMuNTgxLjI3LjgxNEg1LjE2NmEyLjggMi44IDAgMCAxLS4wOTktLjc2YzAtMS42MjcgMS40MzYtMi43NjggMy40OC0yLjc2OCAxLjk2OSAwIDMuMzkgMS4xNzUgMy40NDUgMi44NWgtMS4yM2MtLjExLTEuMDgtLjk2NC0xLjc0My0yLjI1LTEuNzQzLTEuMjMgMC0yLjE4LjYwMi0yLjE4IDEuNjA3em0yLjE5NCA3LjQ3OGMtMi4xNTMgMC0zLjU4OS0xLjEwNy0zLjcwNS0yLjgxaDEuMjNjLjE0NCAxLjA2IDEuMTI5IDEuNzAzIDIuNTQ0IDEuNzAzIDEuMzQgMCAyLjMxLS43MDUgMi4zMS0xLjY3NSAwLS44MjctLjU0Ny0xLjM3NC0xLjkxNC0xLjY3NUw4LjA0NiA4LjVIMXYtMWgxNHYxaC0zLjUwNGMuNDY4LjQzNy42NzUuOTk0LjY3NSAxLjY5NyAwIDEuODI2LTEuNDM2IDIuOTY3LTMuNjQ0IDIuOTY3Ij48L3BhdGg+Cjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="strikethrough">
@@ -326,6 +326,7 @@
     <?php endif; ?>
     <template id="toolbox-elements-template">
         <div class="toolbox-action" data-action="changeColor" title="<?php echo _("Change the color of the selected element") ?>"><i class="bi bi-droplet-fill"></i></div>
+        <div class="toolbox-action" data-bs-toggle="modal" data-bs-target="#modal-text-more-options" title="<?php echo _("Select preconfigured text") ?>"><i class="bi bi-layout-text-sidebar-reverse"></i></div>
         <div class="toolbox-action dropdown" title="<?php echo _("Duplicate the element") ?>">
             <span class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside"><i class="bi bi-copy mx-1"></i></span>
             <ul class="dropdown-menu shadow-sm bg-body-secondary">

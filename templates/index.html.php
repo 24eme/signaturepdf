@@ -35,7 +35,9 @@
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-textarea-t"></i> <?php echo _("Type text") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-type-strikethrough"></i> <?php echo _("Strike through text") ?></a>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-people-fill"></i> <?php echo _("Allow multiple people to sign via a shared link") ?></a>
+            <?php if ($nssEnabled): ?>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-patch-check"></i> <?php echo _("Sign with the server certificate") ?></a>
+            <?php endif; ?>
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action position-relative"><i class="bi bi-droplet-half"></i> <?php echo _("Add a watermark") ?><span class="badge rounded-pill text-dark border border-dark position-absolute top-50 end-0 translate-middle-y me-3"><?php echo _("New") ?></span></a>
             <!-- <a href="<?php echo $REVERSE_PROXY_URL; ?>/signature" class="list-group-item list-group-item-action"><i class="bi bi-bounding-box"></i> <?php echo _("Redact areas") ?></a> -->
             </div>

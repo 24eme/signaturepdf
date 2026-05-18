@@ -19,7 +19,7 @@
                 <a class="nav-link <?php if ($activeTab === "index"): ?>active<?php endif; ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/"><i class="bi bi-search"></i><span class="d-none d-md-inline-block"></span></a>
             </li>
             <?php endif; ?>
-            <li class="nav-item">
+            <li class="nav-item <?php if ($disableOrganization): ?>invisible<?php endif; ?>">
                 <a class="nav-link <?php if ($activeTab === "sign"): ?>active<?php endif; ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"><i class="bi bi-vector-pen"></i> <span class="d-none d-md-inline-block"><?php echo _("Sign"); ?></span></a>
             </li>
             <?php if (!$disableOrganization): ?>

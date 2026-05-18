@@ -23,6 +23,8 @@ List of instances where you can use this software:
 - [signaturepdf.linux07.fr](https://signaturepdf.linux07.fr) (by [Linux07](https://linux07.fr/))
 - [signpdf.blablalinux.be](https://signpdf.blablalinux.be) (by [Blabla Linux](https://blablalinux.be/))
 - [framapdf.org](https://framapdf.org/home) (by [Framasoft](https://framasoft.org))
+- [pdf.s2s.video](https://pdf.s2s.video) (by [s2s](https://www.s2s.video))
+
 
 _Feel free to add yours through an issue or a pull request._
 

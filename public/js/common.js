@@ -222,7 +222,7 @@ async function convertInputFileImagesToPDF(inputFile) {
     let dataTransfer = new DataTransfer();
     for (let i = 0; i < inputFile.files.length; i++) {
         console.log(inputFile.files[i].type);
-        if(["image/png", "image/jpeg"].includes(inputFile.files[i].type)) {
+        if(["image/png", "image/jpeg", "image/jpg"].includes(inputFile.files[i].type)) {
             dataTransfer.items.add(await imageToPdf(inputFile.files[i]));
         } else {
             dataTransfer.items.add(inputFile.files[i]);
@@ -237,7 +237,7 @@ async function imageToPdf(file) {
   let image = null;
   if(file.type == "image/png") {
       image = await pdfDoc.embedPng(imageBytes);
-  } else if(file.type == "image/jpeg") {
+  } else if(file.type == "image/jpeg" || file.type == "image/jpg") {
       image = await pdfDoc.embedJpg(imageBytes);
   }
 

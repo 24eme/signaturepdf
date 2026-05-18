@@ -6,6 +6,7 @@ require(__DIR__.'/lib/NSSCryptography.class.php');
 require(__DIR__.'/lib/PDFSignature.class.php');
 require(__DIR__.'/lib/Image2SVG.class.php');
 require(__DIR__.'/lib/Compression.class.php');
+require(__DIR__.'/lib/OCR.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
@@ -424,6 +425,46 @@ $f3->route('GET /metadata',
     }
 );
 
+$f3->route ('POST /ocr',
+    function($f3) {
+        $originalFilename = null;
+        $files = Web::instance()->receive(function($file,$formFieldName) {
+            if ($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+                $f3->error(403);
+            }
+        }, false, function($fileBaseName, $formFieldName) use(&$originalFilename) {
+            $originalFilename = $fileBaseName;
+            return date("YmdHis")."_".uniqid()."_".md5($fileBaseName).'.pdf';
+        });
+
+        if(!count($files)) {
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF OCR failed");
+            return;
+        }
+
+        $filePath = reset(array_keys($files));
+        $outputFileName = str_replace(".pdf", "_ocr.pdf", $filePath);
+
+        $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", $filePath, $outputFileName));
+
+        if ($returnCode === false || !file_exists($outputFileName)) {
+            http_response_code("500");
+            header('Content-Type: text/plain');
+            echo _("PDF compression failed");
+            return;
+        } else {
+            header('Content-Type: application/pdf');
+            header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_ocr.pdf", $originalFilename))));
+            readfile($outputFileName);
+        }
+
+        unlink($outputFileName);
+        unlink($filePath);
+    }
+);
+
 $f3->route ('GET /administration',
     function ($f3) {
         if (! $f3->get('IS_ADMIN')) {
@@ -545,6 +586,121 @@ $f3->route('PUT /api/file/save', function($f3) {
     }
     file_put_contents($basefile.'.pdf', $f3->get('BODY'));
 
+});
+
+$f3->route('POST /api/share/new', function($f3) {
+    if (! is_dir($f3->get('PDF_STORAGE_PATH'))) {
+        echo json_encode(['message' => 'Sharing folder doesn\'t exist']);
+        return http_response_code(500);
+    }
+
+    if (! is_writable($f3->get('PDF_STORAGE_PATH'))) {
+        echo json_encode(['message' => 'Sharing folder is not writable']);
+        return http_response_code(500);
+    }
+
+    if (! $f3->get('POST.duration')) {
+        echo json_encode(['message' => 'Missing parameter `duration`']);
+        return http_response_code(400);
+    }
+
+    $symmetricKey = GPGCryptography::createSymmetricKey();
+    $hashPath = strtolower(GPGCryptography::createSymmetricKey());
+
+    $tmpfile = tempnam($f3->get('UPLOADS'), 'pdfsignature_share_'.uniqid($symmetricKey, true));
+    unlink($tmpfile);
+
+    $originalFile = $tmpfile."_original.pdf";
+    $originalFileBaseName = null;
+
+    $files = Web::instance()->receive(function($file, $formFieldName) {
+        if ($formFieldName !== "pdf") {
+            return false;
+        }
+
+        if (strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
+            return false;
+        }
+
+        return true;
+    }, false, function($fileBaseName, $formFieldName) use ($originalFile, &$originalFileBaseName) {
+        if($formFieldName == "pdf") {
+            $originalFileBaseName = $fileBaseName;
+            return basename($originalFile);
+        }
+    });
+
+    if(! count($files)) {
+        echo json_encode(['message' => 'Invalid file uploaded']);
+        return http_response_code(400);
+    }
+
+    $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$hashPath, $symmetricKey);
+    $pdfSignature->createShare($originalFile, $originalFileBaseName, $f3->get('POST.duration'));
+
+    if (! $f3->get('DEBUG')) {
+        $pdfSignature->clean();
+    }
+
+    $adminKey = $pdfSignature->createAdminKey();
+
+    echo json_encode([
+        'adminkey' => $adminKey,
+        'hash' => $hashPath,
+        'symmetrickey' => $symmetricKey,
+        'url' => $f3->get('SCHEME').'://'.$_SERVER['SERVER_NAME'].(!in_array($f3->get('PORT'),[80,443])?(':'.$f3->get('PORT')):'').$f3->get('BASE').'/signature/'.$hashPath.'#'.$symmetricKey
+    ]);
+
+    return http_response_code(201);
+});
+
+$f3->route('GET /api/share/delete/@hash/@adminkey', function ($f3) {
+    $sharingFolder = $f3->get('PDF_STORAGE_PATH');
+    $baseHash = $sharingFolder.$f3->get('PARAMS.hash');
+
+    if (is_dir($baseHash) === false) {
+        echo json_encode(['message' => 'File not found']);
+        return http_response_code(404);
+    }
+
+    if (is_file($baseHash.'.admin') === false || is_readable($baseHash.'.admin') === false) {
+        echo json_encode(['message' => 'Admin file not found']);
+        return http_response_code(403);
+    }
+
+    if (file_get_contents($baseHash.'.admin') !== $f3->get('PARAMS.adminkey')) {
+        echo json_encode(['message' => 'Unauthorized access']);
+        return http_response_code(403);
+    }
+
+    GPGCryptography::hardUnlink($baseHash.'/.lock');
+    GPGCryptography::hardUnlink($baseHash);
+    unlink($baseHash.'.admin');
+    unlink($baseHash.'.expire');
+
+    echo json_encode(['message' => 'Shared PDF successfully deleted']);
+
+    return http_response_code(200);
+});
+
+$f3->route('GET /api/share/get/@hash/@symmkey', function($f3) {
+    $path = Web::instance()->slug($f3->get('PARAMS.hash'));
+    $symmetricKey = $f3->get('PARAMS.symmkey');
+
+    $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$path, $symmetricKey);
+
+    if (! $pdfSignature->verifyEncryption()) {
+        echo json_encode(['message' => 'Unauthorized access']);
+        return http_response_code(403);
+    }
+
+    Web::instance()->send($pdfSignature->getPDF(), null, 0, TRUE, urlencode($pdfSignature->getPublicFilename()));
+
+    if ($f3->get('DEBUG')) {
+        return;
+    }
+
+    $pdfSignature->clean();
 });
 
 function getCommit() {

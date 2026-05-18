@@ -22,6 +22,7 @@ let nblayers = null;
 let hasModifications = false;
 let currentTextScale = 1;
 const defaultScale = 1.5;
+let customText = '';
 
 async function loadPDF(pdfBlob) {
     let filename = pdfBlob.name;
@@ -187,6 +188,7 @@ async function loadPDF(pdfBlob) {
               canvasEdition.on("selection:cleared", function(event) {
                   toolBox.reset()
               });
+              canvasEdition.on("object:modified", storeCustomText);
               canvasEditions.push(canvasEdition);
             });
         }
@@ -227,6 +229,24 @@ function responsiveDisplay() {
 function storeCollections() {
     localStorage.setItem('svgCollections', JSON.stringify(svgCollections));
 };
+
+function storeCustomText(e) {
+    if (! (e.target instanceof fabric.IText)) {
+        return;
+    }
+
+    if (! e.target.text || e.transform || e.target.text === trad['Text to modify']) {
+        return;
+    }
+
+    let storedStrings = JSON.parse(localStorage.getItem('storedStrings'))
+    if (storedStrings === null) {
+        storedStrings = []
+    }
+    storedStrings.push(e.target.text.trim())
+    storedStrings = [...new Set(storedStrings)] // array_unique version js
+    localStorage.setItem('storedStrings', JSON.stringify(storedStrings))
+}
 
 function getSvgItem(svg) {
     for (index in svgCollections) {
@@ -436,22 +456,36 @@ function displaysSVG() {
     });
 };
 
-function uploadSVG(formData) {
+function uploadSVG(formData, convert = true) {
     document.getElementById('btn_modal_ajouter').setAttribute('disabled', 'disabled');
     document.getElementById('btn_modal_ajouter_spinner').classList.remove('d-none');
     document.getElementById('btn_modal_ajouter_check').classList.add('d-none');
 
-    let xhr = new XMLHttpRequest();
-
-    xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
-    xhr.onreadystatechange = function () {
-        var svgImage = svgToDataUrl(trimSvgWhitespace(this.responseText));
-        document.getElementById('img-upload').src = svgImage;
+    function updateImage(image) {
+        document.getElementById('img-upload').src = image;
         document.getElementById('img-upload').classList.remove("d-none");
         document.getElementById('btn_modal_ajouter').removeAttribute('disabled');
         document.getElementById('btn_modal_ajouter_spinner').classList.add('d-none');
         document.getElementById('btn_modal_ajouter_check').classList.remove('d-none');
         document.getElementById('btn_modal_ajouter').focus();
+    }
+
+    if (convert === false) {
+        const f = formData.get('file')
+
+        if (f.type === 'image/png') {
+            const fr = new FileReader()
+            fr.onload = (e) => { updateImage(e.target.result) }
+            fr.readAsDataURL(f)
+            return;
+        }
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open( 'POST', document.getElementById('form-image-upload').action, true );
+    xhr.onreadystatechange = function () {
+        const svgImage = svgToDataUrl(trimSvgWhitespace(this.responseText));
+        updateImage(svgImage)
     };
     xhr.send( formData );
 };
@@ -491,6 +525,42 @@ function addObjectInCanvas(canvas, item) {
 
     return canvas.add(item);
 };
+
+function initFilenameChange() {
+    const open = document.querySelector('#text_document_name')
+    open.addEventListener('mouseup', openDialogDocumentName)
+
+    function openDialogDocumentName(e) {
+        if (window.getSelection().toString()) {
+            return;
+        }
+
+        if (e.target.closest('.bi')) {
+            return;
+        }
+
+        if (this.classList.contains('editable') === false) {
+            return
+        }
+
+        const oldname = open.querySelector('span').innerText
+
+        let newname = prompt(this.dataset.promptlabel, oldname)
+
+        if (newname === null || newname === "") { return }
+
+        newname = newname.endsWith('.pdf') ? newname : newname + '.pdf'
+        open.title = newname
+        open.querySelector('span').innerText = newname
+
+        // Changement du fichier pour le partage
+        const oldfile = document.getElementById('input_pdf_share').files[0]
+        const dt = new DataTransfer()
+        dt.items.add(new File([oldfile], newname, {type: oldfile.type}))
+        document.getElementById('input_pdf_share').files = dt.files
+        dt.items.clear()
+    }
+}
 
 function updateWatermark() {
     if (document.querySelector('input[name=watermark]') === null) {
@@ -562,7 +632,10 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
     }
 
     if(item == 'text') {
-        let textbox = new fabric.Textbox(trad['Text to modify'], {
+        const text = (customText) ? customText : trad['Text to modify']
+        customText = ''
+
+        let textbox = new fabric.Textbox(text, {
         left: x,
         top: y - 20,
         fontSize: 20,
@@ -625,6 +698,23 @@ function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
 
         updateFlatten();
         return;
+    }
+
+    if (item.startsWith('data:image/png')) {
+        fabric.Image.fromURL(item, function(img) {
+            img.scaleToHeight(height);
+
+            if(img.getScaledWidth() > 200) {
+                img.scaleToWidth(200);
+            }
+
+            img.top = y - (img.getScaledHeight() / 2);
+            img.left = x - (img.getScaledWidth() / 2);
+
+            addObjectInCanvas(canvas, img);
+        });
+
+        return
     }
 
     fabric.loadSVGFromURL(item, function(objects, options) {
@@ -857,10 +947,19 @@ function createEventsListener() {
         }
     })
 
+    document.getElementById('switch-vectorized').addEventListener('change', function() {
+        const input = document.getElementById('input-image-upload')
+        if (input.files.length) {
+            input.dispatchEvent(new Event('change'))
+        }
+    })
+
     document.getElementById('input-image-upload').addEventListener('change', function(event) {
-        let data = new FormData();
+        const switchVectorized = document.getElementById('switch-vectorized')
+        const data = new FormData();
         data.append('file', document.getElementById('input-image-upload').files[0]);
-        uploadSVG(data);
+
+        uploadSVG(data, switchVectorized.checked);
         event.preventDefault();
     });
 
@@ -884,6 +983,59 @@ function createEventsListener() {
         updateFlatten();
         updateWatermark();
     });
+
+    const modalMoreOptions = document.getElementById('modal-text-more-options')
+    modalMoreOptions.addEventListener('click', function (e) {
+        const checkbox = document.querySelector('#label_svg_text')
+        const el = e.target.closest('.btn-custom-text')
+        const inlimit = e.target.closest('.custom-text-list')
+
+        if (el && inlimit) {
+            if (document.getElementById(checkbox.htmlFor).checked) {
+                checkbox.click() // sans ça, désélectionne l'input text de la sidebar
+            }
+
+            // si element sélectionné, alors on remplace le texte
+            const activeCanvas = canvasEditions.find((c) => c.getActiveObject())
+
+            if (activeCanvas) {
+                const activeText = activeCanvas.getActiveObject()
+                activeText.text = el.querySelector('span.custom-text').innerText.trim()
+                activeCanvas.discardActiveObject()
+                activeCanvas.requestRenderAll()
+            } else {
+                customText = el.querySelector('span.custom-text').innerText.trim()
+            }
+
+            const openModal = el.closest('.modal.show')
+            const modalInstance = bootstrap.Modal.getInstance(openModal);
+            modalInstance.hide()
+
+            checkbox.click()
+        }
+    })
+    modalMoreOptions.addEventListener('show.bs.modal', function (e) {
+        // on construit la liste de texte custom du local storage
+        const modal = e.target
+        const customList = modal.querySelector('.custom-text-list:last-child')
+        while (customList.firstChild) { customList.removeChild(customList.lastChild) }
+        (JSON.parse(localStorage.getItem('storedStrings')) || []).forEach(function (el) {
+            const div = document.createElement('div')
+                  div.classList.add("d-grid", "gap-2", "mb-2", "list-item-add", "btn-custom-text")
+            const span = document.createElement('span')
+                  span.classList.add("btn", "btn-outline-secondary", "text-black", "text-start")
+            const icon = document.createElement('i')
+                  icon.classList.add("bi", "bi-clock-history", "me-1")
+            const text = document.createElement('span')
+                  text.classList.add('custom-text')
+                  text.innerText = el
+            span.appendChild(icon)
+            span.append(" ")
+            span.appendChild(text)
+            div.appendChild(span)
+            customList.appendChild(div)
+        })
+    })
 
     document.querySelector('#watermark-color-picker')?.addEventListener('change', function (e) {
         document.querySelector('input[name=watermark]').dispatchEvent(new Event("change"));
@@ -932,7 +1084,7 @@ function createEventsListener() {
                 })
 
                 const blob = await response.blob()
-                await download(blob, formData.get('pdf').name.replace(/\.pdf$/, '_signe.pdf'))
+                await download(blob, document.querySelector('#text_document_name').title.replace(/\.pdf$/, '_signe.pdf'))
                 await storeFileInCache(blob, formData.get('pdf').name)
                 endProcessingMode(this)
             }
@@ -1236,6 +1388,7 @@ async function pageSignature(url) {
     }
 
     storePenColor(penColor)
+    initFilenameChange()
     createSignaturePad();
     responsiveDisplay();
     displaysSVG();

@@ -12,20 +12,13 @@
     </div>
 </noscript>
 <div id="page-upload">
-    <?php include('components/navtab.html.php'); ?>
-    <div class="px-4 py-4 text-center fullpage">
-        <h1 class="display-5 fw-bold mb-0 mt-3"><i class="bi bi-vector-pen"></i> <?php echo _("Sign a PDF"); ?></h1>
-        <p class="fs-5 fw-light mb-3 subtitle text-dark text-nowrap mt-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document") ?></p>
-        <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
-            <div class="col-12">
-                <label class="form-label mt-4" for="input_pdf_upload"><?php echo _("Choose a PDF"); ?> <small class="opacity-75" style="cursor: help" title="<?php echo _("The PDF should not exceed"); ?> <?php echo round($maxSize / 1000 / 1000) ?> <?php echo _("MB and"); ?> <?php echo $maxPage ?> <?php echo _("pages"); ?>"><i class="bi bi-info-circle"></i></small></label>
-                    <input id="input_pdf_upload" placeholder="<?php echo _("Choose a PDF") ?>" class="form-control form-control-lg" type="file" accept=".pdf,application/pdf" />
-                    <p class="mt-2 small fw-light text-dark"><?php echo _("The PDF will be processed by the server without being retained or stored") ?></p>
-                    <?php if($PDF_DEMO_LINK): ?>
-                        <p class="mt-4"><a class="link-opacity-75 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover small" href="#<?php echo $PDF_DEMO_LINK ?>"><?php echo _("Test with a demo PDF") ?></a></p>
-                    <?php endif; ?>
-            </div>
-        </div>
+    <?php include "components/navtab.html.php"; ?>
+    <div class="px-3 py-3 text-center fullpage">
+        <i class="bi bi-vector-pen display-3"></i>
+        <h1 class="mb-0 h2 mt-3"><?php echo _("Sign a PDF"); ?></h1>
+        <p class="text-nowrap mt-2 pb-2" style="overflow: hidden; text-overflow: ellipsis;"><?php echo _("Sign, initial, stamp, complete a document"); ?></p>
+        <?php $uploadHelp = _("The PDF should not exceed")." ".round($maxSize / 1000 / 1000)." "._("MB and")." ".$maxPage." "._("pages"); ?>
+        <?php include "components/upload.html.php"; ?>
     </div>
     <?php include('components/footer.html.php'); ?>
 </div>
@@ -45,13 +38,16 @@
     </div>
     <div style="height: 55px;" class="d-md-none"></div>
     <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
-        <a class="btn btn-close btn-sm position-absolute opacity-25 d-none d-sm-none d-md-block" title="<?php echo _("Close this PDF and return to the homepage"); ?>" style="position: absolute; top: 2px; right: 2px; font-size: 10px;" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"></a>
+        <a class="btn btn-close btn-sm position-absolute d-none d-sm-none d-md-block" style="right: 16px; top: 16px;" title="<?php echo _("Close this PDF and return to the homepage"); ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"></a>
         <div class="offcanvas-header mb-0 pb-0">
-            <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><?php echo _("PDF Signature"); ?> <?php if(isset($hash)): ?><span class="float-end small me-2" title="<?php echo _("This PDF is shared with others to be signed by multiple people"); ?>"><span class="nblayers"></span> <i class="bi bi-people-fill"></i></span><?php else: ?><span class="float-end me-2" title="<?php echo _("This PDF is stored on your computer to be signed by you only"); ?>"><i class="bi bi-person-workspace"></i></span><?php endif; ?></h5>
+            <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><i class="bi bi-vector-pen"></i> <?php echo _("PDF Signature"); ?> <?php if(isset($hash)): ?><span class="badge rounded-pill text-bg-dark" title="<?php echo _("This PDF is shared with others to be signed by multiple people"); ?>"><span class="nblayers"></span> <i class="bi bi-people-fill"></i></span><?php endif; ?></h5>
             <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body pt-0">
-            <p id="text_document_name" class="text-muted" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title=""><?php if (isset($isPdfEncrypted) && $isPdfEncrypted): ?><i class="bi bi-lock-fill" title="<?php echo _("This PDF is stored encrypted on the server."); ?>"></i><?php endif;?><i class="bi bi-files"></i> <span></span></p>
+            <p id="text_document_name" class="text-muted<?php if (! isset($hash)): ?> editable<?php endif ?>" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" title="" data-promptlabel="<?php echo _("Change the filename") ?>">
+                <?php if (isset($isPdfEncrypted) && $isPdfEncrypted): ?><i class="bi bi-lock-fill" title="<?php echo _("This PDF is stored encrypted on the server."); ?>"></i><?php endif;?>
+                <i class="bi bi-files"></i> <span></span>
+            </p>
             <div class="form-check form-switch mb-2 small d-none">
                 <input class="form-check-input" type="checkbox" id="add-lock-checkbox" disabled="disabled">
                 <label style="cursor: pointer;" class="form-check-label" for="add-lock-checkbox"> <?php echo _("Keep the selection active"); ?></label>
@@ -71,9 +67,12 @@
                 <input type="radio" class="btn-check" id="radio_svg_rubber_stamber_add" name="svg_2_add" autocomplete="off" value="rubber_stamber">
                 <label data-bs-toggle="modal" data-bs-target="#modalAddSvg" data-type="rubber_stamber" data-modalnav="#nav-import-tab" class="btn btn-outline-secondary text-black text-start btn-add-svg-type" for="radio_svg_rubber_stamber_add" id="label_svg_rubber_stamber_add"><?php echo sprintf(_("%s Stamp"), '<i class="bi bi-card-text"></i>'); ?> <small class="text-muted float-end"><?php echo _("Create"); ?></small></label>
             </div>
-            <div class="d-grid gap-2 mb-2 list-item-add">
-                  <input type="radio" class="btn-check" id="radio_svg_text" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdGV4dGFyZWEtdCIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMS41IDIuNUExLjUgMS41IDAgMCAxIDMgMWgxMGExLjUgMS41IDAgMCAxIDEuNSAxLjV2My41NjNhMiAyIDAgMCAxIDAgMy44NzRWMTMuNUExLjUgMS41IDAgMCAxIDEzIDE1SDNhMS41IDEuNSAwIDAgMS0xLjUtMS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNXptMSAzLjU2M2EyIDIgMCAwIDEgMCAzLjg3NFYxMy41YS41LjUgMCAwIDAgLjUuNWgxMGEuNS41IDAgMCAwIC41LS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNUEuNS41IDAgMCAwIDEzIDJIM2EuNS41IDAgMCAwLS41LjV2My41NjN6TTIgN2ExIDEgMCAxIDAgMCAyIDEgMSAwIDAgMCAwLTJ6bTEyIDBhMSAxIDAgMSAwIDAgMiAxIDEgMCAwIDAgMC0yeiIvPjxwYXRoIGQ9Ik0xMS40MzQgNEg0LjU2Nkw0LjUgNS45OTRoLjM4NmMuMjEtMS4yNTIuNjEyLTEuNDQ2IDIuMTczLTEuNDk1bC4zNDMtLjAxMXY2LjM0M2MwIC41MzctLjExNi42NjUtMS4wNDkuNzQ4VjEyaDMuMjk0di0uNDIxYy0uOTM4LS4wODMtMS4wNTQtLjIxLTEuMDU0LS43NDhWNC40ODhsLjM0OC4wMWMxLjU2LjA1IDEuOTYzLjI0NCAyLjE3MyAxLjQ5NmguMzg2TDExLjQzNCA0eiIvPjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="text">
-                  <label draggable="true" id="label_svg_text" class="btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text"><?php echo sprintf(_("%s Text"), '<i class="bi bi-textarea-t"></i>'); ?></label>
+            <div class="d-flex gap-2 mb-2 list-item-add">
+                <input type="radio" class="btn-check" id="radio_svg_text" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdGV4dGFyZWEtdCIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMS41IDIuNUExLjUgMS41IDAgMCAxIDMgMWgxMGExLjUgMS41IDAgMCAxIDEuNSAxLjV2My41NjNhMiAyIDAgMCAxIDAgMy44NzRWMTMuNUExLjUgMS41IDAgMCAxIDEzIDE1SDNhMS41IDEuNSAwIDAgMS0xLjUtMS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNXptMSAzLjU2M2EyIDIgMCAwIDEgMCAzLjg3NFYxMy41YS41LjUgMCAwIDAgLjUuNWgxMGEuNS41IDAgMCAwIC41LS41VjkuOTM3YTIgMiAwIDAgMSAwLTMuODc0VjIuNUEuNS41IDAgMCAwIDEzIDJIM2EuNS41IDAgMCAwLS41LjV2My41NjN6TTIgN2ExIDEgMCAxIDAgMCAyIDEgMSAwIDAgMCAwLTJ6bTEyIDBhMSAxIDAgMSAwIDAgMiAxIDEgMCAwIDAgMC0yeiIvPjxwYXRoIGQ9Ik0xMS40MzQgNEg0LjU2Nkw0LjUgNS45OTRoLjM4NmMuMjEtMS4yNTIuNjEyLTEuNDQ2IDIuMTczLTEuNDk1bC4zNDMtLjAxMXY2LjM0M2MwIC41MzctLjExNi42NjUtMS4wNDkuNzQ4VjEyaDMuMjk0di0uNDIxYy0uOTM4LS4wODMtMS4wNTQtLjIxLTEuMDU0LS43NDhWNC40ODhsLjM0OC4wMWMxLjU2LjA1IDEuOTYzLjI0NCAyLjE3MyAxLjQ5NmguMzg2TDExLjQzNCA0eiIvPjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="text">
+                <label draggable="true" id="label_svg_text" class="flex-grow-1 btn btn-outline-secondary text-black text-start btn-svg" for="radio_svg_text">
+                    <?php echo sprintf(_("%s Text"), '<i class="bi bi-textarea-t"></i>'); ?>
+                </label>
+                <span class="btn-svg-list-more-options btn btn-outline-secondary text-black" data-bs-keyboard=false data-bs-toggle="modal" data-bs-target="#modal-text-more-options"><i class="bi bi-layout-text-sidebar-reverse"></i></span>
               </div>
               <div class="d-grid gap-2 mb-2 list-item-add">
                   <input type="radio" class="btn-check" id="radio_svg_strikethrough" data-svg="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktdHlwZS1zdHJpa2V0aHJvdWdoIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik02LjMzMyA1LjY4NmMwIC4zMS4wODMuNTgxLjI3LjgxNEg1LjE2NmEyLjggMi44IDAgMCAxLS4wOTktLjc2YzAtMS42MjcgMS40MzYtMi43NjggMy40OC0yLjc2OCAxLjk2OSAwIDMuMzkgMS4xNzUgMy40NDUgMi44NWgtMS4yM2MtLjExLTEuMDgtLjk2NC0xLjc0My0yLjI1LTEuNzQzLTEuMjMgMC0yLjE4LjYwMi0yLjE4IDEuNjA3em0yLjE5NCA3LjQ3OGMtMi4xNTMgMC0zLjU4OS0xLjEwNy0zLjcwNS0yLjgxaDEuMjNjLjE0NCAxLjA2IDEuMTI5IDEuNzAzIDIuNTQ0IDEuNzAzIDEuMzQgMCAyLjMxLS43MDUgMi4zMS0xLjY3NSAwLS44MjctLjU0Ny0xLjM3NC0xLjkxNC0xLjY3NUw4LjA0NiA4LjVIMXYtMWgxNHYxaC0zLjUwNGMuNDY4LjQzNy42NzUuOTk0LjY3NSAxLjY5NyAwIDEuODI2LTEuNDM2IDIuOTY3LTMuNjQ0IDIuOTY3Ij48L3BhdGg+Cjwvc3ZnPgo=" name="svg_2_add" autocomplete="off" value="strikethrough">
@@ -103,6 +102,7 @@
               <div class="d-grid gap-2 mt-2">
                   <button type="button" id="btn-add-svg" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modalAddSvg"><?php echo sprintf(_("%s Create an element"), '<i class="bi bi-plus-circle"></i>'); ?></button>
               </div>
+
               <div id="form_block" class="position-absolute bottom-0 pb-2 ps-0 pe-4 w-100">
                   <?php if(!isset($hash)): ?>
                   <?php if(!isset($noSharingMode)): ?>
@@ -181,7 +181,12 @@
                         <img id="img-upload" class="d-none" src="" />
                         </div>
                         <form id="form-image-upload" action="<?php echo $REVERSE_PROXY_URL; ?>/image2svg" method="POST" enctype="multipart/form-data">
-                        <input id="input-image-upload" class="form-control" name="image" type="file">
+                            <input id="input-image-upload" class="form-control" name="image" type="file">
+
+                            <div class="form-check form-switch mt-2">
+                              <input class="form-check-input" type="checkbox" role="switch" id="switch-vectorized" checked>
+                              <label class="form-check-label" for="switch-vectorized"><?php echo _("Convert the image to a vector format") ?></label>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -196,6 +201,36 @@
       </div>
     </div>
     </div>
+
+    <div class="modal fade" id="modal-text-more-options" tabindex="-1" aria-labelledby="modalMoreOptionsLabel" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalMoreOptionsLabel"><?php echo _("Date formats and preconfigured texts") ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="custom-text-list">
+                        <?php $date = new DateTime() ?>
+                        <?php foreach (['dd/MM/Y', 'dd-MM-Y', 'MM/dd/Y', 'MM-dd-Y', 'dd LLLL Y', 'dd LLLL'] as $format): ?>
+                            <div class="d-grid gap-2 mb-2 list-item-add btn-custom-text">
+                                <span class="btn btn-outline-secondary text-black text-start"><i class="bi bi-calendar-date me-1"></i> <span class="custom-text"><?php echo IntlDateFormatter::formatObject($date, $format, $TRANSLATION_LANGUAGE) ?></span></span>
+                            </div>
+                        <?php endforeach ?>
+                        <div class="d-grid gap-2 mb-2 list-item-add btn-custom-text">
+                        <span class="btn btn-outline-secondary text-black text-start"><i class="bi bi-chat-square-dots me-1"></i> <span class="custom-text"><?php echo _("Read and approved") ?></span></span>
+                        </div>
+                    </div>
+                    <div class="custom-text-list">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?php if(!isset($hash) && !isset($noSharingMode)): ?>
     <div id="modal-start-share" class="modal" tabindex="-1">
         <div class="modal-dialog modal-md">
@@ -291,6 +326,7 @@
     <?php endif; ?>
     <template id="toolbox-elements-template">
         <div class="toolbox-action" data-action="changeColor" title="<?php echo _("Change the color of the selected element") ?>"><i class="bi bi-droplet-fill"></i></div>
+        <div class="toolbox-action" data-bs-toggle="modal" data-bs-target="#modal-text-more-options" title="<?php echo _("Select preconfigured text") ?>"><i class="bi bi-layout-text-sidebar-reverse"></i></div>
         <div class="toolbox-action dropdown" title="<?php echo _("Duplicate the element") ?>">
             <span class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside"><i class="bi bi-copy mx-1"></i></span>
             <ul class="dropdown-menu shadow-sm bg-body-secondary">
@@ -300,6 +336,7 @@
         </div>
         <div class="toolbox-action" data-action="delete" title="<?php echo _("Delete the element") ?>"><i class="bi bi-trash3"></i></div>
     </template>
+
     <?php $loadJs = ['pdf.js' => true]; include('components/common.html.php'); ?>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/fabric.min.js?5.4.0"></script>
     <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/signature_pad.umd.min.js?5.0.3"></script>

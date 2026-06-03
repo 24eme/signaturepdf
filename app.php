@@ -457,7 +457,7 @@ $f3->route ('POST /ocr',
         if ($returnCode === false || !file_exists($outputFileName)) {
             http_response_code("500");
             header('Content-Type: text/plain');
-            echo _("PDF compression failed");
+            echo _("PDF OCR failed");
             return;
         } else {
             header('Content-Type: application/pdf');

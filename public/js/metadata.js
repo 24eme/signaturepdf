@@ -349,6 +349,10 @@ function createEventsListener() {
         startProcessingMode(btn);
         fetch(form.action, { method: form.method, body: formData })
         .then(async function(response) {
+            if(!response.ok) {
+                endProcessingMode(btn);
+                return;
+            }
             let pdfBlob = await response.blob();
             let dataTransfer = new DataTransfer();
             dataTransfer.items.add(new File([pdfBlob], "test.pdf", {

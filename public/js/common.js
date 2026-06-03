@@ -221,7 +221,6 @@ function getLetter(i) {
 async function convertInputFileImagesToPDF(inputFile) {
     let dataTransfer = new DataTransfer();
     for (let i = 0; i < inputFile.files.length; i++) {
-        console.log(inputFile.files[i].type);
         if(["image/png", "image/jpeg", "image/jpg"].includes(inputFile.files[i].type)) {
             dataTransfer.items.add(await imageToPdf(inputFile.files[i]));
         } else {

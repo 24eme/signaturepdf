@@ -382,12 +382,12 @@ async function pageUpload() {
         window.location.reload();
     })
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
+        pageMetadata(null);
         if(await canUseCache()) {
             const file = document.getElementById('input_pdf_upload').files[0]
             storeFileInCache(file, file.name);
             history.pushState({}, '', `${REVERSE_PROXY_URL ? '/': ''}${REVERSE_PROXY_URL}/metadata#${file.name}`);
         }
-        pageMetadata(null);
     });
 }
 

@@ -521,20 +521,22 @@ $f3->route ('POST /compress',
         $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dAutoRotatePages=/None -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
 
         if ($returnCode === false || !file_exists($outputFileName)) {
+            unlink($outputFileName);
+            unlink($filePath);
             http_response_code("500");
             header('Content-Type: text/plain');
             echo _("PDF compression failed");
             return;
         } elseif (filesize($filePath) <= filesize($outputFileName)) {
-            http_response_code("204");
             unlink($outputFileName);
             unlink($filePath);
+            http_response_code("204");
             return;
-        } else {
-            header('Content-Type: application/pdf');
-            header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_compressed.pdf", $originalFilename))));
-            readfile($outputFileName);
         }
+
+        header('Content-Type: application/pdf');
+        header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_compressed.pdf", $originalFilename))));
+        readfile($outputFileName);
 
         unlink($outputFileName);
         unlink($filePath);

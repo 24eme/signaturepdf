@@ -330,8 +330,8 @@
         <div class="toolbox-action dropdown" title="<?php echo _("Duplicate the element") ?>">
             <span class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside"><i class="bi bi-copy mx-1"></i></span>
             <ul class="dropdown-menu shadow-sm bg-body-secondary">
-                <li><a class="dropdown-item" data-action="duplicate"><?php echo _("Duplicate on each page") ?></a></li>
                 <li><a class="dropdown-item" data-action="copy"><?php echo _("Duplicate") ?></a></li>
+                <li><a class="dropdown-item" data-action="duplicate"><?php echo _("Duplicate on each page") ?></a></li>
             </ul>
         </div>
         <div class="toolbox-action" data-action="delete" title="<?php echo _("Delete the element") ?>"><i class="bi bi-trash3"></i></div>

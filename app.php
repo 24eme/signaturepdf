@@ -455,15 +455,17 @@ $f3->route ('POST /ocr',
         $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", $filePath, $outputFileName));
 
         if ($returnCode === false || !file_exists($outputFileName)) {
+            unlink($outputFileName);
+            unlink($filePath);
             http_response_code("500");
             header('Content-Type: text/plain');
             echo _("PDF OCR failed");
             return;
-        } else {
-            header('Content-Type: application/pdf');
-            header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_ocr.pdf", $originalFilename))));
-            readfile($outputFileName);
         }
+
+        header('Content-Type: application/pdf');
+        header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_ocr.pdf", $originalFilename))));
+        readfile($outputFileName);
 
         unlink($outputFileName);
         unlink($filePath);

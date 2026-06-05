@@ -548,21 +548,15 @@ $f3->route ('POST /compress',
 );
 
 $f3->route('GET /api/file/get', function($f3) {
-    $localRootFolder = $f3->get('PDF_LOCAL_PATH');
-    if (!$localRootFolder) {
+    if (!($pdf_path = getApiLocalFilePath($f3))) {
         $f3->error(403);
     }
-    $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
     $pdf_filename = basename($pdf_path);
     $extension = 'pdf';
-    if (preg_match('/.(pdf|png|jpg|jpeg)$/', $pdf_path, $m)) {
-        $extension = $m[1];
-    }else{
+    if (!preg_match('/.(pdf|png|jpg|jpeg)$/', $pdf_path, $m)) {
         $f3->error(403);
     }
-    if (!file_exists($pdf_path)) {
-        $f3->error(403);
-    }
+    $extension = $m[1];
     switch ($extension) {
         case 'jpg':
         case 'jpeg':
@@ -580,21 +574,15 @@ $f3->route('GET /api/file/get', function($f3) {
 });
 
 $f3->route('PUT /api/file/save', function($f3) {
-    $localRootFolder = $f3->get('PDF_LOCAL_PATH');
-    if (!$localRootFolder) {
+    if (!($pdf_path = getApiLocalFilePath($f3))) {
         $f3->error(403);
     }
-    $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
     $pdf_filename = basename($pdf_path);
-    if (preg_match('/(.*).(pdf|png|jpg|jpeg)$/', $pdf_path, $m)) {
-        $basefile = $m[1];
-        $extension = $m[2];
-    }else{
+    if (!preg_match('/(.*).(pdf|png|jpg|jpeg)$/', $pdf_path, $m)) {
         $f3->error(403);
     }
-    if (!file_exists($pdf_path)) {
-        $f3->error(403);
-    }
+    $basefile = $m[1];
+    $extension = $m[2];
     file_put_contents($basefile.'.pdf', $f3->get('BODY'));
 
 });
@@ -713,6 +701,28 @@ $f3->route('GET /api/share/get/@hash/@symmkey', function($f3) {
 
     $pdfSignature->clean();
 });
+
+function getApiLocalFilePath($f3) {
+    $localRootFolder = $f3->get('PDF_LOCAL_PATH');
+    if (!$localRootFolder) {
+        $f3->error(403);
+        return false;
+    }
+    $pdf_path = $localRootFolder . '/' . $f3->get('GET.path');
+    if (strpos($pdf_path, '..') !== false) {
+        $f3->error(403);
+        return false;
+    }
+    if (strpos(realpath($pdf_path), realpath($localRootFolder)) === false) {
+        $f3->error(403);
+        return false;
+    }
+    if (!file_exists($pdf_path)) {
+        $f3->error(403);
+        return false;
+    }
+    return $pdf_path;
+}
 
 function getCommit() {
     if(!file_exists(__DIR__.'/.git/HEAD')) {

@@ -217,9 +217,9 @@ $f3->route('POST /sign',
             }
 
             if($formFieldName == "svg") {
-                $svgFiles[] = $tmpfile."_".$fileBaseName;
-
-                return basename($tmpfile."_".$fileBaseName);
+                $svgFile = $tmpfile."_".md5($fileBaseName).".svg";
+                $svgFiles[] = $svgFile;
+                return basename($svgFile);
             }
 	    });
 
@@ -279,8 +279,9 @@ $f3->route('POST /share',
                     return basename($originalFile);
                 }
                 if($formFieldName == "svg") {
-                    $svgFiles[] = $tmpfile."_".$fileBaseName;
-                    return basename($tmpfile."_".$fileBaseName);
+                    $svgFile = $tmpfile."_".md5($fileBaseName).".svg";
+                    $svgFiles[] = $svgFile;
+                    return basename($svgFile);
                 }
 	    });
 
@@ -369,8 +370,9 @@ $f3->route('POST /signature/@hash/save',
             return true;
         }, false, function($fileBaseName, $formFieldName) use ($f3, $tmpfile, &$svgFiles) {
             if($formFieldName == "svg") {
-                $svgFiles[] = $tmpfile."_".$fileBaseName;
-                return basename($tmpfile."_".$fileBaseName);
+                $svgFile = $tmpfile."_".md5($fileBaseName).".svg";
+                $svgFiles[] = $svgFile;
+                return basename($svgFile);
             }
 	    });
         if(!count($svgFiles)) {

@@ -221,7 +221,6 @@ function getLetter(i) {
 async function convertInputFileImagesToPDF(inputFile) {
     let dataTransfer = new DataTransfer();
     for (let i = 0; i < inputFile.files.length; i++) {
-        console.log(inputFile.files[i].type);
         if(["image/png", "image/jpeg", "image/jpg"].includes(inputFile.files[i].type)) {
             dataTransfer.items.add(await imageToPdf(inputFile.files[i]));
         } else {
@@ -247,12 +246,27 @@ async function imageToPdf(file) {
 
   const { width, height } = image.scale(1);
 
-  const page = pdfDoc.addPage([width, height]);
+
+  let isRotated = false;
+  let orientation = 0;
+  try {
+      switch (EXIF.readFromBinaryFile(imageBytes).Orientation) {
+        case 3: orientation = 180; break;
+        case 6: orientation = 90; break;
+        case 8: orientation=270; break;
+      }
+  } catch (e) {
+
+  }
+  isRotated = (orientation == 90 || orientation == 270)
+  const page = pdfDoc.addPage([isRotated ? height : width, isRotated ? width : height]);
+
   page.drawImage(image, {
     x: 0,
-    y: 0,
-    width,
-    height,
+    y: isRotated ? width : 0,
+    width: width,
+    height: height,
+    rotate: isRotated && orientation ? window.PDFLib.degrees(360 - orientation) : window.PDFLib.degrees(0),
   });
 
   const pdfBytes = await pdfDoc.save();

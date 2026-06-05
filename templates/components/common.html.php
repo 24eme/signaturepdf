@@ -18,6 +18,7 @@
 <?php endif; ?>
 <?php if(isset($loadJs['pdf-lib.js'])): ?>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/pdf-lib.min.js?2.2.4"></script>
+<script src="<?php echo $REVERSE_PROXY_URL; ?>/vendor/exif.min.js?2.3.0"></script>
 <?php endif; ?>
 <script src="<?php echo $REVERSE_PROXY_URL; ?>/js/common.js?<?php echo ($COMMIT) ? $COMMIT : filemtime($ROOT."/public/js/common.js") ?>"></script>
 <script>

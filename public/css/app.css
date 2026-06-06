@@ -6,7 +6,7 @@
     width: 350px;
 }
 
-#sidebarTools .list-item-add label:hover {
+#sidebarTools .list-item-add label:hover, #sidebarTools .btn-svg-list-more-options:hover {
     background: #e8ebed;
     border: 1px solid #505050;
 }

@@ -362,7 +362,7 @@
     const adminKey = localStorage.getItem(pdfHash+'.adminKey')
     if (adminKey) {
         const icon = document.createElement('i')
-        icon.classList.add('float-end', 'bi', 'bi-trash3')
+        icon.classList.add('float-end', 'bi', 'bi-trash3', 'opacity-75')
         icon.style.cursor = 'pointer'
         document.getElementById('text_document_name').appendChild(icon)
 

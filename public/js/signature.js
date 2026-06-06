@@ -1479,7 +1479,7 @@ const toolBox = (function () {
     function _changeColor() {
         const _colorpicker = document.createElement('input')
               _colorpicker.setAttribute('type', 'color')
-              _colorpicker.value = penColor
+              _colorpicker.value = _elSelected.fill;
 
         _colorpicker.addEventListener('input', function (e) {
             _elSelected.set({ fill: e.target.value })

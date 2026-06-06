@@ -54,14 +54,14 @@
         </div>
         <div class="offcanvas-body bg-light" style="padding-bottom: 60px;">
             <?php if(OCR::isInstalled()): ?>
-            <form id="form_ocr" class="position-fixed end-0 mt-2 me-4" style="z-index: 1000;" action="<?php echo $REVERSE_PROXY_URL; ?>/ocr" method="post"><button id="btn_ocr" type="submit" class="btn btn-outline-dark bg-white text-dark btn-sm float-end"><i class="bi bi-upc-scan"></i></button><input class="d-none" name="input_pdf_upload" type="file" name="pdf" /></form>
+            <form id="form_ocr" class="position-fixed end-0 mt-2 me-4" style="z-index: 1000;" action="<?php echo $REVERSE_PROXY_URL; ?>/ocr" method="post"><button id="btn_ocr" type="submit" class="btn btn-outline-dark bg-white text-dark btn-sm float-end" title="<?php echo ("Run OCR to make pdf searchable and copyable") ?>" data-loading-text="<?php echo _("Running OCR") ?>"><i class="bi bi-upc-scan"></i></button><input class="d-none" name="input_pdf_upload" type="file" name="pdf" /></form>
             <?php endif; ?>
             <div id="container-pages" dir="auto">
             </div>
         </div>
         <div class="position-absolute bg-white bottom-0 pb-2 ps-2 pe-2 w-100 border-top shadow-lg">
             <div id="btn_container" class="d-grid gap-2 mt-2">
-                <button class="btn btn-primary" type="button" id="save"><i class="bi bi-download"></i> <?php echo _("Save and download the PDF"); ?></button>
+                <button class="btn btn-primary" type="button" id="save" data-loading-text="<?php echo _("Save in progress") ?>"><i class="bi bi-download"></i> <?php echo _("Save and download the PDF"); ?></button>
                 <button class="btn btn-outline-primary d-none" type="button" id="save_local" disabled="disabled"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
             </div>
         </div>

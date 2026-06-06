@@ -326,16 +326,19 @@ function createEventsListener() {
         setTimeout(function() {endProcessingMode(document.getElementById('save'))}, 500);
     })
     document.getElementById('save_mobile').addEventListener('click', async function (e) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         startProcessingMode(this);
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save_mobile'))}, 500);
     })
     document.getElementById('save_local').addEventListener('click', async function (e) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         startProcessingMode(this);
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save_local')); setIsChanged(false);}, 500);
     })
     document.getElementById('save_mobile_local').addEventListener('click', async function (e) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         startProcessingMode(this);
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save_mobile_local')); setIsChanged(false);}, 500);

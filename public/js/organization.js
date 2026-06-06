@@ -185,6 +185,7 @@ async function loadPDF(pdfBlob, filename, pdfIndex) {
                 });
                 canvasContainer.querySelector('.btn-download').addEventListener('click', async function(e) {
                     e.stopPropagation();
+                    this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
                     startProcessingMode(canvasContainer.querySelector('.btn-download'));
                     let container = this.parentNode;
                     let pageValue = container.querySelector('.checkbox-page').value;
@@ -917,22 +918,25 @@ function getPDFTags(node) {
 
 function createEventsListener() {
     document.getElementById('save_select_mobile').addEventListener('click', async function(event) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         event.preventDefault();
-        startProcessingMode(document.getElementById('save_select_mobile'));
+        startProcessingMode(this);
         await saveAll();
-        endProcessingMode(document.getElementById('save_select_mobile'));
+        endProcessingMode(this);
     });
     document.getElementById('btn_extract_select').addEventListener('click', async function(event) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         event.preventDefault();
-        startProcessingMode(document.getElementById('btn_extract_select'));
+        startProcessingMode(this);
         await saveAll();
-        endProcessingMode(document.getElementById('btn_extract_select'));
+        endProcessingMode(this);
     });
     document.getElementById('save_select').addEventListener('click', async function(event) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         event.preventDefault();
-        startProcessingMode(document.getElementById('save_select'));
+        startProcessingMode(this);
         await saveAll();
-        endProcessingMode(document.getElementById('save_select'));
+        endProcessingMode(this);
     });
     document.getElementById('save').addEventListener('click', async function(e) {
         e.preventDefault();
@@ -941,6 +945,7 @@ function createEventsListener() {
         endProcessingMode(this);
     });
     document.getElementById('save_mobile').addEventListener('click', async function(event) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         event.preventDefault();
         startProcessingMode(this);
         await saveAll();
@@ -1055,7 +1060,7 @@ async function uploadFromUrl(url) {
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
     document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
-    endLoading('Download')
+    endLoading()
 }
 
 async function pageUpload() {

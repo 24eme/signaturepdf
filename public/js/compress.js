@@ -34,7 +34,11 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('#card_resultat').classList.add('d-none');
         document.querySelector('#compressBtn').classList.add('btn-primary');
         document.querySelector('#compressBtn').classList.remove('btn-outline-primary');
-        startProcessingMode(document.getElementById('compressBtn'));
+        let submitButton = document.getElementById('compressBtn');
+        if(e.submitter.value == "ocr") {
+            submitButton = document.getElementById('ocrButton');
+        }
+        startProcessingMode(submitButton);
         const form = e.target;
         const formData = new FormData(form);
         formData.set(e.submitter.name, e.submitter.value);
@@ -78,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   document.querySelector('#error_message').innerText = "The PDF already contains selectable text"
               }
           }
-          endProcessingMode(document.getElementById('compressBtn'));
+          endProcessingMode(submitButton);
         })
 
         e.preventDefault();

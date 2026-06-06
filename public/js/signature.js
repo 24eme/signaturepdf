@@ -1242,6 +1242,11 @@ function createEventsListener() {
     penColorPicker.addEventListener('input', function (e) {
         e.preventDefault()
         storePenColor(penColorPicker.value)
+        if(activeCanvas && activeCanvas.getActiveObject()) {
+            activeCanvas.getActiveObject()
+            activeCanvas.getActiveObject().set({ fill: penColorPicker.value })
+            activeCanvas.requestRenderAll()
+        }
     })
 
     document.getElementById('color-picker').addEventListener('click', function(event) {

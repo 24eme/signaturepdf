@@ -13,7 +13,7 @@ class MainController
     }
 
     function signature(Base $f3) {
-        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+        $f3->set('maxSize',  min(array(Config::convertPHPSizeToBytes(ini_get('post_max_size')), Config::convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
         if(!$f3->get('PDF_STORAGE_PATH')) {
@@ -35,7 +35,7 @@ class MainController
 
     function signatureHash(Base $f3) {
         $f3->set('hash', Web::instance()->slug($f3->get('PARAMS.hash')));
-        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+        $f3->set('maxSize',  min(array(Config::convertPHPSizeToBytes(ini_get('post_max_size')), Config::convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('maxPage',  ini_get('max_file_uploads') - 1);
 
         if(!is_dir($f3->get('PDF_STORAGE_PATH').$f3->get('hash'))) {
@@ -357,7 +357,7 @@ class MainController
     }
 
     function compression(Base $f3) {
-        $f3->set('maxSize',  min(array(convertPHPSizeToBytes(ini_get('post_max_size')), convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
+        $f3->set('maxSize',  min(array(Config::convertPHPSizeToBytes(ini_get('post_max_size')), Config::convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('activeTab', 'compress');
         echo View::instance()->render('compress.html.php');
     }

@@ -3,7 +3,7 @@
 class ApiController
 {
     function fileGet(Base $f3) {
-        if (!($pdf_path = getApiLocalFilePath($f3))) {
+        if (!($pdf_path = Config::getInstance()->getApiLocalFilePath())) {
             $f3->error(403);
         }
         $pdf_filename = basename($pdf_path);
@@ -29,7 +29,7 @@ class ApiController
     }
 
     function fileSave(Base $f3) {
-        if (!($pdf_path = getApiLocalFilePath($f3))) {
+        if (!($pdf_path = Config::getInstance()->getApiLocalFilePath())) {
             $f3->error(403);
         }
         $pdf_filename = basename($pdf_path);

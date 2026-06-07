@@ -196,7 +196,7 @@ class MainController
 
     function signatureDeletion(Base $f3) {
         $sharingFolder = $f3->get('PDF_STORAGE_PATH');
-        $baseHash = $sharingFolder.$f3->get('PARAMS.hash');
+        $baseHash = $sharingFolder.Web::instance()->slug($f3->get('PARAMS.hash'));
 
         if (is_dir($baseHash) === false) {
             $f3->error(403);

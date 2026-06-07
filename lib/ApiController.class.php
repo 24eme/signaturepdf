@@ -109,7 +109,7 @@ class ApiController
 
     function shareDelete(Base $f3) {
         $sharingFolder = $f3->get('PDF_STORAGE_PATH');
-        $baseHash = $sharingFolder.$f3->get('PARAMS.hash');
+        $baseHash = $sharingFolder.Web::instance()->slug($f3->get('PARAMS.hash'));
 
         if (is_dir($baseHash) === false) {
             echo json_encode(['message' => 'File not found']);
@@ -138,7 +138,7 @@ class ApiController
 
     function shareGet(Base $f3) {
         $path = Web::instance()->slug($f3->get('PARAMS.hash'));
-        $symmetricKey = $f3->get('PARAMS.symmkey');
+        $symmetricKey = GPGCryptography::protectSymmetricKey($f3->get('PARAMS.symmkey'));
 
         $pdfSignature = new PDFSignature($f3->get('PDF_STORAGE_PATH').$path, $symmetricKey);
 

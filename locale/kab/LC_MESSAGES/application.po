@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-03 18:32+0100\n"
-"PO-Revision-Date: 2025-11-30 15:00+0000\n"
+"PO-Revision-Date: 2026-06-08 00:01+0000\n"
 "Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/signature-pdf/"
 "application/kab/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 2026.6\n"
 
 msgid "en"
 msgstr "kab"
@@ -51,7 +51,7 @@ msgstr "Twila n ikaramen"
 
 #, php-format
 msgid "The directory %s should exist and be writeable"
-msgstr ""
+msgstr "Akaram %s yessefk ad yili u ad yesɛu tisirag n tira fell-as"
 
 msgid "Site not functional without JavaScript enabled"
 msgstr "Asmel ur iteddu ara ma yella ur yermid ara JavaScript"
@@ -104,7 +104,7 @@ msgid "Free open-source software for signing and manipulating PDFs"
 msgstr "Aseɣẓan ilelli i usizmel d usseqerdec n ifuyla PDF"
 
 msgid "Search for a tool (e.g., sign, compress, extract, watermark...)"
-msgstr ""
+msgstr "Nadi-d kra n ufecku (md., zmel, ssed, ssef, ticreḍt n waman…)"
 
 msgid "Sign"
 msgstr "Zmel"
@@ -290,10 +290,10 @@ msgid "Original format"
 msgstr "Amasal aẓaṛan"
 
 msgid "Most common formats"
-msgstr ""
+msgstr "Imusal i yettwasnen s tuget"
 
 msgid "Other formats"
-msgstr ""
+msgstr "Imusal nniḍen"
 
 msgid "Custom"
 msgstr "Aggan"
@@ -314,7 +314,7 @@ msgid "Normal"
 msgstr "Amagnu"
 
 msgid "Booklet"
-msgstr ""
+msgstr "Tadlist"
 
 msgid "Formatting"
 msgstr "Amsal"
@@ -396,7 +396,7 @@ msgid "Redaction area"
 msgstr ""
 
 msgid "Watermark"
-msgstr ""
+msgstr "Ticreḍt n waman"
 
 #, php-format
 msgid "%s Create an element"
@@ -410,7 +410,7 @@ msgid "Download the signed PDF"
 msgstr "Sader afaylu n PDF yettwazemlen"
 
 msgid "The PDF will be flattened"
-msgstr ""
+msgstr "Afaylu-a PDF ad yettwasbeḍ"
 
 #, php-format
 msgid "You are %s to have signed this PDF"
@@ -561,10 +561,10 @@ msgid "Change the color of the selected element"
 msgstr "Beddel ini n uferdis yettwafernen"
 
 msgid "Duplicate the element"
-msgstr ""
+msgstr "Sisleg aferdis"
 
 msgid "Duplicate on each page"
-msgstr ""
+msgstr "Sisleg ɣef yal asebter"
 
 msgid "Duplicate"
 msgstr "Sleg"

@@ -23,7 +23,7 @@
             <?php include "components/upload.html.php"; ?>
             <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3 mx-auto">
                 <div class="btn-group mt-4 mb-2 opacity-25">
-                    <button type="submit" name="compressionType" value="medium" id="compressBtn" class="btn btn-primary" disabled><i class="bi bi-chevron-bar-contract"></i> <?php echo _("Compress"); ?></button>
+                    <button type="submit" name="compressionType" value="medium" id="compressBtn" class="btn btn-primary" disabled data-loading-text="<?php echo _("Compressing") ?>"><i class="bi bi-chevron-bar-contract"></i> <?php echo _("Compress"); ?></button>
                     <button type="button" id="dropdownMenuReference" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent" disabled>
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
@@ -33,7 +33,7 @@
                         <button type="submit" name="compressionType" value="high" id="highCompressBtn" class="dropdown-item"><i class="bi bi-reception-4"></i> <?php echo _("High compression (minimum quality)"); ?></button>
                         <?php if(OCR::isInstalled()): ?>
                         <li><hr class="dropdown-divider"></li>
-                        <button type="submit" data-action="<?php echo $REVERSE_PROXY_URL; ?>/ocr" name="ocr" value="ocr" class="dropdown-item"><i class="bi bi-upc-scan"></i> <?php echo _("OCR"); ?> <small class="text-muted">Experimental</small></button>
+                        <button type="submit" data-action="<?php echo $REVERSE_PROXY_URL; ?>/ocr" name="ocr" value="ocr" id="ocrButton" class="dropdown-item" data-loading-text="<?php echo _("Running OCR") ?>"><i class="bi bi-upc-scan"></i> <?php echo _("OCR"); ?> <small class="text-muted">Experimental</small></button>
                         <?php endif; ?>
                     </div>
                 </div>

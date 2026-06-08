@@ -326,46 +326,54 @@ function createEventsListener() {
         setTimeout(function() {endProcessingMode(document.getElementById('save'))}, 500);
     })
     document.getElementById('save_mobile').addEventListener('click', async function (e) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         startProcessingMode(this);
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save_mobile'))}, 500);
     })
     document.getElementById('save_local').addEventListener('click', async function (e) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         startProcessingMode(this);
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save_local')); setIsChanged(false);}, 500);
     })
     document.getElementById('save_mobile_local').addEventListener('click', async function (e) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         startProcessingMode(this);
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save_mobile_local')); setIsChanged(false);}, 500);
     })
+    if(document.getElementById('form_ocr')) {
+        document.getElementById('form_ocr').addEventListener('submit', async function (e) {
+            const form = e.target;
+            this.querySelector('input[type="file"]').files = document.getElementById('input_pdf_upload').files;
+            const formData = new FormData(form);
+            const btn = e.submitter;
+            startProcessingMode(btn);
+            fetch(form.action, { method: form.method, body: formData })
+            .then(async function(response) {
+                if(!response.ok) {
+                    endProcessingMode(btn);
+                    return;
+                }
+                let pdfBlob = await response.blob();
+                let dataTransfer = new DataTransfer();
+                dataTransfer.items.add(new File([pdfBlob], "test.pdf", {
+                    type: 'application/pdf'
+                }));
+                document.getElementById('input_pdf_upload').files = dataTransfer.files;
+                await loadPDF(document.getElementById('input_pdf_upload').files[0]).catch(function (reason) {
+                    console.error(reason);
+                });
+                endProcessingMode(btn);
+                btn.disabled = true;
+                btn.classList.add('opacity-50');
+            })
 
-    document.getElementById('form_ocr').addEventListener('submit', async function (e) {
-        const form = e.target;
-        this.querySelector('input[type="file"]').files = document.getElementById('input_pdf_upload').files;
-        const formData = new FormData(form);
-        const btn = e.submitter;
-        startProcessingMode(btn);
-        fetch(form.action, { method: form.method, body: formData })
-        .then(async function(response) {
-            let pdfBlob = await response.blob();
-            let dataTransfer = new DataTransfer();
-            dataTransfer.items.add(new File([pdfBlob], "test.pdf", {
-                type: 'application/pdf'
-            }));
-            document.getElementById('input_pdf_upload').files = dataTransfer.files;
-            await loadPDF(document.getElementById('input_pdf_upload').files[0]).catch(function (reason) {
-                console.error(reason);
-            });
-            endProcessingMode(btn);
-            btn.disabled = true;
-            btn.classList.add('opacity-50');
-        })
-
-        e.preventDefault();
-         return false;
-    });
+            e.preventDefault();
+             return false;
+        });
+    }
 }
 
 async function pageUpload() {
@@ -378,12 +386,12 @@ async function pageUpload() {
         window.location.reload();
     })
     document.getElementById('input_pdf_upload').addEventListener('change', async function(event) {
+        pageMetadata(null);
         if(await canUseCache()) {
             const file = document.getElementById('input_pdf_upload').files[0]
             storeFileInCache(file, file.name);
             history.pushState({}, '', `${REVERSE_PROXY_URL ? '/': ''}${REVERSE_PROXY_URL}/metadata#${file.name}`);
         }
-        pageMetadata(null);
     });
 }
 

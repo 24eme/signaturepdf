@@ -112,7 +112,7 @@
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
                         <input name="flatten" type="checkbox" value="1" class="d-none" />
-                        <button class="btn btn-primary w-100 mt-2 w-100" disabled="disabled" type="submit" id="save"><i class="bi bi-download"></i> <?php echo _("Download the signed PDF"); ?> <i id="save_flatten_indicator" class="bi bi-layers-half opacity-50 float-end invisible" title="<?php echo _("The PDF will be flattened") ?>"></i></button>
+                        <button class="btn btn-primary w-100 mt-2 w-100" disabled="disabled" type="submit" id="save" data-loading-text="<?php echo _("Saving") ?>"><i class="bi bi-download"></i> <?php echo _("Download the signed PDF"); ?> <i id="save_flatten_indicator" class="bi bi-layers-half opacity-50 float-end invisible" title="<?php echo _("The PDF will be flattened") ?>"></i></button>
                 </form>
                 <?php elseif(!isset($noSharingMode)): ?>
                   <div class="d-none d-sm-none d-md-block position-relative">
@@ -330,8 +330,8 @@
         <div class="toolbox-action dropdown" title="<?php echo _("Duplicate the element") ?>">
             <span class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="inside"><i class="bi bi-copy mx-1"></i></span>
             <ul class="dropdown-menu shadow-sm bg-body-secondary">
-                <li><a class="dropdown-item" data-action="duplicate"><?php echo _("Duplicate on each page") ?></a></li>
                 <li><a class="dropdown-item" data-action="copy"><?php echo _("Duplicate") ?></a></li>
+                <li><a class="dropdown-item" data-action="duplicate"><?php echo _("Duplicate on each page") ?></a></li>
             </ul>
         </div>
         <div class="toolbox-action" data-action="delete" title="<?php echo _("Delete the element") ?>"><i class="bi bi-trash3"></i></div>
@@ -362,7 +362,7 @@
     const adminKey = localStorage.getItem(pdfHash+'.adminKey')
     if (adminKey) {
         const icon = document.createElement('i')
-        icon.classList.add('float-end', 'bi', 'bi-trash3')
+        icon.classList.add('float-end', 'bi', 'bi-trash3', 'opacity-75')
         icon.style.cursor = 'pointer'
         document.getElementById('text_document_name').appendChild(icon)
 

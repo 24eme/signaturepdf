@@ -75,7 +75,7 @@
                                 <div id="printable_formatting_infos" class="fw-bold small"></div>
                             </button>
 
-                            <button class="btn btn-primary" type="submit" id="save"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
+                            <button class="btn btn-primary" type="submit" id="save" data-loading-text="<?php echo _("Saving") ?>"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
                             <button id="save_select" class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
                         </div>
                     </form>

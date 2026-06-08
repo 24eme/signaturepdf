@@ -24,6 +24,11 @@ let currentTextScale = 1;
 const defaultScale = 1.5;
 let customText = '';
 
+fabric.Object.prototype.controls.mtr.x = 0;
+fabric.Object.prototype.controls.mtr.y = 0.5;      // bas de l'objet
+fabric.Object.prototype.controls.mtr.offsetY = 30; // 30px sous l'objet
+fabric.Object.prototype.controls.mtr.withConnection = true;
+
 async function loadPDF(pdfBlob) {
     let filename = pdfBlob.name;
     let url = await URL.createObjectURL(pdfBlob);
@@ -1237,6 +1242,11 @@ function createEventsListener() {
     penColorPicker.addEventListener('input', function (e) {
         e.preventDefault()
         storePenColor(penColorPicker.value)
+        if(activeCanvas && activeCanvas.getActiveObject()) {
+            activeCanvas.getActiveObject()
+            activeCanvas.getActiveObject().set({ fill: penColorPicker.value })
+            activeCanvas.requestRenderAll()
+        }
     })
 
     document.getElementById('color-picker').addEventListener('click', function(event) {
@@ -1440,7 +1450,7 @@ const toolBox = (function () {
 
     const _elToolbox = document.createElement('div')
           _elToolbox.id = 'toolbox'
-          _elToolbox.classList.add('position-absolute', 'border', 'p-1', 'bg-body-secondary', 'shadow-sm', 'ms-3', 'mt-3', 'd-none', 'd-md-block', 'user-select-none')
+          _elToolbox.classList.add('position-absolute', 'border', 'bg-light', 'rounded', 'shadow-sm', 'd-none', 'd-md-block', 'user-select-none')
           _elToolbox.style['z-index'] = 1030
           _elToolbox.style.width = 'max-content'
 
@@ -1469,7 +1479,7 @@ const toolBox = (function () {
     function _changeColor() {
         const _colorpicker = document.createElement('input')
               _colorpicker.setAttribute('type', 'color')
-              _colorpicker.value = penColor
+              _colorpicker.value = _elSelected.fill;
 
         _colorpicker.addEventListener('input', function (e) {
             _elSelected.set({ fill: e.target.value })
@@ -1532,7 +1542,8 @@ const toolBox = (function () {
             - +window.getComputedStyle(_elToolbox).getPropertyValue("margin-left").replace('px', '')
         ) + 'px'
         _elToolbox.style.top = (
-            Math.max(...yCoords)             // on sélectionne le coin le plus bas
+            Math.min(...yCoords)             // on sélectionne le coin le plus bas
+            - _elToolbox.clientHeight - 10       // hauteur de la toolbox
             + _elSelected.canvas._offset.top // hauteur du canvas dans le viewport
             + container.scrollTop            // haut du container
         ) + 'px'

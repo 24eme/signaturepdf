@@ -380,40 +380,31 @@ class MainController
             return;
         }
 
-        $compressionType = $f3->get('POST.compressionType');
-        if ($compressionType === 'medium') {
-            $compressionType = '/ebook';
-        } elseif ($compressionType === 'low') {
-            $compressionType = '/printer';
-        } else {
-            $compressionType = '/screen';
-        }
         $filePath = reset(array_keys($files));
 
-        $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
+        $compression = new Compression($filePath);
 
-        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dAutoRotatePages=/None -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
-
-        if ($returnCode === false || !file_exists($outputFileName)) {
-            unlink($outputFileName);
-            unlink($filePath);
+        try {
+            $output = $compression->compress($f3->get('POST.compressionType'));
+        } catch(Exception $e ){
+            $compression->clean();
             http_response_code("500");
             header('Content-Type: text/plain');
             echo _("PDF compression failed");
             return;
-        } elseif (filesize($filePath) <= filesize($outputFileName)) {
-            unlink($outputFileName);
-            unlink($filePath);
+        }
+
+        if (filesize($filePath) <= filesize($output)) {
+            $compression->clean();
             http_response_code("204");
             return;
         }
 
         header('Content-Type: application/pdf');
         header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_compressed.pdf", $originalFilename))));
-        readfile($outputFileName);
+        readfile($output);
 
-        unlink($outputFileName);
-        unlink($filePath);
+        $compression->clean();
     }
 
 }

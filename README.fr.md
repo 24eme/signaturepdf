@@ -45,7 +45,7 @@ Dépendances :
 Installation des dépendances :
 
 ```
-sudo aptitude install php librsvg2-bin pdftk imagemagick potrace
+sudo aptitude install php php-intl librsvg2-bin pdftk imagemagick potrace
 ```
 
 Récupération des sources :
@@ -144,7 +144,7 @@ Ce que fait le script :
 domain='sign.example.com'
 
 apk update
-apk add bash nginx git php8 php8-fpm php8-session php8-gd php8-fileinfo openjdk8 imagemagick potrace librsvg
+apk add bash nginx git php8 php8-fpm php8-session php8-gd php8-fileinfo php8-intl php8-gettext php8-mbstring openjdk8 imagemagick potrace librsvg
 
 cd /tmp
 wget https://gitlab.com/pdftk-java/pdftk/-/jobs/924565145/artifacts/raw/build/libs/pdftk-all.jar

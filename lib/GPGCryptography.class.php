@@ -31,7 +31,7 @@ class GPGCryptography
             if(file_exists($outputFile)) {
                 unlink($outputFile);
             }
-            $command = "gpg --batch --passphrase $this->symmetricKey --symmetric --cipher-algo AES256 -o $outputFile $file > /dev/null";
+            $command = sprintf("gpg --batch --passphrase %s --symmetric --cipher-algo AES256 -o %s %s > /dev/null", escapeshellarg($this->symmetricKey), escapeshellarg($outputFile), escapeshellarg($file));
             $result = shell_exec($command);
             if ($result) {
                 echo "Cipher failure";
@@ -59,7 +59,7 @@ class GPGCryptography
 
     public function runDecryptFile($file, $outputFile) {
         putenv('HOME='.sys_get_temp_dir());
-        return shell_exec("gpg --batch --passphrase $this->symmetricKey --decrypt -o $outputFile $file > /dev/null");
+        return shell_exec(sprintf("gpg --batch --passphrase %s --decrypt -o %s %s > /dev/null", escapeshellarg($this->symmetricKey), escapeshellarg($outputFile), escapeshellarg($file)));
     }
 
     public function isEncrypted() {

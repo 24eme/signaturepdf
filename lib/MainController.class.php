@@ -71,9 +71,9 @@ class MainController
             $f3->error(403);
         }
 
-        shell_exec(sprintf("convert -background white -flatten %s %s", $imageFile, $imageFile.".bmp"));
-        shell_exec(sprintf("mkbitmap -x -f 8 %s -o %s", $imageFile.".bmp", $imageFile.".bpm"));
-        shell_exec(sprintf("potrace --flat --svg %s -o %s", $imageFile.".bpm", $imageFile.".svg"));
+        shell_exec(sprintf("convert -background white -flatten %s %s", escapeshellarg($imageFile), escapeshellarg($imageFile.".bmp")));
+        shell_exec(sprintf("mkbitmap -x -f 8 %s -o %s", escapeshellarg($imageFile.".bmp"), escapeshellarg($imageFile.".bpm")));
+        shell_exec(sprintf("potrace --flat --svg %s -o %s", escapeshellarg($imageFile.".bpm"), escapeshellarg($imageFile.".svg")));
 
         header('Content-Type: image/svg+xml');
         echo file_get_contents($imageFile.".svg");
@@ -329,7 +329,7 @@ class MainController
         $filePath = reset(array_keys($files));
         $outputFileName = str_replace(".pdf", "_ocr.pdf", $filePath);
 
-        $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", $filePath, $outputFileName));
+        $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", escapeshellarg($filePath), escapeshellarg($outputFileName)));
 
         if ($returnCode === false || !file_exists($outputFileName)) {
             unlink($outputFileName);

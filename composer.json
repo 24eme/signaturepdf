@@ -1,0 +1,18 @@
+{
+    "name": "24eme/signaturepdf",
+    "description": "Free open-source web software for signing PDF (alone or with others) and also organize pages, edit medata and compress pdf",
+    "type": "project",
+    "license": "AGPL-3.0-only",
+    "authors": [
+        {
+            "name": "24eme"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "classmap": ["lib/"]
+    }
+}

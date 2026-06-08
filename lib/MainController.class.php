@@ -274,7 +274,7 @@ class MainController
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.(($symmetricKey) ? '#'.$symmetricKey : null));
     }
 
-    function nblayers(Base $f3) {
+    function signatureNblayers(Base $f3) {
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;

@@ -12,7 +12,7 @@ require(__DIR__.'/lib/ApiController.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
-Config::createInstance();
+Config::createInstance($f3);
 
 $f3->route('GET|HEAD @index: /', 'MainController->index');
 $f3->route('GET @signature: /signature', 'MainController->signature');

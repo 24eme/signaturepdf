@@ -1021,24 +1021,37 @@ function createEventsListener() {
     })
     modalMoreOptions.addEventListener('show.bs.modal', function (e) {
         // on construit la liste de texte custom du local storage
+
         const modal = e.target
-        const customList = modal.querySelector('.custom-text-list:last-child')
-        while (customList.firstChild) { customList.removeChild(customList.lastChild) }
-        (JSON.parse(localStorage.getItem('storedStrings')) || []).forEach(function (el) {
+
+        const newItemText = function(iconClass, textString) {
             const div = document.createElement('div')
                   div.classList.add("d-grid", "gap-2", "mb-2", "list-item-add", "btn-custom-text")
             const span = document.createElement('span')
                   span.classList.add("btn", "btn-outline-secondary", "text-black", "text-start")
             const icon = document.createElement('i')
-                  icon.classList.add("bi", "bi-clock-history", "me-1")
+                  icon.classList.add("bi", iconClass, "me-1")
             const text = document.createElement('span')
                   text.classList.add('custom-text')
-                  text.innerText = el
+                  text.innerText = textString
             span.appendChild(icon)
             span.append(" ")
             span.appendChild(text)
             div.appendChild(span)
-            customList.appendChild(div)
+
+            return div;
+        }
+
+        const customListDate = modal.querySelector('#text-list-date');
+        while (customListDate.firstChild) { customListDate.removeChild(customListDate.lastChild) }
+        const todayDate = new Date();
+        customListDate.appendChild(newItemText('bi-calendar-date', todayDate.toLocaleDateString(window.navigator.language)))
+        customListDate.appendChild(newItemText('bi-calendar-date', todayDate.toLocaleDateString(window.navigator.language , {weekday: "long", year: "numeric", month: "long", day: "numeric"})))
+
+        const customListHistory = modal.querySelector('#text-list-history')
+        while (customListHistory.firstChild) { customListHistory.removeChild(customListHistory.lastChild) }
+        (JSON.parse(localStorage.getItem('storedStrings')) || []).forEach(function (el) {
+            customListHistory.appendChild(newItemText('bi-clock-history', el))
         })
     })
 

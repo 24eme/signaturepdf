@@ -210,18 +210,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="custom-text-list" id="text-list-date">
+                    </div>
                     <div class="custom-text-list">
-                        <?php $date = new DateTime() ?>
-                        <?php foreach (['dd/MM/Y', 'dd-MM-Y', 'MM/dd/Y', 'MM-dd-Y', 'dd LLLL Y', 'dd LLLL'] as $format): ?>
-                            <div class="d-grid gap-2 mb-2 list-item-add btn-custom-text">
-                                <span class="btn btn-outline-secondary text-black text-start"><i class="bi bi-calendar-date me-1"></i> <span class="custom-text"><?php echo IntlDateFormatter::formatObject($date, $format, $TRANSLATION_LANGUAGE) ?></span></span>
-                            </div>
-                        <?php endforeach ?>
                         <div class="d-grid gap-2 mb-2 list-item-add btn-custom-text">
                         <span class="btn btn-outline-secondary text-black text-start"><i class="bi bi-chat-square-dots me-1"></i> <span class="custom-text"><?php echo _("Read and approved") ?></span></span>
                         </div>
                     </div>
-                    <div class="custom-text-list">
+                    <div class="custom-text-list" id="text-list-history">
                     </div>
                 </div>
                 <div class="modal-footer">

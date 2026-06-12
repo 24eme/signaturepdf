@@ -23,7 +23,7 @@ class NSSCryptography
 
     public function addSignature($pdf_path, $reason) {
         putenv('NSSPASS='.$this->nss_password);
-        exec('pdfsig '.$pdf_path.' '.$pdf_path.'.signed.pdf -add-signature -nssdir "'.$this->nss_directory.'" -nss-pwd "$NSSPASS" -nick "'.$this->nss_nick.'" -reason "'.$reason.'" 2>&1', $output, $returnCode);
+        exec(sprintf('pdfsig %s %s -add-signature -nssdir "%s" -nss-pwd "$NSSPASS" -nick "%s" -reason "%s" 2>&1', escapeshellarg($pdf_path), escapeshellarg($pdf_path.'.signed.pdf'), escapeshellarg($this->nss_directory), escapeshellarg($this->nss_nick), escapeshellarg($reason)), $output, $returnCode);
         if ($returnCode) {
             throw new Exception('pdfsign error: '.implode(' ', $output));
         }
@@ -34,7 +34,7 @@ class NSSCryptography
         $signatures = [];
 
         putenv('NSSPASS='.$this->nss_password);
-        exec('pdfsig -nssdir "'.$this->nss_directory.'" -nss-pwd "$NSSPASS" '.$pdf_path.' 2>&1', $output, $returnCode);
+        exec(sprintf('pdfsig -nssdir "%s" -nss-pwd "$NSSPASS" %s 2>&1', escapeshellarg($this->nss_directory), escapeshellarg($pdf_path)), $output, $returnCode);
 
         if ($returnCode && !preg_match('/does not contain any signatures/', $output[0])) {
             throw new Exception('pdfsign error: '.implode(' ', $output));

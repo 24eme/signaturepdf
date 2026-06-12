@@ -71,9 +71,9 @@ class MainController
             $f3->error(403);
         }
 
-        shell_exec(sprintf("convert -background white -flatten %s %s", $imageFile, $imageFile.".bmp"));
-        shell_exec(sprintf("mkbitmap -x -f 8 %s -o %s", $imageFile.".bmp", $imageFile.".bpm"));
-        shell_exec(sprintf("potrace --flat --svg %s -o %s", $imageFile.".bpm", $imageFile.".svg"));
+        shell_exec(sprintf("convert -background white -flatten %s %s", escapeshellarg($imageFile), escapeshellarg($imageFile.".bmp")));
+        shell_exec(sprintf("mkbitmap -x -f 8 %s -o %s", escapeshellarg($imageFile.".bmp"), escapeshellarg($imageFile.".bpm")));
+        shell_exec(sprintf("potrace --flat --svg %s -o %s", escapeshellarg($imageFile.".bpm"), escapeshellarg($imageFile.".svg")));
 
         header('Content-Type: image/svg+xml');
         echo file_get_contents($imageFile.".svg");
@@ -274,7 +274,7 @@ class MainController
         $f3->reroute($f3->get('REVERSE_PROXY_URL').'/signature/'.$hash.(($symmetricKey) ? '#'.$symmetricKey : null));
     }
 
-    function nblayers(Base $f3) {
+    function signatureNblayers(Base $f3) {
         $f3->set('activeTab', 'sign');
         $hash = Web::instance()->slug($f3->get('PARAMS.hash'));
         $symmetricKey = (isset($_COOKIE[$hash])) ? GPGCryptography::protectSymmetricKey($_COOKIE[$hash]) : null;
@@ -329,7 +329,7 @@ class MainController
         $filePath = reset(array_keys($files));
         $outputFileName = str_replace(".pdf", "_ocr.pdf", $filePath);
 
-        $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", $filePath, $outputFileName));
+        $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", escapeshellarg($filePath), escapeshellarg($outputFileName)));
 
         if ($returnCode === false || !file_exists($outputFileName)) {
             unlink($outputFileName);
@@ -380,40 +380,31 @@ class MainController
             return;
         }
 
-        $compressionType = $f3->get('POST.compressionType');
-        if ($compressionType === 'medium') {
-            $compressionType = '/ebook';
-        } elseif ($compressionType === 'low') {
-            $compressionType = '/printer';
-        } else {
-            $compressionType = '/screen';
-        }
         $filePath = reset(array_keys($files));
 
-        $outputFileName = str_replace(".pdf", "_compressed.pdf", $filePath);
+        $compression = new Compression($filePath);
 
-        $returnCode = shell_exec(sprintf("gs -sDEVICE=pdfwrite -dPDFSETTINGS=%s -dPassThroughJPEGImages=false -dPassThroughJPXImages=false -dAutoFilterGrayImages=false -dAutoFilterColorImages=false -dDetectDuplicateImages=true -dAutoRotatePages=/None -dQUIET -dBATCH -o %s %s", $compressionType, $outputFileName, $filePath));
-
-        if ($returnCode === false || !file_exists($outputFileName)) {
-            unlink($outputFileName);
-            unlink($filePath);
+        try {
+            $output = $compression->compress($f3->get('POST.compressionType'));
+        } catch(Exception $e ){
+            $compression->clean();
             http_response_code("500");
             header('Content-Type: text/plain');
             echo _("PDF compression failed");
             return;
-        } elseif (filesize($filePath) <= filesize($outputFileName)) {
-            unlink($outputFileName);
-            unlink($filePath);
+        }
+
+        if (filesize($filePath) <= filesize($output)) {
+            $compression->clean();
             http_response_code("204");
             return;
         }
 
         header('Content-Type: application/pdf');
         header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_compressed.pdf", $originalFilename))));
-        readfile($outputFileName);
+        readfile($output);
 
-        unlink($outputFileName);
-        unlink($filePath);
+        $compression->clean();
     }
 
 }

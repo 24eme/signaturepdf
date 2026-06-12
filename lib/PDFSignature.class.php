@@ -190,11 +190,11 @@ class PDFSignature
     }
 
     public static function createPDFFromSvg(array $svgFiles, $outputPdfFile) {
-        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", $outputPdfFile, implode(" ", $svgFiles)));
+        shell_exec(sprintf("rsvg-convert -f pdf -o %s %s", escapeshellarg($outputPdfFile), implode(" ", array_map('escapeshellarg',$svgFiles))));
     }
 
     public static function addSvgToPDF($pdfOrigin, $pdfSvg, $pdfOutput, $digitalSignature = true) {
-        shell_exec(sprintf("pdftk %s multistamp %s output %s", $pdfOrigin, $pdfSvg, $pdfOutput));
+        shell_exec(sprintf("pdftk %s multistamp %s output %s", escapeshellarg($pdfOrigin), escapeshellarg($pdfSvg), escapeshellarg($pdfOutput)));
         if (NSSCryptography::getInstance()->isEnabled() && $digitalSignature) {
             try {
                 NSSCryptography::getInstance()->addSignature($pdfOutput, 'Signed with SignaturePDF');
@@ -210,8 +210,8 @@ class PDFSignature
         $command = (null === shell_exec("command -v magick")) ? 'convert' : 'magick';
 
         shell_exec(sprintf(
-            '%s -density 200 -units PixelsPerInch %s_signe.pdf -compress zip %s_signe.pdf'
-        , $command, escapeshellarg($pdf), escapeshellarg($pdf)));
+            '%s -density 200 -units PixelsPerInch %s -compress zip %s'
+        , $command, escapeshellarg($pdf."_signe.pdf"), escapeshellarg($pdf."_signe.pdf")));
     }
 
     public function clean() {

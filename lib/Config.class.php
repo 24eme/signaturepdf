@@ -7,21 +7,22 @@ class Config
     private static $_instance = null;
     protected $f3 = null;
 
-    public static function createInstance() {
+    public static function createInstance($f3) {
+        self::$_instance = new Config($f3);
 
         return self::getInstance();
     }
 
     public static function getInstance() {
         if (is_null(self::$_instance)) {
-            self::$_instance = new Config();
+            throw new Exception("Instance isn't create");
         }
         return self::$_instance;
     }
 
-    public function __construct() {
+    public function __construct($f3) {
 
-        $this->f3 = \Base::instance();
+        $this->f3 = $f3;
 
         $this->f3->set('FALLBACK', null);
         $this->f3->language(isset($this->f3->get('HEADERS')['Accept-Language']) ? $this->f3->get('HEADERS')['Accept-Language'] : '');
@@ -57,7 +58,7 @@ class Config
         $this->f3->set('UPLOADS', sys_get_temp_dir()."/");
         $this->f3->set('COMMIT', $this->getCommit());
 
-        $this->f3->config(__DIR__.'/config/config.ini');
+        $this->f3->config($this->f3->get('ROOT').'/config/config.ini');
         if (!$this->f3->exists('REVERSE_PROXY_URL')) {
             $this->f3->set('REVERSE_PROXY_URL', '');
         }

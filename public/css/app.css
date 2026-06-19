@@ -197,8 +197,16 @@ a.block-drag:hover, a.block-drag.active, a.block-drag:active {
     z-index: 3;
 }
 
-#page-metadata .text-highlight .textLayer span, #page-metadata .textLayer span:hover  {
+#page-metadata .text-highlight .textLayer span {
     background: rgba(255, 191, 0, 0.25);
+}
+
+#page-metadata .text-highlight:hover span {
+    background: transparent;
+}
+
+#page-metadata .textLayer span:hover {
+    background: rgba(255, 191, 0, 0.25) !important;
 }
 
 @media (max-width: 1500px) {

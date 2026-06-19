@@ -25,23 +25,51 @@
     <?php include('components/footer.html.php'); ?>
 </div>
 <div id="page-metadata" class="d-none">
-    <div style="overflow: auto;" class="vh-100" id="container-main">
-        <div id="form-metadata" class="mx-auto w-75 pt-3 pb-5">
-            <h3><?php echo _("List of PDF metadata"); ?></h3>
-            <div id="form-metadata-container">
-            </div>
-            <form id="form_metadata_add" class="position-relative">
-                <hr class="text-muted mt-4 mb-3" />
-                <div class="mb-3">
-                    <label class="form-label text-muted" for="input_metadata_key"><?php echo _("Add new metadata"); ?></label>
-                    <div class="form-floating">
-                        <input id="input_metadata_key" name="metadata_key" type="text" class="form-control" required value="" style="border-bottom-right-radius: 0;  border-bottom-left-radius: 0;">
-                        <label><?php echo _("Key"); ?></label>
-                    </div>
-                    <input id="input_metadata_value" readonly="readonly" style="border-top: 0; border-top-right-radius: 0;  border-top-left-radius: 0;" name="metadata_value" type="text" class="form-control bg-light opacity-50" value="" placeholder="<?php echo _("Value"); ?>" style="border-bottom-right-radius: 0;  border-bottom-left-radius: 0;">
+    <div style="overflow: auto;" class="vh-100 bg-white" id="container-main">
+        <div class="bg-white sticky-top pt-2">
+        <ul class="nav nav-tabs">
+          <li class="nav-item ms-4">
+            <button type="button" id="nav-link-metadata" class="nav-link <?php echo ($ALIAS != 'ocr') ? "active" : null ?>" aria-current="page" href="#" data-bs-toggle="tab" data-bs-target="#form-metadata"><?php echo _("Metadata") ?> <span class="badge rounded-pill text-bg-light border border-dark-subtle text-secondary ms-2 "><span>0</span> <i class="bi bi-tags"></i></span></button>
+          </li>
+          <li class="nav-item ms-2">
+            <button type="button" id="nav-link-text" class="nav-link <?php echo ($ALIAS == 'ocr') ? "active" : null ?>" href="#" data-bs-toggle="tab" data-bs-target="#tab-text"><?php echo _("Text") ?> <span class="badge rounded-pill text-bg-light border border-dark-subtle text-secondary ms-2" ></span></button>
+          </li>
+        </ul>
+        </div>
+        <div class="tab-content">
+            <div id="form-metadata" class="py-3 px-5 tab-pane <?php echo ($ALIAS != 'ocr') ? "show active" : null ?>">
+                <!-- <h3><?php echo _("List of PDF metadata"); ?></h3> -->
+                <div id="form-metadata-container">
                 </div>
-                <button type="submit" type="button" class="btn btn-outline-secondary float-end"><?php echo sprintf(_("%s Add"), '<i class="bi bi-plus-circle"></i>'); ?></button>
-            </form>
+                <form id="form_metadata_add" class="position-relative">
+                    <hr class="text-muted mt-4 mb-3" />
+                    <div class="mb-3">
+                        <label class="form-label text-muted" for="input_metadata_key"><?php echo _("Add new metadata"); ?></label>
+                        <div class="form-floating">
+                            <input id="input_metadata_key" name="metadata_key" type="text" class="form-control" required value="" style="border-bottom-right-radius: 0;  border-bottom-left-radius: 0;">
+                            <label><?php echo _("Key"); ?></label>
+                        </div>
+                        <input id="input_metadata_value" readonly="readonly" style="border-top: 0; border-top-right-radius: 0;  border-top-left-radius: 0;" name="metadata_value" type="text" class="form-control bg-light opacity-50" value="" placeholder="<?php echo _("Value"); ?>" style="border-bottom-right-radius: 0;  border-bottom-left-radius: 0;">
+                    </div>
+                    <button type="submit" type="button" class="btn btn-outline-secondary float-end"><?php echo sprintf(_("%s Add"), '<i class="bi bi-plus-circle"></i>'); ?></button>
+                </form>
+            </div>
+            <div id="tab-text" class="py-4 px-5 tab-pane <?php echo ($ALIAS == 'ocr') ? "show active" : null ?>">
+                <div id="pdf_text_container" class="position-relative shadow-sm mt-2">
+                    <div class="card">
+                      <div class="card-header text-end py-0 pe-0">
+                        <span class="float-start text-secondary mt-2">Texte intégré dans le PDF</span>
+                        <button type="submit" form="form_ocr" class="btn btn-light btn-sm m-1 me-0" title="<?php echo _("Run OCR to make pdf searchable and copyable") ?>" data-loading-text="<?php echo _("Running OCR") ?>"><i class="bi bi-upc-scan"></i> <?php echo ("Run text detection (OCR)") ?></button>
+                        <button id="btn_copy_text" type="button" class="btn btn-light btn-sm m-1 ms-0" title="<?php echo _("Copy") ?>"><i class="bi bi-copy"></i> <?php echo _("Copy") ?></button>
+                      </div>
+                      <p id="pdf_text" class="card-body small font-monospace mb-0"></p>
+                  </div>
+                </div>
+                <div id="pdf_notext" class="text-center d-none">
+                    <p class="text-muted">Ce PDF ne contient pas de texte</p>
+                    <button type="submit" form="form_ocr" class="btn btn-primary" title="<?php echo ("Run OCR to make pdf searchable and copyable") ?>" data-loading-text="<?php echo _("Running OCR") ?>"><i class="bi bi-upc-scan"></i> <?php echo ("Run text detection (OCR)") ?></button>
+                </div>
+            </div>
         </div>
     </div>
     <div id="div-margin-bottom" style="height: 55px;" class="d-md-none"></div>

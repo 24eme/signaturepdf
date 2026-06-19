@@ -61,6 +61,7 @@
           <a tabindex="-1" href="<?php echo $REVERSE_PROXY_URL; ?>/metadata" class="card-header text-body-secondary link-underline link-underline-opacity-0"><?php echo _("Metadata") ?></a>
           <div class="list-group list-group-flush">
             <a href="<?php echo $REVERSE_PROXY_URL; ?>/metadata" class="list-group-item list-group-item-action"><i class="bi bi-tags"></i> <?php echo _("Add, edit, or remove metadata from a PDF") ?></a>
+            <a href="<?php echo $REVERSE_PROXY_URL; ?>/ocr" class="list-group-item list-group-item-action"><i class="bi bi-upc-scan"></i> <?php echo _("OCR détection de textes dans les images contenu dans le PDF") ?></a>
             </div>
         </div>
     </div>

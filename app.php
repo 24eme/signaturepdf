@@ -27,6 +27,7 @@ $f3->route('GET @signature_nblayers: /signature/@hash/nblayers', 'MainController
 $f3->route('GET @cron: /cron', 'MainController->cron');
 $f3->route('GET @organization: /organization', 'MainController->organization');
 $f3->route('GET @metadata: /metadata', 'MainController->metadata');
+$f3->route('GET @ocr: /ocr', 'MainController->metadata');
 $f3->route('POST @ocr: /ocr', 'MainController->ocr');
 $f3->route('GET @administration: /administration', 'MainController->administration');
 $f3->route('GET @compression: /compress', 'MainController->compression');

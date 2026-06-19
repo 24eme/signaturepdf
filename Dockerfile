@@ -10,7 +10,7 @@ ENV DEFAULT_LANGUAGE=fr_FR.UTF-8
 ENV PDF_STORAGE_ENCRYPTION=false
 
 RUN apt update && \
-    apt install -y vim locales gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript gpg && \
+    apt install -y vim locales gettext-base librsvg2-bin pdftk imagemagick potrace ghostscript gpg poppler-utils libnss3-tools && \
     docker-php-ext-install gettext && \
     rm -rf /var/lib/apt/lists/*
 

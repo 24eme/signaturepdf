@@ -429,10 +429,7 @@ function createEventsListener() {
                 });
 
                 document.querySelector('#container-pages').classList.add('text-highlight');
-
-                if(!document.querySelector('#tab-text.active')) {
-                    setTimeout(function() { document.querySelector('#container-pages').classList.remove('text-highlight'); }, 1000)
-                }
+                setTimeout(function() { document.querySelector('#container-pages').classList.remove('text-highlight'); }, 1000)
 
                 endProcessingMode(btn);
             })
@@ -478,14 +475,6 @@ function createEventsListener() {
         }
         followText(e.target, '#container-pages .textLayer span', '#pdf_text span', true);
     });
-
-    document.querySelector('#nav-link-metadata').addEventListener('shown.bs.tab', event => {
-        document.querySelector('#container-pages').classList.remove('text-highlight');
-    })
-
-    document.querySelector('#nav-link-text').addEventListener('shown.bs.tab', event => {
-        document.querySelector('#container-pages').classList.add('text-highlight');
-    })
 }
 
 function followText(element, selectorFrom, selectorTo, hide) {

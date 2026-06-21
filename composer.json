@@ -10,7 +10,10 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "ext-gettext": "*",
+        "ext-mbstring": "*",
+        "ext-intl": "*"
     },
     "autoload": {
         "classmap": ["lib/"]

@@ -120,8 +120,7 @@ async function loadPDF(pdfBlob) {
             if(!item.str) {
                 continue;
             }
-
-            if(previousItem && item.transform[5] == previousItem.transform[5] && item.transform[3] == previousItem.transform[3]) {
+            if(previousItem && Math.abs(item.transform[5] - previousItem.transform[5]) < (item.transform[3] / 2)) {
                 pdfText += " ";
                 pdfHtml += " ";
             } else if(previousItem) {

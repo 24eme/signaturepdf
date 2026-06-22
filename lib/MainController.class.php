@@ -329,7 +329,7 @@ class MainController
         $filePath = reset(array_keys($files));
         $outputFileName = str_replace(".pdf", "_ocr.pdf", $filePath);
 
-        $returnCode = shell_exec(sprintf("ocrmypdf --force-ocr %s %s", escapeshellarg($filePath), escapeshellarg($outputFileName)));
+        $returnCode = shell_exec(sprintf("ocrmypdf --output-type pdf --force-ocr %s %s", escapeshellarg($filePath), escapeshellarg($outputFileName)));
 
         if ($returnCode === false || !file_exists($outputFileName)) {
             unlink($outputFileName);

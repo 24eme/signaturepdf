@@ -364,9 +364,12 @@ class MainController
 
     function compress(Base $f3) {
         $originalFilename = null;
-        $files = Web::instance()->receive(function($file,$formFieldName) {
+        $files = Web::instance()->receive(function($file,$formFieldName) use ($f3) {
             if ($formFieldName == "pdf" && strpos(Web::instance()->mime($file['tmp_name'], true), 'application/pdf') !== 0) {
-                $f3->error(403);
+                http_response_code("403");
+                header('Content-Type: text/plain');
+                echo _("File is not a PDF");
+                exit;
             }
         }, false, function($fileBaseName, $formFieldName) use(&$originalFilename) {
             $originalFilename = $fileBaseName;

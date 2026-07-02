@@ -340,9 +340,7 @@ class MainController
             return;
         }
 
-        header('Content-Type: application/pdf');
-        header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_ocr.pdf", $originalFilename))));
-        readfile($outputFileName);
+        Web::instance()->send($outputFileName, null, 0, TRUE, urlencode(basename(str_replace(".pdf", "_ocr.pdf", $originalFilename))));
 
         unlink($outputFileName);
         unlink($filePath);
@@ -403,9 +401,7 @@ class MainController
             return;
         }
 
-        header('Content-Type: application/pdf');
-        header("Content-Disposition: attachment; filename=".urlencode(basename(str_replace(".pdf", "_compressed.pdf", $originalFilename))));
-        readfile($output);
+        Web::instance()->send($output, null, 0, TRUE, urlencode(basename(str_replace(".pdf", "_compressed.pdf", $originalFilename))));
 
         $compression->clean();
     }

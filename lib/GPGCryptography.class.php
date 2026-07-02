@@ -81,8 +81,20 @@ class GPGCryptography
             rmdir($element);
             return;
         }
-        $eraser = str_repeat(0, strlen(file_get_contents($element)));
-        file_put_contents($element, $eraser);
+        $fp = fopen($element, 'r+b');
+        $size = filesize($element);
+
+        $block = str_repeat("\0", 8192);
+
+        while ($size > 0) {
+            $len = min($size, 8192);
+            fwrite($fp, substr($block, 0, $len));
+            $size -= $len;
+        }
+
+        fflush($fp);
+        fclose($fp);
+
         unlink($element);
     }
 

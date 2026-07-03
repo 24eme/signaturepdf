@@ -144,8 +144,6 @@ async function loadPDF(pdfBlob) {
     document.querySelector('#nav-link-text span.badge').innerText = (Math.round(blobText.size / 1024 * 100) / 100) + ' ko';
     endLoading();
 
-    document.querySelector('#container-pages').classList.toggle('text-highlight', document.querySelector('#tab-text.active'));
-
     return loadingTask;
 }
 

@@ -30,6 +30,13 @@ PDF_STORAGE_PATH=/path/to/folder
 ; Enable the edition of local server pdf metadata
 ; PDF_LOCAL_PATH=/path/to/pdf/metadata/edition
 
+; Read and store PDF files remotely using WedDAV
+; DAV_FILE_MANAGER=false
+; DAV_REMOTE_BASE_URI=
+; DAV_REMOTE_USERNAME=
+; DAV_REMOTE_PASSWORD=
+; DAV_REMOTE_DESTINATION_PATH=
+
 ; Custom options for the signature page
 ;[signature]
 

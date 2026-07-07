@@ -20,6 +20,10 @@ class MainController
             $f3->set('noSharingMode', true);
         }
 
+        if ($f3->get('DAV_FILE_MANAGER')) {
+            $f3->set('davFileManager', true);
+        }
+
         if ($f3->exists('signature')) {
             $retentions = [];
             foreach ($f3->get('signature.retention') ?? [] as $key => $text) {

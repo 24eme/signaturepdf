@@ -1,5 +1,7 @@
 <?php
 
+require 'vendor/autoload.php';
+
 require(__DIR__.'/lib/Config.class.php');
 require(__DIR__.'/lib/GPGCryptography.class.php');
 require(__DIR__.'/lib/NSSCryptography.class.php');
@@ -9,6 +11,7 @@ require(__DIR__.'/lib/Compression.class.php');
 require(__DIR__.'/lib/OCR.class.php');
 require(__DIR__.'/lib/MainController.class.php');
 require(__DIR__.'/lib/ApiController.class.php');
+require(__DIR__.'/lib/DavController.class.php');
 
 $f3 = require(__DIR__.'/vendor/fatfree/base.php');
 
@@ -38,5 +41,8 @@ $f3->route('GET @api_file_save: /api/file/get', 'ApiController->fileSave');
 $f3->route('POST @api_share_new: /api/share/new', 'ApiController->shareNew');
 $f3->route('GET @api_share_get: /api/share/get/@hash/@symmkey', 'ApiController->shareGet');
 $f3->route('GET @api_share_delete: /api/share/delete/@hash/@adminkey', 'ApiController->shareDelete');
+
+$f3->route('GET|POST @dav: /dav', 'DavController->index');
+$f3->route('POST @dav_save_to_remote: /dav/save-to-remote', 'DavController->saveToRemote');
 
 return $f3;

@@ -618,6 +618,9 @@ function setIsChanged(changed) {
     if(document.getElementById('save')) {
         document.getElementById('save').toggleAttribute('disabled', !changed);
     }
+    if(document.getElementById('save_to_remote')) {
+        document.getElementById('save_to_remote').toggleAttribute('disabled', !changed);
+    }
     if(document.getElementById('save_mobile')) {
         document.getElementById('save_mobile').toggleAttribute('disabled', !changed);
     }
@@ -1078,21 +1081,33 @@ function createEventsListener() {
         });
     }
 
-    if(document.getElementById('save')) {
-        document.getElementById('save').addEventListener('click', async function(event) {
+    if(document.getElementById('save') || document.getElementById('save_to_remote')) {
+        async function handleSaveClick(event, saveToRemote = false) {
             if(!pdfHash) {
                 event.preventDefault()
                 startProcessingMode(this)
             }
 
-            const blob = await save(this);
+            const response = await save(this, saveToRemote);
+            const blob = await response.blob();
 
             if(!pdfHash) {
-                await download(blob, document.querySelector('#text_document_name').title.replace(/\.pdf$/, '_signe.pdf'))
-                await storeFileInCache(blob, document.getElementById('input_pdf').files[0].name)
+                if (saveToRemote) {
+                    const json = await response.json();
+                    showAlert(json.message, json.statusCode >= 200 && json.statusCode < 300)
+                } else {
+                    await download(blob, document.querySelector('#text_document_name').title.replace(/\.pdf$/, '_signe.pdf'))
+                    await storeFileInCache(blob, document.getElementById('input_pdf').files[0].name)
+                }
+
                 endProcessingMode(this)
                 hasModifications = false;
             }
+        }
+
+        document.getElementById('save')?.addEventListener('click', handleSaveClick);
+        document.getElementById('save_to_remote')?.addEventListener('click', function(event) {
+            handleSaveClick.call(this, event, true)
         });
     }
 
@@ -1128,7 +1143,8 @@ function createEventsListener() {
 
     document.getElementById('save_local').addEventListener('click', async function (event) {
         startProcessingMode(this)
-        let newPDF = await save(this);
+        const response = await save(this);
+        let newPDF = await response.blob();
         if(window.location.hash && window.location.hash.match(/^\#dav/)) {
             let headers = new Headers();
             let davToken = await requestDavToken();
@@ -1333,7 +1349,7 @@ function runCron() {
     xhr.send();
 }
 
-async function save() {
+async function save(saveToRemote = false) {
     let previousScale = currentScale;
     if(currentScale != defaultScale) {
         resizePDF(defaultScale)
@@ -1354,12 +1370,16 @@ async function save() {
     if(!pdfHash) {
         const form = document.getElementById('form_pdf');
         const formData = new FormData(form)
+
+        if (saveToRemote) {
+            formData.append('save_to_remote', '1')
+        }
+        
         const response = await fetch(form.action, {
             method: "POST",
             body: formData
         })
-        const blob = await response.blob()
-        return blob;
+        return response;
     }
 
     hasModifications = false;

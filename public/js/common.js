@@ -336,3 +336,25 @@ if(document.getElementById('btn_exit')) {
         }
     });
 }
+
+function showAlert(message, isSuccess) {
+    const alert = document.createElement('div');
+    alert.classList.add('alert', isSuccess ? 'alert-success' : 'alert-danger', 'alert-dismissible', 'fade', 'show');
+    alert.setAttribute('role', 'alert');
+
+    const messageContainer = document.createElement('span');
+    messageContainer.textContent = message;
+
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.classList.add('btn-close');
+    closeButton.setAttribute('data-bs-dismiss', 'alert');
+    closeButton.setAttribute('aria-label', 'Close');
+
+    alert.append(messageContainer, closeButton);
+    document.body.prepend(alert);
+
+    window.setTimeout(() => {
+        bootstrap.Alert.getOrCreateInstance(alert).close();
+    }, 4000);
+}

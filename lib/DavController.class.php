@@ -34,26 +34,4 @@ class DavController
 
         $server->start();
     }
-
-    function saveToRemote(Base $f3) {
-        $settings = [
-            'baseUri' => $f3->get('DAV_REMOTE_BASE_URI'),
-            'userName' => $f3->get('DAV_REMOTE_USERNAME'),
-            'password' => $f3->get('DAV_REMOTE_PASSWORD'),
-        ];
-
-        $fileName = basename($f3->get('POST.file'));
-        $fileContent = file_get_contents($f3->get('ROOT') . DIRECTORY_SEPARATOR . 'dav' . DIRECTORY_SEPARATOR . $fileName);
-
-        $destinationPath = $f3->get('DAV_REMOTE_DESTINATION_PATH') . '/' . $fileName;
-
-        $client = new DAV\Client($settings);
-        $response = $client->request('PUT', $destinationPath, $fileContent);
-
-        if ($response['statusCode'] >= 200 && $response['statusCode'] < 300) {
-            echo json_encode(['message' => 'File saved to remote successfully', 'statusCode' => $response['statusCode']]);
-        } else {
-            echo json_encode(['message' => 'Failed to save file to remote', 'statusCode' => $response['statusCode'], 'responseBody' => $response['body']]);
-        }
-    }
 }

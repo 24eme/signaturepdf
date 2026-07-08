@@ -1,5 +1,7 @@
 <?php
 
+use Sabre\DAV;
+
 class MainController
 {
     function index(Base $f3) {
@@ -132,7 +134,27 @@ class MainController
             PDFSignature::flatten($tmpfile);
         }
 
-        Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
+        if ($f3->get('POST.save_to_remote')) {
+            $settings = [
+                'baseUri' => $f3->get('DAV_REMOTE_BASE_URI'),
+                'userName' => $f3->get('DAV_REMOTE_USERNAME'),
+                'password' => $f3->get('DAV_REMOTE_PASSWORD'),
+            ];
+
+            $destinationConfig = $f3->get('DAV_REMOTE_DESTINATION_PATH');
+            $destinationPath =  ($destinationConfig ? $destinationConfig . DIRECTORY_SEPARATOR : '') . $filename;
+
+            $client = new DAV\Client($settings);
+            $response = $client->request('PUT', $destinationPath, file_get_contents($tmpfile.'_signe.pdf'));
+
+            if ($response['statusCode'] >= 200 && $response['statusCode'] < 300) {
+                echo json_encode(['message' => _('File saved to remote successfully'), 'statusCode' => $response['statusCode']]);
+            } else {
+                echo json_encode(['message' => _('Failed to save file to remote'), 'statusCode' => $response['statusCode'], 'responseBody' => $response['body']]);
+            }
+        } else {
+            Web::instance()->send($tmpfile.'_signe.pdf', null, 0, TRUE, $filename);
+        }
 
         if($f3->get('DEBUG')) {
             return;

@@ -591,7 +591,7 @@ function updateGlobalState() {
     document.querySelector('#bottom_bar_action_selection').classList.add('d-none');
     document.querySelector('#save').classList.remove('d-none');
     document.querySelector('#save_select').classList.add('d-none');
-    document.getElementById('save_local').classList.add('d-none');
+    document.getElementById('save_local')?.classList.add('d-none');
 
     if(isLocalPath || isDavPath) {
         document.getElementById('save_local').classList.remove('d-none');
@@ -971,7 +971,7 @@ function createEventsListener() {
         await saveAll();
         endProcessingMode(this);
     });
-    document.getElementById('save_local').addEventListener('click', async function (e) {
+    document.getElementById('save_local')?.addEventListener('click', async function (e) {
         this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         event.preventDefault();
         startProcessingMode(this);
@@ -1097,6 +1097,8 @@ async function pageOrganization() {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
+    const queryParams = new URLSearchParams(window.location.search);
+
     if(window.location.hash.match(/#booklet/)) {
         document.querySelector('#select_formatting').value = "booklet";
         document.querySelector('#demo_link').href = document.querySelector('#demo_link').href + '#booklet';
@@ -1112,6 +1114,9 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (window.location.hash && canUseCache()) {
         pageUpload()
         loadFileFromCache('/pdf/'+window.location.hash.replace(/^\#/, ''));
+    } else if (queryParams.get('dav')) {
+        pageUpload()
+        uploadFromUrl('/dav?file='+queryParams.get('dav'));
     } else {
         pageUpload();
     }

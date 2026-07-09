@@ -4,34 +4,33 @@ use Sabre\DAV;
 
 class DavController
 {
-    function index(Base $f3) {
-        // Normalize the request URI with a trailing slash so requests with query parameters stay in the base URI.
-        if (isset($_SERVER['REQUEST_URI']) && preg_match('#^/dav\?(.*)$#', $_SERVER['REQUEST_URI'], $matches)) {
-            $_SERVER['REQUEST_URI'] = '/dav/?'.$matches[1];
+    function fileGet(Base $f3) {
+        $file = $f3->get('GET.file');
+
+        $client = new DAV\Client([
+            'baseUri' => $f3->get('DAV_REMOTE_BASE_URI'),
+            'userName' => $f3->get('DAV_REMOTE_USERNAME'),
+            'password' => $f3->get('DAV_REMOTE_PASSWORD'),
+        ]);
+
+        $response = $client->request('GET', $file);
+
+        if ($response['statusCode'] === 200) {
+            $contentType = 'application/octet-stream';
+            $headers = isset($response['headers']) && is_array($response['headers']) ? $response['headers'] : [];
+            $rawContentType = $headers['content-type'] ?? $headers['Content-Type'] ?? null;
+
+            if (is_array($rawContentType) && isset($rawContentType[0])) {
+                $contentType = $rawContentType[0];
+            } elseif (is_string($rawContentType) && $rawContentType !== '') {
+                $contentType = $rawContentType;
+            }
+
+            header('Content-Type: '.$contentType);
+            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            echo $response['body'];
+        } else {
+            $f3->error(404, "File not found");
         }
-
-        $rootDirectoryPath = rtrim($f3->get('ROOT'), '/').'/dav';
-        $lockFilePath = rtrim($f3->get('ROOT'), '/').'/dav-data/locks';
-        $lockDirectoryPath = dirname($lockFilePath);
-
-        if (!is_dir($rootDirectoryPath)) {
-            mkdir($rootDirectoryPath, 0775, true);
-        }
-        if (!is_dir($lockDirectoryPath)) {
-            mkdir($lockDirectoryPath, 0775, true);
-        }
-
-        $rootDirectory = new DAV\FS\Directory($rootDirectoryPath);
-
-        $server = new DAV\Server($rootDirectory);
-        $server->setBaseUri('/dav');
-
-        $lockBackend = new DAV\Locks\Backend\File($lockFilePath);
-        $lockPlugin = new DAV\Locks\Plugin($lockBackend);
-        $server->addPlugin($lockPlugin);
-
-        $server->addPlugin(new DAV\Browser\Plugin());
-
-        $server->start();
     }
 }

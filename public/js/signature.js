@@ -1141,7 +1141,7 @@ function createEventsListener() {
         return false;
     });
 
-    document.getElementById('save_local').addEventListener('click', async function (event) {
+    document.getElementById('save_local')?.addEventListener('click', async function (event) {
         startProcessingMode(this)
         const response = await save(this);
         let newPDF = await response.blob();
@@ -1489,6 +1489,8 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function() { runCron() }, 2000);
     }
 
+    const queryParams = new URLSearchParams(window.location.search);
+
     if(pdfHash) {
         if (window.location.hash && window.location.hash.match(/^\#/)) {
             storeSymmetricKeyCookie(pdfHash, window.location.hash.replace(/^#/, ''));
@@ -1503,6 +1505,8 @@ document.addEventListener('DOMContentLoaded', function () {
         pageSignature(window.location.hash.replace(/^\#dav:/, ''));
     } else if(window.location.hash) {
         pageSignature('cache:///pdf/'+window.location.hash.replace(/^\#/, ''));
+    } else if(queryParams.get('dav')) {
+        pageSignature('/dav?file='+queryParams.get('dav'));
     } else {
         pageUpload();
     }

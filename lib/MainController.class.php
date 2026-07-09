@@ -326,6 +326,11 @@ class MainController
 
     function organization(Base $f3) {
         $f3->set('activeTab', 'organize');
+
+        if ($f3->get('DAV_FILE_MANAGER')) {
+            $f3->set('davFileManager', true);
+        }
+        
         echo View::instance()->render('organization.html.php');
     }
 

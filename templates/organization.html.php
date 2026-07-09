@@ -75,9 +75,14 @@
                                 <div id="printable_formatting_infos" class="fw-bold small"></div>
                             </button>
 
-                            <button class="btn btn-primary" type="submit" id="save" data-loading-text="<?php echo _("Saving") ?>"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
-                            <button id="save_select" class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
-                            <button class="btn btn-outline-primary d-none" type="button" id="save_local"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
+                            <div class="d-flex gap-2 mt-2">
+                                <?php if(isset($davFileManager)): ?>
+                                    <button type="submit" id="save_to_remote" class="btn btn-primary" data-loading-text="<?php echo _("Saving") ?>"><i class="bi bi-cloud-upload"></i> <?php echo _("Save the full PDF"); ?></button>
+                                    <button type="submit" id="save_to_remote_select" class="btn btn-primary d-none" data-loading-text="<?php echo _("Saving") ?>"><i class="bi bi-cloud-upload"></i> <?php echo _("Save the selection"); ?></button>
+                                <?php endif; ?>
+                                <button class="btn btn-primary" type="submit" id="save" data-loading-text="<?php echo _("Saving") ?>"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
+                                <button id="save_select" class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
+                            </div>
                         </div>
                     </form>
                 </div>

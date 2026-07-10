@@ -590,12 +590,15 @@ function updateGlobalState() {
     document.querySelector('#bottom_bar_action').classList.remove('d-none');
     document.querySelector('#bottom_bar_action_selection').classList.add('d-none');
     document.querySelector('#save').classList.remove('d-none');
+    document.querySelector('#save_to_remote').classList.remove('d-none');
     document.querySelector('#save_select').classList.add('d-none');
     document.getElementById('save_local')?.classList.add('d-none');
 
     if(isLocalPath || isDavPath) {
         document.getElementById('save_local').classList.remove('d-none');
     }
+
+    document.querySelector('#save_to_remote_select')?.classList.add('d-none');
 
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
@@ -618,7 +621,9 @@ function updateGlobalState() {
         document.querySelector('#bottom_bar_action_selection').classList.remove('d-none');
         document.querySelector('#bottom_bar_action').classList.add('d-none');
         document.querySelector('#save').classList.add('d-none');
+        document.querySelector('#save_to_remote').classList.add('d-none');
         document.querySelector('#save_select').classList.remove('d-none');
+        document.querySelector('#save_to_remote_select')?.classList.remove('d-none');
     }
 }
 
@@ -632,7 +637,7 @@ async function uploadAndLoadPDF(input_upload) {
     endLoading()
 }
 
-async function saveAll() {
+async function saveAll(saveToRemote = false) {
     let order = [];
     let selectionMode = isSelectionMode();
 
@@ -657,10 +662,10 @@ async function saveAll() {
 
     document.querySelector('#input_pages').value = order.join(',');
 
-    await save(order.join(','));
+    await save(order.join(','), saveToRemote);
 }
 
-async function save(order) {
+async function save(order, saveToRemote = false) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const Rotation = window['PDFLib'].Rotation
     const pdf = await PDFDocument.load(await document.querySelector('#input_pdf').files.item(0).arrayBuffer(), { ignoreEncryption: true, password: "", updateMetadata: false });
@@ -740,6 +745,11 @@ async function save(order) {
         }
         let newPDF = new Blob([await pdfBooklet.save()], {type: "application/pdf"});
 
+        if (saveToRemote) {
+            uploadToRemote(newPDF, filename+".pdf");
+            return;
+        }
+
         await download(newPDF, filename+".pdf");
         return;
     }
@@ -758,9 +768,35 @@ async function save(order) {
         });
         return ;
     }
+    
+    if (saveToRemote) {
+        uploadToRemote(newPDF, filename+".pdf");
+        return;
+    }
 
     await download(newPDF, filename+".pdf");
     await storeFileInCache(newPDF, filename+'.pdf');
+}
+
+async function uploadToRemote(pdf, filename) {
+    const file = new File([pdf], filename);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        const response = await fetch('/dav/save', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        if (response.ok) {
+            showAlert(data.message, true);
+        } else {
+            showAlert(data.message, false);
+        }
+    } catch (error) {
+        showAlert('Error uploading file: ' + error.message, false);
+    }
 }
 
 function unit2points(value, unit) {
@@ -958,10 +994,23 @@ function createEventsListener() {
         await saveAll();
         endProcessingMode(this);
     });
+    document.getElementById('save_to_remote_select')?.addEventListener('click', async function(event) {
+        this.dataset.loadingText = document.getElementById('save_to_remote').dataset.loadingText;
+        event.preventDefault();
+        startProcessingMode(this);
+        await saveAll(true);
+        endProcessingMode(this);
+    });
     document.getElementById('save').addEventListener('click', async function(e) {
         e.preventDefault();
         startProcessingMode(this);
         await saveAll();
+        endProcessingMode(this);
+    });
+    document.getElementById('save_to_remote')?.addEventListener('click', async function(e) {
+        e.preventDefault();
+        startProcessingMode(this);
+        await saveAll(true);
         endProcessingMode(this);
     });
     document.getElementById('save_mobile').addEventListener('click', async function(event) {

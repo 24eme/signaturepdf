@@ -43,5 +43,6 @@ $f3->route('GET @api_share_get: /api/share/get/@hash/@symmkey', 'ApiController->
 $f3->route('GET @api_share_delete: /api/share/delete/@hash/@adminkey', 'ApiController->shareDelete');
 
 $f3->route('GET @dav: /dav', 'DavController->fileGet');
+$f3->route('POST @dav_save: /dav/save', 'DavController->fileSave');
 
 return $f3;

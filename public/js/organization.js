@@ -980,6 +980,13 @@ function createEventsListener() {
         await saveAll();
         endProcessingMode(this);
     });
+    document.getElementById('save_to_remote_select_mobile')?.addEventListener('click', async function(event) {
+        this.dataset.loadingText = document.getElementById('save_to_remote').dataset.loadingText;
+        event.preventDefault();
+        startProcessingMode(this);
+        await saveAll(true);
+        endProcessingMode(this);
+    });
     document.getElementById('btn_extract_select').addEventListener('click', async function(event) {
         this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         event.preventDefault();
@@ -1027,6 +1034,13 @@ function createEventsListener() {
         await saveAll()
         endProcessingMode(this);
     })
+    document.getElementById('save_to_remote_mobile')?.addEventListener('click', async function(event) {
+        this.dataset.loadingText = document.getElementById('save_to_remote').dataset.loadingText;
+        event.preventDefault();
+        startProcessingMode(this);
+        await saveAll(true);
+        endProcessingMode(this);
+    });
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
         await uploadAndLoadPDF(this);
         this.value = '';

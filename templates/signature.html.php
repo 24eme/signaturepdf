@@ -156,6 +156,9 @@
             <button id="btn-zoom-increase" class="btn btn-secondary"><i class="bi bi-plus"></i></button>
             </div>
             <div class="d-grid gap-2">
+                <?php if(isset($davFileManager)): ?>
+                    <button type="submit" id="save_to_remote_mobile" class="btn btn-primary" disabled="disabled"><i class="bi bi-cloud-upload"></i> <?php echo _("Save the signed PDF"); ?></button>
+                <?php endif; ?>
                 <?php if(isset($hash)): ?>
                     <button class="btn btn-primary" disabled="disabled" type="submit" id="save_mobile"><i class="bi bi-cloud-upload"></i> <?php echo _("Transmit my signature"); ?></button>
                 <?php else: ?>

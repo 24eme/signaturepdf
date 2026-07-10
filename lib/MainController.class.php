@@ -145,7 +145,7 @@ class MainController
             $destinationPath =  ($destinationConfig ? $destinationConfig . DIRECTORY_SEPARATOR : '') . $filename;
 
             $client = new DAV\Client($settings);
-            $response = $client->request('PUT', $destinationPath, file_get_contents($tmpfile.'_signe.pdf'));
+            $response = $client->request('PUT', urlencode($destinationPath), file_get_contents($tmpfile.'_signe.pdf'));
 
             if ($response['statusCode'] >= 200 && $response['statusCode'] < 300) {
                 echo json_encode(['message' => _('File saved to remote successfully'), 'statusCode' => $response['statusCode']]);
@@ -330,7 +330,7 @@ class MainController
         if ($f3->get('DAV_FILE_MANAGER')) {
             $f3->set('davFileManager', true);
         }
-        
+
         echo View::instance()->render('organization.html.php');
     }
 

@@ -53,7 +53,7 @@ class DavController
             'password' => $f3->get('DAV_REMOTE_PASSWORD'),
         ]);
 
-        $response = $client->request('PUT', ($destinationPath ? ($destinationPath . DIRECTORY_SEPARATOR): '') . $fileName, $content);
+        $response = $client->request('PUT', urlencode(($destinationPath ? ($destinationPath . DIRECTORY_SEPARATOR): '') . $fileName), $content);
 
         if ($response['statusCode'] === 201 || $response['statusCode'] === 204) {
             echo json_encode(['message' => _('File saved successfully')]);

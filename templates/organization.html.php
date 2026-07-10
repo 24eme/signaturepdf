@@ -108,9 +108,15 @@
         </div>
         <div id="bottom_bar" class="position-fixed bottom-0 start-0 bg-white w-100 p-2 shadow-sm d-md-none">
             <div id="bottom_bar_action" class="d-grid gap-2">
+                <?php if(isset($davFileManager)): ?>
+                    <button type="submit" id="save_to_remote_mobile" class="btn btn-primary"><i class="bi bi-cloud-upload"></i> <?php echo _("Save the full PDF"); ?></button>
+                <?php endif; ?>
                 <button class="btn btn-primary" type="submit" id="save_mobile"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
             </div>
             <div id="bottom_bar_action_selection" class="d-grid gap-2 d-none">
+                <?php if(isset($davFileManager)): ?>
+                    <button type="submit" id="save_to_remote_select_mobile" class="btn btn-outline-primary"><i class="bi bi-cloud-upload"></i> <?php echo _("Save the selection"); ?></button>
+                <?php endif; ?>
                 <button id="save_select_mobile" class="btn btn-outline-primary" type="submit" form="form_pdf"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
             </div>
         </div>

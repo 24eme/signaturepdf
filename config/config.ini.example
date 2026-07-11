@@ -37,6 +37,9 @@ PDF_STORAGE_PATH=/path/to/folder
 ; DAV_REMOTE_PASSWORD=
 ; DAV_REMOTE_DESTINATION_PATH=
 
+; Text label for the custom WebDAV file picker button in the upload area
+; DAV_FILE_PICKER_BUTTON_TEXT=
+
 ; Custom options for the signature page
 ;[signature]
 

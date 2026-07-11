@@ -314,7 +314,7 @@ function setIsChanged(changed) {
     document.getElementById('save_mobile_local').classList.toggle('btn-outline-primary', !changed);
 }
 
-async function save() {
+async function save(saveToRemote = false) {
     const PDFDocument = window['PDFLib'].PDFDocument
     const PDFHexString = window['PDFLib'].PDFHexString
     const PDFName = window['PDFLib'].PDFName
@@ -347,6 +347,7 @@ async function save() {
         return ;
     }
 
+    // DAV upload from the browser using an authentication token
     if(window.location.hash && window.location.hash.match(/^\#dav/)) {
         let headers = new Headers();
         let davToken = await requestDavToken();
@@ -357,6 +358,12 @@ async function save() {
           headers: headers
         });
         return ;
+    }
+
+    // DAV upload from the backend using dedicated DAV credentials
+    if (saveToRemote) {
+        uploadToRemoteDav(newPDF, document.getElementById('input_pdf_upload').files[0].name);
+        return;
     }
 
     download(newPDF, document.getElementById('input_pdf_upload').files[0].name)
@@ -405,6 +412,16 @@ function createEventsListener() {
         await save()
         setTimeout(function() {endProcessingMode(document.getElementById('save_mobile'))}, 500);
     })
+    document.getElementById('save_to_remote')?.addEventListener('click', async function (e) {
+        startProcessingMode(this);
+        await save(true);
+        setTimeout(function() {endProcessingMode(document.getElementById('save_to_remote'))}, 500);
+    });
+    document.getElementById('save_to_remote_mobile')?.addEventListener('click', async function (e) {
+        startProcessingMode(this);
+        await save(true);
+        setTimeout(function() {endProcessingMode(document.getElementById('save_to_remote_mobile'))}, 500);
+    });
     document.getElementById('save_local').addEventListener('click', async function (e) {
         this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
         startProcessingMode(this);
@@ -551,6 +568,8 @@ async function pageMetadata(url) {
 
 
 document.addEventListener('DOMContentLoaded', async function () {
+    const queryParams = new URLSearchParams(window.location.search);
+
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         pageMetadata(window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash && window.location.hash.match(/^\#dav:/)) {
@@ -561,6 +580,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         pageMetadata(window.location.origin + "/api/file/get?path=" + window.location.hash.replace(/^\#local:/, ''), '/metadata', window.location.hash.replace(/^\#/, ''));
     } else if(window.location.hash) {
         pageMetadata('cache:///pdf/'+window.location.hash.replace(/^\#/, ''));
+    } else if(queryParams.get('dav')) {
+        pageMetadata('/dav?file='+queryParams.get('dav'));
     } else {
         pageUpload();
     }

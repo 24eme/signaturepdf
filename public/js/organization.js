@@ -746,7 +746,7 @@ async function save(order, saveToRemote = false) {
         let newPDF = new Blob([await pdfBooklet.save()], {type: "application/pdf"});
 
         if (saveToRemote) {
-            uploadToRemote(newPDF, filename+".pdf");
+            uploadToRemoteDav(newPDF, filename+".pdf");
             return;
         }
 
@@ -770,33 +770,12 @@ async function save(order, saveToRemote = false) {
     }
     
     if (saveToRemote) {
-        uploadToRemote(newPDF, filename+".pdf");
+        uploadToRemoteDav(newPDF, filename+".pdf");
         return;
     }
 
     await download(newPDF, filename+".pdf");
     await storeFileInCache(newPDF, filename+'.pdf');
-}
-
-async function uploadToRemote(pdf, filename) {
-    const file = new File([pdf], filename);
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-        const response = await fetch('/dav/save', {
-            method: 'POST',
-            body: formData
-        });
-        const data = await response.json();
-        if (response.ok) {
-            showAlert(data.message, true);
-        } else {
-            showAlert(data.message, false);
-        }
-    } catch (error) {
-        showAlert('Error uploading file: ' + error.message, false);
-    }
 }
 
 function unit2points(value, unit) {

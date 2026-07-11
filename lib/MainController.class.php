@@ -336,6 +336,11 @@ class MainController
 
     function metadata(Base $f3) {
         $f3->set('activeTab','metadata');
+
+        if ($f3->get('DAV_FILE_MANAGER')) {
+            $f3->set('davFileManager', true);
+        }
+
         echo View::instance()->render('metadata.html.php');
     }
 
@@ -388,6 +393,11 @@ class MainController
     function compression(Base $f3) {
         $f3->set('maxSize',  min(array(Config::convertPHPSizeToBytes(ini_get('post_max_size')), Config::convertPHPSizeToBytes(ini_get('upload_max_filesize')))));
         $f3->set('activeTab', 'compress');
+
+        if ($f3->get('DAV_FILE_MANAGER')) {
+            $f3->set('davFileManager', true);
+        }
+        
         echo View::instance()->render('compress.html.php');
     }
 

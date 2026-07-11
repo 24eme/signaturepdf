@@ -358,3 +358,24 @@ function showAlert(message, isSuccess) {
         bootstrap.Alert.getOrCreateInstance(alert).close();
     }, 4000);
 }
+
+async function uploadToRemoteDav(pdf, filename) {
+    const file = new File([pdf], filename);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        const response = await fetch('/dav/save', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        if (response.ok) {
+            showAlert(data.message, true);
+        } else {
+            showAlert(data.message, false);
+        }
+    } catch (error) {
+        showAlert('Error uploading file: ' + error.message, false);
+    }
+}

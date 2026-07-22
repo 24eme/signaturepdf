@@ -67,9 +67,16 @@ async function storeFileInCache(file, filename, cacheStore = 'pdf') {
 }
 
 async function loadFileFromUrl(url, pageUrl, local = null) {
+
+    let headers = new Headers();
+    if(isDavPath) {
+        showLoading('Waiting for credentials informations')
+        let davToken = await requestDavToken();
+        headers.set('Authorization', 'Basic ' + btoa(davToken));
+    }
     showLoading('Download')
     history.replaceState({}, '', pageUrl);
-    let response = await fetch(url);
+    let response = await fetch(url, { headers: headers });
     if(response.status != 200) {
         return;
     }
@@ -98,6 +105,19 @@ async function loadFileFromUrl(url, pageUrl, local = null) {
     }));
     document.getElementById('input_pdf_upload').files = dataTransfer.files;
     endLoading()
+}
+
+async function requestDavToken(url) {
+    if(!isIframe) {
+        return;
+    }
+    window.parent.postMessage({action: 'getDavToken'}, '*');
+    while(!davTokenReceived) {
+        await new Promise(r => setTimeout(r, 100));
+    }
+    let davToken = davTokenReceived;
+    davTokenReceived = null;
+    return davToken;
 }
 
 function startProcessingMode(btn) {

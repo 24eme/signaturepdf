@@ -3,8 +3,12 @@ let pdfRenderTasks = [];
 let pdffile = null
 let deletedMetadata = [];
 let isLocalPath = false;
+let isDavPath = false;
+let isIframe = Boolean(window.parent);
+let davTokenReceived = null;
 let hasModifications = false;
 let sizeOfText = 0;
+let pdf = null;
 
 function responsiveDisplay() {
     let menu = document.getElementById('sidebarTools');
@@ -31,7 +35,7 @@ async function loadPDF(pdfBlob) {
     pdffile = pdfBlob
 
     const loadingTask = pdfjsLib.getDocument(url);
-    const pdf = await loadingTask.promise;
+    pdf = await loadingTask.promise;
 
     const metadata = await pdf.getMetadata()
     const attachments = await pdf.getAttachments();
@@ -226,6 +230,9 @@ window.addEventListener('message', function(event) {
         }
         setIsChanged(true);
     }
+    if (event.data.action === 'davOpenFile' && event.data.key == "token") {
+        davTokenReceived = event.data.value
+    }
 });
 
 function updateMetadataInfos() {
@@ -344,6 +351,19 @@ async function save() {
         });
         return ;
     }
+
+    if(window.location.hash && window.location.hash.match(/^\#dav/)) {
+        let headers = new Headers();
+        let davToken = await requestDavToken();
+        headers.set('Authorization', 'Basic ' + btoa(davToken));
+        fetch(window.location.hash.replace('#dav:', ''), {
+          method: 'PUT',
+          body: newPDF,
+          headers: headers
+        });
+        return ;
+    }
+
     download(newPDF, document.getElementById('input_pdf_upload').files[0].name)
 }
 
@@ -472,6 +492,14 @@ function createEventsListener() {
         }
         followText(e.target, '#container-pages .textLayer span', '#pdf_text span', true);
     });
+
+    document.getElementById('btn_exit').addEventListener('click', function(e) {
+        if(isIframe) {
+            window.parent.postMessage({action: 'exit'}, '*');
+            e.preventDefault();
+            return;
+        }
+    });
 }
 
 function followText(element, selectorFrom, selectorTo, hide) {
@@ -507,14 +535,14 @@ async function pageMetadata(url) {
     document.querySelector('body').classList.add('bg-light');
     document.getElementById('page-upload').classList.add('d-none');
     document.getElementById('page-metadata').classList.remove('d-none');
-    if(isLocalPath) {
+    if(isLocalPath || isDavPath) {
         document.getElementById('save').classList.add('d-none');
         document.getElementById('save_mobile').classList.add('d-none');
         document.getElementById('save_local').classList.remove('d-none');
         document.getElementById('save_mobile_local').classList.remove('d-none');
     }
 
-    if(url && url.match(/^cache:\/\//)) {
+    if(url && url.match(/^cache:\/\//) && !isDavPath) {
         await loadFileFromCache(url.replace(/^cache:\/\//, ''));
     } else if (url) {
         await loadFileFromUrl(url);
@@ -535,9 +563,12 @@ async function pageMetadata(url) {
 };
 
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     if(window.location.hash && window.location.hash.match(/^\#http/)) {
         pageMetadata(window.location.hash.replace(/^\#/, ''));
+    } else if(window.location.hash && window.location.hash.match(/^\#dav:/)) {
+        isDavPath = true;
+        pageMetadata(window.location.hash.replace(/^\#dav:/, ''));
     } else if(window.location.hash && window.location.hash.match(/^\#local/)) {
         isLocalPath = true;
         pageMetadata(window.location.origin + "/api/file/get?path=" + window.location.hash.replace(/^\#local:/, ''), '/metadata', window.location.hash.replace(/^\#/, ''));

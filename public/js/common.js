@@ -63,22 +63,25 @@ async function loadFileFromCache(cacheUrl, pageUrl) {
 }
 
 async function storeFileInCache(file, filename, cacheStore = 'pdf') {
-    let cache = await caches.open(cacheStore);
+    try {
+        let cache = await caches.open(cacheStore);
+    } catch(error) {
+        return;
+    }
     let response = new Response(file, { "status" : 200, "statusText" : "OK" });
     await cache.put('/pdf/'+filename, response);
 }
 
 async function loadFileFromUrl(url, pageUrl, local = null) {
-
-    let headers = new Headers();
-    if(isDavPath) {
-        showLoading('Waiting for credentials informations')
-        let davToken = await requestDavToken();
-        headers.set('Authorization', 'Basic ' + btoa(davToken));
-    }
     showLoading('Download')
     history.replaceState({}, '', pageUrl);
-    let response = await fetch(url, { headers: headers });
+    let headers = new Headers();
+    if(isDavPath) {
+        let davToken = await requestDavToken();
+        console.log(davToken);
+        headers.set('Authorization', 'Basic ' + btoa(davToken));
+    }
+    let response = await fetch(url, { headers: headers, cache: "no-cache" });
     if(response.status != 200) {
         return;
     }

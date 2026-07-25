@@ -113,6 +113,7 @@
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
                         <input name="flatten" type="checkbox" value="1" class="d-none" />
                         <button class="btn btn-primary w-100 mt-2 w-100" disabled="disabled" type="submit" id="save" data-loading-text="<?php echo _("Saving") ?>"><i class="bi bi-download"></i> <?php echo _("Download the signed PDF"); ?> <i id="save_flatten_indicator" class="bi bi-layers-half opacity-50 float-end invisible" title="<?php echo _("The PDF will be flattened") ?>"></i></button>
+                        <button data-loading-text="<?php echo _("Save in progress") ?>" class="btn btn-outline-primary d-none w-100 mt-2 w-100" type="button" id="save_local" disabled="disabled"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
                 </form>
                 <?php elseif(!isset($noSharingMode)): ?>
                   <div class="d-none d-sm-none d-md-block position-relative">

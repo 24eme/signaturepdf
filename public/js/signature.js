@@ -23,6 +23,7 @@ let hasModifications = false;
 let currentTextScale = 1;
 const defaultScale = 1.5;
 let customText = '';
+let isLocalPath = false;
 let isDavPath = false;
 
 fabric.Object.prototype.controls.mtr.x = 0;
@@ -628,6 +629,12 @@ function setIsChanged(changed) {
         document.getElementById('btn_share').classList.toggle('btn-outline-dark', !changed);
         document.getElementById('btn_share').classList.toggle('btn-outline-secondary', changed);
     }
+
+    document.getElementById('save_local').disabled = !changed;
+    document.getElementById('save_local').classList.toggle('btn-primary', changed);
+    document.getElementById('save_local').classList.toggle('btn-outline-primary', !changed);
+    // document.getElementById('save_mobile_local').classList.toggle('btn-primary', changed);
+    // document.getElementById('save_mobile_local').classList.toggle('btn-outline-primary', !changed);
 }
 
 function createAndAddSvgInCanvas(canvas, item, x, y, height = null) {
@@ -1075,40 +1082,17 @@ function createEventsListener() {
         document.getElementById('save').addEventListener('click', async function(event) {
             if(!pdfHash) {
                 event.preventDefault()
+                startProcessingMode(this)
             }
 
-            let previousScale = currentScale;
-            if(currentScale != defaultScale) {
-                resizePDF(defaultScale)
-                while(!renderComplete) { }
-            }
-            let dataTransfer = new DataTransfer();
-            canvasEditions.forEach(function(canvasEdition, index) {
-                dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
-                    type: 'image/svg+xml'
-                }));
-            })
-            document.getElementById('input_svg').files = dataTransfer.files;
-            if(previousScale != currentScale) {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(resizePDF(previousScale), 100);
-            }
+            const blob = await save(this);
 
             if(!pdfHash) {
-                startProcessingMode(this)
-                const formData = new FormData(this.form)
-                const response = await fetch(this.form.action, {
-                    method: "POST",
-                    body: formData
-                })
-
-                const blob = await response.blob()
                 await download(blob, document.querySelector('#text_document_name').title.replace(/\.pdf$/, '_signe.pdf'))
-                await storeFileInCache(blob, formData.get('pdf').name)
+                await storeFileInCache(blob, document.getElementById('input_pdf').files[0].name)
                 endProcessingMode(this)
+                hasModifications = false;
             }
-
-            hasModifications = false;
         });
     }
 
@@ -1141,6 +1125,27 @@ function createEventsListener() {
         event.preventDefault();
         return false;
     });
+
+    document.getElementById('save_local').addEventListener('click', async function (event) {
+        let newPDF = await save(this);
+        startProcessingMode(this)
+        if(window.location.hash && window.location.hash.match(/^\#dav/)) {
+            let headers = new Headers();
+            let davToken = await requestDavToken();
+            headers.set('Authorization', 'Basic ' + btoa(davToken));
+            fetch(window.location.hash.replace('#dav:', ''), {
+              method: 'PUT',
+              body: newPDF,
+              headers: headers
+            });
+        }
+
+        endProcessingMode(this)
+        setIsChanged(false)
+
+        event.preventDefault();
+        return false;
+    })
 
     document.getElementById('btn-svg-pdf-delete').addEventListener('click', function(event) {
         deleteActiveObject();
@@ -1328,6 +1333,38 @@ function runCron() {
     xhr.send();
 }
 
+async function save() {
+    let previousScale = currentScale;
+    if(currentScale != defaultScale) {
+        resizePDF(defaultScale)
+        while(!renderComplete) { }
+    }
+    let dataTransfer = new DataTransfer();
+    canvasEditions.forEach(function(canvasEdition, index) {
+        dataTransfer.items.add(new File([canvasEdition.toSVG()], index+'.svg', {
+            type: 'image/svg+xml'
+        }));
+    })
+    document.getElementById('input_svg').files = dataTransfer.files;
+    if(previousScale != currentScale) {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resizePDF(previousScale), 100);
+    }
+
+    if(!pdfHash) {
+        const form = document.getElementById('form_pdf');
+        const formData = new FormData(form)
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData
+        })
+        const blob = await response.blob()
+        return blob;
+    }
+
+    hasModifications = false;
+}
+
 async function pageUpload() {
     document.querySelector('body').classList.remove('bg-light');
     document.getElementById('input_pdf_upload').value = '';
@@ -1379,6 +1416,12 @@ async function pageSignature(url) {
     menuOffcanvas = new bootstrap.Offcanvas(menu);
     forceAddLock = !is_mobile();
     addLock = forceAddLock;
+    if(isLocalPath || isDavPath) {
+        document.getElementById('save').classList.add('d-none');
+        //document.getElementById('save_mobile').classList.add('d-none');
+        document.getElementById('save_local').classList.remove('d-none');
+        //document.getElementById('save_mobile_local').classList.remove('d-none');
+    }
 
     if(localStorage.getItem('svgCollections')) {
         svgCollections = JSON.parse(localStorage.getItem('svgCollections'));

@@ -4,8 +4,6 @@ let pdffile = null
 let deletedMetadata = [];
 let isLocalPath = false;
 let isDavPath = false;
-let isIframe = Boolean(window.parent);
-let davTokenReceived = null;
 let hasModifications = false;
 let sizeOfText = 0;
 let pdf = null;
@@ -229,9 +227,6 @@ window.addEventListener('message', function(event) {
             setTimeout('document.getElementsByName("'+event.data.key+'")[0].focus();', 100);
         }
         setIsChanged(true);
-    }
-    if (event.data.action === 'davOpenFile' && event.data.key == "token") {
-        davTokenReceived = event.data.value
     }
 });
 
@@ -491,14 +486,6 @@ function createEventsListener() {
             return;
         }
         followText(e.target, '#container-pages .textLayer span', '#pdf_text span', true);
-    });
-
-    document.getElementById('btn_exit').addEventListener('click', function(e) {
-        if(isIframe) {
-            window.parent.postMessage({action: 'exit'}, '*');
-            e.preventDefault();
-            return;
-        }
     });
 }
 

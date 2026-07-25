@@ -23,6 +23,7 @@ let hasModifications = false;
 let currentTextScale = 1;
 const defaultScale = 1.5;
 let customText = '';
+let isDavPath = false;
 
 fabric.Object.prototype.controls.mtr.x = 0;
 fabric.Object.prototype.controls.mtr.y = 0.5;      // bas de l'objet
@@ -1391,7 +1392,7 @@ async function pageSignature(url) {
         fontCaveat = font;
     });
 
-    if(url && url.match(/^cache:\/\//)) {
+    if(url && url.match(/^cache:\/\//) && !isDavPath) {
         await loadFileFromCache(url.replace(/^cache:\/\//, ''));
     } else if (url) {
         await loadFileFromUrl(url);
@@ -1434,6 +1435,9 @@ document.addEventListener('DOMContentLoaded', function () {
         pageSignature('/signature/'+pdfHash+'/pdf');
     } else if(window.location.hash && window.location.hash.match(/^\#http/)) {
         pageSignature(window.location.hash.replace(/^\#/, ''));
+    } else if(window.location.hash && window.location.hash.match(/^\#dav:/)) {
+        isDavPath = true;
+        pageSignature(window.location.hash.replace(/^\#dav:/, ''));
     } else if(window.location.hash) {
         pageSignature('cache:///pdf/'+window.location.hash.replace(/^\#/, ''));
     } else {

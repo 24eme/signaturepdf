@@ -1,4 +1,6 @@
 const modalLoading = new bootstrap.Modal('#modalLoading')
+let davTokenReceived = null;
+const isIframe = window.parent !== window;
 
 function is_mobile() {
     return !(window.getComputedStyle(document.getElementById('is_mobile')).display === "none");
@@ -312,4 +314,21 @@ function debounce(callback, delay){
             callback.apply(context, args);
         }, delay)
     }
+}
+
+window.addEventListener('message', function(event) {
+    if (event.data.action === 'davOpenFile' && event.data.key == "token") {
+        davTokenReceived = event.data.value
+        console.log(event.data)
+    }
+});
+
+if(document.getElementById('btn_exit')) {
+    document.getElementById('btn_exit').addEventListener('click', function(e) {
+        if(isIframe) {
+            window.parent.postMessage({action: 'exit'}, '*');
+            e.preventDefault();
+            return;
+        }
+    });
 }

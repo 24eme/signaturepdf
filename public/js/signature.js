@@ -1127,8 +1127,8 @@ function createEventsListener() {
     });
 
     document.getElementById('save_local').addEventListener('click', async function (event) {
-        let newPDF = await save(this);
         startProcessingMode(this)
+        let newPDF = await save(this);
         if(window.location.hash && window.location.hash.match(/^\#dav/)) {
             let headers = new Headers();
             let davToken = await requestDavToken();

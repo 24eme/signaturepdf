@@ -589,6 +589,11 @@ function updateGlobalState() {
     document.querySelector('#bottom_bar_action_selection').classList.add('d-none');
     document.querySelector('#save').classList.remove('d-none');
     document.querySelector('#save_select').classList.add('d-none');
+    document.getElementById('save_local').classList.add('d-none');
+
+    if(isLocalPath || isDavPath) {
+        document.getElementById('save_local').classList.remove('d-none');
+    }
 
     if(isSelectionMode()) {
         document.querySelector('#container_btn_select .card-header span').innerText = document.querySelectorAll('.canvas-container .input-select:checked').length;
@@ -739,6 +744,19 @@ async function save(order) {
 
     cleanPDF(pdf);
     let newPDF = new Blob([await pdf.save()], {type: "application/pdf"});
+
+    if(isDavPath) {
+        let headers = new Headers();
+        let davToken = await requestDavToken();
+        headers.set('Authorization', 'Basic ' + btoa(davToken));
+        fetch(isDavPath.replace(/\.pdf$/, '_organized.pdf'), {
+          method: 'PUT',
+          body: newPDF,
+          headers: headers
+        });
+        return ;
+    }
+
     await download(newPDF, filename+".pdf");
     await storeFileInCache(newPDF, filename+'.pdf');
 }
@@ -951,6 +969,13 @@ function createEventsListener() {
         await saveAll();
         endProcessingMode(this);
     });
+    document.getElementById('save_local').addEventListener('click', async function (e) {
+        this.dataset.loadingText = document.getElementById('save').dataset.loadingText;
+        event.preventDefault();
+        startProcessingMode(this);
+        await saveAll()
+        endProcessingMode(this);
+    })
     document.getElementById('input_pdf_upload_2').addEventListener('change', async function(event) {
         await uploadAndLoadPDF(this);
         this.value = '';
@@ -1044,21 +1069,7 @@ function createEventsListener() {
 async function uploadFromUrl(url) {
     showLoading('Download')
     history.replaceState({}, '', '/organization');
-    var response = await fetch(url);
-    if(response.status != 200) {
-        return;
-    }
-    var pdfBlob = await response.blob();
-
-    if(pdfBlob.type != 'application/pdf' && pdfBlob.type != 'application/octet-stream') {
-        return;
-    }
-    let dataTransfer = new DataTransfer();
-    let filename = url.replace(/^.*\//, '');
-    dataTransfer.items.add(new File([pdfBlob], filename, {
-        type: 'application/pdf'
-    }));
-    document.getElementById('input_pdf_upload').files = dataTransfer.files;
+    await loadFileFromUrl(url)
     document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
     endLoading()
 }
@@ -1092,6 +1103,10 @@ document.addEventListener('DOMContentLoaded', function () {
         let hashUrl = window.location.hash.replace('#booklet', '').replace(/^\#/, '');
         pageUpload();
         uploadFromUrl(hashUrl);
+    } else if(window.location.hash && window.location.hash.match(/^\#dav:/)) {
+        isDavPath = window.location.hash.replace('#dav:', '');
+        pageUpload();
+        uploadFromUrl(isDavPath);
     } else if (window.location.hash && canUseCache()) {
         pageUpload()
         loadFileFromCache('/pdf/'+window.location.hash.replace(/^\#/, ''));

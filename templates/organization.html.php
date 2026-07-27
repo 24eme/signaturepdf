@@ -37,7 +37,7 @@
         </div>
         <div id="div-margin-bottom" style="height: 55px;" class="d-md-none"></div>
         <div class="offcanvas offcanvas-end show d-none d-md-block shadow-sm" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="false" tabindex="-1" id="sidebarTools" aria-labelledby="sidebarToolsLabel">
-            <a class="btn btn-close btn-sm position-absolute d-none d-sm-none d-md-block" style="right: 16px; top: 16px;" title="<?php echo _("Close this PDF and return to home"); ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"></a>
+            <a id="btn_exit" class="btn btn-close btn-sm position-absolute d-none d-sm-none d-md-block" style="right: 16px; top: 16px;" title="<?php echo _("Close this PDF and return to home"); ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/organization"></a>
             <div class="offcanvas-header mb-0 pb-0">
                 <h5 class="mb-1 d-block w-100" id="sidebarToolsLabel"><i class="bi-ui-checks-grid"></i> <?php echo _("PDF organization"); ?></h5>
                 <button type="button" class="btn-close text-reset d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -77,6 +77,7 @@
 
                             <button class="btn btn-primary" type="submit" id="save" data-loading-text="<?php echo _("Saving") ?>"><?php echo sprintf(_("%s Download the full PDF"), '<i class="bi bi-download"></i>'); ?></button>
                             <button id="save_select" class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-download"></i> <?php echo _("Download the selection"); ?></button>
+                            <button class="btn btn-outline-primary d-none" type="button" id="save_local"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
                         </div>
                     </form>
                 </div>

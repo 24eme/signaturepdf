@@ -1133,7 +1133,7 @@ function createEventsListener() {
             let headers = new Headers();
             let davToken = await requestDavToken();
             headers.set('Authorization', 'Basic ' + btoa(davToken));
-            fetch(window.location.hash.replace('#dav:', ''), {
+            fetch(window.location.hash.replace('#dav:', '').replace(/\.pdf$/, '_signe.pdf'), {
               method: 'PUT',
               body: newPDF,
               headers: headers

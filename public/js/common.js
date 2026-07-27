@@ -63,8 +63,9 @@ async function loadFileFromCache(cacheUrl, pageUrl) {
 }
 
 async function storeFileInCache(file, filename, cacheStore = 'pdf') {
+    let cache = null;
     try {
-        let cache = await caches.open(cacheStore);
+        cache = await caches.open(cacheStore);
     } catch(error) {
         return;
     }

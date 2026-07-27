@@ -25,7 +25,7 @@ async function handleFileChange() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     document.querySelector('#input_pdf_upload').addEventListener('change', function(e) {
         handleFileChange();
     })
@@ -75,6 +75,11 @@ document.addEventListener('DOMContentLoaded', function () {
               }));
               document.getElementById('input_pdf_compressed').files = dataTransfer.files;
               document.querySelector('#downloadBtn').focus();
+
+              if(isDavPath) {
+                document.querySelector('#downloadBtn').classList.add('d-none');
+                document.querySelector('#save_local').classList.remove('d-none');
+              }
           } else {
               document.querySelector('#error_message').classList.remove('d-none');
               document.querySelector('#error_message').innerText = await response.text();
@@ -92,4 +97,26 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('downloadBtn').addEventListener('click', async function(e) {
         await download(document.getElementById('input_pdf_compressed').files[0], document.getElementById('input_pdf_compressed').files[0].name);
     });
+    document.getElementById('save_local').addEventListener('click', async function(e) {
+        startProcessingMode(this)
+        if(window.location.hash && window.location.hash.match(/^\#dav/)) {
+            let headers = new Headers();
+            let davToken = await requestDavToken();
+            headers.set('Authorization', 'Basic ' + btoa(davToken));
+            await fetch(window.location.hash.replace('#dav:', '').replace(/\.pdf$/, '_compress.pdf'), {
+              method: 'PUT',
+              body: document.getElementById('input_pdf_compressed').files[0],
+              headers: headers
+            });
+        }
+        endProcessingMode(this)
+        document.getElementById('btn_exit').click();
+    });
+    if(window.location.hash && window.location.hash.match(/^\#dav:/)) {
+        isDavPath = true;
+        document.getElementById('btn_exit').classList.remove('d-none');
+        await loadFileFromUrl(window.location.hash.replace(/^\#dav:/, ''));
+        document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
+    }
+
 })

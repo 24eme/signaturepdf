@@ -25,6 +25,8 @@ let nbPDF = 0;
 let pages = [];
 let formats = [];
 let pdfRenderTasks = [];
+let isLocalPath = false;
+let isDavPath = false;
 
 async function loadPDF(pdfBlob, filename, pdfIndex) {
     let url = await URL.createObjectURL(pdfBlob);

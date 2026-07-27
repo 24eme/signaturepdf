@@ -14,6 +14,7 @@
 <div id="page-upload">
     <?php include('components/navtab.html.php'); ?>
     <div class="px-3 py-3 text-center fullpage">
+        <a id="btn_exit" class="btn btn-close btn-sm position-absolute d-none" style="right: 16px;" title="<?php echo _("Close this PDF and return to the homepage"); ?>" href="<?php echo $REVERSE_PROXY_URL; ?>/signature"></a>
         <form id="form_compress" method="post" action="<?php echo $REVERSE_PROXY_URL; ?>/compress" enctype="multipart/form-data">
             <i class="bi bi-chevron-bar-contract display-3"></i>
             <h1 class="mb-0 h2 mt-3"><?php echo sprintf(_("%s Compress a PDF"), ""); ?></h1>
@@ -44,6 +45,7 @@
                     <h6 id="pourcentage_compressed" class="card-subtitle mt-2 small text-muted" data-template-text="<?php echo _("Compressed at %s%"); ?>"></h6>
                     <input id="input_pdf_compressed" class="form-control form-control-lg d-none" type="file" />
                     <button type="button" id="downloadBtn" class="btn btn-primary mt-4 mb-2"><i class="bi bi-download"></i> <?php echo _("Download the PDF"); ?></button>
+                    <button class="btn btn-primary mt-4 mb-2 d-none" type="button" id="save_local"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
                   </div>
                 </div>
             </div>

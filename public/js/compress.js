@@ -25,6 +25,8 @@ async function handleFileChange() {
     }
 }
 
+let isDavPath = false;
+
 document.addEventListener('DOMContentLoaded', async function () {
     const queryParams = new URLSearchParams(window.location.search);
 

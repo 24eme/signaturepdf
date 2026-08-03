@@ -1,3 +1,5 @@
+let isDavPath = false;
+
 async function handleFileChange() {
     document.querySelector('#error_message').classList.add('d-none');
     document.querySelector('#card_resultat').classList.add('d-none');

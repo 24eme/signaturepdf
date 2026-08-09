@@ -112,8 +112,12 @@
                         <input id="input_pdf" name="pdf" type="file" class="d-none" />
                         <input id="input_svg" name="svg[]" type="file" class="d-none" />
                         <input name="flatten" type="checkbox" value="1" class="d-none" />
-                        <button class="btn btn-primary w-100 mt-2 w-100" disabled="disabled" type="submit" id="save" data-loading-text="<?php echo _("Saving") ?>"><i class="bi bi-download"></i> <?php echo _("Download the signed PDF"); ?> <i id="save_flatten_indicator" class="bi bi-layers-half opacity-50 float-end invisible" title="<?php echo _("The PDF will be flattened") ?>"></i></button>
-                        <button data-loading-text="<?php echo _("Save in progress") ?>" class="btn btn-outline-primary d-none w-100 mt-2 w-100" type="button" id="save_local" disabled="disabled"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
+                        <div class="d-flex gap-2 mt-2">
+                            <?php if(isset($davFileManager)): ?>
+                                <button type="submit" id="save_to_remote" class="btn btn-primary" disabled="disabled" data-loading-text="<?php echo _("Saving") ?>"><i class="bi bi-cloud-upload"></i> <?php echo _("Save the signed PDF"); ?></button>
+                            <?php endif; ?>
+                            <button class="btn btn-primary" disabled="disabled" type="submit" id="save" data-loading-text="<?php echo _("Saving") ?>"><i class="bi bi-download"></i> <?php echo _("Download the signed PDF"); ?> <i id="save_flatten_indicator" class="bi bi-layers-half opacity-50 float-end invisible" title="<?php echo _("The PDF will be flattened") ?>"></i></button>
+                        </div>
                 </form>
                 <?php elseif(!isset($noSharingMode)): ?>
                   <div class="d-none d-sm-none d-md-block position-relative">
@@ -152,6 +156,9 @@
             <button id="btn-zoom-increase" class="btn btn-secondary"><i class="bi bi-plus"></i></button>
             </div>
             <div class="d-grid gap-2">
+                <?php if(isset($davFileManager)): ?>
+                    <button type="submit" id="save_to_remote_mobile" class="btn btn-primary" disabled="disabled"><i class="bi bi-cloud-upload"></i> <?php echo _("Save the signed PDF"); ?></button>
+                <?php endif; ?>
                 <?php if(isset($hash)): ?>
                     <button class="btn btn-primary" disabled="disabled" type="submit" id="save_mobile"><i class="bi bi-cloud-upload"></i> <?php echo _("Transmit my signature"); ?></button>
                 <?php else: ?>

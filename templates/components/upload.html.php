@@ -25,19 +25,22 @@
         dropArea.querySelector('.bi-upload').classList.add('d-none');
         this.classList.remove('d-none')
     });
-    dropArea.addEventListener("dragover", (event) => {
+    document.body.addEventListener("dragover", (event) => {
         event.preventDefault();
         dropArea.classList.add("active");
     });
 
-    dropArea.addEventListener("dragleave", () => {
+    document.body.addEventListener("dragleave", () => {
       dropArea.classList.remove("active");
     });
 
-    dropArea.addEventListener("drop", (e) => {
+    document.body.addEventListener("drop", (e) => {
       e.preventDefault();
       const target = e.dataTransfer;
       dropArea.classList.remove("active");
+      if(target.files.length < 1) {
+            return;
+      }
       dropInput.files = target.files
       dropInput.dispatchEvent(new Event("change"));
     });

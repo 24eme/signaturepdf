@@ -10,7 +10,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "sabre/dav": "~4.6.0"
     },
     "autoload": {
         "classmap": ["lib/"]

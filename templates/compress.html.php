@@ -44,8 +44,13 @@
                     <h6 class="card-title mt-2"><i class="bi bi-file-earmark"></i> <span id="uploaded_size" data-template-text="<?php echo _("%s Mb"); ?>"></span> <i class="bi bi-caret-right-fill"></i> <strong><i class="bi bi-file-earmark-zip"></i> <span id="size_compressed" data-template-text="<?php echo _("%s Mb"); ?>"></span></strong></h6>
                     <h6 id="pourcentage_compressed" class="card-subtitle mt-2 small text-muted" data-template-text="<?php echo _("Compressed at %s%"); ?>"></h6>
                     <input id="input_pdf_compressed" class="form-control form-control-lg d-none" type="file" />
-                    <button type="button" id="downloadBtn" class="btn btn-primary mt-4 mb-2"><i class="bi bi-download"></i> <?php echo _("Download the PDF"); ?></button>
-                    <button class="btn btn-primary mt-4 mb-2 d-none" type="button" id="save_local"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
+                    <div class="d-flex justify-content-center mt-4 mb-2 gap-2">
+                        <?php if(isset($davFileManager)): ?>
+                            <button id="save_to_remote" class="btn btn-primary" data-loading-text="<?php echo _("Saving") ?>"><i class="bi bi-cloud-upload"></i> <?php echo _("Save the PDF"); ?></button>
+                        <?php endif; ?>
+                        <button type="button" id="downloadBtn" class="btn btn-primary"><i class="bi bi-download"></i> <?php echo _("Download the PDF"); ?></button>
+                        <button class="btn btn-primary mt-4 mb-2 d-none" type="button" id="save_local"><i class="bi bi-floppy"></i> <?php echo _("Save changes"); ?></button>
+                    </div>
                   </div>
                 </div>
             </div>

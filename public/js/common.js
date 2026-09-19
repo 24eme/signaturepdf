@@ -336,3 +336,46 @@ if(document.getElementById('btn_exit')) {
         }
     });
 }
+
+function showAlert(message, isSuccess) {
+    const alert = document.createElement('div');
+    alert.classList.add('alert', isSuccess ? 'alert-success' : 'alert-danger', 'alert-dismissible', 'fade', 'show');
+    alert.setAttribute('role', 'alert');
+
+    const messageContainer = document.createElement('span');
+    messageContainer.textContent = message;
+
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.classList.add('btn-close');
+    closeButton.setAttribute('data-bs-dismiss', 'alert');
+    closeButton.setAttribute('aria-label', 'Close');
+
+    alert.append(messageContainer, closeButton);
+    document.body.prepend(alert);
+
+    window.setTimeout(() => {
+        bootstrap.Alert.getOrCreateInstance(alert).close();
+    }, 4000);
+}
+
+async function uploadToRemoteDav(pdf, filename) {
+    const file = new File([pdf], filename);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        const response = await fetch('/dav/save', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        if (response.ok) {
+            showAlert(data.message, true);
+        } else {
+            showAlert(data.message, false);
+        }
+    } catch (error) {
+        showAlert('Error uploading file: ' + error.message, false);
+    }
+}

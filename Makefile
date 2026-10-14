@@ -80,6 +80,7 @@ deb:
 	find $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/ -type f -exec sed -i "s|~#LIBPATH#~|$(LIBPATH)|" {} \;
 	echo $(LIBPATH) > $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/$(PKGNAME).dirs
 	echo "$(LIBPATH)* $(LIBPATH)" > $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/install
+	echo "$(LIBPATH)fr._24eme.signaturepdf.metainfo.xml usr/share/metainfo" >> $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/install
 ifneq ($(strip $(CONFIGPATH)),)
 	echo $(CONFIGPATH) >> $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/$(PKGNAME).dirs
 	echo "$(CONFIGPATH)* $(CONFIGPATH)" >> $(PATHDEBPKG)/$(PKGNAME)-$(VERSION)/debian/install

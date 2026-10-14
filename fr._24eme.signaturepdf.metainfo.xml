@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC0-1.0 -->
+<component type="web-application">
+  <id>fr._24eme.signaturepdf</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>AGPL-3.0-or-later</project_license>
+
+  <name>Signature PDF</name>
+  <summary>Sign, organize, edit the metadata of and compress PDFs</summary>
+  <developer id="fr._24eme">
+    <name>24eme</name>
+  </developer>
+
+  <description>
+    <p>
+      Signature PDF is free web software for signing (alone or with others), organizing, editing metadata or compressing PDFs.
+    </p>
+    <ul>
+      <li>Sign, initial, stamp and complete a document</li>
+      <li>Share a PDF to sign it with multiple people</li>
+      <li>Merge, sort, rotate, delete and extract pages</li>
+      <li>Edit the metadata of a PDF</li>
+      <li>Compress a PDF to reduce its file size</li>
+    </ul>
+  </description>
+
+  <launchable type="url">https://pdf.24eme.fr/</launchable>
+  <icon type="remote" width="192" height="192">https://raw.githubusercontent.com/24eme/signaturepdf/master/public/favicon.png</icon>
+
+  <categories>
+    <category>Office</category>
+  </categories>
+  <keywords>
+    <keyword>PDF</keyword>
+    <keyword>signature</keyword>
+    <keyword>sign</keyword>
+    <keyword>merge</keyword>
+    <keyword>compress</keyword>
+  </keywords>
+
+  <url type="homepage">https://github.com/24eme/signaturepdf</url>
+  <url type="bugtracker">https://github.com/24eme/signaturepdf/issues</url>
+  <url type="vcs-browser">https://github.com/24eme/signaturepdf</url>
+  <url type="translate">https://hosted.weblate.org/engage/signature-pdf/</url>
+  <url type="donation">https://liberapay.com/SignaturePDF</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Add a signature, initials, a stamp, text or check boxes to a PDF</caption>
+      <image>https://github.com/24eme/signaturepdf/assets/71143205/4deeb6fb-caa9-4365-895e-d22177a6ec3b</image>
+    </screenshot>
+    <screenshot>
+      <caption>Merge, sort, rotate, delete and extract pages</caption>
+      <image>https://github.com/24eme/signaturepdf/assets/71143205/a008d765-3a74-4ab4-b2bc-4af6c81575fe</image>
+    </screenshot>
+    <screenshot>
+      <caption>Edit the metadata of a PDF</caption>
+      <image>https://github.com/24eme/signaturepdf/assets/71143205/1f195bae-4af3-4d7b-9e31-3acd7552c2eb</image>
+    </screenshot>
+    <screenshot>
+      <caption>Compress a PDF to reduce its file size</caption>
+      <image>https://github.com/24eme/signaturepdf/assets/71143205/7d0e93a3-5567-4545-9c43-033b9028b036</image>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1"/>
+</component>

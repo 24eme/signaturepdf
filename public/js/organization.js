@@ -719,20 +719,32 @@ async function save(order) {
         pdf.addPage(pdfPage);
     }
 
-    if(document.querySelector('#select_formatting').value == "booklet") {
+    if(document.querySelector('#select_formatting').value == "booklet" || document.querySelector('#select_formatting').value == "20pagesbooklet") {
         const orgaPages = [];
-        const nbPages = Math.ceil(pdf.getPages().length / 4) * 2;
+
+        const pdfBooklet = await window['PDFLib'].PDFDocument.create();
 
         const pageWidth = pdf.getPages()[0].getWidth();
         const pageHeight = pdf.getPages()[0].getHeight();
+        const nbTotalPages = pdf.getPages().length;
+        let tailleBooklet = nbTotalPages;
+        if (document.querySelector('#select_formatting').value == "20pagesbooklet") {
+            tailleBooklet = 20;
+        }
 
-        const pdfBooklet = await window['PDFLib'].PDFDocument.create();
-        for(let i = nbPages; i > 0; i--) {
-            let pages = [i, 2 * nbPages - i + 1];
-            if(i % 2) {
-                orgaPages.push(pages.reverse());
-            } else {
-                orgaPages.push(pages);
+        for (let nbBooklet = 0 ; tailleBooklet * nbBooklet < nbTotalPages ; nbBooklet++ ) {
+            const middlePage = Math.ceil(tailleBooklet / 4) * 2 + tailleBooklet * nbBooklet;
+            //separation page for multi booklets
+            if (nbBooklet) {
+                orgaPages.push([nbTotalPages + 1, nbTotalPages + 1]);
+            }
+            for(let i = middlePage; i > tailleBooklet * nbBooklet; i--) {
+                let pages = [i, 2 * middlePage - i + 1];
+                if(i % 2) {
+                    orgaPages.push(pages.reverse());
+                } else {
+                    orgaPages.push(pages);
+                }
             }
         }
         for(pages of orgaPages.reverse()) {

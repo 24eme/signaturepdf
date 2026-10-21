@@ -319,6 +319,9 @@ msgstr "Normale"
 msgid "Booklet"
 msgstr "Livret"
 
+msgid "20-page booklets (for large documents)"
+msgstr "Livrets de 20 pages (pour les gros documents)"
+
 msgid "Formatting"
 msgstr "Formatage"
 

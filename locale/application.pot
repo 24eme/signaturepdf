@@ -314,6 +314,9 @@ msgstr ""
 msgid "Booklet"
 msgstr ""
 
+msgid "20-page booklets (for large documents)"
+msgstr ""
+
 msgid "Formatting"
 msgstr ""
 

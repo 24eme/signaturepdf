@@ -186,6 +186,7 @@
                       <select class="form-select" id="select_formatting">
                           <option value="" selected><?php echo _("Normal") ?></option>
                           <option value="booklet"><?php echo _("Booklet") ?></option>
+                          <option value="20pagesbooklet"><?php echo _("20-page booklets (for large documents)") ?></option>
                       </select>
                       <label for="select-format"><?php echo _("Formatting") ?></label>
                     </div>

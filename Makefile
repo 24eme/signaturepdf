@@ -1,4 +1,4 @@
-.PHONY: test all
+.PHONY: test test-docker-vhost all
 
 .DEFAULT_GOAL := all
 
@@ -26,6 +26,9 @@ node_modules/puppeteer:
 
 test: node_modules/jest/bin/jest.js node_modules/puppeteer
 	./node_modules/jest/bin/jest.js
+
+test-docker-vhost:
+	./tests/docker-vhost.sh
 
 update_trad:
 	# Extraction des phrases traductibles...

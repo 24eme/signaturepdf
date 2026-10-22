@@ -6,6 +6,10 @@
     <div><i class="bi bi-upload fs-2"></i></div>
     <input id="input_pdf_upload" name="pdf" placeholder="<?php echo _(  "Choose a PDF"); ?>" class="form-control d-none mt-3" type="file" accept=".pdf,application/pdf<?php if(isset($uploadImgAuhtorized)): ?>,image/png,image/jpeg<?php endif; ?>" <?php if(isset($uploadMultiple) && $uploadMultiple): ?>multiple="true"<?php endif; ?> />
 </div>
+<?php if (isset($DAV_FILE_PICKER_BUTTON_TEXT)): ?>
+    <button type="button" id="dav_file_picker" class="btn btn-outline-primary mt-4 mb-4 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto"><i class="bi bi-cloud"></i> <?php echo $DAV_FILE_PICKER_BUTTON_TEXT; ?></button>
+<?php endif; ?>
+
 <?php if ($PDF_DEMO_LINK && !isset($uploadNoDemo)): ?>
     <a  id="demo_link" href="#<?php echo $PDF_DEMO_LINK; ?>" class="block-drag d-block col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto border rounded-2 rounded-top-0 border-top-0 border-dark-subtle p-1 shadow-sm position-relative text-secondary small" style="border-style: dashed !important; cursor: pointer;"><small class="opacity-75"><?php echo _("Test with a demo PDF"); ?></small></a>
 <?php endif; ?>

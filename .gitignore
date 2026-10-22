@@ -6,5 +6,7 @@ config/config.ini
 public/css/app-specific.css
 *~
 .idea/
-/vendor/composer/
-/vendor/autoload.php
+/vendor/
+!/vendor/fatfree
+/dav/
+/dav-data/

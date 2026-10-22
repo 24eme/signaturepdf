@@ -27,7 +27,16 @@ async function handleFileChange() {
     }
 }
 
+let isDavPath = false;
+
 document.addEventListener('DOMContentLoaded', async function () {
+    const queryParams = new URLSearchParams(window.location.search);
+
+    if (queryParams.get('dav')) {
+        await loadFileFromUrl('/dav?file='+queryParams.get('dav'));
+        handleFileChange();
+    }
+
     document.querySelector('#input_pdf_upload').addEventListener('change', function(e) {
         handleFileChange();
     })
@@ -121,4 +130,13 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById('input_pdf_upload').dispatchEvent(new Event("change"));
     }
 
+
+    document.getElementById('save_to_remote')?.addEventListener('click', async function (e) {
+        startProcessingMode(this);
+        
+        const file = document.getElementById('input_pdf_compressed').files[0];
+        await uploadToRemoteDav(file, file.name);
+
+        endProcessingMode(document.getElementById('save_to_remote'))
+    });
 })

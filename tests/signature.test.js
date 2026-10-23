@@ -20,6 +20,36 @@ describe("Signature d'un pdf", () => {
         await page.setViewport({ width: 1200, height: 700 })
         await page.goto('http://' + host + '/');
     });
+    it("Masque le bouton de signature serveur si NSS n'est pas configuré", async () => {
+        await page.goto('http://' + host + '/');
+
+        const serverSigningLink = await page.$('a:has(i.bi-patch-check)');
+
+        expect(serverSigningLink).toBeNull();
+    });
+    it("Affiche le bouton de signature serveur si NSS est configuré", async () => {
+        const fs = require('fs');
+        const configPath = 'config/config.ini';
+        const originalConfig = fs.readFileSync(configPath, 'utf8');
+
+        try {
+            // Add temporary NSS settings for this test.
+            fs.appendFileSync(configPath, `
+            NSS3_DIRECTORY="/tmp/test-nss"
+            NSS3_PASSWORD="test-password"
+            NSS3_NICK="test-certificate"
+            `);
+
+            await page.goto('http://' + host + '/');
+
+            const serverSigningLink = await page.$('a:has(i.bi-patch-check)');
+
+            expect(serverSigningLink).not.toBeNull();
+        } finally {
+            // Restore the original configuration.
+            fs.writeFileSync(configPath, originalConfig);
+        }
+    });
     it('Upload et chargement du pdf', async () => {
         await (await page.$("input#input_pdf_upload")).uploadFile(require('path').resolve(__dirname + '/files/document.pdf'));
         await page.waitForNavigation()

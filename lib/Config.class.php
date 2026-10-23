@@ -91,9 +91,26 @@ class Config
             $this->f3->set('PDF_STORAGE_ENCRYPTION', false);
         }
 
-        if ($this->f3->exists('NSS3_DIRECTORY') && $this->f3->exists('NSS3_PASSWORD') && $this->f3->exists('NSS3_NICK')) {
-            NSSCryptography::getInstance($this->f3->get('NSS3_DIRECTORY'), $this->f3->get('NSS3_PASSWORD'), $this->f3->get('NSS3_NICK'));
+
+        $this->f3->set('serverCertificateSigningEnabled', false);
+
+        if (
+            $this->f3->exists('NSS3_DIRECTORY') &&
+            $this->f3->exists('NSS3_PASSWORD') &&
+            $this->f3->exists('NSS3_NICK') &&
+            trim((string) $this->f3->get('NSS3_DIRECTORY')) !== '' &&
+            trim((string) $this->f3->get('NSS3_PASSWORD')) !== '' &&
+            trim((string) $this->f3->get('NSS3_NICK')) !== ''
+        ) {
+            NSSCryptography::getInstance(
+                $this->f3->get('NSS3_DIRECTORY'),
+                $this->f3->get('NSS3_PASSWORD'),
+                $this->f3->get('NSS3_NICK')
+            );
+
+            $this->f3->set('serverCertificateSigningEnabled', true);
         }
+
 
 
         $domain = basename(glob($this->f3->get('ROOT')."/locale/application_*.pot")[0], '.pot');
